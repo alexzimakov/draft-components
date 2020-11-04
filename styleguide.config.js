@@ -4,6 +4,7 @@ const path = require('path');
 module.exports = {
   components: getComponentsPaths('src/components'),
   skipComponentsWithoutExample: true,
+  styleguideDir: 'docs',
   title: 'Draft Components',
   webpackConfig: {
     module: {
