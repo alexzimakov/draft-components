@@ -1,27 +1,57 @@
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { Button } from './button';
 
-it('should renders correctly', () => {
-  const { getByTestId } = render(
-    <Button data-testid="button">Button Text</Button>
+describe('<Button /> component', () => {
+  const label = 'Button text';
+  const createIcon = (testId: string) => (
+    <svg
+      data-testid={testId}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      width="1em"
+      height="1em"
+    >
+      <circle cx={12} cy={12} r={20} />
+    </svg>
   );
-  const buttonEl = getByTestId('button');
 
-  expect(buttonEl).toHaveTextContent('Button Text');
-});
+  it('renders correctly', () => {
+    const testId = 'button';
+    const { getByTestId } = render(
+      <Button data-testid={testId}>{label}</Button>
+    );
 
-it('should call `onClick` event handler', () => {
-  const onClick = jest.fn();
-  const { getByTestId } = render(
-    <Button data-testid="button" onClick={onClick}>
-      Button Text
-    </Button>
-  );
-  const buttonEl = getByTestId('button');
+    expect(getByTestId(testId)).toHaveTextContent(label);
+  });
 
-  userEvent.click(buttonEl);
+  it('should show loader indicator', () => {
+    const spinnerTestId = 'dc-spinner';
+    const { queryByTestId, rerender } = render(<Button>{label}</Button>);
 
-  expect(onClick).toHaveBeenCalledTimes(1);
+    expect(queryByTestId(spinnerTestId)).toBeNull();
+
+    rerender(<Button isLoading={true}>{label}</Button>);
+
+    expect(queryByTestId(spinnerTestId)).not.toBeNull();
+  });
+
+  it('renders with the leading icon', () => {
+    const iconTestId = 'leading-icon';
+    const { queryByTestId } = render(
+      <Button leadingIcon={createIcon(iconTestId)}>{label}</Button>
+    );
+
+    expect(queryByTestId(iconTestId)).not.toBeNull();
+  });
+
+  it('renders with the trailing icon', () => {
+    const iconTestId = 'trailing-icon';
+    const { queryByTestId } = render(
+      <Button trailingIcon={createIcon(iconTestId)}>{label}</Button>
+    );
+
+    expect(queryByTestId(iconTestId)).not.toBeNull();
+  });
 });

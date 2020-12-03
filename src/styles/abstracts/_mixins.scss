@@ -1,0 +1,9 @@
+@mixin focus-ring($color: var(--dc-focus-ring-color)) {
+  box-shadow: 0 0 0 0.2rem $color;
+}
+
+@mixin text-truncate() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

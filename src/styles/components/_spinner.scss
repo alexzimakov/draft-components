@@ -1,0 +1,14 @@
+.dc-spinner {
+  animation: dc-rotate 1s linear infinite;
+  flex: 0 0 1em;
+  width: 1em;
+  height: 1em;
+}
+
+.dc-spinner__arc {
+  opacity: $opacity-75;
+}
+
+.dc-spinner__circle {
+  opacity: $opacity-25;
+}

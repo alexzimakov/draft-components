@@ -3,8 +3,14 @@ const path = require('path');
 
 module.exports = {
   components: getComponentsPaths('src/components'),
+  require: [path.join(__dirname, 'src/styles/draft-components.scss')],
   skipComponentsWithoutExample: true,
   styleguideDir: 'docs',
+  theme: {
+    fontFamily: {
+      base: 'var(--dc-font-base)',
+    },
+  },
   title: 'Draft Components',
   webpackConfig: {
     module: {
@@ -12,7 +18,11 @@ module.exports = {
         {
           test: /\.(ts|tsx)?$/,
           exclude: /node_modules/,
-          loader: 'babel-loader',
+          use: 'babel-loader',
+        },
+        {
+          test: /\.s[ac]ss$/i,
+          use: ['style-loader', 'css-loader', 'sass-loader'],
         },
       ],
     },

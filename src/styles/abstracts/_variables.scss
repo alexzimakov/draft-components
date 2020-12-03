@@ -1,0 +1,148 @@
+/*------------------------------------*\
+  #COLORS
+\*------------------------------------*/
+
+$white: #fff;
+$black: #000;
+
+$gray-50: #fafafa;
+$gray-100: #f4f4f5;
+$gray-200: #e4e4e7;
+$gray-300: #d4d4d8;
+$gray-400: #a1a1aa;
+$gray-500: #71717a;
+$gray-600: #52525b;
+$gray-700: #3f3f46;
+$gray-800: #27272a;
+$gray-900: #18181b;
+
+$blue-50: #eff6ff;
+$blue-100: #dbeafe;
+$blue-200: #bfdbfe;
+$blue-300: #93c5fd;
+$blue-400: #60a5fa;
+$blue-500: #3b82f6;
+$blue-600: #2563eb;
+$blue-700: #1d4ed8;
+$blue-800: #1e40af;
+$blue-900: #1e3a8a;
+
+$red-50: #fff5f5;
+$red-100: #ffe3e3;
+$red-200: #ffc9c9;
+$red-300: #ffa8a8;
+$red-400: #ff8787;
+$red-500: #ff6b6b;
+$red-600: #fa5252;
+$red-700: #f03e3e;
+$red-800: #e03131;
+$red-900: #c92a2a;
+
+$green-50: #f2fcf5;
+$green-100: #e2fbe8;
+$green-200: #c7f5d4;
+$green-300: #9fecb1;
+$green-400: #77d989;
+$green-500: #5ec169;
+$green-600: #4ca054;
+$green-700: #3b7c44;
+$green-800: #306339;
+$green-900: #285131;
+
+/*------------------------------------*\
+  #FONT FAMILY
+\*------------------------------------*/
+$font-sans-serif: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+  'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+$font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+$font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+  'Liberation Mono', 'Courier New', monospace;
+
+/*------------------------------------*\
+  #FONT SIZE
+\*------------------------------------*/
+$font-size-xs: 0.75rem; // 12px
+$font-size-sm: 0.875rem; // 14px
+$font-size-base: 1rem; // 16px
+$font-size-lg: 1.125rem; // 18px
+$font-size-xl: 1.5rem; // 24px
+$font-size-2xl: 1.75rem; // 28px
+
+/*------------------------------------*\
+  #FONT WEIGHT
+\*------------------------------------*/
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+
+/*------------------------------------*\
+  #LINE HEIGHT
+\*------------------------------------*/
+$leading-default: 1;
+$leading-tight: 1.25;
+$leading-normal: 1.375;
+$leading-lg: 1.5;
+
+/*------------------------------------*\
+  #LETTER SPACING
+\*------------------------------------*/
+$tracking-tight: -0.025em;
+$tracking-normal: 0;
+$tracking-wide: 0.025em;
+
+/*------------------------------------*\
+  #BORDER RADIUS
+\*------------------------------------*/
+$border-radius-2xs: 0.125rem; // 2px
+$border-radius-xs: 0.25rem; // 4px
+$border-radius-sm: 0.3125rem; // 5px
+$border-radius-md: 0.375rem; // 6px
+$border-radius-lg: 0.5rem; // 8px
+$border-radius-xl: 0.625rem; // 10px
+
+/*------------------------------------*\
+  #GAPS
+\*------------------------------------*/
+$gap-base-value: 0.25rem;
+$gap-1x: 1 * $gap-base-value;
+$gap-2x: 2 * $gap-base-value;
+$gap-3x: 3 * $gap-base-value;
+$gap-4x: 4 * $gap-base-value;
+$gap-5x: 5 * $gap-base-value;
+$gap-6x: 6 * $gap-base-value;
+$gap-8x: 8 * $gap-base-value;
+$gap-10x: 10 * $gap-base-value;
+$gap-12x: 12 * $gap-base-value;
+$gap-16x: 16 * $gap-base-value;
+$gap-20x: 20 * $gap-base-value;
+$gap-24x: 24 * $gap-base-value;
+
+/*------------------------------------*\
+  #OPACITY
+\*------------------------------------*/
+$opacity-0: 0;
+$opacity-5: 0.05;
+$opacity-10: 0.1;
+$opacity-15: 0.15;
+$opacity-20: 0.2;
+$opacity-25: 0.25;
+$opacity-30: 0.3;
+$opacity-40: 0.4;
+$opacity-50: 0.5;
+$opacity-60: 0.6;
+$opacity-70: 0.7;
+$opacity-75: 0.75;
+$opacity-80: 0.8;
+$opacity-90: 0.9;
+$opacity-95: 0.95;
+$opacity-100: 1;
+
+/*------------------------------------*\
+  #TRANSITION
+\*------------------------------------*/
+$transition-quick: 100ms ease-in-out;
+$transition-normal: 200ms ease-in-out;
+$transition-slow: 500ms ease-in-out;

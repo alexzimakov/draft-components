@@ -1,0 +1,196 @@
+.dc-button {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  display: inline-flex;
+  box-sizing: border-box;
+  width: auto;
+  height: 2rem;
+  max-width: 100%;
+  padding: 0 $gap-5x;
+  cursor: pointer;
+  user-select: none;
+  transition: $transition-quick;
+  transition-property: opacity, border-color, background-color, box-shadow;
+  letter-spacing: $tracking-tight;
+  color: var(--dc-btn-text-color);
+  border: 0.0625rem solid var(--dc-btn-border-color);
+  border-radius: $border-radius-md;
+  background: var(--dc-btn-bg);
+  box-shadow: var(--dc-btn-shadow);
+  font-family: var(--dc-btn-font);
+  font-weight: $font-weight-medium;
+  font-size: $font-size-sm;
+  line-height: $leading-default;
+
+  &:focus {
+    outline: none;
+    border-color: var(--dc-btn-border-color-focus);
+    @include focus-ring(var(--dc-btn-focus-ring-color));
+  }
+
+  &:hover:enabled {
+    background: var(--dc-btn-bg-hover);
+  }
+
+  &:active:enabled {
+    background: var(--dc-btn-bg-active);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    box-shadow: none;
+  }
+}
+
+.dc-button_size_xs {
+  height: 1.5rem;
+  padding: 0 $gap-3x;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-xs;
+}
+
+.dc-button_size_sm {
+  height: 1.75rem;
+  padding: 0 $gap-4x;
+  border-radius: $border-radius-md;
+  font-size: $font-size-sm;
+}
+
+.dc-button_size_lg {
+  height: 2.5rem;
+  padding: 0 $gap-6x;
+  border-radius: $border-radius-lg;
+  font-size: $font-size-base;
+}
+
+.dc-button_primary {
+  color: var(--dc-btn-primary-text-color);
+  border-color: var(--dc-btn-primary-border-color);
+  background: var(--dc-btn-primary-bg);
+  box-shadow: var(--dc-btn-primary-shadow);
+
+  &:focus {
+    border-color: var(--dc-btn-primary-border-color-focus);
+    @include focus-ring(var(--dc-btn-primary-focus-ring-color));
+  }
+
+  &:hover:enabled {
+    background: var(--dc-btn-primary-bg-hover);
+  }
+
+  &:active:enabled {
+    background: var(--dc-btn-primary-bg-active);
+  }
+}
+
+.dc-button_danger {
+  color: var(--dc-btn-danger-text-color);
+  border-color: var(--dc-btn-danger-border-color);
+  background: var(--dc-btn-danger-bg);
+  box-shadow: var(--dc-btn-danger-shadow);
+
+  &:focus {
+    border-color: var(--dc-btn-danger-border-color-focus);
+    @include focus-ring(var(--dc-btn-danger-focus-ring-color));
+  }
+
+  &:hover:enabled {
+    background: var(--dc-btn-danger-bg-hover);
+  }
+
+  &:active:enabled {
+    background: var(--dc-btn-danger-bg-active);
+  }
+}
+
+.dc-button_success {
+  color: var(--dc-btn-success-text-color);
+  border-color: var(--dc-btn-success-border-color);
+  background: var(--dc-btn-success-bg);
+  box-shadow: var(--dc-btn-success-shadow);
+
+  &:focus {
+    border-color: var(--dc-btn-success-border-color-focus);
+    @include focus-ring(var(--dc-btn-success-focus-ring-color));
+  }
+
+  &:hover:enabled {
+    background: var(--dc-btn-success-bg-hover);
+  }
+
+  &:active:enabled {
+    background: var(--dc-btn-success-bg-active);
+  }
+}
+
+.dc-button_minimal {
+  color: var(--dc-btn-minimal-text-color);
+  border-color: transparent;
+  background: var(--dc-btn-minimal-bg);
+  box-shadow: none;
+
+  &:focus {
+    border-color: transparent;
+    background: var(--dc-btn-minimal-bg-hover);
+    box-shadow: none;
+  }
+
+  &:hover:enabled {
+    background: var(--dc-btn-minimal-bg-hover);
+  }
+
+  &:hover:active {
+    background: var(--dc-btn-minimal-bg-active);
+  }
+
+  &:disabled {
+    box-shadow: none;
+  }
+}
+
+.dc-button__leading-icon,
+.dc-button__trailing-icon {
+  display: inline-flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-size: inherit;
+  line-height: 0;
+}
+
+.dc-button__leading-icon {
+  margin-right: 0.5em;
+}
+
+.dc-button__trailing-icon {
+  margin-left: 0.5em;
+}
+
+.dc-button__text {
+  display: inline-block;
+  @include text-truncate;
+}
+
+.dc-button__spinner {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.dc-button_is-loading {
+  pointer-events: none;
+
+  .dc-button__leading-icon,
+  .dc-button__trailing-icon,
+  .dc-button__text {
+    opacity: 0;
+  }
+}
+
+.dc-button_has-full-width {
+  width: 100%;
+}
