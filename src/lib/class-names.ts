@@ -29,5 +29,3 @@ export function classNames(...classes: ClassName[]): string {
     })
     .join(' ');
 }
-
-export default classNames;
