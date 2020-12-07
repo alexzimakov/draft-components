@@ -9,6 +9,7 @@
    #ACCESSABILITY
   \*------------------------------------*/
   --dc-focus-ring-color: #{rgba($blue-500, $opacity-40)};
+  --dc-focus-danger-ring-color: #{rgba($red-500, $opacity-40)};
 
   /*------------------------------------*\
    #BUTTONS
@@ -55,4 +56,20 @@
   --dc-btn-minimal-bg: #{rgba($gray-500, $opacity-0)};
   --dc-btn-minimal-bg-hover: #{rgba($gray-500, $opacity-10)};
   --dc-btn-minimal-bg-active: #{rgba($gray-500, $opacity-15)};
+
+  /*------------------------------------*\
+   #CONTROLS
+  \*------------------------------------*/
+  --dc-control-text-color: #{$gray-800};
+  --dc-control-add-on-color: #{$gray-600};
+  --dc-control-border-color: #{$gray-300};
+  --dc-control-bg-color: #{$white};
+
+  --dc-control-disabled-text-color: #{$gray-400};
+  --dc-control-disabled-add-on-color: #{$gray-400};
+  --dc-control-disabled-border-color: #{$gray-200};
+  --dc-control-disabled-bg-color: #{$gray-50};
+
+  --dc-control-accent-color: #{$blue-500};
+  --dc-control-danger-color: #{$red-600};
 }
