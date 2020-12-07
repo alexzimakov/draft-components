@@ -3,7 +3,10 @@ const path = require('path');
 
 module.exports = {
   components: getComponentsPaths('src/components'),
-  require: [path.join(__dirname, 'src/styles/draft-components.scss')],
+  require: [
+    path.join(__dirname, 'src/styles/draft-components.scss'),
+    path.join(__dirname, 'src/styleguide/styles.scss'),
+  ],
   skipComponentsWithoutExample: true,
   styleguideDir: 'docs',
   theme: {
