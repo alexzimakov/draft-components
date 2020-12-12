@@ -3,6 +3,7 @@ $_checkbox-label-gap: $gap-3x;
 
 .dc-checkbox {
   display: inline-flex;
+  align-items: flex-start;
   flex-direction: column;
   font-family: var(--dc-font-base);
 }
