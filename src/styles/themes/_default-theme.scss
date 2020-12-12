@@ -1,13 +1,14 @@
 :root {
   /*------------------------------------*\
-   #TYPOGRPAPHY
+   #COMMON
   \*------------------------------------*/
   --dc-font-base: #{$font-sans-serif};
   --dc-font-code: #{$font-mono};
 
-  /*------------------------------------*\
-   #ACCESSABILITY
-  \*------------------------------------*/
+  --dc-primary-text-color: #{$gray-800};
+  --dc-secondary-text-color: #{$gray-500};
+  --dc-tertiary-text-color: #{$gray-400};
+
   --dc-focus-ring-color: #{rgba($blue-500, $opacity-40)};
   --dc-focus-danger-ring-color: #{rgba($red-500, $opacity-40)};
 
@@ -71,5 +72,7 @@
   --dc-control-disabled-bg-color: #{$gray-50};
 
   --dc-control-accent-color: #{$blue-500};
+  --dc-control-accent-text-color: #{$white};
   --dc-control-danger-color: #{$red-600};
+  --dc-control-danger-text-color: #{$white};
 }
