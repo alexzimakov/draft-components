@@ -14,7 +14,6 @@
   max-width: 100%;
   transition: $transition-quick;
   transition-property: color, border-color, background-color, box-shadow;
-  color: var(--dc-control-text-color);
   border: 0.0625rem solid var(--dc-control-border-color);
   border-radius: var(--dc-text-field-border-radius);
   background: var(--dc-control-bg-color);
@@ -54,7 +53,6 @@
 
 .dc-text-field_disabled {
   pointer-events: none;
-  color: var(--dc-control-disabled-text-color);
   border-color: var(--dc-control-disabled-border-color);
   background: var(--dc-control-disabled-bg-color);
 }
@@ -64,7 +62,7 @@
   padding: 0 var(--dc-text-field-gap);
   box-sizing: border-box;
   height: var(--dc-text-field-height);
-  color: inherit;
+  color: var(--dc-control-text-color);
   font: inherit;
   line-height: var(--dc-text-field-height);
   border: none;
@@ -77,6 +75,11 @@
 
   &:focus {
     outline: none;
+  }
+
+  &:disabled {
+    color: var(--dc-control-disabled-text-color);
+    -webkit-text-fill-color: var(--dc-control-disabled-text-color);
   }
 
   .dc-text-field_has_leading-add-on & {
