@@ -2,16 +2,20 @@ import * as React from 'react';
 import { classNames } from '../../lib/class-names';
 
 export type SpinnerProps = {
-  className?: string;
   size?: number | string;
-};
+} & React.HTMLAttributes<SVGElement>;
 
-export function Spinner({ className, size = '1.5em' }: SpinnerProps) {
+export function Spinner({
+  style,
+  className,
+  size = '1.5em',
+  ...props
+}: SpinnerProps) {
   return (
     <svg
-      data-testid="dc-spinner"
+      {...props}
       xmlns="http://www.w3.org/2000/svg"
-      style={{ fontSize: size }}
+      style={{ ...style, fontSize: size }}
       className={classNames(className, 'dc-spinner')}
       fill="none"
       viewBox="0 0 24 24"

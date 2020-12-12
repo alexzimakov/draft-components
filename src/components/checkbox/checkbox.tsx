@@ -1,6 +1,32 @@
 import * as React from 'react';
 import { classNames } from '../../lib/class-names';
 
+export type CheckboxHtmlAttrs = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  | 'accept'
+  | 'alt'
+  | 'capture'
+  | 'dirname'
+  | 'formAction'
+  | 'formEncType'
+  | 'formMethod'
+  | 'formNoValidate'
+  | 'formTarget'
+  | 'height'
+  | 'max'
+  | 'maxLength'
+  | 'min'
+  | 'minLength'
+  | 'multiple'
+  | 'pattern'
+  | 'placeholder'
+  | 'size'
+  | 'src'
+  | 'step'
+  | 'type'
+  | 'width'
+>;
+
 export type CheckboxProps = {
   label?: React.ReactNode;
   description?: React.ReactNode;

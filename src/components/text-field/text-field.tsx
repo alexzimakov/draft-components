@@ -1,14 +1,34 @@
 import * as React from 'react';
 import { classNames } from '../../lib/class-names';
 
+export type TextInputHtmlAttrs = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  | 'accept'
+  | 'alt'
+  | 'capture'
+  | 'checked'
+  | 'defaultChecked'
+  | 'formAction'
+  | 'formEncType'
+  | 'formMethod'
+  | 'formNoValidate'
+  | 'formTarget'
+  | 'height'
+  | 'max'
+  | 'min'
+  | 'src'
+  | 'step'
+  | 'width'
+>;
+
 export type TextFieldProps = {
-  type?: 'email' | 'number' | 'password';
+  type?: 'email' | 'password' | 'search' | 'tel' | 'text' | 'url';
   size?: 'sm' | 'lg';
   isInvalid?: boolean;
   hasFullWidth?: boolean;
   leadingAddOn?: React.ReactNode;
   trailingAddOn?: React.ReactNode;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+} & TextInputHtmlAttrs;
 
 export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   function TextField(
@@ -18,6 +38,8 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       hasFullWidth,
       leadingAddOn,
       trailingAddOn,
+
+      // Standard HTML Attributes
       style,
       className,
       type = 'text',

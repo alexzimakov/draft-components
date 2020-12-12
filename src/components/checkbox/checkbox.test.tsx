@@ -2,23 +2,24 @@ import * as React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { Checkbox } from './checkbox';
 
-it('should pass extra attrs except `type`, `className` and `style` to underlying <input /> component', () => {
+it('renders without errors', () => {
+  const title = 'Remember me';
+  const { getByTitle } = render(<Checkbox title={title} />);
+
+  getByTitle(title);
+});
+
+it('should forward extra attrs to underlying <input />', () => {
   const attrs = {
     'data-testid': 'checkbox',
     name: 'rememberMe',
     value: 'yes',
-    type: 'text',
-    className: 'custom-className',
-    style: { display: 'none' },
-  };
+  } as const;
   const { getByTestId } = render(<Checkbox {...attrs} />);
   const inputEl = getByTestId(attrs['data-testid']);
 
-  expect(inputEl).toHaveAttribute('type', 'checkbox');
   expect(inputEl).toHaveAttribute('name', attrs.name);
   expect(inputEl).toHaveAttribute('value', attrs.value);
-  expect(inputEl).not.toHaveAttribute('style');
-  expect(inputEl).not.toHaveClass(attrs.className);
 });
 
 it('renders with label and description', () => {

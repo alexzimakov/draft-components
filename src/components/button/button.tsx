@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Spinner } from '../spinner';
 import { classNames } from '../../lib/class-names';
 
+export type ButtonHtmlAttrs = React.ButtonHTMLAttributes<HTMLButtonElement>;
+
 export type ButtonProps = {
   size?: 'xs' | 'sm' | 'lg';
   appearance?: 'primary' | 'danger' | 'success' | 'minimal';
@@ -9,7 +11,7 @@ export type ButtonProps = {
   isLoading?: boolean;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+} & ButtonHtmlAttrs;
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(
@@ -28,6 +30,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) {
     return (
       <button
+        {...props}
+        ref={ref}
         className={classNames(className, 'dc-button', {
           'dc-button_size_xs': size === 'xs',
           'dc-button_size_sm': size === 'sm',
@@ -39,11 +43,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           'dc-button_is-loading': isLoading,
           'dc-button_has-full-width': hasFullWidth,
         })}
-        {...props}
       >
         {isLoading ? (
           <span className="dc-button__spinner">
-            <Spinner size="1.25em" />
+            <Spinner data-testid="dc-button-loader-indicator" size="1.25em" />
           </span>
         ) : null}
         {leadingIcon ? (

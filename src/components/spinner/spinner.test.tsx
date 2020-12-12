@@ -2,12 +2,17 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 import { Spinner } from './spinner';
 
-describe('<Spinner /> component', () => {
-  it('renders with custom size', () => {
-    const size = 32;
-    const { getByTestId } = render(<Spinner size={size} />);
-    const spinnerEl = getByTestId('dc-spinner');
+it('renders without errors', () => {
+  const title = 'Loading...';
+  const { getByTitle } = render(<Spinner title={title} />);
 
-    expect(spinnerEl).toHaveStyle({ fontSize: size });
-  });
+  getByTitle(title);
+});
+
+it('renders with custom size', () => {
+  const testId = 'spinner';
+  const size = 32;
+  const { getByTestId } = render(<Spinner data-testid={testId} size={size} />);
+
+  expect(getByTestId(testId)).toHaveStyle({ fontSize: size });
 });
