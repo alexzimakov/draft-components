@@ -1,0 +1,62 @@
+.dc-switch {
+  --dc-selection-control-size: 2rem;
+}
+
+.dc-switch__input {
+  @include visually-hidden;
+}
+
+.dc-switch__check {
+  position: relative;
+  display: inline-flex;
+  box-sizing: border-box;
+  width: var(--dc-switch-width);
+  height: var(--dc-switch-height);
+  transition: $transition-quick;
+  transition-property: border-color, background-color;
+  cursor: pointer;
+  border-radius: calc(var(--dc-switch-height) / 2);
+  background: var(--dc-switch-bg-color);
+
+  &::after {
+    $offset: calc((var(--dc-switch-height) - var(--dc-switch-check-size)) / 2);
+
+    position: absolute;
+    top: $offset;
+    left: $offset;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: var(--dc-switch-check-size);
+    height: var(--dc-switch-check-size);
+    content: '';
+    transition: inherit;
+    transition-property: transform, border-color;
+    background: var(--dc-switch-check-color);
+    box-shadow: $shadow-sm, $shadow-md;
+    border-radius: 50%;
+  }
+
+  .dc-switch__input:checked + & {
+    background: var(--dc-switch-accent-color);
+
+    &::after {
+      transform: translateX(
+        #{calc(var(--dc-switch-width) - var(--dc-switch-height))}
+      );
+    }
+  }
+
+  .dc-switch__input:focus + & {
+    box-shadow: (
+      0 0 0 0.125rem var(--dc-focus-ring-secondary-color),
+      0 0 0 0.25rem var(--dc-focus-ring-color)
+    );
+  }
+
+  .dc-switch__input:disabled + & {
+    cursor: default;
+    opacity: $opacity-50;
+  }
+}

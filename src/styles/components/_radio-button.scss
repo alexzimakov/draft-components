@@ -1,5 +1,5 @@
 .dc-radio-button {
-  --dc-selection-control-size: 1.125rem;
+  --dc-selection-control-size: var(--dc-radio-button-size);
 }
 
 .dc-radio-button__input {
@@ -11,8 +11,8 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  width: var(--dc-selection-control-size);
-  height: var(--dc-selection-control-size);
+  width: var(--dc-radio-button-size);
+  height: var(--dc-radio-button-size);
   cursor: pointer;
   color: var(--dc-control-accent-text-color);
   border-radius: 50%;
@@ -30,8 +30,8 @@
       top: 50%;
       left: 50%;
       display: inline-flex;
-      width: calc(var(--dc-selection-control-size) / 2.61802);
-      height: calc(var(--dc-selection-control-size) / 2.61802);
+      width: calc(var(--dc-radio-button-size) / 2.61802);
+      height: calc(var(--dc-radio-button-size) / 2.61802);
       content: '';
       transform: translate(-50%, -50%);
       border-radius: 50%;

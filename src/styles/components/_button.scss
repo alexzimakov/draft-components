@@ -39,7 +39,7 @@
 
   &:disabled {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: $opacity-50;
     box-shadow: none;
   }
 }
