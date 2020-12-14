@@ -1,21 +1,21 @@
 import * as React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { Checkbox } from './checkbox';
+import { RadioButton } from './radio-button';
 
 it('renders without errors', () => {
-  const title = 'Remember me';
-  const { getByTitle } = render(<Checkbox title={title} />);
+  const title = 'Private access';
+  const { getByTitle } = render(<RadioButton title={title} />);
 
   getByTitle(title);
 });
 
 it('should forward extra attrs to underlying <input />', () => {
   const attrs = {
-    'data-testid': 'checkbox',
-    name: 'locationServices',
-    value: 'enabled',
+    'data-testid': 'radio-button',
+    name: 'accessMode',
+    value: 'private',
   } as const;
-  const { getByTestId } = render(<Checkbox {...attrs} />);
+  const { getByTestId } = render(<RadioButton {...attrs} />);
   const inputEl = getByTestId(attrs['data-testid']);
 
   expect(inputEl).toHaveAttribute('name', attrs.name);
@@ -23,10 +23,10 @@ it('should forward extra attrs to underlying <input />', () => {
 });
 
 it('renders with label and description', () => {
-  const label = 'Enable Location Services';
-  const description = 'Allow selected apps to determine your location.';
+  const label = 'Private access';
+  const description = 'The repository would be available to anyone';
   const { getByText } = render(
-    <Checkbox label={label} description={description} />
+    <RadioButton label={label} description={description} />
   );
 
   getByText(label);
@@ -36,7 +36,9 @@ it('renders with label and description', () => {
 it('should check when click on label', () => {
   const label = 'Enable Location Services';
   const onChange = jest.fn();
-  const { getByText } = render(<Checkbox label={label} onChange={onChange} />);
+  const { getByText } = render(
+    <RadioButton label={label} onChange={onChange} />
+  );
 
   fireEvent.click(getByText(label));
 

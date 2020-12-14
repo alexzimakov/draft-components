@@ -2,7 +2,7 @@ import * as React from 'react';
 import { classNames } from '../../lib/class-names';
 import { SelectionControl, SelectionControlProps } from '../selection-control';
 
-export type CheckboxHtmlAttrs = Omit<
+export type RadioButtonHtmlAttrs = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
   | 'accept'
   | 'alt'
@@ -28,11 +28,11 @@ export type CheckboxHtmlAttrs = Omit<
   | 'width'
 >;
 
-export type CheckboxProps = CheckboxHtmlAttrs &
+export type RadioButtonProps = RadioButtonHtmlAttrs &
   Pick<SelectionControlProps, 'label' | 'description'>;
 
-export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  function Checkbox(
+export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
+  function RadioButton(
     {
       label,
       description,
@@ -47,7 +47,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   ) {
     return (
       <SelectionControl
-        className={classNames(className, 'dc-checkbox')}
+        className={classNames(className, 'dc-radio-button')}
         style={style}
         label={label}
         description={description}
@@ -56,28 +56,11 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         <input
           {...props}
           ref={ref}
-          className="dc-checkbox__input"
-          type="checkbox"
+          className="dc-radio-button__input"
+          type="radio"
           disabled={disabled}
         />
-        <span className="dc-checkbox__check" aria-hidden={true}>
-          <svg
-            className="dc-checkbox__check-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            width={16}
-            height={16}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={3}
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-        </span>
+        <span className="dc-radio-button__radio" aria-hidden={true} />
       </SelectionControl>
     );
   }

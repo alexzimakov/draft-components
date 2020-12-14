@@ -5,7 +5,7 @@
 With a label:
 
 ```jsx
-<Checkbox label="Remember me" />
+<Checkbox label="Enable Location Services" />
 ```
 
 With the label and description:

@@ -1,0 +1,40 @@
+.dc-selection-control {
+  --dc-selection-control-size: 0;
+  --dc-selection-control-gap: #{$gap-3x};
+
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  font-family: var(--dc-font-base);
+}
+
+.dc-selection-control__body {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.dc-selection-control__label {
+  display: inline-block;
+  margin-left: var(--dc-selection-control-gap);
+  user-select: none;
+  color: var(--dc-primary-text-color);
+  font-size: $font-size-base;
+  line-height: $leading-default;
+  @include text-truncate;
+}
+
+.dc-selection-control__description {
+  margin-top: $gap-1x;
+  margin-left: var(--dc-selection-control-size);
+  padding-left: var(--dc-selection-control-gap);
+  color: var(--dc-secondary-text-color);
+  font-size: $font-size-sm;
+  line-height: $leading-tight;
+}
+
+.dc-selection-control_disabled .dc-selection-control__label,
+.dc-selection-control_disabled .dc-selection-control__description {
+  color: var(--dc-control-disabled-text-color);
+}

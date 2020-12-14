@@ -1,13 +1,12 @@
-.dc-checkbox {
+.dc-radio-button {
   --dc-selection-control-size: 1.125rem;
 }
 
-.dc-checkbox__input {
+.dc-radio-button__input {
   @include visually-hidden;
 }
 
-.dc-checkbox__check {
-  position: relative;
+.dc-radio-button__radio {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -15,42 +14,44 @@
   width: var(--dc-selection-control-size);
   height: var(--dc-selection-control-size);
   cursor: pointer;
-  border-radius: $border-radius-xs;
+  color: var(--dc-control-accent-text-color);
+  border-radius: 50%;
   border: 0.0625rem solid var(--dc-control-border-color);
   background: var(--dc-control-bg-color);
 
-  .dc-checkbox__input:checked + & {
+  .dc-radio-button__input:checked + & {
+    position: relative;
     color: var(--dc-control-accent-text-color);
     border-color: var(--dc-control-accent-color);
     background: var(--dc-control-accent-color);
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: inline-flex;
+      width: calc(var(--dc-selection-control-size) / 2.61802);
+      height: calc(var(--dc-selection-control-size) / 2.61802);
+      content: '';
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: $shadow-xs;
+    }
   }
 
-  .dc-checkbox__input:focus + & {
+  .dc-radio-button__input:focus + & {
     border-color: var(--dc-control-accent-color);
     @include focus-ring(var(--dc-focus-ring-color));
   }
 
-  .dc-checkbox__input:disabled + & {
+  .dc-radio-button__input:disabled + & {
     cursor: default;
     border-color: var(--dc-control-disabled-border-color);
     background: var(--dc-control-disabled-bg-color);
-  }
-}
 
-.dc-checkbox__check-icon {
-  display: none;
-
-  .dc-checkbox__input:checked + .dc-checkbox__check > & {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    display: inline-block;
-    width: calc(var(--dc-selection-control-size) * 0.8);
-    height: calc(var(--dc-selection-control-size) * 0.8);
-    transform: translate(-50%, -50%);
-  }
-
-  .dc-checkbox__input:disabled + .dc-checkbox__check > & {
-    color: var(--dc-control-disabled-text-color);
+    &::after {
+      color: var(--dc-control-disabled-text-color);
+    }
   }
 }
