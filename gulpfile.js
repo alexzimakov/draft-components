@@ -3,7 +3,9 @@ const { remove, copy } = require('fs-extra');
 const path = require('path');
 const gulp = require('gulp');
 const sass = require('gulp-sass');
-const autoprefixer = require('gulp-autoprefixer');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 
 sass.compiler = require('node-sass');
 
@@ -44,8 +46,8 @@ function buildTs(done) {
 function buildScss() {
   return gulp
     .src(path.join(SOURCE_PATH, 'styles/**/*.scss'))
-    .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
-    .pipe(autoprefixer())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(postcss([autoprefixer(), cssnano()]))
     .pipe(gulp.dest(path.join(DIST_PATH, 'css')));
 }
 
