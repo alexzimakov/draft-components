@@ -62,20 +62,18 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         />
         <span className="dc-checkbox__check" aria-hidden={true}>
           <svg
-            className="dc-checkbox__check-icon"
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
+            className="dc-checkbox__check-icon"
             viewBox="0 0 24 24"
+            width={24}
+            height={24}
+            fill="none"
             stroke="currentColor"
-            width={16}
-            height={16}
+            strokeWidth={3}
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={3}
-              d="M5 13l4 4L19 7"
-            />
+            <polyline points="20 6 9 17 4 12" />
           </svg>
         </span>
       </SelectionControl>
