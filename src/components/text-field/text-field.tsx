@@ -55,13 +55,13 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     return (
       <div
         style={style}
-        className={classNames(className, 'dc-text-field', {
-          'dc-text-field_has_focus': hasFocus,
-          'dc-text-field_size_sm': size === 'sm',
-          'dc-text-field_size_lg': size === 'lg',
-          'dc-text-field_invalid': isInvalid,
-          'dc-text-field_disabled': disabled,
-          'dc-text-field_has_full-width': hasFullWidth,
+        className={classNames(className, 'dc-base-control', 'dc-text-field', {
+          'dc-base-control_size_sm': size === 'sm',
+          'dc-base-control_size_lg': size === 'lg',
+          'dc-base-control_disabled': disabled,
+          'dc-base-control_focused': hasFocus,
+          'dc-base-control_invalid': isInvalid,
+          'dc-base-control_full_width': hasFullWidth,
           'dc-text-field_has_leading-add-on': Boolean(leadingAddOn),
           'dc-text-field_has_trailing-add-on': Boolean(trailingAddOn),
         })}

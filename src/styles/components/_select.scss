@@ -1,0 +1,32 @@
+@function select-bg-image($color) {
+  @return inline-svg(
+    '<svg width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 11L6 14L9 11" stroke="#{$color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 5L6 2L3 5" stroke="#{$color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+  );
+}
+
+.dc-select {
+  width: auto;
+  padding-right: 0.85em + $control-gap * 1.75;
+  padding-left: $control-gap;
+  background-image: select-bg-image($gray-600);
+  background-repeat: no-repeat;
+  background-size: 0.85em auto;
+  background-position: calc(100% - #{$control-gap}) 55%;
+  box-shadow: $shadow-xs;
+  line-height: $leading-tight;
+  cursor: pointer;
+
+  &:disabled {
+    background-image: select-bg-image($gray-400);
+  }
+}
+
+.dc-select[multiple] {
+  height: auto;
+  padding: $gap-2x 0;
+  background: var(--dc-control-bg-color);
+
+  option {
+    padding: $gap-1x $gap-3x;
+  }
+}

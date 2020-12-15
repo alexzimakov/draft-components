@@ -1,0 +1,66 @@
+.dc-base-control {
+  position: relative;
+  box-sizing: border-box;
+  width: $control-width;
+  height: $control-height;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  transition: $transition-quick;
+  transition-property: color, border-color, background-color, box-shadow;
+  color: var(--dc-control-text-color);
+  border: 0.0625rem solid var(--dc-control-border-color);
+  border-radius: $control-border-radius;
+  background-color: var(--dc-control-bg-color);
+  font-family: var(--dc-font-base);
+  font-size: $control-font-size;
+  font-weight: $font-weight-normal;
+  line-height: 1;
+  appearance: none;
+}
+
+.dc-base-control:focus,
+.dc-base-control_focused {
+  outline: none;
+  border-color: var(--dc-control-accent-color);
+  @include focus-ring(var(--dc-focus-ring-color));
+}
+
+.dc-base-control_invalid {
+  border-color: var(--dc-control-danger-color);
+}
+
+.dc-base-control_invalid:focus,
+.dc-base-control_invalid.dc-base-control_focused {
+  border-color: var(--dc-control-danger-color);
+  @include focus-ring(var(--dc-focus-danger-ring-color));
+}
+
+.dc-base-control:disabled,
+.dc-base-control[disabled],
+.dc-base-control_disabled {
+  pointer-events: none;
+  color: var(--dc-control-disabled-text-color);
+  -webkit-text-fill-color: var(--dc-control-disabled-text-color);
+  border-color: var(--dc-control-disabled-border-color);
+  background-color: var(--dc-control-disabled-bg-color);
+  box-shadow: none;
+}
+
+.dc-base-control_size_sm {
+  width: $control-sm-width;
+  height: $control-sm-height;
+  border-radius: $control-sm-border-radius;
+  font-size: $control-sm-font-size;
+}
+
+.dc-base-control_size_lg {
+  width: $control-lg-width;
+  height: $control-lg-height;
+  border-radius: $control-lg-border-radius;
+  font-size: $control-lg-font-size;
+}
+
+.dc-base-control_full_width {
+  width: 100% !important;
+}
