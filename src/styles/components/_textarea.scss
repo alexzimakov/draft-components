@@ -1,0 +1,19 @@
+@function textarea-min-height($lines: 5, $leading: $leading-normal) {
+  @return (1em * $leading * $lines) + ($control-gap * 2);
+}
+
+.dc-textarea {
+  width: $control-width * 1.5;
+  min-height: textarea-min-height();
+  padding: $control-gap;
+  resize: vertical;
+  line-height: $leading-normal;
+}
+
+.dc-textarea.dc-base-control_size_sm {
+  width: $control-width * 1.25;
+}
+
+.dc-textarea.dc-base-control_size_lg {
+  width: $control-width * 1.75;
+}

@@ -17,6 +17,11 @@
   font-weight: $font-weight-normal;
   line-height: 1;
   appearance: none;
+
+  &::placeholder {
+    opacity: $opacity-40;
+    color: inherit;
+  }
 }
 
 .dc-base-control:focus,
