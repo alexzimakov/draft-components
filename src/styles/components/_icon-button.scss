@@ -1,0 +1,38 @@
+.dc-icon-button {
+  width: $button-size;
+  min-width: initial;
+  padding: 0;
+  font-size: 1rem;
+
+  .dc-button__body {
+    font-size: 1.375em;
+  }
+}
+
+.dc-icon-button_rounded {
+  border-radius: 50%;
+}
+
+.dc-icon-button.dc-button_size_xs {
+  width: $button-xs-size;
+
+  .dc-button__body {
+    font-size: 1.125em;
+  }
+}
+
+.dc-icon-button.dc-button_size_sm {
+  width: $button-sm-size;
+
+  .dc-button__body {
+    font-size: 1.25em;
+  }
+}
+
+.dc-icon-button.dc-button_size_lg {
+  width: $button-lg-size;
+
+  .dc-button__body {
+    font-size: 1.625em;
+  }
+}

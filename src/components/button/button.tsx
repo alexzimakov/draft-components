@@ -44,17 +44,19 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           'dc-button_has-full-width': hasFullWidth,
         })}
       >
+        <div className="dc-button__body">
+          {leadingIcon ? (
+            <span className="dc-button__leading-icon">{leadingIcon}</span>
+          ) : null}
+          {children}
+          {trailingIcon ? (
+            <span className="dc-button__trailing-icon">{trailingIcon}</span>
+          ) : null}
+        </div>
         {isLoading ? (
           <span className="dc-button__spinner">
             <Spinner data-testid="dc-button-loader-indicator" size="1.25em" />
           </span>
-        ) : null}
-        {leadingIcon ? (
-          <span className="dc-button__leading-icon">{leadingIcon}</span>
-        ) : null}
-        <span className="dc-button__text">{children}</span>
-        {trailingIcon ? (
-          <span className="dc-button__trailing-icon">{trailingIcon}</span>
         ) : null}
       </button>
     );

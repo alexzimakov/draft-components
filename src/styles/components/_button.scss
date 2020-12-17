@@ -1,11 +1,12 @@
 .dc-button {
   position: relative;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  display: inline-flex;
   box-sizing: border-box;
   width: auto;
-  height: 2rem;
+  height: $button-size;
+  min-width: 4rem;
   max-width: 100%;
   padding: 0 $gap-5x;
   cursor: pointer;
@@ -45,21 +46,21 @@
 }
 
 .dc-button_size_xs {
-  height: 1.5rem;
+  height: $button-xs-size;
   padding: 0 $gap-3x;
   border-radius: $border-radius-sm;
   font-size: $font-size-xs;
 }
 
 .dc-button_size_sm {
-  height: 1.75rem;
+  height: $button-sm-size;
   padding: 0 $gap-4x;
   border-radius: $border-radius-md;
   font-size: $font-size-sm;
 }
 
 .dc-button_size_lg {
-  height: 2.5rem;
+  height: $button-lg-size;
   padding: 0 $gap-6x;
   border-radius: $border-radius-lg;
   font-size: $font-size-base;
@@ -150,6 +151,12 @@
   }
 }
 
+.dc-button__body {
+  display: inherit;
+  align-items: inherit;
+  justify-content: inherit;
+}
+
 .dc-button__leading-icon,
 .dc-button__trailing-icon {
   display: inline-flex;
@@ -167,13 +174,10 @@
   margin-left: 0.5em;
 }
 
-.dc-button__text {
-  display: inline-block;
-  @include text-truncate;
-}
-
 .dc-button__spinner {
   position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -184,9 +188,7 @@
 .dc-button_is-loading {
   pointer-events: none;
 
-  .dc-button__leading-icon,
-  .dc-button__trailing-icon,
-  .dc-button__text {
+  .dc-button__body {
     opacity: 0;
   }
 }
