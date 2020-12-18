@@ -29,7 +29,7 @@ Rounded:
 
 ```jsx padded
 const src =
-  'https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&fit=crop&crop=focalpoint&fp-x=.535&fp-y=.50&fp-z=2&w=128&h=128';
+  'https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&fit=crop&crop=focalpoint&fp-x=.535&fp-y=.50&fp-z=2&w=120&h=120';
 
 <>
   <Avatar src={src} size="xs" isRounded={true} />
@@ -50,4 +50,22 @@ With the placeholder:
   <Avatar size="lg" isRounded={true} />
   <Avatar size="xl" isRounded={true} />
 </>
+```
+
+Different colors:
+
+```jsx padded
+const initials = 'DC';
+
+<>
+  <Avatar initials={initials} isRounded={true} />
+  <Avatar color="blue" initials={initials} isRounded={true} />
+  <Avatar color="cyan" initials={initials} isRounded={true} />
+  <Avatar color="red" initials={initials} isRounded={true} />
+  <Avatar color="green" initials={initials} isRounded={true} />
+  <Avatar color="lime" initials={initials} isRounded={true} />
+  <Avatar color="indigo" initials={initials} isRounded={true} />
+  <Avatar color="yellow" initials={initials} isRounded={true} />
+  <Avatar color="orange" initials={initials} isRounded={true} />
+</>;
 ```

@@ -3,8 +3,19 @@ import { classNames } from '../../lib/class-names';
 
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
+export type AvatarColor =
+  | 'gray'
+  | 'blue'
+  | 'cyan'
+  | 'red'
+  | 'green'
+  | 'indigo'
+  | 'yellow'
+  | 'orange';
+
 export type AvatarProps = {
   size?: AvatarSize;
+  color?: AvatarColor;
   isRounded?: boolean;
   src?: string;
   altText?: string;
@@ -21,6 +32,7 @@ const avatarSizesInPx: Record<AvatarSize, number> = {
 
 export function Avatar({
   size = 'md',
+  color = 'gray',
   isRounded,
   src,
   altText,
@@ -71,16 +83,23 @@ export function Avatar({
   return (
     <div
       {...props}
-      className={classNames(className, 'dc-avatar', {
-        'dc-avatar_size_xs': size === 'xs',
-        'dc-avatar_size_sm': size === 'sm',
-        'dc-avatar_size_lg': size === 'lg',
-        'dc-avatar_size_xl': size === 'xl',
-        'dc-avatar_rounded': isRounded,
-        'dc-avatar_type_image': shouldShowImage,
-        'dc-avatar_type_initials': shouldShowInitials,
-        'dc-avatar_type_placeholder': !(shouldShowImage || shouldShowInitials),
-      })}
+      className={classNames(
+        className,
+        'dc-avatar',
+        `dc-avatar_color_${color}`,
+        {
+          'dc-avatar_size_xs': size === 'xs',
+          'dc-avatar_size_sm': size === 'sm',
+          'dc-avatar_size_lg': size === 'lg',
+          'dc-avatar_size_xl': size === 'xl',
+          'dc-avatar_rounded': isRounded,
+          'dc-avatar_type_image': shouldShowImage,
+          'dc-avatar_type_initials': shouldShowInitials,
+          'dc-avatar_type_placeholder': !(
+            shouldShowImage || shouldShowInitials
+          ),
+        }
+      )}
     >
       {content}
     </div>
