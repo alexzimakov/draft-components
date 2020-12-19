@@ -1,11 +1,16 @@
+@mixin icon-button-size($default-size) {
+  height: $default-size - 0.25rem;
+  width: $default-size - 0.25rem;
+}
+
 .dc-icon-button {
-  width: $button-size;
+  @include icon-button-size($button-size);
   min-width: initial;
   padding: 0;
   font-size: 1rem;
 
   .dc-button__body {
-    font-size: 1.375em;
+    font-size: 1.25em;
   }
 }
 
@@ -14,25 +19,25 @@
 }
 
 .dc-icon-button.dc-button_size_xs {
-  width: $button-xs-size;
+  @include icon-button-size($button-xs-size);
+
+  .dc-button__body {
+    font-size: 1em;
+  }
+}
+
+.dc-icon-button.dc-button_size_sm {
+  @include icon-button-size($button-sm-size);
 
   .dc-button__body {
     font-size: 1.125em;
   }
 }
 
-.dc-icon-button.dc-button_size_sm {
-  width: $button-sm-size;
-
-  .dc-button__body {
-    font-size: 1.25em;
-  }
-}
-
 .dc-icon-button.dc-button_size_lg {
-  width: $button-lg-size;
+  @include icon-button-size($button-lg-size);
 
   .dc-button__body {
-    font-size: 1.625em;
+    font-size: 1.5em;
   }
 }

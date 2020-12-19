@@ -13,7 +13,14 @@ export type IconButtonProps = {
 
 export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
   function IconButton(
-    { isRounded, className, type = 'button', icon, ...props },
+    {
+      appearance = 'minimal',
+      isRounded,
+      icon,
+      className,
+      type = 'button',
+      ...props
+    },
     ref
   ) {
     return (
@@ -24,6 +31,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         })}
         ref={ref}
         type={type}
+        appearance={appearance}
       >
         {(function () {
           if (icon === 'close') {

@@ -4,9 +4,18 @@ import { classNames } from '../../lib/class-names';
 
 export type ButtonHtmlAttrs = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
+export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
+
+export type ButtonAppearance =
+  | 'default'
+  | 'primary'
+  | 'danger'
+  | 'success'
+  | 'minimal';
+
 export type ButtonProps = {
-  size?: 'xs' | 'sm' | 'lg';
-  appearance?: 'primary' | 'danger' | 'success' | 'minimal';
+  size?: ButtonSize;
+  appearance?: ButtonAppearance;
   hasFullWidth?: boolean;
   isLoading?: boolean;
   leadingIcon?: React.ReactNode;
@@ -16,14 +25,14 @@ export type ButtonProps = {
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(
     {
-      className,
-      size,
-      appearance,
+      size = 'md',
+      appearance = 'default',
       isLoading,
       hasFullWidth,
       leadingIcon,
       trailingIcon,
       children,
+      className,
       ...props
     },
     ref
@@ -32,17 +41,16 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         {...props}
         ref={ref}
-        className={classNames(className, 'dc-button', {
-          'dc-button_size_xs': size === 'xs',
-          'dc-button_size_sm': size === 'sm',
-          'dc-button_size_lg': size === 'lg',
-          'dc-button_primary': appearance === 'primary',
-          'dc-button_danger': appearance === 'danger',
-          'dc-button_success': appearance === 'success',
-          'dc-button_minimal': appearance === 'minimal',
-          'dc-button_is-loading': isLoading,
-          'dc-button_has-full-width': hasFullWidth,
-        })}
+        className={classNames(
+          className,
+          'dc-button',
+          `dc-button_size_${size}`,
+          `dc-button_${appearance}`,
+          {
+            'dc-button_is-loading': isLoading,
+            'dc-button_has-full-width': hasFullWidth,
+          }
+        )}
       >
         <div className="dc-button__body">
           {leadingIcon ? (

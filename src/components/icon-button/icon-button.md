@@ -41,9 +41,9 @@ const shareIcon = (
 );
 
 <>
-  <IconButton size="xs" icon={shareIcon} appearance="minimal" />
-  <IconButton size="sm" icon={shareIcon} appearance="minimal" />
-  <IconButton icon={shareIcon} appearance="minimal" />
-  <IconButton size="lg" icon={shareIcon} appearance="minimal" />
+  <IconButton size="xs" icon={shareIcon} appearance="default" />
+  <IconButton size="sm" icon={shareIcon} appearance="default" />
+  <IconButton icon={shareIcon} appearance="default" />
+  <IconButton size="lg" icon={shareIcon} appearance="default" />
 </>;
 ```
