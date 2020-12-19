@@ -43,11 +43,10 @@ export function Avatar({
 }: AvatarProps) {
   const sizePx = avatarSizesInPx[size];
   let content;
-  let shouldShowImage = false;
-  let shouldShowInitials = false;
+  let type;
 
   if (src) {
-    shouldShowImage = true;
+    type = 'image';
     content = (
       <img
         className="dc-avatar__image"
@@ -58,9 +57,10 @@ export function Avatar({
       />
     );
   } else if (initials) {
-    shouldShowInitials = true;
+    type = 'initials';
     content = <span className="dc-avatar__initials">{initials}</span>;
   } else {
+    type = 'placeholder';
     content = (
       <svg
         className="dc-avatar__placeholder"
@@ -88,18 +88,9 @@ export function Avatar({
         className,
         'dc-avatar',
         `dc-avatar_color_${color}`,
-        {
-          'dc-avatar_size_xs': size === 'xs',
-          'dc-avatar_size_sm': size === 'sm',
-          'dc-avatar_size_lg': size === 'lg',
-          'dc-avatar_size_xl': size === 'xl',
-          'dc-avatar_rounded': isRounded,
-          'dc-avatar_type_image': shouldShowImage,
-          'dc-avatar_type_initials': shouldShowInitials,
-          'dc-avatar_type_placeholder': !(
-            shouldShowImage || shouldShowInitials
-          ),
-        }
+        `dc-avatar_size_${size}`,
+        `dc-avatar_type_${type}`,
+        { 'dc-avatar_rounded': isRounded }
       )}
     >
       {content}

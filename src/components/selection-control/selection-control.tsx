@@ -13,8 +13,6 @@ export function SelectionControl({
   label,
   description,
   isDisabled,
-
-  // Standard HTML Attributes
   className,
   ...props
 }: SelectionControlProps) {
