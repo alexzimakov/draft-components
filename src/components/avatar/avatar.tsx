@@ -9,6 +9,7 @@ export type AvatarColor =
   | 'cyan'
   | 'red'
   | 'green'
+  | 'lime'
   | 'indigo'
   | 'yellow'
   | 'orange';
