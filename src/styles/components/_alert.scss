@@ -1,0 +1,94 @@
+.dc-alert {
+  --dc-alert-bg-color: #{$gray-50};
+  --dc-alert-border-color: #{$gray-200};
+  --dc-alert-icon-color: #{$gray-400};
+  --dc-alert-primary-text-color: #{$gray-800};
+  --dc-alert-secondary-text-color: #{$gray-600};
+
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  padding: $gap-3x $gap-4x;
+  border: 0.0625rem solid var(--dc-alert-border-color);
+  border-radius: $border-radius-md;
+  background: var(--dc-alert-bg-color);
+  font-family: var(--dc-font-base);
+  font-weight: $font-weight-normal;
+}
+
+.dc-alert__icon {
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-right: $gap-3x;
+  color: var(--dc-alert-icon-color);
+}
+
+.dc-alert__body {
+}
+
+.dc-alert__title {
+  margin: 0;
+  color: var(--dc-alert-primary-text-color);
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: 1.125rem;
+}
+
+.dc-alert__description {
+  margin: 0;
+  color: var(--dc-alert-secondary-text-color);
+  font-size: $font-size-sm;
+  line-height: $leading-normal;
+
+  ul,
+  ol {
+    margin: 0;
+    padding: 0 0 0 1em;
+
+    li + li {
+      margin-top: $gap-1x;
+    }
+  }
+
+  * + & {
+    margin-top: $gap-1x;
+  }
+}
+
+.dc-alert_bordered {
+  border-left: 0.25rem solid var(--dc-alert-icon-color);
+  border-radius: 0;
+}
+
+.dc-alert_appearance_warning {
+  --dc-alert-bg-color: #{$yellow-50};
+  --dc-alert-border-color: #{$yellow-200};
+  --dc-alert-icon-color: #{$yellow-600};
+  --dc-alert-primary-text-color: #{$yellow-900};
+  --dc-alert-secondary-text-color: #{$yellow-800};
+}
+
+.dc-alert_appearance_error {
+  --dc-alert-bg-color: #{$red-50};
+  --dc-alert-border-color: #{$red-200};
+  --dc-alert-icon-color: #{$red-500};
+  --dc-alert-primary-text-color: #{$red-900};
+  --dc-alert-secondary-text-color: #{$red-800};
+}
+
+.dc-alert_appearance_info {
+  --dc-alert-bg-color: #{$blue-50};
+  --dc-alert-border-color: #{$blue-200};
+  --dc-alert-icon-color: #{$blue-500};
+  --dc-alert-primary-text-color: #{$blue-800};
+  --dc-alert-secondary-text-color: #{$blue-700};
+}
+
+.dc-alert_appearance_success {
+  --dc-alert-bg-color: #{$green-100};
+  --dc-alert-border-color: #{$green-300};
+  --dc-alert-icon-color: #{$green-500};
+  --dc-alert-primary-text-color: #{$green-900};
+  --dc-alert-secondary-text-color: #{$green-800};
+}
