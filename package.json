@@ -1,6 +1,6 @@
 {
   "name": "draft-components",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "description": "The set of React.js components for rapid prototyping.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -24,7 +24,7 @@
     "library"
   ],
   "files": [
-    "dist"
+    "dist/**/*"
   ],
   "author": "https://github.com/alexzimakov",
   "license": "MIT",
