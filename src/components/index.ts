@@ -2,6 +2,7 @@ export * from './alert';
 export * from './avatar';
 export * from './badge';
 export * from './button';
+export * from './buttons-group';
 export * from './checkbox';
 export * from './icon-button';
 export * from './radio-button';

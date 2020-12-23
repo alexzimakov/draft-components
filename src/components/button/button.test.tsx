@@ -1,36 +1,44 @@
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { Button } from './button';
 
 it('renders without errors', () => {
   const label = 'Button text';
-  const { getByText } = render(<Button>{label}</Button>);
+  render(<Button>{label}</Button>);
 
-  getByText(label);
+  expect(screen.getByRole('button')).toHaveTextContent(label);
 });
 
-it('should show loader indicator', () => {
-  const { getByTestId } = render(<Button isLoading={true}>Button text</Button>);
+it('renders in custom wrapper', () => {
+  const url = 'https://example.com';
+  const label = 'Link Button';
+  render(
+    <Button renderAs={(props) => <a {...props} href={url} />}>{label}</Button>
+  );
 
-  getByTestId('dc-button-loader-indicator');
+  const linkEl = screen.getByRole('link');
+  expect(linkEl).toHaveTextContent(label);
+  expect(linkEl).toHaveAttribute('href', url);
+});
+
+it('should show loader indicator and make button inactive', () => {
+  render(<Button isLoading={true}>Button text</Button>);
+
+  within(screen.getByRole('button')).getByTestId('dc-button-loader-indicator');
 });
 
 it('renders with the leading icon', () => {
   const [iconTestId, icon] = getIcon('leading-icon');
-  const { getByTestId } = render(
-    <Button leadingIcon={icon}>Button text</Button>
-  );
+  render(<Button leadingIcon={icon}>Button text</Button>);
 
-  getByTestId(iconTestId);
+  within(screen.getByRole('button')).getByTestId(iconTestId);
 });
 
 it('renders with the trailing icon', () => {
   const [iconTestId, icon] = getIcon('trailing-icon');
-  const { getByTestId } = render(
-    <Button trailingIcon={icon}>Button text</Button>
-  );
+  render(<Button trailingIcon={icon}>Button text</Button>);
 
-  getByTestId(iconTestId);
+  within(screen.getByRole('button')).getByTestId(iconTestId);
 });
 
 function getIcon(testId: string): [typeof testId, React.ReactElement] {

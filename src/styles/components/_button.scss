@@ -13,6 +13,7 @@
   user-select: none;
   transition: $transition-quick;
   transition-property: opacity, border-color, background-color, box-shadow;
+  text-decoration: none;
   letter-spacing: $tracking-tight;
   color: var(--dc-btn-text-color);
   border: 0.0625rem solid var(--dc-btn-border-color);

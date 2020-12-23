@@ -20,6 +20,10 @@ export type ButtonProps = {
   isLoading?: boolean;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
+  renderAs?: (props: {
+    className: string;
+    children: JSX.Element;
+  }) => JSX.Element;
 } & ButtonHtmlAttrs;
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -31,27 +35,25 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       hasFullWidth,
       leadingIcon,
       trailingIcon,
+      renderAs,
       children,
       className,
       ...props
     },
     ref
   ) {
-    return (
-      <button
-        {...props}
-        ref={ref}
-        className={classNames(
-          className,
-          'dc-button',
-          `dc-button_size_${size}`,
-          `dc-button_${appearance}`,
-          {
-            'dc-button_is-loading': isLoading,
-            'dc-button_has-full-width': hasFullWidth,
-          }
-        )}
-      >
+    className = classNames(
+      className,
+      'dc-button',
+      `dc-button_size_${size}`,
+      `dc-button_${appearance}`,
+      {
+        'dc-button_is-loading': isLoading,
+        'dc-button_has-full-width': hasFullWidth,
+      }
+    );
+    const content = (
+      <>
         <div className="dc-button__body">
           {leadingIcon ? (
             <span className="dc-button__leading-icon">{leadingIcon}</span>
@@ -66,6 +68,16 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             <Spinner data-testid="dc-button-loader-indicator" size="1.25em" />
           </span>
         ) : null}
+      </>
+    );
+
+    if (typeof renderAs === 'function') {
+      return renderAs({ className, children: content });
+    }
+
+    return (
+      <button {...props} ref={ref} className={className}>
+        {content}
       </button>
     );
   }
