@@ -1,8 +1,6 @@
 ```jsx stacked
 const props = {
   placeholder: 'Write a few sentences about yourself',
-  defaultValue:
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur distinctio fugit iure quibusdam repellendus. Aliquam blanditiis commodi consectetur, dicta, eveniet fuga hic illum impedit nostrum omnis quidem quo rem sapiente.',
   spellCheck: false,
 };
 const hrStyle = {
