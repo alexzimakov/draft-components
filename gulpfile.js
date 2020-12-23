@@ -7,7 +7,7 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 
-sass.compiler = require('node-sass');
+sass.compiler = require('sass');
 
 const SOURCE_PATH = path.join(__dirname, 'src');
 const DIST_PATH = path.join(__dirname, 'dist');
