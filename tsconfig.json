@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
-    "target": "ESNext",
-    "module": "ESNext",
+    "target": "es2018",
+    "module": "esnext",
     "jsx": "react-jsx",
     "declaration": true,
     "sourceMap": true,
@@ -17,5 +17,5 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src/**/*"],
-  "exclude": ["src/**/*.test.*"]
+  "exclude": ["**/node_modules", "**/.*/", "**/*.test.ts", "**/*.test.tsx"]
 }

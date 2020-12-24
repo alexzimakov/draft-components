@@ -97,6 +97,8 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "browserslist": [
-    "defaults"
+    "> 0.2%",
+    "not dead",
+    "not op_mini all"
   ]
 }
