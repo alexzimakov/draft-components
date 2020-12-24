@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { classNames } from '../../lib/class-names';
+import { classNames } from '../../lib';
 
 export type ButtonsGroupProps = React.ComponentPropsWithoutRef<'div'>;
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IconButton, IconButtonProps } from '../icon-button';
-import { classNames } from '../../lib/class-names';
+import { classNames } from '../../lib';
 import { ButtonSize } from '../button';
 
 export type BadgeSize = 'sm' | 'md' | 'lg';

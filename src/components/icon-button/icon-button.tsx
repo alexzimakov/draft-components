@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button, ButtonProps } from '../button';
 import { CloseIcon, MinusIcon } from './default-icons';
-import { classNames } from '../../lib/class-names';
+import { classNames } from '../../lib';
 
 export type IconButtonProps = {
   icon: 'close' | 'minus' | React.ReactNode;

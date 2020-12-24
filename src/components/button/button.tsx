@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Spinner } from '../spinner';
-import { classNames } from '../../lib/class-names';
+import { classNames } from '../../lib';
 
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 

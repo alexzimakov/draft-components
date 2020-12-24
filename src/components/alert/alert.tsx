@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as icons from './icons';
-import { classNames } from '../../lib/class-names';
+import { classNames } from '../../lib';
 
 export type AlertAppearance =
   | 'default'
