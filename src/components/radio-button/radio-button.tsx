@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { ComponentWithForwardRef } from '../../common-types';
-import { SelectionControl, SelectionControlProps } from '../selection-control';
+import {
+  SelectionControl,
+  SelectionControlBaseProps,
+} from '../selection-control';
 import { classNames } from '../../lib';
 
 export type RadioButtonHtmlAttrs = Omit<
@@ -29,32 +31,31 @@ export type RadioButtonHtmlAttrs = Omit<
   | 'width'
 >;
 
-export type RadioButtonProps = RadioButtonHtmlAttrs &
-  Pick<SelectionControlProps, 'label' | 'description'>;
+// prettier-ignore
+export interface RadioButtonProps extends SelectionControlBaseProps, RadioButtonHtmlAttrs {}
 
-export const RadioButton: ComponentWithForwardRef<
-  HTMLInputElement,
-  RadioButtonProps
-> = React.forwardRef<HTMLInputElement, RadioButtonProps>(function RadioButton(
-  { label, description, style, className, disabled, ...props },
-  ref
-) {
-  return (
-    <SelectionControl
-      className={classNames(className, 'dc-radio-button')}
-      style={style}
-      label={label}
-      description={description}
-      isDisabled={disabled}
-    >
-      <input
-        {...props}
-        ref={ref}
-        className="dc-radio-button__input"
-        type="radio"
-        disabled={disabled}
-      />
-      <span className="dc-radio-button__radio" aria-hidden={true} />
-    </SelectionControl>
-  );
-});
+export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
+  function RadioButton(
+    { label, description, style, className, disabled, ...props },
+    ref
+  ) {
+    return (
+      <SelectionControl
+        className={classNames(className, 'dc-radio-button')}
+        style={style}
+        label={label}
+        description={description}
+        isDisabled={disabled}
+      >
+        <input
+          {...props}
+          ref={ref}
+          className="dc-radio-button__input"
+          type="radio"
+          disabled={disabled}
+        />
+        <span className="dc-radio-button__radio" aria-hidden={true} />
+      </SelectionControl>
+    );
+  }
+);

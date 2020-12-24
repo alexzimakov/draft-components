@@ -3,9 +3,9 @@ import { classNames } from '../../lib';
 
 export type SpinnerHtmlAttrs = React.ComponentPropsWithoutRef<'svg'>;
 
-export type SpinnerProps = {
+export interface SpinnerProps extends SpinnerHtmlAttrs {
   size?: number | string;
-} & SpinnerHtmlAttrs;
+}
 
 export function Spinner({
   style,

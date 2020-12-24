@@ -6,12 +6,16 @@ export type SelectionControlHtmlAttrs = Omit<
   'children'
 >;
 
-export type SelectionControlProps = {
-  children: React.ReactElement | React.ReactElement[];
+export interface SelectionControlBaseProps {
   label?: React.ReactNode;
   description?: React.ReactNode;
+}
+
+// prettier-ignore
+export interface SelectionControlProps extends SelectionControlBaseProps, SelectionControlHtmlAttrs {
+  children: React.ReactElement | React.ReactElement[];
   isDisabled?: boolean;
-} & SelectionControlHtmlAttrs;
+}
 
 export function SelectionControl({
   children,

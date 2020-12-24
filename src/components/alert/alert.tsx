@@ -2,31 +2,16 @@ import * as React from 'react';
 import * as icons from './icons';
 import { classNames } from '../../lib';
 
-export type AlertAppearance =
-  | 'default'
-  | 'warning'
-  | 'error'
-  | 'info'
-  | 'success';
-
 export type AlertHtmlAttrs = Omit<
   React.ComponentPropsWithoutRef<'div'>,
   'title'
 >;
 
-export type AlertProps = {
-  appearance?: AlertAppearance;
+export interface AlertProps extends AlertHtmlAttrs {
+  appearance?: 'default' | 'warning' | 'error' | 'info' | 'success';
   shouldShowIcon?: boolean;
   title?: React.ReactNode;
-} & AlertHtmlAttrs;
-
-const appearanceIcons: Record<AlertAppearance, React.ReactElement> = {
-  default: icons.informationCircle,
-  warning: icons.exclamation,
-  error: icons.xCircle,
-  info: icons.informationCircle,
-  success: icons.checkCircle,
-};
+}
 
 export function Alert({
   appearance = 'default',
@@ -39,14 +24,12 @@ export function Alert({
   return (
     <div
       {...props}
-      className={classNames(
-        className,
-        'dc-alert',
-        `dc-alert_appearance_${appearance}`
-      )}
+      className={classNames(className, 'dc-alert', {
+        [`dc-alert_appearance_${appearance}`]: appearance,
+      })}
       role="alert"
     >
-      {shouldShowIcon ? appearanceIcons[appearance] : null}
+      {shouldShowIcon ? getAlertIcon(appearance) : null}
       <div className="dc-alert__body">
         {title ? <h3 className="dc-alert__title">{title}</h3> : null}
         {children ? (
@@ -55,4 +38,19 @@ export function Alert({
       </div>
     </div>
   );
+}
+
+function getAlertIcon(appearance: AlertProps['appearance']): JSX.Element {
+  switch (appearance) {
+    case 'error':
+      return icons.xCircle;
+    case 'warning':
+      return icons.exclamation;
+    case 'success':
+      return icons.checkCircle;
+    case 'default':
+    case 'info':
+    default:
+      return icons.informationCircle;
+  }
 }

@@ -1,41 +1,32 @@
 import * as React from 'react';
-import { ComponentWithForwardRef } from '../../common-types';
 import { classNames } from '../../lib';
-
-export type SelectSize = 'sm' | 'md' | 'lg';
 
 export type SelectHtmlAttrs = Omit<
   React.ComponentPropsWithoutRef<'select'>,
   'size'
 >;
 
-export type SelectProps = {
-  size?: SelectSize;
+export interface SelectProps extends SelectHtmlAttrs {
+  size?: 'sm' | 'md' | 'lg';
   isInvalid?: boolean;
   hasFullWidth?: boolean;
-} & SelectHtmlAttrs;
+}
 
-export const Select: ComponentWithForwardRef<
-  HTMLSelectElement,
-  SelectProps
-> = React.forwardRef<HTMLSelectElement, SelectProps>(function Select(
-  { size = 'md', isInvalid, hasFullWidth, className, ...props },
-  ref
-) {
-  return (
-    <select
-      {...props}
-      ref={ref}
-      className={classNames(
-        className,
-        'dc-select',
-        'dc-base-control',
-        `dc-base-control_size_${size}`,
-        {
+export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
+  function Select(
+    { size = 'md', isInvalid, hasFullWidth, className, ...props },
+    ref
+  ) {
+    return (
+      <select
+        {...props}
+        ref={ref}
+        className={classNames(className, 'dc-select', 'dc-base-control', {
           'dc-base-control_invalid': isInvalid,
           'dc-base-control_full_width': hasFullWidth,
-        }
-      )}
-    />
-  );
-});
+          [`dc-base-control_size_${size}`]: size,
+        })}
+      />
+    );
+  }
+);

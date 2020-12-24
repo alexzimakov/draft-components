@@ -9,7 +9,7 @@ type ClassName =
 
 type ClassNameList = ClassName[];
 
-type ClassNameMap = { [className: string]: boolean | undefined | null };
+type ClassNameMap = { [className: string]: any };
 
 export function classNames(...classes: ClassName[]): string {
   return classes
@@ -21,7 +21,7 @@ export function classNames(...classes: ClassName[]): string {
 
       if (typeof cn === 'object' && cn !== null) {
         return Object.keys(cn)
-          .filter((key) => cn[key])
+          .filter((key) => Boolean(cn[key]))
           .join(' ');
       }
 

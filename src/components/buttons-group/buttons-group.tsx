@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { classNames } from '../../lib';
 
-export type ButtonsGroupProps = React.ComponentPropsWithoutRef<'div'>;
+export type ButtonsGroupHtmlAttrs = React.ComponentPropsWithoutRef<'div'>;
+
+export interface ButtonsGroupProps extends ButtonsGroupHtmlAttrs {}
 
 export function ButtonsGroup({ className, ...props }: ButtonsGroupProps) {
   return (

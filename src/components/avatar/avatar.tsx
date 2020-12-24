@@ -1,40 +1,28 @@
 import * as React from 'react';
 import { classNames } from '../../lib';
 
-export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-
-export type AvatarColor =
-  | 'gray'
-  | 'blue'
-  | 'cyan'
-  | 'red'
-  | 'green'
-  | 'lime'
-  | 'indigo'
-  | 'yellow'
-  | 'orange';
-
 export type AvatarHtmlAttrs = Omit<
   React.ComponentPropsWithoutRef<'div'>,
   'color'
 >;
 
-export type AvatarProps = {
-  size?: AvatarSize;
-  color?: AvatarColor;
+export interface AvatarProps extends AvatarHtmlAttrs {
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  color?:
+    | 'gray'
+    | 'blue'
+    | 'cyan'
+    | 'red'
+    | 'green'
+    | 'lime'
+    | 'indigo'
+    | 'yellow'
+    | 'orange';
   isRounded?: boolean;
   src?: string;
   altText?: string;
   initials?: string;
-} & AvatarHtmlAttrs;
-
-const avatarSizesInPx: Record<AvatarSize, number> = {
-  xs: 28,
-  sm: 36,
-  md: 44,
-  lg: 52,
-  xl: 60,
-};
+}
 
 export function Avatar({
   size = 'md',
@@ -46,7 +34,7 @@ export function Avatar({
   className,
   ...props
 }: AvatarProps) {
-  const sizePx = avatarSizesInPx[size];
+  const sizePx = getAvatarSize(size);
   let content;
   let type;
 
@@ -89,16 +77,30 @@ export function Avatar({
   return (
     <div
       {...props}
-      className={classNames(
-        className,
-        'dc-avatar',
-        `dc-avatar_color_${color}`,
-        `dc-avatar_size_${size}`,
-        `dc-avatar_type_${type}`,
-        { 'dc-avatar_rounded': isRounded }
-      )}
+      className={classNames(className, 'dc-avatar', {
+        'dc-avatar_rounded': isRounded,
+        [`dc-avatar_color_${color}`]: color,
+        [`dc-avatar_size_${size}`]: size,
+        [`dc-avatar_type_${type}`]: type,
+      })}
     >
       {content}
     </div>
   );
+}
+
+function getAvatarSize(size: AvatarProps['size']): number {
+  switch (size) {
+    case 'xs':
+      return 28;
+    case 'sm':
+      return 36;
+    case 'lg':
+      return 52;
+    case 'xl':
+      return 60;
+    case 'md':
+    default:
+      return 44;
+  }
 }
