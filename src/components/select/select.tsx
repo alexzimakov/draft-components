@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ComponentWithForwardRef } from '../../common-types';
 import { classNames } from '../../lib';
 
 export type SelectSize = 'sm' | 'md' | 'lg';
@@ -14,26 +15,27 @@ export type SelectProps = {
   hasFullWidth?: boolean;
 } & SelectHtmlAttrs;
 
-export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  function Select(
-    { size = 'md', isInvalid, hasFullWidth, className, ...props },
-    ref
-  ) {
-    return (
-      <select
-        {...props}
-        ref={ref}
-        className={classNames(
-          className,
-          'dc-select',
-          'dc-base-control',
-          `dc-base-control_size_${size}`,
-          {
-            'dc-base-control_invalid': isInvalid,
-            'dc-base-control_full_width': hasFullWidth,
-          }
-        )}
-      />
-    );
-  }
-);
+export const Select: ComponentWithForwardRef<
+  HTMLSelectElement,
+  SelectProps
+> = React.forwardRef<HTMLSelectElement, SelectProps>(function Select(
+  { size = 'md', isInvalid, hasFullWidth, className, ...props },
+  ref
+) {
+  return (
+    <select
+      {...props}
+      ref={ref}
+      className={classNames(
+        className,
+        'dc-select',
+        'dc-base-control',
+        `dc-base-control_size_${size}`,
+        {
+          'dc-base-control_invalid': isInvalid,
+          'dc-base-control_full_width': hasFullWidth,
+        }
+      )}
+    />
+  );
+});

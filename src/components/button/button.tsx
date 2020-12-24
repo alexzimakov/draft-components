@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ComponentWithForwardRef } from '../../common-types';
 import { Spinner } from '../spinner';
 import { classNames } from '../../lib';
 
@@ -26,59 +27,60 @@ export type ButtonProps = {
   }) => JSX.Element;
 } & ButtonHtmlAttrs;
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  function Button(
+export const Button: ComponentWithForwardRef<
+  HTMLButtonElement,
+  ButtonProps
+> = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+  {
+    size = 'md',
+    appearance = 'default',
+    isLoading,
+    hasFullWidth,
+    leadingIcon,
+    trailingIcon,
+    renderAs,
+    children,
+    className,
+    ...props
+  },
+  ref
+) {
+  className = classNames(
+    className,
+    'dc-button',
+    `dc-button_size_${size}`,
+    `dc-button_${appearance}`,
     {
-      size = 'md',
-      appearance = 'default',
-      isLoading,
-      hasFullWidth,
-      leadingIcon,
-      trailingIcon,
-      renderAs,
-      children,
-      className,
-      ...props
-    },
-    ref
-  ) {
-    className = classNames(
-      className,
-      'dc-button',
-      `dc-button_size_${size}`,
-      `dc-button_${appearance}`,
-      {
-        'dc-button_is-loading': isLoading,
-        'dc-button_has-full-width': hasFullWidth,
-      }
-    );
-    const content = (
-      <>
-        <div className="dc-button__body">
-          {leadingIcon ? (
-            <span className="dc-button__leading-icon">{leadingIcon}</span>
-          ) : null}
-          {children}
-          {trailingIcon ? (
-            <span className="dc-button__trailing-icon">{trailingIcon}</span>
-          ) : null}
-        </div>
-        {isLoading ? (
-          <span className="dc-button__spinner">
-            <Spinner data-testid="dc-button-loader-indicator" size="1.25em" />
-          </span>
-        ) : null}
-      </>
-    );
-
-    if (typeof renderAs === 'function') {
-      return renderAs({ className, children: content });
+      'dc-button_is-loading': isLoading,
+      'dc-button_has-full-width': hasFullWidth,
     }
+  );
+  const content = (
+    <>
+      <div className="dc-button__body">
+        {leadingIcon ? (
+          <span className="dc-button__leading-icon">{leadingIcon}</span>
+        ) : null}
+        {children}
+        {trailingIcon ? (
+          <span className="dc-button__trailing-icon">{trailingIcon}</span>
+        ) : null}
+      </div>
+      {isLoading ? (
+        <span className="dc-button__spinner">
+          <Spinner data-testid="dc-button-loader-indicator" size="1.25em" />
+        </span>
+      ) : null}
+    </>
+  );
 
-    return (
-      <button {...props} ref={ref} className={className}>
-        {content}
-      </button>
-    );
+  if (typeof renderAs === 'function') {
+    return renderAs({ className, children: content });
   }
-);
+
+  return (
+    <button {...props} ref={ref} className={className}>
+      {content}
+    </button>
+  );
+});
