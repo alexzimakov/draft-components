@@ -2,8 +2,6 @@ import * as React from 'react';
 import { Spinner } from '../spinner';
 import { classNames } from '../../lib/class-names';
 
-export type ButtonHtmlAttrs = React.ButtonHTMLAttributes<HTMLButtonElement>;
-
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 
 export type ButtonAppearance =
@@ -12,6 +10,8 @@ export type ButtonAppearance =
   | 'danger'
   | 'success'
   | 'minimal';
+
+export type ButtonHtmlAttrs = React.ComponentPropsWithoutRef<'button'>;
 
 export type ButtonProps = {
   size?: ButtonSize;

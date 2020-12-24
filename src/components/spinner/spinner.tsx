@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { classNames } from '../../lib/class-names';
 
+export type SpinnerHtmlAttrs = React.ComponentPropsWithoutRef<'svg'>;
+
 export type SpinnerProps = {
   size?: number | string;
-} & React.HTMLAttributes<SVGElement>;
+} & SpinnerHtmlAttrs;
 
 export function Spinner({
   style,

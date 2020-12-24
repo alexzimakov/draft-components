@@ -1,23 +1,11 @@
 import * as React from 'react';
-import { CheckboxHtmlAttrs } from '../checkbox';
-import { SelectionControl, SelectionControlProps } from '../selection-control';
 import { classNames } from '../../lib/class-names';
+import { CheckboxProps } from '../checkbox';
+import { SelectionControl } from '../selection-control';
 
-export type SwitchProps = CheckboxHtmlAttrs &
-  Pick<SelectionControlProps, 'label' | 'description'>;
-
-export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
+export const Switch = React.forwardRef<HTMLInputElement, CheckboxProps>(
   function Switch(
-    {
-      label,
-      description,
-
-      // Standard HTML Attributes
-      className,
-      style,
-      disabled,
-      ...props
-    },
+    { label, description, className, style, disabled, ...props },
     ref
   ) {
     return (

@@ -3,7 +3,7 @@ import { classNames } from '../../lib/class-names';
 import { SelectionControl, SelectionControlProps } from '../selection-control';
 
 export type CheckboxHtmlAttrs = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
+  React.ComponentPropsWithoutRef<'input'>,
   | 'accept'
   | 'alt'
   | 'capture'
@@ -33,16 +33,7 @@ export type CheckboxProps = CheckboxHtmlAttrs &
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   function Checkbox(
-    {
-      label,
-      description,
-
-      // Standard HTML Attributes
-      style,
-      className,
-      disabled,
-      ...props
-    },
+    { label, description, style, className, disabled, ...props },
     ref
   ) {
     return (

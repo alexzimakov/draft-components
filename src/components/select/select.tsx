@@ -4,7 +4,7 @@ import { classNames } from '../../lib/class-names';
 export type SelectSize = 'sm' | 'md' | 'lg';
 
 export type SelectHtmlAttrs = Omit<
-  React.SelectHTMLAttributes<HTMLSelectElement>,
+  React.ComponentPropsWithoutRef<'select'>,
   'size'
 >;
 

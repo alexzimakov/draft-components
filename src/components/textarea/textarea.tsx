@@ -3,9 +3,7 @@ import { classNames } from '../../lib/class-names';
 
 export type TextareaSize = 'sm' | 'md' | 'lg';
 
-export type TextareaHtmlAttrs = React.TextareaHTMLAttributes<
-  HTMLTextAreaElement
->;
+export type TextareaHtmlAttrs = React.ComponentPropsWithoutRef<'textarea'>;
 
 export type TextareaProps = {
   size?: TextareaSize;

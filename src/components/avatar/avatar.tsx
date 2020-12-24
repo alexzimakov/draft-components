@@ -14,6 +14,11 @@ export type AvatarColor =
   | 'yellow'
   | 'orange';
 
+export type AvatarHtmlAttrs = Omit<
+  React.ComponentPropsWithoutRef<'div'>,
+  'color'
+>;
+
 export type AvatarProps = {
   size?: AvatarSize;
   color?: AvatarColor;
@@ -21,7 +26,7 @@ export type AvatarProps = {
   src?: string;
   altText?: string;
   initials?: string;
-} & React.HTMLAttributes<HTMLDivElement>;
+} & AvatarHtmlAttrs;
 
 const avatarSizesInPx: Record<AvatarSize, number> = {
   xs: 28,

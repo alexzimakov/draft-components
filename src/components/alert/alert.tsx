@@ -9,11 +9,16 @@ export type AlertAppearance =
   | 'info'
   | 'success';
 
+export type AlertHtmlAttrs = Omit<
+  React.ComponentPropsWithoutRef<'div'>,
+  'title'
+>;
+
 export type AlertProps = {
   appearance?: AlertAppearance;
   shouldShowIcon?: boolean;
   title?: React.ReactNode;
-} & React.HTMLAttributes<HTMLDivElement>;
+} & AlertHtmlAttrs;
 
 const appearanceIcons: Record<AlertAppearance, React.ReactElement> = {
   default: icons.informationCircle,

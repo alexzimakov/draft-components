@@ -15,6 +15,11 @@ export type BadgeColor =
   | 'yellow'
   | 'orange';
 
+export type BadgeHtmlAttrs = Omit<
+  React.ComponentPropsWithoutRef<'span'>,
+  'color'
+>;
+
 export type BadgeProps = {
   size?: BadgeSize;
   color?: BadgeColor;
@@ -22,7 +27,7 @@ export type BadgeProps = {
   isRemovable?: boolean;
   removeButtonA11yTitle?: string;
   onRemove?: IconButtonProps['onClick'];
-} & React.HTMLAttributes<HTMLSpanElement>;
+} & BadgeHtmlAttrs;
 
 const buttonSizes: Record<BadgeSize, ButtonSize> = {
   sm: 'xs',

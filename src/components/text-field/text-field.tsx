@@ -12,7 +12,7 @@ export type TextFieldType =
   | 'url';
 
 export type TextInputHtmlAttrs = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
+  React.ComponentPropsWithoutRef<'input'>,
   | 'accept'
   | 'alt'
   | 'capture'
@@ -26,8 +26,10 @@ export type TextInputHtmlAttrs = Omit<
   | 'height'
   | 'max'
   | 'min'
+  | 'size'
   | 'src'
   | 'step'
+  | 'type'
   | 'width'
 >;
 

@@ -1,12 +1,17 @@
 import * as React from 'react';
 import { classNames } from '../../lib/class-names';
 
+export type SelectionControlHtmlAttrs = Omit<
+  React.ComponentPropsWithoutRef<'div'>,
+  'children'
+>;
+
 export type SelectionControlProps = {
   children: React.ReactElement | React.ReactElement[];
   label?: React.ReactNode;
   description?: React.ReactNode;
   isDisabled?: boolean;
-} & React.HTMLAttributes<HTMLDivElement>;
+} & SelectionControlHtmlAttrs;
 
 export function SelectionControl({
   children,

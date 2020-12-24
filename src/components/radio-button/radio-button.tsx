@@ -33,16 +33,7 @@ export type RadioButtonProps = RadioButtonHtmlAttrs &
 
 export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
   function RadioButton(
-    {
-      label,
-      description,
-
-      // Standard HTML Attributes
-      style,
-      className,
-      disabled,
-      ...props
-    },
+    { label, description, style, className, disabled, ...props },
     ref
   ) {
     return (
