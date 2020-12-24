@@ -48,7 +48,7 @@ function buildScss() {
     .src(path.join(SOURCE_PATH, 'styles/**/*.scss'))
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([autoprefixer(), cssnano()]))
-    .pipe(gulp.dest(path.join(DIST_PATH, 'css')));
+    .pipe(gulp.dest(DIST_PATH));
 }
 
 function copyScss(done) {
