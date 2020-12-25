@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { classNames } from '../../lib';
 
-export type TextInputHtmlAttrs = Omit<
+export type TextFieldHtmlAttrs = Omit<
   React.ComponentPropsWithoutRef<'input'>,
   | 'accept'
   | 'alt'
@@ -23,7 +23,7 @@ export type TextInputHtmlAttrs = Omit<
   | 'width'
 >;
 
-export interface TextFieldProps extends TextInputHtmlAttrs {
+export interface TextFieldProps extends TextFieldHtmlAttrs {
   type?: 'email' | 'password' | 'search' | 'tel' | 'text' | 'url';
   size?: 'sm' | 'md' | 'lg';
   isInvalid?: boolean;
