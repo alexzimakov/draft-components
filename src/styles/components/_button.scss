@@ -133,12 +133,6 @@
   background: var(--dc-btn-minimal-bg);
   box-shadow: none;
 
-  &:focus {
-    border-color: transparent;
-    background: var(--dc-btn-minimal-bg-hover);
-    box-shadow: none;
-  }
-
   &:hover:enabled {
     background: var(--dc-btn-minimal-bg-hover);
   }
