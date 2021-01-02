@@ -1,0 +1,18 @@
+.dc-actions-group {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0.125rem;
+  border: 0.0625rem solid var(--dc-actions-group-border);
+  border-radius: $border-radius-md;
+  background: var(--dc-actions-group-bg);
+  box-shadow: $shadow-xs;
+}
+
+.dc-actions-group > * + * {
+  margin-left: $gap-1x;
+}
+
+.dc-actions-group__btn {
+  border-radius: inherit;
+}
