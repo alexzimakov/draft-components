@@ -12,4 +12,5 @@ export * from './select';
 export * from './spinner';
 export * from './switch';
 export * from './text-field';
+export * from './search-field';
 export * from './textarea';
