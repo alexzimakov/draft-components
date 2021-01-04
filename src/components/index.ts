@@ -13,4 +13,5 @@ export * from './spinner';
 export * from './switch';
 export * from './text-field';
 export * from './search-field';
+export * from './password-field';
 export * from './textarea';

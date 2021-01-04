@@ -18,6 +18,8 @@ import { SvgIcon } from './svg-icon';
   <SvgIcon size="lg" icon="pencil" />
   <SvgIcon size="lg" icon="edit" />
   <SvgIcon size="lg" icon="copy" />
+  <SvgIcon size="lg" icon="eye" />
+  <SvgIcon size="lg" icon="eye-close" />
   <SvgIcon size="lg" icon="facebook-circle" />
 </>;
 ```
@@ -49,6 +51,8 @@ const props = {
   <SvgIcon {...props} icon="pencil" />
   <SvgIcon {...props} icon="edit" />
   <SvgIcon {...props} icon="copy" />
+  <SvgIcon {...props} icon="eye" />
+  <SvgIcon {...props} icon="eye-close" />
   <SvgIcon {...props} icon="facebook-circle" />
 </>;
 ```

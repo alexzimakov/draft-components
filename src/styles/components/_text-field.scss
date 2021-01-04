@@ -54,6 +54,7 @@
   flex: 0 0 auto;
   padding: 0;
   color: var(--dc-control-add-on-color);
+  border-radius: inherit;
 
   .dc-base-control_disabled & {
     color: var(--dc-control-disabled-add-on-color);
