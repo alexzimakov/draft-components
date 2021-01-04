@@ -1,0 +1,40 @@
+.dc-non-ideal-state {
+  box-sizing: border-box;
+  padding: $gap-24x $gap-4x;
+  text-align: center;
+  color: var(--dc-non-ideal-state-text-color);
+  font-family: var(--dc-font-base);
+  font-size: $font-size-base;
+}
+
+.dc-non-ideal-state__body {
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.dc-non-ideal-state__icon {
+  margin-bottom: $gap-4x;
+  color: var(--dc-non-ideal-state-icon-color);
+}
+
+.dc-non-ideal-state__title {
+  margin: 0;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  line-height: $leading-tight;
+}
+
+.dc-non-ideal-state__description {
+  margin-top: $gap-2x;
+  line-height: $leading-lg;
+}
+
+.dc-non-ideal-state__actions {
+  margin-top: $gap-4x;
+}
+
+.dc-non-ideal-state__content {
+  margin-top: $gap-4x;
+  font-size: $font-size-sm;
+  line-height: $leading-lg;
+}

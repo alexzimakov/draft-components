@@ -88,6 +88,12 @@
   --dc-switch-check-color: #{$white};
   --dc-switch-accent-color: #{$blue-500};
 
+  /*------------------------------------*\
+   #OTHER COMPONENTS
+  \*------------------------------------*/
   --dc-actions-group-border: #{$gray-300};
   --dc-actions-group-bg: #{$white};
+
+  --dc-non-ideal-state-text-color: var(--dc-primary-text-color);
+  --dc-non-ideal-state-icon-color: var(--dc-tertiary-text-color);
 }
