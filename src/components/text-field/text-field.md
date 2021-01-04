@@ -1,12 +1,18 @@
 ```jsx padded
-<TextField size="sm" placeholder="Small text field..." />
-<TextField placeholder="Default text field..." />
-<TextField size="lg" placeholder="Large text field..." />
+import { TextField } from './text-field';
+
+<>
+  <TextField size="sm" placeholder="Small text field..." />
+  <TextField placeholder="Default text field..." />
+  <TextField size="lg" placeholder="Large text field..." />
+</>;
 ```
 
 With leading add-on:
 
 ```jsx padded
+import { TextField } from './text-field';
+
 const iconMail = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -34,6 +40,8 @@ const iconMail = (
 With trailing add-on:
 
 ```jsx padded
+import { TextField } from './text-field';
+
 const iconCalendar = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -61,22 +69,34 @@ const iconCalendar = (
 Invalid state:
 
 ```jsx
-<TextField isInvalid={true} placeholder="Invalid text field..." />
+import { TextField } from './text-field';
+
+<TextField isInvalid={true} placeholder="Invalid text field..." />;
 ```
 
 Disabled state:
 
 ```jsx padded
-<TextField leadingAddOn="https://" defaultValue="www.example.com" disabled={true} />
-<TextField disabled={true} placeholder="Disabled text field..." />
+import { TextField } from './text-field';
+
+<>
+  <TextField
+    leadingAddOn="https://"
+    defaultValue="www.example.com"
+    disabled={true}
+  />
+  <TextField disabled={true} placeholder="Disabled text field..." />
+</>;
 ```
 
 Full width:
 
 ```jsx
+import { TextField } from './text-field';
+
 <TextField
   size="lg"
   hasFullWidth={true}
   placeholder="Search or enter address"
-/>
+/>;
 ```

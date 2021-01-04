@@ -1,4 +1,6 @@
 ```jsx padded
+import { Select } from './select';
+
 const options = (
   <>
     <option>Choose a browser</option>
@@ -21,6 +23,8 @@ const options = (
 Multiselect:
 
 ```jsx
+import { Select } from './select';
+
 <Select multiple={true}>
   <option>Chrome</option>
   <option>Firefox</option>
@@ -28,12 +32,14 @@ Multiselect:
   <option>Opera</option>
   <option>Safari</option>
   <option>Microsoft Edge</option>
-</Select>
+</Select>;
 ```
 
 Invalid state:
 
 ```jsx
+import { Select } from './select';
+
 <Select isInvalid={true}>
   <option>Choose a browser</option>
   <option>Chrome</option>
@@ -42,12 +48,14 @@ Invalid state:
   <option>Opera</option>
   <option>Safari</option>
   <option>Microsoft Edge</option>
-</Select>
+</Select>;
 ```
 
 Disabled state:
 
 ```jsx
+import { Select } from './select';
+
 <Select disabled={true}>
   <option>Choose a browser</option>
   <option>Chrome</option>
@@ -56,12 +64,14 @@ Disabled state:
   <option>Opera</option>
   <option>Safari</option>
   <option>Microsoft Edge</option>
-</Select>
+</Select>;
 ```
 
 Full width:
 
 ```jsx
+import { Select } from './select';
+
 <Select hasFullWidth={true}>
   <option>Choose a browser</option>
   <option>Chrome</option>
@@ -70,5 +80,5 @@ Full width:
   <option>Opera</option>
   <option>Safari</option>
   <option>Microsoft Edge</option>
-</Select>
+</Select>;
 ```

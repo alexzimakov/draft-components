@@ -1,4 +1,6 @@
 ```jsx padded
+import { Avatar } from './avatar';
+
 const src =
   'https://images.unsplash.com/photo-1528359645462-5ff224bf906e?ixlib=rb-1.2.1&fit=crop&crop=focalpoint&fp-x=.550&fp-y=.35&fp-z=2.4&w=120&h=120';
 
@@ -14,6 +16,8 @@ const src =
 With initials:
 
 ```jsx padded
+import { Avatar } from './avatar';
+
 const initials = 'DC';
 
 <>
@@ -28,6 +32,8 @@ const initials = 'DC';
 Rounded:
 
 ```jsx padded
+import { Avatar } from './avatar';
+
 const src =
   'https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&fit=crop&crop=focalpoint&fp-x=.535&fp-y=.50&fp-z=2&w=120&h=120';
 
@@ -43,18 +49,22 @@ const src =
 With the placeholder:
 
 ```jsx padded
+import { Avatar } from './avatar';
+
 <>
   <Avatar size="xs" isRounded={true} />
   <Avatar size="sm" isRounded={true} />
   <Avatar isRounded={true} />
   <Avatar size="lg" isRounded={true} />
   <Avatar size="xl" isRounded={true} />
-</>
+</>;
 ```
 
 Different colors:
 
 ```jsx padded
+import { Avatar } from './avatar';
+
 const initials = 'DC';
 
 <>

@@ -1,4 +1,5 @@
 ```jsx
+import { ButtonsGroup } from './buttons-group';
 import { Button } from '../button';
 
 <ButtonsGroup>
