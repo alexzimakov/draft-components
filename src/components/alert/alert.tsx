@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as icons from './icons';
+import { SvgIcon, SvgIconProps } from '../svg-icon';
 import { classNames } from '../../lib';
 
 export type AlertHtmlAttrs = Omit<
@@ -29,7 +29,15 @@ export function Alert({
       })}
       role="alert"
     >
-      {shouldShowIcon ? getAlertIcon(appearance) : null}
+      {shouldShowIcon ? (
+        <SvgIcon
+          className="dc-alert__icon"
+          data-testid="alert-icon"
+          icon={getIcon(appearance)}
+          width={18}
+          height={18}
+        />
+      ) : null}
       <div className="dc-alert__body">
         {title ? <h3 className="dc-alert__title">{title}</h3> : null}
         {children ? (
@@ -40,17 +48,17 @@ export function Alert({
   );
 }
 
-function getAlertIcon(appearance: AlertProps['appearance']): JSX.Element {
+function getIcon(appearance: AlertProps['appearance']): SvgIconProps['icon'] {
   switch (appearance) {
     case 'error':
-      return icons.xCircle;
+      return 'error';
     case 'warning':
-      return icons.exclamation;
+      return 'warning';
     case 'success':
-      return icons.checkCircle;
+      return 'success';
     case 'default':
     case 'info':
     default:
-      return icons.informationCircle;
+      return 'info';
   }
 }

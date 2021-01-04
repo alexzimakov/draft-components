@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, ButtonProps } from '../button';
-import { CloseIcon, MinusIcon } from './default-icons';
+import { SvgIcon } from '../svg-icon';
 import { classNames } from '../../lib';
 
 export type IconButtonBaseProps = Omit<
@@ -9,7 +9,7 @@ export type IconButtonBaseProps = Omit<
 >;
 
 export interface IconButtonProps extends IconButtonBaseProps {
-  icon: 'close' | 'minus' | React.ReactNode;
+  icon: 'delete' | 'minus' | React.ReactNode;
   isRounded?: boolean;
 }
 
@@ -36,11 +36,11 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         appearance={appearance}
       >
         {(function () {
-          if (icon === 'close') {
-            return <CloseIcon />;
+          if (icon === 'delete') {
+            return <SvgIcon icon="delete" data-testid="icon-button-delete" />;
           }
           if (icon === 'minus') {
-            return <MinusIcon />;
+            return <SvgIcon icon="minus" data-testid="icon-button-minus" />;
           }
           return icon;
         })()}
