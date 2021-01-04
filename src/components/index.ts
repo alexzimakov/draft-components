@@ -16,3 +16,4 @@ export * from './textarea';
 export * from './search-field';
 export * from './password-field';
 export * from './non-ideal-state-view';
+export * from './flash-message';
