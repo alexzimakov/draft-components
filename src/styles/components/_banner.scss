@@ -3,7 +3,7 @@ $_banner-leading: $leading-normal;
 
 .dc-banner {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   width: 100%;
   max-width: 40rem;
   color: var(--dc-banner-text-color);
@@ -17,6 +17,7 @@ $_banner-leading: $leading-normal;
 
 .dc-banner__body {
   display: flex;
+  align-self: center;
   align-items: flex-start;
   flex-grow: 1;
   box-sizing: border-box;
@@ -61,15 +62,13 @@ $_banner-leading: $leading-normal;
 .dc-banner__actions {
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
-  height: 100%;
   border-left: 0.0625rem solid var(--dc-banner-border-color);
   border-top-right-radius: inherit;
   border-bottom-right-radius: inherit;
 }
 
 .dc-banner__actions > * {
-  height: 100%;
+  flex: 1;
 }
 
 .dc-banner__actions > * + * {

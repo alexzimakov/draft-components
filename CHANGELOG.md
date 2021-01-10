@@ -1,3 +1,9 @@
+## 0.20.1
+
+### Fixes
+
+- `Banner` Corrected action buttons styles.
+
 ## 0.20.0
 
 ### New components
@@ -29,10 +35,10 @@
 
 ### Fixes
 
-- Fixed displaying of `TextField` component when it has a small width
+- Fixed displaying of `TextField` component when it has a small width.
 
 ### Changes
 
-- Replace all icons with `SvgIcon` component
-- `Button[appearance="minimal"]` Add more explicit focus state styles
-- `IconButton` Rename the `close` icon prop to `delete`
+- Replace all icons with `SvgIcon` component.
+- `Button[appearance="minimal"]` Add more explicit focus state styles.
+- `IconButton` Rename the `close` icon prop to `delete`.
