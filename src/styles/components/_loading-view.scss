@@ -1,0 +1,14 @@
+.dc-loading-view {
+  padding: $gap-24x $gap-4x;
+  text-align: center;
+  color: var(--dc-primary-text-color);
+  font-family: var(--dc-font-base);
+  font-size: $font-size-base;
+}
+
+.dc-loading-view__spinner {
+}
+
+.dc-loading-view__content {
+  margin-top: $gap-3x;
+}
