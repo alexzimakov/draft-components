@@ -50,7 +50,7 @@ export function SvgIcon({
   ...props
 }: SvgIconProps) {
   const iconSize = getIconSize(size);
-  const gradientId = React.useRef(uniqueId('svg-icon-gradient-'));
+  const gradientId = React.useRef('');
   let fill = 'currentColor';
   let defs = null;
 
@@ -69,6 +69,10 @@ export function SvgIcon({
       x1 = 1;
     } else if (orientation === 'to right') {
       x2 = 1;
+    }
+
+    if (!gradientId.current) {
+      gradientId.current = uniqueId('svg-icon-gradient-');
     }
 
     fill = `url(#${gradientId.current})`;
