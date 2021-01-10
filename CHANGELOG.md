@@ -1,3 +1,21 @@
+## 0.20.0
+
+### New components
+
+- LoadingView
+
+### Changes
+
+- `SvgIcon` Generate gradient ID only if needed.
+- The `FlashMessage` component can accept multiple actions.
+- Renamed the `FlashMessage` component to `Banner`.
+
+## 0.19.1
+
+### Fixes
+
+- Added updated styles to the package.
+
 ## 0.19.0
 
 ### New Components
