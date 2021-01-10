@@ -1,0 +1,105 @@
+$_banner-font-size: $font-size-base;
+$_banner-leading: $leading-normal;
+
+.dc-banner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 40rem;
+  color: var(--dc-banner-text-color);
+  border-radius: $border-radius-lg;
+  background: var(--dc-banner-bg);
+  box-shadow: $shadow-sm, $shadow-lg;
+  font-family: var(--dc-font-base);
+  font-size: $_banner-font-size;
+  line-height: $_banner-leading;
+}
+
+.dc-banner__body {
+  display: flex;
+  align-items: flex-start;
+  flex-grow: 1;
+  box-sizing: border-box;
+  padding: $gap-4x;
+}
+
+.dc-banner__icon {
+  flex-shrink: 0;
+  width: $_banner-font-size * $_banner-leading;
+  height: $_banner-font-size * $_banner-leading;
+  color: var(--dc-banner-icon-color);
+  margin-right: $gap-4x;
+}
+
+.dc-banner__action-btn {
+  padding: $gap-3x $gap-5x;
+  transition: $transition-quick;
+  transition-property: opacity, background-color, box-shadow;
+  cursor: pointer;
+  color: inherit;
+  opacity: $opacity-70;
+  border: none;
+  background: none;
+  font-size: $font-size-sm;
+  line-height: 1;
+  appearance: none;
+
+  &:hover {
+    opacity: $opacity-100;
+    background: var(--dc-banner-bg-hover);
+  }
+
+  &:focus {
+    outline: none;
+    @include focus-ring;
+  }
+}
+
+.dc-banner__content {
+}
+
+.dc-banner__actions {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  height: 100%;
+  border-left: 0.0625rem solid var(--dc-banner-border-color);
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+.dc-banner__actions > * {
+  height: 100%;
+}
+
+.dc-banner__actions > * + * {
+  border-top: 0.0625rem solid var(--dc-banner-border-color);
+}
+
+.dc-banner__actions > *:first-child {
+  border-top-right-radius: inherit;
+}
+
+.dc-banner__actions > *:last-child {
+  border-bottom-right-radius: inherit;
+}
+
+.dc-banner_full_width {
+  max-width: 100%;
+}
+
+.dc-banner_appearance_warning {
+  --dc-banner-icon-color: #{$orange-500};
+}
+
+.dc-banner_appearance_error {
+  --dc-banner-icon-color: #{$red-600};
+}
+
+.dc-banner_appearance_info {
+  --dc-banner-icon-color: #{$blue-400};
+}
+
+.dc-banner_appearance_success {
+  --dc-banner-icon-color: #{$green-400};
+}

@@ -97,9 +97,9 @@
   --dc-non-ideal-state-text-color: var(--dc-primary-text-color);
   --dc-non-ideal-state-icon-color: var(--dc-tertiary-text-color);
 
-  --dc-flash-message-bg: #{$gray-800};
-  --dc-flash-message-bg-hover: #{$gray-700};
-  --dc-flash-message-text-color: #{$white};
-  --dc-flash-message-border-color: #{rgba($white, $opacity-20)};
-  --dc-flash-message-icon-color: #{$gray-400};
+  --dc-banner-bg: #{$gray-800};
+  --dc-banner-bg-hover: #{$gray-700};
+  --dc-banner-text-color: #{$white};
+  --dc-banner-border-color: #{rgba($white, $opacity-15)};
+  --dc-banner-icon-color: #{$gray-400};
 }
