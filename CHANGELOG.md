@@ -1,3 +1,7 @@
+## 0.20.2
+
+Export `LoadingView` component.
+
 ## 0.20.1
 
 ### Fixes
