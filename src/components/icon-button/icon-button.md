@@ -27,8 +27,9 @@ With the custom icon:
 ```jsx padded
 import { IconButton } from './icon-button';
 import { SvgIcon } from '../svg-icon';
+import { likeIcon } from '../svg-icon/icons';
 
-const icon = <SvgIcon size="sm" icon="like" />;
+const icon = <SvgIcon size="sm" icon={likeIcon} />;
 
 <>
   <IconButton size="xs" icon={icon} appearance="default" />

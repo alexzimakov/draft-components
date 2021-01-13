@@ -2,7 +2,7 @@ import * as React from 'react';
 import { TextField, TextFieldProps } from '../text-field';
 import { IconButton } from '../icon-button';
 import { SvgIcon, SvgIconProps } from '../svg-icon';
-import { Checkbox } from '../checkbox';
+import { eyeIcon, eyeCloseIcon } from '../svg-icon/icons';
 import { classNames } from '../../lib';
 
 export type PasswordFieldBaseProps = Omit<
@@ -23,10 +23,10 @@ export function PasswordField({
 }: PasswordFieldProps) {
   const [type, setType] = React.useState<TextFieldProps['type']>('password');
 
-  let icon: SvgIconProps['icon'] = 'eye-close';
+  let icon: SvgIconProps['icon'] = eyeCloseIcon;
   let title: string = showPasswordA11yTitle;
   if (type === 'text') {
-    icon = 'eye';
+    icon = eyeIcon;
     title = hidePasswordA11yTitle;
   }
 

@@ -92,8 +92,9 @@ With leading icon
 ```jsx padded
 import { Button } from './button';
 import { SvgIcon } from '../svg-icon';
+import { bookmarkIcon } from '../svg-icon/icons';
 
-const icon = <SvgIcon icon="bookmark" />;
+const icon = <SvgIcon icon={bookmarkIcon} />;
 
 <>
   <Button size="xs" leadingIcon={icon}>
@@ -114,8 +115,9 @@ With trailing icon
 ```jsx padded
 import { Button } from './button';
 import { SvgIcon } from '../svg-icon';
+import { likeIcon } from '../svg-icon/icons';
 
-const icon = <SvgIcon icon="edit" />;
+const icon = <SvgIcon icon={likeIcon} />;
 
 <>
   <Button size="xs" trailingIcon={icon}>

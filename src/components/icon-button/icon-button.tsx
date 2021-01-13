@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Button, ButtonProps } from '../button';
 import { SvgIcon } from '../svg-icon';
+import { deleteIcon, minusIcon } from '../svg-icon/icons';
 import { classNames } from '../../lib';
 
 export type IconButtonBaseProps = Omit<
@@ -37,10 +38,10 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       >
         {(function () {
           if (icon === 'delete') {
-            return <SvgIcon icon="delete" data-testid="icon-button-delete" />;
+            return <SvgIcon icon={deleteIcon} />;
           }
           if (icon === 'minus') {
-            return <SvgIcon icon="minus" data-testid="icon-button-minus" />;
+            return <SvgIcon icon={minusIcon} />;
           }
           return icon;
         })()}

@@ -1,26 +1,33 @@
 ```jsx padded
 import { SvgIcon } from './svg-icon';
+import * as icons from '../svg-icon/icons';
+
+const props = { size: 'lg' };
 
 <>
-  <SvgIcon size="lg" icon="delete" />
-  <SvgIcon size="lg" icon="minus" />
-  <SvgIcon size="lg" icon="search" />
-  <SvgIcon size="lg" icon="error" />
-  <SvgIcon size="lg" icon="warning" />
-  <SvgIcon size="lg" icon="info" />
-  <SvgIcon size="lg" icon="success" />
-  <SvgIcon size="lg" icon="like" />
-  <SvgIcon size="lg" icon="bookmark" />
-  <SvgIcon size="lg" icon="trash" />
-  <SvgIcon size="lg" icon="trash-alt" />
-  <SvgIcon size="lg" icon="ul-list" />
-  <SvgIcon size="lg" icon="ol-list" />
-  <SvgIcon size="lg" icon="pencil" />
-  <SvgIcon size="lg" icon="edit" />
-  <SvgIcon size="lg" icon="copy" />
-  <SvgIcon size="lg" icon="eye" />
-  <SvgIcon size="lg" icon="eye-close" />
-  <SvgIcon size="lg" icon="facebook-circle" />
+  <SvgIcon {...props} icon={icons.deleteIcon} />
+  <SvgIcon {...props} icon={icons.minusIcon} />
+  <SvgIcon {...props} icon={icons.searchIcon} />
+  <SvgIcon {...props} icon={icons.errorIcon} />
+  <SvgIcon {...props} icon={icons.warningIcon} />
+  <SvgIcon {...props} icon={icons.infoIcon} />
+  <SvgIcon {...props} icon={icons.successIcon} />
+  <SvgIcon {...props} icon={icons.likeIcon} />
+  <SvgIcon {...props} icon={icons.bookmarkIcon} />
+  <SvgIcon {...props} icon={icons.trashIcon} />
+  <SvgIcon {...props} icon={icons.ulListIcon} />
+  <SvgIcon {...props} icon={icons.olListIcon} />
+  <SvgIcon {...props} icon={icons.pencilIcon} />
+  <SvgIcon {...props} icon={icons.copyIcon} />
+  <SvgIcon {...props} icon={icons.eyeIcon} />
+  <SvgIcon {...props} icon={icons.eyeCloseIcon} />
+  <SvgIcon {...props} icon={icons.facebookCircleIcon} />
+  <SvgIcon {...props} icon={icons.folderIcon} />
+  <SvgIcon {...props} icon={icons.documentIcon} />
+  <SvgIcon {...props} icon={icons.stackIcon} />
+  <SvgIcon {...props} icon={icons.stackOpenIcon} />
+  <SvgIcon {...props} icon={icons.cloudDownloadIcon} />
+  <SvgIcon {...props} icon={icons.commentsIcon} />
 </>;
 ```
 
@@ -28,6 +35,7 @@ Linear Gradient:
 
 ```jsx padded
 import { SvgIcon } from './svg-icon';
+import * as icons from '../svg-icon/icons';
 
 const props = {
   size: 'lg',
@@ -35,25 +43,29 @@ const props = {
 };
 
 <>
-  <SvgIcon {...props} icon="delete" />
-  <SvgIcon {...props} icon="minus" />
-  <SvgIcon {...props} icon="search" />
-  <SvgIcon {...props} icon="error" />
-  <SvgIcon {...props} icon="warning" />
-  <SvgIcon {...props} icon="info" />
-  <SvgIcon {...props} icon="success" />
-  <SvgIcon {...props} icon="like" />
-  <SvgIcon {...props} icon="bookmark" />
-  <SvgIcon {...props} icon="trash" />
-  <SvgIcon {...props} icon="trash-alt" />
-  <SvgIcon {...props} icon="ul-list" />
-  <SvgIcon {...props} icon="ol-list" />
-  <SvgIcon {...props} icon="pencil" />
-  <SvgIcon {...props} icon="edit" />
-  <SvgIcon {...props} icon="copy" />
-  <SvgIcon {...props} icon="eye" />
-  <SvgIcon {...props} icon="eye-close" />
-  <SvgIcon {...props} icon="facebook-circle" />
+  <SvgIcon {...props} icon={icons.deleteIcon} />
+  <SvgIcon {...props} icon={icons.minusIcon} />
+  <SvgIcon {...props} icon={icons.searchIcon} />
+  <SvgIcon {...props} icon={icons.errorIcon} />
+  <SvgIcon {...props} icon={icons.warningIcon} />
+  <SvgIcon {...props} icon={icons.infoIcon} />
+  <SvgIcon {...props} icon={icons.successIcon} />
+  <SvgIcon {...props} icon={icons.likeIcon} />
+  <SvgIcon {...props} icon={icons.bookmarkIcon} />
+  <SvgIcon {...props} icon={icons.trashIcon} />
+  <SvgIcon {...props} icon={icons.ulListIcon} />
+  <SvgIcon {...props} icon={icons.olListIcon} />
+  <SvgIcon {...props} icon={icons.pencilIcon} />
+  <SvgIcon {...props} icon={icons.copyIcon} />
+  <SvgIcon {...props} icon={icons.eyeIcon} />
+  <SvgIcon {...props} icon={icons.eyeCloseIcon} />
+  <SvgIcon {...props} icon={icons.facebookCircleIcon} />
+  <SvgIcon {...props} icon={icons.folderIcon} />
+  <SvgIcon {...props} icon={icons.documentIcon} />
+  <SvgIcon {...props} icon={icons.stackIcon} />
+  <SvgIcon {...props} icon={icons.stackOpenIcon} />
+  <SvgIcon {...props} icon={icons.cloudDownloadIcon} />
+  <SvgIcon {...props} icon={icons.commentsIcon} />
 </>;
 ```
 
@@ -61,16 +73,17 @@ Sizes:
 
 ```jsx padded
 import { SvgIcon } from './svg-icon';
+import { likeIcon } from './icons';
 
 <>
-  <SvgIcon size="xs" icon="info" />
-  <SvgIcon size="sm" icon="info" />
-  <SvgIcon size="base" icon="info" />
-  <SvgIcon size="lg" icon="info" />
-  <SvgIcon size="xl" icon="info" />
-  <SvgIcon size="2x" icon="info" />
-  <SvgIcon size="3x" icon="info" />
-  <SvgIcon size="4x" icon="info" />
-  <SvgIcon size="5x" icon="info" />
+  <SvgIcon size="xs" icon={likeIcon} />
+  <SvgIcon size="sm" icon={likeIcon} />
+  <SvgIcon size="base" icon={likeIcon} />
+  <SvgIcon size="lg" icon={likeIcon} />
+  <SvgIcon size="xl" icon={likeIcon} />
+  <SvgIcon size="2x" icon={likeIcon} />
+  <SvgIcon size="3x" icon={likeIcon} />
+  <SvgIcon size="4x" icon={likeIcon} />
+  <SvgIcon size="5x" icon={likeIcon} />
 </>;
 ```

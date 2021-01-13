@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import { SvgIcon } from '../svg-icon';
+import { searchIcon } from '../svg-icon/icons';
 import { SearchField } from '../search-field';
 import { NonIdealStateView } from './non-ideal-state-view';
 
@@ -12,7 +13,9 @@ it('renders without errors', () => {
   const placeholder = 'Search';
   render(
     <NonIdealStateView
-      icon={<SvgIcon aria-hidden={false} role="img" icon="search" size="5x" />}
+      icon={
+        <SvgIcon aria-hidden={false} role="img" icon={searchIcon} size="5x" />
+      }
       title={title}
       description={description}
       actions={<SearchField placeholder={placeholder} />}

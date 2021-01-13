@@ -1,5 +1,11 @@
 import * as React from 'react';
 import { SvgIcon, SvgIconProps } from '../svg-icon';
+import {
+  warningIcon,
+  errorIcon,
+  infoIcon,
+  successIcon,
+} from '../svg-icon/icons';
 import { classNames } from '../../lib';
 
 export type AlertHtmlAttrs = Omit<
@@ -51,14 +57,14 @@ export function Alert({
 function getIcon(appearance: AlertProps['appearance']): SvgIconProps['icon'] {
   switch (appearance) {
     case 'error':
-      return 'error';
+      return errorIcon;
     case 'warning':
-      return 'warning';
+      return warningIcon;
     case 'success':
-      return 'success';
+      return successIcon;
     case 'default':
     case 'info':
     default:
-      return 'info';
+      return infoIcon;
   }
 }

@@ -1,6 +1,12 @@
 import * as React from 'react';
 import { classNames } from '../../lib';
 import { SvgIcon, SvgIconProps } from '../svg-icon';
+import {
+  warningIcon,
+  errorIcon,
+  infoIcon,
+  successIcon,
+} from '../svg-icon/icons';
 
 export type FlashMessageHtmlAttrs = React.ComponentPropsWithRef<'div'>;
 
@@ -12,7 +18,7 @@ export interface BannerAction {
 export interface BannerProps extends FlashMessageHtmlAttrs {
   hasFullWidth?: boolean;
   appearance?: 'default' | 'warning' | 'error' | 'info' | 'success';
-  actions? : BannerAction | [BannerAction] | [BannerAction, BannerAction];
+  actions?: BannerAction | [BannerAction] | [BannerAction, BannerAction];
 }
 
 export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
@@ -65,14 +71,14 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
 function getIcon(appearance: BannerProps['appearance']): SvgIconProps['icon'] {
   switch (appearance) {
     case 'warning':
-      return 'warning';
+      return warningIcon;
     case 'error':
-      return 'error';
+      return errorIcon;
     case 'success':
-      return 'success';
+      return successIcon;
     case 'info':
     case 'default':
     default:
-      return 'info';
+      return infoIcon;
   }
 }
