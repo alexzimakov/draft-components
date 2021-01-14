@@ -1,3 +1,7 @@
+## 0.22.0
+
+Export all icons.
+
 ## 0.21.0
 
 ### New Components
