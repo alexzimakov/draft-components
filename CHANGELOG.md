@@ -1,3 +1,13 @@
+## 0.21.0
+
+### New Components
+
+- Breadcrumbs
+
+### Changes
+
+- `SvgIcon` Pass an icon descriptor instead of the icon name.
+
 ## 0.20.2
 
 Export `LoadingView` component.
