@@ -28,6 +28,9 @@ const props = { size: 'lg' };
   <SvgIcon {...props} icon={icons.stackOpenIcon} />
   <SvgIcon {...props} icon={icons.cloudDownloadIcon} />
   <SvgIcon {...props} icon={icons.commentsIcon} />
+  <SvgIcon {...props} icon={icons.homeIcon} />
+  <SvgIcon {...props} icon={icons.chevronRightIcon} />
+  <SvgIcon {...props} icon={icons.chevronLeftIcon} />
 </>;
 ```
 
@@ -66,6 +69,9 @@ const props = {
   <SvgIcon {...props} icon={icons.stackOpenIcon} />
   <SvgIcon {...props} icon={icons.cloudDownloadIcon} />
   <SvgIcon {...props} icon={icons.commentsIcon} />
+  <SvgIcon {...props} icon={icons.homeIcon} />
+  <SvgIcon {...props} icon={icons.chevronRightIcon} />
+  <SvgIcon {...props} icon={icons.chevronLeftIcon} />
 </>;
 ```
 

@@ -21,3 +21,6 @@ export * from './stack';
 export * from './stack-open';
 export * from './cloud-download';
 export * from './comments';
+export * from './home';
+export * from './chevron-right';
+export * from './chevron-left';

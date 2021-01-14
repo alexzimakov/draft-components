@@ -18,3 +18,4 @@ export * from './password-field';
 export * from './non-ideal-state-view';
 export * from './loading-view';
 export * from './banner';
+export * from './breadcrumbs';

@@ -1,0 +1,43 @@
+import * as React from 'react';
+import { render, screen } from '@testing-library/react';
+import { Breadcrumbs } from './breadcrumbs';
+import { SvgIcon } from '../svg-icon';
+import { homeIcon } from '../svg-icon/icons';
+
+it('renders without errors', () => {
+  const items = [
+    { href: '/', label: 'Home', icon: <SvgIcon icon={homeIcon} /> },
+    { href: '#breadcrumbs', label: 'Project' },
+    { href: '#breadcrumbs', label: 'Awesome Project' },
+  ];
+  render(<Breadcrumbs items={items} />);
+
+  const links = screen.getAllByRole('link');
+
+  expect(links).toHaveLength(items.length);
+  expect(links[0]).toHaveTextContent(items[0].label);
+  expect(links[1]).toHaveTextContent(items[1].label);
+  expect(links[2]).toHaveTextContent(items[2].label);
+});
+
+it('should render using custom renderer', () => {
+  const items = [
+    { href: '/', label: 'Home', icon: <SvgIcon icon={homeIcon} /> },
+    { href: '#breadcrumbs', label: 'Project' },
+    { href: '#breadcrumbs', label: 'Awesome Project' },
+  ];
+  render(
+    <Breadcrumbs
+      itemRenderAs={({ key, className, children }) => (
+        <button key={key} className={className}>
+          {children}
+        </button>
+      )}
+      items={items}
+    />
+  );
+
+  const buttons = screen.getAllByRole('button');
+
+  expect(buttons).toHaveLength(items.length);
+});

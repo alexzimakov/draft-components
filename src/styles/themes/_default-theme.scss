@@ -102,4 +102,8 @@
   --dc-banner-text-color: #{$white};
   --dc-banner-border-color: #{rgba($white, $opacity-15)};
   --dc-banner-icon-color: #{$gray-400};
+
+  --dc-breadcrumbs-color: #{$gray-800};
+  --dc-breadcrumbs-separator-color: #{$gray-400};
+  --dc-breadcrumbs-item-icon-color: #{$gray-700};
 }
