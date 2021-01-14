@@ -1,5 +1,11 @@
 import * as React from 'react';
 import { SvgIcon } from '../svg-icon';
+import {
+  warningIcon,
+  errorIcon,
+  infoIcon,
+  successIcon,
+} from '../svg-icon/icons';
 import { classNames } from '../../lib';
 
 export type NonIdealStateViewHtmlAttrs = Omit<
@@ -49,13 +55,13 @@ function getIcon(
 ): JSX.Element {
   switch (icon) {
     case 'error':
-      return <SvgIcon size="4x" icon="error" />;
+      return <SvgIcon size="4x" icon={errorIcon} />;
     case 'warning':
-      return <SvgIcon size="4x" icon="warning" />;
+      return <SvgIcon size="4x" icon={warningIcon} />;
     case 'info':
-      return <SvgIcon size="4x" icon="info" />;
+      return <SvgIcon size="4x" icon={infoIcon} />;
     case 'success':
-      return <SvgIcon size="4x" icon="success" />;
+      return <SvgIcon size="4x" icon={successIcon} />;
     default:
       return icon;
   }
