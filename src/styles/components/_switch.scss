@@ -1,5 +1,7 @@
 .dc-switch {
   --dc-selection-control-size: 2rem;
+
+  position: relative;
 }
 
 .dc-switch__input {

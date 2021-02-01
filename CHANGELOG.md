@@ -1,3 +1,9 @@
+## 0.22.1
+
+### Changes
+
+- Position `Switch`, `Checkbox` and `RadioButton` with `relative` value.
+
 ## 0.22.0
 
 Export all icons.

@@ -1,5 +1,7 @@
 .dc-radio-button {
   --dc-selection-control-size: var(--dc-radio-button-size);
+
+  position: relative;
 }
 
 .dc-radio-button__input {

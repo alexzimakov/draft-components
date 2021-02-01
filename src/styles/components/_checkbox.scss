@@ -1,5 +1,7 @@
 .dc-checkbox {
   --dc-selection-control-size: var(--dc-checkbox-size);
+
+  position: relative;
 }
 
 .dc-checkbox__input {
