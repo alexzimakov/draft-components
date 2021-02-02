@@ -26,7 +26,7 @@
   display: inline-flex;
   align-items: center;
   color: inherit;
-  line-height: 1;
+  line-height: $leading-tight;
   text-decoration: none;
 
   &:hover {

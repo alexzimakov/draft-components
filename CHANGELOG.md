@@ -1,6 +1,12 @@
+## 0.22.2
+
+### Fixes
+
+- Increase `line-height` value of `Breadcrums` item.
+
 ## 0.22.1
 
-### Changes
+### Fixes
 
 - Position `Switch`, `Checkbox` and `RadioButton` with `relative` value.
 
