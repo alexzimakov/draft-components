@@ -28,10 +28,8 @@ it('should render using custom renderer', () => {
   ];
   render(
     <Breadcrumbs
-      itemRenderAs={({ key, className, children }) => (
-        <button key={key} className={className}>
-          {children}
-        </button>
+      renderLink={({ className, children }) => (
+        <button className={className}>{children}</button>
       )}
       items={items}
     />
