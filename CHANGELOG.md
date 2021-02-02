@@ -1,3 +1,9 @@
+## 0.23.0
+
+### Changes
+
+- `Breadcrumbs` Remove `itemRenderAs` property and add `renderLink`.
+
 ## 0.22.2
 
 ### Fixes
