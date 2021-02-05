@@ -4,6 +4,14 @@ import { Checkbox } from './checkbox';
 <Checkbox />;
 ```
 
+Mixed:
+
+```jsx
+import { Checkbox } from './checkbox';
+
+<Checkbox isMixed={true} />;
+```
+
 With a label:
 
 ```jsx

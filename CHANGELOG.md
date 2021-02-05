@@ -1,3 +1,9 @@
+## 0.24.0
+
+### Changes
+
+- Add mixed state for the `Checkbox` component.
+
 ## 0.23.0
 
 ### Changes
