@@ -1,6 +1,7 @@
 .dc-non-ideal-state {
   box-sizing: border-box;
-  padding: $gap-24x $gap-4x;
+  padding-right: $gap-4x;
+  padding-left: $gap-4x;
   text-align: center;
   color: var(--dc-non-ideal-state-text-color);
   font-family: var(--dc-font-base);
@@ -37,4 +38,44 @@
   margin-top: $gap-4x;
   font-size: $font-size-sm;
   line-height: $leading-lg;
+}
+
+.dc-non-ideal-state_pad-y_none {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.dc-non-ideal-state_pad-y_2xs {
+  padding-top: $gap-1x;
+  padding-bottom: $gap-1x;
+}
+
+.dc-non-ideal-state_pad-y_xs {
+  padding-top: $gap-2x;
+  padding-bottom: $gap-2x;
+}
+
+.dc-non-ideal-state_pad-y_sm {
+  padding-top: $gap-4x;
+  padding-bottom: $gap-4x;
+}
+
+.dc-non-ideal-state_pad-y_md {
+  padding-top: $gap-8x;
+  padding-bottom: $gap-8x;
+}
+
+.dc-non-ideal-state_pad-y_lg {
+  padding-top: $gap-16x;
+  padding-bottom: $gap-16x;
+}
+
+.dc-non-ideal-state_pad-y_xl {
+  padding-top: $gap-20x;
+  padding-bottom: $gap-20x;
+}
+
+.dc-non-ideal-state_pad-y_2xl {
+  padding-top: $gap-24x;
+  padding-bottom: $gap-24x;
 }

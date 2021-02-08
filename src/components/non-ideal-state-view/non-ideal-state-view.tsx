@@ -14,6 +14,7 @@ export type NonIdealStateViewHtmlAttrs = Omit<
 >;
 
 export interface NonIdealStateViewProps extends NonIdealStateViewHtmlAttrs {
+  padY?: 'none' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   icon?: 'info' | 'warning' | 'error' | 'success' | JSX.Element;
   title: React.ReactNode;
   description?: React.ReactNode;
@@ -21,6 +22,7 @@ export interface NonIdealStateViewProps extends NonIdealStateViewHtmlAttrs {
 }
 
 export function NonIdealStateView({
+  padY = '2xl',
   icon,
   title,
   description,
@@ -30,7 +32,14 @@ export function NonIdealStateView({
   ...props
 }: NonIdealStateViewProps) {
   return (
-    <section {...props} className={classNames(className, 'dc-non-ideal-state')}>
+    <section
+      {...props}
+      className={classNames(
+        className,
+        'dc-non-ideal-state',
+        `dc-non-ideal-state_pad-y_${padY}`
+      )}
+    >
       <div className="dc-non-ideal-state__body">
         {icon ? (
           <div className="dc-non-ideal-state__icon">{getIcon(icon)}</div>
