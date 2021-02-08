@@ -1,3 +1,9 @@
+## 0.26.0
+
+### Changes
+
+- Make possible configure vertical padding for `LoadingView` and `NonIdealStateView` components.
+
 ## 0.25.0
 
 ### Changes
