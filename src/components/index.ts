@@ -19,3 +19,4 @@ export * from './non-ideal-state-view';
 export * from './loading-view';
 export * from './banner';
 export * from './breadcrumbs';
+export * from './segmented-control';
