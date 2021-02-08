@@ -1,0 +1,8 @@
+.dc-scope-buttons {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dc-scope-buttons > * + * {
+  margin-left: $gap-1x / 2;
+}

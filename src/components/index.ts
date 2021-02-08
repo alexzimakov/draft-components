@@ -20,3 +20,4 @@ export * from './loading-view';
 export * from './banner';
 export * from './breadcrumbs';
 export * from './segmented-control';
+export * from './scope-buttons';
