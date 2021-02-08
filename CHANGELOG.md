@@ -1,3 +1,15 @@
+## 0.25.0
+
+### Changes
+
+- Add `secondary` appearance for the `Button` component.
+- Make buttons more narrow.
+
+### New components
+
+- SegmentedControl
+- ScopeButtons
+
 ## 0.24.0
 
 ### Changes
