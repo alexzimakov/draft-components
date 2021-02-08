@@ -8,7 +8,7 @@
   height: $button-size;
   min-width: 4rem;
   max-width: 100%;
-  padding: 0 $gap-5x;
+  padding: 0 $gap-4x;
   cursor: pointer;
   user-select: none;
   transition: $transition-quick;
@@ -48,21 +48,21 @@
 
 .dc-button_size_xs {
   height: $button-xs-size;
-  padding: 0 $gap-3x;
+  padding: 0 $gap-2x;
   border-radius: $border-radius-sm;
   font-size: $font-size-xs;
 }
 
 .dc-button_size_sm {
   height: $button-sm-size;
-  padding: 0 $gap-4x;
+  padding: 0 $gap-3x;
   border-radius: $border-radius-md;
   font-size: $font-size-sm;
 }
 
 .dc-button_size_lg {
   height: $button-lg-size;
-  padding: 0 $gap-6x;
+  padding: 0 $gap-5x;
   border-radius: $border-radius-lg;
   font-size: $font-size-base;
 }
@@ -124,6 +124,25 @@
 
   &:active:enabled {
     background: var(--dc-btn-success-bg-active);
+  }
+}
+
+.dc-button_secondary {
+  color: var(--dc-btn-secondary-text-color);
+  border-color: transparent;
+  background: var(--dc-btn-secondary-bg);
+  box-shadow: none;
+
+  &:hover:enabled {
+    background: var(--dc-btn-secondary-bg-hover);
+  }
+
+  &:hover:active {
+    background: var(--dc-btn-secondary-bg-active);
+  }
+
+  &:disabled {
+    box-shadow: none;
   }
 }
 

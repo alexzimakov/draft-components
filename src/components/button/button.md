@@ -30,6 +30,25 @@ import { Button } from './button';
 </>;
 ```
 
+Secondary button
+
+```jsx padded
+import { Button } from './button';
+
+<>
+  <Button size="xs" appearance="secondary">
+    Button text
+  </Button>
+  <Button size="sm" appearance="secondary">
+    Button text
+  </Button>
+  <Button appearance="secondary">Button text</Button>
+  <Button size="lg" appearance="secondary">
+    Button text
+  </Button>
+</>;
+```
+
 Danger button
 
 ```jsx padded
@@ -170,6 +189,9 @@ import { Button } from './button';
 <>
   <Button disabled={true}>Button text</Button>
   <Button disabled={true} appearance="primary">
+    Button text
+  </Button>
+  <Button disabled={true} appearance="secondary">
     Button text
   </Button>
   <Button disabled={true} appearance="danger">

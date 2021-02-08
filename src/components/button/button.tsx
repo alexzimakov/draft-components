@@ -6,7 +6,13 @@ export type ButtonHtmlAttrs = React.ComponentPropsWithoutRef<'button'>;
 
 export interface ButtonProps extends ButtonHtmlAttrs {
   size?: 'xs' | 'sm' | 'md' | 'lg';
-  appearance?: 'default' | 'primary' | 'danger' | 'success' | 'minimal';
+  appearance?:
+    | 'default'
+    | 'primary'
+    | 'secondary'
+    | 'danger'
+    | 'success'
+    | 'minimal';
   hasFullWidth?: boolean;
   isLoading?: boolean;
   leadingIcon?: React.ReactNode;
