@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { SvgIcon } from '../svg-icon';
-import {
-  warningIcon,
-  errorIcon,
-  infoIcon,
-  successIcon,
-} from '../svg-icon/icons';
+import { warningIcon } from '../svg-icon/icons/warning';
+import { errorIcon } from '../svg-icon/icons/error';
+import { infoIcon } from '../svg-icon/icons/info';
+import { successIcon } from '../svg-icon/icons/success';
 import { classNames } from '../../lib';
 
 export type NonIdealStateViewHtmlAttrs = Omit<

@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { classNames } from '../../lib';
 import { SvgIcon, SvgIconProps } from '../svg-icon';
-import {
-  warningIcon,
-  errorIcon,
-  infoIcon,
-  successIcon,
-} from '../svg-icon/icons';
+import { warningIcon } from '../svg-icon/icons/warning';
+import { errorIcon } from '../svg-icon/icons/error';
+import { infoIcon } from '../svg-icon/icons/info';
+import { successIcon } from '../svg-icon/icons/success';
 
 export type FlashMessageHtmlAttrs = React.ComponentPropsWithRef<'div'>;
 

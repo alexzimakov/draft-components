@@ -2,7 +2,8 @@ import * as React from 'react';
 import { TextField, TextFieldProps } from '../text-field';
 import { IconButton } from '../icon-button';
 import { SvgIcon, SvgIconProps } from '../svg-icon';
-import { eyeIcon, eyeCloseIcon } from '../svg-icon/icons';
+import { eyeIcon } from '../svg-icon/icons/eye';
+import { eyeCloseIcon } from '../svg-icon/icons/eye-close';
 import { classNames } from '../../lib';
 
 export type PasswordFieldBaseProps = Omit<

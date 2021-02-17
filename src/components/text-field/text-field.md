@@ -13,9 +13,9 @@ With leading add-on:
 ```jsx padded
 import { TextField } from './text-field';
 import { SvgIcon } from '../svg-icon';
-import { searchIcon } from '../svg-icon/icons';
+import * as icons from '../svg-icon/icons';
 
-const icon = <SvgIcon size="lg" icon={searchIcon} />;
+const icon = <SvgIcon size="lg" icon={icons.search} />;
 
 <>
   <TextField leadingAddOn="https://" placeholder="www.example.com" />
@@ -28,9 +28,9 @@ With trailing add-on:
 ```jsx padded
 import { TextField } from './text-field';
 import { SvgIcon } from '../svg-icon';
-import { errorIcon } from '../svg-icon/icons';
+import * as icons from '../svg-icon/icons';
 
-const icon = <SvgIcon size="lg" icon={errorIcon} />;
+const icon = <SvgIcon size="lg" icon={icons.error} />;
 
 <>
   <TextField trailingAddOn=".com" placeholder="https://www.example" />

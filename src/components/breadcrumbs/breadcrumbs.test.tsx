@@ -2,11 +2,11 @@ import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Breadcrumbs } from './breadcrumbs';
 import { SvgIcon } from '../svg-icon';
-import { homeIcon } from '../svg-icon/icons';
+import * as icons from '../svg-icon/icons';
 
 it('renders without errors', () => {
   const items = [
-    { href: '/', label: 'Home', icon: <SvgIcon icon={homeIcon} /> },
+    { href: '/', label: 'Home', icon: <SvgIcon icon={icons.home} /> },
     { href: '#breadcrumbs', label: 'Project' },
     { href: '#breadcrumbs', label: 'Awesome Project' },
   ];
@@ -22,7 +22,7 @@ it('renders without errors', () => {
 
 it('should render using custom renderer', () => {
   const items = [
-    { href: '/', label: 'Home', icon: <SvgIcon icon={homeIcon} /> },
+    { href: '/', label: 'Home', icon: <SvgIcon icon={icons.home} /> },
     { href: '#breadcrumbs', label: 'Project' },
     { href: '#breadcrumbs', label: 'Awesome Project' },
   ];

@@ -5,32 +5,33 @@ import * as icons from '../svg-icon/icons';
 const props = { size: 'lg' };
 
 <>
-  <SvgIcon {...props} icon={icons.deleteIcon} />
-  <SvgIcon {...props} icon={icons.minusIcon} />
-  <SvgIcon {...props} icon={icons.searchIcon} />
-  <SvgIcon {...props} icon={icons.errorIcon} />
-  <SvgIcon {...props} icon={icons.warningIcon} />
-  <SvgIcon {...props} icon={icons.infoIcon} />
-  <SvgIcon {...props} icon={icons.successIcon} />
-  <SvgIcon {...props} icon={icons.likeIcon} />
-  <SvgIcon {...props} icon={icons.bookmarkIcon} />
-  <SvgIcon {...props} icon={icons.trashIcon} />
-  <SvgIcon {...props} icon={icons.ulListIcon} />
-  <SvgIcon {...props} icon={icons.olListIcon} />
-  <SvgIcon {...props} icon={icons.pencilIcon} />
-  <SvgIcon {...props} icon={icons.copyIcon} />
-  <SvgIcon {...props} icon={icons.eyeIcon} />
-  <SvgIcon {...props} icon={icons.eyeCloseIcon} />
-  <SvgIcon {...props} icon={icons.facebookCircleIcon} />
-  <SvgIcon {...props} icon={icons.folderIcon} />
-  <SvgIcon {...props} icon={icons.documentIcon} />
-  <SvgIcon {...props} icon={icons.stackIcon} />
-  <SvgIcon {...props} icon={icons.stackOpenIcon} />
-  <SvgIcon {...props} icon={icons.cloudDownloadIcon} />
-  <SvgIcon {...props} icon={icons.commentsIcon} />
-  <SvgIcon {...props} icon={icons.homeIcon} />
-  <SvgIcon {...props} icon={icons.chevronRightIcon} />
-  <SvgIcon {...props} icon={icons.chevronLeftIcon} />
+  <SvgIcon {...props} icon={icons.remove} />
+  <SvgIcon {...props} icon={icons.minus} />
+  <SvgIcon {...props} icon={icons.search} />
+  <SvgIcon {...props} icon={icons.error} />
+  <SvgIcon {...props} icon={icons.warning} />
+  <SvgIcon {...props} icon={icons.info} />
+  <SvgIcon {...props} icon={icons.success} />
+  <SvgIcon {...props} icon={icons.like} />
+  <SvgIcon {...props} icon={icons.bookmark} />
+  <SvgIcon {...props} icon={icons.trash} />
+  <SvgIcon {...props} icon={icons.ulList} />
+  <SvgIcon {...props} icon={icons.olList} />
+  <SvgIcon {...props} icon={icons.pencil} />
+  <SvgIcon {...props} icon={icons.copy} />
+  <SvgIcon {...props} icon={icons.eye} />
+  <SvgIcon {...props} icon={icons.eyeClose} />
+  <SvgIcon {...props} icon={icons.facebookCircle} />
+  <SvgIcon {...props} icon={icons.folder} />
+  <SvgIcon {...props} icon={icons.document} />
+  <SvgIcon {...props} icon={icons.stack} />
+  <SvgIcon {...props} icon={icons.stackOpen} />
+  <SvgIcon {...props} icon={icons.cloudDownload} />
+  <SvgIcon {...props} icon={icons.comments} />
+  <SvgIcon {...props} icon={icons.home} />
+  <SvgIcon {...props} icon={icons.chevronRight} />
+  <SvgIcon {...props} icon={icons.chevronLeft} />
+  <SvgIcon {...props} icon={icons.filter} />
 </>;
 ```
 
@@ -46,32 +47,33 @@ const props = {
 };
 
 <>
-  <SvgIcon {...props} icon={icons.deleteIcon} />
-  <SvgIcon {...props} icon={icons.minusIcon} />
-  <SvgIcon {...props} icon={icons.searchIcon} />
-  <SvgIcon {...props} icon={icons.errorIcon} />
-  <SvgIcon {...props} icon={icons.warningIcon} />
-  <SvgIcon {...props} icon={icons.infoIcon} />
-  <SvgIcon {...props} icon={icons.successIcon} />
-  <SvgIcon {...props} icon={icons.likeIcon} />
-  <SvgIcon {...props} icon={icons.bookmarkIcon} />
-  <SvgIcon {...props} icon={icons.trashIcon} />
-  <SvgIcon {...props} icon={icons.ulListIcon} />
-  <SvgIcon {...props} icon={icons.olListIcon} />
-  <SvgIcon {...props} icon={icons.pencilIcon} />
-  <SvgIcon {...props} icon={icons.copyIcon} />
-  <SvgIcon {...props} icon={icons.eyeIcon} />
-  <SvgIcon {...props} icon={icons.eyeCloseIcon} />
-  <SvgIcon {...props} icon={icons.facebookCircleIcon} />
-  <SvgIcon {...props} icon={icons.folderIcon} />
-  <SvgIcon {...props} icon={icons.documentIcon} />
-  <SvgIcon {...props} icon={icons.stackIcon} />
-  <SvgIcon {...props} icon={icons.stackOpenIcon} />
-  <SvgIcon {...props} icon={icons.cloudDownloadIcon} />
-  <SvgIcon {...props} icon={icons.commentsIcon} />
-  <SvgIcon {...props} icon={icons.homeIcon} />
-  <SvgIcon {...props} icon={icons.chevronRightIcon} />
-  <SvgIcon {...props} icon={icons.chevronLeftIcon} />
+  <SvgIcon {...props} icon={icons.remove} />
+  <SvgIcon {...props} icon={icons.minus} />
+  <SvgIcon {...props} icon={icons.search} />
+  <SvgIcon {...props} icon={icons.error} />
+  <SvgIcon {...props} icon={icons.warning} />
+  <SvgIcon {...props} icon={icons.info} />
+  <SvgIcon {...props} icon={icons.success} />
+  <SvgIcon {...props} icon={icons.like} />
+  <SvgIcon {...props} icon={icons.bookmark} />
+  <SvgIcon {...props} icon={icons.trash} />
+  <SvgIcon {...props} icon={icons.ulList} />
+  <SvgIcon {...props} icon={icons.olList} />
+  <SvgIcon {...props} icon={icons.pencil} />
+  <SvgIcon {...props} icon={icons.copy} />
+  <SvgIcon {...props} icon={icons.eye} />
+  <SvgIcon {...props} icon={icons.eyeClose} />
+  <SvgIcon {...props} icon={icons.facebookCircle} />
+  <SvgIcon {...props} icon={icons.folder} />
+  <SvgIcon {...props} icon={icons.document} />
+  <SvgIcon {...props} icon={icons.stack} />
+  <SvgIcon {...props} icon={icons.stackOpen} />
+  <SvgIcon {...props} icon={icons.cloudDownload} />
+  <SvgIcon {...props} icon={icons.comments} />
+  <SvgIcon {...props} icon={icons.home} />
+  <SvgIcon {...props} icon={icons.chevronRight} />
+  <SvgIcon {...props} icon={icons.chevronLeft} />
+  <SvgIcon {...props} icon={icons.filter} />
 </>;
 ```
 
@@ -79,17 +81,17 @@ Sizes:
 
 ```jsx padded
 import { SvgIcon } from './svg-icon';
-import { likeIcon } from './icons';
+import * as icons from './icons';
 
 <>
-  <SvgIcon size="xs" icon={likeIcon} />
-  <SvgIcon size="sm" icon={likeIcon} />
-  <SvgIcon size="base" icon={likeIcon} />
-  <SvgIcon size="lg" icon={likeIcon} />
-  <SvgIcon size="xl" icon={likeIcon} />
-  <SvgIcon size="2x" icon={likeIcon} />
-  <SvgIcon size="3x" icon={likeIcon} />
-  <SvgIcon size="4x" icon={likeIcon} />
-  <SvgIcon size="5x" icon={likeIcon} />
+  <SvgIcon size="xs" icon={icons.like} />
+  <SvgIcon size="sm" icon={icons.like} />
+  <SvgIcon size="base" icon={icons.like} />
+  <SvgIcon size="lg" icon={icons.like} />
+  <SvgIcon size="xl" icon={icons.like} />
+  <SvgIcon size="2x" icon={icons.like} />
+  <SvgIcon size="3x" icon={icons.like} />
+  <SvgIcon size="4x" icon={icons.like} />
+  <SvgIcon size="5x" icon={icons.like} />
 </>;
 ```

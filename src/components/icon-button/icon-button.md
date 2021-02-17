@@ -2,10 +2,10 @@
 import { IconButton } from './icon-button';
 
 <>
-  <IconButton size="xs" icon="delete" />
-  <IconButton size="sm" icon="delete" />
-  <IconButton icon="delete" />
-  <IconButton size="lg" icon="delete" />
+  <IconButton size="xs" icon="remove" />
+  <IconButton size="sm" icon="remove" />
+  <IconButton icon="remove" />
+  <IconButton size="lg" icon="remove" />
 </>;
 ```
 
@@ -27,9 +27,9 @@ With the custom icon:
 ```jsx padded
 import { IconButton } from './icon-button';
 import { SvgIcon } from '../svg-icon';
-import { likeIcon } from '../svg-icon/icons';
+import * as icons from '../svg-icon/icons';
 
-const icon = <SvgIcon size="sm" icon={likeIcon} />;
+const icon = <SvgIcon size="sm" icon={icons.like} />;
 
 <>
   <IconButton size="xs" icon={icon} appearance="default" />

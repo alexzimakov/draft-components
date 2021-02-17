@@ -5,7 +5,7 @@ import {
 } from '../selection-control';
 import { classNames } from '../../lib';
 import { SvgIcon } from '../svg-icon';
-import { minusIcon } from '../svg-icon/icons';
+import { minusIcon } from '../svg-icon/icons/minus';
 
 export type CheckboxHtmlAttrs = Omit<
   React.ComponentPropsWithoutRef<'input'>,

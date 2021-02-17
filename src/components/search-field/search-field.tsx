@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SvgIcon } from '../svg-icon';
-import { searchIcon } from '../svg-icon/icons';
+import { searchIcon } from '../svg-icon/icons/search';
 import { TextField, TextFieldProps } from '../text-field';
 
 export interface SearchFieldProps extends TextFieldProps {}

@@ -51,7 +51,7 @@ export function Badge({
           className="dc-badge__remove-btn"
           data-testid="badge-remove-btn"
           aria-label={removeButtonA11yTitle}
-          icon="delete"
+          icon="remove"
           size={getRemoveButtonSize(size)}
           isRounded={isRounded}
           onClick={onRemove}
