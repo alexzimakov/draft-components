@@ -9,9 +9,19 @@
   --dc-secondary-text-color: #{$gray-500};
   --dc-tertiary-text-color: #{$gray-400};
 
+  --dc-focus-border-color: #{$blue-500};
   --dc-focus-ring-color: #{rgba($blue-500, $opacity-40)};
   --dc-focus-ring-secondary-color: #{$white};
+  --dc-focus-danger-border-color: #{$red-500};
   --dc-focus-danger-ring-color: #{rgba($red-500, $opacity-40)};
+
+  /*------------------------------------*\
+   #SCROLL BAR
+  \*------------------------------------*/
+  --dc-scrollbar-track-bg-color: #{$gray-100};
+  --dc-scrollbar-track-bg-hover-color: #{$gray-200};
+  --dc-scrollbar-thumb-bg-color: #{$gray-300};
+  --dc-scrollbar-thumb-bg-hover-color: #{$gray-500};
 
   /*------------------------------------*\
    #BUTTONS
