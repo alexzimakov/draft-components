@@ -1,3 +1,20 @@
+## 0.27.0
+
+### Changes
+
+- Add `filter` icon.
+- Rename `delete` icon to `remove` icon.
+- Export icons using short names without the `Icon` suffix.
+- Improve `ScopeButtons` layout.
+- Now `ScopeButtons.Button` accept ref.
+
+### New components
+
+- Label
+- Caption
+- ErrorMessage
+- FieldGroup
+
 ## 0.26.0
 
 ### Changes
