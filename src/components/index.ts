@@ -21,3 +21,7 @@ export * from './banner';
 export * from './breadcrumbs';
 export * from './segmented-control';
 export * from './scope-buttons';
+export * from './label';
+export * from './caption';
+export * from './error-message';
+export * from './field-group';

@@ -119,4 +119,11 @@
   --dc-segmented-control-separator-color: #{rgba($gray-900, $opacity-20)};
   --dc-segmented-control-bg: #{rgba($gray-500, $opacity-5)};
   --dc-segmented-control-bg-active: #{$blue-500};
+
+  --dc-label-text-color: var(--dc-primary-text-color);
+  --dc-label-required-mark-color: #{$red-600};
+
+  --dc-caption-text-color: var(--dc-secondary-text-color);
+
+  --dc-error-message-text-color: #{$red-600};
 }
