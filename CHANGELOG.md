@@ -1,3 +1,9 @@
+## 0.27.1
+
+### Changes
+
+- Fix displaying text fields when in the flex container.
+
 ## 0.27.0
 
 ### Changes
