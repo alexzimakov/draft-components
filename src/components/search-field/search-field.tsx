@@ -16,9 +16,23 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
         ref={ref}
         type={type || 'search'}
         leadingAddOn={
-          leadingAddOn || <SvgIcon icon={searchIcon} size="1.2em" />
+          leadingAddOn || (
+            <SvgIcon icon={searchIcon} size={getIconSizeInPixels(props.size)} />
+          )
         }
       />
     );
   }
 );
+
+function getIconSizeInPixels(size: SearchFieldProps['size']): number {
+  switch (size) {
+    case 'lg':
+      return 20;
+    case 'sm':
+      return 14;
+    case 'md':
+    default:
+      return 16;
+  }
+}
