@@ -1,4 +1,5 @@
 export * from './svg-icon';
+export * from './portal';
 export * from './alert';
 export * from './avatar';
 export * from './badge';
