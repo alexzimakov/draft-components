@@ -15,7 +15,15 @@ it('renders in custom wrapper', () => {
   const url = 'https://example.com';
   const label = 'Link Button';
   render(
-    <Button renderAs={(props) => <a {...props} href={url} />}>{label}</Button>
+    <Button
+      renderAs={({ children, ...props }) => (
+        <a {...props} href={url}>
+          {children}
+        </a>
+      )}
+    >
+      {label}
+    </Button>
   );
 
   const linkEl = screen.getByRole('link');
