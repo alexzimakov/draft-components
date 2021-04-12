@@ -2,15 +2,11 @@
   display: inline-flex;
   align-items: flex-start;
   color: var(--dc-error-message-text-color);
-  font-family: var(--dc-font-base);
-  font-size: $font-size-sm;
   font-weight: $font-weight-medium;
-  line-height: $leading-tight;
 }
 
 .dc-error-message__icon {
   flex-shrink: 0;
-  margin-right: $gap-2x;
-  transform: translateY(0.0625rem);
+  margin-right: $gap-1x;
   line-height: $leading-normal;
 }

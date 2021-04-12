@@ -1,10 +1,7 @@
 .dc-label {
   position: relative;
   color: var(--dc-label-text-color);
-  font-family: var(--dc-font-base);
-  font-size: $font-size-sm;
   font-weight: $font-weight-medium;
-  line-height: $leading-tight;
 }
 
 .dc-label_required::after {

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SvgIcon } from '../svg-icon';
 import { errorIcon } from '../svg-icon/icons/error';
+import { FormattedContent } from '../formatted-content';
 import { classNames } from '../../lib';
 
 export interface ErrorMessageProps
@@ -15,12 +16,19 @@ export function ErrorMessage({
   ...props
 }: ErrorMessageProps) {
   return (
-    <span {...props} className={classNames(className, 'dc-error-message')}>
+    <span
+      {...props}
+      className={classNames(
+        className,
+        FormattedContent.styles.caption,
+        'dc-error-message'
+      )}
+    >
       {shouldShowIcon ? (
         <SvgIcon
           className="dc-error-message__icon"
           icon={errorIcon}
-          size="1rem"
+          size="0.875rem"
           data-testid="error-message-icon"
         />
       ) : null}

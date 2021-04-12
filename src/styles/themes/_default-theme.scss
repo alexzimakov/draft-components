@@ -8,6 +8,14 @@
   --dc-primary-text-color: #{$gray-800};
   --dc-secondary-text-color: #{$gray-500};
   --dc-tertiary-text-color: #{$gray-400};
+  --dc-link-text-color: #{$blue-500};
+
+  --dc-primary-border-color: #{$gray-300};
+  --dc-secondary-border-color: #{$gray-200};
+
+  --dc-primary-bg-color: #{$white};
+  --dc-secondary-bg-color: #{$gray-50};
+  --dc-tertiary-bg-color: #{$gray-100};
 
   --dc-focus-border-color: #{$blue-500};
   --dc-focus-ring-color: #{rgba($blue-500, $opacity-40)};
