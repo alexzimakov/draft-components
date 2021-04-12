@@ -1,4 +1,4 @@
-import { classNames } from './class-names';
+import { classNames } from '../class-names';
 
 describe('classNames()', () => {
   it('should return className string without falsy classes', () => {
