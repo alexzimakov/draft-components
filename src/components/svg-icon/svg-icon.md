@@ -5,33 +5,9 @@ import * as icons from '../svg-icon/icons';
 const props = { size: 'lg' };
 
 <>
-  <SvgIcon {...props} icon={icons.remove} />
-  <SvgIcon {...props} icon={icons.minus} />
-  <SvgIcon {...props} icon={icons.search} />
-  <SvgIcon {...props} icon={icons.error} />
-  <SvgIcon {...props} icon={icons.warning} />
-  <SvgIcon {...props} icon={icons.info} />
-  <SvgIcon {...props} icon={icons.success} />
-  <SvgIcon {...props} icon={icons.like} />
-  <SvgIcon {...props} icon={icons.bookmark} />
-  <SvgIcon {...props} icon={icons.trash} />
-  <SvgIcon {...props} icon={icons.ulList} />
-  <SvgIcon {...props} icon={icons.olList} />
-  <SvgIcon {...props} icon={icons.pencil} />
-  <SvgIcon {...props} icon={icons.copy} />
-  <SvgIcon {...props} icon={icons.eye} />
-  <SvgIcon {...props} icon={icons.eyeClose} />
-  <SvgIcon {...props} icon={icons.facebookCircle} />
-  <SvgIcon {...props} icon={icons.folder} />
-  <SvgIcon {...props} icon={icons.document} />
-  <SvgIcon {...props} icon={icons.stack} />
-  <SvgIcon {...props} icon={icons.stackOpen} />
-  <SvgIcon {...props} icon={icons.cloudDownload} />
-  <SvgIcon {...props} icon={icons.comments} />
-  <SvgIcon {...props} icon={icons.home} />
-  <SvgIcon {...props} icon={icons.chevronRight} />
-  <SvgIcon {...props} icon={icons.chevronLeft} />
-  <SvgIcon {...props} icon={icons.filter} />
+  {Object.entries(icons).map(([key, icon]) => (
+    <SvgIcon {...props} key={key} icon={icon} />
+  ))}
 </>;
 ```
 
@@ -47,33 +23,9 @@ const props = {
 };
 
 <>
-  <SvgIcon {...props} icon={icons.remove} />
-  <SvgIcon {...props} icon={icons.minus} />
-  <SvgIcon {...props} icon={icons.search} />
-  <SvgIcon {...props} icon={icons.error} />
-  <SvgIcon {...props} icon={icons.warning} />
-  <SvgIcon {...props} icon={icons.info} />
-  <SvgIcon {...props} icon={icons.success} />
-  <SvgIcon {...props} icon={icons.like} />
-  <SvgIcon {...props} icon={icons.bookmark} />
-  <SvgIcon {...props} icon={icons.trash} />
-  <SvgIcon {...props} icon={icons.ulList} />
-  <SvgIcon {...props} icon={icons.olList} />
-  <SvgIcon {...props} icon={icons.pencil} />
-  <SvgIcon {...props} icon={icons.copy} />
-  <SvgIcon {...props} icon={icons.eye} />
-  <SvgIcon {...props} icon={icons.eyeClose} />
-  <SvgIcon {...props} icon={icons.facebookCircle} />
-  <SvgIcon {...props} icon={icons.folder} />
-  <SvgIcon {...props} icon={icons.document} />
-  <SvgIcon {...props} icon={icons.stack} />
-  <SvgIcon {...props} icon={icons.stackOpen} />
-  <SvgIcon {...props} icon={icons.cloudDownload} />
-  <SvgIcon {...props} icon={icons.comments} />
-  <SvgIcon {...props} icon={icons.home} />
-  <SvgIcon {...props} icon={icons.chevronRight} />
-  <SvgIcon {...props} icon={icons.chevronLeft} />
-  <SvgIcon {...props} icon={icons.filter} />
+  {Object.entries(icons).map(([key, icon]) => (
+    <SvgIcon {...props} key={key} icon={icon} />
+  ))}
 </>;
 ```
 

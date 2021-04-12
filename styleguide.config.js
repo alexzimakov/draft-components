@@ -1,8 +1,59 @@
-const fs = require('fs');
 const path = require('path');
 
 module.exports = {
-  components: getComponentsPaths('src/components'),
+  sections: [
+    {
+      name: 'General',
+      components: getComponents(
+        'formatted-content',
+        'label',
+        'caption',
+        'error-message',
+        'svg-icon',
+        'spinner'
+      ),
+    },
+    {
+      name: 'Layout',
+      components: getComponents('box'),
+    },
+    {
+      name: 'Data display',
+      components: getComponents('avatar'),
+    },
+    {
+      name: 'Controls',
+      components: getComponents(
+        'button',
+        'icon-button',
+        'buttons-group',
+        'actions-group',
+        'text-field',
+        'search-field',
+        'password-field',
+        'select',
+        'textarea',
+        'checkbox',
+        'switch',
+        'radio',
+        'field-group'
+      ),
+    },
+    {
+      name: 'Navigation',
+      components: getComponents('breadcrumbs', 'segmented-control'),
+    },
+    {
+      name: 'Feedback',
+      components: getComponents(
+        'alert',
+        'banner',
+        'dialog',
+        'loading-view',
+        'non-ideal-state-view'
+      ),
+    },
+  ],
   require: [
     path.join(__dirname, 'src/styles/draft-components.scss'),
     path.join(__dirname, 'src/styleguide/styles.scss'),
@@ -46,20 +97,9 @@ module.exports = {
 
 /**
  * Returns array of paths to components.
- * @param {string} componentsDirectory - The path to a directory where components are located.
+ * @param {string} names - The component names.
  * @returns {string[]}
  */
-function getComponentsPaths(componentsDirectory) {
-  return fs
-    .readdirSync(componentsDirectory)
-    .filter((filename) => {
-      if (filename.startsWith('.')) {
-        return false;
-      }
-      const stats = fs.statSync(path.join(componentsDirectory, filename));
-      return stats.isDirectory();
-    })
-    .map((directoryName) =>
-      path.join(componentsDirectory, directoryName, `${directoryName}.tsx`)
-    );
+function getComponents(...names) {
+  return names.map((name) => `src/components/${name}/${name}.tsx`);
 }

@@ -1,3 +1,16 @@
+## 0.28.0
+
+### Changes
+
+- SearchField: set icon size in pixels.
+
+### New components
+
+- Portal
+- FormattedContent
+- Box
+- Dialog
+
 ## 0.27.1
 
 ### Changes
