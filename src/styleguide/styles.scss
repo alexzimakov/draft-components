@@ -1,3 +1,32 @@
+@import '../styles/abstracts/variables';
+
 *[class*='rsg--padded'] > * > * {
   vertical-align: bottom;
+}
+
+.dc-rsg-content-placeholder {
+  $border-width: 2px;
+  $border-color: $gray-300;
+  $background-color: rgba($white, 0);
+
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 4rem;
+  border: $border-width dashed $border-color;
+  border-radius: $border-radius-sm;
+  background-color: $background-color;
+  background-image: linear-gradient(
+      to top left,
+      $background-color calc(50% - #{$border-width / 2}),
+      $border-color,
+      $background-color calc(50% + #{$border-width / 2})
+    ),
+    linear-gradient(
+      to top right,
+      $background-color calc(50% - #{$border-width / 2}),
+      $border-color,
+      $background-color calc(50% + #{$border-width / 2})
+    );
 }
