@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Label } from '../label';
-import { Caption } from '../caption';
-import { ErrorMessage } from '../error-message';
+import { InlineMessage } from '../inline-message';
 import { classNames, uniqueId } from '../../lib';
 
 export interface FieldRenderer {
@@ -55,13 +54,21 @@ export function FieldGroup({
       {(function () {
         if (validationError) {
           return (
-            <ErrorMessage className="dc-field-group__error">
+            <InlineMessage
+              className="dc-field-group__error"
+              shouldShowIcon={true}
+              appearance="error"
+            >
               {validationError}
-            </ErrorMessage>
+            </InlineMessage>
           );
         }
         if (hint) {
-          return <Caption className="dc-field-group__hint">{hint}</Caption>;
+          return (
+            <InlineMessage className="dc-field-group__hint">
+              {hint}
+            </InlineMessage>
+          );
         }
         return null;
       })()}

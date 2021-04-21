@@ -1,0 +1,27 @@
+.dc-inline-message {
+  display: inline-flex;
+  align-items: flex-start;
+  color: var(--dc-secondary-text-color);
+}
+
+.dc-inline-message_info {
+  color: var(--dc-info-text-color);
+}
+
+.dc-inline-message_success {
+  color: var(--dc-success-text-color);
+}
+
+.dc-inline-message_error {
+  color: var(--dc-error-text-color);
+}
+
+.dc-inline-message_warning {
+  color: var(--dc-warning-text-color);
+}
+
+.dc-inline-message__icon {
+  flex-shrink: 0;
+  margin-right: $gap-2x;
+  line-height: 1;
+}

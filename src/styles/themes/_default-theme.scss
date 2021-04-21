@@ -9,6 +9,10 @@
   --dc-secondary-text-color: #{$gray-500};
   --dc-tertiary-text-color: #{$gray-400};
   --dc-link-text-color: #{$blue-500};
+  --dc-error-text-color: #{$red-500};
+  --dc-warning-text-color: #{$orange-500};
+  --dc-info-text-color: #{$blue-500};
+  --dc-success-text-color: #{$green-500};
 
   --dc-primary-border-color: #{$gray-300};
   --dc-secondary-border-color: #{$gray-200};
@@ -141,7 +145,4 @@
   --dc-label-text-color: var(--dc-primary-text-color);
   --dc-label-required-mark-color: #{$red-600};
 
-  --dc-caption-text-color: var(--dc-secondary-text-color);
-
-  --dc-error-message-text-color: #{$red-600};
 }

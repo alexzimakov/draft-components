@@ -7,8 +7,7 @@ module.exports = {
       components: getComponents(
         'formatted-content',
         'label',
-        'caption',
-        'error-message',
+        'inline-message',
         'svg-icon',
         'spinner'
       ),

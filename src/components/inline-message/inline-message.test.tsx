@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Caption } from './caption';
+import { InlineMessage } from './inline-message';
 
-it('<Caption /> renders without errors', () => {
+it('<InlineMessage /> renders without errors', () => {
   const text = 'You can use letters, numbers & periods';
-  render(<Caption>{text}</Caption>);
+  render(<InlineMessage>{text}</InlineMessage>);
   screen.getByText(text);
 });
