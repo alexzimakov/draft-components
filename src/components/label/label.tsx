@@ -17,7 +17,7 @@ export function Label({
       {...props}
       className={classNames(
         className,
-        FormattedContent.styles.subheadline,
+        FormattedContent.CSSClasses.subheadline,
         'dc-label',
         { 'dc-label_required': isRequired }
       )}

@@ -92,7 +92,7 @@ export function Dialog({
                     id={descriptionId}
                     className={classNames(
                       'dc-dialog__description',
-                      FormattedContent.styles.subheadline
+                      FormattedContent.CSSClasses.subheadline
                     )}
                   >
                     {description}

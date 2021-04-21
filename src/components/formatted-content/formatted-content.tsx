@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { classNames } from '../../lib';
 
-const STYLES = {
+const CSSClasses = {
   formattedContent: 'dc-fmt-content',
   largeTitle: 'dc-fmt-content__large-title',
   title1: 'dc-fmt-content__title-1',
@@ -21,11 +21,11 @@ export function FormattedContent({
   return (
     <div
       {...props}
-      className={classNames(className, STYLES.formattedContent)}
+      className={classNames(className, CSSClasses.formattedContent)}
     />
   );
 }
-FormattedContent.styles = STYLES;
+FormattedContent.CSSClasses = CSSClasses;
 FormattedContent.LargeTitle = LargeTitle;
 FormattedContent.Title1 = Title1;
 FormattedContent.Title2 = Title2;
@@ -48,7 +48,7 @@ export function LargeTitle({
   return (
     <Component
       {...props}
-      className={classNames(className, STYLES.largeTitle)}
+      className={classNames(className, CSSClasses.largeTitle)}
     />
   );
 }
@@ -59,7 +59,10 @@ export function Title1({
   ...props
 }: TitleProps) {
   return (
-    <Component {...props} className={classNames(className, STYLES.title1)} />
+    <Component
+      {...props}
+      className={classNames(className, CSSClasses.title1)}
+    />
   );
 }
 
@@ -69,7 +72,10 @@ export function Title2({
   ...props
 }: TitleProps) {
   return (
-    <Component {...props} className={classNames(className, STYLES.title2)} />
+    <Component
+      {...props}
+      className={classNames(className, CSSClasses.title2)}
+    />
   );
 }
 
@@ -79,7 +85,10 @@ export function Title3({
   ...props
 }: TitleProps) {
   return (
-    <Component {...props} className={classNames(className, STYLES.title3)} />
+    <Component
+      {...props}
+      className={classNames(className, CSSClasses.title3)}
+    />
   );
 }
 
@@ -89,7 +98,10 @@ export function Headline({
   ...props
 }: TitleProps) {
   return (
-    <Component {...props} className={classNames(className, STYLES.headline)} />
+    <Component
+      {...props}
+      className={classNames(className, CSSClasses.headline)}
+    />
   );
 }
 
@@ -97,14 +109,18 @@ export function Paragraph({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<'p'>) {
-  return <p {...props} className={classNames(className, STYLES.paragraph)} />;
+  return (
+    <p {...props} className={classNames(className, CSSClasses.paragraph)} />
+  );
 }
 
 export function Subheadline({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<'p'>) {
-  return <p {...props} className={classNames(className, STYLES.subheadline)} />;
+  return (
+    <p {...props} className={classNames(className, CSSClasses.subheadline)} />
+  );
 }
 
 export function Footnote({
@@ -112,7 +128,7 @@ export function Footnote({
   ...props
 }: React.ComponentPropsWithoutRef<'small'>) {
   return (
-    <small {...props} className={classNames(className, STYLES.footnote)} />
+    <small {...props} className={classNames(className, CSSClasses.footnote)} />
   );
 }
 
@@ -120,5 +136,7 @@ export function Caption({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<'small'>) {
-  return <small {...props} className={classNames(className, STYLES.caption)} />;
+  return (
+    <small {...props} className={classNames(className, CSSClasses.caption)} />
+  );
 }

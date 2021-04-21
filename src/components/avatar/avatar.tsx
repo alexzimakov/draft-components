@@ -1,14 +1,9 @@
 import * as React from 'react';
 import { classNames } from '../../lib';
 
-export type AvatarHtmlAttrs = Omit<
-  React.ComponentPropsWithoutRef<'div'>,
-  'color'
->;
-
-export interface AvatarProps extends AvatarHtmlAttrs {
+export interface AvatarProps extends React.ComponentPropsWithoutRef<'div'> {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  color?:
+  fillColor?:
     | 'gray'
     | 'blue'
     | 'cyan'
@@ -24,9 +19,17 @@ export interface AvatarProps extends AvatarHtmlAttrs {
   initials?: string;
 }
 
+const avatarSize: Record<NonNullable<AvatarProps['size']>, number> = {
+  xs: 28,
+  sm: 36,
+  md: 44,
+  lg: 52,
+  xl: 60,
+};
+
 export function Avatar({
   size = 'md',
-  color = 'gray',
+  fillColor = 'gray',
   isRounded,
   src,
   altText,
@@ -34,7 +37,7 @@ export function Avatar({
   className,
   ...props
 }: AvatarProps) {
-  const sizePx = getAvatarSize(size);
+  const sizePx = avatarSize[size] || avatarSize.md;
   let content;
   let type;
 
@@ -79,7 +82,7 @@ export function Avatar({
       {...props}
       className={classNames(className, 'dc-avatar', {
         'dc-avatar_rounded': isRounded,
-        [`dc-avatar_color_${color}`]: color,
+        [`dc-avatar_fill-color_${fillColor}`]: fillColor,
         [`dc-avatar_size_${size}`]: size,
         [`dc-avatar_type_${type}`]: type,
       })}
@@ -87,20 +90,4 @@ export function Avatar({
       {content}
     </div>
   );
-}
-
-function getAvatarSize(size: AvatarProps['size']): number {
-  switch (size) {
-    case 'xs':
-      return 28;
-    case 'sm':
-      return 36;
-    case 'lg':
-      return 52;
-    case 'xl':
-      return 60;
-    case 'md':
-    default:
-      return 44;
-  }
 }

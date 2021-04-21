@@ -2,14 +2,9 @@ import * as React from 'react';
 import { IconButton, IconButtonProps } from '../icon-button';
 import { classNames } from '../../lib';
 
-export type BadgeHtmlAttrs = Omit<
-  React.ComponentPropsWithoutRef<'span'>,
-  'color'
->;
-
-export interface BadgeProps extends BadgeHtmlAttrs {
+export interface BadgeProps extends React.ComponentPropsWithoutRef<'span'> {
   size?: 'sm' | 'md' | 'lg';
-  color?:
+  fillColor?:
     | 'gray'
     | 'blue'
     | 'cyan'
@@ -24,9 +19,18 @@ export interface BadgeProps extends BadgeHtmlAttrs {
   onRemove?: IconButtonProps['onClick'];
 }
 
+const removeButtonSize: Record<
+  NonNullable<BadgeProps['size']>,
+  IconButtonProps['size']
+> = {
+  sm: 'xs',
+  md: 'sm',
+  lg: 'md',
+};
+
 export function Badge({
   size = 'md',
-  color = 'gray',
+  fillColor = 'gray',
   isRounded,
   isRemovable,
   removeButtonA11yTitle,
@@ -41,7 +45,7 @@ export function Badge({
       className={classNames(className, 'dc-badge', {
         'dc-badge_rounded': isRounded,
         'dc-badge_removable': isRemovable,
-        [`dc-badge_color_${color}`]: color,
+        [`dc-badge_fill-color_${fillColor}`]: fillColor,
         [`dc-badge_size_${size}`]: size,
       })}
     >
@@ -52,25 +56,11 @@ export function Badge({
           data-testid="badge-remove-btn"
           aria-label={removeButtonA11yTitle}
           icon="remove"
-          size={getRemoveButtonSize(size)}
+          size={removeButtonSize[size] || removeButtonSize.md}
           isRounded={isRounded}
           onClick={onRemove}
         />
       ) : null}
     </span>
   );
-}
-
-function getRemoveButtonSize(
-  size: BadgeProps['size']
-): IconButtonProps['size'] {
-  switch (size) {
-    case 'sm':
-      return 'xs';
-    case 'lg':
-      return 'md';
-    case 'md':
-    default:
-      return 'sm';
-  }
 }

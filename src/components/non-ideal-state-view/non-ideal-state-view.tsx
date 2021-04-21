@@ -1,28 +1,25 @@
 import * as React from 'react';
+import { classNames } from '../../lib';
 import { SvgIcon } from '../svg-icon';
+import { FormattedContent } from '../formatted-content';
 import { warningIcon } from '../svg-icon/icons/warning';
 import { errorIcon } from '../svg-icon/icons/error';
 import { infoIcon } from '../svg-icon/icons/info';
 import { successIcon } from '../svg-icon/icons/success';
-import { classNames } from '../../lib';
 
-export type NonIdealStateViewHtmlAttrs = Omit<
-  React.ComponentPropsWithoutRef<'div'>,
-  'title'
->;
-
-export interface NonIdealStateViewProps extends NonIdealStateViewHtmlAttrs {
-  padY?: 'none' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export interface NonIdealStateViewProps
+  extends React.ComponentPropsWithoutRef<'div'> {
+  spacing?: 'none' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   icon?: 'info' | 'warning' | 'error' | 'success' | JSX.Element;
-  title: React.ReactNode;
+  heading: React.ReactNode;
   description?: React.ReactNode;
   actions?: React.ReactNode;
 }
 
 export function NonIdealStateView({
-  padY = '2xl',
+  spacing = '2xl',
   icon,
-  title,
+  heading,
   description,
   actions,
   className,
@@ -35,22 +32,40 @@ export function NonIdealStateView({
       className={classNames(
         className,
         'dc-non-ideal-state',
-        `dc-non-ideal-state_pad-y_${padY}`
+        `dc-non-ideal-state_spacing_${spacing}`
       )}
     >
       <div className="dc-non-ideal-state__body">
         {icon ? (
           <div className="dc-non-ideal-state__icon">{getIcon(icon)}</div>
         ) : null}
-        <h2 className="dc-non-ideal-state__title">{title}</h2>
+
+        <h2 className={FormattedContent.CSSClasses.title3}>{heading}</h2>
+
         {description ? (
-          <div className="dc-non-ideal-state__description">{description}</div>
+          <div
+            className={classNames(
+              'dc-non-ideal-state__description',
+              FormattedContent.CSSClasses.paragraph
+            )}
+          >
+            {description}
+          </div>
         ) : null}
+
         {actions ? (
           <div className="dc-non-ideal-state__actions">{actions}</div>
         ) : null}
+
         {children ? (
-          <div className="dc-non-ideal-state__content">{children}</div>
+          <div
+            className={classNames(
+              'dc-non-ideal-state__content',
+              FormattedContent.CSSClasses.subheadline
+            )}
+          >
+            {children}
+          </div>
         ) : null}
       </div>
     </section>

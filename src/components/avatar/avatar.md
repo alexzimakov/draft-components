@@ -63,19 +63,19 @@ import { Avatar } from './avatar';
 Different colors:
 
 ```jsx padded
-import { Avatar } from './avatar';
+import {Avatar} from './avatar';
 
 const initials = 'DC';
 
 <>
-  <Avatar initials={initials} isRounded={true} />
-  <Avatar color="blue" initials={initials} isRounded={true} />
-  <Avatar color="cyan" initials={initials} isRounded={true} />
-  <Avatar color="red" initials={initials} isRounded={true} />
-  <Avatar color="green" initials={initials} isRounded={true} />
-  <Avatar color="lime" initials={initials} isRounded={true} />
-  <Avatar color="indigo" initials={initials} isRounded={true} />
-  <Avatar color="yellow" initials={initials} isRounded={true} />
-  <Avatar color="orange" initials={initials} isRounded={true} />
+  <Avatar initials={initials} isRounded={true}/>
+  <Avatar fillColor="blue" initials={initials} isRounded={true}/>
+  <Avatar fillColor="cyan" initials={initials} isRounded={true}/>
+  <Avatar fillColor="red" initials={initials} isRounded={true}/>
+  <Avatar fillColor="green" initials={initials} isRounded={true}/>
+  <Avatar fillColor="lime" initials={initials} isRounded={true}/>
+  <Avatar fillColor="indigo" initials={initials} isRounded={true}/>
+  <Avatar fillColor="yellow" initials={initials} isRounded={true}/>
+  <Avatar fillColor="orange" initials={initials} isRounded={true}/>
 </>;
 ```

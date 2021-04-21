@@ -5,34 +5,29 @@ import { TextField, TextFieldProps } from '../text-field';
 
 export interface SearchFieldProps extends TextFieldProps {}
 
+const iconSize: Record<NonNullable<SearchFieldProps['size']>, number> = {
+  sm: 14,
+  md: 16,
+  lg: 20,
+};
+
 export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
   function SearchField(
-    { leadingAddOn, type, ...props }: SearchFieldProps,
+    { size = 'md', leadingAddOn, type, ...props }: SearchFieldProps,
     ref
   ) {
     return (
       <TextField
         {...props}
         ref={ref}
+        size={size}
         type={type || 'search'}
         leadingAddOn={
           leadingAddOn || (
-            <SvgIcon icon={searchIcon} size={getIconSizeInPixels(props.size)} />
+            <SvgIcon icon={searchIcon} size={iconSize[size] || iconSize.md} />
           )
         }
       />
     );
   }
 );
-
-function getIconSizeInPixels(size: SearchFieldProps['size']): number {
-  switch (size) {
-    case 'lg':
-      return 20;
-    case 'sm':
-      return 14;
-    case 'md':
-    default:
-      return 16;
-  }
-}

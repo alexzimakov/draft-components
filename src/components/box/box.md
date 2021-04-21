@@ -3,7 +3,7 @@ import { Box } from './box';
 import { FormattedContent } from '../formatted-content';
 import { ContentPlaceholder } from '../../styleguide/content-placeholder';
 
-<Box className={FormattedContent.styles.formattedContent}>
+<Box className={FormattedContent.CSSClasses.formattedContent}>
   <h3>Box heading example</h3>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam explicabo

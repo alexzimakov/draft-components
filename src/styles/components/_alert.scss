@@ -27,10 +27,9 @@
 .dc-alert__body {
 }
 
-.dc-alert__title {
+.dc-alert__heading {
   margin: 0;
   color: var(--dc-alert-primary-text-color);
-  font-size: $font-size-sm;
   font-weight: $font-weight-medium;
   line-height: 1.125rem;
 }
@@ -38,8 +37,6 @@
 .dc-alert__description {
   margin: 0;
   color: var(--dc-alert-secondary-text-color);
-  font-size: $font-size-sm;
-  line-height: $leading-normal;
 
   ul,
   ol {

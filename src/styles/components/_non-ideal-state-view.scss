@@ -18,16 +18,8 @@
   color: var(--dc-non-ideal-state-icon-color);
 }
 
-.dc-non-ideal-state__title {
-  margin: 0;
-  font-size: $font-size-lg;
-  font-weight: $font-weight-bold;
-  line-height: $leading-tight;
-}
-
 .dc-non-ideal-state__description {
   margin-top: $gap-2x;
-  line-height: $leading-lg;
 }
 
 .dc-non-ideal-state__actions {
@@ -36,46 +28,44 @@
 
 .dc-non-ideal-state__content {
   margin-top: $gap-4x;
-  font-size: $font-size-sm;
-  line-height: $leading-lg;
 }
 
-.dc-non-ideal-state_pad-y_none {
+.dc-non-ideal-state_spacing_none {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-.dc-non-ideal-state_pad-y_2xs {
+.dc-non-ideal-state_spacing_2xs {
   padding-top: $gap-1x;
   padding-bottom: $gap-1x;
 }
 
-.dc-non-ideal-state_pad-y_xs {
+.dc-non-ideal-state_spacing_xs {
   padding-top: $gap-2x;
   padding-bottom: $gap-2x;
 }
 
-.dc-non-ideal-state_pad-y_sm {
+.dc-non-ideal-state_spacing_sm {
   padding-top: $gap-4x;
   padding-bottom: $gap-4x;
 }
 
-.dc-non-ideal-state_pad-y_md {
+.dc-non-ideal-state_spacing_md {
   padding-top: $gap-8x;
   padding-bottom: $gap-8x;
 }
 
-.dc-non-ideal-state_pad-y_lg {
+.dc-non-ideal-state_spacing_lg {
   padding-top: $gap-16x;
   padding-bottom: $gap-16x;
 }
 
-.dc-non-ideal-state_pad-y_xl {
+.dc-non-ideal-state_spacing_xl {
   padding-top: $gap-20x;
   padding-bottom: $gap-20x;
 }
 
-.dc-non-ideal-state_pad-y_2xl {
+.dc-non-ideal-state_spacing_2xl {
   padding-top: $gap-24x;
   padding-bottom: $gap-24x;
 }

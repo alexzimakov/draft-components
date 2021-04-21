@@ -58,17 +58,17 @@ const onRemove = () => alert('Removing badge...');
 Colored:
 
 ```jsx padded
-import { Badge } from './badge';
+import {Badge} from './badge';
 
 <>
   <Badge>Gray</Badge>
-  <Badge color="blue">Blue</Badge>
-  <Badge color="cyan">Cyan</Badge>
-  <Badge color="red">Red</Badge>
-  <Badge color="green">Green</Badge>
-  <Badge color="lime">Lime</Badge>
-  <Badge color="indigo">Indigo</Badge>
-  <Badge color="yellow">Yellow</Badge>
-  <Badge color="orange">Orange</Badge>
+  <Badge fillColor="blue">Blue</Badge>
+  <Badge fillColor="cyan">Cyan</Badge>
+  <Badge fillColor="red">Red</Badge>
+  <Badge fillColor="green">Green</Badge>
+  <Badge fillColor="lime">Lime</Badge>
+  <Badge fillColor="indigo">Indigo</Badge>
+  <Badge fillColor="yellow">Yellow</Badge>
+  <Badge fillColor="orange">Orange</Badge>
 </>;
 ```

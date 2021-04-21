@@ -2,11 +2,11 @@ import * as React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import { Alert } from './alert';
 
-const title = 'Alert title';
-const description = 'Alert description.';
+const title = `Alert title`;
+const description = `Alert description.`;
 
 it('renders without errors', () => {
-  render(<Alert title={title}>{description}</Alert>);
+  render(<Alert heading={title}>{description}</Alert>);
 
   const alertEl = screen.getByRole('alert');
 
@@ -16,7 +16,7 @@ it('renders without errors', () => {
 
 it('should show icon', () => {
   render(
-    <Alert title={title} shouldShowIcon={true}>
+    <Alert heading={title} shouldShowIcon={true}>
       {description}
     </Alert>
   );
@@ -27,7 +27,7 @@ it('should show icon', () => {
 });
 
 it('renders only with title', () => {
-  render(<Alert title={title} />);
+  render(<Alert heading={title} />);
 
   const alertEl = screen.getByRole('alert');
 

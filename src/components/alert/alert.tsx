@@ -1,26 +1,30 @@
 import * as React from 'react';
-import { SvgIcon, SvgIconProps } from '../svg-icon';
+import { classNames } from '../../lib';
+import { FormattedContent } from '../formatted-content';
+import { Icon, SvgIcon } from '../svg-icon';
 import { warningIcon } from '../svg-icon/icons/warning';
 import { errorIcon } from '../svg-icon/icons/error';
 import { infoIcon } from '../svg-icon/icons/info';
 import { successIcon } from '../svg-icon/icons/success';
-import { classNames } from '../../lib';
 
-export type AlertHtmlAttrs = Omit<
-  React.ComponentPropsWithoutRef<'div'>,
-  'title'
->;
-
-export interface AlertProps extends AlertHtmlAttrs {
+export interface AlertProps extends React.ComponentPropsWithoutRef<'div'> {
+  heading?: React.ReactNode;
   appearance?: 'default' | 'warning' | 'error' | 'info' | 'success';
   shouldShowIcon?: boolean;
-  title?: React.ReactNode;
 }
+
+const alertIcons: Record<NonNullable<AlertProps['appearance']>, Icon> = {
+  error: errorIcon,
+  warning: warningIcon,
+  success: successIcon,
+  info: infoIcon,
+  default: infoIcon,
+};
 
 export function Alert({
   appearance = 'default',
   shouldShowIcon,
-  title,
+  heading,
   children,
   className,
   ...props
@@ -35,34 +39,35 @@ export function Alert({
     >
       {shouldShowIcon ? (
         <SvgIcon
-          className="dc-alert__icon"
           data-testid="alert-icon"
-          icon={getIcon(appearance)}
+          className="dc-alert__icon"
+          icon={alertIcons[appearance] || alertIcons.default}
           width={18}
           height={18}
         />
       ) : null}
       <div className="dc-alert__body">
-        {title ? <h3 className="dc-alert__title">{title}</h3> : null}
+        {heading ? (
+          <h3
+            className={classNames(
+              'dc-alert__heading',
+              FormattedContent.CSSClasses.subheadline
+            )}
+          >
+            {heading}
+          </h3>
+        ) : null}
         {children ? (
-          <div className="dc-alert__description">{children}</div>
+          <div
+            className={classNames(
+              'dc-alert__description',
+              FormattedContent.CSSClasses.subheadline
+            )}
+          >
+            {children}
+          </div>
         ) : null}
       </div>
     </div>
   );
-}
-
-function getIcon(appearance: AlertProps['appearance']): SvgIconProps['icon'] {
-  switch (appearance) {
-    case 'error':
-      return errorIcon;
-    case 'warning':
-      return warningIcon;
-    case 'success':
-      return successIcon;
-    case 'default':
-    case 'info':
-    default:
-      return infoIcon;
-  }
 }

@@ -29,14 +29,26 @@ export interface SvgIconProps extends SvgIconHtmlAttrs {
   ];
 }
 
+const svgIconSizes: Record<string, string> = {
+  xs: '0.75em',
+  sm: '0.875em',
+  base: '1em',
+  lg: '1.25em',
+  xl: '1.5em',
+  '2x': '2em',
+  '3x': '3em',
+  '4x': '4em',
+  '5x': '5em',
+};
+
 export function SvgIcon({
   icon,
   size = 'base',
   linearGradient,
   ...props
 }: SvgIconProps) {
-  const iconSize = getIconSize(size);
-  const gradientId = React.useRef('');
+  const iconSize = svgIconSizes[size] || size || 24;
+  const gradientId = React.useRef(uniqueId('gradient-def-'));
   let fill = 'currentColor';
   let defs = null;
 
@@ -57,15 +69,11 @@ export function SvgIcon({
       x2 = 1;
     }
 
-    if (!gradientId.current) {
-      gradientId.current = uniqueId('svg-icon-gradient-');
-    }
-
     fill = `url(#${gradientId.current})`;
     defs = (
       <defs>
         <linearGradient
-          data-testid="svg-icon-gradient"
+          data-testid="linear-gradient-def"
           id={gradientId.current}
           x1={x1}
           x2={x2}
@@ -95,29 +103,4 @@ export function SvgIcon({
       <path d={icon.path} />
     </svg>
   );
-}
-
-function getIconSize(size: SvgIconProps['size']): string | number {
-  switch (size) {
-    case 'xs':
-      return '0.75em';
-    case 'sm':
-      return '0.875em';
-    case 'base':
-      return '1em';
-    case 'lg':
-      return '1.25em';
-    case 'xl':
-      return '1.5em';
-    case '2x':
-      return '2em';
-    case '3x':
-      return '3em';
-    case '4x':
-      return '4em';
-    case '5x':
-      return '5em';
-    default:
-      return size || 24;
-  }
 }
