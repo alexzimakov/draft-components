@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { keyboardUtil, Stack } from '../lib';
+import { util, keyboardUtil, guards, Stack } from '../lib';
 
 type CloseCallback = () => void;
 
@@ -9,10 +9,14 @@ export function useCloseOnEscPress(
   onClose: CloseCallback,
   isEnabled: boolean = true
 ) {
-  const savedCloseCallback = React.useRef(onClose);
+  const savedCloseCallback = React.useRef(util.noop);
 
   React.useEffect(() => {
-    savedCloseCallback.current = onClose;
+    savedCloseCallback.current = () => {
+      if (guards.isFunction(onClose)) {
+        onClose();
+      }
+    };
   }, [onClose]);
 
   React.useEffect(() => {
@@ -22,7 +26,7 @@ export function useCloseOnEscPress(
 
     function onEscPress(event: KeyboardEvent) {
       const close = callbackStack.last?.current;
-      if (keyboardUtil.isEscPressed(event) && typeof close === 'function') {
+      if (keyboardUtil.isEscPressed(event) && close) {
         close();
       }
     }

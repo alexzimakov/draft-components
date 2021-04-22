@@ -48,6 +48,7 @@ module.exports = {
         'alert',
         'banner',
         'dialog',
+        'popover',
         'loading-view',
         'non-ideal-state-view'
       ),

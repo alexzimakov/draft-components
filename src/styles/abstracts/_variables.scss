@@ -105,11 +105,14 @@ $orange-800: #e8590c;
 $orange-900: #d9480f;
 
 /*------------------------------------*\
-  #Z INDEX
+  #Z-INDEX
 \*------------------------------------*/
-$z-base: 0;
-$z-modal-backdrop: $z-base + 10;
-$z-modal: $z-modal-backdrop + 1;
+$zindex-base: 0;
+$zindex-sticky: 100;
+$zindex-fixed: 200;
+$zindex-modal: 300;
+$zindex-popover: 400;
+$zindex-tooltip: 500;
 
 /*------------------------------------*\
   #FONT FAMILY

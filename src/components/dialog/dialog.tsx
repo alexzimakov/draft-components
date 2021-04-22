@@ -1,14 +1,14 @@
 import * as React from 'react';
+import { util, classNames } from '../../lib';
+import {
+  useCaptureFocus,
+  useCloseOnEscPress,
+  useDisableBodyScroll,
+} from '../../hooks';
 import { Portal } from '../portal';
 import { Box } from '../box';
 import { IconButton } from '../icon-button';
 import { Headline, FormattedContent } from '../formatted-content';
-import {
-  useDisableBodyScroll,
-  useCloseOnEscPress,
-  useCaptureFocus,
-} from '../../hooks';
-import { classNames } from '../../lib';
 
 export interface DialogProps extends React.ComponentPropsWithRef<'div'> {
   isOpen?: boolean;
@@ -24,7 +24,7 @@ export interface DialogProps extends React.ComponentPropsWithRef<'div'> {
 
 export function Dialog({
   isOpen,
-  onClose = noop,
+  onClose = util.noop,
   shouldShowCloseButton = true,
   focusElementRefAfterOpen,
   focusElementRefAfterClose,
@@ -118,8 +118,6 @@ export function Dialog({
     </Portal>
   );
 }
-
-function noop() {}
 
 function getDialogWidth(width: DialogProps['width']): string {
   if (typeof width === 'number' && width > 0) {

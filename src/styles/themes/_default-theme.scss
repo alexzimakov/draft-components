@@ -27,6 +27,13 @@
   --dc-focus-danger-border-color: #{$red-500};
   --dc-focus-danger-ring-color: #{rgba($red-500, $opacity-40)};
 
+  --dc-zindex-base: #{$zindex-base};
+  --dc-zindex-sticky: #{$zindex-sticky};
+  --dc-zindex-fixed: #{$zindex-fixed};
+  --dc-zindex-modal: #{$zindex-modal};
+  --dc-zindex-popover: #{$zindex-popover};
+  --dc-zindex-tooltip: #{$zindex-tooltip};
+
   /*------------------------------------*\
    #SCROLL BAR
   \*------------------------------------*/
@@ -116,24 +123,36 @@
   --dc-switch-accent-color: #{$blue-500};
 
   /*------------------------------------*\
-   #OTHER COMPONENTS
+   #ACTIONS GROUP
   \*------------------------------------*/
   --dc-actions-group-border: #{$gray-300};
   --dc-actions-group-bg: #{$white};
 
+  /*------------------------------------*\
+   #NON IDEAL STATE VIEW
+  \*------------------------------------*/
   --dc-non-ideal-state-text-color: var(--dc-primary-text-color);
   --dc-non-ideal-state-icon-color: var(--dc-tertiary-text-color);
 
+  /*------------------------------------*\
+   #BANNER
+  \*------------------------------------*/
   --dc-banner-bg: #{$gray-800};
   --dc-banner-bg-hover: #{$gray-700};
   --dc-banner-text-color: #{$white};
   --dc-banner-border-color: #{rgba($white, $opacity-15)};
   --dc-banner-icon-color: #{$gray-400};
 
+  /*------------------------------------*\
+   #BREADCRUMBS
+  \*------------------------------------*/
   --dc-breadcrumbs-color: #{$gray-800};
   --dc-breadcrumbs-separator-color: #{$gray-400};
   --dc-breadcrumbs-item-icon-color: #{$gray-700};
 
+  /*------------------------------------*\
+   #SEGMENTED CONTROL
+  \*------------------------------------*/
   --dc-segmented-control-text-color: #{$gray-700};
   --dc-segmented-control-text-color-active: #{$white};
   --dc-segmented-control-border-color: #{rgba($gray-900, $opacity-15)};
@@ -142,7 +161,15 @@
   --dc-segmented-control-bg: #{rgba($gray-500, $opacity-5)};
   --dc-segmented-control-bg-active: #{$blue-500};
 
+  /*------------------------------------*\
+   #LABEL
+  \*------------------------------------*/
   --dc-label-text-color: var(--dc-primary-text-color);
   --dc-label-required-mark-color: #{$red-600};
 
+  /*------------------------------------*\
+   #TOOLTIP
+  \*------------------------------------*/
+  --dc-tooltip-bg-color: #{$gray-800};
+  --dc-tooltip-text-color: #{$gray-100};
 }

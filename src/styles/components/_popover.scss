@@ -1,0 +1,8 @@
+.dc-popover-container {
+  z-index: var(--dc-zindex-popover);
+}
+
+.dc-popover {
+  max-width: 28rem;
+  max-height: 28rem;
+}
