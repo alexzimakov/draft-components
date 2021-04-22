@@ -4,7 +4,7 @@ type Arrangement = 'top' | 'right' | 'bottom' | 'left';
 type Alignment = 'start' | 'center' | 'end';
 type Position = 'absolute' | 'fixed';
 
-export interface UsePositionElementParams {
+export interface PositionElementParams {
   anchorRef: React.MutableRefObject<HTMLElement | null>;
   targetRef: React.MutableRefObject<HTMLElement | null>;
   position: Position;
@@ -26,7 +26,7 @@ export function usePositionElement({
   viewportOffset,
   isShown,
   shouldUpdatePositionWhenScroll,
-}: UsePositionElementParams) {
+}: PositionElementParams) {
   React.useLayoutEffect(() => {
     const anchor = anchorRef.current;
     const target = targetRef.current;

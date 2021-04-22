@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { util } from '../../lib';
-import { usePositionElement, UsePositionElementParams } from '../../hooks';
+import { usePositionElement, PositionElementParams } from '../../hooks';
 import { Portal } from '../portal';
 
 export interface PositionerProps extends React.ComponentPropsWithRef<'div'> {
   anchorRef: React.MutableRefObject<HTMLElement | null>;
-  position?: UsePositionElementParams['position'];
-  arrangement?: UsePositionElementParams['arrangement'];
-  alignment?: UsePositionElementParams['alignment'];
+  position?: PositionElementParams['position'];
+  arrangement?: PositionElementParams['arrangement'];
+  alignment?: PositionElementParams['alignment'];
   anchorOffset?: number;
   viewportOffset?: number;
   isShown?: boolean;
