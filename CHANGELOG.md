@@ -1,3 +1,15 @@
+## 0.29.0
+
+### Changes
+
+- Replace ErrorMessage and Caption with InlineMessage component.
+- Update prop types of NonIdealStateView, Alert, Avatar, Badge.
+
+### New components
+
+- Popover
+- Tooltip
+
 ## 0.28.0
 
 ### Changes
