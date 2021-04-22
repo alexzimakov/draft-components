@@ -1,0 +1,13 @@
+.dc-tooltip {
+  display: inline-block;
+  box-sizing: border-box;
+  width: auto;
+  max-width: 18rem;
+  padding: $gap-1x $gap-2x;
+  border-radius: $border-radius-sm;
+  color: var(--dc-tooltip-text-color);
+  background: var(--dc-tooltip-bg-color);
+  font-family: var(--dc-font-base);
+  font-size: $font-size-sm;
+  line-height: $leading-normal;
+}

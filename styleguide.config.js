@@ -18,7 +18,7 @@ module.exports = {
     },
     {
       name: 'Data display',
-      components: getComponents('avatar'),
+      components: getComponents('avatar', 'badge', 'tooltip'),
     },
     {
       name: 'Controls',
