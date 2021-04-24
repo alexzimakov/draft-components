@@ -2,7 +2,7 @@ $dialog-pad: $gap-4x;
 
 .dc-dialog-container {
   position: fixed;
-  z-index: var(--dc-zindex-modal);
+  z-index: var(--dc-zindex-overlay);
   top: 0;
   left: 0;
   overflow-y: auto;

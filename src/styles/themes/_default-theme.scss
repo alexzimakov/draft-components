@@ -30,9 +30,7 @@
   --dc-zindex-base: #{$zindex-base};
   --dc-zindex-sticky: #{$zindex-sticky};
   --dc-zindex-fixed: #{$zindex-fixed};
-  --dc-zindex-modal: #{$zindex-modal};
-  --dc-zindex-popover: #{$zindex-popover};
-  --dc-zindex-tooltip: #{$zindex-tooltip};
+  --dc-zindex-overlay: #{$zindex-overlay};
 
   /*------------------------------------*\
    #SCROLL BAR
