@@ -10,6 +10,7 @@ export interface BadgeProps extends React.ComponentPropsWithoutRef<'span'> {
     | 'cyan'
     | 'red'
     | 'green'
+    | 'lime'
     | 'indigo'
     | 'yellow'
     | 'orange';
