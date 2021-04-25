@@ -1,3 +1,11 @@
+## 0.29.2
+
+Fix prop types of Badge component.
+
+## 0.29.1
+
+Small update of styles.
+
 ## 0.29.0
 
 ### Changes
