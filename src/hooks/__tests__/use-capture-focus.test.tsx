@@ -71,8 +71,21 @@ it('should set focus on the passed element when release focus', () => {
   expect(elementsOutOfDialog.button).toHaveFocus();
 });
 
+it('should not set focus automatically', () => {
+  const buttonRef = { current: null };
+  render(
+    <CaptureFocusExample autoFocusAfterCapture={false}>
+      <button ref={buttonRef}>Button inside modal</button>
+    </CaptureFocusExample>,
+    { container: elementsOutOfDialog.container }
+  );
+
+  expect(document.body).toHaveFocus();
+});
+
 function CaptureFocusExample(props: {
   children?: React.ReactNode;
+  autoFocusAfterCapture?: boolean;
   focusAfterCaptureRef?: CaptureFocusParams['focusAfterCaptureRef'];
   focusAfterReleaseRef?: CaptureFocusParams['focusAfterReleaseRef'];
 }) {
@@ -81,6 +94,7 @@ function CaptureFocusExample(props: {
   useCaptureFocus({
     modalRef,
     isEnabled: true,
+    autoFocusAfterCapture: props.autoFocusAfterCapture,
     focusAfterCaptureRef: props?.focusAfterCaptureRef,
     focusAfterReleaseRef: props?.focusAfterReleaseRef,
   });

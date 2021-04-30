@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { classNames, util } from '../../lib';
-import { useCloseOnEscPress, useCloseOnClickOutside } from '../../hooks';
+import {
+  useCloseOnEscPress,
+  useCloseOnClickOutside,
+  useCaptureFocus,
+} from '../../hooks';
 import { Positioner, PositionerProps } from '../positioner';
 import { Box, BoxProps } from '../box';
 
@@ -16,6 +20,7 @@ export interface PopoverProps extends BoxProps {
   viewportOffset?: number;
   isOpen?: boolean;
   shouldUpdatePositionWhenScroll?: boolean;
+  shouldCaptureFocus?: boolean;
   onClose?: () => void;
   content: React.ReactNode;
   children: JSX.Element | RenderChildren;
@@ -29,6 +34,7 @@ export function Popover({
   viewportOffset,
   isOpen,
   shouldUpdatePositionWhenScroll,
+  shouldCaptureFocus = true,
   onClose = util.noop,
   content,
   children: anchor,
@@ -45,6 +51,12 @@ export function Popover({
     ignoreElements: [anchorRef.current],
   });
 
+  useCaptureFocus({
+    modalRef: popoverRef,
+    isEnabled: shouldCaptureFocus && isOpen,
+    autoFocusAfterRelease: false,
+  });
+
   return (
     <>
       {typeof anchor === 'function'
@@ -54,7 +66,6 @@ export function Popover({
           })}
       <Positioner
         className="dc-popover-container"
-        ref={popoverRef}
         anchorRef={anchorRef}
         position={position}
         arrangement={arrangement}
@@ -64,7 +75,9 @@ export function Popover({
         isShown={isOpen}
         shouldUpdatePositionWhenScroll={shouldUpdatePositionWhenScroll}
       >
+        <div tabIndex={0} />
         <Box
+          ref={popoverRef}
           className={classNames(className, 'dc-popover')}
           borderRadius="lg"
           elevation="md"
@@ -72,6 +85,7 @@ export function Popover({
         >
           {content}
         </Box>
+        <div tabIndex={0} />
       </Positioner>
     </>
   );

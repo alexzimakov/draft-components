@@ -4,6 +4,8 @@ import { Stack } from '../lib';
 export interface CaptureFocusParams {
   modalRef: React.MutableRefObject<Element | null>;
   isEnabled?: boolean;
+  autoFocusAfterCapture?: boolean;
+  autoFocusAfterRelease?: boolean;
   focusAfterCaptureRef?: React.MutableRefObject<Element | null>;
   focusAfterReleaseRef?: React.MutableRefObject<Element | null>;
 }
@@ -11,6 +13,8 @@ export interface CaptureFocusParams {
 export function useCaptureFocus({
   modalRef,
   isEnabled = true,
+  autoFocusAfterCapture = true,
+  autoFocusAfterRelease = true,
   focusAfterCaptureRef,
   focusAfterReleaseRef,
 }: CaptureFocusParams) {
@@ -20,31 +24,65 @@ export function useCaptureFocus({
     if (isEnabled && modal) {
       const focusAfterCapture = focusAfterCaptureRef?.current;
       const focusAfterRelease = focusAfterReleaseRef?.current;
-      const releaseFocus = captureFocus(modal, focusAfterCapture);
+      const releaseFocus = captureFocus(modal, {
+        autoFocusAfterCapture,
+        autoFocusAfterRelease,
+        focusAfterCapture,
+        focusAfterRelease,
+      });
 
       return () => {
-        releaseFocus(focusAfterRelease);
+        releaseFocus();
       };
     }
-  }, [isEnabled, modalRef, focusAfterCaptureRef, focusAfterReleaseRef]);
+  }, [
+    modalRef,
+    isEnabled,
+    autoFocusAfterCapture,
+    autoFocusAfterRelease,
+    focusAfterCaptureRef,
+    focusAfterReleaseRef,
+  ]);
 }
 
 const modalStack = new Stack<Element>();
 let lastElement: Element | null = null;
 
-function captureFocus(modal: Element, focusElement?: Element | null) {
+function captureFocus(
+  modal: Element,
+  options?: {
+    autoFocusAfterCapture?: boolean;
+    autoFocusAfterRelease?: boolean;
+    focusAfterCapture?: Element | null;
+    focusAfterRelease?: Element | null;
+  }
+) {
   const focusBeforeCapture = lastElement || document.activeElement;
+  const autoFocusAfterCapture = options?.autoFocusAfterCapture;
+  const autoFocusAfterRelease = options?.autoFocusAfterRelease;
+  const focusAfterCapture = options?.focusAfterCapture;
+  const focusAfterRelease = options?.focusAfterRelease;
 
   if (modalStack.isEmpty) {
     document.addEventListener('focus', onFocus, true);
   }
 
   modalStack.push(modal);
-  attemptFocus(focusElement || getFirstFocusElement(modal));
 
-  return function releaseFocus(focusElement?: Element | null) {
+  if (focusAfterCapture) {
+    attemptFocus(focusAfterCapture);
+  } else if (autoFocusAfterCapture) {
+    attemptFocus(getFirstFocusElement(modal));
+  }
+
+  return function releaseFocus() {
     modalStack.remove(modal);
-    attemptFocus(focusElement || focusBeforeCapture);
+
+    if (focusAfterRelease) {
+      attemptFocus(focusAfterRelease);
+    } else if (autoFocusAfterRelease) {
+      attemptFocus(focusBeforeCapture);
+    }
 
     if (modalStack.isEmpty) {
       document.removeEventListener('focus', onFocus, true);

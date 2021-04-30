@@ -67,3 +67,31 @@ it('should invoke onClose callback when click press Esc button', () => {
   userEvent.keyboard('{esc}');
   expect(onClose).toHaveBeenCalledTimes(1);
 });
+
+it('should capture focus in the popover', () => {
+  render(
+    <Popover
+      isOpen={true}
+      data-testid="popover"
+      content={
+        <div>
+          <input data-testid="input-inside" />
+          <button data-testid="button-inside">Button inside popover</button>
+        </div>
+      }
+    >
+      <button data-testid="button-outside">Button outside dialog</button>
+    </Popover>
+  );
+
+  const inputInsidePopover = screen.getByTestId('input-inside');
+  const buttonInsidePopover = screen.getByTestId('button-inside');
+
+  expect(inputInsidePopover).toHaveFocus();
+
+  userEvent.tab(); // Move focus to the button in the popover.
+  expect(buttonInsidePopover).toHaveFocus();
+
+  userEvent.tab(); // Move focus to the button outside the popover.
+  expect(inputInsidePopover).toHaveFocus();
+});
