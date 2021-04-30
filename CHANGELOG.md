@@ -1,3 +1,10 @@
+## 0.30.0
+
+### Changes
+
+- Popover: focus capturing.
+- Add `folderAdd` icon.
+
 ## 0.29.2
 
 Fix prop types of Badge component.
