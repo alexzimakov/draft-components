@@ -16,6 +16,7 @@ export { eyeIcon as eye } from './eye';
 export { eyeCloseIcon as eyeClose } from './eye-close';
 export { facebookCircleIcon as facebookCircle } from './facebook-circle';
 export { folderIcon as folder } from './folder';
+export { folderAddIcon as folderAdd } from './folder-add';
 export { documentIcon as document } from './document';
 export { stackIcon as stack } from './stack';
 export { stackOpenIcon as stackOpen } from './stack-open';
