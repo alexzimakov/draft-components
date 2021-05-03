@@ -26,3 +26,7 @@ export { homeIcon as home } from './home';
 export { chevronRightIcon as chevronRight } from './chevron-right';
 export { chevronLeftIcon as chevronLeft } from './chevron-left';
 export { filterIcon as filter } from './filter';
+export { countdownIcon as countdown } from './countdown';
+export { clockOutlineIcon as clockOutline } from './clock-outline';
+export { ellipsisVIcon as ellipsisV } from './ellipsis-v';
+export { ellipsisHIcon as ellipsisH } from './ellipsis-h';
