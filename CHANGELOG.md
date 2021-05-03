@@ -1,3 +1,9 @@
+## 0.30.1
+
+### Changes
+
+Add new icons.
+
 ## 0.30.0
 
 ### Changes
