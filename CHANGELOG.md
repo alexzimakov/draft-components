@@ -1,3 +1,9 @@
+## 0.30.2
+
+### Changes
+
+Add `clock` icon.
+
 ## 0.30.1
 
 ### Changes
