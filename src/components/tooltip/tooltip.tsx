@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { classNames, guards, uniqueId, util } from '../../lib';
-import { Positioner } from '../positioner';
+import { Positioner, PositionerProps } from '../positioner';
 
 type RenderChildren = (props: {
   ref: React.MutableRefObject<HTMLElement | null>;
@@ -12,11 +12,17 @@ type RenderChildren = (props: {
 export interface TooltipProps extends React.ComponentPropsWithoutRef<'div'> {
   content: React.ReactNode;
   children: RenderChildren | JSX.Element;
+  arrangement?: PositionerProps['arrangement'];
+  alignment?: PositionerProps['alignment'];
+  anchorOffset?: PositionerProps['anchorOffset'];
 }
 
 export function Tooltip({
   content,
   children: anchor,
+  arrangement = 'bottom',
+  alignment = 'center',
+  anchorOffset = 8,
   className,
   ...props
 }: TooltipProps) {
@@ -52,9 +58,9 @@ export function Tooltip({
       <Positioner
         anchorRef={anchorRef}
         isShown={isShown}
-        arrangement="bottom"
-        alignment="center"
-        anchorOffset={8}
+        arrangement={arrangement}
+        alignment={alignment}
+        anchorOffset={anchorOffset}
       >
         <div
           {...props}

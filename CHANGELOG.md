@@ -1,3 +1,9 @@
+## 0.30.3
+
+### Changes
+
+Update <Tooltip /> props.
+
 ## 0.30.2
 
 ### Changes
