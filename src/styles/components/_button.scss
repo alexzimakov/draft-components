@@ -1,14 +1,22 @@
 .dc-button {
+  $font-size-px: rem-to-px($font-size-sm);
+
+  --dc-btn-text-color: var(--dc-btn-default-text-color);
+  --dc-btn-bg: var(--dc-btn-default-bg);
+  --dc-btn-bg-hover: var(--dc-btn-default-bg-hover);
+  --dc-btn-bg-active: var(--dc-btn-default-bg-active);
+  --dc-btn-focus-ring-color: var(--dc-btn-default-focus-ring-color);
+  --dc-btn-shadow: 0 1px 2px #{rgba(black, $opacity-5)};
+  --dc-btn-shadow-focus: 0 0 0 2px #{$white},
+    0 0 0 4px var(--dc-btn-focus-ring-color);
+
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   box-sizing: border-box;
   width: auto;
-  height: $button-size;
-  min-width: 4rem;
+  height: px-to-em(32px, $font-size-px);
+  min-width: px-to-em(32px, $font-size-px);
   max-width: 100%;
-  padding: 0 $gap-4x;
+  padding: 0 px-to-em(14px, $font-size-px);
   cursor: pointer;
   user-select: none;
   transition: $transition-quick;
@@ -16,19 +24,18 @@
   text-decoration: none;
   letter-spacing: $tracking-tight;
   color: var(--dc-btn-text-color);
-  border: 0.0625rem solid var(--dc-btn-border-color);
-  border-radius: $border-radius-md;
+  border: 1px solid rgba(black, $opacity-15);
+  border-radius: px-to-em(rem-to-px($border-radius-md), $font-size-px);
   background: var(--dc-btn-bg);
   box-shadow: var(--dc-btn-shadow);
-  font-family: var(--dc-btn-font);
+  font-family: var(--dc-font-base);
   font-weight: $font-weight-medium;
   font-size: $font-size-sm;
   line-height: $leading-default;
 
   &:focus {
     outline: none;
-    border-color: var(--dc-btn-border-color-focus);
-    @include focus-ring(var(--dc-btn-focus-ring-color));
+    box-shadow: var(--dc-btn-shadow), var(--dc-btn-shadow-focus);
   }
 
   &:hover:enabled {
@@ -47,145 +54,81 @@
 }
 
 .dc-button_size_xs {
-  height: $button-xs-size;
-  padding: 0 $gap-2x;
-  border-radius: $border-radius-sm;
-  font-size: $font-size-xs;
+  font-size: $font-size-2xs;
 }
 
 .dc-button_size_sm {
-  height: $button-sm-size;
-  padding: 0 $gap-3x;
-  border-radius: $border-radius-md;
-  font-size: $font-size-sm;
+  font-size: $font-size-xs;
 }
 
 .dc-button_size_lg {
-  height: $button-lg-size;
-  padding: 0 $gap-5x;
-  border-radius: $border-radius-lg;
   font-size: $font-size-base;
 }
 
-.dc-button_primary {
-  color: var(--dc-btn-primary-text-color);
-  border-color: var(--dc-btn-primary-border-color);
-  background: var(--dc-btn-primary-bg);
-  box-shadow: var(--dc-btn-primary-shadow);
+.dc-button_secondary,
+.dc-button_minimal {
+  border-color: transparent;
+  box-shadow: none;
 
   &:focus {
-    border-color: var(--dc-btn-primary-border-color-focus);
-    @include focus-ring(var(--dc-btn-primary-focus-ring-color));
+    box-shadow: var(--dc-btn-shadow-focus);
   }
 
-  &:hover:enabled {
-    background: var(--dc-btn-primary-bg-hover);
-  }
-
-  &:active:enabled {
-    background: var(--dc-btn-primary-bg-active);
-  }
-}
-
-.dc-button_danger {
-  color: var(--dc-btn-danger-text-color);
-  border-color: var(--dc-btn-danger-border-color);
-  background: var(--dc-btn-danger-bg);
-  box-shadow: var(--dc-btn-danger-shadow);
-
-  &:focus {
-    border-color: var(--dc-btn-danger-border-color-focus);
-    @include focus-ring(var(--dc-btn-danger-focus-ring-color));
-  }
-
-  &:hover:enabled {
-    background: var(--dc-btn-danger-bg-hover);
-  }
-
-  &:active:enabled {
-    background: var(--dc-btn-danger-bg-active);
-  }
-}
-
-.dc-button_success {
-  color: var(--dc-btn-success-text-color);
-  border-color: var(--dc-btn-success-border-color);
-  background: var(--dc-btn-success-bg);
-  box-shadow: var(--dc-btn-success-shadow);
-
-  &:focus {
-    border-color: var(--dc-btn-success-border-color-focus);
-    @include focus-ring(var(--dc-btn-success-focus-ring-color));
-  }
-
-  &:hover:enabled {
-    background: var(--dc-btn-success-bg-hover);
-  }
-
-  &:active:enabled {
-    background: var(--dc-btn-success-bg-active);
+  &:disabled {
+    box-shadow: none;
   }
 }
 
 .dc-button_secondary {
-  color: var(--dc-btn-secondary-text-color);
-  border-color: transparent;
-  background: var(--dc-btn-secondary-bg);
-  box-shadow: none;
-
-  &:hover:enabled {
-    background: var(--dc-btn-secondary-bg-hover);
-  }
-
-  &:hover:active {
-    background: var(--dc-btn-secondary-bg-active);
-  }
-
-  &:disabled {
-    box-shadow: none;
-  }
+  --dc-btn-text-color: var(--dc-btn-secondary-text-color);
+  --dc-btn-bg: var(--dc-btn-secondary-bg);
+  --dc-btn-bg-hover: var(--dc-btn-secondary-bg-hover);
+  --dc-btn-bg-active: var(--dc-btn-secondary-bg-active);
 }
 
 .dc-button_minimal {
-  color: var(--dc-btn-minimal-text-color);
-  border-color: transparent;
-  background: var(--dc-btn-minimal-bg);
-  box-shadow: none;
+  --dc-btn-text-color: var(--dc-btn-minimal-text-color);
+  --dc-btn-bg: var(--dc-btn-minimal-bg);
+  --dc-btn-bg-hover: var(--dc-btn-minimal-bg-hover);
+  --dc-btn-bg-active: var(--dc-btn-minimal-bg-active);
+}
 
-  &:hover:enabled {
-    background: var(--dc-btn-minimal-bg-hover);
-  }
+.dc-button_primary {
+  --dc-btn-text-color: var(--dc-btn-primary-text-color);
+  --dc-btn-bg: var(--dc-btn-primary-bg);
+  --dc-btn-bg-hover: var(--dc-btn-primary-bg-hover);
+  --dc-btn-bg-active: var(--dc-btn-primary-bg-active);
+}
 
-  &:hover:active {
-    background: var(--dc-btn-minimal-bg-active);
-  }
+.dc-button_danger {
+  --dc-btn-text-color: var(--dc-btn-danger-text-color);
+  --dc-btn-bg: var(--dc-btn-danger-bg);
+  --dc-btn-bg-hover: var(--dc-btn-danger-bg-hover);
+  --dc-btn-bg-active: var(--dc-btn-danger-bg-active);
+  --dc-btn-focus-ring-color: var(--dc-btn-danger-focus-ring-color);
+}
 
-  &:disabled {
-    box-shadow: none;
-  }
+.dc-button_success {
+  --dc-btn-text-color: var(--dc-btn-success-text-color);
+  --dc-btn-bg: var(--dc-btn-success-bg);
+  --dc-btn-bg-hover: var(--dc-btn-success-bg-hover);
+  --dc-btn-bg-active: var(--dc-btn-success-bg-active);
+  --dc-btn-focus-ring-color: var(--dc-btn-success-focus-ring-color);
 }
 
 .dc-button__body {
-  display: inherit;
-  align-items: inherit;
-  justify-content: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.dc-button__leading-icon,
-.dc-button__trailing-icon {
+.dc-button__body > * + * {
+  margin-left: $gap-2x;
+}
+
+.dc-button__icon {
   display: inline-flex;
-  flex-grow: 0;
-  flex-shrink: 0;
-  font-size: inherit;
-  line-height: 0;
-}
-
-.dc-button__leading-icon {
-  margin-right: 0.5em;
-}
-
-.dc-button__trailing-icon {
-  margin-left: 0.5em;
+  flex: 0 0 auto;
 }
 
 .dc-button__spinner {
@@ -199,7 +142,7 @@
   height: 100%;
 }
 
-.dc-button_is-loading {
+.dc-button_loading {
   pointer-events: none;
 
   .dc-button__body {
@@ -207,6 +150,11 @@
   }
 }
 
-.dc-button_has-full-width {
+.dc-button_full-width {
   width: 100%;
+}
+
+.dc-button_no-padding {
+  padding-right: 0;
+  padding-left: 0;
 }

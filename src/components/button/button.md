@@ -3,11 +3,17 @@ Default
 ```jsx padded
 import { Button } from './button';
 
+const getProps = (size) => ({
+  size,
+  appearance: 'default',
+  children: 'Button text',
+});
+
 <>
-  <Button size="xs">Button text</Button>
-  <Button size="sm">Button text</Button>
-  <Button>Button text</Button>
-  <Button size="lg">Button text</Button>
+  <Button {...getProps('xs')} />
+  <Button {...getProps('sm')} />
+  <Button {...getProps('md')} />
+  <Button {...getProps('lg')} />
 </>;
 ```
 
@@ -16,17 +22,17 @@ Primary button
 ```jsx padded
 import { Button } from './button';
 
+const getProps = (size) => ({
+  size,
+  appearance: 'primary',
+  children: 'Button text',
+});
+
 <>
-  <Button size="xs" appearance="primary">
-    Button text
-  </Button>
-  <Button size="sm" appearance="primary">
-    Button text
-  </Button>
-  <Button appearance="primary">Button text</Button>
-  <Button size="lg" appearance="primary">
-    Button text
-  </Button>
+  <Button {...getProps('xs')} />
+  <Button {...getProps('sm')} />
+  <Button {...getProps('md')} />
+  <Button {...getProps('lg')} />
 </>;
 ```
 
@@ -35,17 +41,17 @@ Secondary button
 ```jsx padded
 import { Button } from './button';
 
+const getProps = (size) => ({
+  size,
+  appearance: 'secondary',
+  children: 'Button text',
+});
+
 <>
-  <Button size="xs" appearance="secondary">
-    Button text
-  </Button>
-  <Button size="sm" appearance="secondary">
-    Button text
-  </Button>
-  <Button appearance="secondary">Button text</Button>
-  <Button size="lg" appearance="secondary">
-    Button text
-  </Button>
+  <Button {...getProps('xs')} />
+  <Button {...getProps('sm')} />
+  <Button {...getProps('md')} />
+  <Button {...getProps('lg')} />
 </>;
 ```
 
@@ -54,17 +60,17 @@ Danger button
 ```jsx padded
 import { Button } from './button';
 
+const getProps = (size) => ({
+  size,
+  appearance: 'danger',
+  children: 'Button text',
+});
+
 <>
-  <Button size="xs" appearance="danger">
-    Button text
-  </Button>
-  <Button size="sm" appearance="danger">
-    Button text
-  </Button>
-  <Button appearance="danger">Button text</Button>
-  <Button size="lg" appearance="danger">
-    Button text
-  </Button>
+  <Button {...getProps('xs')} />
+  <Button {...getProps('sm')} />
+  <Button {...getProps('md')} />
+  <Button {...getProps('lg')} />
 </>;
 ```
 
@@ -73,17 +79,17 @@ Success button
 ```jsx padded
 import { Button } from './button';
 
+const getProps = (size) => ({
+  size,
+  appearance: 'success',
+  children: 'Button text',
+});
+
 <>
-  <Button size="xs" appearance="success">
-    Button text
-  </Button>
-  <Button size="sm" appearance="success">
-    Button text
-  </Button>
-  <Button appearance="success">Button text</Button>
-  <Button size="lg" appearance="success">
-    Button text
-  </Button>
+  <Button {...getProps('xs')} />
+  <Button {...getProps('sm')} />
+  <Button {...getProps('md')} />
+  <Button {...getProps('lg')} />
 </>;
 ```
 
@@ -92,17 +98,17 @@ Minimal button
 ```jsx padded
 import { Button } from './button';
 
+const getProps = (size) => ({
+  size,
+  appearance: 'minimal',
+  children: 'Button text',
+});
+
 <>
-  <Button size="xs" appearance="minimal">
-    Button text
-  </Button>
-  <Button size="sm" appearance="minimal">
-    Button text
-  </Button>
-  <Button appearance="minimal">Button text</Button>
-  <Button size="lg" appearance="minimal">
-    Button text
-  </Button>
+  <Button {...getProps('xs')} />
+  <Button {...getProps('sm')} />
+  <Button {...getProps('md')} />
+  <Button {...getProps('lg')} />
 </>;
 ```
 
@@ -111,21 +117,19 @@ With leading icon
 ```jsx padded
 import { Button } from './button';
 import { SvgIcon } from '../svg-icon';
-import * as icons from '../svg-icon/icons';
+import { bookmark } from '../svg-icon/icons';
 
-const icon = <SvgIcon icon={icons.bookmark} />;
+const getProps = (size) => ({
+  size,
+  children: 'Button text',
+  leadingIcon: <SvgIcon size="lg" icon={bookmark} />,
+});
 
 <>
-  <Button size="xs" leadingIcon={icon}>
-    Button text
-  </Button>
-  <Button size="sm" leadingIcon={icon}>
-    Button text
-  </Button>
-  <Button leadingIcon={icon}>Button text</Button>
-  <Button size="lg" leadingIcon={icon}>
-    Button text
-  </Button>
+  <Button {...getProps('xs')} />
+  <Button {...getProps('sm')} />
+  <Button {...getProps('md')} />
+  <Button {...getProps('lg')} />
 </>;
 ```
 
@@ -134,21 +138,42 @@ With trailing icon
 ```jsx padded
 import { Button } from './button';
 import { SvgIcon } from '../svg-icon';
-import * as icons from '../svg-icon/icons';
+import { like } from '../svg-icon/icons';
 
-const icon = <SvgIcon icon={icons.like} />;
+const icon = <SvgIcon icon={like} />;
+const getProps = (size) => ({
+  size,
+  children: 'Button text',
+  trailingIcon: <SvgIcon size="lg" icon={like} />,
+});
 
 <>
-  <Button size="xs" trailingIcon={icon}>
-    Button text
-  </Button>
-  <Button size="sm" trailingIcon={icon}>
-    Button text
-  </Button>
-  <Button trailingIcon={icon}>Button text</Button>
-  <Button size="lg" trailingIcon={icon}>
-    Button text
-  </Button>
+  <Button {...getProps('xs')} />
+  <Button {...getProps('sm')} />
+  <Button {...getProps('md')} />
+  <Button {...getProps('lg')} />
+</>;
+```
+
+Icon button
+
+```jsx padded
+import { Button } from './button';
+import { SvgIcon } from '../svg-icon';
+import { remove } from '../svg-icon/icons';
+
+const getProps = (size) => ({
+  size,
+  noPadding: true,
+  appearance: 'secondary',
+  leadingIcon: <SvgIcon size="xl" icon={remove} />,
+});
+
+<>
+  <Button {...getProps('xs')} />
+  <Button {...getProps('sm')} />
+  <Button {...getProps('md')} />
+  <Button {...getProps('lg')} />
 </>;
 ```
 
@@ -157,7 +182,7 @@ Full width
 ```jsx
 import { Button } from './button';
 
-<Button hasFullWidth={true} size="lg" appearance="primary">
+<Button fullWidth={true} size="lg" appearance="primary">
   Button text
 </Button>;
 ```
@@ -167,17 +192,17 @@ Loading state
 ```jsx padded
 import { Button } from './button';
 
+const getProps = (size) => ({
+  size,
+  isLoading: true,
+  children: 'Button text',
+});
+
 <>
-  <Button size="xs" isLoading={true}>
-    Button text
-  </Button>
-  <Button size="sm" isLoading={true}>
-    Button text
-  </Button>
-  <Button isLoading={true}>Button text</Button>
-  <Button size="lg" isLoading={true}>
-    Button text
-  </Button>
+  <Button {...getProps('xs')} />
+  <Button {...getProps('sm')} />
+  <Button {...getProps('md')} />
+  <Button {...getProps('lg')} />
 </>;
 ```
 
@@ -186,22 +211,18 @@ Disabled state
 ```jsx padded
 import { Button } from './button';
 
+const getProps = (appearance) => ({
+  appearance,
+  disabled: true,
+  children: 'Button text',
+});
+
 <>
-  <Button disabled={true}>Button text</Button>
-  <Button disabled={true} appearance="primary">
-    Button text
-  </Button>
-  <Button disabled={true} appearance="secondary">
-    Button text
-  </Button>
-  <Button disabled={true} appearance="danger">
-    Button text
-  </Button>
-  <Button disabled={true} appearance="success">
-    Button text
-  </Button>
-  <Button disabled={true} appearance="minimal">
-    Button text
-  </Button>
+  <Button {...getProps('default')} />
+  <Button {...getProps('primary')} />
+  <Button {...getProps('secondary')} />
+  <Button {...getProps('danger')} />
+  <Button {...getProps('success')} />
+  <Button {...getProps('minimal')} />
 </>;
 ```

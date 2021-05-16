@@ -16,7 +16,7 @@
   flex: 1 1 auto;
   box-sizing: border-box;
   width: auto;
-  height: $button-size;
+  height: $button-md-height;
   max-width: 100%;
   padding: 0 $gap-4x;
   cursor: pointer;
@@ -56,7 +56,7 @@
   border-radius: $border-radius-md;
 
   .dc-segmented-control__item {
-    height: $button-sm-size;
+    height: $button-sm-height;
     padding: 0 $gap-3x;
     font-size: $font-size-sm;
   }
@@ -66,7 +66,7 @@
   border-radius: $border-radius-lg;
 
   .dc-segmented-control__item {
-    height: $button-lg-size;
+    height: $button-lg-height;
     padding: 0 $gap-5x;
     font-size: $font-size-base;
   }

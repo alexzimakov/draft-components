@@ -1,9 +1,17 @@
-@function rem($size, $context: 16px) {
+@function px-to-rem($size, $context: 16px) {
   @return $size / $context * 1rem;
 }
 
-@function em($size, $context: 16px) {
+@function rem-to-px($size, $context: 16px) {
+  @return ($size / 1rem) * $context;
+}
+
+@function px-to-em($size, $context: 16px) {
   @return $size / $context * 1em;
+}
+
+@function em-to-px($size, $context: 16px) {
+  @return ($size / 1em) * $context;
 }
 
 // https://css-tricks.com/snippets/sass/strip-unit-function/

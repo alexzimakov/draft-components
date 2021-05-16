@@ -5,7 +5,7 @@ import { classNames } from '../../lib';
 export type ButtonHtmlAttrs = React.ComponentPropsWithoutRef<'button'>;
 
 export interface ButtonProps extends ButtonHtmlAttrs {
-  size?: 'xs' | 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg';
   appearance?:
     | 'default'
     | 'primary'
@@ -13,7 +13,8 @@ export interface ButtonProps extends ButtonHtmlAttrs {
     | 'danger'
     | 'success'
     | 'minimal';
-  hasFullWidth?: boolean;
+  fullWidth?: boolean;
+  noPadding?: boolean;
   isLoading?: boolean;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
@@ -29,7 +30,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       size = 'md',
       appearance = 'default',
       isLoading,
-      hasFullWidth,
+      fullWidth,
+      noPadding,
       leadingIcon,
       trailingIcon,
       renderAs,
@@ -40,27 +42,31 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) {
     className = classNames(className, 'dc-button', {
-      'dc-button_is-loading': isLoading,
-      'dc-button_has-full-width': hasFullWidth,
+      'dc-button_loading': isLoading,
+      'dc-button_full-width': fullWidth,
+      'dc-button_no-padding': noPadding,
       [`dc-button_size_${size}`]: size,
       [`dc-button_${appearance}`]: appearance,
     });
     const content = (
       <>
-        <div className="dc-button__body">
-          {leadingIcon ? (
-            <span className="dc-button__leading-icon">{leadingIcon}</span>
-          ) : null}
-          {children}
-          {trailingIcon ? (
-            <span className="dc-button__trailing-icon">{trailingIcon}</span>
-          ) : null}
-        </div>
-        {isLoading ? (
+        <span className="dc-button__body">
+          {leadingIcon && (
+            <span className="dc-button__icon">{leadingIcon}</span>
+          )}
+
+          {children && <span className="dc-button__text">{children}</span>}
+
+          {trailingIcon && (
+            <span className="dc-button__icon">{trailingIcon}</span>
+          )}
+        </span>
+
+        {isLoading && (
           <span className="dc-button__spinner">
             <Spinner data-testid="dc-button-loader-indicator" size="1.25em" />
           </span>
-        ) : null}
+        )}
       </>
     );
 

@@ -125,6 +125,7 @@ $font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 /*------------------------------------*\
   #FONT SIZE
 \*------------------------------------*/
+$font-size-2xs: 0.625rem; // 12px
 $font-size-xs: 0.75rem; // 12px
 $font-size-sm: 0.875rem; // 14px
 $font-size-base: 1rem; // 16px
@@ -241,10 +242,10 @@ $shadow-xl: (
 /*------------------------------------*\
   #BUTTONS
 \*------------------------------------*/
-$button-xs-size: 1.5rem;
-$button-sm-size: 1.75rem;
-$button-size: 2rem;
-$button-lg-size: 2.5rem;
+$button-xs-height: 1.5rem;
+$button-sm-height: 1.75rem;
+$button-md-height: 2rem;
+$button-lg-height: 2.5rem;
 
 /*------------------------------------*\
   #BASE CONTROLS

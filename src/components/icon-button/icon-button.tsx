@@ -7,7 +7,7 @@ import { classNames } from '../../lib';
 
 export type IconButtonBaseProps = Omit<
   ButtonProps,
-  'hasFullWidth' | 'leadingIcon' | 'trailingIcon' | 'children'
+  'fullWidth' | 'leadingIcon' | 'trailingIcon' | 'children'
 >;
 
 export interface IconButtonProps extends IconButtonBaseProps {

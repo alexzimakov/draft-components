@@ -4,7 +4,7 @@
 }
 
 .dc-icon-button {
-  @include icon-button-size($button-size);
+  @include icon-button-size($button-md-height);
   min-width: initial;
   padding: 0;
   font-size: 1rem;
@@ -19,7 +19,7 @@
 }
 
 .dc-icon-button.dc-button_size_xs {
-  @include icon-button-size($button-xs-size);
+  @include icon-button-size($button-xs-height);
 
   .dc-button__body {
     font-size: 1em;
@@ -27,7 +27,7 @@
 }
 
 .dc-icon-button.dc-button_size_sm {
-  @include icon-button-size($button-sm-size);
+  @include icon-button-size($button-sm-height);
 
   .dc-button__body {
     font-size: 1.125em;
@@ -35,7 +35,7 @@
 }
 
 .dc-icon-button.dc-button_size_lg {
-  @include icon-button-size($button-lg-size);
+  @include icon-button-size($button-lg-height);
 
   .dc-button__body {
     font-size: 1.5em;
