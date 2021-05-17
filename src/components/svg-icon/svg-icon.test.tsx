@@ -1,13 +1,15 @@
+// noinspection ES6PreferShortImport
+
 import * as React from 'react';
 import { render, within, screen } from '@testing-library/react';
 import { SvgIcon, SvgIconProps } from './svg-icon';
-import * as icons from './icons';
+import { alarm } from '../../icons/alarm';
 
 it('renders without errors', () => {
   const size = 24;
-  render(<SvgIcon icon={icons.info} size={size} />);
+  render(<SvgIcon icon={alarm} size={size} />);
 
-  const svgIconEl = screen.getByTestId(`svg-icon-${icons.info.name}`);
+  const svgIconEl = screen.getByTestId(`svg-icon-${alarm.name}`);
 
   expect(svgIconEl).toHaveAttribute('width', size.toString());
   expect(svgIconEl).toHaveAttribute('height', size.toString());
@@ -16,7 +18,7 @@ it('renders without errors', () => {
 it('should fill with gradient', () => {
   const props: SvgIconProps = {
     linearGradient: ['to bottom', '#666', '#333'],
-    icon: icons.info,
+    icon: alarm,
     role: 'img',
     'aria-hidden': false,
   };

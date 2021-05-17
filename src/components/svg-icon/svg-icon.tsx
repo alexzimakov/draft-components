@@ -1,11 +1,14 @@
 import * as React from 'react';
-import { uniqueId } from '../../lib';
+import { classNames, uniqueId } from '../../lib';
 
 export type SvgIconHtmlAttrs = React.ComponentPropsWithRef<'svg'>;
 
 export interface Icon {
   name: string;
-  path: string;
+  width: number;
+  height: number;
+  viewBox: string;
+  children: JSX.Element;
 }
 
 export interface SvgIconProps extends SvgIconHtmlAttrs {
@@ -13,9 +16,10 @@ export interface SvgIconProps extends SvgIconHtmlAttrs {
   size?:
     | 'xs'
     | 'sm'
-    | 'base'
+    | 'md'
     | 'lg'
     | 'xl'
+    | '1x'
     | '2x'
     | '3x'
     | '4x'
@@ -29,12 +33,13 @@ export interface SvgIconProps extends SvgIconHtmlAttrs {
   ];
 }
 
-const svgIconSizes: Record<string, string> = {
+const svgIconSizes: Record<string, string | number> = {
   xs: '0.75em',
   sm: '0.875em',
-  base: '1em',
+  md: '1em',
   lg: '1.25em',
   xl: '1.5em',
+  '1x': '1em',
   '2x': '2em',
   '3x': '3em',
   '4x': '4em',
@@ -43,11 +48,13 @@ const svgIconSizes: Record<string, string> = {
 
 export function SvgIcon({
   icon,
-  size = 'base',
+  size = 'md',
   linearGradient,
+  style,
+  className,
   ...props
 }: SvgIconProps) {
-  const iconSize = svgIconSizes[size] || size || 24;
+  const iconSize = svgIconSizes[size] || size || svgIconSizes.base;
   const gradientId = React.useRef(uniqueId('gradient-def-'));
   let fill = 'currentColor';
   let defs = null;
@@ -89,6 +96,10 @@ export function SvgIcon({
 
   return (
     <svg
+      style={{ fontSize: iconSize, ...style }}
+      className={classNames(className, 'dc-svg-icon', {
+        [`dc-svg-icon_size_${size}`]: size in svgIconSizes,
+      })}
       fill={fill}
       width={iconSize}
       height={iconSize}
@@ -97,10 +108,10 @@ export function SvgIcon({
       data-testid={`svg-icon-${icon.name}`}
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
+      viewBox={icon.viewBox}
     >
       {defs}
-      <path d={icon.path} />
+      {icon.children}
     </svg>
   );
 }
