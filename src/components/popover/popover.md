@@ -68,3 +68,27 @@ function renderPopover(arrangement, alignment) {
   <div />
 </div>;
 ```
+
+Tooltip in popover
+
+```jsx
+import { Popover } from './popover';
+import { Tooltip } from '../tooltip';
+import { Button } from '../button';
+
+const [isOpen, setIsOpen] = React.useState(false);
+
+<Popover
+  isOpen={isOpen}
+  onClose={() => setIsOpen(false)}
+  content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus deserunt doloribus enim ipsum iusto modi nihil porro!"
+>
+  {({ ref }) => (
+    <Tooltip content="Tooltip text">
+      <Button ref={ref} onClick={() => setIsOpen(!isOpen)}>
+        Press or hover over me
+      </Button>
+    </Tooltip>
+  )}
+</Popover>;
+```

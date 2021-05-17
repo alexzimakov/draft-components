@@ -8,9 +8,13 @@ import {
 import { Positioner, PositionerProps } from '../positioner';
 import { Box, BoxProps } from '../box';
 
-type RenderChildren = (props: {
-  ref: React.MutableRefObject<HTMLElement | null>;
-}) => JSX.Element;
+interface ElementWithRef extends JSX.Element {
+  ref: React.MutableRefObject<HTMLElement | null> | null;
+}
+
+interface RenderChildren {
+  (props: { ref: React.MutableRefObject<HTMLElement | null> }): JSX.Element;
+}
 
 export interface PopoverProps extends BoxProps {
   position?: PositionerProps['position'];
@@ -23,7 +27,7 @@ export interface PopoverProps extends BoxProps {
   shouldCaptureFocus?: boolean;
   onClose?: () => void;
   content: React.ReactNode;
-  children: JSX.Element | RenderChildren;
+  children: RenderChildren | ElementWithRef;
 }
 
 export function Popover({
@@ -57,13 +61,19 @@ export function Popover({
     autoFocusAfterRelease: false,
   });
 
+  const renderAnchor = () => {
+    if (typeof anchor === 'function') {
+      return anchor({ ref: anchorRef });
+    }
+
+    return React.cloneElement(anchor, {
+      ref: util.mergeRefs(anchor.ref, anchorRef),
+    });
+  };
+
   return (
     <>
-      {typeof anchor === 'function'
-        ? anchor({ ref: anchorRef })
-        : React.cloneElement(anchor, {
-            ref: util.mergeRefs(anchorRef, anchor.props.ref),
-          })}
+      {renderAnchor()}
       <Positioner
         className="dc-popover-container"
         anchorRef={anchorRef}
