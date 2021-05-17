@@ -1,0 +1,244 @@
+.dc-tag {
+  --dc-tag-height: #{px-to-rem(26px)};
+  --dc-tag-color: #{$gray-700};
+  --dc-tag-fill-color: #{$gray-200};
+
+  display: inline-flex;
+  align-items: center;
+  padding: 0 $gap-3x;
+  min-height: var(--dc-tag-height);
+  color: var(--dc-tag-color);
+  border-radius: $border-radius-sm;
+  background: var(--dc-tag-fill-color);
+  font-family: var(--dc-font-base);
+  font-size: $font-size-sm;
+  font-weight: $font-weight-normal;
+  line-height: 1;
+}
+
+.dc-tag_size_sm {
+  --dc-tag-height: #{px-to-rem(24px)};
+
+  font-size: $font-size-xs;
+}
+
+.dc-tag_size_lg {
+  --dc-tag-height: #{px-to-rem(28px)};
+
+  border-radius: $border-radius-md;
+  font-size: $font-size-base;
+}
+
+.dc-tag_rounded {
+  border-radius: calc(var(--dc-tag-height) / 2);
+  padding-right: calc(var(--dc-tag-height) / 2);
+  padding-left: calc(var(--dc-tag-height) / 2);
+}
+
+.dc-tag__icon {
+  margin-right: px-to-em(6px, 14px);
+}
+
+.dc-tag__text {
+}
+
+.dc-tag__btn {
+  display: inline-flex;
+  box-sizing: border-box;
+  padding: 0;
+  margin-left: px-to-em(6px, 14px);
+  transform: translateY(0.05em);
+  transition: $transition-quick;
+  transition-property: opacity;
+  opacity: $opacity-60;
+  cursor: pointer;
+  color: inherit;
+  border-radius: px-to-rem(1px);
+  border: none;
+  background: none;
+  appearance: none;
+
+  &:disabled {
+    opacity: $opacity-30;
+    cursor: not-allowed;
+  }
+
+  &:enabled:hover {
+    opacity: $opacity-100;
+  }
+
+  &:focus {
+    outline: none;
+    opacity: $opacity-100;
+    box-shadow: 0 0 0 2px var(--dc-tag-fill-color), 0 0 0 4px currentColor;
+  }
+}
+
+.dc-tag_color_blue {
+  --dc-tag-color: #{$blue-800};
+  --dc-tag-fill-color: #{$blue-100};
+}
+
+.dc-tag_color_cyan {
+  --dc-tag-color: #{$cyan-900};
+  --dc-tag-fill-color: #{$cyan-100};
+}
+
+.dc-tag_color_red {
+  --dc-tag-color: #{$red-900};
+  --dc-tag-fill-color: #{$red-100};
+}
+
+.dc-tag_color_green {
+  --dc-tag-color: #{$green-800};
+  --dc-tag-fill-color: #{$green-200};
+}
+
+.dc-tag_color_lime {
+  --dc-tag-color: #{$lime-900};
+  --dc-tag-fill-color: #{$lime-100};
+}
+
+.dc-tag_color_indigo {
+  --dc-tag-color: #{$indigo-900};
+  --dc-tag-fill-color: #{$indigo-100};
+}
+
+.dc-tag_color_yellow {
+  --dc-tag-color: #{$yellow-900};
+  --dc-tag-fill-color: #{$yellow-100};
+}
+
+.dc-tag_color_orange {
+  --dc-tag-color: #{$orange-900};
+  --dc-tag-fill-color: #{$orange-100};
+}
+
+//.dc-tag {
+//  --dc-tag-height: 1.5rem;
+//  --dc-tag-padding: #{$gap-3x};
+//  --dc-tag-color: #{$gray-200};
+//  --dc-tag-fill-color: #{$gray-700};
+//
+//  display: inline-flex;
+//  align-items: center;
+//  justify-content: center;
+//  box-sizing: border-box;
+//  width: auto;
+//  height: var(--dc-tag-height, 1.5rem);
+//  //padding: 0 var(--dc-tag-padding);
+//  padding: 0 0.625em;
+//  color: var(--dc-tag-fill-color);
+//  border-radius: $border-radius-md;
+//  background: var(--dc-tag-color);
+//  font-family: var(--dc-font-base);
+//  font-size: $font-size-sm;
+//  font-weight: $font-weight-normal;
+//  line-height: 1;
+//}
+//
+//.dc-tag_size_sm {
+//  --dc-tag-height: 1.25rem;
+//  //--dc-tag-padding: #{$gap-2x};
+//
+//  border-radius: $border-radius-sm;
+//  font-size: $font-size-xs;
+//}
+//
+//.dc-tag_size_lg {
+//  --dc-tag-height: 1.75rem;
+//  //--dc-tag-padding: #{$gap-3x};
+//
+//  border-radius: $border-radius-md;
+//  font-size: $font-size-base;
+//}
+//
+//.dc-tag_rounded {
+//  --dc-tag-padding: calc(var(--dc-tag-height) / 2);
+//
+//  border-radius: var(--dc-tag-padding);
+//}
+//
+//.dc-tag__body {
+//  padding: 0 0.3125em;
+//}
+//
+//.dc-tag__remove-btn {
+//  display: inline-block;
+//  flex: 0 0 auto;
+//  height: auto;
+//  padding: 0.25em;
+//  vertical-align: -0.125em;
+//  opacity: $opacity-50;
+//  cursor: pointer;
+//  border: none;
+//  background: none;
+//  font-size: inherit;
+//  appearance: none;
+//  //display: inline-flex;
+//  //padding: 0;
+//  //vertical-align: -0.125em;
+//  //color: inherit;
+//  //cursor: pointer;
+//  //border: 1px dotted transparent;
+//  //border-radius: 0.25em;
+//  //background: none;
+//  //appearance: none;
+//  //font-size: (16em / 14);
+//  //background: tomato;
+//  //
+//  &:hover {
+//    opacity: $opacity-100;
+//  }
+//
+//  &:focus {
+//    opacity: $opacity-100;
+//    outline: none;
+//    background: rgba(black, 0.1);
+//    //@include focus-ring;
+//  }
+//}
+//
+////.dc-tag_rounded .dc-tag__remove-btn {
+////  border-radius: 50%;
+////}
+//
+//.dc-tag_color_blue {
+//  --dc-tag-color: #{$blue-100};
+//  --dc-tag-fill-color: #{$blue-800};
+//}
+//
+//.dc-tag_color_cyan {
+//  --dc-tag-color: #{$cyan-100};
+//  --dc-tag-fill-color: #{$cyan-900};
+//}
+//
+//.dc-tag_color_red {
+//  --dc-tag-color: #{$red-100};
+//  --dc-tag-fill-color: #{$red-900};
+//}
+//
+//.dc-tag_color_green {
+//  --dc-tag-color: #{$green-200};
+//  --dc-tag-fill-color: #{$green-800};
+//}
+//
+//.dc-tag_color_lime {
+//  --dc-tag-color: #{$lime-100};
+//  --dc-tag-fill-color: #{$lime-900};
+//}
+//
+//.dc-tag_color_indigo {
+//  --dc-tag-color: #{$indigo-100};
+//  --dc-tag-fill-color: #{$indigo-900};
+//}
+//
+//.dc-tag_color_yellow {
+//  --dc-tag-color: #{$yellow-100};
+//  --dc-tag-fill-color: #{$yellow-900};
+//}
+//
+//.dc-tag_color_orange {
+//  --dc-tag-color: #{$orange-100};
+//  --dc-tag-fill-color: #{$orange-900};
+//}
