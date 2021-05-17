@@ -15,6 +15,8 @@ export interface ButtonProps extends ButtonHtmlAttrs {
     | 'minimal';
   fullWidth?: boolean;
   noPadding?: boolean;
+  isRounded?: boolean;
+  isCircle?: boolean;
   isLoading?: boolean;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
@@ -29,9 +31,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     {
       size = 'md',
       appearance = 'default',
-      isLoading,
       fullWidth,
       noPadding,
+      isRounded,
+      isCircle,
+      isLoading,
       leadingIcon,
       trailingIcon,
       renderAs,
@@ -41,30 +45,28 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) {
-    className = classNames(className, 'dc-button', {
-      'dc-button_loading': isLoading,
-      'dc-button_full-width': fullWidth,
-      'dc-button_no-padding': noPadding,
-      [`dc-button_size_${size}`]: size,
-      [`dc-button_${appearance}`]: appearance,
+    className = classNames(className, 'dc-btn', {
+      'dc-btn_full-width': fullWidth,
+      'dc-btn_no-padding': noPadding,
+      'dc-btn_rounded': isRounded,
+      'dc-btn_circle': isCircle,
+      'dc-btn_loading': isLoading,
+      [`dc-btn_size_${size}`]: size,
+      [`dc-btn_${appearance}`]: appearance,
     });
     const content = (
       <>
-        <span className="dc-button__body">
-          {leadingIcon && (
-            <span className="dc-button__icon">{leadingIcon}</span>
-          )}
+        <span className="dc-btn__body">
+          {leadingIcon && <span className="dc-btn__icon">{leadingIcon}</span>}
 
-          {children && <span className="dc-button__text">{children}</span>}
+          {children && <span className="dc-btn__text">{children}</span>}
 
-          {trailingIcon && (
-            <span className="dc-button__icon">{trailingIcon}</span>
-          )}
+          {trailingIcon && <span className="dc-btn__icon">{trailingIcon}</span>}
         </span>
 
         {isLoading && (
-          <span className="dc-button__spinner">
-            <Spinner data-testid="dc-button-loader-indicator" size="1.25em" />
+          <span className="dc-btn__spinner">
+            <Spinner data-testid="dc-btn-loader-indicator" size="1.25em" />
           </span>
         )}
       </>

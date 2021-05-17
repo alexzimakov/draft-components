@@ -1,11 +1,13 @@
+// noinspection ES6PreferShortImport
+
 import * as React from 'react';
 import { classNames } from '../../lib';
 import { SvgIcon } from '../svg-icon';
 import { FormattedContent } from '../formatted-content';
-import { warningIcon } from '../svg-icon/icons/warning';
-import { errorIcon } from '../svg-icon/icons/error';
-import { infoIcon } from '../svg-icon/icons/info';
-import { successIcon } from '../svg-icon/icons/success';
+import { exclamationTriangle } from '../../icons/exclamation-triangle';
+import { exclamationCircle } from '../../icons/exclamation-circle';
+import { infoCircle } from '../../icons/info-circle';
+import { checkCircle } from '../../icons/check-circle';
 
 export interface NonIdealStateViewProps
   extends React.ComponentPropsWithoutRef<'div'> {
@@ -36,13 +38,11 @@ export function NonIdealStateView({
       )}
     >
       <div className="dc-non-ideal-state__body">
-        {icon ? (
-          <div className="dc-non-ideal-state__icon">{getIcon(icon)}</div>
-        ) : null}
+        {icon && getIcon(icon)}
 
         <h2 className={FormattedContent.CSSClasses.title3}>{heading}</h2>
 
-        {description ? (
+        {description && (
           <div
             className={classNames(
               'dc-non-ideal-state__description',
@@ -51,13 +51,13 @@ export function NonIdealStateView({
           >
             {description}
           </div>
-        ) : null}
+        )}
 
-        {actions ? (
+        {actions && (
           <div className="dc-non-ideal-state__actions">{actions}</div>
-        ) : null}
+        )}
 
-        {children ? (
+        {children && (
           <div
             className={classNames(
               'dc-non-ideal-state__content',
@@ -66,7 +66,7 @@ export function NonIdealStateView({
           >
             {children}
           </div>
-        ) : null}
+        )}
       </div>
     </section>
   );
@@ -75,16 +75,33 @@ export function NonIdealStateView({
 function getIcon(
   icon: NonNullable<NonIdealStateViewProps['icon']>
 ): JSX.Element {
+  let modifier = '';
+  let renderedIcon: JSX.Element;
+
   switch (icon) {
     case 'error':
-      return <SvgIcon size="4x" icon={errorIcon} />;
+      modifier = 'dc-non-ideal-state__icon_red';
+      renderedIcon = <SvgIcon size="4x" icon={exclamationCircle} />;
+      break;
     case 'warning':
-      return <SvgIcon size="4x" icon={warningIcon} />;
+      modifier = 'dc-non-ideal-state__icon_orange';
+      renderedIcon = <SvgIcon size="4x" icon={exclamationTriangle} />;
+      break;
     case 'info':
-      return <SvgIcon size="4x" icon={infoIcon} />;
+      modifier = 'dc-non-ideal-state__icon_blue';
+      renderedIcon = <SvgIcon size="4x" icon={infoCircle} />;
+      break;
     case 'success':
-      return <SvgIcon size="4x" icon={successIcon} />;
+      modifier = 'dc-non-ideal-state__icon_green';
+      renderedIcon = <SvgIcon size="4x" icon={checkCircle} />;
+      break;
     default:
-      return icon;
+      renderedIcon = icon;
   }
+
+  return (
+    <div className={classNames('dc-non-ideal-state__icon', modifier)}>
+      {renderedIcon}
+    </div>
+  );
 }

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { IconButton, IconButtonProps } from '../icon-button';
+import { Button, ButtonProps } from '../button';
 import { classNames } from '../../lib';
 
 export type ActionButtonBaseProps = Omit<
-  IconButtonProps,
-  'icon' | 'appearance' | 'isLoading'
+  ButtonProps,
+  'leadingIcon' | 'trailingIcon' | 'appearance' | 'isLoading'
 >;
 
 export interface ActionButtonProps extends ActionButtonBaseProps {
@@ -12,11 +12,19 @@ export interface ActionButtonProps extends ActionButtonBaseProps {
   icon: JSX.Element;
 }
 
-export function ActionButton({ className, ...props }: ActionButtonProps) {
+export function ActionButton({
+  className,
+  noPadding = true,
+  icon,
+  ...props
+}: ActionButtonProps) {
   return (
-    <IconButton
+    <Button
       {...props}
       className={classNames(className, 'dc-actions-group__btn')}
+      noPadding={noPadding}
+      leadingIcon={icon}
+      appearance="minimal"
     />
   );
 }

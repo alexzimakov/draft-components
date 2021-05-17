@@ -1,10 +1,12 @@
+// noinspection ES6PreferShortImport
+
 import * as React from 'react';
 import { classNames } from '../../lib';
 import { Icon, SvgIcon } from '../svg-icon';
-import { warningIcon } from '../svg-icon/icons/warning';
-import { errorIcon } from '../svg-icon/icons/error';
-import { infoIcon } from '../svg-icon/icons/info';
-import { successIcon } from '../svg-icon/icons/success';
+import { exclamationCircleFill } from '../../icons/exclamation-circle-fill';
+import { exclamationTriangleFill } from '../../icons/exclamation-triangle-fill';
+import { checkCircleFill } from '../../icons/check-circle-fill';
+import { infoCircleFill } from '../../icons/info-circle-fill';
 
 export interface BannerAction {
   label: React.ReactNode;
@@ -18,11 +20,11 @@ export interface BannerProps extends React.ComponentPropsWithRef<'div'> {
 }
 
 const bannerIcons: Record<NonNullable<BannerProps['appearance']>, Icon> = {
-  error: errorIcon,
-  warning: warningIcon,
-  success: successIcon,
-  info: infoIcon,
-  default: infoIcon,
+  error: exclamationCircleFill,
+  warning: exclamationTriangleFill,
+  success: checkCircleFill,
+  info: infoCircleFill,
+  default: infoCircleFill,
 };
 
 export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(

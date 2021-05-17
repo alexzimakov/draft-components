@@ -1,12 +1,14 @@
+// noinspection ES6PreferShortImport
+
 import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Breadcrumbs } from './breadcrumbs';
 import { SvgIcon } from '../svg-icon';
-import * as icons from '../svg-icon/icons';
+import { houseFill } from '../../icons/house-fill';
 
 it('renders without errors', () => {
   const items = [
-    { href: '/', label: 'Home', icon: <SvgIcon icon={icons.home} /> },
+    { href: '/', label: 'Home', icon: <SvgIcon icon={houseFill} /> },
     { href: '#breadcrumbs', label: 'Project' },
     { href: '#breadcrumbs', label: 'Awesome Project' },
   ];
@@ -22,7 +24,7 @@ it('renders without errors', () => {
 
 it('should render using custom renderer', () => {
   const items = [
-    { href: '/', label: 'Home', icon: <SvgIcon icon={icons.home} /> },
+    { href: '/', label: 'Home', icon: <SvgIcon icon={houseFill} /> },
     { href: '#breadcrumbs', label: 'Project' },
     { href: '#breadcrumbs', label: 'Awesome Project' },
   ];

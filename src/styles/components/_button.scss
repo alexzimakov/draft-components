@@ -1,7 +1,6 @@
-.dc-button {
-  $font-size-px: rem-to-px($font-size-sm);
-
+.dc-btn {
   --dc-btn-text-color: var(--dc-btn-default-text-color);
+  --dc-btn-height: #{px-to-rem(32px)};
   --dc-btn-bg: var(--dc-btn-default-bg);
   --dc-btn-bg-hover: var(--dc-btn-default-bg-hover);
   --dc-btn-bg-active: var(--dc-btn-default-bg-active);
@@ -13,10 +12,10 @@
   position: relative;
   box-sizing: border-box;
   width: auto;
-  height: px-to-em(32px, $font-size-px);
-  min-width: px-to-em(32px, $font-size-px);
+  min-width: var(--dc-btn-height);
+  min-height: var(--dc-btn-height);
   max-width: 100%;
-  padding: 0 px-to-em(14px, $font-size-px);
+  padding: 0 $gap-3x;
   cursor: pointer;
   user-select: none;
   transition: $transition-quick;
@@ -24,8 +23,8 @@
   text-decoration: none;
   letter-spacing: $tracking-tight;
   color: var(--dc-btn-text-color);
-  border: 1px solid rgba(black, $opacity-15);
-  border-radius: px-to-em(rem-to-px($border-radius-md), $font-size-px);
+  border: 1px solid $gray-200;
+  border-radius: $border-radius-md;
   background: var(--dc-btn-bg);
   box-shadow: var(--dc-btn-shadow);
   font-family: var(--dc-font-base);
@@ -53,20 +52,34 @@
   }
 }
 
-.dc-button_size_xs {
-  font-size: $font-size-2xs;
-}
+.dc-btn_size_xs,
+.dc-btn_size_sm {
+  --dc-btn-height: #{px-to-rem(22px)};
 
-.dc-button_size_sm {
+  border-radius: $border-radius-sm;
   font-size: $font-size-xs;
 }
 
-.dc-button_size_lg {
+.dc-btn_size_xs {
+  padding-right: $gap-2x;
+  padding-left: $gap-2x;
+}
+
+.dc-btn_size_sm {
+  --dc-btn-height: #{px-to-rem(28px)};
+}
+
+.dc-btn_size_lg {
+  --dc-btn-height: #{px-to-rem(40px)};
+
+  padding-right: $gap-4x;
+  padding-left: $gap-4x;
+  border-radius: $border-radius-lg;
   font-size: $font-size-base;
 }
 
-.dc-button_secondary,
-.dc-button_minimal {
+.dc-btn_secondary,
+.dc-btn_minimal {
   border-color: transparent;
   box-shadow: none;
 
@@ -79,59 +92,66 @@
   }
 }
 
-.dc-button_secondary {
+.dc-btn_secondary {
   --dc-btn-text-color: var(--dc-btn-secondary-text-color);
   --dc-btn-bg: var(--dc-btn-secondary-bg);
   --dc-btn-bg-hover: var(--dc-btn-secondary-bg-hover);
   --dc-btn-bg-active: var(--dc-btn-secondary-bg-active);
 }
 
-.dc-button_minimal {
+.dc-btn_minimal {
   --dc-btn-text-color: var(--dc-btn-minimal-text-color);
   --dc-btn-bg: var(--dc-btn-minimal-bg);
   --dc-btn-bg-hover: var(--dc-btn-minimal-bg-hover);
   --dc-btn-bg-active: var(--dc-btn-minimal-bg-active);
 }
 
-.dc-button_primary {
+.dc-btn_primary {
   --dc-btn-text-color: var(--dc-btn-primary-text-color);
   --dc-btn-bg: var(--dc-btn-primary-bg);
   --dc-btn-bg-hover: var(--dc-btn-primary-bg-hover);
   --dc-btn-bg-active: var(--dc-btn-primary-bg-active);
+
+  border-color: transparent;
 }
 
-.dc-button_danger {
+.dc-btn_danger {
   --dc-btn-text-color: var(--dc-btn-danger-text-color);
   --dc-btn-bg: var(--dc-btn-danger-bg);
   --dc-btn-bg-hover: var(--dc-btn-danger-bg-hover);
   --dc-btn-bg-active: var(--dc-btn-danger-bg-active);
   --dc-btn-focus-ring-color: var(--dc-btn-danger-focus-ring-color);
+
+  border-color: transparent;
 }
 
-.dc-button_success {
+.dc-btn_success {
   --dc-btn-text-color: var(--dc-btn-success-text-color);
   --dc-btn-bg: var(--dc-btn-success-bg);
   --dc-btn-bg-hover: var(--dc-btn-success-bg-hover);
   --dc-btn-bg-active: var(--dc-btn-success-bg-active);
   --dc-btn-focus-ring-color: var(--dc-btn-success-focus-ring-color);
+
+  border-color: transparent;
 }
 
-.dc-button__body {
+.dc-btn__body {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: inherit;
 }
 
-.dc-button__body > * + * {
+.dc-btn__body > * + * {
   margin-left: $gap-2x;
 }
 
-.dc-button__icon {
+.dc-btn__icon {
   display: inline-flex;
   flex: 0 0 auto;
 }
 
-.dc-button__spinner {
+.dc-btn__spinner {
   position: absolute;
   top: 0;
   left: 0;
@@ -142,19 +162,30 @@
   height: 100%;
 }
 
-.dc-button_loading {
-  pointer-events: none;
-
-  .dc-button__body {
-    opacity: 0;
-  }
-}
-
-.dc-button_full-width {
+.dc-btn_full-width {
   width: 100%;
 }
 
-.dc-button_no-padding {
+.dc-btn_circle,
+.dc-btn_no-padding {
   padding-right: 0;
   padding-left: 0;
+}
+
+.dc-btn_rounded {
+  border-radius: calc(var(--dc-btn-height) / 2);
+  padding-right: calc(var(--dc-btn-height) / 2);
+  padding-left: calc(var(--dc-btn-height) / 2);
+}
+
+.dc-btn_circle {
+  border-radius: 50%;
+}
+
+.dc-btn_loading {
+  pointer-events: none;
+
+  .dc-btn__body {
+    opacity: 0;
+  }
 }

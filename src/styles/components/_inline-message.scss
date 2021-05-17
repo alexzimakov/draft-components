@@ -23,5 +23,6 @@
 .dc-inline-message__icon {
   flex-shrink: 0;
   margin-right: $gap-2x;
+  transform: translateY(0.125em);
   line-height: 1;
 }

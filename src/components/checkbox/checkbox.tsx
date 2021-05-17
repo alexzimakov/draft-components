@@ -1,3 +1,5 @@
+// noinspection ES6PreferShortImport
+
 import * as React from 'react';
 import {
   SelectionControl,
@@ -5,7 +7,8 @@ import {
 } from '../selection-control';
 import { classNames } from '../../lib';
 import { SvgIcon } from '../svg-icon';
-import { minusIcon } from '../svg-icon/icons/minus';
+import { dash } from '../../icons/dash';
+import { check } from '../../icons/check';
 
 export type CheckboxHtmlAttrs = Omit<
   React.ComponentPropsWithoutRef<'input'>,
@@ -60,28 +63,11 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           disabled={disabled}
         />
         <span className="dc-checkbox__check" aria-hidden={true}>
-          {isMixed ? (
-            <SvgIcon
-              className="dc-checkbox__check-icon"
-              icon={minusIcon}
-              size={24}
-            />
-          ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="dc-checkbox__check-icon"
-              viewBox="0 0 24 24"
-              width={24}
-              height={24}
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={3}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-          )}
+          <SvgIcon
+            className="dc-checkbox__check-icon"
+            icon={isMixed ? dash : check}
+            size="lg"
+          />
         </span>
       </SelectionControl>
     );

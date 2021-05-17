@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SvgIcon } from '../svg-icon';
-import { searchIcon } from '../svg-icon/icons/search';
+import { search } from '../../icons/search';
 import { TextField, TextFieldProps } from '../text-field';
 
 export interface SearchFieldProps extends TextFieldProps {}
@@ -24,7 +24,7 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
         type={type || 'search'}
         leadingAddOn={
           leadingAddOn || (
-            <SvgIcon icon={searchIcon} size={iconSize[size] || iconSize.md} />
+            <SvgIcon icon={search} size={iconSize[size] || iconSize.md} />
           )
         }
       />

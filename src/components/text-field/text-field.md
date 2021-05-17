@@ -8,14 +8,14 @@ import { TextField } from './text-field';
 </>;
 ```
 
-With leading add-on:
+With leading add-on
 
 ```jsx padded
 import { TextField } from './text-field';
 import { SvgIcon } from '../svg-icon';
-import * as icons from '../svg-icon/icons';
+import { search } from '../../icons/search';
 
-const icon = <SvgIcon size="lg" icon={icons.search} />;
+const icon = <SvgIcon size={16} icon={search} />;
 
 <>
   <TextField leadingAddOn="https://" placeholder="www.example.com" />
@@ -23,14 +23,14 @@ const icon = <SvgIcon size="lg" icon={icons.search} />;
 </>;
 ```
 
-With trailing add-on:
+With trailing add-on
 
 ```jsx padded
 import { TextField } from './text-field';
 import { SvgIcon } from '../svg-icon';
-import * as icons from '../svg-icon/icons';
+import { exclamationCircle } from '../../icons/exclamation-circle';
 
-const icon = <SvgIcon size="lg" icon={icons.error} />;
+const icon = <SvgIcon size={16} icon={exclamationCircle} />;
 
 <>
   <TextField trailingAddOn=".com" placeholder="https://www.example" />
@@ -38,7 +38,7 @@ const icon = <SvgIcon size="lg" icon={icons.error} />;
 </>;
 ```
 
-Invalid state:
+Invalid state
 
 ```jsx
 import { TextField } from './text-field';
@@ -46,7 +46,7 @@ import { TextField } from './text-field';
 <TextField isInvalid={true} placeholder="Invalid text field..." />;
 ```
 
-Disabled state:
+Disabled state
 
 ```jsx padded
 import { TextField } from './text-field';
@@ -61,7 +61,7 @@ import { TextField } from './text-field';
 </>;
 ```
 
-Full width:
+Full width
 
 ```jsx
 import { TextField } from './text-field';

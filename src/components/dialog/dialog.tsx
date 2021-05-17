@@ -1,3 +1,5 @@
+// noinspection ES6PreferShortImport
+
 import * as React from 'react';
 import { util, classNames } from '../../lib';
 import {
@@ -7,8 +9,10 @@ import {
 } from '../../hooks';
 import { Portal } from '../portal';
 import { Box } from '../box';
-import { IconButton } from '../icon-button';
+import { Button } from '../button';
 import { Headline, FormattedContent } from '../formatted-content';
+import { SvgIcon } from '../svg-icon';
+import { xLg } from '../../icons/x-lg';
 
 export interface DialogProps extends React.ComponentPropsWithRef<'div'> {
   isOpen?: boolean;
@@ -80,14 +84,15 @@ export function Dialog({
           aria-modal={true}
         >
           <div className="dc-dialog__header">
-            {heading || description ? (
+            {(heading || description) && (
               <div className="dc-dialog__header-content">
-                {heading ? (
+                {heading && (
                   <Headline id={labelId} as="h2">
                     {heading}
                   </Headline>
-                ) : null}
-                {description ? (
+                )}
+
+                {description && (
                   <div
                     id={descriptionId}
                     className={classNames(
@@ -97,18 +102,21 @@ export function Dialog({
                   >
                     {description}
                   </div>
-                ) : null}
+                )}
               </div>
-            ) : null}
-            {shouldShowCloseButton ? (
-              <IconButton
+            )}
+
+            {shouldShowCloseButton && (
+              <Button
                 data-testid="dialog-close-button"
                 className="dc-dialog__close-btn"
-                icon="remove"
+                appearance="minimal"
                 size="sm"
+                noPadding={true}
+                leadingIcon={<SvgIcon icon={xLg} />}
                 onClick={onClose}
               />
-            ) : null}
+            )}
           </div>
           <div className="dc-dialog__content">{children}</div>
           {actions ? <div className="dc-dialog__actions">{actions}</div> : null}

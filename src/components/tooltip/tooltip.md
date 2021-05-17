@@ -1,18 +1,18 @@
 ```jsx
 import { Tooltip } from './tooltip';
-import { IconButton } from '../icon-button';
-import { SvgIcon, Icons } from '../svg-icon';
+import { Button } from '../button';
+import { SvgIcon } from '../svg-icon';
+import { bookmark } from '../../icons/bookmark';
 
 <Tooltip content="Save to favorite">
-  <IconButton
-    size="md"
-    appearance="default"
-    icon={<SvgIcon size="sm" icon={Icons.like} />}
+  <Button
+    noPadding={true}
+    leadingIcon={<SvgIcon size="lg" icon={bookmark} />}
   />
 </Tooltip>;
 ```
 
-Wide content:
+Wide content
 
 ```jsx
 import { Tooltip } from './tooltip';

@@ -9,7 +9,7 @@ import { Alert } from './alert';
 </Alert>;
 ```
 
-Warning:
+Warning
 
 ```jsx
 import { Alert } from './alert';
@@ -20,7 +20,7 @@ import { Alert } from './alert';
 </Alert>;
 ```
 
-Error:
+Error
 
 ```jsx
 import { Alert } from './alert';
@@ -33,7 +33,7 @@ import { Alert } from './alert';
 </Alert>;
 ```
 
-Info:
+Info
 
 ```jsx
 import { Alert } from './alert';
@@ -44,7 +44,7 @@ import { Alert } from './alert';
 </Alert>;
 ```
 
-Success:
+Success
 
 ```jsx
 import { Alert } from './alert';

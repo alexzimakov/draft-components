@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { render, screen } from '@testing-library/react';
 import { PasswordField } from './password-field';
 
 it('renders without errors', () => {
@@ -23,9 +24,9 @@ it('should toggle password visibility', () => {
 
   const inputEl = screen.getByPlaceholderText(placeholder);
 
-  fireEvent.click(screen.getByTitle(showPasswordA11yTitle));
+  userEvent.click(screen.getByTitle(showPasswordA11yTitle));
   expect(inputEl).toHaveAttribute('type', 'text');
 
-  fireEvent.click(screen.getByTitle(hidePasswordA11yTitle));
+  userEvent.click(screen.getByTitle(hidePasswordA11yTitle));
   expect(inputEl).toHaveAttribute('type', 'password');
 });

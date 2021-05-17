@@ -1,11 +1,11 @@
 ```jsx
 import { Breadcrumbs } from './breadcrumbs';
 import { SvgIcon } from '../svg-icon';
-import * as icons from '../svg-icon/icons';
+import { houseFill } from '../../icons/house-fill';
 
 <Breadcrumbs
   items={[
-    { href: '/', label: 'Home', icon: <SvgIcon icon={icons.home} /> },
+    { href: '/', label: 'Home', icon: <SvgIcon icon={houseFill} /> },
     { href: '#breadcrumbs', label: 'Project' },
     { href: '#breadcrumbs', label: 'Awesome Project' },
   ]}

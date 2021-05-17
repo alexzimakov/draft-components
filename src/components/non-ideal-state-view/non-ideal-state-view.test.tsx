@@ -1,7 +1,14 @@
+// noinspection ES6PreferShortImport
+
 import * as React from 'react';
 import { render, screen } from '@testing-library/react';
-import { SvgIcon, Icons } from '../svg-icon';
 import { SearchField } from '../search-field';
+import { SvgIcon } from '../svg-icon';
+import { search } from '../../icons/search';
+import { exclamationCircle } from '../../icons/exclamation-circle';
+import { exclamationTriangle } from '../../icons/exclamation-triangle';
+import { checkCircle } from '../../icons/check-circle';
+import { infoCircle } from '../../icons/info-circle';
 import { NonIdealStateView } from './non-ideal-state-view';
 
 const heading = `No search results`;
@@ -12,9 +19,7 @@ const placeholder = `Search`;
 it('renders without errors', () => {
   render(
     <NonIdealStateView
-      icon={
-        <SvgIcon aria-hidden={false} role="img" icon={Icons.search} size="5x" />
-      }
+      icon={<SvgIcon aria-hidden={false} role="img" icon={search} size="5x" />}
       heading={heading}
       description={description}
       actions={<SearchField placeholder={placeholder} />}
@@ -41,22 +46,19 @@ it('renders with right icon', () => {
     <NonIdealStateView icon="info" heading={heading} />
   );
 
-  screen.getByTestId(`svg-icon-${Icons.info.name}`);
+  screen.getByTestId(`svg-icon-${infoCircle.name}`);
 
   rerender(<NonIdealStateView icon="success" heading={heading} />);
-  screen.getByTestId(`svg-icon-${Icons.success.name}`);
+  screen.getByTestId(`svg-icon-${checkCircle.name}`);
 
   rerender(<NonIdealStateView icon="error" heading={heading} />);
-  screen.getByTestId(`svg-icon-${Icons.error.name}`);
+  screen.getByTestId(`svg-icon-${exclamationCircle.name}`);
 
   rerender(<NonIdealStateView icon="warning" heading={heading} />);
-  screen.getByTestId(`svg-icon-${Icons.warning.name}`);
+  screen.getByTestId(`svg-icon-${exclamationTriangle.name}`);
 
   rerender(
-    <NonIdealStateView
-      icon={<SvgIcon icon={Icons.search} />}
-      heading={heading}
-    />
+    <NonIdealStateView icon={<SvgIcon icon={search} />} heading={heading} />
   );
-  screen.getByTestId(`svg-icon-${Icons.search.name}`);
+  screen.getByTestId(`svg-icon-${search.name}`);
 });

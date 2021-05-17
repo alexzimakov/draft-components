@@ -1,8 +1,10 @@
+// noinspection ES6PreferShortImport
+
 import * as React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import { Button } from './button';
 import { SvgIcon } from '../svg-icon';
-import * as icons from '../svg-icon/icons';
+import { heart } from '../../icons/heart';
 
 it('renders without errors', () => {
   const label = 'Button text';
@@ -34,15 +36,13 @@ it('renders in custom wrapper', () => {
 it('should show loader indicator and make button inactive', () => {
   render(<Button isLoading={true}>Button text</Button>);
 
-  within(screen.getByRole('button')).getByTestId('dc-button-loader-indicator');
+  within(screen.getByRole('button')).getByTestId('dc-btn-loader-indicator');
 });
 
 it('renders with the leading icon', () => {
   const iconTestId = 'leading-icon';
   render(
-    <Button
-      leadingIcon={<SvgIcon icon={icons.like} data-testid={iconTestId} />}
-    >
+    <Button leadingIcon={<SvgIcon icon={heart} data-testid={iconTestId} />}>
       Button text
     </Button>
   );
@@ -53,9 +53,7 @@ it('renders with the leading icon', () => {
 it('renders with the trailing icon', () => {
   const iconTestId = 'trailing-icon';
   render(
-    <Button
-      trailingIcon={<SvgIcon icon={icons.like} data-testid={iconTestId} />}
-    >
+    <Button trailingIcon={<SvgIcon icon={heart} data-testid={iconTestId} />}>
       Button text
     </Button>
   );

@@ -15,7 +15,7 @@ const props = {
 </div>;
 ```
 
-Multiple actions:
+Multiple actions
 
 ```jsx
 import { Banner } from './banner';
@@ -31,7 +31,7 @@ import { Banner } from './banner';
 </Banner>;
 ```
 
-Full width:
+Full width
 
 ```jsx
 import { Banner } from './banner';

@@ -18,6 +18,22 @@
   color: var(--dc-non-ideal-state-icon-color);
 }
 
+.dc-non-ideal-state__icon_red {
+  color: $red-500;
+}
+
+.dc-non-ideal-state__icon_orange {
+  color: $orange-500;
+}
+
+.dc-non-ideal-state__icon_blue {
+  color: $blue-500;
+}
+
+.dc-non-ideal-state__icon_green {
+  color: $green-500;
+}
+
 .dc-non-ideal-state__description {
   margin-top: $gap-2x;
 }

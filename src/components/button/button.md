@@ -117,12 +117,12 @@ With leading icon
 ```jsx padded
 import { Button } from './button';
 import { SvgIcon } from '../svg-icon';
-import { bookmark } from '../svg-icon/icons';
+import { bookmark } from '../../icons/bookmark';
 
 const getProps = (size) => ({
   size,
   children: 'Button text',
-  leadingIcon: <SvgIcon size="lg" icon={bookmark} />,
+  leadingIcon: <SvgIcon icon={bookmark} />,
 });
 
 <>
@@ -138,13 +138,12 @@ With trailing icon
 ```jsx padded
 import { Button } from './button';
 import { SvgIcon } from '../svg-icon';
-import { like } from '../svg-icon/icons';
+import { heart } from '../../icons/heart';
 
-const icon = <SvgIcon icon={like} />;
 const getProps = (size) => ({
   size,
   children: 'Button text',
-  trailingIcon: <SvgIcon size="lg" icon={like} />,
+  trailingIcon: <SvgIcon icon={heart} />,
 });
 
 <>
@@ -155,18 +154,60 @@ const getProps = (size) => ({
 </>;
 ```
 
+Rounded
+
+```jsx padded
+import { Button } from './button';
+
+const getProps = (appearance) => ({
+  appearance,
+  isRounded: true,
+  children: 'Button text',
+});
+
+<>
+  <Button {...getProps('default')} />
+  <Button {...getProps('primary')} />
+  <Button {...getProps('secondary')} />
+  <Button {...getProps('danger')} />
+  <Button {...getProps('success')} />
+  <Button {...getProps('minimal')} />
+</>;
+```
+
 Icon button
 
 ```jsx padded
 import { Button } from './button';
 import { SvgIcon } from '../svg-icon';
-import { remove } from '../svg-icon/icons';
+import { xLg } from '../../icons/x-lg';
 
 const getProps = (size) => ({
   size,
   noPadding: true,
   appearance: 'secondary',
-  leadingIcon: <SvgIcon size="xl" icon={remove} />,
+  leadingIcon: <SvgIcon icon={xLg} />,
+});
+
+<>
+  <Button {...getProps('xs')} />
+  <Button {...getProps('sm')} />
+  <Button {...getProps('md')} />
+  <Button {...getProps('lg')} />
+</>;
+```
+
+Icon circle button
+
+```jsx padded
+import { Button } from './button';
+import { SvgIcon } from '../svg-icon';
+import { plusLg } from '../../icons/plus-lg';
+
+const getProps = (size) => ({
+  size,
+  isCircle: true,
+  leadingIcon: <SvgIcon size="sm" icon={plusLg} />,
 });
 
 <>

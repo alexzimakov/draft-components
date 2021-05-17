@@ -1,11 +1,13 @@
+// noinspection ES6PreferShortImport
+
 import * as React from 'react';
 import { classNames } from '../../lib';
 import { FormattedContent } from '../formatted-content';
 import { Icon, SvgIcon } from '../svg-icon';
-import { warningIcon } from '../svg-icon/icons/warning';
-import { errorIcon } from '../svg-icon/icons/error';
-import { infoIcon } from '../svg-icon/icons/info';
-import { successIcon } from '../svg-icon/icons/success';
+import { exclamationTriangle } from '../../icons/exclamation-triangle';
+import { exclamationCircle } from '../../icons/exclamation-circle';
+import { checkCircle } from '../../icons/check-circle';
+import { infoCircle } from '../../icons/info-circle';
 
 export interface AlertProps extends React.ComponentPropsWithoutRef<'div'> {
   heading?: React.ReactNode;
@@ -14,11 +16,11 @@ export interface AlertProps extends React.ComponentPropsWithoutRef<'div'> {
 }
 
 const alertIcons: Record<NonNullable<AlertProps['appearance']>, Icon> = {
-  error: errorIcon,
-  warning: warningIcon,
-  success: successIcon,
-  info: infoIcon,
-  default: infoIcon,
+  error: exclamationCircle,
+  warning: exclamationTriangle,
+  success: checkCircle,
+  info: infoCircle,
+  default: infoCircle,
 };
 
 export function Alert({

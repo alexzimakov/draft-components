@@ -1,11 +1,13 @@
+// noinspection ES6PreferShortImport
+
 import * as React from 'react';
 import { FormattedContent } from '../formatted-content';
 import { classNames } from '../../lib';
 import { Icon, SvgIcon } from '../svg-icon';
-import { errorIcon } from '../svg-icon/icons/error';
-import { warningIcon } from '../svg-icon/icons/warning';
-import { successIcon } from '../svg-icon/icons/success';
-import { infoIcon } from '../svg-icon/icons/info';
+import { exclamationCircleFill } from '../../icons/exclamation-circle-fill';
+import { exclamationTriangleFill } from '../../icons/exclamation-triangle-fill';
+import { checkCircleFill } from '../../icons/check-circle-fill';
+import { infoCircleFill } from '../../icons/info-circle-fill';
 
 export interface InlineMessageProps
   extends React.ComponentPropsWithoutRef<'small'> {
@@ -17,11 +19,11 @@ const inlineMessageIcons: Record<
   NonNullable<InlineMessageProps['appearance']>,
   Icon
 > = {
-  error: errorIcon,
-  warning: warningIcon,
-  success: successIcon,
-  info: infoIcon,
-  default: infoIcon,
+  error: exclamationCircleFill,
+  warning: exclamationTriangleFill,
+  success: checkCircleFill,
+  info: infoCircleFill,
+  default: infoCircleFill,
 };
 
 export function InlineMessage({
