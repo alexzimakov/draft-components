@@ -11,7 +11,6 @@ export * from './checkbox';
 export * from './dialog';
 export * from './field-group';
 export * from './formatted-content';
-export * from './icon-button';
 export * from './inline-message';
 export * from './label';
 export * from './loading-view';
