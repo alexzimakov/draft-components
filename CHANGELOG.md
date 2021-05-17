@@ -1,3 +1,7 @@
+## 0.31.0
+
+Set right the package version.
+
 ## 0.30.4
 
 ### Changes
