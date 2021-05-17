@@ -35,3 +35,39 @@ describe('isEnterPressed()', () => {
     expect(keyboardUtil.isEnterPressed(event)).toBe(false);
   });
 });
+
+describe('isSpacePressed()', () => {
+  it('should return true when event fired after space press', () => {
+    const event = new KeyboardEvent('keydown', { keyCode: 32 });
+    expect(keyboardUtil.isSpacePressed(event)).toBe(true);
+  });
+
+  it('should return false when event fired after non space press', () => {
+    const event = new KeyboardEvent('keydown', { keyCode: 9 });
+    expect(keyboardUtil.isSpacePressed(event)).toBe(false);
+  });
+});
+
+describe('isLeftArrowPressed()', () => {
+  it('should return true when event fired after left arrow press', () => {
+    const event = new KeyboardEvent('keydown', { keyCode: 37 });
+    expect(keyboardUtil.isLeftArrowPressed(event)).toBe(true);
+  });
+
+  it('should return false when event fired after right arrow press', () => {
+    const event = new KeyboardEvent('keydown', { keyCode: 9 });
+    expect(keyboardUtil.isLeftArrowPressed(event)).toBe(false);
+  });
+});
+
+describe('isRightArrowPressed()', () => {
+  it('should return true when event fired after left arrow press', () => {
+    const event = new KeyboardEvent('keydown', { keyCode: 39 });
+    expect(keyboardUtil.isRightArrowPressed(event)).toBe(true);
+  });
+
+  it('should return false when event fired after right arrow press', () => {
+    const event = new KeyboardEvent('keydown', { keyCode: 9 });
+    expect(keyboardUtil.isRightArrowPressed(event)).toBe(false);
+  });
+});

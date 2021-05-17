@@ -1,25 +1,39 @@
 ```jsx
 import { SegmentedControl } from './segmented-control';
 
-const separator = <div style={{ padding: '8px 0' }} />;
+const segments = [
+  { id: 1, label: 'Newest' },
+  { id: 2, label: 'Popular' },
+  { id: 3, label: 'Top rated' },
+];
+const [activeKey, setActiveKey] = React.useState(segments[0].id);
 
-<>
-  <SegmentedControl size="sm">
-    <SegmentedControl.Item isActive={true}>First</SegmentedControl.Item>
-    <SegmentedControl.Item>Second</SegmentedControl.Item>
-    <SegmentedControl.Item>Third</SegmentedControl.Item>
-  </SegmentedControl>
-  {separator}
-  <SegmentedControl>
-    <SegmentedControl.Item isActive={true}>First</SegmentedControl.Item>
-    <SegmentedControl.Item>Second</SegmentedControl.Item>
-    <SegmentedControl.Item>Third</SegmentedControl.Item>
-  </SegmentedControl>
-  {separator}
-  <SegmentedControl size="lg">
-    <SegmentedControl.Item isActive={true}>First</SegmentedControl.Item>
-    <SegmentedControl.Item>Second</SegmentedControl.Item>
-    <SegmentedControl.Item>Third</SegmentedControl.Item>
-  </SegmentedControl>
-</>;
+<SegmentedControl
+  size="md"
+  items={segments}
+  selectedItemKey={activeKey}
+  onItemSelect={setActiveKey}
+/>;
+```
+
+With icon
+
+```jsx
+import { SegmentedControl } from './segmented-control';
+import { SvgIcon } from '../svg-icon';
+import { star } from '../../icons/star';
+
+const segments = [
+  { id: 'top_rated', label: 'Top rated', icon: <SvgIcon icon={star} /> },
+  { id: 'newest', label: 'Newest' },
+  { id: 'popular', label: 'Popular' },
+];
+const [activeKey, setActiveKey] = React.useState(segments[0].id);
+
+<SegmentedControl
+  size="md"
+  items={segments}
+  selectedItemKey={activeKey}
+  onItemSelect={setActiveKey}
+/>;
 ```

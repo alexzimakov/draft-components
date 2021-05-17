@@ -56,13 +56,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     });
     const content = (
       <>
-        <span className="dc-btn__body">
-          {leadingIcon && <span className="dc-btn__icon">{leadingIcon}</span>}
-
-          {children && <span className="dc-btn__text">{children}</span>}
-
-          {trailingIcon && <span className="dc-btn__icon">{trailingIcon}</span>}
-        </span>
+        {leadingIcon && <span className="dc-btn__icon">{leadingIcon}</span>}
+        {children && <span className="dc-btn__text">{children}</span>}
+        {trailingIcon && <span className="dc-btn__icon">{trailingIcon}</span>}
 
         {isLoading && (
           <span className="dc-btn__spinner">

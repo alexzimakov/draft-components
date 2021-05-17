@@ -1,73 +1,28 @@
 .dc-segmented-control {
-  display: inline-flex;
-  box-sizing: border-box;
-  color: var(--dc-segmented-control-text-color);
-  box-shadow: inset 0 0 0 0.0625rem var(--dc-segmented-control-border-color);
-  background: var(--dc-segmented-control-bg);
-  border-radius: $border-radius-md;
-  font-family: var(--dc-font-base);
-}
-
-.dc-segmented-control__item {
   position: relative;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1 1 auto;
-  box-sizing: border-box;
-  width: auto;
-  height: $button-md-height;
-  max-width: 100%;
-  padding: 0 $gap-4x;
-  cursor: pointer;
-  user-select: none;
-  letter-spacing: $tracking-tight;
-  color: inherit;
-  border: 0.0625rem solid transparent;
-  border-radius: inherit;
-  background: none;
-  font-weight: $font-weight-medium;
-  font-size: $font-size-sm;
-  line-height: $leading-default;
-
-  &:focus {
-    outline: none;
-    border-color: var(--dc-segmented-control-border-focus);
-    @include focus-ring();
-  }
-
-  &:not(&_active):not(:focus) + &:not(&_active):not(:focus)::before {
-    position: absolute;
-    top: 19%;
-    left: 0;
-    width: 0.0625rem;
-    height: 62%;
-    content: '';
-    background: var(--dc-segmented-control-separator-color);
-  }
-}
-
-.dc-segmented-control__item_active {
-  color: var(--dc-segmented-control-text-color-active);
-  background: var(--dc-segmented-control-bg-active);
+  padding: px-to-rem(1px) px-to-rem(2px);
+  list-style: none;
+  border-radius: $border-radius-lg;
+  background: rgba($gray-900, $opacity-5);
 }
 
 .dc-segmented-control_size_sm {
   border-radius: $border-radius-md;
-
-  .dc-segmented-control__item {
-    height: $button-sm-height;
-    padding: 0 $gap-3x;
-    font-size: $font-size-sm;
-  }
 }
 
 .dc-segmented-control_size_lg {
-  border-radius: $border-radius-lg;
+  border-radius: $border-radius-xl;
+}
 
-  .dc-segmented-control__item {
-    height: $button-lg-height;
-    padding: 0 $gap-5x;
-    font-size: $font-size-base;
-  }
+.dc-segmented-control__radio-btn {
+  flex: auto;
+}
+
+.dc-segmented-control__radio-btn:focus {
+  z-index: 1;
+}
+
+.dc-segmented-control__radio-btn.dc-btn_default:hover {
+  background: var(--dc-btn-default-bg);
 }

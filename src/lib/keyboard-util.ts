@@ -32,10 +32,29 @@ function isEnterPressed(event: KeyboardEvent | React.KeyboardEvent): boolean {
   return getEventKey(event) === KEY_CODES.enter;
 }
 
+function isSpacePressed(event: KeyboardEvent | React.KeyboardEvent): boolean {
+  return getEventKey(event) === KEY_CODES.space;
+}
+
+function isLeftArrowPressed(
+  event: KeyboardEvent | React.KeyboardEvent
+): boolean {
+  return getEventKey(event) === KEY_CODES.arrowLeft;
+}
+
+function isRightArrowPressed(
+  event: KeyboardEvent | React.KeyboardEvent
+): boolean {
+  return getEventKey(event) === KEY_CODES.arrowRight;
+}
+
 export const keyboardUtil = {
   KEY_CODES,
   getEventKey,
   isTabPressed,
   isEscPressed,
   isEnterPressed,
+  isSpacePressed,
+  isLeftArrowPressed,
+  isRightArrowPressed,
 };
