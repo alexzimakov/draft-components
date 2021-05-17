@@ -22,7 +22,7 @@ import { FormattedContent } from './formatted-content';
 </div>;
 ```
 
-Formatted text:
+Formatted text
 
 ```jsx
 import { FormattedContent } from './formatted-content';

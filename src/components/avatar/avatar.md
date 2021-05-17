@@ -1,8 +1,7 @@
 ```jsx padded
 import { Avatar } from './avatar';
 
-const src =
-  'https://images.unsplash.com/photo-1528359645462-5ff224bf906e?ixlib=rb-1.2.1&fit=crop&crop=focalpoint&fp-x=.550&fp-y=.35&fp-z=2.4&w=120&h=120';
+const src = `https://images.unsplash.com/photo-1528359645462-5ff224bf906e?ixlib=rb-1.2.1&fit=crop&crop=focalpoint&fp-x=.550&fp-y=.35&fp-z=2.4&w=120&h=120`;
 
 <>
   <Avatar src={src} size="xs" />
@@ -13,7 +12,7 @@ const src =
 </>;
 ```
 
-With initials:
+With initials
 
 ```jsx padded
 import { Avatar } from './avatar';
@@ -29,13 +28,12 @@ const initials = 'DC';
 </>;
 ```
 
-Rounded:
+Rounded
 
 ```jsx padded
 import { Avatar } from './avatar';
 
-const src =
-  'https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&fit=crop&crop=focalpoint&fp-x=.535&fp-y=.50&fp-z=2&w=120&h=120';
+const src = `https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&fit=crop&crop=focalpoint&fp-x=.535&fp-y=.50&fp-z=2&w=120&h=120`;
 
 <>
   <Avatar src={src} size="xs" isRounded={true} />
@@ -46,7 +44,7 @@ const src =
 </>;
 ```
 
-With the placeholder:
+With the placeholder
 
 ```jsx padded
 import { Avatar } from './avatar';
@@ -60,22 +58,22 @@ import { Avatar } from './avatar';
 </>;
 ```
 
-Different colors:
+Different colors
 
 ```jsx padded
-import {Avatar} from './avatar';
+import { Avatar } from './avatar';
 
 const initials = 'DC';
 
 <>
-  <Avatar initials={initials} isRounded={true}/>
-  <Avatar fillColor="blue" initials={initials} isRounded={true}/>
-  <Avatar fillColor="cyan" initials={initials} isRounded={true}/>
-  <Avatar fillColor="red" initials={initials} isRounded={true}/>
-  <Avatar fillColor="green" initials={initials} isRounded={true}/>
-  <Avatar fillColor="lime" initials={initials} isRounded={true}/>
-  <Avatar fillColor="indigo" initials={initials} isRounded={true}/>
-  <Avatar fillColor="yellow" initials={initials} isRounded={true}/>
-  <Avatar fillColor="orange" initials={initials} isRounded={true}/>
+  <Avatar initials={initials} isRounded={true} />
+  <Avatar fillColor="blue" initials={initials} isRounded={true} />
+  <Avatar fillColor="cyan" initials={initials} isRounded={true} />
+  <Avatar fillColor="red" initials={initials} isRounded={true} />
+  <Avatar fillColor="green" initials={initials} isRounded={true} />
+  <Avatar fillColor="lime" initials={initials} isRounded={true} />
+  <Avatar fillColor="indigo" initials={initials} isRounded={true} />
+  <Avatar fillColor="yellow" initials={initials} isRounded={true} />
+  <Avatar fillColor="orange" initials={initials} isRounded={true} />
 </>;
 ```

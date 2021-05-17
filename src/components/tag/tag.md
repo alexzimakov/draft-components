@@ -74,7 +74,7 @@ const getProps = (size, isRounded) => ({
 </>;
 ```
 
-Colored
+Different colors
 
 ```jsx padded
 import { Tag } from './tag';

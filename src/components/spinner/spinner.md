@@ -4,7 +4,7 @@ import { Spinner } from './spinner';
 <Spinner />;
 ```
 
-Different sizes:
+Different sizes
 
 ```jsx padded
 import { Spinner } from './spinner';

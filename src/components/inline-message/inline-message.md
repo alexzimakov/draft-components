@@ -20,7 +20,7 @@ import { InlineMessage } from './inline-message';
 </div>;
 ```
 
-With an icon:
+With an icon
 
 ```jsx
 import { InlineMessage } from './inline-message';

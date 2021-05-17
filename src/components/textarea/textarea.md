@@ -18,19 +18,19 @@ const Separator = () => <hr style={{ margin: '16px 0', border: 'none' }} />;
 </>;
 ```
 
-Invalid state:
+Invalid state
 
 ```jsx
 <Textarea placeholder="Write a few sentences about yourself" isInvalid={true} />
 ```
 
-Disabled state:
+Disabled state
 
 ```jsx
 <Textarea placeholder="Write a few sentences about yourself" disabled={true} />
 ```
 
-Full width:
+Full width
 
 ```jsx
 <Textarea

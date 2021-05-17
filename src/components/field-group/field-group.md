@@ -28,7 +28,7 @@ const [error, setError] = React.useState('');
 </FieldGroup>;
 ```
 
-Children as function:
+Children as function
 
 ```jsx
 import { TextField } from '../text-field';

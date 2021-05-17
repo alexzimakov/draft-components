@@ -1,3 +1,12 @@
+## 0.30.4
+
+### Changes
+
+- Remove `IconButton` component;
+- Replace `Badge` component with a `Tag` component;
+- Replace custom icons with the [Bootstrap](https://icons.getbootstrap.com) icons;
+- Update `Button` component: improve styles, rename `hasFullWidth` prop to `fullWidth`, add `isRounded`, `isCircle` and `noPadding` props.
+
 ## 0.30.3
 
 ### Changes

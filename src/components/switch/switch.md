@@ -4,7 +4,7 @@ import { Switch } from './switch';
 <Switch />;
 ```
 
-With a label:
+With a label
 
 ```jsx
 import { Switch } from './switch';
@@ -12,7 +12,7 @@ import { Switch } from './switch';
 <Switch label="Enable Location Services" />;
 ```
 
-With the label and description:
+With the label and description
 
 ```jsx
 import { Switch } from './switch';
@@ -23,7 +23,7 @@ import { Switch } from './switch';
 />;
 ```
 
-Disabled state:
+Disabled state
 
 ```jsx
 import { Switch } from './switch';

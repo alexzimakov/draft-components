@@ -20,7 +20,7 @@ const options = (
 </>;
 ```
 
-Multiselect:
+Multiselect
 
 ```jsx
 import { Select } from './select';
@@ -35,7 +35,7 @@ import { Select } from './select';
 </Select>;
 ```
 
-Invalid state:
+Invalid state
 
 ```jsx
 import { Select } from './select';
@@ -51,7 +51,7 @@ import { Select } from './select';
 </Select>;
 ```
 
-Disabled state:
+Disabled state
 
 ```jsx
 import { Select } from './select';
@@ -67,7 +67,7 @@ import { Select } from './select';
 </Select>;
 ```
 
-Full width:
+Full width
 
 ```jsx
 import { Select } from './select';
