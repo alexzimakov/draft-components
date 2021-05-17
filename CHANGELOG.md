@@ -1,3 +1,9 @@
+## 0.32.0
+
+### Changes
+
+- New `SegmentedControl` component;
+
 ## 0.31.0
 
 Set right the package version.

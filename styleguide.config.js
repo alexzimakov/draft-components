@@ -40,7 +40,11 @@ module.exports = {
     },
     {
       name: 'Navigation',
-      components: getComponents('breadcrumbs', 'segmented-control'),
+      components: getComponents(
+        'breadcrumbs',
+        'segmented-control',
+        'scope-buttons'
+      ),
     },
     {
       name: 'Feedback',
