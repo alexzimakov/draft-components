@@ -3,9 +3,7 @@ import { CheckboxProps } from '../checkbox';
 import { SelectionControl } from '../selection-control';
 import { classNames } from '../../lib';
 
-export interface SwitchProps extends CheckboxProps {}
-
-export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
+export const Switch = React.forwardRef<HTMLInputElement, CheckboxProps>(
   function Switch(
     { label, description, className, style, disabled, ...props },
     ref
@@ -20,8 +18,8 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
       >
         <input
           {...props}
-          ref={ref}
           className="dc-switch__input"
+          ref={ref}
           type="checkbox"
           disabled={disabled}
         />

@@ -37,8 +37,8 @@ module.exports = {
         'select',
         'textarea',
         'checkbox',
+        'radio-button',
         'switch',
-        'radio',
         'field-group'
       ),
     },

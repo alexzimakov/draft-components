@@ -40,7 +40,7 @@ Invalid state
 ```jsx
 import { Select } from './select';
 
-<Select isInvalid={true}>
+<Select invalid={true}>
   <option>Choose a browser</option>
   <option>Chrome</option>
   <option>Firefox</option>
@@ -72,7 +72,7 @@ Full width
 ```jsx
 import { Select } from './select';
 
-<Select hasFullWidth={true}>
+<Select fullWidth={true}>
   <option>Choose a browser</option>
   <option>Chrome</option>
   <option>Firefox</option>

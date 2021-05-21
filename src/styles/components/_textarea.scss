@@ -1,19 +1,8 @@
-@function textarea-min-height($lines: 5, $leading: $leading-normal) {
-  @return (1em * $leading * $lines) + ($control-gap * 2);
-}
-
 .dc-textarea {
-  width: $control-width * 1.5;
-  min-height: textarea-min-height();
-  padding: $control-gap;
+  width: calc(var(--dc-field-w) * 1.75);
+  // min-height = lines-count * leading-in-rem * (top-padding + bottom-padding)
+  min-height: calc(5 * var(--dc-textarea-lh) * 1rem + var(--dc-field-pad) * 2);
+  padding: var(--dc-field-pad);
   resize: vertical;
-  line-height: $leading-normal;
-}
-
-.dc-textarea.dc-base-control_size_sm {
-  width: $control-width * 1.25;
-}
-
-.dc-textarea.dc-base-control_size_lg {
-  width: $control-width * 1.75;
+  line-height: var(--dc-textarea-lh);
 }

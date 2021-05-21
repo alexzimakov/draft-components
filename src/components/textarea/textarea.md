@@ -1,18 +1,16 @@
 ```jsx stacked
+import { Textarea } from './textarea';
+
 const props = {
   placeholder: 'Write a few sentences about yourself',
   spellCheck: false,
-};
-const hrStyle = {
-  margin: '16px 0',
-  border: 'none',
 };
 const Separator = () => <hr style={{ margin: '16px 0', border: 'none' }} />;
 
 <>
   <Textarea {...props} size="sm" />
   <Separator />
-  <Textarea {...props} />
+  <Textarea {...props} size="md" />
   <Separator />
   <Textarea {...props} size="lg" />
 </>;
@@ -21,20 +19,21 @@ const Separator = () => <hr style={{ margin: '16px 0', border: 'none' }} />;
 Invalid state
 
 ```jsx
-<Textarea placeholder="Write a few sentences about yourself" isInvalid={true} />
+import { Textarea } from './textarea';
+
+<Textarea invalid={true} placeholder="Write a few sentences about yourself" />;
 ```
 
 Disabled state
 
 ```jsx
-<Textarea placeholder="Write a few sentences about yourself" disabled={true} />
+import { Textarea } from './textarea';
+
+<Textarea disabled={true} placeholder="Write a few sentences about yourself" />;
 ```
 
 Full width
 
 ```jsx
-<Textarea
-  placeholder="Write a few sentences about yourself"
-  hasFullWidth={true}
-/>
+<Textarea fullWidth={true} placeholder="Write a few sentences about yourself" />
 ```

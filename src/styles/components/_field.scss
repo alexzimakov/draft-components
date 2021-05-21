@@ -1,0 +1,73 @@
+.dc-field {
+  position: relative;
+  box-sizing: border-box;
+  width: var(--dc-field-w);
+  height: var(--dc-field-h);
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  transition: $transition-quick;
+  transition-property: color, border-color, background-color, box-shadow;
+  color: var(--dc-field-text-color);
+  border: 1px solid var(--dc-field-border-color);
+  border-radius: var(--dc-field-br);
+  background-color: var(--dc-field-bg-color);
+  font-family: var(--dc-font-base);
+  font-size: var(--dc-field-fs);
+  font-weight: $font-weight-normal;
+  line-height: 1;
+  appearance: none;
+
+  &::placeholder {
+    opacity: $opacity-40;
+    color: inherit;
+  }
+}
+
+.dc-field:focus,
+.dc-field_focused {
+  --dc-field-focus-color: var(--dc-field-accent-color);
+
+  outline: none;
+  border-color: var(--dc-field-focus-color);
+  box-shadow: 0 0 0 1px var(--dc-field-focus-color);
+}
+
+.dc-field_invalid {
+  border-color: var(--dc-field-danger-color);
+}
+
+.dc-field_invalid:focus,
+.dc-field_invalid.dc-field_focused {
+  --dc-field-focus-color: var(--dc-field-danger-color);
+}
+
+.dc-field:disabled,
+.dc-field[disabled],
+.dc-field_disabled {
+  pointer-events: none;
+  color: var(--dc-field-disabled-text-color);
+  -webkit-text-fill-color: var(--dc-field-disabled-text-color);
+  border-color: var(--dc-field-disabled-border-color);
+  background-color: var(--dc-field-disabled-bg-color);
+  box-shadow: none;
+}
+
+.dc-field_size_sm {
+  --dc-field-w: 14rem;
+  --dc-field-h: 1.75rem;
+  --dc-field-br: #{$border-radius-xs};
+  --dc-field-fs: 0.8125rem;
+}
+
+.dc-field_size_lg {
+  --dc-field-w: 20rem;
+  --dc-field-h: 2.25rem;
+  --dc-field-br: #{$border-radius-sm};
+  --dc-field-fs: 0.9375rem;
+}
+
+.dc-field_full_width {
+  width: 100% !important;
+}

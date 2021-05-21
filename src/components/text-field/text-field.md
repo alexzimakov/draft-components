@@ -43,7 +43,7 @@ Invalid state
 ```jsx
 import { TextField } from './text-field';
 
-<TextField isInvalid={true} placeholder="Invalid text field..." />;
+<TextField invalid={true} placeholder="Invalid text field..." />;
 ```
 
 Disabled state
@@ -66,9 +66,5 @@ Full width
 ```jsx
 import { TextField } from './text-field';
 
-<TextField
-  size="lg"
-  hasFullWidth={true}
-  placeholder="Search or enter address"
-/>;
+<TextField size="lg" fullWidth={true} placeholder="Search or enter address" />;
 ```

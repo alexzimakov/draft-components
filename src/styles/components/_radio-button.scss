@@ -1,14 +1,14 @@
-.dc-radio-button {
+.dc-radio-btn {
   --dc-selection-control-size: var(--dc-radio-button-size);
 
   position: relative;
 }
 
-.dc-radio-button__input {
+.dc-radio-btn__input {
   @include visually-hidden;
 }
 
-.dc-radio-button__radio {
+.dc-radio-btn__radio {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -16,16 +16,16 @@
   width: var(--dc-radio-button-size);
   height: var(--dc-radio-button-size);
   cursor: pointer;
-  color: var(--dc-control-accent-text-color);
+  color: var(--dc-field-accent-text-color);
   border-radius: 50%;
-  border: 0.0625rem solid var(--dc-control-border-color);
-  background: var(--dc-control-bg-color);
+  border: 0.0625rem solid var(--dc-field-border-color);
+  background: var(--dc-field-bg-color);
 
-  .dc-radio-button__input:checked + & {
+  .dc-radio-btn__input:checked + & {
     position: relative;
-    color: var(--dc-control-accent-text-color);
-    border-color: var(--dc-control-accent-color);
-    background: var(--dc-control-accent-color);
+    color: var(--dc-field-accent-text-color);
+    border-color: var(--dc-field-accent-color);
+    background: var(--dc-field-accent-color);
 
     &::after {
       position: absolute;
@@ -42,18 +42,17 @@
     }
   }
 
-  .dc-radio-button__input:focus + & {
-    border-color: var(--dc-control-accent-color);
-    @include focus-ring(var(--dc-focus-ring-color));
+  .dc-radio-btn__input:focus + & {
+    box-shadow: 0 0 0 2px #{$white}, 0 0 0 4px var(--dc-field-accent-color);
   }
 
-  .dc-radio-button__input:disabled + & {
+  .dc-radio-btn__input:disabled + & {
     cursor: default;
-    border-color: var(--dc-control-disabled-border-color);
-    background: var(--dc-control-disabled-bg-color);
+    border-color: var(--dc-field-disabled-border-color);
+    background: var(--dc-field-disabled-bg-color);
 
     &::after {
-      color: var(--dc-control-disabled-text-color);
+      color: var(--dc-field-disabled-text-color);
     }
   }
 }

@@ -14,7 +14,7 @@ const [error, setError] = React.useState('');
 >
   <TextField
     id="fieldGroupExample"
-    isInvalid={!!error}
+    invalid={!!error}
     value={value}
     onChange={(event) => setValue(event.target.value)}
     onBlur={() => {
@@ -47,7 +47,7 @@ const [error, setError] = React.useState('');
     <TextField
       id={id}
       required={isRequired}
-      isInvalid={isInvalid}
+      invalid={isInvalid}
       value={value}
       onChange={(event) => setValue(event.target.value)}
       onBlur={() => {

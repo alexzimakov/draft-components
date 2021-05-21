@@ -14,23 +14,23 @@ export type PasswordFieldBaseProps = Omit<
 >;
 
 export interface PasswordFieldProps extends PasswordFieldBaseProps {
-  showPasswordA11yTitle?: string;
-  hidePasswordA11yTitle?: string;
+  showPasswordAriaTitle?: string;
+  hidePasswordAriaTitle?: string;
 }
 
 export function PasswordField({
-  showPasswordA11yTitle = 'Show password',
-  hidePasswordA11yTitle = 'Hide password',
+  showPasswordAriaTitle = 'Show password',
+  hidePasswordAriaTitle = 'Hide password',
   className,
   ...props
 }: PasswordFieldProps) {
   const [type, setType] = React.useState<TextFieldProps['type']>('password');
 
   let icon: SvgIconProps['icon'] = eyeSlash;
-  let title: string = showPasswordA11yTitle;
+  let title: string = showPasswordAriaTitle;
   if (type === 'text') {
     icon = eye;
-    title = hidePasswordA11yTitle;
+    title = hidePasswordAriaTitle;
   }
 
   return (

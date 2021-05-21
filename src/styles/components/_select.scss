@@ -1,4 +1,4 @@
-@function select-bg-image($color) {
+@function get-arrow-icon($color) {
   @return inline-svg(
     '<svg width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 11L6 14L9 11" stroke="#{$color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 5L6 2L3 5" stroke="#{$color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
   );
@@ -6,25 +6,25 @@
 
 .dc-select {
   width: auto;
-  padding-right: 0.85em + $control-gap * 1.75;
-  padding-left: $control-gap;
-  background-image: select-bg-image($gray-600);
+  padding-right: calc(1.25em + var(--dc-field-pad));
+  padding-left: var(--dc-field-pad);
+  cursor: pointer;
+  background-image: get-arrow-icon($gray-600);
   background-repeat: no-repeat;
   background-size: 0.85em auto;
-  background-position: calc(100% - #{$control-gap}) 55%;
+  background-position: calc(100% - var(--dc-field-pad)) center;
   box-shadow: $shadow-xs;
   line-height: $leading-default;
-  cursor: pointer;
 
   &:disabled {
-    background-image: select-bg-image($gray-400);
+    background-image: get-arrow-icon($gray-400);
   }
 }
 
 .dc-select[multiple] {
-  height: auto;
+  height: initial;
   padding: $gap-2x 0;
-  background: var(--dc-control-bg-color);
+  background: var(--dc-field-bg-color);
 
   option {
     padding: $gap-1x $gap-3x;

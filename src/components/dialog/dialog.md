@@ -52,20 +52,20 @@ const closeNestedDialog = () => setIsNestedDialogOpen(false);
       }}
     >
       <FieldGroup label="City:" style={{gridArea: 'city'}}>
-        {({id}) => <TextField id={id} hasFullWidth={true}/>}
+        {({id}) => <TextField id={id} fullWidth={true}/>}
       </FieldGroup>
       <FieldGroup label="Street:" style={{gridArea: 'street'}}>
-        {({id}) => <TextField id={id} hasFullWidth={true}/>}
+        {({id}) => <TextField id={id} fullWidth={true}/>}
       </FieldGroup>
       <FieldGroup label="ZIP:" style={{gridArea: 'zip'}}>
-        {({id}) => <TextField id={id} hasFullWidth={true}/>}
+        {({id}) => <TextField id={id} fullWidth={true}/>}
       </FieldGroup>
       <FieldGroup
         label="Special instructions:"
         hint="For example, gate code or other information to help the driver find you"
         style={{gridArea: 'instructions'}}
       >
-        {({id}) => <Textarea id={id} hasFullWidth={true}/>}
+        {({id}) => <Textarea id={id} fullWidth={true}/>}
       </FieldGroup>
     </div>
   </Dialog>

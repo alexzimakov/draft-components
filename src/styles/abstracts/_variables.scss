@@ -238,30 +238,3 @@ $shadow-xl: (
   0 1.25rem 1.5625rem -0.3125rem rgba($black, 0.1),
   0 0.625rem 0.625rem -0.3125rem rgba($black, 0.04)
 );
-
-/*------------------------------------*\
-  #BUTTONS
-\*------------------------------------*/
-$button-xs-height: 1.5rem;
-$button-sm-height: 1.75rem;
-$button-md-height: 2rem;
-$button-lg-height: 2.5rem;
-
-/*------------------------------------*\
-  #BASE CONTROLS
-\*------------------------------------*/
-$control-width: 18rem;
-$control-height: 2rem;
-$control-gap: 0.75em;
-$control-border-radius: $border-radius-sm;
-$control-font-size: $font-size-sm;
-
-$control-sm-width: 14rem;
-$control-sm-height: 1.75rem;
-$control-sm-border-radius: $border-radius-xs;
-$control-sm-font-size: 0.8125rem;
-
-$control-lg-width: 18rem;
-$control-lg-height: 2.25rem;
-$control-lg-border-radius: $border-radius-md;
-$control-lg-font-size: 0.9375rem;

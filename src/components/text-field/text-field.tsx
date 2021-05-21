@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { classNames } from '../../lib';
+import { classNames, guards } from '../../lib';
 
 export type TextFieldHtmlAttrs = Omit<
   React.ComponentPropsWithoutRef<'input'>,
@@ -26,8 +26,8 @@ export type TextFieldHtmlAttrs = Omit<
 export interface TextFieldProps extends TextFieldHtmlAttrs {
   type?: 'email' | 'password' | 'search' | 'tel' | 'text' | 'url';
   size?: 'sm' | 'md' | 'lg';
-  isInvalid?: boolean;
-  hasFullWidth?: boolean;
+  invalid?: boolean;
+  fullWidth?: boolean;
   leadingAddOn?: React.ReactNode;
   trailingAddOn?: React.ReactNode;
 }
@@ -36,8 +36,8 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   function TextField(
     {
       size = 'md',
-      isInvalid,
-      hasFullWidth,
+      invalid,
+      fullWidth,
       leadingAddOn,
       trailingAddOn,
       style,
@@ -50,44 +50,42 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     },
     ref
   ) {
-    const [hasFocus, setHasFocus] = React.useState(false);
+    const [focused, setFocused] = React.useState(false);
 
     return (
       <div
         style={style}
-        className={classNames(className, 'dc-base-control', 'dc-text-field', {
-          'dc-base-control_disabled': disabled,
-          'dc-base-control_focused': hasFocus,
-          'dc-base-control_invalid': isInvalid,
-          'dc-base-control_full_width': hasFullWidth,
-          'dc-text-field_has_leading-add-on': leadingAddOn,
-          'dc-text-field_has_trailing-add-on': trailingAddOn,
-          [`dc-base-control_size_${size}`]: size,
+        className={classNames(className, 'dc-field', 'dc-text-field', {
+          'dc-field_disabled': disabled,
+          'dc-field_invalid': invalid,
+          'dc-field_focused': focused,
+          'dc-field_full_width': fullWidth,
+          [`dc-field_size_${size}`]: size,
         })}
       >
-        {leadingAddOn ? (
-          <span className="dc-text-field__leading-add-on">{leadingAddOn}</span>
-        ) : null}
+        {leadingAddOn && (
+          <span className="dc-text-field__add-on">{leadingAddOn}</span>
+        )}
+
         <input
+          {...props}
           className="dc-text-field__input"
           ref={ref}
           type={type}
           disabled={disabled}
           onFocus={(event) => {
-            setHasFocus(true);
-            onFocus?.(event);
+            setFocused(true);
+            guards.isFunction(onFocus) && onFocus(event);
           }}
           onBlur={(event) => {
-            setHasFocus(false);
-            onBlur?.(event);
+            setFocused(false);
+            guards.isFunction(onBlur) && onBlur(event);
           }}
-          {...props}
         />
-        {trailingAddOn ? (
-          <span className="dc-text-field__trailing-add-on">
-            {trailingAddOn}
-          </span>
-        ) : null}
+
+        {trailingAddOn && (
+          <span className="dc-text-field__add-on">{trailingAddOn}</span>
+        )}
       </div>
     );
   }

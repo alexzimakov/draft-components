@@ -1,33 +1,24 @@
 .dc-text-field {
   display: inline-flex;
   align-items: center;
-  justify-content: flex-start;
 }
 
 .dc-text-field__input {
-  flex: 1 1 auto;
+  flex: auto;
   box-sizing: border-box;
   width: 100%;
   height: inherit;
   min-width: 0;
-  padding: 0 $control-gap;
+  padding: 0 calc(var(--dc-field-pad) * 0.75);
   color: inherit;
-  font: inherit;
-  line-height: $control-height;
   border: none;
   background: none;
-
-  .dc-base-control_size_sm & {
-    line-height: $control-sm-height;
-  }
-
-  .dc-base-control_size_lg & {
-    line-height: $control-lg-height;
-  }
+  font: inherit;
+  line-height: var(--dc-field-h);
 
   &::placeholder {
-    opacity: $opacity-40;
     color: inherit;
+    opacity: $opacity-40;
   }
 
   &:focus {
@@ -38,33 +29,24 @@
     color: inherit;
     -webkit-text-fill-color: inherit;
   }
-
-  .dc-text-field_has_leading-add-on & {
-    padding-left: $control-gap * 0.75;
-  }
-
-  .dc-text-field_has_trailing-add-on & {
-    padding-right: $control-gap * 0.75;
-  }
 }
 
-.dc-text-field__leading-add-on,
-.dc-text-field__trailing-add-on {
+.dc-text-field__add-on {
   display: inline-flex;
-  flex: 0 0 auto;
+  flex: none;
   padding: 0;
-  color: var(--dc-control-add-on-color);
+  color: var(--dc-field-add-on-color);
   border-radius: inherit;
 
-  .dc-base-control_disabled & {
-    color: var(--dc-control-disabled-add-on-color);
+  .dc-field_disabled & {
+    color: var(--dc-field-disabled-add-on-color);
   }
 }
 
-.dc-text-field__leading-add-on {
-  padding-left: $control-gap;
+.dc-text-field > *:first-child {
+  padding-left: var(--dc-field-pad);
 }
 
-.dc-text-field__trailing-add-on {
-  padding-right: $control-gap;
+.dc-text-field > *:last-child {
+  padding-right: var(--dc-field-pad);
 }

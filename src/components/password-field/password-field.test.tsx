@@ -17,8 +17,8 @@ it('should toggle password visibility', () => {
   render(
     <PasswordField
       placeholder={placeholder}
-      showPasswordA11yTitle={showPasswordA11yTitle}
-      hidePasswordA11yTitle={hidePasswordA11yTitle}
+      showPasswordAriaTitle={showPasswordA11yTitle}
+      hidePasswordAriaTitle={hidePasswordA11yTitle}
     />
   );
 

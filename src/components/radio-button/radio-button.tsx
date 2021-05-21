@@ -1,9 +1,9 @@
 import * as React from 'react';
+import { classNames } from '../../lib';
 import {
   SelectionControl,
   SelectionControlBaseProps,
 } from '../selection-control';
-import { classNames } from '../../lib';
 
 export type RadioButtonHtmlAttrs = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -31,8 +31,9 @@ export type RadioButtonHtmlAttrs = Omit<
   | 'width'
 >;
 
-// prettier-ignore
-export interface RadioButtonProps extends SelectionControlBaseProps, RadioButtonHtmlAttrs {}
+export interface RadioButtonProps
+  extends SelectionControlBaseProps,
+    RadioButtonHtmlAttrs {}
 
 export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
   function RadioButton(
@@ -41,7 +42,7 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
   ) {
     return (
       <SelectionControl
-        className={classNames(className, 'dc-radio-button')}
+        className={classNames(className, 'dc-radio-btn')}
         style={style}
         label={label}
         description={description}
@@ -49,12 +50,12 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
       >
         <input
           {...props}
+          className="dc-radio-btn__input"
           ref={ref}
-          className="dc-radio-button__input"
           type="radio"
           disabled={disabled}
         />
-        <span className="dc-radio-button__radio" aria-hidden={true} />
+        <span className="dc-radio-btn__radio" aria-hidden={true} />
       </SelectionControl>
     );
   }

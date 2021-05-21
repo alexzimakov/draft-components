@@ -80,33 +80,44 @@
   --dc-btn-success-focus-ring-color: #{rgba($green-500, $opacity-75)};
 
   /*------------------------------------*\
-   #CONTROLS
+   #FORM FIELDS
   \*------------------------------------*/
-  --dc-control-text-color: #{$gray-800};
-  --dc-control-add-on-color: #{$gray-600};
-  --dc-control-border-color: #{$gray-300};
-  --dc-control-bg-color: #{$white};
+  --dc-field-text-color: #{$gray-800};
+  --dc-field-add-on-color: #{$gray-600};
+  --dc-field-border-color: #{$gray-300};
+  --dc-field-bg-color: #{$white};
 
-  --dc-control-disabled-text-color: #{$gray-400};
-  --dc-control-disabled-add-on-color: #{$gray-400};
-  --dc-control-disabled-border-color: #{$gray-200};
-  --dc-control-disabled-bg-color: #{$gray-50};
+  --dc-field-disabled-text-color: #{$gray-400};
+  --dc-field-disabled-add-on-color: #{$gray-400};
+  --dc-field-disabled-border-color: #{$gray-200};
+  --dc-field-disabled-bg-color: #{$gray-50};
 
-  --dc-control-accent-color: #{$blue-500};
-  --dc-control-accent-text-color: #{$white};
-  --dc-control-danger-color: #{$red-600};
-  --dc-control-danger-text-color: #{$white};
+  --dc-field-accent-color: #{$blue-500};
+  --dc-field-accent-text-color: #{$white};
+  --dc-field-danger-color: #{$red-600};
+  --dc-field-danger-text-color: #{$white};
 
+  --dc-field-w: 18rem;
+  --dc-field-h: 32px;
+  --dc-field-pad: 0.75em;
+  --dc-field-br: #{$border-radius-xs};
+  --dc-field-fs: #{$font-size-sm};
+
+  --dc-textarea-lh: #{$leading-normal};
+
+  /*------------------------------------*\
+   #SELECTION CONTROLS
+  \*------------------------------------*/
   --dc-checkbox-size: 1.125rem;
 
   --dc-radio-button-size: 1.125rem;
 
-  --dc-switch-width: 2rem;
-  --dc-switch-height: 1.25rem;
   --dc-switch-check-size: 1rem;
   --dc-switch-bg-color: #{$gray-200};
   --dc-switch-check-color: #{$white};
   --dc-switch-accent-color: #{$blue-500};
+  --dc-switch-w: 2rem;
+  --dc-switch-h: 1.25rem;
 
   /*------------------------------------*\
    #ACTIONS GROUP

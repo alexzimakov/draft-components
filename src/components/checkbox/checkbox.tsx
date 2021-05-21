@@ -1,11 +1,11 @@
 // noinspection ES6PreferShortImport
 
 import * as React from 'react';
+import { classNames } from '../../lib';
 import {
   SelectionControl,
   SelectionControlBaseProps,
 } from '../selection-control';
-import { classNames } from '../../lib';
 import { SvgIcon } from '../svg-icon';
 import { dash } from '../../icons/dash';
 import { check } from '../../icons/check';
@@ -57,8 +57,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       >
         <input
           {...props}
-          ref={ref}
           className="dc-checkbox__input"
+          ref={ref}
           type="checkbox"
           disabled={disabled}
         />
