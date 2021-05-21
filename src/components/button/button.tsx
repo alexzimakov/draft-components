@@ -5,7 +5,7 @@ import { classNames } from '../../lib';
 export type ButtonHtmlAttrs = React.ComponentPropsWithoutRef<'button'>;
 
 export interface ButtonProps extends ButtonHtmlAttrs {
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   appearance?:
     | 'default'
     | 'primary'

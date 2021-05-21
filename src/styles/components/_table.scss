@@ -1,0 +1,158 @@
+.dc-table-container {
+  position: relative;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-top: var(--dc-table-border);
+  border-bottom: var(--dc-table-border);
+
+  &:focus {
+    outline: none;
+    @include focus-ring;
+  }
+}
+
+.dc-table {
+  width: 100%;
+  height: 100%;
+  border-spacing: 0;
+  border-collapse: separate;
+  font-family: var(--dc-font-base);
+  font-size: $font-size-sm;
+  font-weight: $font-weight-normal;
+  font-variant-numeric: tabular-nums;
+}
+
+.dc-table-head {
+}
+
+.dc-table-body {
+}
+
+.dc-table-tr {
+}
+
+.dc-table-row {
+}
+
+.dc-table-cell {
+  padding: $gap-4x;
+  border-bottom: var(--dc-table-border);
+  background: var(--dc-table-cell-bg);
+
+  .dc-table-head & {
+    padding-top: $gap-3x;
+    padding-bottom: $gap-3x;
+    white-space: nowrap;
+  }
+
+  .dc-table_dense-padding & {
+    padding: $gap-2x;
+  }
+}
+
+.dc-table-cell_header {
+  background: var(--dc-table-header-cell-bg);
+  font-weight: $font-weight-semi-bold;
+}
+
+.dc-table-cell__body {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dc-table-cell__sort-btn {
+  margin-right: $gap-2x;
+}
+
+.dc-table-sort-btn .dc-btn__text {
+  @include visually-hidden;
+}
+
+.dc-table_sticky-header > .dc-table-head > .dc-table-row > .dc-table-cell {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+}
+
+.dc-table-body > .dc-table-row:last-child > .dc-table-cell {
+  border-bottom: none;
+}
+
+.dc-table_striped > .dc-table-body .dc-table-cell {
+  border-left: none;
+  border-bottom: none;
+}
+
+.dc-table_bordered .dc-table-cell + .dc-table-cell {
+  border-left: var(--dc-table-border);
+}
+
+// noinspection CssMissingComma
+.dc-table_striped
+  > .dc-table-body
+  > .dc-table-row:nth-child(2n)
+  > .dc-table-cell {
+  background: var(--dc-table-striped-row-bg);
+}
+
+//noinspection CssMissingComma
+.dc-table.dc-table_row_highlighted:not(.dc-table_loading)
+  > .dc-table-body
+  > .dc-table-row:hover
+  > .dc-table-cell {
+  background: var(--dc-table-hover-row-bg);
+}
+
+.dc-table-row_selected > .dc-table-cell {
+  background: var(--dc-table-selected-row-bg);
+}
+// noinspection CssMissingComma
+.dc-table_striped
+  > .dc-table-body
+  > .dc-table-row_selected:nth-child(2n)
+  > .dc-table-cell {
+  background: var(--dc-table-selected-stiped-row-bg);
+}
+
+.dc-table_loading > .dc-table-body .dc-table-cell {
+  position: relative;
+  color: transparent;
+
+  & > * {
+    visibility: hidden;
+  }
+
+  $shine-width: 5rem;
+
+  @keyframes shine {
+    0% {
+      background-position: -$shine-width;
+    }
+    75%,
+    100% {
+      background-position: calc(100% + #{$shine-width}) 0;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    top: calc(50% - 0.5rem);
+    left: 8%;
+    width: 84%;
+    height: 1rem;
+    max-height: 100%;
+    content: '';
+    border-radius: $border-radius-2xs;
+    animation: shine 2s infinite linear;
+    background-color: var(--dc-skeleton-bg-color);
+    background-image: linear-gradient(
+      90deg,
+      var(--dc-skeleton-bg-color) 0%,
+      var(--dc-skeleton-color) 50%,
+      var(--dc-skeleton-bg-color) 100%
+    );
+    background-repeat: no-repeat;
+    background-size: $shine-width 100%;
+    background-position: -$shine-width 0;
+  }
+}

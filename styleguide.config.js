@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  pagePerSection: true,
   sections: [
     {
       name: 'General',
@@ -8,9 +9,12 @@ module.exports = {
         'formatted-content',
         'label',
         'inline-message',
-        'svg-icon',
         'spinner'
       ),
+    },
+    {
+      name: 'Icons',
+      components: getComponents('svg-icon'),
     },
     {
       name: 'Layout',
@@ -18,7 +22,7 @@ module.exports = {
     },
     {
       name: 'Data display',
-      components: getComponents('avatar', 'tag', 'tooltip'),
+      components: getComponents('avatar', 'tag', 'tooltip', 'table'),
     },
     {
       name: 'Controls',
