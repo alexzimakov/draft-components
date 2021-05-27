@@ -34,6 +34,7 @@ module.exports = {
         'text-field',
         'search-field',
         'password-field',
+        'datetime-field',
         'select',
         'textarea',
         'checkbox',

@@ -32,8 +32,8 @@ export function SegmentedControl<T extends SegmentId>({
   const onListKeyDown: React.KeyboardEventHandler<HTMLUListElement> = (
     event
   ) => {
-    const isLeftArrowPressed = keyboardUtil.isLeftArrowPressed(event);
-    const isRightArrowPressed = keyboardUtil.isRightArrowPressed(event);
+    const isLeftArrowPressed = keyboardUtil.isArrowLeftPressed(event);
+    const isRightArrowPressed = keyboardUtil.isArrowRightPressed(event);
 
     if (isLeftArrowPressed || isRightArrowPressed) {
       event.preventDefault();

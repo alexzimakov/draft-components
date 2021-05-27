@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const KEY_CODES = {
+export const KEY_CODES = {
   escape: 27,
   tab: 9,
   capsLock: 20,
@@ -14,47 +14,71 @@ const KEY_CODES = {
   arrowUp: 38,
   arrowRight: 39,
   arrowDown: 40,
+  delete: 46,
 };
 
-function getEventKey(event: KeyboardEvent | React.KeyboardEvent): number {
+export function getEventKey(
+  event: KeyboardEvent | React.KeyboardEvent
+): number {
   return event.which || event.keyCode;
 }
 
-function isTabPressed(event: KeyboardEvent | React.KeyboardEvent): boolean {
+export function isTabPressed(
+  event: KeyboardEvent | React.KeyboardEvent
+): boolean {
   return getEventKey(event) === KEY_CODES.tab;
 }
 
-function isEscPressed(event: KeyboardEvent | React.KeyboardEvent): boolean {
+export function isEscPressed(
+  event: KeyboardEvent | React.KeyboardEvent
+): boolean {
   return getEventKey(event) === KEY_CODES.escape;
 }
 
-function isEnterPressed(event: KeyboardEvent | React.KeyboardEvent): boolean {
+export function isEnterPressed(
+  event: KeyboardEvent | React.KeyboardEvent
+): boolean {
   return getEventKey(event) === KEY_CODES.enter;
 }
 
-function isSpacePressed(event: KeyboardEvent | React.KeyboardEvent): boolean {
+export function isSpacePressed(
+  event: KeyboardEvent | React.KeyboardEvent
+): boolean {
   return getEventKey(event) === KEY_CODES.space;
 }
 
-function isLeftArrowPressed(
+export function isArrowUpPressed(
   event: KeyboardEvent | React.KeyboardEvent
 ): boolean {
-  return getEventKey(event) === KEY_CODES.arrowLeft;
+  return getEventKey(event) === KEY_CODES.arrowUp;
 }
 
-function isRightArrowPressed(
+export function isArrowRightPressed(
   event: KeyboardEvent | React.KeyboardEvent
 ): boolean {
   return getEventKey(event) === KEY_CODES.arrowRight;
 }
 
-export const keyboardUtil = {
-  KEY_CODES,
-  getEventKey,
-  isTabPressed,
-  isEscPressed,
-  isEnterPressed,
-  isSpacePressed,
-  isLeftArrowPressed,
-  isRightArrowPressed,
-};
+export function isArrowDownPressed(
+  event: KeyboardEvent | React.KeyboardEvent
+): boolean {
+  return getEventKey(event) === KEY_CODES.arrowDown;
+}
+
+export function isArrowLeftPressed(
+  event: KeyboardEvent | React.KeyboardEvent
+): boolean {
+  return getEventKey(event) === KEY_CODES.arrowLeft;
+}
+
+export function isBackspacePressed(
+  event: KeyboardEvent | React.KeyboardEvent
+): boolean {
+  return getEventKey(event) === KEY_CODES.backspace;
+}
+
+export function isDeletePressed(
+  event: KeyboardEvent | React.KeyboardEvent
+): boolean {
+  return getEventKey(event) === KEY_CODES.delete;
+}
