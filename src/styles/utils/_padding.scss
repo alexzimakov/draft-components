@@ -1,0 +1,47 @@
+$padding-scale: (
+  0: 0,
+  1: $gap-1x,
+  2: $gap-2x,
+  3: $gap-3x,
+  4: $gap-4x,
+  5: $gap-5x,
+  6: $gap-6x,
+  8: $gap-8x,
+  10: $gap-10x,
+  12: $gap-12x,
+  16: $gap-16x,
+  20: $gap-20x,
+  24: $gap-24x,
+);
+
+@each $scale, $padding in $padding-scale {
+  .p-#{$scale} {
+    padding: $padding;
+  }
+
+  .px-#{$scale} {
+    padding-right: $padding;
+    padding-left: $padding;
+  }
+
+  .py-#{$scale} {
+    padding-top: $padding;
+    padding-bottom: $padding;
+  }
+
+  .pt-#{$scale} {
+    padding-top: $padding;
+  }
+
+  .pr-#{$scale} {
+    padding-right: $padding;
+  }
+
+  .pb-#{$scale} {
+    padding-bottom: $padding;
+  }
+
+  .pl-#{$scale} {
+    padding-left: $padding;
+  }
+}
