@@ -1,4 +1,4 @@
-import * as keyboardUtil from '../keyboard-util';
+import * as keyboardUtil from '../keyboard-helpers';
 
 describe('isEscapePressed()', () => {
   it('should return true when event fired after esc press', () => {

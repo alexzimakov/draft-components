@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { classNames, guards, util, keyboardUtil } from '../../lib';
+import { guards, reactHelpers, keyboardHelpers } from '../../lib';
 import { DateComponentInput } from './date-component-input';
 import { DateComponents, DateComponent } from './date-components';
 import { TextFieldProps } from '../text-field';
@@ -122,19 +122,19 @@ export const DatetimeField = React.forwardRef<
     const dateComponentOptions = DateComponents.options[dateComponent];
     const dateComponentValue = dateComponents[dateComponent];
     if (
-      keyboardUtil.isArrowLeftPressed(event) ||
-      keyboardUtil.isArrowRightPressed(event)
+      keyboardHelpers.isArrowLeftPressed(event) ||
+      keyboardHelpers.isArrowRightPressed(event)
     ) {
       event.preventDefault();
       const siblings = getInputSiblings(input);
-      const nextFocus = keyboardUtil.isArrowLeftPressed(event)
+      const nextFocus = keyboardHelpers.isArrowLeftPressed(event)
         ? siblings.prev
         : siblings.next;
       nextFocus.focus();
     } else if (
       !readOnly &&
-      (keyboardUtil.isArrowUpPressed(event) ||
-        keyboardUtil.isArrowDownPressed(event))
+      (keyboardHelpers.isArrowUpPressed(event) ||
+        keyboardHelpers.isArrowDownPressed(event))
     ) {
       event.preventDefault();
       let dateComponentNewValue: number;
@@ -142,7 +142,7 @@ export const DatetimeField = React.forwardRef<
         dateComponentNewValue = getDefaultValue(dateComponent);
       } else {
         dateComponentNewValue = Number(input.value);
-        if (keyboardUtil.isArrowUpPressed(event)) {
+        if (keyboardHelpers.isArrowUpPressed(event)) {
           dateComponentNewValue += 1;
         } else {
           dateComponentNewValue -= 1;
@@ -159,8 +159,8 @@ export const DatetimeField = React.forwardRef<
       defer(() => input.select());
     } else if (
       !readOnly &&
-      (keyboardUtil.isBackspacePressed(event) ||
-        keyboardUtil.isDeletePressed(event))
+      (keyboardHelpers.isBackspacePressed(event) ||
+        keyboardHelpers.isDeletePressed(event))
     ) {
       event.preventDefault();
       updateDateComponents('', dateComponent);
@@ -221,20 +221,24 @@ export const DatetimeField = React.forwardRef<
 
   return (
     <fieldset
-      className={classNames(className, 'dc-datetime-field')}
-      ref={util.mergeRefs(ref, fieldSetRef)}
+      className={reactHelpers.classNames(className, 'dc-datetime-field')}
+      ref={reactHelpers.mergeRefs(ref, fieldSetRef)}
       disabled={disabled}
       role="group"
       {...props}
     >
       <div
         data-testid="inputs-container"
-        className={classNames('dc-field', 'dc-datetime-field__body', {
-          'dc-field_focused': focused,
-          'dc-field_disabled': disabled,
-          'dc-field_invalid': invalid,
-          [`dc-field_size_${size}`]: size,
-        })}
+        className={reactHelpers.classNames(
+          'dc-field',
+          'dc-datetime-field__body',
+          {
+            'dc-field_focused': focused,
+            'dc-field_disabled': disabled,
+            'dc-field_invalid': invalid,
+            [`dc-field_size_${size}`]: size,
+          }
+        )}
         onKeyDown={handleKeyDown}
         onFocus={handleFocus}
         onBlur={handleBlur}

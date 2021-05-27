@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { FormattedContent } from '../formatted-content';
-import { classNames } from '../../lib';
+import { classNames } from '../../lib/react-helpers';
 import { Icon, SvgIcon } from '../svg-icon';
 import { exclamationCircleFill } from '../../icons/exclamation-circle-fill';
 import { exclamationTriangleFill } from '../../icons/exclamation-triangle-fill';

@@ -1,7 +1,7 @@
 // noinspection ES6PreferShortImport
 
 import * as React from 'react';
-import { util, classNames } from '../../lib';
+import { util, reactHelpers } from '../../lib';
 import {
   useCaptureFocus,
   useCloseOnEscPress,
@@ -76,7 +76,7 @@ export function Dialog({
           {...props}
           ref={dialogRef}
           style={{ ...style, width: getDialogWidth(width) }}
-          className={classNames(className, 'dc-dialog')}
+          className={reactHelpers.classNames(className, 'dc-dialog')}
           borderRadius="lg"
           padding="none"
           elevation="lg"
@@ -95,7 +95,7 @@ export function Dialog({
                 {description && (
                   <div
                     id={descriptionId}
-                    className={classNames(
+                    className={reactHelpers.classNames(
                       'dc-dialog__description',
                       FormattedContent.CSSClasses.subheadline
                     )}

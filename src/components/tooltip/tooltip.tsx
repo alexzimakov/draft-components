@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { classNames, guards, uniqueId, util } from '../../lib';
+import { guards, util, reactHelpers } from '../../lib';
 import { Positioner, PositionerProps } from '../positioner';
 
 interface ElementWithRef extends JSX.Element {
@@ -36,7 +36,7 @@ export function Tooltip({
   const [isShown, setIsShown] = React.useState(false);
   const show = () => setIsShown(true);
   const hide = () => setIsShown(false);
-  const tooltipId = isShown ? uniqueId('tooltip-') : undefined;
+  const tooltipId = isShown ? util.uniqueId('tooltip-') : undefined;
 
   const renderAnchor = () => {
     if (typeof anchor === 'function') {
@@ -49,7 +49,7 @@ export function Tooltip({
     }
 
     return React.cloneElement(anchor, {
-      ref: util.mergeRefs(anchor.ref, anchorRef),
+      ref: reactHelpers.mergeRefs(anchor.ref, anchorRef),
       'aria-labelledby': tooltipId,
       onMouseEnter: (event: React.MouseEvent) => {
         show();
@@ -77,7 +77,7 @@ export function Tooltip({
         <div
           {...props}
           id={tooltipId}
-          className={classNames(className, 'dc-tooltip')}
+          className={reactHelpers.classNames(className, 'dc-tooltip')}
           role="tooltip"
         >
           {content}

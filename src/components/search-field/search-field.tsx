@@ -1,3 +1,5 @@
+// noinspection ES6PreferShortImport
+
 import * as React from 'react';
 import { SvgIcon } from '../svg-icon';
 import { search } from '../../icons/search';

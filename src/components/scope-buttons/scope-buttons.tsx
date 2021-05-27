@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { classNames } from '../../lib/react-helpers';
 import { ScopeButton } from './scope-button';
-import { classNames } from '../../lib';
 
 export interface ScopeButtonsProps
   extends React.ComponentPropsWithoutRef<'div'> {}

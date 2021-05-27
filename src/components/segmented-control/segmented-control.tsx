@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { guards, util, reactHelpers, keyboardHelpers } from '../../lib';
 import { Button } from '../button';
-import { classNames, uniqueId, keyboardUtil, guards } from '../../lib';
 
 type SegmentId = string | number;
 
@@ -21,7 +21,7 @@ export interface SegmentedControlProps<T extends SegmentId>
 
 export function SegmentedControl<T extends SegmentId>({
   size = 'md',
-  name = uniqueId('segmented-control-'),
+  name = util.uniqueId('segmented-control-'),
   items,
   selectedItemKey,
   onItemSelect,
@@ -32,8 +32,8 @@ export function SegmentedControl<T extends SegmentId>({
   const onListKeyDown: React.KeyboardEventHandler<HTMLUListElement> = (
     event
   ) => {
-    const isLeftArrowPressed = keyboardUtil.isArrowLeftPressed(event);
-    const isRightArrowPressed = keyboardUtil.isArrowRightPressed(event);
+    const isLeftArrowPressed = keyboardHelpers.isArrowLeftPressed(event);
+    const isRightArrowPressed = keyboardHelpers.isArrowRightPressed(event);
 
     if (isLeftArrowPressed || isRightArrowPressed) {
       event.preventDefault();
@@ -59,7 +59,7 @@ export function SegmentedControl<T extends SegmentId>({
   return (
     <ul
       {...props}
-      className={classNames(
+      className={reactHelpers.classNames(
         className,
         'dc-segmented-control',
         `dc-segmented-control_size_${size}`
@@ -85,8 +85,8 @@ export function SegmentedControl<T extends SegmentId>({
                 onClick={() => onItemSelect(item.id, item)}
                 onKeyDown={(event) => {
                   if (
-                    keyboardUtil.isEnterPressed(event) ||
-                    keyboardUtil.isSpacePressed(event)
+                    keyboardHelpers.isEnterPressed(event) ||
+                    keyboardHelpers.isSpacePressed(event)
                   ) {
                     event.preventDefault();
                     onItemSelect(item.id, item);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { classNames, guards } from '../../lib';
+import { guards, reactHelpers } from '../../lib';
 
 export type TextFieldHtmlAttrs = Omit<
   React.ComponentPropsWithoutRef<'input'>,
@@ -55,13 +55,18 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     return (
       <div
         style={style}
-        className={classNames(className, 'dc-field', 'dc-text-field', {
-          'dc-field_disabled': disabled,
-          'dc-field_invalid': invalid,
-          'dc-field_focused': focused,
-          'dc-field_full_width': fullWidth,
-          [`dc-field_size_${size}`]: size,
-        })}
+        className={reactHelpers.classNames(
+          className,
+          'dc-field',
+          'dc-text-field',
+          {
+            'dc-field_disabled': disabled,
+            'dc-field_invalid': invalid,
+            'dc-field_focused': focused,
+            'dc-field_full_width': fullWidth,
+            [`dc-field_size_${size}`]: size,
+          }
+        )}
       >
         {leadingAddOn && (
           <span className="dc-text-field__add-on">{leadingAddOn}</span>

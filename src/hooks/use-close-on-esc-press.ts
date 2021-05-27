@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { util, keyboardUtil, guards, Stack } from '../lib';
+import { guards, util, keyboardHelpers, Stack } from '../lib';
 
 type CloseCallback = () => void;
 
@@ -26,7 +26,7 @@ export function useCloseOnEscPress(
 
     function onEscPress(event: KeyboardEvent) {
       const close = callbackStack.last?.current;
-      if (keyboardUtil.isEscPressed(event) && close) {
+      if (keyboardHelpers.isEscPressed(event) && close) {
         close();
       }
     }

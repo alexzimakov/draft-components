@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { classNames } from '../../lib';
+import { classNames } from '../../lib/react-helpers';
 
 export interface TableBodyProps
   extends React.ComponentPropsWithoutRef<'tbody'> {}

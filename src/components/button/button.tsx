@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { classNames } from '../../lib/react-helpers';
 import { Spinner } from '../spinner';
-import { classNames } from '../../lib';
 
 export type ButtonHtmlAttrs = React.ComponentPropsWithoutRef<'button'>;
 

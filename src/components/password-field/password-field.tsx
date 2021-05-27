@@ -1,12 +1,12 @@
 // noinspection ES6PreferShortImport
 
 import * as React from 'react';
+import { classNames } from '../../lib/react-helpers';
 import { TextField, TextFieldProps } from '../text-field';
 import { Button } from '../button';
 import { SvgIcon, SvgIconProps } from '../svg-icon';
 import { eye } from '../../icons/eye';
 import { eyeSlash } from '../../icons/eye-slash';
-import { classNames } from '../../lib';
 
 export type PasswordFieldBaseProps = Omit<
   TextFieldProps,

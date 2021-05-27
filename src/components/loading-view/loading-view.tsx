@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Spinner } from '../spinner';
-import { classNames } from '../../lib';
+import { classNames } from '../../lib/react-helpers';
 
 export type LoadingViewHtmlAttrs = React.ComponentPropsWithoutRef<'div'>;
 

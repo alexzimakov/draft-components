@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { classNames } from '../../lib';
+import { classNames } from '../../lib/react-helpers';
 import { TableContainer } from './table-container';
 import { TableHead } from './table-head';
 import { TableBody } from './table-body';

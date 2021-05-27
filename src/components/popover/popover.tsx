@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { classNames, util } from '../../lib';
+import { util, reactHelpers } from '../../lib';
 import {
   useCloseOnEscPress,
   useCloseOnClickOutside,
@@ -67,7 +67,7 @@ export function Popover({
     }
 
     return React.cloneElement(anchor, {
-      ref: util.mergeRefs(anchor.ref, anchorRef),
+      ref: reactHelpers.mergeRefs(anchor.ref, anchorRef),
     });
   };
 
@@ -88,7 +88,7 @@ export function Popover({
         <div tabIndex={0} />
         <Box
           ref={popoverRef}
-          className={classNames(className, 'dc-popover')}
+          className={reactHelpers.classNames(className, 'dc-popover')}
           borderRadius="lg"
           elevation="md"
           {...props}

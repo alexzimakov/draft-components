@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { util } from '../../lib';
+import { reactHelpers } from '../../lib';
 import { usePositionElement, PositionElementParams } from '../../hooks';
 import { Portal } from '../portal';
 
@@ -52,7 +52,7 @@ export const Positioner = React.forwardRef<HTMLDivElement, PositionerProps>(
     return (
       <Portal
         {...props}
-        ref={util.mergeRefs(targetRef, ref)}
+        ref={reactHelpers.mergeRefs(targetRef, ref)}
         style={{
           ...style,
           position,

@@ -1,7 +1,7 @@
 // noinspection ES6PreferShortImport
 
 import * as React from 'react';
-import { classNames, guards } from '../../lib';
+import { guards, reactHelpers } from '../../lib';
 import { Button, ButtonProps } from '../button';
 import { SvgIcon, Icon } from '../svg-icon';
 import { arrowDownUp } from '../../icons/arrow-down-up';
@@ -46,7 +46,7 @@ export function TableSortButton({
   return (
     <Button
       {...props}
-      className={classNames(className, 'dc-table-sort-btn')}
+      className={reactHelpers.classNames(className, 'dc-table-sort-btn')}
       appearance="minimal"
       noPadding={true}
       size="xs"
