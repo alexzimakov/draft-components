@@ -1,3 +1,22 @@
+## 0.33.0
+
+### Changes
+
+- Move `classNames` and `mergeRefs` to `reactHelpers`;
+- Move `uniqueId` to `util`;
+- Rename `keyboardUtil` to `keyboardHelpers`;
+- Rename `draft-components.css` to `dc-main.css`;
+- Add style utilities (`dc-utils.css`).
+
+### New components
+
+- Table
+- DatetimeField
+
+### Changes
+
+- New `SegmentedControl` component;
+
 ## 0.32.0
 
 ### Changes
