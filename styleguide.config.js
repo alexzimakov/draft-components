@@ -64,8 +64,8 @@ module.exports = {
     },
   ],
   require: [
-    path.join(__dirname, 'src/styles/dc-main.scss'),
-    path.join(__dirname, 'src/styleguide/styles.scss'),
+    path.join(__dirname, 'src/styles/draft-components.scss'),
+    path.join(__dirname, 'src/styleguide/styleguide-styles.scss'),
   ],
   skipComponentsWithoutExample: true,
   styleguideDir: 'docs',
