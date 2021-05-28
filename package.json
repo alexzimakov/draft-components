@@ -2,9 +2,19 @@
   "name": "draft-components",
   "version": "0.33.0",
   "description": "The set of React.js components for rapid prototyping.",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.js.map",
+    "index.d.ts",
+    "css/**/*",
+    "scss/**/*",
+    "components/**/*",
+    "hooks/**/*",
+    "icons/**/*",
+    "lib/**/*"
+  ],
   "scripts": {
     "test": "jest",
     "test:coverage": "npm run test -- --coverage --no-cache",
@@ -23,9 +33,6 @@
     "react",
     "components",
     "library"
-  ],
-  "files": [
-    "dist/**/*"
   ],
   "author": "https://github.com/alexzimakov",
   "license": "MIT",

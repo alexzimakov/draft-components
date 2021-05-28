@@ -1,5 +1,6 @@
 const { exec } = require('child_process');
-const { remove, copy } = require('fs-extra');
+const { removeSync, copy } = require('fs-extra');
+const packageJson = require('./package.json');
 const path = require('path');
 const gulp = require('gulp');
 const sass = require('gulp-sass');
@@ -10,7 +11,7 @@ const cssnano = require('cssnano');
 sass.compiler = require('sass');
 
 const SOURCE_PATH = path.join(__dirname, 'src');
-const DIST_PATH = path.join(__dirname, 'dist');
+const DIST_PATH = __dirname;
 const ANSI_CODES = {
   reset: '\x1b[0m',
   boldOn: '\x1b[1m',
@@ -25,14 +26,14 @@ const ANSI_CODES = {
 };
 
 async function clean(done) {
-  remove(DIST_PATH, done);
+  for (const file of packageJson.files) {
+    removeSync(file);
+  }
+  done();
 }
 
 function buildTs(done) {
-  Promise.all([
-    tsc('esnext', path.join(DIST_PATH, 'esm')),
-    tsc('commonjs', path.join(DIST_PATH, 'cjs'), false),
-  ])
+  tsc('commonjs', DIST_PATH)
     .then(() => done())
     .catch((err) => {
       console.error(
@@ -48,7 +49,7 @@ function buildScss() {
     .src(path.join(SOURCE_PATH, 'styles/**/*.scss'))
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([autoprefixer(), cssnano()]))
-    .pipe(gulp.dest(DIST_PATH));
+    .pipe(gulp.dest(path.join(DIST_PATH, 'css')));
 }
 
 function copyScss(done) {

@@ -105,3 +105,14 @@ dist
 
 .DS_Store
 .idea
+
+# Artifacts
+/index.js
+/index.js.map
+/index.d.ts
+/css/**/*
+/scss/**/*
+/components/**/*
+/hooks/**/*
+/icons/**/*
+/lib/**/*
