@@ -1,3 +1,10 @@
+## 0.34.0
+
+### Changes
+
+- Change build flow;
+- Add `box-sizing` style utilities;
+
 ## 0.33.0
 
 ### Changes
