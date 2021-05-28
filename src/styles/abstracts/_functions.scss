@@ -1,23 +1,31 @@
+@use 'sass:math';
+
 @function px-to-rem($size, $context: 16px) {
-  @return $size / $context * 1rem;
+  // TODO: Check if WebStorm supports `math.div`.
+  //noinspection CssInvalidFunction
+  @return math.div($size, $context) * 1rem;
 }
 
 @function rem-to-px($size, $context: 16px) {
-  @return ($size / 1rem) * $context;
+  //noinspection CssInvalidFunction
+  @return math.div($size, 1rem) * $context;
 }
 
 @function px-to-em($size, $context: 16px) {
-  @return $size / $context * 1em;
+  //noinspection CssInvalidFunction
+  @return math.div($size, $context) * 1em;
 }
 
 @function em-to-px($size, $context: 16px) {
-  @return ($size / 1em) * $context;
+  //noinspection CssInvalidFunction
+  @return math.div($size / 1em) * $context;
 }
 
 // https://css-tricks.com/snippets/sass/strip-unit-function/
 @function strip-unit($number) {
   @if type-of($number) == 'number' and not unitless($number) {
-    @return $number / ($number * 0 + 1);
+    //noinspection CssInvalidFunction
+    @return math.div($number, ($number * 0 + 1));
   }
 
   @return $number;
