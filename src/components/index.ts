@@ -21,6 +21,7 @@ export * from './portal';
 export * from './radio-button';
 export * from './scope-buttons';
 export * from './search-field';
+export * from './secret';
 export * from './segmented-control';
 export * from './select';
 export * from './spinner';

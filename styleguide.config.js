@@ -22,7 +22,7 @@ module.exports = {
     },
     {
       name: 'Data display',
-      components: getComponents('avatar', 'tag', 'tooltip', 'table'),
+      components: getComponents('avatar', 'tag', 'secret', 'tooltip', 'table'),
     },
     {
       name: 'Controls',
