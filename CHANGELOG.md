@@ -1,3 +1,9 @@
+## 0.36.0
+
+### New components
+
+- Secret
+
 ## 0.35.0
 
 Export `Table` from components.
