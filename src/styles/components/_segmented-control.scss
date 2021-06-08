@@ -1,6 +1,8 @@
 .dc-segmented-control {
   position: relative;
   display: inline-flex;
+  margin-top: 0;
+  margin-bottom: 0;
   padding: px-to-rem(1px) px-to-rem(2px);
   list-style: none;
   border-radius: $border-radius-lg;
@@ -17,6 +19,7 @@
 
 .dc-segmented-control__radio-btn {
   flex: auto;
+  white-space: nowrap;
 }
 
 .dc-segmented-control__radio-btn:focus {

@@ -9,16 +9,13 @@ export interface ScopeButtonProps extends Omit<ButtonProps, 'appearance'> {
 export const ScopeButton = React.forwardRef<
   HTMLButtonElement,
   ScopeButtonProps
->(function ScopeButton(
-  { isActive, type = 'button', className, children, ...props },
-  ref
-) {
+>(function ScopeButton({ isActive, className, children, ...props }, ref) {
   return (
     <Button
-      {...props}
       ref={ref}
+      type="button"
       className={classNames(className, 'dc-scope-button')}
-      type={type}
+      {...props}
       appearance={isActive ? 'secondary' : 'minimal'}
     >
       {children}

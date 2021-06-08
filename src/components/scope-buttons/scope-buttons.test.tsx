@@ -1,16 +1,64 @@
 import * as React from 'react';
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, act, within } from '@testing-library/react';
 import { ScopeButtons } from './scope-buttons';
 
-it('renders without errors', () => {
-  render(
+function renderScopeButtons() {
+  return render(
     <ScopeButtons>
-      <ScopeButtons.Button isActive={true}>First</ScopeButtons.Button>
-      <ScopeButtons.Button>Second</ScopeButtons.Button>
-      <ScopeButtons.Button>Third</ScopeButtons.Button>
+      <ScopeButtons.Button isActive={true}>All</ScopeButtons.Button>
+      <ScopeButtons.Button>Desktop</ScopeButtons.Button>
+      <ScopeButtons.Button>Mobile</ScopeButtons.Button>
+      <ScopeButtons.Button>Web</ScopeButtons.Button>
     </ScopeButtons>
   );
+}
 
-  const groupEl = screen.getByRole('group');
-  expect(within(groupEl).getAllByRole('button')).toHaveLength(3);
+it('renders without errors', () => {
+  renderScopeButtons();
+
+  const container = screen.getByRole('group');
+  const buttons = within(container).getAllByRole('button');
+  expect(buttons).toHaveLength(4);
+  expect(buttons[0]).toHaveTextContent('All');
+  expect(buttons[1]).toHaveTextContent('Desktop');
+  expect(buttons[2]).toHaveTextContent('Mobile');
+  expect(buttons[3]).toHaveTextContent('Web');
+});
+
+it('should additionally style container when its scrollWidth is larger than clientWidth', () => {
+  class ResizeObserverMock {
+    static instance?: ResizeObserverMock;
+
+    constructor(public readonly callback: Function) {
+      ResizeObserverMock.instance = this;
+    }
+
+    observe() {}
+
+    unobserve() {}
+
+    runCallback() {
+      act(() => this.callback());
+    }
+  }
+  Object.defineProperty(window, 'ResizeObserver', {
+    value: ResizeObserverMock,
+  });
+
+  renderScopeButtons();
+  const container = screen.getByRole('group');
+
+  Object.defineProperties(container, {
+    scrollWidth: { value: 120, configurable: true },
+    clientWidth: { value: 100, configurable: true },
+  });
+  ResizeObserverMock.instance!.runCallback();
+  expect(container).toHaveClass('dc-scope-buttons_bottom-pad');
+
+  Object.defineProperties(container, {
+    scrollWidth: { value: 120, configurable: true },
+    clientWidth: { value: 120, configurable: true },
+  });
+  ResizeObserverMock.instance!.runCallback();
+  expect(container).not.toHaveClass('dc-scope-buttons_bottom-pad');
 });

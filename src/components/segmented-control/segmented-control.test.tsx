@@ -32,10 +32,11 @@ it('renders without errors', () => {
   expect(topRated).toHaveTextContent(items[2].label);
 });
 
-it('should move focus using keyboard arrows', () => {
+it('should change focus using keyboard', () => {
   const items = [
     { id: 1, label: 'Popular' },
     { id: 2, label: 'Newest' },
+    { id: 3, label: 'Top-Rated' },
   ];
   render(
     <SegmentedControl
@@ -45,27 +46,35 @@ it('should move focus using keyboard arrows', () => {
     />
   );
 
-  const [popular, newest] = screen.getAllByRole('radio');
+  const [popular, newest, topRated] = screen.getAllByRole('radio');
 
   expect(document.body).toHaveFocus();
 
   userEvent.tab();
   expect(popular).toHaveFocus();
 
-  // Move focus to the next radio button.
+  // Move focus to the "Newest" item.
   userEvent.type(popular, '{arrowright}', { skipClick: true });
   expect(newest).toHaveFocus();
 
-  // Move focus to the first radio button.
-  userEvent.type(newest, '{arrowright}', { skipClick: true });
+  // Move focus to the "Popular" item.
+  userEvent.type(newest, '{arrowleft}', { skipClick: true });
   expect(popular).toHaveFocus();
 
-  // Move focus back to the last radio button.
+  // Move focus to the "Top-Rated" item.
   userEvent.type(popular, '{arrowleft}', { skipClick: true });
-  expect(newest).toHaveFocus();
+  expect(topRated).toHaveFocus();
 
-  // Move focus back to the previous radio button.
-  userEvent.type(newest, '{arrowleft}', { skipClick: true });
+  // Move focus to the "Popular" item.
+  userEvent.type(topRated, '{arrowright}', { skipClick: true });
+  expect(popular).toHaveFocus();
+
+  // Move focus to the "Top-Rated" item.
+  userEvent.type(popular, '{end}', { skipClick: true });
+  expect(topRated).toHaveFocus();
+
+  // Move focus to the "Popular" item.
+  userEvent.type(topRated, '{home}', { skipClick: true });
   expect(popular).toHaveFocus();
 });
 

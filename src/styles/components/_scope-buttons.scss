@@ -28,21 +28,20 @@ $dc-scope-buttons-space: $gap-1x;
   }
 }
 
-.dc-scope-buttons_overflowing {
+.dc-scope-buttons_bottom-pad {
   padding-bottom: $gap-1x;
 }
 
-.dc-scope-buttons > * {
-  flex: 0 0 auto;
-}
-
-.dc-scope-buttons > * + * {
-  margin-left: $gap-1x;
+.dc-scope-buttons > .dc-scope-button + .dc-scope-button {
+  margin-left: 0.125rem;
 }
 
 .dc-scope-button {
+  flex: none;
+  border-width: 2px;
+
   &:focus {
     border-color: var(--dc-focus-border-color);
-    box-shadow: inset 0 0 0 0.125rem var(--dc-focus-ring-color);
+    box-shadow: none;
   }
 }

@@ -8,38 +8,33 @@ export interface ScopeButtonsProps
 export function ScopeButtons({
   className,
   children,
+  onKeyDown,
   ...props
 }: ScopeButtonsProps) {
-  const ref = React.useRef<HTMLDivElement>(null);
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
+  const [overflowed, setOverflowed] = React.useState(false);
 
   React.useEffect(() => {
-    const reel = ref.current;
-    if (reel == null) {
-      return;
-    }
+    const container = containerRef.current;
+    if (container && 'ResizeObserver' in window) {
+      const resizeObserver = new ResizeObserver(() => {
+        setOverflowed(container.scrollWidth > container.clientWidth);
+      });
 
-    const handleReelResize = (entries: { target: Node }[]) => {
-      const target = entries[0]?.target;
-      if (target instanceof HTMLElement) {
-        target.classList.toggle(
-          'dc-scope-buttons_overflowing',
-          target.scrollWidth > target.clientWidth
-        );
-      }
-    };
-    if ('ResizeObserver' in window) {
-      new ResizeObserver(handleReelResize).observe(reel);
-    }
-    if ('MutationObserver' in window) {
-      new MutationObserver(handleReelResize).observe(reel, { childList: true });
+      resizeObserver.observe(container);
+      return () => {
+        resizeObserver.unobserve(container);
+      };
     }
   }, []);
 
   return (
     <div
       {...props}
-      ref={ref}
-      className={classNames(className, 'dc-scope-buttons')}
+      ref={containerRef}
+      className={classNames(className, 'dc-scope-buttons', {
+        'dc-scope-buttons_bottom-pad': overflowed,
+      })}
       role="group"
     >
       {children}

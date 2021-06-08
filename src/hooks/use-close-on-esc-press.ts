@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { guards, util, keyboardHelpers, Stack } from '../lib';
+import { Stack } from '../lib/stack';
+import { noop } from '../lib/util';
+import { isFunction } from '../lib/guards';
+import { KeyCode } from '../lib/keyboard-helpers';
 
 type CloseCallback = () => void;
 
@@ -9,11 +12,11 @@ export function useCloseOnEscPress(
   onClose: CloseCallback,
   isEnabled: boolean = true
 ) {
-  const savedCloseCallback = React.useRef(util.noop);
+  const savedCloseCallback = React.useRef(noop);
 
   React.useEffect(() => {
     savedCloseCallback.current = () => {
-      if (guards.isFunction(onClose)) {
+      if (isFunction(onClose)) {
         onClose();
       }
     };
@@ -26,7 +29,7 @@ export function useCloseOnEscPress(
 
     function onEscPress(event: KeyboardEvent) {
       const close = callbackStack.last?.current;
-      if (keyboardHelpers.isEscPressed(event) && close) {
+      if (event.code === KeyCode.escape && close) {
         close();
       }
     }

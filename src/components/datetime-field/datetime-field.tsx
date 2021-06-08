@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { guards, reactHelpers, keyboardHelpers } from '../../lib';
-import { DateComponentInput } from './date-component-input';
+import { isFunction } from '../../lib/guards';
+import { classNames, mergeRefs } from '../../lib/react-helpers';
+import { KeyCode } from '../../lib/keyboard-helpers';
 import { DateComponents, DateComponent } from './date-components';
+import { DateComponentInput } from './date-component-input';
 import { TextFieldProps } from '../text-field';
 
 export interface DatetimeFieldProps
@@ -91,7 +93,7 @@ export const DatetimeField = React.forwardRef<
   function handleFocus(event: React.FocusEvent<HTMLInputElement>) {
     (event.target as HTMLInputElement).select();
 
-    if (guards.isFunction(cancelBlur.current)) {
+    if (isFunction(cancelBlur.current)) {
       cancelBlur.current();
     } else {
       setFocused(true);
@@ -117,53 +119,51 @@ export const DatetimeField = React.forwardRef<
   }
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    const code = event.code;
     const input = event.target as HTMLInputElement;
     const dateComponent = input.name as DateComponent;
     const dateComponentOptions = DateComponents.options[dateComponent];
     const dateComponentValue = dateComponents[dateComponent];
-    if (
-      keyboardHelpers.isArrowLeftPressed(event) ||
-      keyboardHelpers.isArrowRightPressed(event)
-    ) {
+
+    if (code === KeyCode.arrowLeft || code === KeyCode.arrowRight) {
       event.preventDefault();
+
       const siblings = getInputSiblings(input);
-      const nextFocus = keyboardHelpers.isArrowLeftPressed(event)
+      // prettier-ignore
+      const nextFocus = code === KeyCode.arrowLeft
         ? siblings.prev
         : siblings.next;
       nextFocus.focus();
+    } else if (readOnly) {
+      return;
     } else if (
-      !readOnly &&
-      (keyboardHelpers.isArrowUpPressed(event) ||
-        keyboardHelpers.isArrowDownPressed(event))
+      code === KeyCode.arrowUp ||
+      code === KeyCode.arrowDown ||
+      code === KeyCode.backspace ||
+      code === KeyCode.delete
     ) {
       event.preventDefault();
-      let dateComponentNewValue: number;
-      if (!dateComponentValue) {
-        dateComponentNewValue = getDefaultValue(dateComponent);
+
+      if (code === KeyCode.backspace || code === KeyCode.delete) {
+        updateDateComponents('', dateComponent);
       } else {
-        dateComponentNewValue = Number(input.value);
-        if (keyboardHelpers.isArrowUpPressed(event)) {
-          dateComponentNewValue += 1;
+        let dateComponentNewValue: number;
+        if (dateComponentValue == null) {
+          dateComponentNewValue = getDefaultValue(dateComponent);
         } else {
-          dateComponentNewValue -= 1;
+          const step = code === KeyCode.arrowUp ? 1 : -1;
+
+          dateComponentNewValue = dateComponentValue + step;
+          if (dateComponentNewValue > dateComponentOptions.max) {
+            dateComponentNewValue = dateComponentOptions.min;
+          } else if (dateComponentNewValue < dateComponentOptions.min) {
+            dateComponentNewValue = dateComponentOptions.max;
+          }
         }
 
-        if (dateComponentNewValue > dateComponentOptions.max) {
-          dateComponentNewValue = dateComponentOptions.min;
-        } else if (dateComponentNewValue < dateComponentOptions.min) {
-          dateComponentNewValue = dateComponentOptions.max;
-        }
+        updateDateComponents(dateComponentNewValue, dateComponent);
+        defer(() => input.select());
       }
-
-      updateDateComponents(dateComponentNewValue, dateComponent);
-      defer(() => input.select());
-    } else if (
-      !readOnly &&
-      (keyboardHelpers.isBackspacePressed(event) ||
-        keyboardHelpers.isDeletePressed(event))
-    ) {
-      event.preventDefault();
-      updateDateComponents('', dateComponent);
     }
   }
 
@@ -221,24 +221,20 @@ export const DatetimeField = React.forwardRef<
 
   return (
     <fieldset
-      className={reactHelpers.classNames(className, 'dc-datetime-field')}
-      ref={reactHelpers.mergeRefs(ref, fieldSetRef)}
+      className={classNames(className, 'dc-datetime-field')}
+      ref={mergeRefs(ref, fieldSetRef)}
       disabled={disabled}
       role="group"
       {...props}
     >
       <div
         data-testid="inputs-container"
-        className={reactHelpers.classNames(
-          'dc-field',
-          'dc-datetime-field__body',
-          {
-            'dc-field_focused': focused,
-            'dc-field_disabled': disabled,
-            'dc-field_invalid': invalid,
-            [`dc-field_size_${size}`]: size,
-          }
-        )}
+        className={classNames('dc-field', 'dc-datetime-field__body', {
+          'dc-field_focused': focused,
+          'dc-field_disabled': disabled,
+          'dc-field_invalid': invalid,
+          [`dc-field_size_${size}`]: size,
+        })}
         onKeyDown={handleKeyDown}
         onFocus={handleFocus}
         onBlur={handleBlur}
