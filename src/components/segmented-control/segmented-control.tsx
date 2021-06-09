@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { isFunction } from '../../lib/guards';
 import { uniqueId } from '../../lib/util';
+import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
 import { similarToClick, KeyCode } from '../../lib/keyboard-helpers';
 import { Button } from '../button';

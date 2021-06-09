@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { guards } from '../lib';
+import { isFunction, isHTMLElement } from '../lib/guards';
 
 type MaybeHTMLElement = HTMLElement | null;
 
@@ -10,16 +10,10 @@ export function useCloseOnClickOutside(
 ) {
   React.useEffect(() => {
     const isEnabled = params?.isEnabled ?? true;
-    const ignoreElements = (params?.ignoreElements ?? []).filter(
-      guards.isHTMLElement
-    );
+    const ignoreElements = (params?.ignoreElements ?? []).filter(isHTMLElement);
     const container = containerRef.current;
 
-    if (
-      !isEnabled ||
-      !guards.isFunction(onClose) ||
-      !guards.isHTMLElement(container)
-    ) {
+    if (!isEnabled || !isFunction(onClose) || !isHTMLElement(container)) {
       return;
     }
 

@@ -1,5 +1,5 @@
 ```jsx
-import { InlineMessage } from './inline-message';
+import { InlineMessage } from '../inline-message';
 
 <div style={{ display: 'grid', rowGap: 8 }}>
   <InlineMessage appearance="default">
@@ -23,7 +23,7 @@ import { InlineMessage } from './inline-message';
 With an icon
 
 ```jsx
-import { InlineMessage } from './inline-message';
+import { InlineMessage } from '../inline-message';
 
 <div style={{ display: 'grid', rowGap: 8 }}>
   <InlineMessage shouldShowIcon={true} appearance="default">

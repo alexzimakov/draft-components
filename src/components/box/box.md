@@ -1,5 +1,5 @@
 ```jsx
-import { Box } from './box';
+import { Box } from '../box';
 import { FormattedContent } from '../formatted-content';
 import { ContentPlaceholder } from '../../styleguide/content-placeholder';
 

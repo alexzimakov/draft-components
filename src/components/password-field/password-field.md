@@ -1,5 +1,5 @@
 ```jsx
-import { PasswordField } from './password-field';
+import { PasswordField } from '../password-field';
 
 <PasswordField />;
 ```

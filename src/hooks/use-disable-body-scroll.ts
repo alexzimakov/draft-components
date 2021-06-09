@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { util } from '../lib';
+import { once } from '../lib/util';
 
 export function useDisableBodyScroll(isEnabled: boolean = true) {
   React.useEffect(() => {
@@ -29,7 +29,7 @@ function disableBodyScroll() {
   }
   disableAttempts += 1;
 
-  return util.once(function enableBodyScroll() {
+  return once(function enableBodyScroll() {
     disableAttempts -= 1;
     if (!disableAttempts) {
       document.body.style.overflow = initialOverflow;

@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { uniqueId } from '../../lib/util';
+import { classNames } from '../../lib/react-helpers';
 import { Label } from '../label';
 import { InlineMessage } from '../inline-message';
-import { util, reactHelpers } from '../../lib';
 
 export interface FieldRenderer {
   (props: { id: string; isRequired: boolean; isInvalid: boolean }): JSX.Element;
@@ -28,14 +29,11 @@ export function FieldGroup({
 }: FieldGroupProps) {
   const inputId = React.useRef(labelFor);
   if (!inputId.current) {
-    inputId.current = util.uniqueId('field-group-input-');
+    inputId.current = uniqueId('field-group-input-');
   }
 
   return (
-    <div
-      {...props}
-      className={reactHelpers.classNames(className, 'dc-field-group')}
-    >
+    <div {...props} className={classNames(className, 'dc-field-group')}>
       {label ? (
         <Label
           className="dc-field-group__label"

@@ -1,5 +1,5 @@
 ```jsx
-import { RadioButton } from './radio-button';
+import { RadioButton } from '../radio-button';
 
 <RadioButton />;
 ```
@@ -7,7 +7,7 @@ import { RadioButton } from './radio-button';
 With a label:
 
 ```jsx
-import { RadioButton } from './radio-button';
+import { RadioButton } from '../radio-button';
 
 <RadioButton label="Public access" />;
 ```
@@ -15,7 +15,7 @@ import { RadioButton } from './radio-button';
 With a label and description:
 
 ```jsx
-import { RadioButton } from './radio-button';
+import { RadioButton } from '../radio-button';
 
 <RadioButton
   label="Public access"
@@ -26,7 +26,7 @@ import { RadioButton } from './radio-button';
 Disabled state:
 
 ```jsx
-import { RadioButton } from './radio-button';
+import { RadioButton } from '../radio-button';
 
 <RadioButton
   label="Public access"

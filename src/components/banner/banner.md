@@ -1,5 +1,5 @@
 ```jsx
-import { Banner } from './banner';
+import { Banner } from '../banner';
 
 const props = {
   children: 'Your app is out of date. Please update to get the latest version.',
@@ -18,7 +18,7 @@ const props = {
 Multiple actions
 
 ```jsx
-import { Banner } from './banner';
+import { Banner } from '../banner';
 
 <Banner
   appearance="warning"
@@ -34,7 +34,7 @@ import { Banner } from './banner';
 Full width
 
 ```jsx
-import { Banner } from './banner';
+import { Banner } from '../banner';
 
 <Banner hasFullWidth={true}>
   Your app is out of date. Please update to get the latest version.

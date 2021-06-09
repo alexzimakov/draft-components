@@ -1,5 +1,5 @@
 ```jsx
-import { Tooltip } from './tooltip';
+import { Tooltip } from '../tooltip';
 import { Button } from '../button';
 import { SvgIcon } from '../svg-icon';
 import { bookmark } from '../../icons/bookmark';
@@ -15,7 +15,7 @@ import { bookmark } from '../../icons/bookmark';
 Wide content
 
 ```jsx
-import { Tooltip } from './tooltip';
+import { Tooltip } from '../tooltip';
 import { Button } from '../button';
 
 const content =

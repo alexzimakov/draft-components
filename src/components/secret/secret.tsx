@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { guards, reactHelpers } from '../../lib';
+import { isFunction } from '../../lib/guards';
+import { classNames } from '../../lib/react-helpers';
 import { Button } from '../button';
 
 export interface SecretProps
@@ -23,7 +24,7 @@ export function Secret({
   return (
     <div
       {...props}
-      className={reactHelpers.classNames(className, 'dc-secret', {
+      className={classNames(className, 'dc-secret', {
         'dc-secret_shown': isShown,
       })}
     >
@@ -40,7 +41,7 @@ export function Secret({
         type="button"
         onClick={() => {
           setIsShown(!isShown);
-          guards.isFunction(onChange) && onChange(!isShown);
+          isFunction(onChange) && onChange(!isShown);
         }}
       >
         {isShown ? hideButtonLabel : showButtonLabel}

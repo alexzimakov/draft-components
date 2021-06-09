@@ -1,6 +1,9 @@
 import * as React from 'react';
-import { reactHelpers } from '../../lib';
-import { usePositionElement, PositionElementParams } from '../../hooks';
+import { mergeRefs } from '../../lib/react-helpers';
+import {
+  usePositionElement,
+  PositionElementParams,
+} from '../../hooks/use-position-element';
 import { Portal } from '../portal';
 
 export interface PositionerProps extends React.ComponentPropsWithRef<'div'> {
@@ -52,7 +55,7 @@ export const Positioner = React.forwardRef<HTMLDivElement, PositionerProps>(
     return (
       <Portal
         {...props}
-        ref={reactHelpers.mergeRefs(targetRef, ref)}
+        ref={mergeRefs(targetRef, ref)}
         style={{
           ...style,
           position,

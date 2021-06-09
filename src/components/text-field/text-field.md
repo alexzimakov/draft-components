@@ -1,5 +1,5 @@
 ```jsx padded
-import { TextField } from './text-field';
+import { TextField } from '../text-field';
 
 <>
   <TextField size="sm" placeholder="Small text field..." />
@@ -11,7 +11,7 @@ import { TextField } from './text-field';
 With leading add-on
 
 ```jsx padded
-import { TextField } from './text-field';
+import { TextField } from '../text-field';
 import { SvgIcon } from '../svg-icon';
 import { search } from '../../icons/search';
 
@@ -26,7 +26,7 @@ const icon = <SvgIcon size={16} icon={search} />;
 With trailing add-on
 
 ```jsx padded
-import { TextField } from './text-field';
+import { TextField } from '../text-field';
 import { SvgIcon } from '../svg-icon';
 import { exclamationCircle } from '../../icons/exclamation-circle';
 
@@ -41,7 +41,7 @@ const icon = <SvgIcon size={16} icon={exclamationCircle} />;
 Invalid state
 
 ```jsx
-import { TextField } from './text-field';
+import { TextField } from '../text-field';
 
 <TextField invalid={true} placeholder="Invalid text field..." />;
 ```
@@ -49,7 +49,7 @@ import { TextField } from './text-field';
 Disabled state
 
 ```jsx padded
-import { TextField } from './text-field';
+import { TextField } from '../text-field';
 
 <>
   <TextField
@@ -64,7 +64,7 @@ import { TextField } from './text-field';
 Full width
 
 ```jsx
-import { TextField } from './text-field';
+import { TextField } from '../text-field';
 
 <TextField size="lg" fullWidth={true} placeholder="Search or enter address" />;
 ```

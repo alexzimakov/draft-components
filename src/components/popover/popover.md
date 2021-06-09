@@ -1,5 +1,5 @@
 ```jsx
-import { Popover } from './popover';
+import { Popover } from '../popover';
 import { Button } from '../button';
 
 const [state, setState] = React.useState({});
@@ -72,7 +72,7 @@ function renderPopover(arrangement, alignment) {
 Tooltip in popover
 
 ```jsx
-import { Popover } from './popover';
+import { Popover } from '../popover';
 import { Tooltip } from '../tooltip';
 import { Button } from '../button';
 

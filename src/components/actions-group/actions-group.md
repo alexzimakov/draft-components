@@ -1,5 +1,5 @@
 ```jsx
-import { ActionsGroup } from './actions-group';
+import { ActionsGroup } from '../actions-group';
 import { SvgIcon } from '../svg-icon';
 import { heart } from '../../icons/heart';
 import { bookmark } from '../../icons/bookmark';

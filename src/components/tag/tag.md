@@ -1,5 +1,5 @@
 ```jsx padded
-import { Tag } from './tag';
+import { Tag } from '../tag';
 
 <>
   <Tag size="sm">Tag</Tag>
@@ -11,7 +11,7 @@ import { Tag } from './tag';
 Rounded
 
 ```jsx padded
-import { Tag } from './tag';
+import { Tag } from '../tag';
 
 <>
   <Tag size="sm" isRounded={true}>
@@ -29,7 +29,7 @@ import { Tag } from './tag';
 With leading add-on
 
 ```jsx padded
-import { Tag } from './tag';
+import { Tag } from '../tag';
 import { SvgIcon } from '../svg-icon';
 import { tagFill } from '../../icons/tag-fill';
 
@@ -51,7 +51,7 @@ const icon = <SvgIcon icon={tagFill} />;
 Removable
 
 ```jsx padded
-import { Tag } from './tag';
+import { Tag } from '../tag';
 
 const getProps = (size, isRounded) => ({
   size,
@@ -77,7 +77,7 @@ const getProps = (size, isRounded) => ({
 Different colors
 
 ```jsx padded
-import { Tag } from './tag';
+import { Tag } from '../tag';
 
 <>
   <Tag fillColor="gray">Gray</Tag>

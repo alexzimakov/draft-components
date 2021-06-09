@@ -1,5 +1,5 @@
 ```jsx
-import { Spinner } from './spinner';
+import { Spinner } from '../spinner';
 
 <Spinner />;
 ```
@@ -7,7 +7,7 @@ import { Spinner } from './spinner';
 Different sizes
 
 ```jsx padded
-import { Spinner } from './spinner';
+import { Spinner } from '../spinner';
 
 <>
   <Spinner size={16} />

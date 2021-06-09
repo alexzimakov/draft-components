@@ -1,5 +1,5 @@
 ```jsx
-import { Label } from './label';
+import { Label } from '../label';
 
 <Label>First name</Label>;
 ```
@@ -7,7 +7,7 @@ import { Label } from './label';
 Required
 
 ```jsx
-import { Label } from './label';
+import { Label } from '../label';
 
 <Label isRequired={true}>Username</Label>;
 ```

@@ -1,5 +1,3 @@
-// noinspection ES6PreferShortImport
-
 import * as React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import { Button } from './button';

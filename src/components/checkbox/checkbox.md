@@ -1,5 +1,5 @@
 ```jsx
-import { Checkbox } from './checkbox';
+import { Checkbox } from '../checkbox';
 
 <Checkbox />;
 ```
@@ -7,7 +7,7 @@ import { Checkbox } from './checkbox';
 Mixed
 
 ```jsx
-import { Checkbox } from './checkbox';
+import { Checkbox } from '../checkbox';
 
 <Checkbox isMixed={true} />;
 ```
@@ -15,7 +15,7 @@ import { Checkbox } from './checkbox';
 With a label
 
 ```jsx
-import { Checkbox } from './checkbox';
+import { Checkbox } from '../checkbox';
 
 <Checkbox label="Enable Location Services" />;
 ```
@@ -23,7 +23,7 @@ import { Checkbox } from './checkbox';
 With the label and description
 
 ```jsx
-import { Checkbox } from './checkbox';
+import { Checkbox } from '../checkbox';
 
 <Checkbox
   label="Enable Location Services"
@@ -34,7 +34,7 @@ import { Checkbox } from './checkbox';
 Disabled state
 
 ```jsx
-import { Checkbox } from './checkbox';
+import { Checkbox } from '../checkbox';
 
 <Checkbox
   label="Enable Location Services"

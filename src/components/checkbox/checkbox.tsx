@@ -1,5 +1,3 @@
-// noinspection ES6PreferShortImport
-
 import * as React from 'react';
 import { classNames } from '../../lib/react-helpers';
 import {

@@ -1,9 +1,7 @@
-// noinspection ES6PreferShortImport
-
 import * as React from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { SvgIcon } from '../svg-icon';
 import { FormattedContent } from '../formatted-content';
+import { SvgIcon } from '../svg-icon';
 import { exclamationTriangle } from '../../icons/exclamation-triangle';
 import { exclamationCircle } from '../../icons/exclamation-circle';
 import { infoCircle } from '../../icons/info-circle';

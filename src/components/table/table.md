@@ -1,5 +1,5 @@
 ```jsx
-import {Table} from './table';
+import {Table} from '../table';
 
 const headers = [
   {id: 'browser', label: 'Browser'},
@@ -68,7 +68,7 @@ const rows = [
 Bordered
 
 ```jsx
-import {Table} from './table';
+import {Table} from '../table';
 
 const headers = [
   {id: 'browser', label: 'Browser'},
@@ -137,7 +137,7 @@ const rows = [
 Striped
 
 ```jsx
-import {Table} from './table';
+import {Table} from '../table';
 
 const headers = [
   {id: 'browser', label: 'Browser'},
@@ -208,7 +208,7 @@ With sticky header
 > _It only works when for table container defined height!_
 
 ```jsx
-import {Table} from './table';
+import {Table} from '../table';
 
 const headers = [
   {id: 'browser', label: 'Browser'},
@@ -305,7 +305,7 @@ const rows = [
 Selectable
 
 ```jsx
-import {Table} from './table';
+import {Table} from '../table';
 import {Checkbox} from '../checkbox';
 
 const [selectedRows, setSelectedRows] = React.useState(new Set());
@@ -411,7 +411,7 @@ const styles = {
 Loading
 
 ```jsx
-import {Table} from './table';
+import {Table} from '../table';
 
 const headers = [
   {id: 'browser', label: 'Browser'},
@@ -480,7 +480,7 @@ const rows = [
 Sortable
 
 ```jsx
-import {Table} from './table';
+import {Table} from '../table';
 
 const headers = [
   {id: 'browser', label: 'Browser'},
@@ -600,7 +600,7 @@ const getSortedRows = () => {
 Dense padding
 
 ```jsx
-import {Table} from './table';
+import {Table} from '../table';
 
 const headers = [
   {id: 'browser', label: 'Browser'},

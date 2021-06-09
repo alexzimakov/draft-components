@@ -1,5 +1,5 @@
 ```jsx
-import { Switch } from './switch';
+import { Switch } from '../switch';
 
 <Switch />;
 ```
@@ -7,7 +7,7 @@ import { Switch } from './switch';
 With a label
 
 ```jsx
-import { Switch } from './switch';
+import { Switch } from '../switch';
 
 <Switch label="Enable Location Services" />;
 ```
@@ -15,7 +15,7 @@ import { Switch } from './switch';
 With the label and description
 
 ```jsx
-import { Switch } from './switch';
+import { Switch } from '../switch';
 
 <Switch
   label="Enable Location Services"
@@ -26,7 +26,7 @@ import { Switch } from './switch';
 Disabled state
 
 ```jsx
-import { Switch } from './switch';
+import { Switch } from '../switch';
 
 <Switch
   label="Enable Location Services"

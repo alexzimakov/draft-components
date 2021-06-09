@@ -1,5 +1,5 @@
 ```jsx stacked
-import { Textarea } from './textarea';
+import { Textarea } from '../textarea';
 
 const props = {
   placeholder: 'Write a few sentences about yourself',
@@ -19,7 +19,7 @@ const Separator = () => <hr style={{ margin: '16px 0', border: 'none' }} />;
 Invalid state
 
 ```jsx
-import { Textarea } from './textarea';
+import { Textarea } from '../textarea';
 
 <Textarea invalid={true} placeholder="Write a few sentences about yourself" />;
 ```
@@ -27,7 +27,7 @@ import { Textarea } from './textarea';
 Disabled state
 
 ```jsx
-import { Textarea } from './textarea';
+import { Textarea } from '../textarea';
 
 <Textarea disabled={true} placeholder="Write a few sentences about yourself" />;
 ```

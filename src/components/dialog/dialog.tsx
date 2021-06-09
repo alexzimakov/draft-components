@@ -1,12 +1,9 @@
-// noinspection ES6PreferShortImport
-
 import * as React from 'react';
-import { util, reactHelpers } from '../../lib';
-import {
-  useCaptureFocus,
-  useCloseOnEscPress,
-  useDisableBodyScroll,
-} from '../../hooks';
+import { noop } from '../../lib/util';
+import { classNames } from '../../lib/react-helpers';
+import { useCaptureFocus } from '../../hooks/use-capture-focus';
+import { useCloseOnEscPress } from '../../hooks/use-close-on-esc-press';
+import { useDisableBodyScroll } from '../../hooks/use-disable-body-scroll';
 import { Portal } from '../portal';
 import { Box } from '../box';
 import { Button } from '../button';
@@ -28,7 +25,7 @@ export interface DialogProps extends React.ComponentPropsWithRef<'div'> {
 
 export function Dialog({
   isOpen,
-  onClose = util.noop,
+  onClose = noop,
   shouldShowCloseButton = true,
   focusElementRefAfterOpen,
   focusElementRefAfterClose,
@@ -76,7 +73,7 @@ export function Dialog({
           {...props}
           ref={dialogRef}
           style={{ ...style, width: getDialogWidth(width) }}
-          className={reactHelpers.classNames(className, 'dc-dialog')}
+          className={classNames(className, 'dc-dialog')}
           borderRadius="lg"
           padding="none"
           elevation="lg"
@@ -95,7 +92,7 @@ export function Dialog({
                 {description && (
                   <div
                     id={descriptionId}
-                    className={reactHelpers.classNames(
+                    className={classNames(
                       'dc-dialog__description',
                       FormattedContent.CSSClasses.subheadline
                     )}

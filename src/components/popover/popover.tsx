@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { util, reactHelpers } from '../../lib';
-import {
-  useCloseOnEscPress,
-  useCloseOnClickOutside,
-  useCaptureFocus,
-} from '../../hooks';
+import { noop } from '../../lib/util';
+import { classNames, mergeRefs } from '../../lib/react-helpers';
+import { useCloseOnEscPress } from '../../hooks/use-close-on-esc-press';
+import { useCloseOnClickOutside } from '../../hooks/use-close-on-click-outside';
+import { useCaptureFocus } from '../../hooks/use-capture-focus';
 import { Positioner, PositionerProps } from '../positioner';
 import { Box, BoxProps } from '../box';
 
@@ -39,7 +38,7 @@ export function Popover({
   isOpen,
   shouldUpdatePositionWhenScroll,
   shouldCaptureFocus = true,
-  onClose = util.noop,
+  onClose = noop,
   content,
   children: anchor,
   className,
@@ -67,7 +66,7 @@ export function Popover({
     }
 
     return React.cloneElement(anchor, {
-      ref: reactHelpers.mergeRefs(anchor.ref, anchorRef),
+      ref: mergeRefs(anchor.ref, anchorRef),
     });
   };
 
@@ -88,7 +87,7 @@ export function Popover({
         <div tabIndex={0} />
         <Box
           ref={popoverRef}
-          className={reactHelpers.classNames(className, 'dc-popover')}
+          className={classNames(className, 'dc-popover')}
           borderRadius="lg"
           elevation="md"
           {...props}

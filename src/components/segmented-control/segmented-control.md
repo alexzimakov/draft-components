@@ -1,5 +1,5 @@
 ```jsx
-import { SegmentedControl } from './segmented-control';
+import { SegmentedControl } from '../segmented-control';
 
 const segments = [
   { id: 1, label: 'Newest' },
@@ -19,7 +19,7 @@ const [activeKey, setActiveKey] = React.useState(segments[0].id);
 With icon
 
 ```jsx
-import { SegmentedControl } from './segmented-control';
+import { SegmentedControl } from '../segmented-control';
 import { SvgIcon } from '../svg-icon';
 import { star } from '../../icons/star';
 

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { guards, reactHelpers } from '../../lib';
+import { isFunction } from '../../lib/guards';
+import { classNames } from '../../lib/react-helpers';
 
 export type TextFieldHtmlAttrs = Omit<
   React.ComponentPropsWithoutRef<'input'>,
@@ -55,18 +56,13 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     return (
       <div
         style={style}
-        className={reactHelpers.classNames(
-          className,
-          'dc-field',
-          'dc-text-field',
-          {
-            'dc-field_disabled': disabled,
-            'dc-field_invalid': invalid,
-            'dc-field_focused': focused,
-            'dc-field_full_width': fullWidth,
-            [`dc-field_size_${size}`]: size,
-          }
-        )}
+        className={classNames(className, 'dc-field', 'dc-text-field', {
+          'dc-field_disabled': disabled,
+          'dc-field_invalid': invalid,
+          'dc-field_focused': focused,
+          'dc-field_full_width': fullWidth,
+          [`dc-field_size_${size}`]: size,
+        })}
       >
         {leadingAddOn && (
           <span className="dc-text-field__add-on">{leadingAddOn}</span>
@@ -80,11 +76,11 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           disabled={disabled}
           onFocus={(event) => {
             setFocused(true);
-            guards.isFunction(onFocus) && onFocus(event);
+            isFunction(onFocus) && onFocus(event);
           }}
           onBlur={(event) => {
             setFocused(false);
-            guards.isFunction(onBlur) && onBlur(event);
+            isFunction(onBlur) && onBlur(event);
           }}
         />
 

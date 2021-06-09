@@ -1,5 +1,5 @@
 ```jsx
-import { Alert } from './alert';
+import { Alert } from '../alert';
 
 <Alert heading="MIT License">
   A short and simple permissive license with conditions only requiring
@@ -12,7 +12,7 @@ import { Alert } from './alert';
 Warning
 
 ```jsx
-import { Alert } from './alert';
+import { Alert } from '../alert';
 
 <Alert appearance="warning" shouldShowIcon={true} heading="Low Power Mode">
   Mail fetch, background app refresh, automatic downloads, and some visual
@@ -23,7 +23,7 @@ import { Alert } from './alert';
 Error
 
 ```jsx
-import { Alert } from './alert';
+import { Alert } from '../alert';
 
 <Alert appearance="error" shouldShowIcon={true} heading="Registation failed">
   <ul>
@@ -36,7 +36,7 @@ import { Alert } from './alert';
 Info
 
 ```jsx
-import { Alert } from './alert';
+import { Alert } from '../alert';
 
 <Alert appearance="info" shouldShowIcon={true} heading="Update is available">
   The next version of app is available with new features and security
@@ -47,7 +47,7 @@ import { Alert } from './alert';
 Success
 
 ```jsx
-import { Alert } from './alert';
+import { Alert } from '../alert';
 
 <Alert appearance="success" shouldShowIcon={true} heading="Update completed">
   Your phone was updated successfully. There are just a few more steps to

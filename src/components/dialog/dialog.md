@@ -1,5 +1,5 @@
 ```jsx
-import {Dialog} from './dialog';
+import {Dialog} from '../dialog';
 import {Button} from '../button';
 import {FieldGroup} from '../field-group';
 import {TextField} from '../text-field';

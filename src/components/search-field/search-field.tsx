@@ -1,9 +1,7 @@
-// noinspection ES6PreferShortImport
-
 import * as React from 'react';
+import { TextField, TextFieldProps } from '../text-field';
 import { SvgIcon } from '../svg-icon';
 import { search } from '../../icons/search';
-import { TextField, TextFieldProps } from '../text-field';
 
 export interface SearchFieldProps extends TextFieldProps {}
 

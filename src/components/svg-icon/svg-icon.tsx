@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { util, reactHelpers } from '../../lib';
+import { uniqueId } from '../../lib/util';
+import { classNames } from '../../lib/react-helpers';
 
 export type SvgIconHtmlAttrs = React.ComponentPropsWithRef<'svg'>;
 
@@ -55,7 +56,7 @@ export function SvgIcon({
   ...props
 }: SvgIconProps) {
   const iconSize = svgIconSizes[size] || size || svgIconSizes.base;
-  const gradientId = React.useRef(util.uniqueId('gradient-def-'));
+  const gradientId = React.useRef(uniqueId('gradient-def-'));
   let fill = 'currentColor';
   let defs = null;
 
@@ -97,7 +98,7 @@ export function SvgIcon({
   return (
     <svg
       style={{ fontSize: iconSize, ...style }}
-      className={reactHelpers.classNames(className, 'dc-svg-icon', {
+      className={classNames(className, 'dc-svg-icon', {
         [`dc-svg-icon_size_${size}`]: size in svgIconSizes,
       })}
       fill={fill}

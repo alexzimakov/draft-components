@@ -1,5 +1,5 @@
 ```jsx padded
-import { Select } from './select';
+import { Select } from '../select';
 
 const options = (
   <>
@@ -23,7 +23,7 @@ const options = (
 Multiselect
 
 ```jsx
-import { Select } from './select';
+import { Select } from '../select';
 
 <Select multiple={true}>
   <option>Chrome</option>
@@ -38,7 +38,7 @@ import { Select } from './select';
 Invalid state
 
 ```jsx
-import { Select } from './select';
+import { Select } from '../select';
 
 <Select invalid={true}>
   <option>Choose a browser</option>
@@ -54,7 +54,7 @@ import { Select } from './select';
 Disabled state
 
 ```jsx
-import { Select } from './select';
+import { Select } from '../select';
 
 <Select disabled={true}>
   <option>Choose a browser</option>
@@ -70,7 +70,7 @@ import { Select } from './select';
 Full width
 
 ```jsx
-import { Select } from './select';
+import { Select } from '../select';
 
 <Select fullWidth={true}>
   <option>Choose a browser</option>

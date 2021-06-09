@@ -1,5 +1,5 @@
 ```jsx
-import { NonIdealStateView } from './non-ideal-state-view';
+import { NonIdealStateView } from '../non-ideal-state-view';
 import { SvgIcon } from '../svg-icon';
 import { search } from '../../icons/search';
 import { SearchField } from '../search-field';

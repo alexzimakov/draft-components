@@ -1,5 +1,5 @@
 ```jsx
-import { FormattedContent } from './formatted-content';
+import { FormattedContent } from '../formatted-content';
 
 <div style={{ display: 'grid', rowGap: 16 }}>
   <FormattedContent.LargeTitle>Large Title Text</FormattedContent.LargeTitle>
@@ -25,7 +25,7 @@ import { FormattedContent } from './formatted-content';
 Formatted text
 
 ```jsx
-import { FormattedContent } from './formatted-content';
+import { FormattedContent } from '../formatted-content';
 
 <FormattedContent>
   <h1>HTML basics</h1>

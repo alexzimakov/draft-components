@@ -1,43 +1,4 @@
-@import 'abstracts/variables';
-@import 'abstracts/functions';
-@import 'abstracts/mixins';
-
+@import 'abstracts';
 @import 'themes/default-theme';
-
-@import 'base/normalize';
-@import 'base/animations';
-
-@import 'components/box';
-@import 'components/svg-icon';
-@import 'components/formatted-content';
-@import 'components/spinner';
-@import 'components/button';
-@import 'components/actions-group';
-@import 'components/buttons-group';
-@import 'components/field';
-@import 'components/text-field';
-@import 'components/password-field';
-@import 'components/datetime-field';
-@import 'components/textarea';
-@import 'components/select';
-@import 'components/selection-control';
-@import 'components/checkbox';
-@import 'components/switch';
-@import 'components/radio-button';
-@import 'components/table';
-@import 'components/avatar';
-@import 'components/secret';
-@import 'components/tag';
-@import 'components/alert';
-@import 'components/non-ideal-state-view';
-@import 'components/loading-view';
-@import 'components/banner';
-@import 'components/breadcrumbs';
-@import 'components/segmented-control';
-@import 'components/scope-buttons';
-@import 'components/label';
-@import 'components/inline-message';
-@import 'components/field-group';
-@import 'components/dialog';
-@import 'components/popover';
-@import 'components/tooltip';
+@import 'base';
+@import 'components';

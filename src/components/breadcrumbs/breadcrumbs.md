@@ -1,5 +1,5 @@
 ```jsx
-import { Breadcrumbs } from './breadcrumbs';
+import { Breadcrumbs } from '../breadcrumbs';
 import { SvgIcon } from '../svg-icon';
 import { houseFill } from '../../icons/house-fill';
 

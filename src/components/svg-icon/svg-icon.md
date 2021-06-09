@@ -1,5 +1,5 @@
 ```jsx padded
-import { SvgIcon } from './svg-icon';
+import { SvgIcon } from '../svg-icon';
 import * as icons from '../../icons';
 
 const styles = {
@@ -36,7 +36,7 @@ const styles = {
 Sizes
 
 ```jsx padded
-import { SvgIcon } from './svg-icon';
+import { SvgIcon } from '../svg-icon';
 import { heartFill } from '../../icons/heart-fill';
 
 const icon = heartFill;
@@ -57,7 +57,7 @@ const icon = heartFill;
 Linear Gradient
 
 ```jsx padded
-import { SvgIcon } from './svg-icon';
+import { SvgIcon } from '../svg-icon';
 import { treeFill } from '../../icons/tree-fill';
 
 const props = {

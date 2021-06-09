@@ -1,7 +1,7 @@
 Default
 
 ```jsx padded
-import { Button } from './button';
+import { Button } from '../button';
 
 const getProps = (size) => ({
   size,
@@ -20,7 +20,7 @@ const getProps = (size) => ({
 Primary button
 
 ```jsx padded
-import { Button } from './button';
+import { Button } from '../button';
 
 const getProps = (size) => ({
   size,
@@ -39,7 +39,7 @@ const getProps = (size) => ({
 Secondary button
 
 ```jsx padded
-import { Button } from './button';
+import { Button } from '../button';
 
 const getProps = (size) => ({
   size,
@@ -58,7 +58,7 @@ const getProps = (size) => ({
 Danger button
 
 ```jsx padded
-import { Button } from './button';
+import { Button } from '../button';
 
 const getProps = (size) => ({
   size,
@@ -77,7 +77,7 @@ const getProps = (size) => ({
 Success button
 
 ```jsx padded
-import { Button } from './button';
+import { Button } from '../button';
 
 const getProps = (size) => ({
   size,
@@ -96,7 +96,7 @@ const getProps = (size) => ({
 Minimal button
 
 ```jsx padded
-import { Button } from './button';
+import { Button } from '../button';
 
 const getProps = (size) => ({
   size,
@@ -115,7 +115,7 @@ const getProps = (size) => ({
 With leading icon
 
 ```jsx padded
-import { Button } from './button';
+import { Button } from '../button';
 import { SvgIcon } from '../svg-icon';
 import { bookmark } from '../../icons/bookmark';
 
@@ -136,7 +136,7 @@ const getProps = (size) => ({
 With trailing icon
 
 ```jsx padded
-import { Button } from './button';
+import { Button } from '../button';
 import { SvgIcon } from '../svg-icon';
 import { heart } from '../../icons/heart';
 
@@ -157,7 +157,7 @@ const getProps = (size) => ({
 Rounded
 
 ```jsx padded
-import { Button } from './button';
+import { Button } from '../button';
 
 const getProps = (appearance) => ({
   appearance,
@@ -178,7 +178,7 @@ const getProps = (appearance) => ({
 Icon button
 
 ```jsx padded
-import { Button } from './button';
+import { Button } from '../button';
 import { SvgIcon } from '../svg-icon';
 import { xLg } from '../../icons/x-lg';
 
@@ -200,7 +200,7 @@ const getProps = (size) => ({
 Icon circle button
 
 ```jsx padded
-import { Button } from './button';
+import { Button } from '../button';
 import { SvgIcon } from '../svg-icon';
 import { plusLg } from '../../icons/plus-lg';
 
@@ -221,7 +221,7 @@ const getProps = (size) => ({
 Full width
 
 ```jsx
-import { Button } from './button';
+import { Button } from '../button';
 
 <Button fullWidth={true} size="lg" appearance="primary">
   Button text
@@ -231,7 +231,7 @@ import { Button } from './button';
 Loading state
 
 ```jsx padded
-import { Button } from './button';
+import { Button } from '../button';
 
 const getProps = (size) => ({
   size,
@@ -250,7 +250,7 @@ const getProps = (size) => ({
 Disabled state
 
 ```jsx padded
-import { Button } from './button';
+import { Button } from '../button';
 
 const getProps = (appearance) => ({
   appearance,

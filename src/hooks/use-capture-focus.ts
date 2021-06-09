@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Stack } from '../lib';
+import { Stack } from '../lib/stack';
 
 export interface CaptureFocusParams {
   modalRef: React.MutableRefObject<Element | null>;

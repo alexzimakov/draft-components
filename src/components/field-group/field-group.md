@@ -1,6 +1,6 @@
 ```jsx
 import { TextField } from '../text-field';
-import { FieldGroup } from './field-group';
+import { FieldGroup } from '../field-group';
 
 const [value, setValue] = React.useState('');
 const [error, setError] = React.useState('');
@@ -32,7 +32,7 @@ Children as function
 
 ```jsx
 import { TextField } from '../text-field';
-import { FieldGroup } from './field-group';
+import { FieldGroup } from '../field-group';
 
 const [value, setValue] = React.useState('');
 const [error, setError] = React.useState('');

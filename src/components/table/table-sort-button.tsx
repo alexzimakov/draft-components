@@ -1,7 +1,6 @@
-// noinspection ES6PreferShortImport
-
 import * as React from 'react';
-import { guards, reactHelpers } from '../../lib';
+import { isFunction } from '../../lib/guards';
+import { classNames } from '../../lib/react-helpers';
 import { Button, ButtonProps } from '../button';
 import { SvgIcon, Icon } from '../svg-icon';
 import { arrowDownUp } from '../../icons/arrow-down-up';
@@ -46,13 +45,13 @@ export function TableSortButton({
   return (
     <Button
       {...props}
-      className={reactHelpers.classNames(className, 'dc-table-sort-btn')}
+      className={classNames(className, 'dc-table-sort-btn')}
       appearance="minimal"
       noPadding={true}
       size="xs"
       leadingIcon={<SvgIcon icon={orderIcons[order]} size={16} />}
       onClick={() => {
-        guards.isFunction(onSort) && onSort(nextOrder);
+        isFunction(onSort) && onSort(nextOrder);
       }}
     >
       {renderLabel(column, nextOrder)}

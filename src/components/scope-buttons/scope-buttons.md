@@ -1,5 +1,5 @@
 ```jsx
-import { ScopeButtons } from './scope-buttons';
+import { ScopeButtons } from '../scope-buttons';
 
 const options = ['All', 'Mobile', 'Desktop', 'Web'];
 const [selectedOption, setSelectedOption] = React.useState(options[0]);
