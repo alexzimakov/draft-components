@@ -1,15 +1,16 @@
-import * as React from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { classNames } from '../../lib/react-helpers';
+import type { ComponentPropsWithoutRef } from 'react';
 
 export function TableContainer({
   className,
   children,
   ...props
-}: React.ComponentPropsWithoutRef<'div'>) {
-  const [isScrollable, setIsScrollable] = React.useState(false);
-  const ref = React.useRef<HTMLDivElement | null>(null);
+}: ComponentPropsWithoutRef<'div'>) {
+  const [isScrollable, setIsScrollable] = useState(false);
+  const ref = useRef<HTMLDivElement | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const containerEl = ref.current;
     if (!containerEl) {
       return;

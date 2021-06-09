@@ -1,20 +1,22 @@
-import * as React from 'react';
 import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
-import { Button, ButtonProps } from '../button';
-import { SvgIcon, Icon } from '../svg-icon';
+import { Button } from '../button';
+import { SvgIcon } from '../svg-icon';
 import { arrowDownUp } from '../../icons/arrow-down-up';
 import { arrowDown } from '../../icons/arrow-down';
 import { arrowUp } from '../../icons/arrow-up';
+import type { ReactNode } from 'react';
+import type { ButtonProps } from '../button';
+import type { Icon } from '../svg-icon';
 
 export type Order = 'none' | 'asc' | 'desc';
 
 export interface TableSortButtonProps
   extends Pick<ButtonProps, 'id' | 'style' | 'className'> {
-  column: React.ReactNode;
+  column: ReactNode;
   order: Order;
   onSort?(sortDirection: Order): void;
-  renderLabel?(column: React.ReactNode, order: Order): React.ReactNode;
+  renderLabel?(column: ReactNode, order: Order): ReactNode;
 }
 
 const orderSequence: Record<Order, Order> = {
@@ -59,10 +61,7 @@ export function TableSortButton({
   );
 }
 
-function renderDefaultLabel(
-  column: React.ReactNode,
-  order: Order
-): React.ReactNode {
+function renderDefaultLabel(column: ReactNode, order: Order): ReactNode {
   return (
     <>
       Sort by {column} in {displayedOrders[order]} order

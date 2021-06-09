@@ -1,4 +1,3 @@
-import * as React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, within, screen } from '@testing-library/react';
 import { Dialog } from './dialog';

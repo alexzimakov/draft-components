@@ -1,8 +1,7 @@
 /**
  * This file auto-generated with the `scripts/bootstrap-icons.js` script.
  */
-import * as React from 'react';
-import { Icon } from '../components/svg-icon/svg-icon';
+import type { Icon } from '../components/svg-icon';
 
 // https://github.com/twbs/icons/blob/main/icons/grid-3x3.svg
 export const grid3x3: Icon = {

@@ -1,6 +1,6 @@
-import * as React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Banner, BannerAction } from './banner';
+import { Banner } from './banner';
+import type { BannerAction } from './banner';
 
 const message = `Your app is out of date. Please update to get the latest version.`;
 

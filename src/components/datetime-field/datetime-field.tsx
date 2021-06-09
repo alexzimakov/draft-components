@@ -1,13 +1,21 @@
-import * as React from 'react';
+import { forwardRef, useState, useRef, useEffect } from 'react';
 import { isFunction } from '../../lib/guards';
 import { classNames, mergeRefs } from '../../lib/react-helpers';
 import { KeyCode } from '../../lib/keyboard-helpers';
-import { DateComponents, DateComponent } from './date-components';
+import { DateComponents } from './date-components';
 import { DateComponentInput } from './date-component-input';
-import { TextFieldProps } from '../text-field';
+import type {
+  ComponentPropsWithRef,
+  ReactNode,
+  ReactNodeArray,
+  FocusEvent,
+  KeyboardEvent,
+  ChangeEvent,
+} from 'react';
+import type { TextFieldProps } from '../text-field';
+import type { DateComponent } from './date-components';
 
-export interface DatetimeFieldProps
-  extends React.ComponentPropsWithRef<'fieldset'> {
+export interface DatetimeFieldProps extends ComponentPropsWithRef<'fieldset'> {
   size?: TextFieldProps['size'];
   type?: 'date' | 'time' | 'datetime';
   invalid?: boolean;
@@ -34,7 +42,7 @@ const defaultPlaceholders = {
   minute: '--',
 };
 
-export const DatetimeField = React.forwardRef<
+export const DatetimeField = forwardRef<
   HTMLFieldSetElement,
   DatetimeFieldProps
 >(function DatetimeField(
@@ -53,13 +61,13 @@ export const DatetimeField = React.forwardRef<
   },
   ref
 ) {
-  const fieldSetRef = React.useRef<HTMLFieldSetElement | null>(null);
-  const inputsRef = React.useRef<HTMLInputElement[]>([]);
+  const fieldSetRef = useRef<HTMLFieldSetElement | null>(null);
+  const inputsRef = useRef<HTMLInputElement[]>([]);
 
-  const cancelBlur = React.useRef<Function>();
-  const [focused, setFocused] = React.useState(false);
+  const cancelBlur = useRef<Function>();
+  const [focused, setFocused] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (fieldSetRef.current) {
       inputsRef.current = Array.from(
         fieldSetRef.current.getElementsByTagName('input')
@@ -90,7 +98,7 @@ export const DatetimeField = React.forwardRef<
     };
   }
 
-  function handleFocus(event: React.FocusEvent<HTMLInputElement>) {
+  function handleFocus(event: FocusEvent<HTMLInputElement>) {
     (event.target as HTMLInputElement).select();
 
     if (isFunction(cancelBlur.current)) {
@@ -100,7 +108,7 @@ export const DatetimeField = React.forwardRef<
     }
   }
 
-  function handleBlur(event: React.FocusEvent<HTMLInputElement>) {
+  function handleBlur(event: FocusEvent<HTMLInputElement>) {
     const dateComponent = event.target.name as DateComponent;
     const dateComponentOptions = DateComponents.options[dateComponent];
     let dateComponentValue = dateComponents[dateComponent];
@@ -118,7 +126,7 @@ export const DatetimeField = React.forwardRef<
     });
   }
 
-  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+  function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
     const code = event.code;
     const input = event.target as HTMLInputElement;
     const dateComponent = input.name as DateComponent;
@@ -167,7 +175,7 @@ export const DatetimeField = React.forwardRef<
     }
   }
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const target = event.target;
     if (!target.value.match(/^\d+$/)) {
       return;
@@ -188,9 +196,9 @@ export const DatetimeField = React.forwardRef<
 
   function renderInputsGroup(
     components: DateComponent[],
-    separator: React.ReactNode
+    separator: ReactNode
   ): JSX.Element {
-    const children: React.ReactNodeArray = [];
+    const children: ReactNodeArray = [];
     components.forEach((dateComponent, index) => {
       if (index) {
         children.push(

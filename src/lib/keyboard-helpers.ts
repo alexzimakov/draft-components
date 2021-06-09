@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type { KeyboardEvent as ReactKeyboardEvent } from 'react';
 
 export enum KeyCode {
   backspace = 'Backspace',
@@ -19,7 +19,7 @@ export enum KeyCode {
   delete = 'Delete',
 }
 
-type UniversalKeyboardEvent = KeyboardEvent | React.KeyboardEvent;
+type UniversalKeyboardEvent = KeyboardEvent | ReactKeyboardEvent;
 
 export function similarToClick(event: UniversalKeyboardEvent): boolean {
   return event.code === KeyCode.space || event.code === KeyCode.enter;

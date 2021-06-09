@@ -1,12 +1,13 @@
-import * as React from 'react';
+import { useLayoutEffect } from 'react';
+import type { MutableRefObject } from 'react';
 
 type Arrangement = 'top' | 'right' | 'bottom' | 'left';
 type Alignment = 'start' | 'center' | 'end';
 type Position = 'absolute' | 'fixed';
 
 export interface PositionElementParams {
-  anchorRef: React.MutableRefObject<HTMLElement | null>;
-  targetRef: React.MutableRefObject<HTMLElement | null>;
+  anchorRef: MutableRefObject<HTMLElement | null>;
+  targetRef: MutableRefObject<HTMLElement | null>;
   position: Position;
   arrangement: Arrangement;
   alignment: Alignment;
@@ -27,7 +28,7 @@ export function usePositionElement({
   isShown,
   shouldUpdatePositionWhenScroll,
 }: PositionElementParams) {
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     const anchor = anchorRef.current;
     const target = targetRef.current;
     if (!isShown || !anchor || !target) {

@@ -1,7 +1,9 @@
-import * as React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
-import { CaptureFocusParams, useCaptureFocus } from '../use-capture-focus';
+import { useRef } from 'react';
+import { useCaptureFocus } from '../use-capture-focus';
+import type { ReactNode } from 'react';
+import type { CaptureFocusParams } from '../use-capture-focus';
 
 const elementsOutOfDialog = createElements();
 
@@ -84,12 +86,12 @@ it('should not set focus automatically', () => {
 });
 
 function CaptureFocusExample(props: {
-  children?: React.ReactNode;
+  children?: ReactNode;
   autoFocusAfterCapture?: boolean;
   focusAfterCaptureRef?: CaptureFocusParams['focusAfterCaptureRef'];
   focusAfterReleaseRef?: CaptureFocusParams['focusAfterReleaseRef'];
 }) {
-  const modalRef = React.useRef<HTMLDivElement | null>(null);
+  const modalRef = useRef<HTMLDivElement | null>(null);
 
   useCaptureFocus({
     modalRef,

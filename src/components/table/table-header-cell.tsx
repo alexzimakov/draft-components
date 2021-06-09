@@ -1,13 +1,10 @@
-import * as React from 'react';
 import { classNames } from '../../lib/react-helpers';
-import {
-  TableSortButton,
-  TableSortButtonProps,
-  Order,
-} from './table-sort-button';
+import { TableSortButton } from './table-sort-button';
+import type { ComponentPropsWithoutRef } from 'react';
+import type { TableSortButtonProps } from './table-sort-button';
+import type { Order } from './table-sort-button';
 
-export interface TableHeaderCellProps
-  extends React.ComponentPropsWithoutRef<'th'> {
+export interface TableHeaderCellProps extends ComponentPropsWithoutRef<'th'> {
   isSortable?: boolean;
   order?: TableSortButtonProps['order'];
   onSort?: TableSortButtonProps['onSort'];

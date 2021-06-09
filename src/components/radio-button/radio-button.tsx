@@ -1,12 +1,11 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import {
-  SelectionControl,
-  SelectionControlBaseProps,
-} from '../selection-control';
+import { SelectionControl } from '../selection-control';
+import type { ComponentPropsWithRef } from 'react';
+import type { SelectionControlBaseProps } from '../selection-control';
 
 export type RadioButtonHtmlAttrs = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
+  ComponentPropsWithRef<'input'>,
   | 'accept'
   | 'alt'
   | 'capture'
@@ -35,7 +34,7 @@ export interface RadioButtonProps
   extends SelectionControlBaseProps,
     RadioButtonHtmlAttrs {}
 
-export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
+export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
   function RadioButton(
     { label, description, style, className, disabled, ...props },
     ref

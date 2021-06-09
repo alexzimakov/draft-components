@@ -1,17 +1,17 @@
-import * as React from 'react';
 import { classNames } from '../../lib/react-helpers';
+import type { ReactNode, ComponentPropsWithoutRef } from 'react';
 
-export type BreadcrumbsHtmlAttrs = React.ComponentPropsWithoutRef<'nav'>;
+export type BreadcrumbsHtmlAttrs = ComponentPropsWithoutRef<'nav'>;
 
 export interface BreadcrumbsItem {
   href: string;
-  label: React.ReactNode;
+  label: ReactNode;
   icon?: JSX.Element;
 }
 
 export interface BreadcrumbsProps extends BreadcrumbsHtmlAttrs {
   items: BreadcrumbsItem[];
-  separator?: React.ReactNode;
+  separator?: ReactNode;
   renderLink?: (props: {
     className: string;
     children: JSX.Element;

@@ -1,8 +1,8 @@
-import * as React from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { ActionButton } from './action-button';
+import type { ComponentPropsWithoutRef } from 'react';
 
-export type ActionsGroupHtmlAttrs = React.ComponentPropsWithoutRef<'div'>;
+export type ActionsGroupHtmlAttrs = ComponentPropsWithoutRef<'div'>;
 
 export interface ActionsGroupProps extends ActionsGroupHtmlAttrs {}
 

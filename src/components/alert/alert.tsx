@@ -1,14 +1,15 @@
-import * as React from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { FormattedContent } from '../formatted-content';
-import { Icon, SvgIcon } from '../svg-icon';
+import { SvgIcon } from '../svg-icon';
 import { exclamationTriangle } from '../../icons/exclamation-triangle';
 import { exclamationCircle } from '../../icons/exclamation-circle';
 import { checkCircle } from '../../icons/check-circle';
 import { infoCircle } from '../../icons/info-circle';
+import type { ReactNode, ComponentPropsWithoutRef } from 'react';
+import type { Icon } from '../svg-icon';
 
-export interface AlertProps extends React.ComponentPropsWithoutRef<'div'> {
-  heading?: React.ReactNode;
+export interface AlertProps extends ComponentPropsWithoutRef<'div'> {
+  heading?: ReactNode;
   appearance?: 'default' | 'warning' | 'error' | 'info' | 'success';
   shouldShowIcon?: boolean;
 }

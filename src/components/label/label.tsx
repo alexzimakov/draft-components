@@ -1,8 +1,8 @@
-import * as React from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { FormattedContent } from '../formatted-content';
+import type { ComponentPropsWithoutRef } from 'react';
 
-export interface LabelProps extends React.ComponentPropsWithoutRef<'label'> {
+export interface LabelProps extends ComponentPropsWithoutRef<'label'> {
   isRequired?: boolean;
 }
 

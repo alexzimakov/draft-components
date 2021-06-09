@@ -1,12 +1,13 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
 import { Button } from '../button';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 export interface SecretProps
-  extends Omit<React.ComponentPropsWithoutRef<'div'>, 'onChange'> {
-  showButtonLabel: React.ReactNode;
-  hideButtonLabel: React.ReactNode;
+  extends Omit<ComponentPropsWithoutRef<'div'>, 'onChange'> {
+  showButtonLabel: ReactNode;
+  hideButtonLabel: ReactNode;
   defaultIsShown?: boolean;
   onChange?(isShown: boolean): void;
 }
@@ -20,7 +21,7 @@ export function Secret({
   children,
   ...props
 }: SecretProps) {
-  const [isShown, setIsShown] = React.useState(defaultIsShown);
+  const [isShown, setIsShown] = useState(defaultIsShown);
   return (
     <div
       {...props}

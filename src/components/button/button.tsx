@@ -1,8 +1,9 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { Spinner } from '../spinner';
+import type { ReactNode, ComponentPropsWithRef } from 'react';
 
-export type ButtonHtmlAttrs = React.ComponentPropsWithoutRef<'button'>;
+export type ButtonHtmlAttrs = ComponentPropsWithRef<'button'>;
 
 export interface ButtonProps extends ButtonHtmlAttrs {
   size?: 'xs' | 'sm' | 'md' | 'lg';
@@ -18,15 +19,15 @@ export interface ButtonProps extends ButtonHtmlAttrs {
   isRounded?: boolean;
   isCircle?: boolean;
   isLoading?: boolean;
-  leadingIcon?: React.ReactNode;
-  trailingIcon?: React.ReactNode;
+  leadingIcon?: ReactNode;
+  trailingIcon?: ReactNode;
   renderAs?: (props: {
     className: string;
     children: JSX.Element;
   }) => JSX.Element;
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(
     {
       size = 'md',

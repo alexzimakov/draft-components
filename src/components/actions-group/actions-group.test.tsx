@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ActionsGroup } from './actions-group';
 import { render, screen } from '@testing-library/react';
 import { SvgIcon } from '../svg-icon';

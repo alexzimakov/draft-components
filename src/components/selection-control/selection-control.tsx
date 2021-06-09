@@ -1,19 +1,20 @@
-import * as React from 'react';
 import { classNames } from '../../lib/react-helpers';
+import type { ComponentPropsWithoutRef, ReactNode, ReactElement } from 'react';
 
 export type SelectionControlHtmlAttrs = Omit<
-  React.ComponentPropsWithoutRef<'div'>,
+  ComponentPropsWithoutRef<'div'>,
   'children'
 >;
 
 export interface SelectionControlBaseProps {
-  label?: React.ReactNode;
-  description?: React.ReactNode;
+  label?: ReactNode;
+  description?: ReactNode;
 }
 
-// prettier-ignore
-export interface SelectionControlProps extends SelectionControlBaseProps, SelectionControlHtmlAttrs {
-  children: React.ReactElement | React.ReactElement[];
+export interface SelectionControlProps
+  extends SelectionControlBaseProps,
+    SelectionControlHtmlAttrs {
+  children: ReactElement | ReactElement[];
   isDisabled?: boolean;
 }
 
@@ -34,13 +35,12 @@ export function SelectionControl({
     >
       <label className="dc-selection-control__body">
         {children}
-        {label ? (
-          <span className="dc-selection-control__label">{label}</span>
-        ) : null}
+        {label && <span className="dc-selection-control__label">{label}</span>}
       </label>
-      {description ? (
+
+      {description && (
         <div className="dc-selection-control__description">{description}</div>
-      ) : null}
+      )}
     </div>
   );
 }

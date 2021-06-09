@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type { LegacyRef, MutableRefObject, RefCallback } from 'react';
 
 type ClassName =
   | string
@@ -35,8 +35,8 @@ export function classNames(...classes: ClassName[]): string {
 }
 
 export function mergeRefs<T = any>(
-  ...refs: (React.MutableRefObject<T> | React.LegacyRef<T>)[]
-): React.RefCallback<T> {
+  ...refs: (MutableRefObject<T> | LegacyRef<T> | null | undefined)[]
+): RefCallback<T> {
   return (value) => {
     refs.forEach((ref) => {
       if (typeof ref === 'function') {
@@ -46,7 +46,7 @@ export function mergeRefs<T = any>(
         ref &&
         ref.hasOwnProperty('current')
       ) {
-        (ref as React.MutableRefObject<T | null>).current = value;
+        (ref as MutableRefObject<T | null>).current = value;
       }
     });
   };

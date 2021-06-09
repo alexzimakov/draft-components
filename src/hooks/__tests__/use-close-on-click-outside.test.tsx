@@ -1,12 +1,12 @@
-import * as React from 'react';
 import userEvent from '@testing-library/user-event';
 import { screen, render } from '@testing-library/react';
+import { useRef, useState } from 'react';
 import { useCloseOnClickOutside } from '../use-close-on-click-outside';
 
 it('should invoke the passed callback when click outside of container element', () => {
   const onClose = jest.fn();
   const Example = () => {
-    const containerRef = React.useRef<HTMLDivElement | null>(null);
+    const containerRef = useRef<HTMLDivElement | null>(null);
 
     useCloseOnClickOutside(onClose, containerRef, { isEnabled: true });
 
@@ -37,7 +37,7 @@ it('should invoke the passed callback when click outside of container element', 
 it('should not invoke the passed callback when click outside of container element but isEnabled is false', () => {
   const onClose = jest.fn();
   const Example = () => {
-    const containerRef = React.useRef<HTMLDivElement | null>(null);
+    const containerRef = useRef<HTMLDivElement | null>(null);
 
     useCloseOnClickOutside(onClose, containerRef, { isEnabled: false });
 
@@ -62,10 +62,8 @@ it('should not invoke the passed callback when click outside of container elemen
 it('should not invoke the passed callback when click on an ignoring element', () => {
   const onClose = jest.fn();
   const Example = () => {
-    const containerRef = React.useRef<HTMLDivElement | null>(null);
-    const [buttonEl, setButtonEl] = React.useState<HTMLButtonElement | null>(
-      null
-    );
+    const containerRef = useRef<HTMLDivElement | null>(null);
+    const [buttonEl, setButtonEl] = useState<HTMLButtonElement | null>(null);
 
     useCloseOnClickOutside(onClose, containerRef, {
       ignoreElements: [buttonEl],

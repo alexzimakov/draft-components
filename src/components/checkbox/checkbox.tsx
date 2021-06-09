@@ -1,15 +1,14 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import {
-  SelectionControl,
-  SelectionControlBaseProps,
-} from '../selection-control';
+import { SelectionControl } from '../selection-control';
 import { SvgIcon } from '../svg-icon';
 import { dash } from '../../icons/dash';
 import { check } from '../../icons/check';
+import type { ComponentPropsWithRef } from 'react';
+import type { SelectionControlBaseProps } from '../selection-control';
 
 export type CheckboxHtmlAttrs = Omit<
-  React.ComponentPropsWithoutRef<'input'>,
+  ComponentPropsWithRef<'input'>,
   | 'accept'
   | 'alt'
   | 'capture'
@@ -40,7 +39,7 @@ export interface CheckboxProps
   isMixed?: boolean;
 }
 
-export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   function Checkbox(
     { label, description, style, className, disabled, isMixed, ...props },
     ref

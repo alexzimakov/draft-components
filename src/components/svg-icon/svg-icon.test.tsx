@@ -1,7 +1,7 @@
-import * as React from 'react';
 import { render, within, screen } from '@testing-library/react';
-import { SvgIcon, SvgIconProps } from './svg-icon';
+import { SvgIcon } from './svg-icon';
 import { alarm } from '../../icons/alarm';
+import type { SvgIconProps } from './svg-icon';
 
 it('renders without errors', () => {
   const size = 24;

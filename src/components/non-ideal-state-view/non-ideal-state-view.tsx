@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { FormattedContent } from '../formatted-content';
 import { SvgIcon } from '../svg-icon';
@@ -6,14 +5,15 @@ import { exclamationTriangle } from '../../icons/exclamation-triangle';
 import { exclamationCircle } from '../../icons/exclamation-circle';
 import { infoCircle } from '../../icons/info-circle';
 import { checkCircle } from '../../icons/check-circle';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 export interface NonIdealStateViewProps
-  extends React.ComponentPropsWithoutRef<'div'> {
+  extends ComponentPropsWithoutRef<'div'> {
   spacing?: 'none' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   icon?: 'info' | 'warning' | 'error' | 'success' | JSX.Element;
-  heading: React.ReactNode;
-  description?: React.ReactNode;
-  actions?: React.ReactNode;
+  heading: ReactNode;
+  description?: ReactNode;
+  actions?: ReactNode;
 }
 
 export function NonIdealStateView({

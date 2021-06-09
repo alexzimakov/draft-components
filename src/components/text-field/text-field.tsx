@@ -1,9 +1,10 @@
-import * as React from 'react';
+import { forwardRef, useState } from 'react';
 import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
+import type { ReactNode, ComponentPropsWithRef } from 'react';
 
 export type TextFieldHtmlAttrs = Omit<
-  React.ComponentPropsWithoutRef<'input'>,
+  ComponentPropsWithRef<'input'>,
   | 'accept'
   | 'alt'
   | 'capture'
@@ -29,11 +30,11 @@ export interface TextFieldProps extends TextFieldHtmlAttrs {
   size?: 'sm' | 'md' | 'lg';
   invalid?: boolean;
   fullWidth?: boolean;
-  leadingAddOn?: React.ReactNode;
-  trailingAddOn?: React.ReactNode;
+  leadingAddOn?: ReactNode;
+  trailingAddOn?: ReactNode;
 }
 
-export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
+export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   function TextField(
     {
       size = 'md',
@@ -51,7 +52,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     },
     ref
   ) {
-    const [focused, setFocused] = React.useState(false);
+    const [focused, setFocused] = useState(false);
 
     return (
       <div

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useRef } from 'react';
 import { noop } from '../../lib/util';
 import { classNames } from '../../lib/react-helpers';
 import { useCaptureFocus } from '../../hooks/use-capture-focus';
@@ -10,17 +10,22 @@ import { Button } from '../button';
 import { Headline, FormattedContent } from '../formatted-content';
 import { SvgIcon } from '../svg-icon';
 import { xLg } from '../../icons/x-lg';
+import type {
+  ReactNode,
+  MutableRefObject,
+  ComponentPropsWithoutRef,
+} from 'react';
 
-export interface DialogProps extends React.ComponentPropsWithRef<'div'> {
+export interface DialogProps extends ComponentPropsWithoutRef<'div'> {
   isOpen?: boolean;
   onClose?: () => void;
   shouldShowCloseButton?: boolean;
-  focusElementRefAfterOpen?: React.MutableRefObject<Element | null>;
-  focusElementRefAfterClose?: React.MutableRefObject<Element | null>;
+  focusElementRefAfterOpen?: MutableRefObject<Element | null>;
+  focusElementRefAfterClose?: MutableRefObject<Element | null>;
   width?: 'sm' | 'md' | 'lg' | number;
-  heading?: React.ReactNode;
-  description?: React.ReactNode;
-  actions?: React.ReactNode;
+  heading?: ReactNode;
+  description?: ReactNode;
+  actions?: ReactNode;
 }
 
 export function Dialog({
@@ -38,7 +43,7 @@ export function Dialog({
   className,
   ...props
 }: DialogProps) {
-  const dialogRef = React.useRef<HTMLDivElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement | null>(null);
 
   useDisableBodyScroll(isOpen);
 

@@ -1,8 +1,7 @@
-import * as React from 'react';
 import { classNames } from '../../lib/react-helpers';
+import type { ComponentPropsWithoutRef } from 'react';
 
-export interface TableHeadProps
-  extends React.ComponentPropsWithoutRef<'thead'> {}
+export interface TableHeadProps extends ComponentPropsWithoutRef<'thead'> {}
 
 export function TableHead({ className, ...props }: TableHeadProps) {
   return (

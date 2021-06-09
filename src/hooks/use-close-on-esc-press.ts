@@ -1,20 +1,21 @@
-import * as React from 'react';
+import { useRef, useEffect } from 'react';
 import { Stack } from '../lib/stack';
 import { noop } from '../lib/util';
 import { isFunction } from '../lib/guards';
 import { KeyCode } from '../lib/keyboard-helpers';
+import type { MutableRefObject } from 'react';
 
 type CloseCallback = () => void;
 
-const callbackStack = new Stack<React.MutableRefObject<CloseCallback>>();
+const callbackStack = new Stack<MutableRefObject<CloseCallback>>();
 
 export function useCloseOnEscPress(
   onClose: CloseCallback,
   isEnabled: boolean = true
 ) {
-  const savedCloseCallback = React.useRef(noop);
+  const savedCloseCallback = useRef(noop);
 
-  React.useEffect(() => {
+  useEffect(() => {
     savedCloseCallback.current = () => {
       if (isFunction(onClose)) {
         onClose();
@@ -22,7 +23,7 @@ export function useCloseOnEscPress(
     };
   }, [onClose]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isEnabled) {
       return;
     }

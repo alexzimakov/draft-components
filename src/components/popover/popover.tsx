@@ -1,18 +1,21 @@
-import * as React from 'react';
+import { cloneElement, useRef } from 'react';
 import { noop } from '../../lib/util';
 import { classNames, mergeRefs } from '../../lib/react-helpers';
 import { useCloseOnEscPress } from '../../hooks/use-close-on-esc-press';
 import { useCloseOnClickOutside } from '../../hooks/use-close-on-click-outside';
 import { useCaptureFocus } from '../../hooks/use-capture-focus';
-import { Positioner, PositionerProps } from '../positioner';
-import { Box, BoxProps } from '../box';
+import { Positioner } from '../positioner';
+import { Box } from '../box';
+import type { ReactNode, MutableRefObject } from 'react';
+import type { PositionerProps } from '../positioner';
+import type { BoxProps } from '../box';
 
 interface ElementWithRef extends JSX.Element {
-  ref: React.MutableRefObject<HTMLElement | null> | null;
+  ref?: MutableRefObject<HTMLElement | null> | null;
 }
 
 interface RenderChildren {
-  (props: { ref: React.MutableRefObject<HTMLElement | null> }): JSX.Element;
+  (props: { ref: MutableRefObject<HTMLElement | null> }): JSX.Element;
 }
 
 export interface PopoverProps extends BoxProps {
@@ -25,7 +28,7 @@ export interface PopoverProps extends BoxProps {
   shouldUpdatePositionWhenScroll?: boolean;
   shouldCaptureFocus?: boolean;
   onClose?: () => void;
-  content: React.ReactNode;
+  content: ReactNode;
   children: RenderChildren | ElementWithRef;
 }
 
@@ -44,8 +47,8 @@ export function Popover({
   className,
   ...props
 }: PopoverProps) {
-  const anchorRef = React.useRef<HTMLElement | null>(null);
-  const popoverRef = React.useRef<HTMLDivElement | null>(null);
+  const anchorRef = useRef<HTMLElement | null>(null);
+  const popoverRef = useRef<HTMLDivElement | null>(null);
 
   useCloseOnEscPress(onClose, isOpen);
 
@@ -65,7 +68,7 @@ export function Popover({
       return anchor({ ref: anchorRef });
     }
 
-    return React.cloneElement(anchor, {
+    return cloneElement(anchor, {
       ref: mergeRefs(anchor.ref, anchorRef),
     });
   };

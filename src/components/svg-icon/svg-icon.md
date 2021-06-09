@@ -1,3 +1,5 @@
+[https://icons.getbootstrap.com](https://icons.getbootstrap.com)
+
 ```jsx padded
 import { SvgIcon } from '../svg-icon';
 import * as icons from '../../icons';

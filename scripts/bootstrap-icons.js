@@ -112,8 +112,7 @@ function iconToFileSource(iconName, props) {
 
   return formatCode(
     `${note}
-import * as React from 'react';
-import { Icon } from '../components/svg-icon/svg-icon';
+import type { Icon } from '../components/svg-icon';
 
 // https://github.com/twbs/icons/blob/main/icons/${iconName}.svg
 export const ${variableName}: Icon = {

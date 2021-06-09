@@ -1,8 +1,8 @@
-import * as React from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { Spinner } from '../spinner';
+import type { ComponentPropsWithoutRef } from 'react';
 
-export type LoadingViewHtmlAttrs = React.ComponentPropsWithoutRef<'div'>;
+export type LoadingViewHtmlAttrs = ComponentPropsWithoutRef<'div'>;
 
 export interface LoadingViewProps extends LoadingViewHtmlAttrs {
   padY?: 'none' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';

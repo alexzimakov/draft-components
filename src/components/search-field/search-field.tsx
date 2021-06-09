@@ -1,7 +1,8 @@
-import * as React from 'react';
-import { TextField, TextFieldProps } from '../text-field';
+import { forwardRef } from 'react';
+import { TextField } from '../text-field';
 import { SvgIcon } from '../svg-icon';
 import { search } from '../../icons/search';
+import type { TextFieldProps } from '../text-field';
 
 export interface SearchFieldProps extends TextFieldProps {}
 
@@ -11,7 +12,7 @@ const iconSize: Record<NonNullable<SearchFieldProps['size']>, number> = {
   lg: 20,
 };
 
-export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
+export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
   function SearchField(
     { size = 'md', leadingAddOn, type, ...props }: SearchFieldProps,
     ref

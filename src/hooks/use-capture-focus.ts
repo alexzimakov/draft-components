@@ -1,13 +1,14 @@
-import * as React from 'react';
+import { useEffect } from 'react';
 import { Stack } from '../lib/stack';
+import type { MutableRefObject } from 'react';
 
 export interface CaptureFocusParams {
-  modalRef: React.MutableRefObject<Element | null>;
+  modalRef: MutableRefObject<Element | null>;
   isEnabled?: boolean;
   autoFocusAfterCapture?: boolean;
   autoFocusAfterRelease?: boolean;
-  focusAfterCaptureRef?: React.MutableRefObject<Element | null>;
-  focusAfterReleaseRef?: React.MutableRefObject<Element | null>;
+  focusAfterCaptureRef?: MutableRefObject<Element | null>;
+  focusAfterReleaseRef?: MutableRefObject<Element | null>;
 }
 
 export function useCaptureFocus({
@@ -18,7 +19,7 @@ export function useCaptureFocus({
   focusAfterCaptureRef,
   focusAfterReleaseRef,
 }: CaptureFocusParams) {
-  React.useEffect(() => {
+  useEffect(() => {
     const modal = modalRef.current;
 
     if (isEnabled && modal) {

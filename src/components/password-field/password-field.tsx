@@ -1,10 +1,12 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { TextField, TextFieldProps } from '../text-field';
+import { TextField } from '../text-field';
 import { Button } from '../button';
-import { SvgIcon, SvgIconProps } from '../svg-icon';
+import { SvgIcon } from '../svg-icon';
 import { eye } from '../../icons/eye';
 import { eyeSlash } from '../../icons/eye-slash';
+import type { TextFieldProps } from '../text-field';
+import type { SvgIconProps } from '../svg-icon';
 
 export type PasswordFieldBaseProps = Omit<
   TextFieldProps,
@@ -22,7 +24,7 @@ export function PasswordField({
   className,
   ...props
 }: PasswordFieldProps) {
-  const [type, setType] = React.useState<TextFieldProps['type']>('password');
+  const [type, setType] = useState<TextFieldProps['type']>('password');
 
   let icon: SvgIconProps['icon'] = eyeSlash;
   let title: string = showPasswordAriaTitle;

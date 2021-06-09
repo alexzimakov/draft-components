@@ -1,9 +1,13 @@
-import * as React from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { SvgIcon } from '../svg-icon';
 import { xLg } from '../../icons/x-lg';
+import type {
+  ReactNode,
+  MouseEventHandler,
+  ComponentPropsWithoutRef,
+} from 'react';
 
-export interface BadgeProps extends React.ComponentPropsWithoutRef<'span'> {
+export interface BadgeProps extends ComponentPropsWithoutRef<'span'> {
   isRounded?: boolean;
   size?: 'sm' | 'md' | 'lg';
   fillColor?:
@@ -16,11 +20,11 @@ export interface BadgeProps extends React.ComponentPropsWithoutRef<'span'> {
     | 'indigo'
     | 'yellow'
     | 'orange';
-  leadingIcon?: React.ReactNode;
+  leadingIcon?: ReactNode;
   isRemovable?: boolean;
   isRemoveButtonDisabled?: boolean;
   removeButtonAriaLabel?: string;
-  onRemove?: React.MouseEventHandler<HTMLButtonElement>;
+  onRemove?: MouseEventHandler<HTMLButtonElement>;
 }
 
 const removeButtonIconSize: Record<NonNullable<BadgeProps['size']>, number> = {

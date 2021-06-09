@@ -1,5 +1,6 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
+import type { ComponentPropsWithoutRef } from 'react';
 
 export type BoxPadding =
   | 'none'
@@ -10,7 +11,7 @@ export type BoxPadding =
   | '5x'
   | '6x'
   | '8x';
-export interface BoxProps extends React.ComponentPropsWithoutRef<'div'> {
+export interface BoxProps extends ComponentPropsWithoutRef<'div'> {
   padding?: BoxPadding;
   paddingTop?: BoxPadding;
   paddingRight?: BoxPadding;
@@ -22,7 +23,7 @@ export interface BoxProps extends React.ComponentPropsWithoutRef<'div'> {
   elevation?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
-export const Box = React.forwardRef<HTMLDivElement, BoxProps>(function Box(
+export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
   {
     padding = '4x',
     paddingTop,

@@ -1,8 +1,9 @@
-import * as React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
-import { DateComponent, DateComponents } from './date-components';
+import { useState } from 'react';
+import { DateComponents } from './date-components';
 import { DatetimeField } from './datetime-field';
+import type { DateComponent } from './date-components';
 
 beforeEach(() => {
   jest.useFakeTimers();
@@ -139,7 +140,7 @@ it('should auto focus the next date component input when in the current has been
 it('should correct value in date component input when it loses focus', () => {
   const onChangeValue = jest.fn();
   const TestExample = () => {
-    const [value, setValue] = React.useState(new DateComponents());
+    const [value, setValue] = useState(new DateComponents());
     return (
       <DatetimeField
         type="date"
@@ -198,7 +199,7 @@ it('can edit date component using keyboard up and down arrows', () => {
     minute: mockCurrentDate.getMinutes(),
   };
   const TestExample = () => {
-    const [value, setValue] = React.useState(dateComponents);
+    const [value, setValue] = useState(dateComponents);
     return (
       <DatetimeField
         value={value}

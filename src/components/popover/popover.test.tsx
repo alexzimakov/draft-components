@@ -1,7 +1,7 @@
-import * as React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import { Popover } from './popover';
+import type { MutableRefObject } from 'react';
 
 const popoverContent = `Lorem ipsum dolor sit amet, consectetur adipisicing elit.`;
 
@@ -20,7 +20,7 @@ it('<Popover /> renders without errors when children prop is function', () => {
   render(
     <Popover isOpen={true} data-testid="popover" content={popoverContent}>
       {({ ref }) => (
-        <button ref={ref as React.MutableRefObject<HTMLButtonElement | null>}>
+        <button ref={ref as MutableRefObject<HTMLButtonElement | null>}>
           Show popover
         </button>
       )}

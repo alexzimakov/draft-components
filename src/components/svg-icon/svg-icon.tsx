@@ -1,8 +1,7 @@
-import * as React from 'react';
+import { useRef } from 'react';
 import { uniqueId } from '../../lib/util';
 import { classNames } from '../../lib/react-helpers';
-
-export type SvgIconHtmlAttrs = React.ComponentPropsWithRef<'svg'>;
+import type { ComponentPropsWithoutRef } from 'react';
 
 export interface Icon {
   name: string;
@@ -12,7 +11,7 @@ export interface Icon {
   children: JSX.Element;
 }
 
-export interface SvgIconProps extends SvgIconHtmlAttrs {
+export interface SvgIconProps extends ComponentPropsWithoutRef<'svg'> {
   icon: Icon;
   size?:
     | 'xs'
@@ -56,7 +55,7 @@ export function SvgIcon({
   ...props
 }: SvgIconProps) {
   const iconSize = svgIconSizes[size] || size || svgIconSizes.base;
-  const gradientId = React.useRef(uniqueId('gradient-def-'));
+  const gradientId = useRef(uniqueId('gradient-def-'));
   let fill = 'currentColor';
   let defs = null;
 

@@ -1,7 +1,7 @@
-import * as React from 'react';
 import { classNames } from '../../lib/react-helpers';
+import type { ComponentPropsWithoutRef } from 'react';
 
-export interface TableRowProps extends React.ComponentPropsWithoutRef<'tr'> {
+export interface TableRowProps extends ComponentPropsWithoutRef<'tr'> {
   isSelected?: boolean;
 }
 

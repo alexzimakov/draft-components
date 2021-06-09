@@ -1,16 +1,16 @@
-import * as React from 'react';
 import { classNames } from '../../lib/react-helpers';
+import type { CSSProperties, ChangeEventHandler } from 'react';
 
 export interface DatePartInputProps {
   id?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   className?: string;
   readOnly?: boolean;
   label?: string;
   placeholder?: string;
   name: string;
   value: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
 export function DateComponentInput({

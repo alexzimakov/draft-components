@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { classNames } from '../../lib/react-helpers';
+import type { ComponentPropsWithoutRef, HTMLAttributes } from 'react';
 
 const CSSClasses = {
   formattedContent: 'dc-fmt-content',
@@ -17,7 +17,7 @@ const CSSClasses = {
 export function FormattedContent({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<'div'>) {
+}: ComponentPropsWithoutRef<'div'>) {
   return (
     <div
       {...props}
@@ -36,7 +36,7 @@ FormattedContent.Subheadline = Subheadline;
 FormattedContent.Footnote = Footnote;
 FormattedContent.Caption = Caption;
 
-export interface TitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
+export interface TitleProps extends HTMLAttributes<HTMLHeadingElement> {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
@@ -108,7 +108,7 @@ export function Headline({
 export function Paragraph({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<'p'>) {
+}: ComponentPropsWithoutRef<'p'>) {
   return (
     <p {...props} className={classNames(className, CSSClasses.paragraph)} />
   );
@@ -117,7 +117,7 @@ export function Paragraph({
 export function Subheadline({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<'p'>) {
+}: ComponentPropsWithoutRef<'p'>) {
   return (
     <p {...props} className={classNames(className, CSSClasses.subheadline)} />
   );
@@ -126,7 +126,7 @@ export function Subheadline({
 export function Footnote({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<'small'>) {
+}: ComponentPropsWithoutRef<'small'>) {
   return (
     <small {...props} className={classNames(className, CSSClasses.footnote)} />
   );
@@ -135,7 +135,7 @@ export function Footnote({
 export function Caption({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<'small'>) {
+}: ComponentPropsWithoutRef<'small'>) {
   return (
     <small {...props} className={classNames(className, CSSClasses.caption)} />
   );

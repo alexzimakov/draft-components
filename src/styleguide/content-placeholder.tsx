@@ -1,8 +1,8 @@
-import * as React from 'react';
 import { classNames } from '../lib/react-helpers';
+import type { ComponentPropsWithoutRef } from 'react';
 
 export interface ContentPlaceholderProps
-  extends React.ComponentPropsWithoutRef<'div'> {
+  extends ComponentPropsWithoutRef<'div'> {
   width: number | string;
   height: number | string;
 }

@@ -1,17 +1,22 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { Icon, SvgIcon } from '../svg-icon';
 import { exclamationCircleFill } from '../../icons/exclamation-circle-fill';
 import { exclamationTriangleFill } from '../../icons/exclamation-triangle-fill';
 import { checkCircleFill } from '../../icons/check-circle-fill';
 import { infoCircleFill } from '../../icons/info-circle-fill';
+import type {
+  ReactNode,
+  MouseEventHandler,
+  ComponentPropsWithRef,
+} from 'react';
 
 export interface BannerAction {
-  label: React.ReactNode;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  label: ReactNode;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-export interface BannerProps extends React.ComponentPropsWithRef<'div'> {
+export interface BannerProps extends ComponentPropsWithRef<'div'> {
   hasFullWidth?: boolean;
   appearance?: 'default' | 'warning' | 'error' | 'info' | 'success';
   actions?: BannerAction | [BannerAction] | [BannerAction, BannerAction];
@@ -25,7 +30,7 @@ const bannerIcons: Record<NonNullable<BannerProps['appearance']>, Icon> = {
   default: infoCircleFill,
 };
 
-export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
+export const Banner = forwardRef<HTMLDivElement, BannerProps>(
   function FlashMessage(
     {
       hasFullWidth,

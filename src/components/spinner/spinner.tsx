@@ -1,7 +1,7 @@
-import * as React from 'react';
 import { classNames } from '../../lib/react-helpers';
+import type { ComponentPropsWithoutRef } from 'react';
 
-export type SpinnerHtmlAttrs = React.ComponentPropsWithoutRef<'svg'>;
+export type SpinnerHtmlAttrs = ComponentPropsWithoutRef<'svg'>;
 
 export interface SpinnerProps extends SpinnerHtmlAttrs {
   size?: number | string;

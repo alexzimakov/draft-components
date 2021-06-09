@@ -1,14 +1,15 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
+import type { ComponentPropsWithRef } from 'react';
 
 export interface SelectProps
-  extends Omit<React.ComponentPropsWithoutRef<'select'>, 'size'> {
+  extends Omit<ComponentPropsWithRef<'select'>, 'size'> {
   size?: 'sm' | 'md' | 'lg';
   invalid?: boolean;
   fullWidth?: boolean;
 }
 
-export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   function Select(
     { size = 'md', invalid, fullWidth, className, ...props },
     ref

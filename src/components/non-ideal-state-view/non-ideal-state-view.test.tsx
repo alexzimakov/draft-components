@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import { SearchField } from '../search-field';
 import { SvgIcon } from '../svg-icon';

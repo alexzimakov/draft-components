@@ -1,13 +1,12 @@
-import * as React from 'react';
+import { forwardRef, useRef } from 'react';
 import { mergeRefs } from '../../lib/react-helpers';
-import {
-  usePositionElement,
-  PositionElementParams,
-} from '../../hooks/use-position-element';
+import { usePositionElement } from '../../hooks/use-position-element';
 import { Portal } from '../portal';
+import type { ComponentPropsWithRef, MutableRefObject } from 'react';
+import type { PositionElementParams } from '../../hooks/use-position-element';
 
-export interface PositionerProps extends React.ComponentPropsWithRef<'div'> {
-  anchorRef: React.MutableRefObject<HTMLElement | null>;
+export interface PositionerProps extends ComponentPropsWithRef<'div'> {
+  anchorRef: MutableRefObject<HTMLElement | null>;
   position?: PositionElementParams['position'];
   arrangement?: PositionElementParams['arrangement'];
   alignment?: PositionElementParams['alignment'];
@@ -17,7 +16,7 @@ export interface PositionerProps extends React.ComponentPropsWithRef<'div'> {
   shouldUpdatePositionWhenScroll?: boolean;
 }
 
-export const Positioner = React.forwardRef<HTMLDivElement, PositionerProps>(
+export const Positioner = forwardRef<HTMLDivElement, PositionerProps>(
   function Positioner(
     {
       anchorRef,
@@ -34,7 +33,7 @@ export const Positioner = React.forwardRef<HTMLDivElement, PositionerProps>(
     },
     ref
   ) {
-    const targetRef = React.useRef<HTMLDivElement | null>(null);
+    const targetRef = useRef<HTMLDivElement | null>(null);
 
     usePositionElement({
       anchorRef,

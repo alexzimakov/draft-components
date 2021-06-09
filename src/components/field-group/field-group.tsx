@@ -1,19 +1,20 @@
-import * as React from 'react';
+import { useRef } from 'react';
 import { uniqueId } from '../../lib/util';
 import { classNames } from '../../lib/react-helpers';
 import { Label } from '../label';
 import { InlineMessage } from '../inline-message';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 export interface FieldRenderer {
   (props: { id: string; isRequired: boolean; isInvalid: boolean }): JSX.Element;
 }
 
-export interface FieldGroupProps extends React.ComponentPropsWithoutRef<'div'> {
-  label?: React.ReactNode;
+export interface FieldGroupProps extends ComponentPropsWithoutRef<'div'> {
+  label?: ReactNode;
   labelFor?: string;
   isRequired?: boolean;
-  hint?: React.ReactNode;
-  validationError?: React.ReactNode;
+  hint?: ReactNode;
+  validationError?: ReactNode;
   children: JSX.Element | FieldRenderer;
 }
 
@@ -27,7 +28,7 @@ export function FieldGroup({
   children,
   ...props
 }: FieldGroupProps) {
-  const inputId = React.useRef(labelFor);
+  const inputId = useRef(labelFor);
   if (!inputId.current) {
     inputId.current = uniqueId('field-group-input-');
   }

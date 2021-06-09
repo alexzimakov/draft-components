@@ -1,14 +1,15 @@
-import * as React from 'react';
+import { useEffect } from 'react';
 import { isFunction, isHTMLElement } from '../lib/guards';
+import type { MutableRefObject } from 'react';
 
 type MaybeHTMLElement = HTMLElement | null;
 
 export function useCloseOnClickOutside(
   onClose: () => void,
-  containerRef: React.MutableRefObject<MaybeHTMLElement>,
+  containerRef: MutableRefObject<MaybeHTMLElement>,
   params?: { isEnabled?: boolean; ignoreElements?: MaybeHTMLElement[] }
 ) {
-  React.useEffect(() => {
+  useEffect(() => {
     const isEnabled = params?.isEnabled ?? true;
     const ignoreElements = (params?.ignoreElements ?? []).filter(isHTMLElement);
     const container = containerRef.current;

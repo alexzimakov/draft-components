@@ -1,20 +1,20 @@
-import * as React from 'react';
 import { uniqueId } from '../../lib/util';
 import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
 import { similarToClick, KeyCode } from '../../lib/keyboard-helpers';
 import { Button } from '../button';
+import type { ComponentPropsWithoutRef, ReactNode, KeyboardEvent } from 'react';
 
 type SegmentId = string | number;
 
 export interface Segment<T extends SegmentId> {
   id: T;
-  label: React.ReactNode;
-  icon?: React.ReactNode;
+  label: ReactNode;
+  icon?: ReactNode;
 }
 
 export interface SegmentedControlProps<T extends SegmentId>
-  extends React.ComponentPropsWithoutRef<'ul'> {
+  extends ComponentPropsWithoutRef<'ul'> {
   size?: 'sm' | 'md' | 'lg';
   name?: string;
   items: Segment<T>[];
@@ -32,7 +32,7 @@ export function SegmentedControl<T extends SegmentId>({
   onKeyDown,
   ...props
 }: SegmentedControlProps<T>) {
-  function handleKeyDown(event: React.KeyboardEvent<HTMLUListElement>) {
+  function handleKeyDown(event: KeyboardEvent<HTMLUListElement>) {
     const code = event.code;
     if (
       code === KeyCode.home ||
