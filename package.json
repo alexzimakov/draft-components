@@ -35,7 +35,7 @@
   "bugs": {
     "url": "https://github.com/alexzimakov/draft-components/issues"
   },
-  "homepage": "https://github.com/alexzimakov/draft-components#readme",
+  "homepage": "https://alexzimakov.github.io/draft-components",
   "engines": {
     "node": "14.17.0",
     "npm": "6.14.13"
