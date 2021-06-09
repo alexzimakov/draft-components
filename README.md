@@ -1,14 +1,9 @@
 # Draft Components
 
-<a href="https://npmjs.com/package/draft-components">
-  <img alt="version" src="https://badgen.net/github/tag/alexzimakov/draft-components?label=npm&labelColor=3f3f46&color=5ec169" />
-</a>
-<a href="https://www.npmjs.com/package/draft-components?activeTab=dependencies">
-  <img alt="dependencies count" src="https://badgen.net/bundlephobia/dependency-count/draft-components?label=dependencies&labelColor=3f3f46&color=5ec169" />
-</a>
-<a href="https://github.com/alexzimakov/draft-components/blob/master/tsconfig.json">
-  <img alt="types" src="https://badgen.net/npm/types/tslib?labelColor=3f3f46&color=5ec169" />
-</a>
+[![version](https://badgen.net/github/tag/alexzimakov/draft-components?color=green)](https://npmjs.com/package/draft-components)
+[![codecov](https://badgen.net/codecov/c/github/alexzimakov/draft-components?color=green)](https://codecov.io/gh/alexzimakov/draft-components)
+[![dependencies](https://badgen.net/bundlephobia/dependency-count/draft-components?label=dependencies&color=green)](https://www.npmjs.com/package/draft-components?activeTab=dependencies)
+[![types](https://badgen.net/npm/types/tslib?color=green)](https://github.com/alexzimakov/draft-components/blob/master/tsconfig.json)
 
 `draft-components` is set of React-based components for building or rapid prototyping web interfaces.
 
