@@ -1,12 +1,12 @@
 ```jsx
-import {Table} from '../table';
+import { Table } from '../table';
 
 const headers = [
-  {id: 'browser', label: 'Browser'},
-  {id: 'sessions', label: 'Sessions', align: 'right'},
-  {id: 'percentage', label: 'Percentage', align: 'right'},
-  {id: 'newUsers', label: 'New Users', align: 'right'},
-  {id: 'avgDuration', label: 'Avg. Duration', align: 'right'},
+  { id: 'browser', label: 'Browser' },
+  { id: 'sessions', label: 'Sessions', align: 'right' },
+  { id: 'percentage', label: 'Percentage', align: 'right' },
+  { id: 'newUsers', label: 'New Users', align: 'right' },
+  { id: 'avgDuration', label: 'Avg. Duration', align: 'right' },
 ];
 const rows = [
   {
@@ -68,14 +68,14 @@ const rows = [
 Bordered
 
 ```jsx
-import {Table} from '../table';
+import { Table } from '../table';
 
 const headers = [
-  {id: 'browser', label: 'Browser'},
-  {id: 'sessions', label: 'Sessions', align: 'right'},
-  {id: 'percentage', label: 'Percentage', align: 'right'},
-  {id: 'newUsers', label: 'New Users', align: 'right'},
-  {id: 'avgDuration', label: 'Avg. Duration', align: 'right'},
+  { id: 'browser', label: 'Browser' },
+  { id: 'sessions', label: 'Sessions', align: 'right' },
+  { id: 'percentage', label: 'Percentage', align: 'right' },
+  { id: 'newUsers', label: 'New Users', align: 'right' },
+  { id: 'avgDuration', label: 'Avg. Duration', align: 'right' },
 ];
 const rows = [
   {
@@ -137,14 +137,14 @@ const rows = [
 Striped
 
 ```jsx
-import {Table} from '../table';
+import { Table } from '../table';
 
 const headers = [
-  {id: 'browser', label: 'Browser'},
-  {id: 'sessions', label: 'Sessions', align: 'right'},
-  {id: 'percentage', label: 'Percentage', align: 'right'},
-  {id: 'newUsers', label: 'New Users', align: 'right'},
-  {id: 'avgDuration', label: 'Avg. Duration', align: 'right'},
+  { id: 'browser', label: 'Browser' },
+  { id: 'sessions', label: 'Sessions', align: 'right' },
+  { id: 'percentage', label: 'Percentage', align: 'right' },
+  { id: 'newUsers', label: 'New Users', align: 'right' },
+  { id: 'avgDuration', label: 'Avg. Duration', align: 'right' },
 ];
 const rows = [
   {
@@ -208,14 +208,14 @@ With sticky header
 > _It only works when for table container defined height!_
 
 ```jsx
-import {Table} from '../table';
+import { Table } from '../table';
 
 const headers = [
-  {id: 'browser', label: 'Browser'},
-  {id: 'sessions', label: 'Sessions', align: 'right'},
-  {id: 'percentage', label: 'Percentage', align: 'right'},
-  {id: 'newUsers', label: 'New Users', align: 'right'},
-  {id: 'avgDuration', label: 'Avg. Duration', align: 'right'},
+  { id: 'browser', label: 'Browser' },
+  { id: 'sessions', label: 'Sessions', align: 'right' },
+  { id: 'percentage', label: 'Percentage', align: 'right' },
+  { id: 'newUsers', label: 'New Users', align: 'right' },
+  { id: 'avgDuration', label: 'Avg. Duration', align: 'right' },
 ];
 const rows = [
   {
@@ -276,7 +276,7 @@ const rows = [
   },
 ];
 
-<Table.Container style={{width: '100%', height: 272}}>
+<Table.Container style={{ width: '100%', height: 272 }}>
   <Table hasStickyHeader={true} isBordered={true}>
     <Table.Head>
       <Table.Row>
@@ -305,16 +305,16 @@ const rows = [
 Selectable
 
 ```jsx
-import {Table} from '../table';
-import {Checkbox} from '../checkbox';
+import { Table } from '../table';
+import { Checkbox } from '../checkbox';
 
 const [selectedRows, setSelectedRows] = React.useState(new Set());
 const headers = [
-  {id: 'browser', label: 'Browser'},
-  {id: 'sessions', label: 'Sessions', align: 'right'},
-  {id: 'percentage', label: 'Percentage', align: 'right'},
-  {id: 'newUsers', label: 'New Users', align: 'right'},
-  {id: 'avgDuration', label: 'Avg. Duration', align: 'right'},
+  { id: 'browser', label: 'Browser' },
+  { id: 'sessions', label: 'Sessions', align: 'right' },
+  { id: 'percentage', label: 'Percentage', align: 'right' },
+  { id: 'newUsers', label: 'New Users', align: 'right' },
+  { id: 'avgDuration', label: 'Avg. Duration', align: 'right' },
 ];
 const rows = [
   {
@@ -347,7 +347,7 @@ const rows = [
   },
 ];
 const styles = {
-  firstCell: {width: 18},
+  firstCell: { width: 18 },
 };
 
 <Table.Container>
@@ -411,14 +411,14 @@ const styles = {
 Loading
 
 ```jsx
-import {Table} from '../table';
+import { Table } from '../table';
 
 const headers = [
-  {id: 'browser', label: 'Browser'},
-  {id: 'sessions', label: 'Sessions', align: 'right'},
-  {id: 'percentage', label: 'Percentage', align: 'right'},
-  {id: 'newUsers', label: 'New Users', align: 'right'},
-  {id: 'avgDuration', label: 'Avg. Duration', align: 'right'},
+  { id: 'browser', label: 'Browser' },
+  { id: 'sessions', label: 'Sessions', align: 'right' },
+  { id: 'percentage', label: 'Percentage', align: 'right' },
+  { id: 'newUsers', label: 'New Users', align: 'right' },
+  { id: 'avgDuration', label: 'Avg. Duration', align: 'right' },
 ];
 const rows = [
   {
@@ -480,14 +480,14 @@ const rows = [
 Sortable
 
 ```jsx
-import {Table} from '../table';
+import { Table } from '../table';
 
 const headers = [
-  {id: 'browser', label: 'Browser'},
-  {id: 'sessions', label: 'Sessions', align: 'right', isSortable: true},
-  {id: 'percentage', label: 'Percentage', align: 'right'},
-  {id: 'newUsers', label: 'New Users', align: 'right', isSortable: true},
-  {id: 'avgDuration', label: 'Avg. Duration', align: 'right'},
+  { id: 'browser', label: 'Browser' },
+  { id: 'sessions', label: 'Sessions', align: 'right', isSortable: true },
+  { id: 'percentage', label: 'Percentage', align: 'right' },
+  { id: 'newUsers', label: 'New Users', align: 'right', isSortable: true },
+  { id: 'avgDuration', label: 'Avg. Duration', align: 'right' },
 ];
 const rows = [
   {
@@ -575,7 +575,7 @@ const getSortedRows = () => {
             align={header.align}
             isSortable={header.isSortable}
             order={sorting.column === header.id ? sorting.order : 'none'}
-            onSort={(order) => setSorting({column: header.id, order})}
+            onSort={(order) => setSorting({ column: header.id, order })}
           >
             {header.label}
           </Table.HeaderCell>
@@ -597,17 +597,17 @@ const getSortedRows = () => {
 </Table.Container>;
 ```
 
-Dense padding
+`lg` cell padding
 
 ```jsx
-import {Table} from '../table';
+import { Table } from '../table';
 
 const headers = [
-  {id: 'browser', label: 'Browser'},
-  {id: 'sessions', label: 'Sessions', align: 'right'},
-  {id: 'percentage', label: 'Percentage', align: 'right'},
-  {id: 'newUsers', label: 'New Users', align: 'right'},
-  {id: 'avgDuration', label: 'Avg. Duration', align: 'right'},
+  { id: 'browser', label: 'Browser' },
+  { id: 'sessions', label: 'Sessions', align: 'right' },
+  { id: 'percentage', label: 'Percentage', align: 'right' },
+  { id: 'newUsers', label: 'New Users', align: 'right' },
+  { id: 'avgDuration', label: 'Avg. Duration', align: 'right' },
 ];
 const rows = [
   {
@@ -669,7 +669,104 @@ const rows = [
 ];
 
 <Table.Container>
-  <Table shouldHighlightActiveRow={true} densePadding={true}>
+  <Table shouldHighlightActiveRow={true} cellPadding="lg">
+    <Table.Head>
+      <Table.Row>
+        {headers.map((header) => (
+          <Table.HeaderCell key={header.id} align={header.align}>
+            {header.label}
+          </Table.HeaderCell>
+        ))}
+      </Table.Row>
+    </Table.Head>
+    <Table.Body>
+      {rows.map((row, index) => (
+        <Table.Row key={index}>
+          {headers.map((header) => (
+            <Table.Cell key={header.id} align={header.align}>
+              {row[header.id]}
+            </Table.Cell>
+          ))}
+        </Table.Row>
+      ))}
+    </Table.Body>
+  </Table>
+</Table.Container>;
+```
+
+`sm` cell padding
+
+```jsx
+import { Table } from '../table';
+
+const headers = [
+  { id: 'browser', label: 'Browser' },
+  { id: 'sessions', label: 'Sessions', align: 'right' },
+  { id: 'percentage', label: 'Percentage', align: 'right' },
+  { id: 'newUsers', label: 'New Users', align: 'right' },
+  { id: 'avgDuration', label: 'Avg. Duration', align: 'right' },
+];
+const rows = [
+  {
+    browser: 'Chrome',
+    sessions: 9562,
+    percentage: '68.81%',
+    newUsers: 7895,
+    avgDuration: '01:07',
+  },
+  {
+    browser: 'Firefox',
+    sessions: 2403,
+    percentage: '17.29%',
+    newUsers: 2046,
+    avgDuration: '00:59',
+  },
+  {
+    browser: 'Safari',
+    sessions: 1089,
+    percentage: '2.63%',
+    newUsers: 904,
+    avgDuration: '00:59',
+  },
+  {
+    browser: 'Internet Explorer',
+    sessions: 366,
+    percentage: '2.63%',
+    newUsers: 333,
+    avgDuration: '01:01',
+  },
+  {
+    browser: 'Safari (in-app)',
+    sessions: 162,
+    percentage: '1.17%',
+    newUsers: 112,
+    avgDuration: '00:58',
+  },
+  {
+    browser: 'Opera',
+    sessions: 103,
+    percentage: '0.74%',
+    newUsers: 87,
+    avgDuration: '01:22',
+  },
+  {
+    browser: 'Edge',
+    sessions: 98,
+    percentage: '0.71%',
+    newUsers: 69,
+    avgDuration: '01:18',
+  },
+  {
+    browser: 'Other',
+    sessions: 275,
+    percentage: '6.02%',
+    newUsers: 90,
+    avgDuration: 'N/A',
+  },
+];
+
+<Table.Container>
+  <Table shouldHighlightActiveRow={true} cellPadding="sm">
     <Table.Head>
       <Table.Row>
         {headers.map((header) => (

@@ -35,18 +35,27 @@
 }
 
 .dc-table-cell {
-  padding: $gap-4x;
+  padding: px-to-rem(10px);
   border-bottom: var(--dc-table-border);
   background: var(--dc-table-cell-bg);
 
   .dc-table-head & {
-    padding-top: $gap-3x;
-    padding-bottom: $gap-3x;
+    padding-top: px-to-rem(8px);
+    padding-bottom: px-to-rem(8px);
     white-space: nowrap;
+    font-size: 90%;
   }
 
-  .dc-table_dense-padding & {
-    padding: $gap-2x;
+  .dc-table_padding_lg & {
+    padding: px-to-rem(14px);
+  }
+  .dc-table_padding_lg .dc-table-head & {
+    padding-top: px-to-rem(12px);
+    padding-bottom: px-to-rem(12px);
+  }
+
+  .dc-table_padding_sm & {
+    padding: px-to-rem(8px);
   }
 }
 
