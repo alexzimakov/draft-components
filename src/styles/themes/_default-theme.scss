@@ -181,4 +181,13 @@
   --dc-table-striped-row-bg: var(--dc-secondary-bg-color);
   --dc-table-selected-row-bg: #{blue-100};
   --dc-table-selected-stiped-row-bg: #{blue-50};
+
+  /*------------------------------------*\
+   #AVATAR
+  \*------------------------------------*/
+  --dc-avatar-color: #{$white};
+  --dc-avatar-bg1-color: #{$gray-400};
+  --dc-avatar-bg2-color: #{$gray-500};
+  --dc-avatar-icon-color: #{$white};
+  --dc-avatar-icon-bg: linear-gradient(#{$gray-400}, #{$gray-500});
 }

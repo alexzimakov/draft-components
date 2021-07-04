@@ -1,93 +1,99 @@
 import { classNames } from '../../lib/react-helpers';
-import type { ComponentPropsWithoutRef } from 'react';
+import { getAvatarSizeInPixels } from './get-avatar-size-in-pixels';
+import {
+  makeAvatarShapePath,
+  makeRoundShapePath,
+} from './make-avatar-shape-path';
+import { makeInitials } from './make-initials';
+import { AvatarShape } from './avatar-shape';
+import { AvatarGroup } from './avatar-group';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import type { AvatarSize, AvatarTint } from './types';
+import type { AvatarShapeProps } from './avatar-shape';
 
 export interface AvatarProps extends ComponentPropsWithoutRef<'div'> {
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  fillColor?:
-    | 'gray'
-    | 'blue'
-    | 'cyan'
-    | 'red'
-    | 'green'
-    | 'lime'
-    | 'indigo'
-    | 'yellow'
-    | 'orange';
-  isRounded?: boolean;
+  size?: AvatarSize | number;
+  tint?: AvatarTint;
+  iconTint?: AvatarTint;
+  square?: boolean;
   src?: string;
-  altText?: string;
-  initials?: string;
+  alt?: string;
+  initials?: ReactNode;
+  icon?: ReactNode;
 }
-
-const avatarSize: Record<NonNullable<AvatarProps['size']>, number> = {
-  xs: 28,
-  sm: 36,
-  md: 44,
-  lg: 52,
-  xl: 60,
-};
 
 export function Avatar({
   size = 'md',
-  fillColor = 'gray',
-  isRounded,
+  tint = 'gray',
+  iconTint = 'gray',
+  square = false,
   src,
-  altText,
+  alt,
   initials,
+  icon,
   className,
   ...props
 }: AvatarProps) {
-  const sizePx = avatarSize[size] || avatarSize.md;
-  let content;
-  let type;
+  const sizeInPixels = getAvatarSizeInPixels(size);
+  const path = makeAvatarShapePath({ size: sizeInPixels }, square);
 
-  if (src) {
-    type = 'image';
-    content = (
-      <img
-        className="dc-avatar__image"
-        src={src}
-        alt={altText}
-        width={sizePx}
-        height={sizePx}
+  let subtract: AvatarShapeProps['subtract'] = null;
+  let renderedIcon: ReactNode = null;
+  if (icon) {
+    const iconRatio = 0.38;
+    const iconSize = sizeInPixels * iconRatio;
+    const iconOffset = sizeInPixels - iconSize;
+    const iconGap = Math.max(sizeInPixels * 0.05, 2);
+    const subtractSize = iconSize + 2 * iconGap;
+    const subtractOffset = sizeInPixels - iconSize - iconGap;
+
+    subtract = (
+      <path
+        d={makeRoundShapePath({
+          size: subtractSize,
+          offsetX: subtractOffset,
+          offsetY: subtractOffset,
+        })}
+        fill="#000"
       />
     );
-  } else if (initials) {
-    type = 'initials';
-    content = <span className="dc-avatar__initials">{initials}</span>;
-  } else {
-    type = 'placeholder';
-    content = (
-      <svg
-        className="dc-avatar__placeholder"
-        xmlns="http://www.w3.org/2000/svg"
-        data-testid="avatar-placeholder"
-        aria-hidden={true}
-        focusable={false}
-        viewBox="0 0 448 512"
-        role="img"
-        width={sizePx}
-        height={sizePx}
+    renderedIcon = (
+      <div
+        className="dc-avatar__icon"
+        style={{
+          top: iconOffset,
+          left: iconOffset,
+          width: iconSize,
+          height: iconSize,
+          fontSize: iconSize * 0.618,
+        }}
       >
-        <path
-          fill="currentColor"
-          d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"
-        />
-      </svg>
+        {icon}
+      </div>
     );
   }
 
   return (
     <div
-      {...props}
+      role="img"
+      aria-label={alt}
       className={classNames(className, 'dc-avatar', {
-        'dc-avatar_rounded': isRounded,
-        [`dc-avatar_fill-color_${fillColor}`]: fillColor,
-        [`dc-avatar_size_${size}`]: size,
-        [`dc-avatar_type_${type}`]: type,
+        [`dc-avatar_tint_${tint}`]: tint,
+        [`dc-avatar_icon-tint_${iconTint}`]: iconTint,
       })}
+      {...props}
     >
-      {content}
+      <AvatarShape
+        path={path}
+        size={sizeInPixels}
+        imageUrl={src}
+        initials={initials}
+        subtract={subtract}
+      />
+      {renderedIcon}
     </div>
   );
 }
+
+Avatar.Group = AvatarGroup;
+Avatar.makeInitials = makeInitials;
