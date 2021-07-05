@@ -3,12 +3,10 @@ const { removeSync, copy } = require('fs-extra');
 const packageJson = require('./package.json');
 const path = require('path');
 const gulp = require('gulp');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
-
-sass.compiler = require('sass');
 
 const SOURCE_PATH = path.join(__dirname, 'src');
 const DIST_PATH = __dirname;
