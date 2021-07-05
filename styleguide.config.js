@@ -55,7 +55,7 @@ module.exports = {
       name: 'Feedback',
       components: getComponents(
         'alert',
-        'banner',
+        'toast',
         'dialog',
         'popover',
         'loading-view',

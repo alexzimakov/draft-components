@@ -132,13 +132,16 @@
   --dc-non-ideal-state-icon-color: var(--dc-tertiary-text-color);
 
   /*------------------------------------*\
-   #BANNER
+   #TOAST
   \*------------------------------------*/
-  --dc-banner-bg: #{$gray-800};
-  --dc-banner-bg-hover: #{$gray-700};
-  --dc-banner-text-color: #{$white};
-  --dc-banner-border-color: #{rgba($white, $opacity-15)};
-  --dc-banner-icon-color: #{$gray-400};
+  --dc-toast-bg: #{$gray-800};
+  --dc-toast-text-color: #{$white};
+  --dc-toast-btn-bg: #{rgba($white, $opacity-10)};
+  --dc-toast-btn-text-color: #{$white};
+
+  @supports (backdrop-filter: blur()) {
+    --dc-toast-bg: #{rgba($gray-800, $opacity-90)};
+  }
 
   /*------------------------------------*\
    #BREADCRUMBS
