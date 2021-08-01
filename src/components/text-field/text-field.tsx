@@ -26,7 +26,18 @@ export type TextFieldHtmlAttrs = Omit<
 >;
 
 export interface TextFieldProps extends TextFieldHtmlAttrs {
-  type?: 'email' | 'password' | 'search' | 'tel' | 'text' | 'url';
+  type?:
+    | 'email'
+    | 'password'
+    | 'search'
+    | 'tel'
+    | 'text'
+    | 'url'
+    | 'datetime'
+    | 'date'
+    | 'time'
+    | 'week'
+    | 'month';
   size?: 'sm' | 'md' | 'lg';
   invalid?: boolean;
   fullWidth?: boolean;
