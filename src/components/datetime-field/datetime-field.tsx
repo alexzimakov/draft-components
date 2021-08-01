@@ -15,13 +15,15 @@ import type {
 import type { TextFieldProps } from '../text-field';
 import type { DateComponent } from './date-components';
 
-export interface DatetimeFieldProps extends ComponentPropsWithRef<'fieldset'> {
+export interface DatetimeFieldProps extends ComponentPropsWithRef<'div'> {
   size?: TextFieldProps['size'];
   type?: 'date' | 'time' | 'datetime';
   invalid?: boolean;
+  disabled?: boolean;
   readOnly?: boolean;
-  placeholders?: { [component in DateComponent]?: string };
+  ids?: { [component in DateComponent]?: string };
   ariaLabels?: { [component in DateComponent]?: string };
+  placeholders?: { [component in DateComponent]?: string };
   value: DateComponents;
   onChangeValue(value: DateComponents): void;
 }
@@ -42,220 +44,220 @@ const defaultPlaceholders = {
   minute: '--',
 };
 
-export const DatetimeField = forwardRef<
-  HTMLFieldSetElement,
-  DatetimeFieldProps
->(function DatetimeField(
-  {
-    size = 'md',
-    type = 'datetime',
-    invalid,
-    disabled,
-    readOnly,
-    ariaLabels = defaultAriaLabels,
-    placeholders = defaultPlaceholders,
-    value: dateComponents,
-    onChangeValue: onChangeDateComponents,
-    className,
-    ...props
-  },
-  ref
-) {
-  const fieldSetRef = useRef<HTMLFieldSetElement | null>(null);
-  const inputsRef = useRef<HTMLInputElement[]>([]);
-
-  const cancelBlur = useRef<Function>();
-  const [focused, setFocused] = useState(false);
-
-  useEffect(() => {
-    if (fieldSetRef.current) {
-      inputsRef.current = Array.from(
-        fieldSetRef.current.getElementsByTagName('input')
-      );
-    }
-  }, [type]);
-
-  function updateDateComponents(
-    value: string | number,
-    component: DateComponent
+export const DatetimeField = forwardRef<HTMLDivElement, DatetimeFieldProps>(
+  function DatetimeField(
+    {
+      size = 'md',
+      type = 'datetime',
+      invalid,
+      disabled,
+      readOnly,
+      ids,
+      ariaLabels = defaultAriaLabels,
+      placeholders = defaultPlaceholders,
+      value: dateComponents,
+      onChangeValue: onChangeDateComponents,
+      className,
+      ...props
+    },
+    ref
   ) {
-    onChangeDateComponents(dateComponents.updatingValue(value, component));
-  }
+    const containerRef = useRef<HTMLDivElement | null>(null);
+    const inputsRef = useRef<HTMLInputElement[]>([]);
 
-  function getInputSiblings(
-    input: HTMLInputElement
-  ): { next: HTMLInputElement; prev: HTMLInputElement } {
-    const inputs = inputsRef.current;
-    const index = inputs.findIndex((el) => el === input);
-    if (index < 0) {
-      return { next: input, prev: input };
-    }
+    const cancelBlur = useRef<Function>();
+    const [focused, setFocused] = useState(false);
 
-    const lastIndex = inputs.length - 1;
-    return {
-      prev: inputs[index > 0 ? index - 1 : 0],
-      next: inputs[index < lastIndex ? index + 1 : lastIndex],
-    };
-  }
-
-  function handleFocus(event: FocusEvent<HTMLInputElement>) {
-    (event.target as HTMLInputElement).select();
-
-    if (isFunction(cancelBlur.current)) {
-      cancelBlur.current();
-    } else {
-      setFocused(true);
-    }
-  }
-
-  function handleBlur(event: FocusEvent<HTMLInputElement>) {
-    const dateComponent = event.target.name as DateComponent;
-    const dateComponentOptions = DateComponents.options[dateComponent];
-    let dateComponentValue = dateComponents[dateComponent];
-    if (dateComponentValue != null) {
-      if (dateComponentValue < dateComponentOptions.min) {
-        updateDateComponents(dateComponentOptions.min, dateComponent);
-      } else if (dateComponentValue > dateComponentOptions.max) {
-        updateDateComponents(dateComponentOptions.max, dateComponent);
-      }
-    }
-
-    cancelBlur.current = defer(() => {
-      setFocused(false);
-      cancelBlur.current = undefined;
-    });
-  }
-
-  function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
-    const code = event.code;
-    const input = event.target as HTMLInputElement;
-    const dateComponent = input.name as DateComponent;
-    const dateComponentOptions = DateComponents.options[dateComponent];
-    const dateComponentValue = dateComponents[dateComponent];
-
-    if (code === KeyCode.arrowLeft || code === KeyCode.arrowRight) {
-      event.preventDefault();
-
-      const siblings = getInputSiblings(input);
-      // prettier-ignore
-      const nextFocus = code === KeyCode.arrowLeft
-        ? siblings.prev
-        : siblings.next;
-      nextFocus.focus();
-    } else if (readOnly) {
-      return;
-    } else if (
-      code === KeyCode.arrowUp ||
-      code === KeyCode.arrowDown ||
-      code === KeyCode.backspace ||
-      code === KeyCode.delete
-    ) {
-      event.preventDefault();
-
-      if (code === KeyCode.backspace || code === KeyCode.delete) {
-        updateDateComponents('', dateComponent);
-      } else {
-        let dateComponentNewValue: number;
-        if (dateComponentValue == null) {
-          dateComponentNewValue = getDefaultValue(dateComponent);
-        } else {
-          const step = code === KeyCode.arrowUp ? 1 : -1;
-
-          dateComponentNewValue = dateComponentValue + step;
-          if (dateComponentNewValue > dateComponentOptions.max) {
-            dateComponentNewValue = dateComponentOptions.min;
-          } else if (dateComponentNewValue < dateComponentOptions.min) {
-            dateComponentNewValue = dateComponentOptions.max;
-          }
-        }
-
-        updateDateComponents(dateComponentNewValue, dateComponent);
-        defer(() => input.select());
-      }
-    }
-  }
-
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    const target = event.target;
-    if (!target.value.match(/^\d+$/)) {
-      return;
-    }
-
-    const dateComponent = target.name as DateComponent;
-    const dateComponentOptions = DateComponents.options[dateComponent];
-
-    const dateComponentNewValue = Number(target.value);
-    updateDateComponents(dateComponentNewValue, dateComponent);
-
-    const dateComponentNextMinValue = dateComponentNewValue * 10;
-    if (dateComponentNextMinValue > dateComponentOptions.max) {
-      const siblings = getInputSiblings(target);
-      defer(() => siblings.next.focus());
-    }
-  }
-
-  function renderInputsGroup(
-    components: DateComponent[],
-    separator: ReactNode
-  ): JSX.Element {
-    const children: ReactNodeArray = [];
-    components.forEach((dateComponent, index) => {
-      if (index) {
-        children.push(
-          <span
-            key={`separator-${index}`}
-            className="dc-datetime-field__separator"
-          >
-            {separator}
-          </span>
+    useEffect(() => {
+      if (containerRef.current) {
+        inputsRef.current = Array.from(
+          containerRef.current.getElementsByTagName('input')
         );
       }
+    }, [type]);
 
-      children.push(
-        <DateComponentInput
-          key={dateComponent}
-          label={ariaLabels?.[dateComponent] || dateComponent}
-          placeholder={placeholders?.[dateComponent]}
-          readOnly={readOnly}
-          name={dateComponent}
-          value={dateComponents.getDisplayedValue(dateComponent)}
-          onChange={handleChange}
-        />
-      );
-    });
+    function updateDateComponents(
+      value: string | number,
+      component: DateComponent
+    ) {
+      onChangeDateComponents(dateComponents.updatingValue(value, component));
+    }
 
-    return <div className="dc-datetime-field__group">{children}</div>;
-  }
+    function getInputSiblings(input: HTMLInputElement): {
+      next: HTMLInputElement;
+      prev: HTMLInputElement;
+    } {
+      const inputs = inputsRef.current;
+      const index = inputs.findIndex((el) => el === input);
+      if (index < 0) {
+        return { next: input, prev: input };
+      }
 
-  return (
-    <fieldset
-      className={classNames(className, 'dc-datetime-field')}
-      ref={mergeRefs(ref, fieldSetRef)}
-      disabled={disabled}
-      role="group"
-      {...props}
-    >
+      const lastIndex = inputs.length - 1;
+      return {
+        prev: inputs[index > 0 ? index - 1 : 0],
+        next: inputs[index < lastIndex ? index + 1 : lastIndex],
+      };
+    }
+
+    function handleFocus(event: FocusEvent<HTMLInputElement>) {
+      (event.target as HTMLInputElement).select();
+
+      if (isFunction(cancelBlur.current)) {
+        cancelBlur.current();
+      } else {
+        setFocused(true);
+      }
+    }
+
+    function handleBlur(event: FocusEvent<HTMLInputElement>) {
+      const dateComponent = event.target.name as DateComponent;
+      const dateComponentOptions = DateComponents.options[dateComponent];
+      let dateComponentValue = dateComponents[dateComponent];
+      if (dateComponentValue != null) {
+        if (dateComponentValue < dateComponentOptions.min) {
+          updateDateComponents(dateComponentOptions.min, dateComponent);
+        } else if (dateComponentValue > dateComponentOptions.max) {
+          updateDateComponents(dateComponentOptions.max, dateComponent);
+        }
+      }
+
+      cancelBlur.current = defer(() => {
+        setFocused(false);
+        cancelBlur.current = undefined;
+      });
+    }
+
+    function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+      const code = event.code;
+      const input = event.target as HTMLInputElement;
+      const dateComponent = input.name as DateComponent;
+      const dateComponentOptions = DateComponents.options[dateComponent];
+      const dateComponentValue = dateComponents[dateComponent];
+
+      if (code === KeyCode.arrowLeft || code === KeyCode.arrowRight) {
+        event.preventDefault();
+
+        const siblings = getInputSiblings(input);
+        const nextFocus =
+          code === KeyCode.arrowLeft ? siblings.prev : siblings.next;
+        nextFocus.focus();
+      } else if (readOnly) {
+        return;
+      } else if (
+        code === KeyCode.arrowUp ||
+        code === KeyCode.arrowDown ||
+        code === KeyCode.backspace ||
+        code === KeyCode.delete
+      ) {
+        event.preventDefault();
+
+        if (code === KeyCode.backspace || code === KeyCode.delete) {
+          updateDateComponents('', dateComponent);
+        } else {
+          let dateComponentNewValue: number;
+          if (dateComponentValue == null) {
+            dateComponentNewValue = getDefaultValue(dateComponent);
+          } else {
+            const step = code === KeyCode.arrowUp ? 1 : -1;
+
+            dateComponentNewValue = dateComponentValue + step;
+            if (dateComponentNewValue > dateComponentOptions.max) {
+              dateComponentNewValue = dateComponentOptions.min;
+            } else if (dateComponentNewValue < dateComponentOptions.min) {
+              dateComponentNewValue = dateComponentOptions.max;
+            }
+          }
+
+          updateDateComponents(dateComponentNewValue, dateComponent);
+          defer(() => input.select());
+        }
+      }
+    }
+
+    function handleChange(event: ChangeEvent<HTMLInputElement>) {
+      const target = event.target;
+      if (!target.value.match(/^\d+$/)) {
+        return;
+      }
+
+      const dateComponent = target.name as DateComponent;
+      const dateComponentOptions = DateComponents.options[dateComponent];
+
+      const dateComponentNewValue = Number(target.value);
+      updateDateComponents(dateComponentNewValue, dateComponent);
+
+      const dateComponentNextMinValue = dateComponentNewValue * 10;
+      if (dateComponentNextMinValue > dateComponentOptions.max) {
+        const siblings = getInputSiblings(target);
+        defer(() => siblings.next.focus());
+      }
+    }
+
+    function renderInputsGroup(
+      components: DateComponent[],
+      separator: ReactNode
+    ): JSX.Element {
+      const children: ReactNodeArray = [];
+      components.forEach((dateComponent, index) => {
+        if (index) {
+          children.push(
+            <span
+              key={`separator-${index}`}
+              className="dc-datetime-field__separator"
+            >
+              {separator}
+            </span>
+          );
+        }
+
+        children.push(
+          <DateComponentInput
+            key={dateComponent}
+            id={ids?.[dateComponent]}
+            label={ariaLabels?.[dateComponent] || dateComponent}
+            placeholder={placeholders?.[dateComponent]}
+            disabled={disabled}
+            readOnly={readOnly}
+            name={dateComponent}
+            value={dateComponents.getDisplayedValue(dateComponent)}
+            onChange={handleChange}
+          />
+        );
+      });
+
+      return <div className="dc-datetime-field__group">{children}</div>;
+    }
+
+    return (
       <div
-        data-testid="inputs-container"
-        className={classNames('dc-field', 'dc-datetime-field__body', {
-          'dc-field_focused': focused,
-          'dc-field_disabled': disabled,
-          'dc-field_invalid': invalid,
-          [`dc-field_size_${size}`]: size,
-        })}
-        onKeyDown={handleKeyDown}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
+        className={classNames(className, 'dc-datetime-field')}
+        ref={mergeRefs(ref, containerRef)}
+        role="group"
+        {...props}
       >
-        {(type === 'date' || type === 'datetime') &&
-          renderInputsGroup(['day', 'month', 'year'], '/')}
+        <div
+          data-testid="inputs-container"
+          className={classNames('dc-field', 'dc-datetime-field__body', {
+            'dc-field_focused': focused,
+            'dc-field_disabled': disabled,
+            'dc-field_invalid': invalid,
+            [`dc-field_size_${size}`]: size,
+          })}
+          onKeyDown={handleKeyDown}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+        >
+          {(type === 'date' || type === 'datetime') &&
+            renderInputsGroup(['day', 'month', 'year'], '/')}
 
-        {(type === 'time' || type === 'datetime') &&
-          renderInputsGroup(['hour', 'minute'], ':')}
+          {(type === 'time' || type === 'datetime') &&
+            renderInputsGroup(['hour', 'minute'], ':')}
+        </div>
       </div>
-    </fieldset>
-  );
-});
+    );
+  }
+);
 
 function defer(callback: Function): () => void {
   const timeout = window.setTimeout(callback, 1);

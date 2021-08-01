@@ -5,6 +5,7 @@ export interface DatePartInputProps {
   id?: string;
   style?: CSSProperties;
   className?: string;
+  disabled?: boolean;
   readOnly?: boolean;
   label?: string;
   placeholder?: string;
@@ -17,6 +18,7 @@ export function DateComponentInput({
   id,
   style,
   className,
+  disabled,
   readOnly,
   label,
   placeholder,
@@ -36,6 +38,7 @@ export function DateComponentInput({
         aria-label={label}
         placeholder={placeholder}
         autoComplete="off"
+        disabled={disabled}
         readOnly={readOnly}
         value={value}
         name={name}
