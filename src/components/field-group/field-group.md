@@ -8,8 +8,8 @@ const [error, setError] = React.useState('');
 <FieldGroup
   label="Username"
   labelFor="fieldGroupExample"
-  isRequired={true}
   hint="You can use letters, numbers & periods"
+  required={true}
   validationError={error}
 >
   <TextField
@@ -39,15 +39,15 @@ const [error, setError] = React.useState('');
 
 <FieldGroup
   label="Username"
-  isRequired={true}
   hint="You can use letters, numbers & periods"
+  required={true}
   validationError={error}
 >
-  {({ id, isInvalid, isRequired }) => (
+  {({ id, invalid, required }) => (
     <TextField
       id={id}
-      required={isRequired}
-      invalid={isInvalid}
+      required={required}
+      invalid={invalid}
       value={value}
       onChange={(event) => setValue(event.target.value)}
       onBlur={() => {

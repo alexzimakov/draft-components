@@ -6,13 +6,13 @@ import { InlineMessage } from '../inline-message';
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 export interface FieldRenderer {
-  (props: { id: string; isRequired: boolean; isInvalid: boolean }): JSX.Element;
+  (props: { id: string; required: boolean; invalid: boolean }): JSX.Element;
 }
 
 export interface FieldGroupProps extends ComponentPropsWithoutRef<'div'> {
   label?: ReactNode;
   labelFor?: string;
-  isRequired?: boolean;
+  required?: boolean;
   hint?: ReactNode;
   validationError?: ReactNode;
   children: JSX.Element | FieldRenderer;
@@ -21,7 +21,7 @@ export interface FieldGroupProps extends ComponentPropsWithoutRef<'div'> {
 export function FieldGroup({
   label,
   labelFor,
-  isRequired = false,
+  required,
   hint,
   validationError,
   className,
@@ -38,7 +38,7 @@ export function FieldGroup({
       {label ? (
         <Label
           className="dc-field-group__label"
-          isRequired={isRequired}
+          isRequired={required}
           htmlFor={inputId.current}
         >
           {label}
@@ -48,8 +48,8 @@ export function FieldGroup({
         {typeof children === 'function'
           ? children({
               id: inputId.current,
-              isRequired,
-              isInvalid: !!validationError,
+              required: Boolean(required),
+              invalid: Boolean(validationError),
             })
           : children}
       </div>
