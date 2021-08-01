@@ -7,7 +7,7 @@ import type {
   ComponentPropsWithoutRef,
 } from 'react';
 
-export interface BadgeProps extends ComponentPropsWithoutRef<'span'> {
+export interface TagProps extends ComponentPropsWithoutRef<'span'> {
   isRounded?: boolean;
   size?: 'sm' | 'md' | 'lg';
   fillColor?:
@@ -27,7 +27,7 @@ export interface BadgeProps extends ComponentPropsWithoutRef<'span'> {
   onRemove?: MouseEventHandler<HTMLButtonElement>;
 }
 
-const removeButtonIconSize: Record<NonNullable<BadgeProps['size']>, number> = {
+const removeButtonIconSize: Record<NonNullable<TagProps['size']>, number> = {
   sm: 10,
   md: 12,
   lg: 12,
@@ -45,7 +45,7 @@ export function Tag({
   onRemove,
   className,
   ...props
-}: BadgeProps) {
+}: TagProps) {
   return (
     <span
       {...props}
