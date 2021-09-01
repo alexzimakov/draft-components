@@ -35,6 +35,8 @@
   --dc-zindex-fixed: #{$zindex-fixed};
   --dc-zindex-overlay: #{$zindex-overlay};
 
+  --dc-opacity-disabled: #{$opacity-50};
+
   /*------------------------------------*\
    #SCROLL BAR
   \*------------------------------------*/
@@ -118,6 +120,13 @@
   --dc-switch-accent-color: #{$blue-500};
   --dc-switch-w: 2rem;
   --dc-switch-h: 1.25rem;
+
+  /*------------------------------------*\
+   #SLIDER
+  \*------------------------------------*/
+  --dc-slider-thumb-gb-color: #{$white};
+  --dc-slider-track-gb-color: #{$gray-400};
+  --dc-slider-fill-track-gb-color: #{$blue-500};
 
   /*------------------------------------*\
    #ACTIONS GROUP

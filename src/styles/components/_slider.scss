@@ -1,0 +1,136 @@
+@use 'sass:math';
+
+$track-height: px-to-rem(2px);
+$thumb-height: px-to-rem(22px);
+$thumb-width: px-to-rem(10px);
+$thumb-shadow: 0 0 0 1px rgba($black, $opacity-10), $shadow-sm, $shadow-md;
+$thumb-shadow-focus: 0 0 0 rem-to-px(3px) $white,
+  0 0 0 rem-to-px(5px) var(--dc-focus-border-color);
+
+@mixin round-thumb-styles {
+  box-sizing: border-box;
+  width: $thumb-height;
+  height: $thumb-height;
+  border-radius: 50%;
+  border-color: transparent;
+  background: var(--dc-slider-thumb-gb-color);
+  box-shadow: $thumb-shadow;
+  appearance: none;
+}
+
+@mixin rect-thumb-styles {
+  width: $thumb-width;
+  border-radius: $border-radius-xs;
+}
+
+@mixin thumb-focus-styles {
+  box-shadow: $thumb-shadow, 0 0 0 3px $white,
+    0 0 0 5px var(--dc-focus-border-color);
+}
+
+.dc-slider {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.dc-slider_disabled {
+  opacity: var(--dc-opacity-disabled);
+}
+
+.dc-slider__tick_marks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.dc-slider__tick_marks > * {
+  flex: 0 0 3px;
+  height: 6px;
+  background: var(--dc-slider-track-gb-color);
+}
+
+.dc-slider::before,
+.dc-slider__fill-track {
+  position: absolute;
+  top: math.div($thumb-height - $track-height, 2);
+  left: 0;
+  height: $track-height;
+}
+
+.dc-slider::before {
+  content: '';
+  width: 100%;
+  background: var(--dc-slider-track-gb-color);
+}
+
+.dc-slider__fill-track {
+  width: 0;
+  background: var(--dc-slider-fill-track-gb-color);
+}
+
+.dc-slider__input {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: $thumb-height;
+  cursor: pointer;
+  opacity: 1;
+  background: transparent;
+  appearance: none;
+
+  &::-ms-track {
+    width: 100%;
+    cursor: pointer;
+    color: transparent;
+    border-color: transparent;
+    background: transparent;
+  }
+
+  &::-webkit-slider-thumb {
+    @include round-thumb-styles;
+  }
+  &::-moz-range-thumb {
+    @include round-thumb-styles;
+  }
+  &::-ms-thumb {
+    @include round-thumb-styles;
+  }
+
+  &:focus {
+    outline: none;
+  }
+  &:focus::-webkit-slider-thumb {
+    @include thumb-focus-styles;
+  }
+  &:focus::-moz-range-thumb {
+    @include thumb-focus-styles;
+  }
+  &:focus::-ms-thumb {
+    @include thumb-focus-styles;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.dc-slider__input_thumb_style_rect {
+  &::-webkit-slider-thumb {
+    @include rect-thumb-styles;
+  }
+  &::-moz-range-thumb {
+    @include rect-thumb-styles;
+  }
+  &::-ms-thumb {
+    @include rect-thumb-styles;
+  }
+}

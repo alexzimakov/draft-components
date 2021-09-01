@@ -40,6 +40,7 @@ module.exports = {
         'checkbox',
         'radio-button',
         'switch',
+        'slider',
         'field-group'
       ),
     },
