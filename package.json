@@ -13,11 +13,11 @@
   ],
   "scripts": {
     "test": "jest",
-    "test:coverage": "npm run test -- --coverage --no-cache",
+    "test-coverage": "npm run test -- --coverage --no-cache",
     "lint": "eslint src --fix",
     "format": "prettier --write --ignore-unknown .",
     "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build",
+    "styleguide-build": "styleguidist build",
     "bootstrap-icons": "node scripts/bootstrap-icons.js",
     "build": "gulp"
   },
