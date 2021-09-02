@@ -34,3 +34,4 @@ export * from './text-field';
 export * from './textarea';
 export * from './toast';
 export * from './tooltip';
+export * from './vertical-navigation';
