@@ -1,79 +1,39 @@
+import {
+  Children,
+  ComponentPropsWithoutRef,
+  ReactNode,
+  ReactNodeArray,
+} from 'react';
 import { classNames } from '../../lib/react-helpers';
-import type { ReactNode, ComponentPropsWithoutRef } from 'react';
+import { BreadcrumbsItem } from './breadcrumbs-item';
 
-export type BreadcrumbsHtmlAttrs = ComponentPropsWithoutRef<'nav'>;
-
-export interface BreadcrumbsItem {
-  href: string;
-  label: ReactNode;
-  icon?: JSX.Element;
-}
-
-export interface BreadcrumbsProps extends BreadcrumbsHtmlAttrs {
-  items: BreadcrumbsItem[];
-  separator?: ReactNode;
-  renderLink?: (props: {
-    className: string;
-    children: JSX.Element;
-    href: string;
-    isCurrent?: boolean;
-  }) => JSX.Element;
+export interface BreadcrumbsProps extends ComponentPropsWithoutRef<'nav'> {
+  children: ReactNodeArray;
+  delimiter?: ReactNode;
 }
 
 export function Breadcrumbs({
-  items,
-  renderLink,
-  separator = '/',
   className,
+  children,
+  delimiter = '|',
   ...props
 }: BreadcrumbsProps) {
   return (
-    <nav
-      aria-label="Breadcrumb"
-      {...props}
-      className={classNames(className, 'dc-breadcrumbs')}
-    >
-      <ol className="dc-breadcrumbs__list">
-        {items.map((item, index) => {
-          const key = index;
-          const className = 'dc-breadcrumbs-item';
-          const isCurrent = index === items.length - 1;
-          const children = (
-            <>
-              <i className="dc-breadcrumbs-item__icon" aria-hidden={true}>
-                {item.icon ? item.icon : null}
-              </i>
-              <span className="dc-breadcrumbs-item__label">{item.label}</span>
-            </>
-          );
-          const content =
-            typeof renderLink === 'function' ? (
-              renderLink({
-                href: item.href,
-                className,
-                children,
-                isCurrent,
-              })
-            ) : (
-              <a
-                className={className}
-                href={item.href}
-                aria-current={isCurrent}
-              >
-                {children}
-              </a>
-            );
-
+    <nav {...props} className={classNames(className, 'dc-breadcrumbs')}>
+      <ul className="dc-breadcrumbs__items">
+        {Children.map(children, (child, index) => {
           return (
-            <li key={key}>
-              {index ? (
-                <span className="dc-breadcrumbs__separator">{separator}</span>
+            <li key={`breadcrumbs-item-${index}`}>
+              {index !== 0 ? (
+                <span className="dc-breadcrumbs__delimiter">{delimiter}</span>
               ) : null}
-              {content}
+              {child}
             </li>
           );
         })}
-      </ol>
+      </ul>
     </nav>
   );
 }
+
+Breadcrumbs.Item = BreadcrumbsItem;

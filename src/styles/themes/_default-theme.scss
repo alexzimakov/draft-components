@@ -160,9 +160,10 @@
   /*------------------------------------*\
    #BREADCRUMBS
   \*------------------------------------*/
-  --dc-breadcrumbs-color: #{$gray-800};
-  --dc-breadcrumbs-separator-color: #{$gray-400};
-  --dc-breadcrumbs-item-icon-color: #{$gray-700};
+  --dc-breadcrumbs-item-color: var(--dc-secondary-text-color);
+  --dc-breadcrumbs-item-hover-color: var(--dc-primary-text-color);
+  --dc-breadcrumbs-selected-item-color: var(--dc-primary-text-color);
+  --dc-breadcrumbs-delimiter-color: #{$gray-400};
 
   /*------------------------------------*\
    #SEGMENTED CONTROL

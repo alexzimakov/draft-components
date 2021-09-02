@@ -3,11 +3,32 @@ import { Breadcrumbs } from '../breadcrumbs';
 import { SvgIcon } from '../svg-icon';
 import { houseFill } from '../../icons/house-fill';
 
-<Breadcrumbs
-  items={[
-    { href: '/', label: 'Home', icon: <SvgIcon icon={houseFill} /> },
-    { href: '#breadcrumbs', label: 'Project' },
-    { href: '#breadcrumbs', label: 'Awesome Project' },
-  ]}
-/>;
+<Breadcrumbs>
+  <Breadcrumbs.Item href="#/Navigation" icon={<SvgIcon icon={houseFill} />}>
+    Home
+  </Breadcrumbs.Item>
+  <Breadcrumbs.Item href="#/Navigation?id=breadcrumbs">
+    Navigation
+  </Breadcrumbs.Item>
+  <Breadcrumbs.Item selected={true}>Breadcrumbs</Breadcrumbs.Item>
+</Breadcrumbs>;
+```
+
+Custom delimiter
+
+```jsx
+import { Breadcrumbs } from '../breadcrumbs';
+import { SvgIcon } from '../svg-icon';
+import { houseFill } from '../../icons/house-fill';
+import { chevronRight } from '../../icons/chevron-right';
+
+<Breadcrumbs delimiter={<SvgIcon icon={chevronRight} />}>
+  <Breadcrumbs.Item href="#/Navigation" icon={<SvgIcon icon={houseFill} />}>
+    Home
+  </Breadcrumbs.Item>
+  <Breadcrumbs.Item href="#/Navigation?id=breadcrumbs">
+    Navigation
+  </Breadcrumbs.Item>
+  <Breadcrumbs.Item selected={true}>Breadcrumbs</Breadcrumbs.Item>
+</Breadcrumbs>;
 ```
