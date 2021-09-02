@@ -67,7 +67,3 @@ const [value, setValue] = React.useState('');
 
 <NumberField disabled={true} value={value} onChangeValue={setValue} />;
 ```
-
-```jsx
-<input type="number" max="10" step="7" />
-```
