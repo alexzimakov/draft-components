@@ -1,6 +1,6 @@
 .dc-btn {
   --dc-btn-text-color: var(--dc-btn-default-text-color);
-  --dc-btn-height: #{px-to-rem(32px)};
+  --dc-btn-height: var(--dc-control-md-h);
   --dc-btn-bg: var(--dc-btn-default-bg);
   --dc-btn-bg-hover: var(--dc-btn-default-bg-hover);
   --dc-btn-bg-active: var(--dc-btn-default-bg-active);
@@ -61,7 +61,7 @@
 
 .dc-btn_size_xs,
 .dc-btn_size_sm {
-  --dc-btn-height: #{px-to-rem(22px)};
+  --dc-btn-height: var(--dc-control-xs-h);
 
   border-radius: $border-radius-sm;
   font-size: $font-size-xs;
@@ -73,11 +73,11 @@
 }
 
 .dc-btn_size_sm {
-  --dc-btn-height: #{px-to-rem(28px)};
+  --dc-btn-height: var(--dc-control-sm-h);
 }
 
 .dc-btn_size_lg {
-  --dc-btn-height: #{px-to-rem(40px)};
+  --dc-btn-height: var(--dc-control-lg-h);
 
   padding-right: $gap-4x;
   padding-left: $gap-4x;

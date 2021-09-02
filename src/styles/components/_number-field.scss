@@ -1,0 +1,17 @@
+.dc-number-field {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dc-number-field_full-width {
+  width: 100%;
+}
+
+.dc-number-field > * + * {
+  margin-left: $gap-1x;
+}
+
+.dc-number-field__input {
+  flex: auto;
+  width: px-to-rem(160px);
+}

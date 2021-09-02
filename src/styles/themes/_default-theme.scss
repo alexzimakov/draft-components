@@ -37,6 +37,11 @@
 
   --dc-opacity-disabled: #{$opacity-50};
 
+  --dc-control-xs-h: #{px-to-rem(22px)};
+  --dc-control-sm-h: #{px-to-rem(28px)};
+  --dc-control-md-h: #{px-to-rem(32px)};
+  --dc-control-lg-h: #{px-to-rem(36px)};
+
   /*------------------------------------*\
    #SCROLL BAR
   \*------------------------------------*/
@@ -99,9 +104,9 @@
   --dc-field-danger-color: #{$red-600};
   --dc-field-danger-text-color: #{$white};
 
-  --dc-field-w: 18rem;
-  --dc-field-h: 32px;
-  --dc-field-pad: 0.75em;
+  --dc-field-w: #{px-to-rem(288px)};
+  --dc-field-h: var(--dc-control-md-h);
+  --dc-field-pad: #{px-to-em(12px)};
   --dc-field-br: #{$border-radius-xs};
   --dc-field-fs: #{$font-size-sm};
 
@@ -110,16 +115,16 @@
   /*------------------------------------*\
    #SELECTION CONTROLS
   \*------------------------------------*/
-  --dc-checkbox-size: 1.125rem;
+  --dc-checkbox-size: #{px-to-rem(18px)};
 
-  --dc-radio-button-size: 1.125rem;
+  --dc-radio-button-size: #{px-to-rem(18px)};
 
-  --dc-switch-check-size: 1rem;
+  --dc-switch-check-size: #{px-to-rem(16px)};
   --dc-switch-bg-color: #{$gray-200};
   --dc-switch-check-color: #{$white};
   --dc-switch-accent-color: #{$blue-500};
-  --dc-switch-w: 2rem;
-  --dc-switch-h: 1.25rem;
+  --dc-switch-w: #{px-to-rem(32px)};
+  --dc-switch-h: #{px-to-rem(20px)};
 
   /*------------------------------------*\
    #SLIDER

@@ -32,6 +32,7 @@ module.exports = {
         'buttons-group',
         'actions-group',
         'text-field',
+        'number-field',
         'search-field',
         'password-field',
         'datetime-field',

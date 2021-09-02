@@ -55,17 +55,17 @@
 }
 
 .dc-field_size_sm {
-  --dc-field-w: 14rem;
-  --dc-field-h: 1.75rem;
+  --dc-field-w: #{px-to-rem(224px)};
+  --dc-field-h: var(--dc-control-sm-h);
   --dc-field-br: #{$border-radius-xs};
-  --dc-field-fs: 0.8125rem;
+  --dc-field-fs: #{px-to-rem(13px)};
 }
 
 .dc-field_size_lg {
-  --dc-field-w: 20rem;
-  --dc-field-h: 2.25rem;
+  --dc-field-w: #{px-to-rem(320px)};
+  --dc-field-h: var(--dc-control-lg-h);
   --dc-field-br: #{$border-radius-sm};
-  --dc-field-fs: 0.9375rem;
+  --dc-field-fs: #{px-to-rem(15px)};
 }
 
 .dc-field_full_width {
