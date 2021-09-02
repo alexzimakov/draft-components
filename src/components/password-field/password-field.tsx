@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { TextField } from '../text-field';
+import { TextField, TextFieldProps } from '../text-field';
 import { Button } from '../button';
-import { SvgIcon } from '../svg-icon';
+import { SvgIcon, SvgIconProps } from '../svg-icon';
 import { eye } from '../../icons/eye';
 import { eyeSlash } from '../../icons/eye-slash';
-import type { TextFieldProps } from '../text-field';
-import type { SvgIconProps } from '../svg-icon';
 
 export type PasswordFieldBaseProps = Omit<
   TextFieldProps,

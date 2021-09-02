@@ -1,3 +1,4 @@
+import { ComponentPropsWithRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { SvgIcon } from '../svg-icon';
 import { ToastButton } from './toast-button';
@@ -5,7 +6,6 @@ import { exclamationCircleFill } from '../../icons/exclamation-circle-fill';
 import { exclamationTriangleFill } from '../../icons/exclamation-triangle-fill';
 import { checkCircleFill } from '../../icons/check-circle-fill';
 import { infoCircleFill } from '../../icons/info-circle-fill';
-import type { ReactNode, ComponentPropsWithRef } from 'react';
 
 interface BaseToastProps extends ComponentPropsWithRef<'section'> {
   appearance?: 'warning' | 'error' | 'info' | 'success';

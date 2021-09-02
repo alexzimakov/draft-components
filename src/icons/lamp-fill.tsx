@@ -1,7 +1,7 @@
 /**
  * This file auto-generated with the `scripts/bootstrap-icons.js` script.
  */
-import type { Icon } from '../components/svg-icon';
+import { Icon } from '../components/svg-icon';
 
 // https://github.com/twbs/icons/blob/main/icons/lamp-fill.svg
 export const lampFill: Icon = {

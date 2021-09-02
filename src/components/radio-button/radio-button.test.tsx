@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { RadioButton } from './radio-button';
 
 it('renders without errors', () => {

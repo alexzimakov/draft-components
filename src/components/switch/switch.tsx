@@ -1,7 +1,7 @@
+import { CheckboxProps } from '../checkbox';
 import { forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { SelectionControl } from '../selection-control';
-import type { CheckboxProps } from '../checkbox';
 
 export const Switch = forwardRef<HTMLInputElement, CheckboxProps>(
   function Switch(

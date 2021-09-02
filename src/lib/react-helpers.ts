@@ -1,4 +1,4 @@
-import type { LegacyRef, MutableRefObject, RefCallback } from 'react';
+import { LegacyRef, MutableRefObject, RefCallback } from 'react';
 
 type ClassName =
   | string

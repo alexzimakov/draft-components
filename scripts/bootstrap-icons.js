@@ -112,7 +112,7 @@ function iconToFileSource(iconName, props) {
 
   return formatCode(
     `${note}
-import type { Icon } from '../components/svg-icon';
+import { Icon } from '../components/svg-icon';
 
 // https://github.com/twbs/icons/blob/main/icons/${iconName}.svg
 export const ${variableName}: Icon = {

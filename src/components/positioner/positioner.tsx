@@ -1,9 +1,15 @@
-import { forwardRef, useRef } from 'react';
+import {
+  ComponentPropsWithRef,
+  forwardRef,
+  MutableRefObject,
+  useRef,
+} from 'react';
 import { mergeRefs } from '../../lib/react-helpers';
-import { usePositionElement } from '../../hooks/use-position-element';
+import {
+  PositionElementParams,
+  usePositionElement,
+} from '../../hooks/use-position-element';
 import { Portal } from '../portal';
-import type { ComponentPropsWithRef, MutableRefObject } from 'react';
-import type { PositionElementParams } from '../../hooks/use-position-element';
 
 export interface PositionerProps extends ComponentPropsWithRef<'div'> {
   anchorRef: MutableRefObject<HTMLElement | null>;

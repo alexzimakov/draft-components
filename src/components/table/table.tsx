@@ -1,3 +1,4 @@
+import { ComponentPropsWithoutRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { TableContainer } from './table-container';
 import { TableHead } from './table-head';
@@ -5,7 +6,6 @@ import { TableBody } from './table-body';
 import { TableRow } from './table-row';
 import { TableHeaderCell } from './table-header-cell';
 import { TableCell } from './table-cell';
-import type { ComponentPropsWithoutRef } from 'react';
 
 export interface TableProps extends ComponentPropsWithoutRef<'table'> {
   isLoading?: boolean;

@@ -1,5 +1,5 @@
+import { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import type { ComponentPropsWithoutRef, ReactNode, ReactElement } from 'react';
 
 export type SelectionControlHtmlAttrs = Omit<
   ComponentPropsWithoutRef<'div'>,

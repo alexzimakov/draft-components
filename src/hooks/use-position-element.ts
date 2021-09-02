@@ -1,5 +1,4 @@
-import { useLayoutEffect } from 'react';
-import type { MutableRefObject } from 'react';
+import { MutableRefObject, useLayoutEffect } from 'react';
 
 type Arrangement = 'top' | 'right' | 'bottom' | 'left';
 type Alignment = 'start' | 'center' | 'end';

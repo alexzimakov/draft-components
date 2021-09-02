@@ -1,7 +1,7 @@
 /**
  * This file auto-generated with the `scripts/bootstrap-icons.js` script.
  */
-import type { Icon } from '../components/svg-icon';
+import { Icon } from '../components/svg-icon';
 
 // https://github.com/twbs/icons/blob/main/icons/badge-3d-fill.svg
 export const badge3dFill: Icon = {

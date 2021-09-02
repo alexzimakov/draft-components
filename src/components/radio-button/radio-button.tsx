@@ -1,8 +1,9 @@
-import { forwardRef } from 'react';
+import { ComponentPropsWithRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { SelectionControl } from '../selection-control';
-import type { ComponentPropsWithRef } from 'react';
-import type { SelectionControlBaseProps } from '../selection-control';
+import {
+  SelectionControl,
+  SelectionControlBaseProps,
+} from '../selection-control';
 
 export type RadioButtonHtmlAttrs = Omit<
   ComponentPropsWithRef<'input'>,

@@ -1,9 +1,8 @@
-import { useRef, useEffect } from 'react';
+import { MutableRefObject, useEffect, useRef } from 'react';
 import { Stack } from '../lib/stack';
 import { noop } from '../lib/util';
 import { isFunction } from '../lib/guards';
 import { KeyCode } from '../lib/keyboard-helpers';
-import type { MutableRefObject } from 'react';
 
 type CloseCallback = () => void;
 

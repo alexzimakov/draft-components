@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render, screen, act, within } from '@testing-library/react';
+import { act, render, screen, within } from '@testing-library/react';
 import { ScopeButtons } from './scope-buttons';
 
 function renderScopeButtons() {

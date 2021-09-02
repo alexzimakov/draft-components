@@ -1,7 +1,7 @@
 /**
  * This file auto-generated with the `scripts/bootstrap-icons.js` script.
  */
-import type { Icon } from '../components/svg-icon';
+import { Icon } from '../components/svg-icon';
 
 // https://github.com/twbs/icons/blob/main/icons/emoji-angry-fill.svg
 export const emojiAngryFill: Icon = {

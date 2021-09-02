@@ -1,9 +1,8 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import { useState } from 'react';
-import { DateComponents } from './date-components';
+import { DateComponent, DateComponents } from './date-components';
 import { DatetimeField } from './datetime-field';
-import type { DateComponent } from './date-components';
 
 beforeEach(() => {
   jest.useFakeTimers();

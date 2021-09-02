@@ -1,7 +1,7 @@
+import { MutableRefObject } from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import { Popover } from './popover';
-import type { MutableRefObject } from 'react';
 
 const popoverContent = `Lorem ipsum dolor sit amet, consectetur adipisicing elit.`;
 

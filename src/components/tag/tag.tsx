@@ -1,11 +1,7 @@
+import { ComponentPropsWithoutRef, MouseEventHandler, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { SvgIcon } from '../svg-icon';
 import { xLg } from '../../icons/x-lg';
-import type {
-  ReactNode,
-  MouseEventHandler,
-  ComponentPropsWithoutRef,
-} from 'react';
 
 export interface TagProps extends ComponentPropsWithoutRef<'span'> {
   isRounded?: boolean;

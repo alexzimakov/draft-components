@@ -1,6 +1,11 @@
-import { useEffect, useMemo, useState } from 'react';
+import {
+  ComponentPropsWithoutRef,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { uniqueId } from '../../lib/util';
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 export interface AvatarShapeProps extends ComponentPropsWithoutRef<'svg'> {
   size: number;

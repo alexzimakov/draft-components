@@ -1,9 +1,8 @@
+import { ChangeEvent, KeyboardEvent, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { KeyCode } from '../../lib/keyboard-helpers';
 import { Button } from '../button';
-import { TextField } from '../text-field';
-import type { ReactNode, ChangeEvent, KeyboardEvent } from 'react';
-import type { TextFieldProps } from '../text-field';
+import { TextField, TextFieldProps } from '../text-field';
 
 export interface NumberFieldProps extends TextFieldProps {
   incrementButtonLabel?: ReactNode;

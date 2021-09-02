@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { ComponentPropsWithoutRef, ReactNode, useState } from 'react';
 import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
 import { Button } from '../button';
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 export interface SecretProps
   extends Omit<ComponentPropsWithoutRef<'div'>, 'onChange'> {

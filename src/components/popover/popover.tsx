@@ -1,14 +1,11 @@
-import { cloneElement, useRef } from 'react';
+import { cloneElement, MutableRefObject, ReactNode, useRef } from 'react';
 import { noop } from '../../lib/util';
 import { classNames, mergeRefs } from '../../lib/react-helpers';
 import { useCloseOnEscPress } from '../../hooks/use-close-on-esc-press';
 import { useCloseOnClickOutside } from '../../hooks/use-close-on-click-outside';
 import { useCaptureFocus } from '../../hooks/use-capture-focus';
-import { Positioner } from '../positioner';
-import { Box } from '../box';
-import type { ReactNode, MutableRefObject } from 'react';
-import type { PositionerProps } from '../positioner';
-import type { BoxProps } from '../box';
+import { Positioner, PositionerProps } from '../positioner';
+import { Box, BoxProps } from '../box';
 
 interface ElementWithRef extends JSX.Element {
   ref?: MutableRefObject<HTMLElement | null> | null;

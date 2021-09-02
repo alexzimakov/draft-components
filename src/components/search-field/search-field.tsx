@@ -1,8 +1,7 @@
 import { forwardRef } from 'react';
-import { TextField } from '../text-field';
+import { TextField, TextFieldProps } from '../text-field';
 import { SvgIcon } from '../svg-icon';
 import { search } from '../../icons/search';
-import type { TextFieldProps } from '../text-field';
 
 export interface SearchFieldProps extends TextFieldProps {}
 

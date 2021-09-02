@@ -1,9 +1,9 @@
+import { ComponentPropsWithoutRef, CSSProperties, ReactNode } from 'react';
+import { AvatarSize, AvatarTint } from './types';
 import { classNames } from '../../lib/react-helpers';
 import { getAvatarSizeInPixels } from './get-avatar-size-in-pixels';
 import { makeAvatarShapePath } from './make-avatar-shape-path';
 import { AvatarShape } from './avatar-shape';
-import type { ComponentPropsWithoutRef, ReactNode, CSSProperties } from 'react';
-import type { AvatarSize, AvatarTint } from './types';
 
 export interface AvatarItem {
   tint?: AvatarTint;

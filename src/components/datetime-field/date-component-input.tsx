@@ -1,5 +1,5 @@
+import { ChangeEventHandler, CSSProperties } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import type { CSSProperties, ChangeEventHandler } from 'react';
 
 export interface DatePartInputProps {
   id?: string;

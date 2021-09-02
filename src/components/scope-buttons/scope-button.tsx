@@ -1,7 +1,6 @@
 import { forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { Button } from '../button';
-import type { ButtonProps } from '../button';
+import { Button, ButtonProps } from '../button';
 
 export interface ScopeButtonProps extends Omit<ButtonProps, 'appearance'> {
   isActive?: boolean;

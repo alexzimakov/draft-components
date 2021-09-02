@@ -1,3 +1,4 @@
+import { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { getAvatarSizeInPixels } from './get-avatar-size-in-pixels';
 import {
@@ -5,11 +6,9 @@ import {
   makeRoundShapePath,
 } from './make-avatar-shape-path';
 import { makeInitials } from './make-initials';
-import { AvatarShape } from './avatar-shape';
+import { AvatarShape, AvatarShapeProps } from './avatar-shape';
 import { AvatarGroup } from './avatar-group';
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
-import type { AvatarSize, AvatarTint } from './types';
-import type { AvatarShapeProps } from './avatar-shape';
+import { AvatarSize, AvatarTint } from './types';
 
 export interface AvatarProps extends ComponentPropsWithoutRef<'div'> {
   size?: AvatarSize | number;

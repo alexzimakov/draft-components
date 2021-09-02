@@ -1,9 +1,7 @@
+import { ReactNode, useRef } from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
-import { useRef } from 'react';
-import { useCaptureFocus } from '../use-capture-focus';
-import type { ReactNode } from 'react';
-import type { CaptureFocusParams } from '../use-capture-focus';
+import { CaptureFocusParams, useCaptureFocus } from '../use-capture-focus';
 
 const elementsOutOfDialog = createElements();
 

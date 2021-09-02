@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
+import { MutableRefObject, useEffect } from 'react';
 import { Stack } from '../lib/stack';
-import type { MutableRefObject } from 'react';
 
 export interface CaptureFocusParams {
   modalRef: MutableRefObject<Element | null>;

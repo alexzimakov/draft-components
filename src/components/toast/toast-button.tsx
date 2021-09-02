@@ -1,5 +1,4 @@
-import { forwardRef } from 'react';
-import type { ComponentPropsWithRef } from 'react';
+import { ComponentPropsWithRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 export interface ToastButtonProps extends ComponentPropsWithRef<'button'> {}

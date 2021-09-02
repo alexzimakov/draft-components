@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import { render, within, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { Dialog } from './dialog';
 
 const heading = 'Title text';
@@ -148,9 +148,8 @@ it('when open more than one dialog should capture focus only in the top dialog',
   );
 
   const [, dialog2] = screen.getAllByRole('dialog');
-  const [closeButtonOfDialog2, confirmButtonOfDialog2] = within(
-    dialog2
-  ).getAllByRole('button');
+  const [closeButtonOfDialog2, confirmButtonOfDialog2] =
+    within(dialog2).getAllByRole('button');
 
   expect(closeButtonOfDialog2).toHaveFocus();
 

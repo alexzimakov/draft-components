@@ -1,4 +1,4 @@
-import type { KeyboardEvent as ReactKeyboardEvent } from 'react';
+import { KeyboardEvent as ReactKeyboardEvent } from 'react';
 
 export enum KeyCode {
   backspace = 'Backspace',

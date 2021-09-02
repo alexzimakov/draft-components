@@ -1,5 +1,5 @@
+import { ComponentPropsWithoutRef, HTMLAttributes } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import type { ComponentPropsWithoutRef, HTMLAttributes } from 'react';
 
 const CSSClasses = {
   formattedContent: 'dc-fmt-content',

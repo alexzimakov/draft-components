@@ -1,6 +1,5 @@
-import { useCallback } from 'react';
+import { ChangeEvent, ComponentPropsWithoutRef, useCallback } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import type { ComponentPropsWithoutRef, ChangeEvent } from 'react';
 
 export interface SliderProps extends ComponentPropsWithoutRef<'input'> {
   min?: number;

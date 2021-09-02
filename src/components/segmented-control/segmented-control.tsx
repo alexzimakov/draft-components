@@ -1,9 +1,9 @@
+import { ComponentPropsWithoutRef, KeyboardEvent, ReactNode } from 'react';
 import { uniqueId } from '../../lib/util';
 import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
-import { similarToClick, KeyCode } from '../../lib/keyboard-helpers';
+import { KeyCode, similarToClick } from '../../lib/keyboard-helpers';
 import { Button } from '../button';
-import type { ComponentPropsWithoutRef, ReactNode, KeyboardEvent } from 'react';
 
 type SegmentId = string | number;
 

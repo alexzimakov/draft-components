@@ -1,10 +1,10 @@
 ```jsx
-import {Dialog} from '../dialog';
-import {Button} from '../button';
-import {FieldGroup} from '../field-group';
-import {TextField} from '../text-field';
-import {Textarea} from '../textarea';
-import {FormattedContent} from '../formatted-content';
+import { Dialog } from '../dialog';
+import { Button } from '../button';
+import { FieldGroup } from '../field-group';
+import { TextField } from '../text-field';
+import { Textarea } from '../textarea';
+import { FormattedContent } from '../formatted-content';
 
 const saveButtonRef = React.useRef();
 
@@ -51,21 +51,21 @@ const closeNestedDialog = () => setIsNestedDialogOpen(false);
         rowGap: '0.5rem',
       }}
     >
-      <FieldGroup label="City:" style={{gridArea: 'city'}}>
-        {({id}) => <TextField id={id} fullWidth={true}/>}
+      <FieldGroup label="City:" style={{ gridArea: 'city' }}>
+        {({ id }) => <TextField id={id} fullWidth={true} />}
       </FieldGroup>
-      <FieldGroup label="Street:" style={{gridArea: 'street'}}>
-        {({id}) => <TextField id={id} fullWidth={true}/>}
+      <FieldGroup label="Street:" style={{ gridArea: 'street' }}>
+        {({ id }) => <TextField id={id} fullWidth={true} />}
       </FieldGroup>
-      <FieldGroup label="ZIP:" style={{gridArea: 'zip'}}>
-        {({id}) => <TextField id={id} fullWidth={true}/>}
+      <FieldGroup label="ZIP:" style={{ gridArea: 'zip' }}>
+        {({ id }) => <TextField id={id} fullWidth={true} />}
       </FieldGroup>
       <FieldGroup
         label="Special instructions:"
         hint="For example, gate code or other information to help the driver find you"
-        style={{gridArea: 'instructions'}}
+        style={{ gridArea: 'instructions' }}
       >
-        {({id}) => <Textarea id={id} fullWidth={true}/>}
+        {({ id }) => <Textarea id={id} fullWidth={true} />}
       </FieldGroup>
     </div>
   </Dialog>
@@ -148,8 +148,8 @@ const closeNestedDialog = () => setIsNestedDialogOpen(false);
         </code>
         . The first paragraph is also contained inside the element that provides
         the dialog description, i.e., the element that is referenced by <code>
-        aria-describedby
-      </code>. With some screen readers, this may have one negative but relatively
+          aria-describedby
+        </code>. With some screen readers, this may have one negative but relatively
         insignificant side effect when the dialog opens -- the first paragraph may
         be announced twice. Nonetheless, making the first paragraph focusable and
         setting the initial focus on it is the most broadly accessible option.

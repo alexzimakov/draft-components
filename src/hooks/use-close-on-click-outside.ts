@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
+import { MutableRefObject, useEffect } from 'react';
 import { isFunction, isHTMLElement } from '../lib/guards';
-import type { MutableRefObject } from 'react';
 
 type MaybeHTMLElement = HTMLElement | null;
 

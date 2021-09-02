@@ -1,7 +1,6 @@
-import { forwardRef, useState } from 'react';
+import { ComponentPropsWithRef, forwardRef, ReactNode, useState } from 'react';
 import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
-import type { ReactNode, ComponentPropsWithRef } from 'react';
 
 export type TextFieldHtmlAttrs = Omit<
   ComponentPropsWithRef<'input'>,

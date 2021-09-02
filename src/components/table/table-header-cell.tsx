@@ -1,8 +1,10 @@
+import { ComponentPropsWithoutRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { TableSortButton } from './table-sort-button';
-import type { ComponentPropsWithoutRef } from 'react';
-import type { TableSortButtonProps } from './table-sort-button';
-import type { Order } from './table-sort-button';
+import {
+  Order,
+  TableSortButton,
+  TableSortButtonProps,
+} from './table-sort-button';
 
 export interface TableHeaderCellProps extends ComponentPropsWithoutRef<'th'> {
   isSortable?: boolean;

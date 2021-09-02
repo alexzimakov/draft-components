@@ -1,3 +1,4 @@
+import { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { FormattedContent } from '../formatted-content';
 import { SvgIcon } from '../svg-icon';
@@ -5,7 +6,6 @@ import { exclamationTriangle } from '../../icons/exclamation-triangle';
 import { exclamationCircle } from '../../icons/exclamation-circle';
 import { infoCircle } from '../../icons/info-circle';
 import { checkCircle } from '../../icons/check-circle';
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 export interface NonIdealStateViewProps
   extends ComponentPropsWithoutRef<'div'> {

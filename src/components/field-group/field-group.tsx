@@ -1,9 +1,8 @@
-import { useRef } from 'react';
+import { ComponentPropsWithoutRef, ReactNode, useRef } from 'react';
 import { uniqueId } from '../../lib/util';
 import { classNames } from '../../lib/react-helpers';
 import { Label } from '../label';
 import { InlineMessage } from '../inline-message';
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 export interface FieldRenderer {
   (props: { id: string; required: boolean; invalid: boolean }): JSX.Element;

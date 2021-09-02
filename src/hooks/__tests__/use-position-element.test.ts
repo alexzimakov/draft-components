@@ -1,10 +1,10 @@
 import { fireEvent } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import {
-  usePositionElement,
   getElementCoordinates,
   getHorizontalAxisOffset,
   getVerticalAxisOffset,
+  usePositionElement,
 } from '../use-position-element';
 
 describe('#getHorizontalAxisOffset()', () => {

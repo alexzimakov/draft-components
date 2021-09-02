@@ -1,19 +1,21 @@
-import { forwardRef, useState, useRef, useEffect } from 'react';
+import {
+  ChangeEvent,
+  ComponentPropsWithRef,
+  FocusEvent,
+  forwardRef,
+  KeyboardEvent,
+  ReactNode,
+  ReactNodeArray,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { isFunction } from '../../lib/guards';
 import { classNames, mergeRefs } from '../../lib/react-helpers';
 import { KeyCode } from '../../lib/keyboard-helpers';
-import { DateComponents } from './date-components';
+import { TextFieldProps } from '../text-field';
+import { DateComponent, DateComponents } from './date-components';
 import { DateComponentInput } from './date-component-input';
-import type {
-  ComponentPropsWithRef,
-  ReactNode,
-  ReactNodeArray,
-  FocusEvent,
-  KeyboardEvent,
-  ChangeEvent,
-} from 'react';
-import type { TextFieldProps } from '../text-field';
-import type { DateComponent } from './date-components';
 
 export interface DatetimeFieldProps extends ComponentPropsWithRef<'div'> {
   size?: TextFieldProps['size'];

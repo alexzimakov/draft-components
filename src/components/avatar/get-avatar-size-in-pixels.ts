@@ -1,4 +1,4 @@
-import type { AvatarSize } from './types';
+import { AvatarSize } from './types';
 
 export const AVATAR_SIZE_IN_PIXELS: Record<AvatarSize, number> = {
   xs: 28,

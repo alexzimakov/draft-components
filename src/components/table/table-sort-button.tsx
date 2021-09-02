@@ -1,10 +1,8 @@
+import { ReactNode } from 'react';
 import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
-import { Button } from '../button';
-import { SvgIcon } from '../svg-icon';
-import type { ReactNode } from 'react';
-import type { ButtonProps } from '../button';
-import type { Icon } from '../svg-icon';
+import { Button, ButtonProps } from '../button';
+import { Icon, SvgIcon } from '../svg-icon';
 
 export type Order = 'none' | 'asc' | 'desc';
 

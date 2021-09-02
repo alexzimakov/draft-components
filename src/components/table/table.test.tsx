@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import { render, within, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { Table } from './table';
 
 it('renders without errors', () => {
@@ -94,9 +94,8 @@ it('renders with sortable header cells', () => {
     </Table>
   );
 
-  const [idHeaderCell, personHeaderCell, ageHeaderCell] = screen.getAllByRole(
-    'columnheader'
-  );
+  const [idHeaderCell, personHeaderCell, ageHeaderCell] =
+    screen.getAllByRole('columnheader');
   expect(idHeaderCell).toHaveAttribute('aria-sort', 'none');
   expect(personHeaderCell).toHaveAttribute('aria-sort', 'ascending');
   expect(ageHeaderCell).toHaveAttribute('aria-sort', 'descending');

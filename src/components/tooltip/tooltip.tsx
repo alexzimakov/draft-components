@@ -1,14 +1,15 @@
-import { cloneElement, useRef, useState } from 'react';
+import {
+  cloneElement,
+  ComponentPropsWithoutRef,
+  MutableRefObject,
+  ReactNode,
+  useRef,
+  useState,
+} from 'react';
 import { uniqueId } from '../../lib/util';
 import { isFunction } from '../../lib/guards';
 import { classNames, mergeRefs } from '../../lib/react-helpers';
-import { Positioner } from '../positioner';
-import type {
-  ReactNode,
-  MutableRefObject,
-  ComponentPropsWithoutRef,
-} from 'react';
-import type { PositionerProps } from '../positioner';
+import { Positioner, PositionerProps } from '../positioner';
 
 interface ElementWithRef extends JSX.Element {
   ref?: MutableRefObject<HTMLElement | null> | null;

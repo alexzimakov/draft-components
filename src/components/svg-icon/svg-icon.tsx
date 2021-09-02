@@ -1,7 +1,6 @@
-import { useRef } from 'react';
+import { ComponentPropsWithoutRef, useRef } from 'react';
 import { uniqueId } from '../../lib/util';
 import { classNames } from '../../lib/react-helpers';
-import type { ComponentPropsWithoutRef } from 'react';
 
 export interface Icon {
   name: string;

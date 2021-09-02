@@ -1,6 +1,5 @@
-import { useRef, useState, useEffect } from 'react';
+import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import type { ComponentPropsWithoutRef } from 'react';
 
 export function TableContainer({
   className,

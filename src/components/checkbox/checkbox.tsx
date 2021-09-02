@@ -1,11 +1,12 @@
-import { forwardRef } from 'react';
+import { ComponentPropsWithRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { SelectionControl } from '../selection-control';
+import {
+  SelectionControl,
+  SelectionControlBaseProps,
+} from '../selection-control';
 import { SvgIcon } from '../svg-icon';
 import { dash } from '../../icons/dash';
 import { check } from '../../icons/check';
-import type { ComponentPropsWithRef } from 'react';
-import type { SelectionControlBaseProps } from '../selection-control';
 
 export type CheckboxHtmlAttrs = Omit<
   ComponentPropsWithRef<'input'>,

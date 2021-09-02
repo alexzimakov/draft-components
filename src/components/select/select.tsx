@@ -1,6 +1,5 @@
-import { forwardRef } from 'react';
+import { ComponentPropsWithRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import type { ComponentPropsWithRef } from 'react';
 
 export interface SelectProps
   extends Omit<ComponentPropsWithRef<'select'>, 'size'> {

@@ -1,4 +1,9 @@
-import { useRef } from 'react';
+import {
+  ComponentPropsWithoutRef,
+  MutableRefObject,
+  ReactNode,
+  useRef,
+} from 'react';
 import { noop } from '../../lib/util';
 import { classNames } from '../../lib/react-helpers';
 import { useCaptureFocus } from '../../hooks/use-capture-focus';
@@ -7,14 +12,9 @@ import { useDisableBodyScroll } from '../../hooks/use-disable-body-scroll';
 import { Portal } from '../portal';
 import { Box } from '../box';
 import { Button } from '../button';
-import { Headline, FormattedContent } from '../formatted-content';
+import { FormattedContent, Headline } from '../formatted-content';
 import { SvgIcon } from '../svg-icon';
 import { xLg } from '../../icons/x-lg';
-import type {
-  ReactNode,
-  MutableRefObject,
-  ComponentPropsWithoutRef,
-} from 'react';
 
 export interface DialogProps extends ComponentPropsWithoutRef<'div'> {
   isOpen?: boolean;

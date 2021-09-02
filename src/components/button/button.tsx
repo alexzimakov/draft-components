@@ -1,7 +1,6 @@
-import { forwardRef } from 'react';
+import { ComponentPropsWithRef, forwardRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { Spinner } from '../spinner';
-import type { ReactNode, ComponentPropsWithRef } from 'react';
 
 export type ButtonHtmlAttrs = ComponentPropsWithRef<'button'>;
 
