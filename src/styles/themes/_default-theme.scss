@@ -35,7 +35,7 @@
   --dc-zindex-fixed: #{$zindex-fixed};
   --dc-zindex-overlay: #{$zindex-overlay};
 
-  --dc-opacity-disabled: #{$opacity-50};
+  --dc-disabled-state-opacity: #{$opacity-50};
 
   --dc-control-xs-h: #{px-to-rem(22px)};
   --dc-control-sm-h: #{px-to-rem(28px)};

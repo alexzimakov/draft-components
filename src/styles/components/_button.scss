@@ -50,7 +50,7 @@
 
   &:disabled {
     cursor: not-allowed;
-    opacity: $opacity-50;
+    opacity: var(--dc-disabled-state-opacity);
     box-shadow: none;
   }
 }

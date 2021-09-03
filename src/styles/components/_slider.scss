@@ -35,7 +35,7 @@ $thumb-shadow-focus: 0 0 0 rem-to-px(3px) $white,
 }
 
 .dc-slider_disabled {
-  opacity: var(--dc-opacity-disabled);
+  opacity: var(--dc-disabled-state-opacity);
 }
 
 .dc-slider__tick_marks {

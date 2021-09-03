@@ -59,7 +59,7 @@
   appearance: none;
 
   &:disabled {
-    opacity: $opacity-30;
+    opacity: var(--dc-disabled-state-opacity);
     cursor: not-allowed;
   }
 

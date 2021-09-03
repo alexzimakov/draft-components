@@ -54,6 +54,6 @@
 
   .dc-switch__input:disabled + & {
     cursor: default;
-    opacity: $opacity-50;
+    opacity: var(--dc-disabled-state-opacity);
   }
 }
