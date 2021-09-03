@@ -1,0 +1,75 @@
+.dc-radio-group {
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  font-family: var(--dc-font-base);
+}
+
+.dc-radio-group > * + * {
+  margin-top: $gap-2x;
+}
+
+.dc-radio-group-input {
+  @include visually-hidden;
+}
+
+.dc-radio-group-item {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: $gap-2x $gap-4x;
+  cursor: default;
+  border: 2px solid var(--dc-radio-group-border-color);
+  border-radius: $border-radius-md;
+}
+
+.dc-radio-group-item__check {
+  display: inline-block;
+  width: px-to-rem(18px);
+  height: px-to-rem(18px);
+  color: var(--dc-radio-group-selection-color);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--dc-radio-group-border-color);
+}
+
+.dc-radio-group-item__check-icon {
+  visibility: hidden;
+}
+
+.dc-radio-group-item > * + * {
+  margin-left: $gap-4x;
+}
+
+.dc-radio-group-item__body {
+  flex: auto;
+  font-size: $font-size-sm;
+}
+
+.dc-radio-group-item__label {
+  margin: 0 0 $gap-1x;
+  padding: 0;
+  color: var(--dc-primary-text-color);
+  font-weight: $font-weight-medium;
+}
+
+.dc-radio-group-item__description {
+  color: var(--dc-secondary-text-color);
+}
+
+.dc-radio-group-input:checked ~ .dc-radio-group-item {
+  border-color: var(--dc-radio-group-selection-color);
+
+  .dc-radio-group-item__check-icon {
+    visibility: visible;
+  }
+}
+
+.dc-radio-group-input:focus ~ .dc-radio-group-item {
+  outline: none;
+  box-shadow: 0 0 0 2px #{$white}, 0 0 0 4px var(--dc-focus-ring-color);
+}
+
+.dc-radio-group-input:disabled ~ .dc-radio-group-item {
+  opacity: var(--dc-disabled-state-opacity);
+}

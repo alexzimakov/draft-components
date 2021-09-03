@@ -19,6 +19,7 @@ export * from './password-field';
 export * from './popover';
 export * from './portal';
 export * from './radio-button';
+export * from './radio-group';
 export * from './slider';
 export * from './scope-buttons';
 export * from './search-field';

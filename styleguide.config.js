@@ -40,6 +40,7 @@ module.exports = {
         'textarea',
         'checkbox',
         'radio-button',
+        'radio-group',
         'switch',
         'slider',
         'field-group'

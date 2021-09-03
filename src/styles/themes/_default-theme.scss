@@ -127,6 +127,12 @@
   --dc-switch-h: #{px-to-rem(20px)};
 
   /*------------------------------------*\
+   #RADIO GROUP
+  \*------------------------------------*/
+  --dc-radio-group-selection-color: #{$blue-500};
+  --dc-radio-group-border-color: #{rgba($black, $opacity-10)};
+
+  /*------------------------------------*\
    #SLIDER
   \*------------------------------------*/
   --dc-slider-thumb-gb-color: #{$white};
