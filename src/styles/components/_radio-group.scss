@@ -67,7 +67,7 @@
 
 .dc-radio-group-input:focus ~ .dc-radio-group-item {
   outline: none;
-  box-shadow: 0 0 0 2px #{$white}, 0 0 0 4px var(--dc-focus-ring-color);
+  box-shadow: 0 0 0 3px var(--dc-focus-ring-color);
 }
 
 .dc-radio-group-input:disabled ~ .dc-radio-group-item {

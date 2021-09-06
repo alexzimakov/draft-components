@@ -43,7 +43,7 @@
   }
 
   .dc-radio-btn__input:focus + & {
-    box-shadow: 0 0 0 2px #{$white}, 0 0 0 4px var(--dc-field-accent-color);
+    box-shadow: 0 0 0 3px var(--dc-focus-ring-color);
   }
 
   .dc-radio-btn__input:disabled + & {

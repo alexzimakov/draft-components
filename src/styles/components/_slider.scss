@@ -1,11 +1,9 @@
 @use 'sass:math';
 
 $track-height: px-to-rem(2px);
-$thumb-height: px-to-rem(22px);
+$thumb-height: px-to-rem(20px);
 $thumb-width: px-to-rem(10px);
 $thumb-shadow: 0 0 0 1px rgba($black, $opacity-10), $shadow-sm, $shadow-md;
-$thumb-shadow-focus: 0 0 0 rem-to-px(3px) $white,
-  0 0 0 rem-to-px(5px) var(--dc-focus-border-color);
 
 @mixin round-thumb-styles {
   box-sizing: border-box;
@@ -24,8 +22,7 @@ $thumb-shadow-focus: 0 0 0 rem-to-px(3px) $white,
 }
 
 @mixin thumb-focus-styles {
-  box-shadow: $thumb-shadow, 0 0 0 3px $white,
-    0 0 0 5px var(--dc-focus-border-color);
+  box-shadow: $thumb-shadow, 0 0 0 4px var(--dc-focus-ring-color);
 }
 
 .dc-slider {

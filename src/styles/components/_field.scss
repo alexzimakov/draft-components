@@ -35,12 +35,12 @@
 }
 
 .dc-field_invalid {
-  border-color: var(--dc-field-danger-color);
+  border-color: var(--dc-field-error-color);
 }
 
 .dc-field_invalid:focus,
 .dc-field_invalid.dc-field_focused {
-  --dc-field-focus-color: var(--dc-field-danger-color);
+  --dc-field-focus-color: var(--dc-field-error-color);
 }
 
 .dc-field:disabled,

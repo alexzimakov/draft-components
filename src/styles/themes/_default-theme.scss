@@ -25,7 +25,7 @@
   --dc-skeleton-bg-color: #{$gray-200};
 
   --dc-focus-border-color: #{$blue-500};
-  --dc-focus-ring-color: #{rgba($blue-500, $opacity-40)};
+  --dc-focus-ring-color: #{rgba($blue-500, $opacity-45)};
   --dc-focus-ring-secondary-color: #{$white};
   --dc-focus-danger-border-color: #{$red-500};
   --dc-focus-danger-ring-color: #{rgba($red-500, $opacity-40)};
@@ -53,38 +53,54 @@
   /*------------------------------------*\
    #BUTTONS
   \*------------------------------------*/
-  --dc-btn-default-text-color: #{$gray-700};
-  --dc-btn-default-bg: #{$white};
-  --dc-btn-default-bg-hover: #{$gray-100};
-  --dc-btn-default-bg-active: #{$gray-200};
-  --dc-btn-default-focus-ring-color: #{rgba($blue-500, 0.65)};
+  --dc-btn-height: var(--dc-control-md-h);
+  --dc-btn-text-color: #{$gray-700};
+  --dc-btn-bg: #{$white};
+  --dc-btn-bg-hover: #{$gray-100};
+  --dc-btn-bg-active: #{$gray-200};
+  --dc-btn-border-color: #{$gray-200};
+  --dc-btn-border-color-focus: #{$gray-200};
+  --dc-btn-focus-ring-color: var(--dc-focus-ring-color);
 
   --dc-btn-secondary-text-color: #{$gray-700};
   --dc-btn-secondary-bg: #{rgba($gray-500, $opacity-10)};
   --dc-btn-secondary-bg-hover: #{rgba($gray-500, $opacity-15)};
   --dc-btn-secondary-bg-active: #{rgba($gray-500, $opacity-20)};
+  --dc-btn-secondary-border-color: #{rgba($gray-500, $opacity-10)};
+  --dc-btn-secondary-border-color-focus: #{rgba($gray-500, $opacity-10)};
+  --dc-btn-secondary-focus-ring-color: var(--dc-focus-ring-color);
 
   --dc-btn-minimal-text-color: #{$gray-700};
   --dc-btn-minimal-bg: #{rgba($gray-500, $opacity-0)};
   --dc-btn-minimal-bg-hover: #{rgba($gray-500, $opacity-10)};
   --dc-btn-minimal-bg-active: #{rgba($gray-500, $opacity-15)};
+  --dc-btn-minimal-border-color: #{rgba($gray-500, $opacity-0)};
+  --dc-btn-minimal-border-color-focus: #{rgba($gray-500, $opacity-0)};
+  --dc-btn-minimal-focus-ring-color: var(--dc-focus-ring-color);
 
   --dc-btn-primary-text-color: #{$white};
   --dc-btn-primary-bg: #{$blue-500};
   --dc-btn-primary-bg-hover: #{$blue-600};
   --dc-btn-primary-bg-active: #{$blue-700};
+  --dc-btn-primary-border-color: #{$blue-500};
+  --dc-btn-primary-border-color-focus: #{$blue-600};
+  --dc-btn-primary-focus-ring-color: var(--dc-focus-ring-color);
 
   --dc-btn-danger-text-color: #{$white};
   --dc-btn-danger-bg: #{$red-600};
   --dc-btn-danger-bg-hover: #{$red-700};
   --dc-btn-danger-bg-active: #{$red-800};
-  --dc-btn-danger-focus-ring-color: #{rgba($red-600, $opacity-65)};
+  --dc-btn-danger-border-color: #{$red-600};
+  --dc-btn-danger-border-color-focus: #{$red-800};
+  --dc-btn-danger-focus-ring-color: #{rgba($red-600, $opacity-50)};
 
   --dc-btn-success-text-color: #{$white};
   --dc-btn-success-bg: #{$green-500};
   --dc-btn-success-bg-hover: #{$green-600};
   --dc-btn-success-bg-active: #{$green-700};
-  --dc-btn-success-focus-ring-color: #{rgba($green-500, $opacity-75)};
+  --dc-btn-success-border-color: #{$green-500};
+  --dc-btn-success-border-color-focus: #{$green-600};
+  --dc-btn-success-focus-ring-color: #{rgba($green-500, $opacity-50)};
 
   /*------------------------------------*\
    #FORM FIELDS
@@ -101,8 +117,8 @@
 
   --dc-field-accent-color: #{$blue-500};
   --dc-field-accent-text-color: #{$white};
-  --dc-field-danger-color: #{$red-600};
-  --dc-field-danger-text-color: #{$white};
+  --dc-field-error-color: #{$red-600};
+  --dc-field-error-text-color: #{$white};
 
   --dc-field-w: #{px-to-rem(288px)};
   --dc-field-h: var(--dc-control-md-h);
