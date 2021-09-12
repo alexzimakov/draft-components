@@ -73,6 +73,7 @@ import { Avatar } from '../avatar';
   <Avatar tint="indigo" initials={Avatar.makeInitials('indigo')} />
   <Avatar tint="yellow" initials={Avatar.makeInitials('yellow')} />
   <Avatar tint="orange" initials={Avatar.makeInitials('orange')} />
+  <Avatar tint="pink" initials={Avatar.makeInitials('pink')} />
 </>;
 ```
 

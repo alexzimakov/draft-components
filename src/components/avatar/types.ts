@@ -9,4 +9,5 @@ export type AvatarTint =
   | 'lime'
   | 'indigo'
   | 'yellow'
-  | 'orange';
+  | 'orange'
+  | 'mint';
