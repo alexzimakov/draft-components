@@ -71,7 +71,7 @@ export function AvatarShape({
             return renderInitials({
               initials,
               fill: `url(#${ids.gradient})`,
-              fontSize: size * 0.40,
+              fontSize: size * 0.4,
             });
           }
 
@@ -129,7 +129,7 @@ function renderInitials(props: {
         x="50%"
         y="50%"
         textAnchor="middle"
-        alignmentBaseline="central"
+        dominantBaseline="central"
         letterSpacing="0.015em"
         fontFamily="var(--dc-font-base, sans-serif)"
         fontSize={props.fontSize}
