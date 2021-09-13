@@ -25,6 +25,8 @@
   height: px-to-rem(36px);
   padding: 0 $gap-2x;
   text-decoration: none;
+  user-select: none;
+  cursor: default;
   color: var(--dc-secondary-text-color);
   border-radius: $border-radius-sm;
   font-size: $font-size-base;
