@@ -1,3 +1,16 @@
+.text-color-inherit {
+  color: inherit;
+}
+.text-color-primary {
+  color: var(--dc-primary-text-color);
+}
+.text-color-secondary {
+  color: var(--dc-secondary-text-color);
+}
+.text-color-tertiary {
+  color: var(--dc-tertiary-text-color);
+}
+
 /*------------------------------------*\
   #TEXT WEIGHT
 \*------------------------------------*/
@@ -7,11 +20,17 @@
 .text-normal {
   font-weight: 400;
 }
-.text-bold {
-  font-weight: 700;
+.text-medium {
+  font-weight: 500;
 }
 .text-semibold {
   font-weight: 600;
+}
+.text-bold {
+  font-weight: 700;
+}
+.text-extrabold {
+  font-weight: 800;
 }
 
 /*------------------------------------*\
