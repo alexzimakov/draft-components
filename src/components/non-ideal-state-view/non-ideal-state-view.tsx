@@ -79,19 +79,19 @@ function getIcon(
   switch (icon) {
     case 'error':
       modifier = 'dc-non-ideal-state__icon_red';
-      renderedIcon = <SvgIcon size="4x" icon={exclamationCircle} />;
+      renderedIcon = <SvgIcon size="3x" icon={exclamationCircle} />;
       break;
     case 'warning':
       modifier = 'dc-non-ideal-state__icon_orange';
-      renderedIcon = <SvgIcon size="4x" icon={exclamationTriangle} />;
+      renderedIcon = <SvgIcon size="3x" icon={exclamationTriangle} />;
       break;
     case 'info':
       modifier = 'dc-non-ideal-state__icon_blue';
-      renderedIcon = <SvgIcon size="4x" icon={infoCircle} />;
+      renderedIcon = <SvgIcon size="3x" icon={infoCircle} />;
       break;
     case 'success':
       modifier = 'dc-non-ideal-state__icon_green';
-      renderedIcon = <SvgIcon size="4x" icon={checkCircle} />;
+      renderedIcon = <SvgIcon size="3x" icon={checkCircle} />;
       break;
     default:
       renderedIcon = icon;
