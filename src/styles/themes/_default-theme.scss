@@ -216,9 +216,9 @@
   --dc-table-border-color: #{rgba($gray-500, $opacity-25)};
   --dc-table-border: 1px solid var(--dc-table-border-color);
   --dc-table-cell-bg: var(--dc-primary-bg-color);
-  --dc-table-header-cell-bg: var(--dc-tertiary-bg-color);
+  --dc-table-header-cell-bg: var(--dc-secondary-bg-color);
   --dc-table-hover-row-bg: var(--dc-tertiary-bg-color);
-  --dc-table-striped-row-bg: var(--dc-secondary-bg-color);
+  --dc-table-striped-row-bg: var(--dc-tertiary-bg-color);
   --dc-table-selected-row-bg: #{blue-100};
   --dc-table-selected-stiped-row-bg: #{blue-50};
 

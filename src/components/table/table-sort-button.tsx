@@ -79,7 +79,7 @@ export function TableSortButton({
       appearance="minimal"
       noPadding={true}
       size="xs"
-      leadingIcon={<SvgIcon icon={orderIcons[order]} size={16} />}
+      leadingIcon={<SvgIcon icon={orderIcons[order]} size={14} />}
       onClick={() => {
         isFunction(onSort) && onSort(nextOrder);
       }}
