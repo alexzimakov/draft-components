@@ -1,14 +1,34 @@
-.text-color-inherit {
+@use '../abstracts' as dc;
+
+/*------------------------------------*\
+  #TEXT COLOR
+\*------------------------------------*/
+.color-inherit {
   color: inherit;
 }
-.text-color-primary {
+.color-primary {
   color: var(--dc-primary-text-color);
 }
-.text-color-secondary {
+.color-secondary {
   color: var(--dc-secondary-text-color);
 }
-.text-color-tertiary {
+.color-tertiary {
   color: var(--dc-tertiary-text-color);
+}
+.color-link {
+  color: var(--dc-link-text-color);
+}
+.color-error {
+  color: var(--dc-error-text-color);
+}
+.color-warning {
+  color: var(--dc-warning-text-color);
+}
+.color-info {
+  color: var(--dc-info-text-color);
+}
+.color-success {
+  color: var(--dc-success-text-color);
 }
 
 /*------------------------------------*\
@@ -60,4 +80,45 @@
 }
 .text-left {
   text-align: left;
+}
+
+/*------------------------------------*\
+  #FONT SIZE
+\*------------------------------------*/
+.fs-xs {
+  font-size: dc.$font-size-xs;
+}
+.fs-sm {
+  font-size: dc.$font-size-sm;
+}
+.fs-base {
+  font-size: dc.$font-size-base;
+}
+.fs-lg {
+  font-size: dc.$font-size-lg;
+}
+.fs-xl {
+  font-size: dc.$font-size-xl;
+}
+.fs-2xl {
+  font-size: dc.$font-size-2xl;
+}
+.fs-3xl {
+  font-size: dc.$font-size-3xl;
+}
+
+/*------------------------------------*\
+  #LINE HEIGHT
+\*------------------------------------*/
+.leading-default {
+  $leading-default: 1;
+}
+.leading-tight {
+  $leading-tight: 1.25;
+}
+.leading-normal {
+  $leading-normal: 1.375;
+}
+.leading-lg {
+  $leading-lg: 1.5;
 }
