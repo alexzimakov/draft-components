@@ -1,4 +1,5 @@
 import { ComponentPropsWithRef, forwardRef } from 'react';
+import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
 import {
   SelectionControl,
@@ -33,11 +34,22 @@ export type RadioButtonHtmlAttrs = Omit<
 
 export interface RadioButtonProps
   extends SelectionControlBaseProps,
-    RadioButtonHtmlAttrs {}
+    RadioButtonHtmlAttrs {
+  onCheck?(checked: boolean): void;
+}
 
 export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
   function RadioButton(
-    { label, description, style, className, disabled, ...props },
+    {
+      label,
+      description,
+      style,
+      className,
+      disabled,
+      onChange,
+      onCheck,
+      ...props
+    },
     ref
   ) {
     return (
@@ -54,6 +66,10 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
           ref={ref}
           type="radio"
           disabled={disabled}
+          onChange={(event) => {
+            isFunction(onChange) && onChange(event);
+            isFunction(onCheck) && onCheck(event.target.checked);
+          }}
         />
         <span className="dc-radio-btn__radio" aria-hidden={true} />
       </SelectionControl>

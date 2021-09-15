@@ -1,4 +1,5 @@
 import { ComponentPropsWithRef, forwardRef } from 'react';
+import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
 import {
   SelectionControl,
@@ -38,11 +39,22 @@ export interface CheckboxProps
   extends SelectionControlBaseProps,
     CheckboxHtmlAttrs {
   isMixed?: boolean;
+  onCheck?(checked: boolean): void;
 }
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   function Checkbox(
-    { label, description, style, className, disabled, isMixed, ...props },
+    {
+      label,
+      description,
+      style,
+      className,
+      disabled,
+      isMixed,
+      onChange,
+      onCheck,
+      ...props
+    },
     ref
   ) {
     return (
@@ -59,6 +71,10 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           ref={ref}
           type="checkbox"
           disabled={disabled}
+          onChange={(event) => {
+            isFunction(onChange) && onChange(event);
+            isFunction(onCheck) && onCheck(event.target.checked);
+          }}
         />
         <span className="dc-checkbox__check" aria-hidden={true}>
           <SvgIcon

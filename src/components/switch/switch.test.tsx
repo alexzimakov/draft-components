@@ -1,11 +1,12 @@
-import { fireEvent, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { render, screen } from '@testing-library/react';
 import { Switch } from './switch';
 
 it('renders without errors', () => {
   const title = 'Enable Location Services';
-  const { getByTitle } = render(<Switch title={title} />);
+  render(<Switch title={title} />);
 
-  getByTitle(title);
+  screen.getByTitle(title);
 });
 
 it('should forward extra attrs to underlying <input />', () => {
@@ -14,8 +15,8 @@ it('should forward extra attrs to underlying <input />', () => {
     name: 'locationServices',
     value: 'enabled',
   } as const;
-  const { getByTestId } = render(<Switch {...attrs} />);
-  const inputEl = getByTestId(attrs['data-testid']);
+  render(<Switch {...attrs} />);
+  const inputEl = screen.getByTestId(attrs['data-testid']);
 
   expect(inputEl).toHaveAttribute('name', attrs.name);
   expect(inputEl).toHaveAttribute('value', attrs.value);
@@ -24,20 +25,29 @@ it('should forward extra attrs to underlying <input />', () => {
 it('renders with label and description', () => {
   const label = 'Enable Location Services';
   const description = 'Allow selected apps to determine your location.';
-  const { getByText } = render(
-    <Switch label={label} description={description} />
-  );
+  render(<Switch label={label} description={description} />);
 
-  getByText(label);
-  getByText(description);
+  screen.getByText(label);
+  screen.getByText(description);
 });
 
 it('should check when click on label', () => {
   const label = 'Enable Location Services';
   const onChange = jest.fn();
-  const { getByText } = render(<Switch label={label} onChange={onChange} />);
+  render(<Switch label={label} onChange={onChange} />);
 
-  fireEvent.click(getByText(label));
+  userEvent.click(screen.getByText(label));
 
   expect(onChange).toHaveBeenCalledTimes(1);
+});
+
+it('invokes `onCheck` callback', () => {
+  const label = 'Enable Location Services';
+  const onCheck = jest.fn();
+  render(<Switch label={label} onCheck={onCheck} />);
+
+  userEvent.click(screen.getByText(label));
+
+  expect(onCheck).toHaveBeenCalledTimes(1);
+  expect(onCheck).toHaveBeenNthCalledWith(1, true);
 });

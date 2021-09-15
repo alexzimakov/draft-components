@@ -1,11 +1,12 @@
-import { fireEvent, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { render, screen } from '@testing-library/react';
 import { RadioButton } from './radio-button';
 
 it('renders without errors', () => {
   const title = 'Private access';
-  const { getByTitle } = render(<RadioButton title={title} />);
+  render(<RadioButton title={title} />);
 
-  getByTitle(title);
+  screen.getByTitle(title);
 });
 
 it('should forward extra attrs to underlying <input />', () => {
@@ -14,8 +15,8 @@ it('should forward extra attrs to underlying <input />', () => {
     name: 'accessMode',
     value: 'private',
   } as const;
-  const { getByTestId } = render(<RadioButton {...attrs} />);
-  const inputEl = getByTestId(attrs['data-testid']);
+  render(<RadioButton {...attrs} />);
+  const inputEl = screen.getByTestId(attrs['data-testid']);
 
   expect(inputEl).toHaveAttribute('name', attrs.name);
   expect(inputEl).toHaveAttribute('value', attrs.value);
@@ -24,22 +25,29 @@ it('should forward extra attrs to underlying <input />', () => {
 it('renders with label and description', () => {
   const label = 'Private access';
   const description = 'The repository would be available to anyone';
-  const { getByText } = render(
-    <RadioButton label={label} description={description} />
-  );
+  render(<RadioButton label={label} description={description} />);
 
-  getByText(label);
-  getByText(description);
+  screen.getByText(label);
+  screen.getByText(description);
 });
 
 it('should check when click on label', () => {
   const label = 'Enable Location Services';
   const onChange = jest.fn();
-  const { getByText } = render(
-    <RadioButton label={label} onChange={onChange} />
-  );
+  render(<RadioButton label={label} onChange={onChange} />);
 
-  fireEvent.click(getByText(label));
+  userEvent.click(screen.getByText(label));
 
   expect(onChange).toHaveBeenCalledTimes(1);
+});
+
+it('invokes `onCheck` callback', () => {
+  const label = 'Enable Location Services';
+  const onCheck = jest.fn();
+  render(<RadioButton label={label} onCheck={onCheck} />);
+
+  userEvent.click(screen.getByText(label));
+
+  expect(onCheck).toHaveBeenCalledTimes(1);
+  expect(onCheck).toHaveBeenNthCalledWith(1, true);
 });
