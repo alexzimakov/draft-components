@@ -19,7 +19,8 @@
     "styleguide": "styleguidist server",
     "styleguide-build": "styleguidist build",
     "bootstrap-icons": "node scripts/bootstrap-icons.js",
-    "build": "gulp"
+    "build": "gulp",
+    "preversion": "npm run build"
   },
   "repository": {
     "type": "git",
