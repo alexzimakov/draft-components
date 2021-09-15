@@ -1,4 +1,5 @@
-import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { render, screen } from '@testing-library/react';
 import { TextField } from './text-field';
 
 it('renders without errors', () => {
@@ -52,4 +53,24 @@ it('should invoke `onFocus` and `onBlur` event handlers', () => {
 
   expect(onFocus).toHaveBeenCalledTimes(1);
   expect(onBlur).toHaveBeenCalledTimes(1);
+});
+
+it('invokes `onChange` event handler', () => {
+  const onChange = jest.fn();
+  render(<TextField onChange={onChange} />);
+
+  userEvent.paste(screen.getByRole('textbox'), 'lorem');
+
+  expect(onChange).toHaveBeenCalledTimes(1);
+});
+
+it('invokes `onChangeValue` with changed value', () => {
+  const onChangeValue = jest.fn();
+  const expectedValue = 'lorem';
+  render(<TextField onChangeValue={onChangeValue} />);
+
+  userEvent.paste(screen.getByRole('textbox'), expectedValue);
+
+  expect(onChangeValue).toHaveBeenCalledTimes(1);
+  expect(onChangeValue).toHaveBeenNthCalledWith(1, expectedValue);
 });

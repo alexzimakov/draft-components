@@ -42,6 +42,7 @@ export interface TextFieldProps extends TextFieldHtmlAttrs {
   fullWidth?: boolean;
   leadingAddOn?: ReactNode;
   trailingAddOn?: ReactNode;
+  onChangeValue?(value: string): void;
 }
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
@@ -58,6 +59,8 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       disabled,
       onFocus,
       onBlur,
+      onChange,
+      onChangeValue,
       ...props
     },
     ref
@@ -92,6 +95,10 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           onBlur={(event) => {
             setFocused(false);
             isFunction(onBlur) && onBlur(event);
+          }}
+          onChange={(event) => {
+            isFunction(onChange) && onChange(event);
+            isFunction(onChangeValue) && onChangeValue(event.target.value);
           }}
         />
 

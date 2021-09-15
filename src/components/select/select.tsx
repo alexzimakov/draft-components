@@ -1,4 +1,5 @@
 import { ComponentPropsWithRef, forwardRef } from 'react';
+import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
 
 export interface SelectProps
@@ -6,11 +7,20 @@ export interface SelectProps
   size?: 'sm' | 'md' | 'lg';
   invalid?: boolean;
   fullWidth?: boolean;
+  onChangeValue?(value: string): void;
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   function Select(
-    { size = 'md', invalid, fullWidth, className, ...props },
+    {
+      size = 'md',
+      invalid,
+      fullWidth,
+      className,
+      onChange,
+      onChangeValue,
+      ...props
+    },
     ref
   ) {
     return (
@@ -22,6 +32,10 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           'dc-field_full_width': fullWidth,
           [`dc-field_size_${size}`]: size,
         })}
+        onChange={(event) => {
+          isFunction(onChange) && onChange(event);
+          isFunction(onChangeValue) && onChangeValue(event.target.value);
+        }}
       />
     );
   }

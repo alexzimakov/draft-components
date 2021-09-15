@@ -31,6 +31,17 @@ it('renders with custom buttons labels', () => {
   expect(incrementButton).toHaveTextContent(incrementButtonLabel);
 });
 
+it('invokes `onChange` event handler', () => {
+  const onChange = jest.fn();
+  render(
+    <NumberField value="10" onChangeValue={jest.fn()} onChange={onChange} />
+  );
+
+  userEvent.paste(screen.getByRole('textbox'), '10');
+
+  expect(onChange).toHaveBeenCalledTimes(1);
+});
+
 it('invokes `onChangeValue` callback when entering a correct number', () => {
   const invalidNumber = 'one hundred';
   const integer = '100';

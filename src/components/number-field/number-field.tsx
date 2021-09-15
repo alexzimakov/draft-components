@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, ReactNode } from 'react';
+import { KeyboardEvent, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { KeyCode } from '../../lib/keyboard-helpers';
 import { Button } from '../button';
@@ -29,7 +29,6 @@ export function NumberField({
   fullWidth,
   size,
   value,
-  onChange,
   onKeyDown,
   onChangeValue,
   ...props
@@ -70,16 +69,11 @@ export function NumberField({
     }
   }
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    const value = event.target.value;
+  function handleChangeValue(value: string) {
     if (value === '') {
       onChangeValue(value);
     } else if (value.match(NUMBER_REGEXP) && inRange(Number(value))) {
       onChangeValue(value);
-    }
-
-    if (typeof onChange === 'function') {
-      onChange(event);
     }
   }
 
@@ -141,8 +135,8 @@ export function NumberField({
         fullWidth={fullWidth}
         type="text"
         value={value}
-        onChange={handleChange}
         onKeyDown={handleKeyDown}
+        onChangeValue={handleChangeValue}
       />
       <Button
         appearance="secondary"
