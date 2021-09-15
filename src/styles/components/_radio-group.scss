@@ -47,13 +47,14 @@
 }
 
 .dc-radio-group-item__label {
-  margin: 0 0 $gap-1x;
+  margin: 0;
   padding: 0;
   color: var(--dc-primary-text-color);
   font-weight: $font-weight-medium;
 }
 
 .dc-radio-group-item__description {
+  margin-top: $gap-1x;
   color: var(--dc-secondary-text-color);
 }
 
