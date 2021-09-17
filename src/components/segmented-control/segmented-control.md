@@ -11,8 +11,8 @@ const [activeKey, setActiveKey] = React.useState(segments[0].id);
 <SegmentedControl
   size="md"
   items={segments}
-  selectedItemKey={activeKey}
-  onItemSelect={setActiveKey}
+  selectedValue={activeKey}
+  onChangeSelectedValue={setActiveKey}
 />;
 ```
 
@@ -33,7 +33,7 @@ const [activeKey, setActiveKey] = React.useState(segments[0].id);
 <SegmentedControl
   size="md"
   items={segments}
-  selectedItemKey={activeKey}
-  onItemSelect={setActiveKey}
+  selectedValue={activeKey}
+  onChangeSelectedValue={setActiveKey}
 />;
 ```

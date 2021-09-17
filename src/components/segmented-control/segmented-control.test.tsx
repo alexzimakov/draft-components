@@ -5,15 +5,15 @@ import { SegmentedControl } from './segmented-control';
 it('renders without errors', () => {
   const icon = <svg data-testid="item-icon" />;
   const items = [
-    { id: 1, label: 'Popular', icon },
-    { id: 2, label: 'Newest' },
-    { id: 3, label: 'Top rated' },
+    { value: 1, label: 'Popular', icon },
+    { value: 2, label: 'Newest' },
+    { value: 3, label: 'Top rated' },
   ];
   render(
     <SegmentedControl
       items={items}
-      selectedItemKey={items[0].id}
-      onItemSelect={jest.fn()}
+      selectedValue={items[0].value}
+      onChangeSelectedValue={jest.fn()}
     />
   );
 
@@ -33,15 +33,15 @@ it('renders without errors', () => {
 
 it('should change focus using keyboard', () => {
   const items = [
-    { id: 1, label: 'Popular' },
-    { id: 2, label: 'Newest' },
-    { id: 3, label: 'Top-Rated' },
+    { value: 1, label: 'Popular' },
+    { value: 2, label: 'Newest' },
+    { value: 3, label: 'Top-Rated' },
   ];
   render(
     <SegmentedControl
       items={items}
-      selectedItemKey={items[0].id}
-      onItemSelect={jest.fn()}
+      selectedValue={items[0].value}
+      onChangeSelectedValue={jest.fn()}
     />
   );
 
@@ -78,17 +78,17 @@ it('should change focus using keyboard', () => {
 });
 
 it('should call `onItemSelect` callback when select item', () => {
-  const items = [
-    { id: 1, label: 'Popular' },
-    { id: 2, label: 'Newest' },
-    { id: 3, label: 'Top rated' },
+  const segments = [
+    { value: 1, label: 'Popular' },
+    { value: 2, label: 'Newest' },
+    { value: 3, label: 'Top rated' },
   ];
   const onItemSelect = jest.fn();
   render(
     <SegmentedControl
-      items={items}
-      selectedItemKey={items[0].id}
-      onItemSelect={onItemSelect}
+      items={segments}
+      selectedValue={segments[0].value}
+      onChangeSelectedValue={onItemSelect}
     />
   );
 
@@ -103,8 +103,7 @@ it('should call `onItemSelect` callback when select item', () => {
   userEvent.type(newest, '{arrowright}', { skipClick: true });
   userEvent.type(topRated, '{space}', { skipClick: true });
 
-  expect(onItemSelect).toHaveBeenCalledTimes(3);
-  expect(onItemSelect).toHaveBeenNthCalledWith(1, items[0].id, items[0]);
-  expect(onItemSelect).toHaveBeenNthCalledWith(2, items[1].id, items[1]);
-  expect(onItemSelect).toHaveBeenNthCalledWith(3, items[2].id, items[2]);
+  expect(onItemSelect).toHaveBeenCalledTimes(2);
+  expect(onItemSelect).toHaveBeenNthCalledWith(1, segments[1].value);
+  expect(onItemSelect).toHaveBeenNthCalledWith(2, segments[2].value);
 });

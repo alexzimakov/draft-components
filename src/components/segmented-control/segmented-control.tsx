@@ -1,5 +1,4 @@
 import { ComponentPropsWithoutRef, KeyboardEvent, ReactNode } from 'react';
-import { uniqueId } from '../../lib/util';
 import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
 import { KeyCode, similarToClick } from '../../lib/keyboard-helpers';
@@ -8,7 +7,7 @@ import { Button } from '../button';
 type SegmentId = string | number;
 
 export interface Segment<T extends SegmentId> {
-  id: T;
+  value: T;
   label: ReactNode;
   icon?: ReactNode;
 }
@@ -16,22 +15,26 @@ export interface Segment<T extends SegmentId> {
 export interface SegmentedControlProps<T extends SegmentId>
   extends ComponentPropsWithoutRef<'ul'> {
   size?: 'sm' | 'md' | 'lg';
-  name?: string;
   items: Segment<T>[];
-  selectedItemKey: Segment<T>['id'];
-  onItemSelect(itemId: Segment<T>['id'], item: Segment<T>): void;
+  selectedValue: Segment<T>['value'];
+  onChangeSelectedValue(value: Segment<T>['value']): void;
 }
 
 export function SegmentedControl<T extends SegmentId>({
   size = 'md',
-  name = uniqueId('segmented-control-'),
   items,
-  selectedItemKey,
-  onItemSelect,
+  selectedValue,
+  onChangeSelectedValue,
   className,
   onKeyDown,
   ...props
 }: SegmentedControlProps<T>) {
+  function selectSegment(segment: Segment<T>) {
+    if (segment.value !== selectedValue) {
+      onChangeSelectedValue(segment.value);
+    }
+  }
+
   function handleKeyDown(event: KeyboardEvent<HTMLUListElement>) {
     const code = event.code;
     if (
@@ -85,32 +88,32 @@ export function SegmentedControl<T extends SegmentId>({
       role="radiogroup"
       onKeyDown={handleKeyDown}
     >
-      {items.map((item) => {
-        const isSelected = item.id === selectedItemKey;
+      {items.map((segment) => {
+        const isSelected = segment.value === selectedValue;
         return (
           <Button
-            key={item.id}
+            key={segment.value}
             size={size}
             className="dc-segmented-control__radio-btn"
             appearance={isSelected ? 'default' : 'minimal'}
-            leadingIcon={item.icon}
+            leadingIcon={segment.icon}
             renderAs={(props) => (
               <li
                 {...props}
                 role="radio"
                 aria-checked={isSelected}
                 tabIndex={isSelected ? 0 : -1}
-                onClick={() => onItemSelect(item.id, item)}
+                onClick={() => selectSegment(segment)}
                 onKeyDown={(event) => {
                   if (similarToClick(event)) {
                     event.preventDefault();
-                    onItemSelect(item.id, item);
+                    selectSegment(segment);
                   }
                 }}
               />
             )}
           >
-            {item.label}
+            {segment.label}
           </Button>
         );
       })}
