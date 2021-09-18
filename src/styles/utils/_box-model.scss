@@ -2,31 +2,31 @@
   #DISPLAY
 \*------------------------------------*/
 .d-none {
-  display: none;
+  display: none !important;
 }
 .d-block {
-  display: block;
+  display: block !important;
 }
 .d-inline-block {
-  display: inline-block;
+  display: inline-block !important;
 }
 .d-inline {
-  display: inline;
+  display: inline !important;
 }
 
 /*------------------------------------*\
   #BOX SIZING
 \*------------------------------------*/
 .box-content {
-  box-sizing: content-box;
+  box-sizing: content-box !important;
 }
 .box-border {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 /*------------------------------------*\
   #WIDTH
 \*------------------------------------*/
 .width-full {
-  width: 100%;
+  width: 100% !important;
 }

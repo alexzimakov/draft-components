@@ -16,37 +16,37 @@ $margin-scale: (
 
 @each $scale, $margin in $margin-scale {
   .m-#{$scale} {
-    margin: $margin;
+    margin: $margin !important;
   }
 
   .mx-#{$scale} {
-    margin-right: $margin;
-    margin-left: $margin;
+    margin-right: $margin !important;
+    margin-left: $margin !important;
   }
 
   .my-#{$scale} {
-    margin-top: $margin;
-    margin-bottom: $margin;
+    margin-top: $margin !important;
+    margin-bottom: $margin !important;
   }
 
   .mt-#{$scale} {
-    margin-top: $margin;
+    margin-top: $margin !important;
   }
 
   .mr-#{$scale} {
-    margin-right: $margin;
+    margin-right: $margin !important;
   }
 
   .mb-#{$scale} {
-    margin-bottom: $margin;
+    margin-bottom: $margin !important;
   }
 
   .ml-#{$scale} {
-    margin-left: $margin;
+    margin-left: $margin !important;
   }
 }
 
 .mx-auto {
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: auto !important;
+  margin-left: auto !important;
 }

@@ -16,32 +16,32 @@ $padding-scale: (
 
 @each $scale, $padding in $padding-scale {
   .p-#{$scale} {
-    padding: $padding;
+    padding: $padding !important;
   }
 
   .px-#{$scale} {
-    padding-right: $padding;
-    padding-left: $padding;
+    padding-right: $padding !important;
+    padding-left: $padding !important;
   }
 
   .py-#{$scale} {
-    padding-top: $padding;
-    padding-bottom: $padding;
+    padding-top: $padding !important;
+    padding-bottom: $padding !important;
   }
 
   .pt-#{$scale} {
-    padding-top: $padding;
+    padding-top: $padding !important;
   }
 
   .pr-#{$scale} {
-    padding-right: $padding;
+    padding-right: $padding !important;
   }
 
   .pb-#{$scale} {
-    padding-bottom: $padding;
+    padding-bottom: $padding !important;
   }
 
   .pl-#{$scale} {
-    padding-left: $padding;
+    padding-left: $padding !important;
   }
 }
