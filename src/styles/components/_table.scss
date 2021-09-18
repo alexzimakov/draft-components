@@ -87,11 +87,6 @@
   border-bottom: none;
 }
 
-.dc-table_striped > .dc-table-body .dc-table-cell {
-  border-left: none;
-  border-bottom: none;
-}
-
 .dc-table_bordered .dc-table-cell + .dc-table-cell {
   border-left: var(--dc-table-border);
 }
