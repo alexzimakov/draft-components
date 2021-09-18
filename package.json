@@ -20,7 +20,7 @@
     "styleguide-build": "styleguidist build",
     "bootstrap-icons": "node scripts/bootstrap-icons.js",
     "build": "gulp",
-    "preversion": "npm run build"
+    "preversion": "npm test && npm run build"
   },
   "repository": {
     "type": "git",
