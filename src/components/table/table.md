@@ -575,7 +575,7 @@ const getSortedRows = () => {
             align={header.align}
             isSortable={header.isSortable}
             order={sorting.column === header.id ? sorting.order : 'none'}
-            onSort={(order) => setSorting({ column: header.id, order })}
+            onChangeOrder={(order) => setSorting({ column: header.id, order })}
           >
             {header.label}
           </Table.HeaderCell>

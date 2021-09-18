@@ -57,24 +57,28 @@ it('renders without errors', () => {
 });
 
 it('renders with sortable header cells', () => {
-  const onSortById = jest.fn();
-  const onSortByPerson = jest.fn();
-  const onSortByAge = jest.fn();
+  const onChangeIdOrder = jest.fn();
+  const onChangePersonOrder = jest.fn();
+  const onChangeAgeOrder = jest.fn();
   render(
     <Table>
       <Table.Head>
         <Table.Row>
-          <Table.HeaderCell isSortable={true} onSort={onSortById}>
+          <Table.HeaderCell isSortable={true} onChangeOrder={onChangeIdOrder}>
             ID
           </Table.HeaderCell>
           <Table.HeaderCell
             isSortable={true}
             order="asc"
-            onSort={onSortByPerson}
+            onChangeOrder={onChangePersonOrder}
           >
             Person
           </Table.HeaderCell>
-          <Table.HeaderCell isSortable={true} order="desc" onSort={onSortByAge}>
+          <Table.HeaderCell
+            isSortable={true}
+            order="desc"
+            onChangeOrder={onChangeAgeOrder}
+          >
             Age
           </Table.HeaderCell>
         </Table.Row>
@@ -101,14 +105,14 @@ it('renders with sortable header cells', () => {
   expect(ageHeaderCell).toHaveAttribute('aria-sort', 'descending');
 
   userEvent.click(within(idHeaderCell).getByRole('button'));
-  expect(onSortById).toHaveBeenCalledTimes(1);
-  expect(onSortById).toHaveBeenCalledWith('asc');
+  expect(onChangeIdOrder).toHaveBeenCalledTimes(1);
+  expect(onChangeIdOrder).toHaveBeenCalledWith('asc');
 
   userEvent.click(within(personHeaderCell).getByRole('button'));
-  expect(onSortByPerson).toHaveBeenCalledTimes(1);
-  expect(onSortByPerson).toHaveBeenCalledWith('desc');
+  expect(onChangePersonOrder).toHaveBeenCalledTimes(1);
+  expect(onChangePersonOrder).toHaveBeenCalledWith('desc');
 
   userEvent.click(within(ageHeaderCell).getByRole('button'));
-  expect(onSortByAge).toHaveBeenCalledTimes(1);
-  expect(onSortByAge).toHaveBeenCalledWith('none');
+  expect(onChangeAgeOrder).toHaveBeenCalledTimes(1);
+  expect(onChangeAgeOrder).toHaveBeenCalledWith('none');
 });

@@ -9,7 +9,7 @@ import {
 export interface TableHeaderCellProps extends ComponentPropsWithoutRef<'th'> {
   isSortable?: boolean;
   order?: TableSortButtonProps['order'];
-  onSort?: TableSortButtonProps['onSort'];
+  onChangeOrder?: TableSortButtonProps['onSort'];
   renderSortButtonLabel?: TableSortButtonProps['renderLabel'];
 }
 
@@ -23,7 +23,7 @@ export function TableHeaderCell({
   isSortable,
   order = 'none',
   renderSortButtonLabel,
-  onSort,
+  onChangeOrder,
   className,
   role = 'columnheader',
   align = 'left',
@@ -44,7 +44,7 @@ export function TableHeaderCell({
             className="dc-table-cell__sort-btn"
             column={children}
             order={order}
-            onSort={onSort}
+            onSort={onChangeOrder}
             renderLabel={renderSortButtonLabel}
           />
         )}
