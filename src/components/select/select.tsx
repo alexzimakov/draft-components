@@ -27,10 +27,10 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       <select
         {...props}
         ref={ref}
-        className={classNames(className, 'dc-field', 'dc-select', {
-          'dc-field_invalid': invalid,
-          'dc-field_full_width': fullWidth,
-          [`dc-field_size_${size}`]: size,
+        className={classNames(className, 'dc-input', 'dc-select', {
+          'dc-input_invalid': invalid,
+          'dc-input_full_width': fullWidth,
+          [`dc-input_size_${size}`]: size,
         })}
         onChange={(event) => {
           isFunction(onChange) && onChange(event);

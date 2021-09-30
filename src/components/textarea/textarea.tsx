@@ -26,10 +26,10 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       <textarea
         {...props}
         ref={ref}
-        className={classNames(className, 'dc-field', 'dc-textarea', {
-          'dc-field_invalid': invalid,
-          'dc-field_full_width': fullWidth,
-          [`dc-field_size_${size}`]: size,
+        className={classNames(className, 'dc-input', 'dc-textarea', {
+          'dc-input_invalid': invalid,
+          'dc-input_full_width': fullWidth,
+          [`dc-input_size_${size}`]: size,
         })}
         onChange={(event) => {
           isFunction(onChange) && onChange(event);

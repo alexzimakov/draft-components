@@ -1,4 +1,4 @@
-@function get-arrow-icon($color) {
+@function select-arrow-icon($color) {
   @return inline-svg(
     '<svg width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 11L6 14L9 11" stroke="#{$color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 5L6 2L3 5" stroke="#{$color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
   );
@@ -9,24 +9,24 @@
   padding-right: calc(1.25em + var(--dc-input-gap));
   padding-left: var(--dc-input-gap);
   cursor: pointer;
-  background-image: get-arrow-icon($gray-600);
+  background-image: select-arrow-icon($gray-600);
   background-repeat: no-repeat;
   background-size: 0.85em auto;
   background-position: calc(100% - var(--dc-input-gap)) center;
   box-shadow: $shadow-xs;
   line-height: $leading-default;
+}
 
-  &:disabled {
-    background-image: get-arrow-icon($gray-400);
-  }
+.dc-select:disabled {
+  background-image: select-arrow-icon($gray-400);
 }
 
 .dc-select[multiple] {
   height: initial;
   padding: $gap-2x 0;
   background: var(--dc-input-bg);
+}
 
-  option {
-    padding: $gap-1x $gap-3x;
-  }
+.dc-select option {
+  padding: $gap-1x $gap-3x;
 }
