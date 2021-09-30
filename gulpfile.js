@@ -1,6 +1,7 @@
 const { exec } = require('child_process');
-const { removeSync, copy } = require('fs-extra');
+const { copy } = require('fs-extra');
 const packageJson = require('./package.json');
+const fs = require('fs');
 const path = require('path');
 const gulp = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
@@ -25,7 +26,10 @@ const ANSI_CODES = {
 
 async function clean(done) {
   for (const file of packageJson.files) {
-    removeSync(file);
+    const dir = file.split(path.sep)[0];
+    if (dir) {
+      fs.rmdirSync(dir, { recursive: true });
+    }
   }
   done();
 }
