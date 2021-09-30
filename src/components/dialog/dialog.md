@@ -1,7 +1,7 @@
 ```jsx
 import { Dialog } from '../dialog';
 import { Button } from '../button';
-import { FieldGroup } from '../field-group';
+import { FormField } from '../form-field';
 import { TextInput } from '../text-input';
 import { Textarea } from '../textarea';
 import { FormattedContent } from '../formatted-content';
@@ -51,22 +51,22 @@ const closeNestedDialog = () => setIsNestedDialogOpen(false);
         rowGap: '0.5rem',
       }}
     >
-      <FieldGroup label="City:" style={{ gridArea: 'city' }}>
+      <FormField label="City:" style={{ gridArea: 'city' }}>
         {({ id }) => <TextInput id={id} fullWidth={true} />}
-      </FieldGroup>
-      <FieldGroup label="Street:" style={{ gridArea: 'street' }}>
+      </FormField>
+      <FormField label="Street:" style={{ gridArea: 'street' }}>
         {({ id }) => <TextInput id={id} fullWidth={true} />}
-      </FieldGroup>
-      <FieldGroup label="ZIP:" style={{ gridArea: 'zip' }}>
+      </FormField>
+      <FormField label="ZIP:" style={{ gridArea: 'zip' }}>
         {({ id }) => <TextInput id={id} fullWidth={true} />}
-      </FieldGroup>
-      <FieldGroup
+      </FormField>
+      <FormField
         label="Special instructions:"
         hint="For example, gate code or other information to help the driver find you"
         style={{ gridArea: 'instructions' }}
       >
         {({ id }) => <Textarea id={id} fullWidth={true} />}
-      </FieldGroup>
+      </FormField>
     </div>
   </Dialog>
 

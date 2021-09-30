@@ -1,11 +1,11 @@
 ```jsx
 import { TextInput } from '../text-input';
-import { FieldGroup } from '../field-group';
+import { FormField } from '../form-field';
 
 const [value, setValue] = React.useState('');
 const [error, setError] = React.useState('');
 
-<FieldGroup
+<FormField
   label="Username"
   labelFor="fieldGroupExample"
   hint="You can use letters, numbers & periods"
@@ -25,19 +25,19 @@ const [error, setError] = React.useState('');
       );
     }}
   />
-</FieldGroup>;
+</FormField>;
 ```
 
 Children as function
 
 ```jsx
 import { TextInput } from '../text-input';
-import { FieldGroup } from '../field-group';
+import { FormField } from '../form-field';
 
 const [value, setValue] = React.useState('');
 const [error, setError] = React.useState('');
 
-<FieldGroup
+<FormField
   label="Username"
   hint="You can use letters, numbers & periods"
   required={true}
@@ -59,5 +59,5 @@ const [error, setError] = React.useState('');
       }}
     />
   )}
-</FieldGroup>;
+</FormField>;
 ```

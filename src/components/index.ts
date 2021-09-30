@@ -8,7 +8,7 @@ export * from './buttons-group';
 export * from './checkbox';
 export * from './datetime-input';
 export * from './dialog';
-export * from './field-group';
+export * from './form-field';
 export * from './formatted-content';
 export * from './inline-message';
 export * from './label';

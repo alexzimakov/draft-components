@@ -1,21 +1,21 @@
 import { render, screen } from '@testing-library/react';
-import { FieldGroup } from './field-group';
+import { FormField } from './form-field';
 
-it('<FieldGroup /> renders without errors', () => {
+it('<FormField /> renders without errors', () => {
   const label = 'Username';
   const hint = 'You can use letters, numbers & periods';
   render(
-    <FieldGroup label={label} hint={hint}>
+    <FormField label={label} hint={hint}>
       <input />
-    </FieldGroup>
+    </FormField>
   );
   screen.getByRole('textbox');
   screen.getByText(label);
   screen.getByText(hint);
 });
 
-it('<FieldGroup /> renders without errors when `children` is a function', () => {
-  render(<FieldGroup>{({ id }) => <input id={id} />}</FieldGroup>);
+it('<FormField /> renders without errors when `children` is a function', () => {
+  render(<FormField>{({ id }) => <input id={id} />}</FormField>);
   screen.getByRole('textbox');
 });
 
@@ -23,9 +23,9 @@ it('should show a validation error', () => {
   const hint = 'You can use letters, numbers & periods';
   const validationError = 'Invalid input value';
   render(
-    <FieldGroup hint={hint} validationError={validationError}>
+    <FormField hint={hint} validationError={validationError}>
       <input />
-    </FieldGroup>
+    </FormField>
   );
   screen.getByText(validationError);
   expect(screen.queryByText(hint)).toBeNull();

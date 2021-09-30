@@ -43,7 +43,7 @@ module.exports = {
         'radio-group',
         'switch',
         'slider',
-        'field-group'
+        'form-field'
       ),
     },
     {

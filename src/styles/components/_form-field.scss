@@ -1,0 +1,16 @@
+.dc-form-field {
+}
+
+.dc-form-field__label {
+  display: inline-block;
+  margin-bottom: $gap-1x;
+}
+
+.dc-form-field__input {
+}
+
+.dc-form-field__hint,
+.dc-form-field__error {
+  width: 100%;
+  margin-top: $gap-1x;
+}

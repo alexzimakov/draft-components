@@ -4,20 +4,20 @@ import { classNames } from '../../lib/react-helpers';
 import { Label } from '../label';
 import { InlineMessage } from '../inline-message';
 
-export interface FieldRenderer {
+export interface InputRenderFn {
   (props: { id: string; required: boolean; invalid: boolean }): JSX.Element;
 }
 
-export interface FieldGroupProps extends ComponentPropsWithoutRef<'div'> {
+export interface FormFieldProps extends ComponentPropsWithoutRef<'div'> {
   label?: ReactNode;
   labelFor?: string;
   required?: boolean;
   hint?: ReactNode;
   validationError?: ReactNode;
-  children: JSX.Element | FieldRenderer;
+  children: JSX.Element | InputRenderFn;
 }
 
-export function FieldGroup({
+export function FormField({
   label,
   labelFor,
   required,
@@ -26,24 +26,24 @@ export function FieldGroup({
   className,
   children,
   ...props
-}: FieldGroupProps) {
+}: FormFieldProps) {
   const inputId = useRef(labelFor);
   if (!inputId.current) {
-    inputId.current = uniqueId('field-group-input-');
+    inputId.current = uniqueId('form-field-input-');
   }
 
   return (
-    <div {...props} className={classNames(className, 'dc-field-group')}>
+    <div {...props} className={classNames(className, 'dc-form-field')}>
       {label ? (
         <Label
-          className="dc-field-group__label"
+          className="dc-form-field__label"
           isRequired={required}
           htmlFor={inputId.current}
         >
           {label}
         </Label>
       ) : null}
-      <div className="dc-field-group__field">
+      <div className="dc-form-field__input">
         {typeof children === 'function'
           ? children({
               id: inputId.current,
@@ -56,7 +56,7 @@ export function FieldGroup({
         if (validationError) {
           return (
             <InlineMessage
-              className="dc-field-group__error"
+              className="dc-form-field__error"
               shouldShowIcon={true}
               appearance="error"
             >
@@ -66,7 +66,7 @@ export function FieldGroup({
         }
         if (hint) {
           return (
-            <InlineMessage className="dc-field-group__hint">
+            <InlineMessage className="dc-form-field__hint">
               {hint}
             </InlineMessage>
           );
