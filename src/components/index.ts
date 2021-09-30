@@ -6,7 +6,7 @@ export * from './breadcrumbs';
 export * from './button';
 export * from './buttons-group';
 export * from './checkbox';
-export * from './datetime-field';
+export * from './datetime-input';
 export * from './dialog';
 export * from './field-group';
 export * from './formatted-content';

@@ -2,7 +2,7 @@ import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import { useState } from 'react';
 import { DateComponent, DateComponents } from './date-components';
-import { DatetimeField } from './datetime-field';
+import { DatetimeInput } from './datetime-input';
 
 beforeEach(() => {
   jest.useFakeTimers();
@@ -10,7 +10,7 @@ beforeEach(() => {
 
 it('renders without errors', () => {
   render(
-    <DatetimeField value={new DateComponents()} onChangeValue={jest.fn()} />
+    <DatetimeInput value={new DateComponents()} onChangeValue={jest.fn()} />
   );
 
   screen.getByLabelText('year');
@@ -22,7 +22,7 @@ it('renders without errors', () => {
 
 it('renders with required inputs when type is `date`', () => {
   render(
-    <DatetimeField
+    <DatetimeInput
       type="date"
       value={new DateComponents()}
       onChangeValue={jest.fn()}
@@ -38,7 +38,7 @@ it('renders with required inputs when type is `date`', () => {
 
 it('renders with required inputs when type is `time`', () => {
   render(
-    <DatetimeField
+    <DatetimeInput
       type="time"
       value={new DateComponents()}
       onChangeValue={jest.fn()}
@@ -55,7 +55,7 @@ it('renders with required inputs when type is `time`', () => {
 it('should invoke `onChangeValue` callback when edit value', () => {
   const onChangeValue = jest.fn();
   render(
-    <DatetimeField value={new DateComponents()} onChangeValue={onChangeValue} />
+    <DatetimeInput value={new DateComponents()} onChangeValue={onChangeValue} />
   );
 
   const monthInput = screen.getByLabelText('month');
@@ -74,7 +74,7 @@ it('should invoke `onChangeValue` callback when edit value', () => {
 it('should clear value of date component when backspace pressed', () => {
   const onChangeValue = jest.fn();
   render(
-    <DatetimeField
+    <DatetimeInput
       value={new DateComponents({ month: 5 })}
       onChangeValue={onChangeValue}
     />
@@ -92,7 +92,7 @@ it('should clear value of date component when backspace pressed', () => {
 
 it('can move focus between input using keyboard left and right arrows', () => {
   render(
-    <DatetimeField
+    <DatetimeInput
       type="time"
       value={new DateComponents()}
       onChangeValue={jest.fn()}
@@ -125,7 +125,7 @@ it('can move focus between input using keyboard left and right arrows', () => {
 
 it('should auto focus the next date component input when in the current has been entered max value', () => {
   render(
-    <DatetimeField value={new DateComponents()} onChangeValue={jest.fn()} />
+    <DatetimeInput value={new DateComponents()} onChangeValue={jest.fn()} />
   );
 
   userEvent.type(screen.getByLabelText('month'), '7');
@@ -141,7 +141,7 @@ it('should correct value in date component input when it loses focus', () => {
   const TestExample = () => {
     const [value, setValue] = useState(new DateComponents());
     return (
-      <DatetimeField
+      <DatetimeInput
         type="date"
         value={value}
         onChangeValue={(value) => {
@@ -200,7 +200,7 @@ it('can edit date component using keyboard up and down arrows', () => {
   const TestExample = () => {
     const [value, setValue] = useState(dateComponents);
     return (
-      <DatetimeField
+      <DatetimeInput
         value={value}
         onChangeValue={(value) => {
           dateComponents = value;
@@ -257,7 +257,7 @@ it('can edit date component using keyboard up and down arrows', () => {
 it('should not out range of date component values when edit using keyboard arrows', () => {
   const onChangeValue = jest.fn();
   render(
-    <DatetimeField
+    <DatetimeInput
       value={new DateComponents({ day: 1, month: 12 })}
       onChangeValue={onChangeValue}
     />

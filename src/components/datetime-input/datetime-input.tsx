@@ -17,7 +17,7 @@ import { TextInputProps } from '../text-input';
 import { DateComponent, DateComponents } from './date-components';
 import { DateComponentInput } from './date-component-input';
 
-export interface DatetimeFieldProps extends ComponentPropsWithRef<'div'> {
+export interface DatetimeInputProps extends ComponentPropsWithRef<'div'> {
   size?: TextInputProps['size'];
   type?: 'date' | 'time' | 'datetime';
   invalid?: boolean;
@@ -46,8 +46,8 @@ const defaultPlaceholders = {
   minute: '--',
 };
 
-export const DatetimeField = forwardRef<HTMLDivElement, DatetimeFieldProps>(
-  function DatetimeField(
+export const DatetimeInput = forwardRef<HTMLDivElement, DatetimeInputProps>(
+  function DatetimeInput(
     {
       size = 'md',
       type = 'datetime',
@@ -206,7 +206,7 @@ export const DatetimeField = forwardRef<HTMLDivElement, DatetimeFieldProps>(
           children.push(
             <span
               key={`separator-${index}`}
-              className="dc-datetime-field__separator"
+              className="dc-datetime-input__separator"
             >
               {separator}
             </span>
@@ -228,23 +228,23 @@ export const DatetimeField = forwardRef<HTMLDivElement, DatetimeFieldProps>(
         );
       });
 
-      return <div className="dc-datetime-field__group">{children}</div>;
+      return <div className="dc-datetime-input__group">{children}</div>;
     }
 
     return (
       <div
-        className={classNames(className, 'dc-datetime-field')}
+        className={classNames(className, 'dc-datetime-input')}
         ref={mergeRefs(ref, containerRef)}
         role="group"
         {...props}
       >
         <div
           data-testid="inputs-container"
-          className={classNames('dc-field', 'dc-datetime-field__body', {
-            'dc-field_focused': focused,
-            'dc-field_disabled': disabled,
-            'dc-field_invalid': invalid,
-            [`dc-field_size_${size}`]: size,
+          className={classNames('dc-input', 'dc-datetime-input__body', {
+            'dc-input_focused': focused,
+            'dc-input_disabled': disabled,
+            'dc-input_invalid': invalid,
+            [`dc-input_size_${size}`]: size,
           })}
           onKeyDown={handleKeyDown}
           onFocus={handleFocus}

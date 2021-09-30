@@ -1,0 +1,92 @@
+.dc-datetime-input {
+  display: inline-block;
+  border: none;
+}
+
+.dc-datetime-input__body,
+.dc-datetime-input__group {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+}
+
+.dc-datetime-input__body {
+  width: auto;
+  padding: $gap-1x calc(var(--dc-input-gap) - #{px-to-rem(2px)});
+}
+
+.dc-datetime-input__group {
+  height: 100%;
+}
+
+.dc-datetime-input__group + .dc-datetime-input__group {
+  margin-left: $gap-3x;
+}
+
+.dc-datetime-input__separator {
+  display: inline-block;
+  padding: 0 px-to-rem(2px);
+  opacity: $opacity-50;
+}
+
+.dc-date-component-input {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0;
+}
+
+.dc-date-component-input > * {
+  padding: 0 px-to-rem(2px);
+  font-variant-numeric: tabular-nums;
+}
+
+.dc-date-component-input > [aria-hidden='true'] {
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+}
+
+.dc-date-component-input > input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: none;
+  border-radius: $border-radius-2xs;
+  background: none;
+  appearance: none;
+  -moz-appearance: textfield;
+}
+
+.dc-date-component-input > input::-webkit-outer-spin-button,
+.dc-date-component-input > input::-webkit-inner-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.dc-date-component-input > input::placeholder {
+  color: inherit;
+  opacity: $opacity-40;
+}
+
+.dc-date-component-input > input:focus {
+  color: $white;
+  outline: none;
+  caret-color: transparent;
+  background: var(--dc-input-accent-color);
+}
+
+.dc-date-component-input > input::selection,
+.dc-date-component-input > input:focus::selection {
+  background: transparent;
+}
+
+.dc-date-component-input > input:focus::placeholder {
+  opacity: $opacity-80;
+}

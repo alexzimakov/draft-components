@@ -27,11 +27,11 @@
 
 .dc-input:focus,
 .dc-input_focused {
-  --dc-field-focus-color: var(--dc-input-accent-color);
+  --dc-input-focus-color: var(--dc-input-accent-color);
 
   outline: none;
-  border-color: var(--dc-field-focus-color);
-  box-shadow: 0 0 0 1px var(--dc-field-focus-color);
+  border-color: var(--dc-input-focus-color);
+  box-shadow: 0 0 0 1px var(--dc-input-focus-color);
 }
 
 .dc-input_invalid {
@@ -40,7 +40,7 @@
 
 .dc-input_invalid:focus,
 .dc-input_invalid.dc-input_focused {
-  --dc-field-focus-color: var(--dc-input-error-color);
+  --dc-input-focus-color: var(--dc-input-error-color);
 }
 
 .dc-input:disabled,

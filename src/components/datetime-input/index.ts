@@ -1,2 +1,2 @@
-export * from './datetime-field';
+export * from './datetime-input';
 export * from './date-components';
