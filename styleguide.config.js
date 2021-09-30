@@ -32,7 +32,7 @@ module.exports = {
         'buttons-group',
         'actions-group',
         'text-input',
-        'number-field',
+        'number-input',
         'search-field',
         'password-field',
         'datetime-field',

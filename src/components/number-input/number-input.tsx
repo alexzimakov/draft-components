@@ -4,7 +4,7 @@ import { KeyCode } from '../../lib/keyboard-helpers';
 import { Button } from '../button';
 import { TextInput, TextInputProps } from '../text-input';
 
-export interface NumberFieldProps extends TextInputProps {
+export interface NumberInputProps extends TextInputProps {
   incrementButtonLabel?: ReactNode;
   decrementButtonLabel?: ReactNode;
   min?: number;
@@ -16,7 +16,7 @@ export interface NumberFieldProps extends TextInputProps {
 
 const NUMBER_REGEXP = /^[-+]?([0-9]+(\.[0-9]*)?|\.[0-9]+)([eE][-+]?[0-9]+)?$/;
 
-export function NumberField({
+export function NumberInput({
   style,
   className,
   incrementButtonLabel = '↑',
@@ -32,7 +32,7 @@ export function NumberField({
   onKeyDown,
   onChangeValue,
   ...props
-}: NumberFieldProps) {
+}: NumberInputProps) {
   const numericValue = Number(value) || 0;
 
   function inRange(value: number): boolean {
@@ -108,8 +108,8 @@ export function NumberField({
   return (
     <div
       style={style}
-      className={classNames(className, 'dc-number-field', {
-        'dc-number-field_full-width': fullWidth,
+      className={classNames(className, 'dc-number-input', {
+        'dc-number-input_full-width': fullWidth,
       })}
     >
       <Button
@@ -118,17 +118,13 @@ export function NumberField({
         type="button"
         noPadding={true}
         disabled={disabled}
-        onClick={() => {
-          if (!readOnly) {
-            decrement(step);
-          }
-        }}
+        onClick={() => !readOnly && decrement(step)}
       >
         {decrementButtonLabel}
       </Button>
       <TextInput
         {...props}
-        className="dc-number-field__input"
+        className="dc-number-input__text-input"
         size={size}
         disabled={disabled}
         readOnly={readOnly}
@@ -144,11 +140,7 @@ export function NumberField({
         type="button"
         noPadding={true}
         disabled={disabled}
-        onClick={() => {
-          if (!readOnly) {
-            increment(step);
-          }
-        }}
+        onClick={() => !readOnly && increment(step)}
       >
         {incrementButtonLabel}
       </Button>

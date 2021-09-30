@@ -84,6 +84,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
 
         <input
           {...props}
+          className="dc-text-input__native-input"
           ref={ref}
           type={type}
           disabled={disabled}

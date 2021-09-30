@@ -1,17 +1,17 @@
-.dc-number-field {
+.dc-number-input {
   display: inline-flex;
   align-items: center;
 }
 
-.dc-number-field_full-width {
+.dc-number-input_full-width {
   width: 100%;
 }
 
-.dc-number-field > * + * {
+.dc-number-input > * + * {
   margin-left: $gap-1x;
 }
 
-.dc-number-field__input {
+.dc-number-input__text-input {
   flex: auto;
   width: px-to-rem(160px);
 }

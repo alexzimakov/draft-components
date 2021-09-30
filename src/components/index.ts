@@ -13,7 +13,7 @@ export * from './formatted-content';
 export * from './inline-message';
 export * from './label';
 export * from './loading-view';
-export * from './number-field';
+export * from './number-input';
 export * from './non-ideal-state-view';
 export * from './password-field';
 export * from './popover';
