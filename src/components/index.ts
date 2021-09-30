@@ -31,7 +31,7 @@ export * from './svg-icon';
 export * from './switch';
 export * from './table';
 export * from './tag';
-export * from './text-field';
+export * from './text-input';
 export * from './textarea';
 export * from './toast';
 export * from './tooltip';

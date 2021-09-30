@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { TextField, TextFieldProps } from '../text-field';
+import { TextInput, TextInputProps } from '../text-input';
 import { Button } from '../button';
 import { SvgIcon, SvgIconProps } from '../svg-icon';
 import { eye } from '../../icons/eye';
 import { eyeSlash } from '../../icons/eye-slash';
 
 export type PasswordFieldBaseProps = Omit<
-  TextFieldProps,
+  TextInputProps,
   'type' | 'trailingAddOn'
 >;
 
@@ -22,7 +22,7 @@ export function PasswordField({
   className,
   ...props
 }: PasswordFieldProps) {
-  const [type, setType] = useState<TextFieldProps['type']>('password');
+  const [type, setType] = useState<TextInputProps['type']>('password');
 
   let icon: SvgIconProps['icon'] = eyeSlash;
   let title: string = showPasswordAriaTitle;
@@ -32,7 +32,7 @@ export function PasswordField({
   }
 
   return (
-    <TextField
+    <TextInput
       {...props}
       className={classNames(className, 'dc-password-field')}
       type={type}

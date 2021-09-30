@@ -1,11 +1,11 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
-import { TextField } from './text-field';
+import { TextInput } from './text-input';
 
 it('renders without errors', () => {
   const placeholder = 'Email address';
   const { getByPlaceholderText } = render(
-    <TextField placeholder={placeholder} />
+    <TextInput placeholder={placeholder} />
   );
 
   getByPlaceholderText(placeholder);
@@ -17,7 +17,7 @@ it('should forward extra attrs to underlying <input />', () => {
     required: true,
     placeholder: 'Email address',
   } as const;
-  const { getByPlaceholderText } = render(<TextField {...attrs} />);
+  const { getByPlaceholderText } = render(<TextInput {...attrs} />);
   const inputEl = getByPlaceholderText(attrs.placeholder);
 
   expect(inputEl).toHaveAttribute('type', attrs.type);
@@ -27,14 +27,14 @@ it('should forward extra attrs to underlying <input />', () => {
 
 it('renders with leading add-on', () => {
   const leadingAddOn = 'https://';
-  const { getByText } = render(<TextField leadingAddOn={leadingAddOn} />);
+  const { getByText } = render(<TextInput leadingAddOn={leadingAddOn} />);
 
   getByText(leadingAddOn);
 });
 
 it('renders with trailing add-on', () => {
   const trailingAddOn = 'USD';
-  const { getByText } = render(<TextField trailingAddOn={trailingAddOn} />);
+  const { getByText } = render(<TextInput trailingAddOn={trailingAddOn} />);
 
   getByText(trailingAddOn);
 });
@@ -44,7 +44,7 @@ it('should invoke `onFocus` and `onBlur` event handlers', () => {
   const onFocus = jest.fn();
   const onBlur = jest.fn();
   const { getByTestId } = render(
-    <TextField data-testid={testId} onFocus={onFocus} onBlur={onBlur} />
+    <TextInput data-testid={testId} onFocus={onFocus} onBlur={onBlur} />
   );
   const inputEl = getByTestId(testId);
 
@@ -57,7 +57,7 @@ it('should invoke `onFocus` and `onBlur` event handlers', () => {
 
 it('invokes `onChange` event handler', () => {
   const onChange = jest.fn();
-  render(<TextField onChange={onChange} />);
+  render(<TextInput onChange={onChange} />);
 
   userEvent.paste(screen.getByRole('textbox'), 'lorem');
 
@@ -67,7 +67,7 @@ it('invokes `onChange` event handler', () => {
 it('invokes `onChangeValue` with changed value', () => {
   const onChangeValue = jest.fn();
   const expectedValue = 'lorem';
-  render(<TextField onChangeValue={onChangeValue} />);
+  render(<TextInput onChangeValue={onChangeValue} />);
 
   userEvent.paste(screen.getByRole('textbox'), expectedValue);
 

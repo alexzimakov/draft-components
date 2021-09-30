@@ -2,7 +2,7 @@ import { ComponentPropsWithRef, forwardRef, ReactNode, useState } from 'react';
 import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
 
-export type TextFieldHtmlAttrs = Omit<
+export type TextInputHtmlAttrs = Omit<
   ComponentPropsWithRef<'input'>,
   | 'accept'
   | 'alt'
@@ -24,7 +24,7 @@ export type TextFieldHtmlAttrs = Omit<
   | 'width'
 >;
 
-export interface TextFieldProps extends TextFieldHtmlAttrs {
+export interface TextInputProps extends TextInputHtmlAttrs {
   type?:
     | 'email'
     | 'password'
@@ -45,7 +45,7 @@ export interface TextFieldProps extends TextFieldHtmlAttrs {
   onChangeValue?(value: string): void;
 }
 
-export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
+export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   function TextField(
     {
       size = 'md',
@@ -70,21 +70,20 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     return (
       <div
         style={style}
-        className={classNames(className, 'dc-field', 'dc-text-field', {
-          'dc-field_disabled': disabled,
-          'dc-field_invalid': invalid,
-          'dc-field_focused': focused,
-          'dc-field_full_width': fullWidth,
-          [`dc-field_size_${size}`]: size,
+        className={classNames(className, 'dc-input', 'dc-text-input', {
+          'dc-input_disabled': disabled,
+          'dc-input_invalid': invalid,
+          'dc-input_focused': focused,
+          'dc-input_full_width': fullWidth,
+          [`dc-input_size_${size}`]: size,
         })}
       >
         {leadingAddOn && (
-          <span className="dc-text-field__add-on">{leadingAddOn}</span>
+          <span className="dc-text-input__add-on">{leadingAddOn}</span>
         )}
 
         <input
           {...props}
-          className="dc-text-field__input"
           ref={ref}
           type={type}
           disabled={disabled}
@@ -97,13 +96,13 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             isFunction(onBlur) && onBlur(event);
           }}
           onChange={(event) => {
-            isFunction(onChange) && onChange(event);
             isFunction(onChangeValue) && onChangeValue(event.target.value);
+            isFunction(onChange) && onChange(event);
           }}
         />
 
         {trailingAddOn && (
-          <span className="dc-text-field__add-on">{trailingAddOn}</span>
+          <span className="dc-text-input__add-on">{trailingAddOn}</span>
         )}
       </div>
     );

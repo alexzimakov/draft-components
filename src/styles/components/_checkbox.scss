@@ -18,13 +18,13 @@
   height: var(--dc-checkbox-size);
   cursor: pointer;
   border-radius: $border-radius-xs;
-  border: 0.0625rem solid var(--dc-field-border-color);
-  background: var(--dc-field-bg-color);
+  border: var(--dc-input-border);
+  background: var(--dc-input-bg);
 
   .dc-checkbox__input:checked + & {
-    color: var(--dc-field-accent-text-color);
-    border-color: var(--dc-field-accent-color);
-    background: var(--dc-field-accent-color);
+    color: var(--dc-input-accent-secondary-color);
+    border-color: var(--dc-input-accent-color);
+    background: var(--dc-input-accent-color);
   }
 
   .dc-checkbox__input:focus + & {
@@ -33,8 +33,8 @@
 
   .dc-checkbox__input:disabled + & {
     cursor: default;
-    border-color: var(--dc-field-disabled-border-color);
-    background: var(--dc-field-disabled-bg-color);
+    border-color: var(--dc-input-disabled-border-color);
+    background: var(--dc-input-disabled-bg);
   }
 }
 
@@ -50,6 +50,6 @@
   }
 
   .dc-checkbox__input:disabled + .dc-checkbox__check > & {
-    color: var(--dc-field-disabled-text-color);
+    color: var(--dc-input-disabled-text-color);
   }
 }

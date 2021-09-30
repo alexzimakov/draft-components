@@ -16,16 +16,16 @@
   width: var(--dc-radio-button-size);
   height: var(--dc-radio-button-size);
   cursor: pointer;
-  color: var(--dc-field-accent-text-color);
+  color: var(--dc-input-accent-secondary-color);
   border-radius: 50%;
-  border: 0.0625rem solid var(--dc-field-border-color);
-  background: var(--dc-field-bg-color);
+  border: var(--dc-input-border);
+  background: var(--dc-input-bg);
 
   .dc-radio-btn__input:checked + & {
     position: relative;
-    color: var(--dc-field-accent-text-color);
-    border-color: var(--dc-field-accent-color);
-    background: var(--dc-field-accent-color);
+    color: var(--dc-input-accent-secondary-color);
+    border-color: var(--dc-input-accent-color);
+    background: var(--dc-input-accent-color);
 
     &::after {
       position: absolute;
@@ -48,11 +48,11 @@
 
   .dc-radio-btn__input:disabled + & {
     cursor: default;
-    border-color: var(--dc-field-disabled-border-color);
-    background: var(--dc-field-disabled-bg-color);
+    border-color: var(--dc-input-disabled-border-color);
+    background: var(--dc-input-disabled-bg);
 
     &::after {
-      color: var(--dc-field-disabled-text-color);
+      color: var(--dc-input-disabled-text-color);
     }
   }
 }

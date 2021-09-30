@@ -103,30 +103,30 @@
   --dc-btn-success-focus-ring-color: #{rgba($green-500, $opacity-50)};
 
   /*------------------------------------*\
-   #FORM FIELDS
+   #FORM INPUTS
   \*------------------------------------*/
-  --dc-field-text-color: #{$gray-800};
-  --dc-field-add-on-color: #{$gray-600};
-  --dc-field-border-color: #{$gray-300};
-  --dc-field-bg-color: #{$white};
+  --dc-input-text-color: #{$gray-800};
+  --dc-input-add-on-color: #{$gray-600};
+  --dc-input-border-color: #{$gray-300};
+  --dc-input-border: 1px solid var(--dc-input-border-color);
+  --dc-input-bg: #{$white};
 
-  --dc-field-disabled-text-color: #{$gray-400};
-  --dc-field-disabled-add-on-color: #{$gray-400};
-  --dc-field-disabled-border-color: #{$gray-200};
-  --dc-field-disabled-bg-color: #{$gray-50};
+  --dc-input-disabled-text-color: #{$gray-400};
+  --dc-input-disabled-add-on-color: #{$gray-400};
+  --dc-input-disabled-border-color: #{$gray-200};
+  --dc-input-disabled-bg: #{$gray-50};
 
-  --dc-field-accent-color: #{$blue-500};
-  --dc-field-accent-text-color: #{$white};
-  --dc-field-error-color: #{$red-600};
-  --dc-field-error-text-color: #{$white};
+  --dc-input-error-color: #{$red-600};
+  --dc-input-accent-color: #{$blue-500};
+  --dc-input-accent-secondary-color: #{$white};
 
-  --dc-field-w: #{px-to-rem(288px)};
-  --dc-field-h: var(--dc-control-md-h);
-  --dc-field-pad: #{px-to-em(12px)};
-  --dc-field-br: #{$border-radius-xs};
-  --dc-field-fs: #{$font-size-sm};
+  --dc-input-width: #{px-to-rem(288px)};
+  --dc-input-height: var(--dc-control-md-h);
+  --dc-input-gap: #{px-to-em(12px)};
+  --dc-input-border-radius: #{$border-radius-xs};
+  --dc-input-font-size: #{$font-size-sm};
 
-  --dc-textarea-lh: #{$leading-normal};
+  --dc-textarea-leading: #{$leading-normal};
 
   /*------------------------------------*\
    #SELECTION CONTROLS

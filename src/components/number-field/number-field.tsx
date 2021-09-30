@@ -2,9 +2,9 @@ import { KeyboardEvent, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { KeyCode } from '../../lib/keyboard-helpers';
 import { Button } from '../button';
-import { TextField, TextFieldProps } from '../text-field';
+import { TextInput, TextInputProps } from '../text-input';
 
-export interface NumberFieldProps extends TextFieldProps {
+export interface NumberFieldProps extends TextInputProps {
   incrementButtonLabel?: ReactNode;
   decrementButtonLabel?: ReactNode;
   min?: number;
@@ -126,7 +126,7 @@ export function NumberField({
       >
         {decrementButtonLabel}
       </Button>
-      <TextField
+      <TextInput
         {...props}
         className="dc-number-field__input"
         size={size}

@@ -1,0 +1,73 @@
+.dc-input {
+  position: relative;
+  box-sizing: border-box;
+  width: var(--dc-input-width);
+  height: var(--dc-input-height);
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  transition: $transition-quick;
+  transition-property: color, border-color, background-color, box-shadow;
+  color: var(--dc-input-text-color);
+  border: var(--dc-input-border);
+  border-radius: var(--dc-input-border-radius);
+  background: var(--dc-input-bg);
+  font-family: var(--dc-font-base);
+  font-size: var(--dc-input-font-size);
+  font-weight: $font-weight-normal;
+  line-height: 1;
+  appearance: none;
+
+  &::placeholder {
+    opacity: $opacity-40;
+    color: inherit;
+  }
+}
+
+.dc-input:focus,
+.dc-input_focused {
+  --dc-field-focus-color: var(--dc-input-accent-color);
+
+  outline: none;
+  border-color: var(--dc-field-focus-color);
+  box-shadow: 0 0 0 1px var(--dc-field-focus-color);
+}
+
+.dc-input_invalid {
+  border-color: var(--dc-input-error-color);
+}
+
+.dc-input_invalid:focus,
+.dc-input_invalid.dc-input_focused {
+  --dc-field-focus-color: var(--dc-input-error-color);
+}
+
+.dc-input:disabled,
+.dc-input[disabled],
+.dc-input_disabled {
+  pointer-events: none;
+  color: var(--dc-input-disabled-text-color);
+  -webkit-text-fill-color: var(--dc-input-disabled-text-color);
+  border-color: var(--dc-input-disabled-border-color);
+  background-color: var(--dc-input-disabled-bg);
+  box-shadow: none;
+}
+
+.dc-input_size_sm {
+  --dc-input-width: #{px-to-rem(224px)};
+  --dc-input-height: var(--dc-control-sm-h);
+  --dc-input-border-radius: #{$border-radius-xs};
+  --dc-input-font-size: #{px-to-rem(13px)};
+}
+
+.dc-input_size_lg {
+  --dc-input-width: #{px-to-rem(320px)};
+  --dc-input-height: var(--dc-control-lg-h);
+  --dc-input-border-radius: #{$border-radius-sm};
+  --dc-input-font-size: #{px-to-rem(15px)};
+}
+
+.dc-input_full_width {
+  width: 100% !important;
+}

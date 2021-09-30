@@ -1,20 +1,20 @@
-.dc-text-field {
+.dc-text-input {
   display: inline-flex;
   align-items: center;
 }
 
-.dc-text-field__input {
+.dc-text-input > input {
   flex: auto;
   box-sizing: border-box;
   width: 100%;
   height: inherit;
   min-width: 0;
-  padding: 0 calc(var(--dc-field-pad) * 0.75);
+  padding: 0 calc(var(--dc-input-gap) * 0.75);
   color: inherit;
   border: none;
   background: none;
   font: inherit;
-  line-height: var(--dc-field-h);
+  line-height: var(--dc-input-height);
 
   &::placeholder {
     color: inherit;
@@ -31,22 +31,22 @@
   }
 }
 
-.dc-text-field__add-on {
+.dc-text-input__add-on {
   display: inline-flex;
   flex: none;
   padding: 0;
-  color: var(--dc-field-add-on-color);
+  color: var(--dc-input-add-on-color);
   border-radius: inherit;
 
-  .dc-field_disabled & {
-    color: var(--dc-field-disabled-add-on-color);
+  .dc-input_disabled & {
+    color: var(--dc-input-disabled-add-on-color);
   }
 }
 
-.dc-text-field > *:first-child {
-  padding-left: var(--dc-field-pad);
+.dc-text-input > *:first-child {
+  padding-left: var(--dc-input-gap);
 }
 
-.dc-text-field > *:last-child {
-  padding-right: var(--dc-field-pad);
+.dc-text-input > *:last-child {
+  padding-right: var(--dc-input-gap);
 }

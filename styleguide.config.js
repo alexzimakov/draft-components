@@ -31,7 +31,7 @@ module.exports = {
         'icon-button',
         'buttons-group',
         'actions-group',
-        'text-field',
+        'text-input',
         'number-field',
         'search-field',
         'password-field',

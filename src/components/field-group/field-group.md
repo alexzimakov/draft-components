@@ -1,5 +1,5 @@
 ```jsx
-import { TextField } from '../text-field';
+import { TextInput } from '../text-input';
 import { FieldGroup } from '../field-group';
 
 const [value, setValue] = React.useState('');
@@ -12,7 +12,7 @@ const [error, setError] = React.useState('');
   required={true}
   validationError={error}
 >
-  <TextField
+  <TextInput
     id="fieldGroupExample"
     invalid={!!error}
     value={value}
@@ -31,7 +31,7 @@ const [error, setError] = React.useState('');
 Children as function
 
 ```jsx
-import { TextField } from '../text-field';
+import { TextInput } from '../text-input';
 import { FieldGroup } from '../field-group';
 
 const [value, setValue] = React.useState('');
@@ -44,7 +44,7 @@ const [error, setError] = React.useState('');
   validationError={error}
 >
   {({ id, invalid, required }) => (
-    <TextField
+    <TextInput
       id={id}
       required={required}
       invalid={invalid}

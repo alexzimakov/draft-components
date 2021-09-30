@@ -6,13 +6,13 @@
 
 .dc-select {
   width: auto;
-  padding-right: calc(1.25em + var(--dc-field-pad));
-  padding-left: var(--dc-field-pad);
+  padding-right: calc(1.25em + var(--dc-input-gap));
+  padding-left: var(--dc-input-gap);
   cursor: pointer;
   background-image: get-arrow-icon($gray-600);
   background-repeat: no-repeat;
   background-size: 0.85em auto;
-  background-position: calc(100% - var(--dc-field-pad)) center;
+  background-position: calc(100% - var(--dc-input-gap)) center;
   box-shadow: $shadow-xs;
   line-height: $leading-default;
 
@@ -24,7 +24,7 @@
 .dc-select[multiple] {
   height: initial;
   padding: $gap-2x 0;
-  background: var(--dc-field-bg-color);
+  background: var(--dc-input-bg);
 
   option {
     padding: $gap-1x $gap-3x;

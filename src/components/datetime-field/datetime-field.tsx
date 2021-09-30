@@ -13,12 +13,12 @@ import {
 import { isFunction } from '../../lib/guards';
 import { classNames, mergeRefs } from '../../lib/react-helpers';
 import { KeyCode } from '../../lib/keyboard-helpers';
-import { TextFieldProps } from '../text-field';
+import { TextInputProps } from '../text-input';
 import { DateComponent, DateComponents } from './date-components';
 import { DateComponentInput } from './date-component-input';
 
 export interface DatetimeFieldProps extends ComponentPropsWithRef<'div'> {
-  size?: TextFieldProps['size'];
+  size?: TextInputProps['size'];
   type?: 'date' | 'time' | 'datetime';
   invalid?: boolean;
   disabled?: boolean;
