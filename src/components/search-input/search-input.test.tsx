@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import { SearchField } from './search-field';
+import { SearchInput } from './search-input';
 
 it('renders without errors', () => {
   const placeholder = 'Search';
-  render(<SearchField placeholder={placeholder} />);
+  render(<SearchInput placeholder={placeholder} />);
 
   screen.getByPlaceholderText(placeholder);
 });

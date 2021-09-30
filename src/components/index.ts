@@ -22,7 +22,7 @@ export * from './radio-button';
 export * from './radio-group';
 export * from './slider';
 export * from './scope-buttons';
-export * from './search-field';
+export * from './search-input';
 export * from './secret';
 export * from './segmented-control';
 export * from './select';

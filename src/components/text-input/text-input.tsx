@@ -46,7 +46,7 @@ export interface TextInputProps extends TextInputHtmlAttrs {
 }
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
-  function TextField(
+  function TextInput(
     {
       size = 'md',
       invalid,

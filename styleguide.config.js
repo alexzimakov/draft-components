@@ -33,7 +33,7 @@ module.exports = {
         'actions-group',
         'text-input',
         'number-input',
-        'search-field',
+        'search-input',
         'password-input',
         'datetime-field',
         'select',

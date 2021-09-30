@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { SearchField } from '../search-field';
+import { SearchInput } from '../search-input';
 import { SvgIcon } from '../svg-icon';
 import { search } from '../../icons/search';
 import { exclamationCircle } from '../../icons/exclamation-circle';
@@ -19,7 +19,7 @@ it('renders without errors', () => {
       icon={<SvgIcon aria-hidden={false} role="img" icon={search} size="5x" />}
       heading={heading}
       description={description}
-      actions={<SearchField placeholder={placeholder} />}
+      actions={<SearchInput placeholder={placeholder} />}
     >
       {content}
     </NonIdealStateView>

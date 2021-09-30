@@ -3,19 +3,16 @@ import { TextInput, TextInputProps } from '../text-input';
 import { SvgIcon } from '../svg-icon';
 import { search } from '../../icons/search';
 
-export interface SearchFieldProps extends TextInputProps {}
+export interface SearchInputProps extends TextInputProps {}
 
-const iconSize: Record<NonNullable<SearchFieldProps['size']>, number> = {
+const iconSize: Record<NonNullable<SearchInputProps['size']>, number> = {
   sm: 14,
   md: 16,
   lg: 20,
 };
 
-export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
-  function SearchField(
-    { size = 'md', leadingAddOn, type, ...props }: SearchFieldProps,
-    ref
-  ) {
+export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
+  function SearchInput({ size = 'md', leadingAddOn, type, ...props }, ref) {
     return (
       <TextInput
         {...props}
