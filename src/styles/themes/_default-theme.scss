@@ -133,14 +133,12 @@
   \*------------------------------------*/
   --dc-checkbox-size: #{px-to-rem(18px)};
 
-  --dc-radio-button-size: #{px-to-rem(18px)};
+  --dc-radio-btn-size: #{px-to-rem(18px)};
 
   --dc-switch-check-size: #{px-to-rem(16px)};
-  --dc-switch-bg-color: #{$gray-200};
-  --dc-switch-check-color: #{$white};
-  --dc-switch-accent-color: #{$blue-500};
-  --dc-switch-w: #{px-to-rem(32px)};
-  --dc-switch-h: #{px-to-rem(20px)};
+  --dc-switch-width: #{px-to-rem(32px)};
+  --dc-switch-height: #{px-to-rem(20px)};
+  --dc-switch-bg: #{$gray-200};
 
   /*------------------------------------*\
    #RADIO GROUP

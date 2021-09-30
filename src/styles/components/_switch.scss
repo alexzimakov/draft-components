@@ -1,5 +1,5 @@
 .dc-switch {
-  --dc-selection-control-size: 2rem;
+  --dc-selection-control-size: var(--dc-switch-width);
 
   position: relative;
 }
@@ -12,48 +12,48 @@
   position: relative;
   display: inline-flex;
   box-sizing: border-box;
-  width: var(--dc-switch-w);
-  height: var(--dc-switch-h);
+  width: var(--dc-switch-width);
+  height: var(--dc-switch-height);
   transition: $transition-quick;
   transition-property: border-color, background-color;
   cursor: pointer;
-  border-radius: calc(var(--dc-switch-h) / 2);
-  background: var(--dc-switch-bg-color);
+  border-radius: calc(var(--dc-switch-height) / 2);
+  background: var(--dc-switch-bg);
+}
 
-  &::after {
-    $offset: calc((var(--dc-switch-h) - var(--dc-switch-check-size)) / 2);
+.dc-switch__check::after {
+  --offset: calc((var(--dc-switch-height) - var(--dc-switch-check-size)) / 2);
 
-    position: absolute;
-    top: $offset;
-    left: $offset;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    width: var(--dc-switch-check-size);
-    height: var(--dc-switch-check-size);
-    content: '';
-    transition: inherit;
-    transition-property: transform, border-color;
-    background: var(--dc-switch-check-color);
-    box-shadow: $shadow-sm, $shadow-md;
-    border-radius: 50%;
-  }
+  position: absolute;
+  top: var(--offset);
+  left: var(--offset);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--dc-switch-check-size);
+  height: var(--dc-switch-check-size);
+  content: '';
+  transition: inherit;
+  transition-property: transform, border-color;
+  background: var(--dc-input-accent-secondary-color);
+  box-shadow: $shadow-sm, $shadow-md;
+  border-radius: 50%;
+}
 
-  .dc-switch__input:checked + & {
-    background: var(--dc-switch-accent-color);
+.dc-switch__input:checked + .dc-switch__check {
+  background: var(--dc-input-accent-color);
+}
+.dc-switch__input:checked + .dc-switch__check::after {
+  // noinspection CssInvalidFunction
+  transform: translateX(calc(var(--dc-switch-width) - var(--dc-switch-height)));
+}
 
-    &::after {
-      transform: translateX(#{calc(var(--dc-switch-w) - var(--dc-switch-h))});
-    }
-  }
+.dc-switch__input:focus + .dc-switch__check {
+  box-shadow: 0 0 0 3px var(--dc-focus-ring-color);
+}
 
-  .dc-switch__input:focus + & {
-    box-shadow: 0 0 0 3px var(--dc-focus-ring-color);
-  }
-
-  .dc-switch__input:disabled + & {
-    cursor: default;
-    opacity: var(--dc-disabled-state-opacity);
-  }
+.dc-switch__input:disabled + .dc-switch__check {
+  cursor: default;
+  opacity: var(--dc-disabled-state-opacity);
 }
