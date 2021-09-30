@@ -15,7 +15,7 @@ export * from './label';
 export * from './loading-view';
 export * from './number-input';
 export * from './non-ideal-state-view';
-export * from './password-field';
+export * from './password-input';
 export * from './popover';
 export * from './portal';
 export * from './radio-button';

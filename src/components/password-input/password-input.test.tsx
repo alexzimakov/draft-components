@@ -1,10 +1,10 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
-import { PasswordField } from './password-field';
+import { PasswordInput } from './password-input';
 
 it('renders without errors', () => {
   const placeholder = 'Search';
-  render(<PasswordField placeholder={placeholder} />);
+  render(<PasswordInput placeholder={placeholder} />);
 
   screen.getByPlaceholderText(placeholder);
 });
@@ -14,7 +14,7 @@ it('should toggle password visibility', () => {
   const showPasswordA11yTitle = 'Show password';
   const hidePasswordA11yTitle = 'Hide password';
   render(
-    <PasswordField
+    <PasswordInput
       placeholder={placeholder}
       showPasswordAriaTitle={showPasswordA11yTitle}
       hidePasswordAriaTitle={hidePasswordA11yTitle}

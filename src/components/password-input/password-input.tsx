@@ -6,22 +6,22 @@ import { SvgIcon, SvgIconProps } from '../svg-icon';
 import { eye } from '../../icons/eye';
 import { eyeSlash } from '../../icons/eye-slash';
 
-export type PasswordFieldBaseProps = Omit<
+export type PasswordInputBaseProps = Omit<
   TextInputProps,
   'type' | 'trailingAddOn'
 >;
 
-export interface PasswordFieldProps extends PasswordFieldBaseProps {
+export interface PasswordInputProps extends PasswordInputBaseProps {
   showPasswordAriaTitle?: string;
   hidePasswordAriaTitle?: string;
 }
 
-export function PasswordField({
+export function PasswordInput({
   showPasswordAriaTitle = 'Show password',
   hidePasswordAriaTitle = 'Hide password',
   className,
   ...props
-}: PasswordFieldProps) {
+}: PasswordInputProps) {
   const [type, setType] = useState<TextInputProps['type']>('password');
 
   let icon: SvgIconProps['icon'] = eyeSlash;
@@ -34,7 +34,7 @@ export function PasswordField({
   return (
     <TextInput
       {...props}
-      className={classNames(className, 'dc-password-field')}
+      className={classNames(className, 'dc-password-input')}
       type={type}
       trailingAddOn={
         <Button
