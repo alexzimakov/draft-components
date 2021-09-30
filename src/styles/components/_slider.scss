@@ -11,7 +11,7 @@ $thumb-shadow: 0 0 0 1px rgba($black, $opacity-10), $shadow-sm, $shadow-md;
   height: $thumb-height;
   border-radius: 50%;
   border-color: transparent;
-  background: var(--dc-slider-thumb-gb-color);
+  background: var(--dc-slider-thumb-bg);
   box-shadow: $thumb-shadow;
   appearance: none;
 }
@@ -49,7 +49,7 @@ $thumb-shadow: 0 0 0 1px rgba($black, $opacity-10), $shadow-sm, $shadow-md;
 .dc-slider__tick_marks > * {
   flex: 0 0 3px;
   height: 6px;
-  background: var(--dc-slider-track-gb-color);
+  background: var(--dc-slider-track-bg);
 }
 
 .dc-slider::before,
@@ -63,12 +63,12 @@ $thumb-shadow: 0 0 0 1px rgba($black, $opacity-10), $shadow-sm, $shadow-md;
 .dc-slider::before {
   content: '';
   width: 100%;
-  background: var(--dc-slider-track-gb-color);
+  background: var(--dc-slider-track-bg);
 }
 
 .dc-slider__fill-track {
   width: 0;
-  background: var(--dc-slider-fill-track-gb-color);
+  background: var(--dc-slider-fill-track-bg);
 }
 
 .dc-slider__input {
