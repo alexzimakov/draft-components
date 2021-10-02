@@ -4,39 +4,24 @@ import { classNames } from '../../lib/react-helpers';
 
 export type TextInputHtmlAttrs = Omit<
   ComponentPropsWithRef<'input'>,
-  | 'accept'
-  | 'alt'
-  | 'capture'
-  | 'checked'
-  | 'defaultChecked'
-  | 'formAction'
-  | 'formEncType'
-  | 'formMethod'
-  | 'formNoValidate'
-  | 'formTarget'
-  | 'height'
-  | 'max'
-  | 'min'
-  | 'size'
-  | 'src'
-  | 'step'
-  | 'type'
-  | 'width'
+  'checked' | 'defaultChecked' | 'size'
 >;
 
+export const textInputTypes = new Set([
+  'email',
+  'password',
+  'search',
+  'tel',
+  'text',
+  'url',
+  'datetime',
+  'date',
+  'time',
+  'week',
+  'month',
+]);
+
 export interface TextInputProps extends TextInputHtmlAttrs {
-  type?:
-    | 'email'
-    | 'password'
-    | 'search'
-    | 'tel'
-    | 'text'
-    | 'url'
-    | 'datetime'
-    | 'date'
-    | 'time'
-    | 'week'
-    | 'month';
   size?: 'sm' | 'md' | 'lg';
   invalid?: boolean;
   fullWidth?: boolean;
@@ -66,6 +51,16 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     ref
   ) {
     const [focused, setFocused] = useState(false);
+
+    if (!textInputTypes.has(type)) {
+      console.warn(
+        // prettier-ignore
+        '[draft-components] TextInput: You are using an invalid type: ' +
+        type + '; The "text" type will be used instead.\n' +
+        'Allowed types:\n- ' + Array.from(textInputTypes).join('\n- ')
+      );
+      type = 'text';
+    }
 
     return (
       <div

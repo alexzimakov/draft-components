@@ -12,18 +12,17 @@ const iconSize: Record<NonNullable<SearchInputProps['size']>, number> = {
 };
 
 export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
-  function SearchInput({ size = 'md', leadingAddOn, type, ...props }, ref) {
+  function SearchInput({ size = 'md', ...props }, ref) {
+    const leadingIcon = (
+      <SvgIcon icon={search} size={iconSize[size] || iconSize.md} />
+    );
     return (
       <TextInput
         {...props}
         ref={ref}
         size={size}
-        type={type || 'search'}
-        leadingAddOn={
-          leadingAddOn || (
-            <SvgIcon icon={search} size={iconSize[size] || iconSize.md} />
-          )
-        }
+        type="search"
+        leadingAddOn={leadingIcon}
       />
     );
   }

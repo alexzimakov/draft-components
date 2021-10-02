@@ -22,7 +22,7 @@ export function PasswordInput({
   className,
   ...props
 }: PasswordInputProps) {
-  const [type, setType] = useState<TextInputProps['type']>('password');
+  const [type, setType] = useState<'password' | 'text'>('password');
 
   let icon: SvgIconProps['icon'] = eyeSlash;
   let title: string = showPasswordAriaTitle;
@@ -38,6 +38,7 @@ export function PasswordInput({
       type={type}
       trailingAddOn={
         <Button
+          className="dc-password-input__button"
           appearance="minimal"
           noPadding={true}
           leadingIcon={<SvgIcon size="xl" icon={icon} />}
