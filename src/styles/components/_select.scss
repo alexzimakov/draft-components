@@ -9,11 +9,12 @@
   padding-right: calc(1.25em + var(--dc-input-gap));
   padding-left: var(--dc-input-gap);
   cursor: pointer;
+  border: none;
   background-image: select-arrow-icon($gray-600);
   background-repeat: no-repeat;
   background-size: 0.85em auto;
   background-position: calc(100% - var(--dc-input-gap)) center;
-  box-shadow: $shadow-xs;
+  box-shadow: 0 0 0 1px var(--dc-input-border-color), $shadow-xs;
   line-height: $leading-default;
 }
 

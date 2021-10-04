@@ -10,9 +10,9 @@
   transition: $transition-quick;
   transition-property: color, border-color, background-color, box-shadow;
   color: var(--dc-input-text-color);
-  border: var(--dc-input-border);
   border-radius: var(--dc-input-border-radius);
   background: var(--dc-input-bg);
+  box-shadow: 0 0 0 1px var(--dc-input-border-color);
   font-family: var(--dc-font-base);
   font-size: var(--dc-input-font-size);
   font-weight: $font-weight-normal;
@@ -30,8 +30,7 @@
   --dc-input-focus-color: var(--dc-input-accent-color);
 
   outline: none;
-  border-color: var(--dc-input-focus-color);
-  box-shadow: 0 0 0 1px var(--dc-input-focus-color);
+  box-shadow: 0 0 0 2px var(--dc-input-focus-color);
 }
 
 .dc-input_invalid {
@@ -46,12 +45,12 @@
 .dc-input:disabled,
 .dc-input[disabled],
 .dc-input_disabled {
+  --dc-input-border-color: var(--dc-input-disabled-border-color);
+
   pointer-events: none;
   color: var(--dc-input-disabled-text-color);
-  -webkit-text-fill-color: var(--dc-input-disabled-text-color);
-  border-color: var(--dc-input-disabled-border-color);
   background-color: var(--dc-input-disabled-bg);
-  box-shadow: none;
+  -webkit-text-fill-color: var(--dc-input-disabled-text-color);
 }
 
 .dc-input_size_sm {
