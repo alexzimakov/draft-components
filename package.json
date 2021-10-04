@@ -1,6 +1,6 @@
 {
   "name": "draft-components",
-  "version": "0.52.4",
+  "version": "0.52.5",
   "description": "The set of React.js components for rapid prototyping.",
   "main": "components/index.js",
   "files": [
