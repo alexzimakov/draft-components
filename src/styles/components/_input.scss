@@ -34,7 +34,7 @@
 }
 
 .dc-input_invalid {
-  border-color: var(--dc-input-error-color);
+  --dc-input-border-color: var(--dc-input-error-color);
 }
 
 .dc-input_invalid:focus,
