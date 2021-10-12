@@ -32,21 +32,19 @@ export function NonIdealStateView({
       className={classNames(
         className,
         'dc-non-ideal-state',
-        `dc-non-ideal-state_spacing_${spacing}`
+        `dc-non-ideal-state_spacing_${spacing}`,
       )}
     >
       <div className="dc-non-ideal-state__body">
         {icon && getIcon(icon)}
 
-        <h2 className={FormattedContent.CSSClasses.title3}>{heading}</h2>
+        <h2 className={FormattedContent.CSSClasses.headline}>{heading}</h2>
 
         {description && (
-          <div
-            className={classNames(
-              'dc-non-ideal-state__description',
-              FormattedContent.CSSClasses.paragraph
-            )}
-          >
+          <div className={classNames(
+            'dc-non-ideal-state__description',
+            FormattedContent.CSSClasses.paragraph,
+          )}>
             {description}
           </div>
         )}
@@ -56,12 +54,10 @@ export function NonIdealStateView({
         )}
 
         {children && (
-          <div
-            className={classNames(
-              'dc-non-ideal-state__content',
-              FormattedContent.CSSClasses.subheadline
-            )}
-          >
+          <div className={classNames(
+            'dc-non-ideal-state__content',
+            FormattedContent.CSSClasses.subheadline,
+          )}>
             {children}
           </div>
         )}
@@ -71,7 +67,7 @@ export function NonIdealStateView({
 }
 
 function getIcon(
-  icon: NonNullable<NonIdealStateViewProps['icon']>
+  icon: NonNullable<NonIdealStateViewProps['icon']>,
 ): JSX.Element {
   let modifier = '';
   let renderedIcon: JSX.Element;
