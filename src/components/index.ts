@@ -34,5 +34,6 @@ export * from './tag';
 export * from './text-input';
 export * from './textarea';
 export * from './toast';
+export * from './toaster';
 export * from './tooltip';
 export * from './vertical-navigation';

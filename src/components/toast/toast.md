@@ -6,7 +6,7 @@ const props = {
   actions: [{ label: 'Update', onClick: () => alert('Update action') }],
 };
 
-const heading = `Your app is out of date. Please update to get the latest version.`;
+const message = `Your app is out of date. Please update to get the latest version.`;
 const buttons = (
   <>
     <Toast.Button>Update</Toast.Button>
@@ -14,17 +14,19 @@ const buttons = (
 );
 
 <div style={{ display: 'grid', rowGap: 16, justifyItems: 'flex-start' }}>
-  <Toast heading={heading}>{buttons}</Toast>
-  <Toast appearance="warning" heading={heading}>
+  <Toast message={message}>
     {buttons}
   </Toast>
-  <Toast appearance="error" heading={heading}>
+  <Toast appearance="warning" message={message}>
     {buttons}
   </Toast>
-  <Toast appearance="info" heading={heading}>
+  <Toast appearance="error" message={message}>
     {buttons}
   </Toast>
-  <Toast appearance="success" heading={heading}>
+  <Toast appearance="info" message={message}>
+    {buttons}
+  </Toast>
+  <Toast appearance="success" message={message}>
     {buttons}
   </Toast>
 </div>;
@@ -36,7 +38,7 @@ Multiple actions
 import { Toast } from '../toast';
 
 <Toast
-  heading="Your app is out of date. Please update to get the latest version."
+  message="Your app is out of date. Please update to get the latest version."
   appearance="warning"
 >
   <Toast.Button>Update</Toast.Button>
@@ -51,8 +53,8 @@ import { Toast } from '../toast';
 
 <Toast
   appearance="success"
-  heading="Campaign saved!"
-  message="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores assumenda atque consectetur culpa distinctio."
+  message="Campaign saved!"
+  informativeText="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores assumenda atque consectetur culpa distinctio."
 >
   <Toast.Button>Got it</Toast.Button>
 </Toast>;
@@ -68,8 +70,8 @@ import { bug } from '../../icons/bug';
 <Toast
   fullWidth={true}
   appearance="error"
+  message="Your app is out of date. Please update to get the latest version."
+  informativeText="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid autem beatae, dolore dolorum facere illo in incidunt laborum."
   icon={<SvgIcon icon={bug} size="1.5em" />}
-  heading="Your app is out of date. Please update to get the latest version."
-  message="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid autem beatae, dolore dolorum facere illo in incidunt laborum."
 />;
 ```

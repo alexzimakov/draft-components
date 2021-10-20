@@ -7,17 +7,16 @@ import { exclamationTriangleFill } from '../../icons/exclamation-triangle-fill';
 import { checkCircleFill } from '../../icons/check-circle-fill';
 import { infoCircleFill } from '../../icons/info-circle-fill';
 
-interface BaseToastProps extends ComponentPropsWithRef<'section'> {
+interface BaseToastProps extends ComponentPropsWithRef<'div'> {
   appearance?: 'warning' | 'error' | 'info' | 'success';
   fullWidth?: boolean;
   icon?: ReactNode;
 }
 
-export type ToastProps = BaseToastProps &
-  (
-    | { heading: ReactNode; message?: ReactNode }
-    | { heading?: ReactNode; message: ReactNode }
-  );
+export interface ToastProps extends BaseToastProps {
+  message: ReactNode;
+  informativeText?: ReactNode;
+}
 
 const defaultIcons = {
   info: infoCircleFill,
@@ -30,8 +29,8 @@ export function Toast({
   appearance,
   fullWidth,
   icon,
-  heading,
   message,
+  informativeText,
   className,
   children: buttons,
   ...props
@@ -41,7 +40,7 @@ export function Toast({
   }
 
   return (
-    <section
+    <div
       {...props}
       className={classNames(className, 'dc-toast', {
         'dc-toast_full-width': fullWidth,
@@ -51,13 +50,15 @@ export function Toast({
       <div className="dc-toast__body">
         {icon && <div className="dc-toast__icon">{icon}</div>}
         <div className="dc-toast__content">
-          {heading && <h3 className="dc-toast__heading">{heading}</h3>}
-          {message && <p className="dc-toast__message">{message}</p>}
+          {message && <h3 className="dc-toast__message">{message}</h3>}
+          {informativeText && (
+            <p className="dc-toast__informative-text">{informativeText}</p>
+          )}
         </div>
       </div>
 
       {buttons && <div className="dc-toast__btns">{buttons}</div>}
-    </section>
+    </div>
   );
 }
 

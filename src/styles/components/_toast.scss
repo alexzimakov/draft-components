@@ -1,15 +1,14 @@
 .dc-toast-btn {
+  font-size: $font-size-sm;
   padding: $gap-1x $gap-3x;
+  cursor: pointer;
   transition: $transition-quick;
   transition-property: opacity;
   opacity: $opacity-65;
   color: var(--dc-toast-btn-text-color);
-  cursor: pointer;
   border: none;
   border-radius: $border-radius-md;
   background: var(--dc-toast-btn-bg);
-  backdrop-filter: blur(10px);
-  font-size: $font-size-sm;
   appearance: none;
 
   &:hover {
@@ -17,23 +16,27 @@
   }
 
   &:focus {
-    outline: none;
     opacity: $opacity-100;
+    outline: none;
+    box-shadow: 0 0 0 0.125rem $gray-500;
   }
 }
 
 .dc-toast {
+  font-family: var(--dc-font-base);
+  font-size: $font-size-sm;
+  position: relative;
   display: inline-flex;
   box-sizing: border-box;
   width: auto;
-  max-width: 38rem;
-  min-width: 40%;
+  min-width: px-to-rem(256px);
+  max-width: px-to-rem(600px);
+  text-align: left;
   color: var(--dc-toast-text-color);
-  border-radius: $border-radius-lg;
+  border-radius: $border-radius-xl;
   background: var(--dc-toast-bg);
-  font-family: var(--dc-font-base);
-  font-size: $font-size-sm;
 }
+
 .dc-toast_full-width {
   width: 100%;
   max-width: initial;
@@ -61,31 +64,37 @@
 }
 
 .dc-toast__icon {
-  margin-right: $gap-3x;
+  margin-top: px-to-rem(2px);
+  margin-right: $gap-4x;
 }
+
 .dc-toast_appearance_error .dc-toast__icon {
   color: $red-500;
 }
+
 .dc-toast_appearance_warning .dc-toast__icon {
   color: $orange-500;
 }
+
 .dc-toast_appearance_success .dc-toast__icon {
   color: $green-400;
 }
+
 .dc-toast_appearance_info .dc-toast__icon {
-  color: $blue-300;
+  color: $blue-400;
 }
 
-.dc-toast__heading,
-.dc-toast__message {
-  margin: 0;
+.dc-toast__message,
+.dc-toast__informative-text {
   font-size: inherit;
   font-weight: $font-weight-normal;
-  line-height: $leading-tight;
+  line-height: $leading-normal;
+  margin: 0;
 }
 
-.dc-toast__message {
-  opacity: $opacity-75;
+.dc-toast__informative-text {
+  font-size: 90%;
+  color: var(--dc-toast-secondary-text-color);
 }
 
 .dc-toast__content > * + * {

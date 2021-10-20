@@ -60,6 +60,7 @@ module.exports = {
       components: getComponents(
         'alert',
         'toast',
+        'toaster',
         'dialog',
         'popover',
         'loading-view',

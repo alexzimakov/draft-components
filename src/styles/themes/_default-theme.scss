@@ -169,14 +169,11 @@
   /*------------------------------------*\
    #TOAST
   \*------------------------------------*/
-  --dc-toast-bg: #{$gray-800};
+  --dc-toast-bg: #{$gray-700};
   --dc-toast-text-color: #{$white};
+  --dc-toast-secondary-text-color: #{$gray-300};
   --dc-toast-btn-bg: #{rgba($white, $opacity-10)};
   --dc-toast-btn-text-color: #{$white};
-
-  @supports (backdrop-filter: blur()) {
-    --dc-toast-bg: #{rgba($gray-800, $opacity-90)};
-  }
 
   /*------------------------------------*\
    #BREADCRUMBS
