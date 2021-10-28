@@ -1,4 +1,8 @@
 .dc-btn {
+  font-family: var(--dc-font-base);
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: $leading-default;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -6,8 +10,8 @@
   box-sizing: border-box;
   width: auto;
   min-width: var(--dc-btn-height);
-  min-height: var(--dc-btn-height);
   max-width: 100%;
+  min-height: var(--dc-btn-height);
   padding: 0 $gap-3x;
   cursor: pointer;
   user-select: none;
@@ -20,15 +24,11 @@
   border-radius: $border-radius-md;
   background: var(--dc-btn-bg);
   box-shadow: 0 1px 2px #{rgba($black, $opacity-5)};
-  font-family: var(--dc-font-base);
-  font-weight: $font-weight-medium;
-  font-size: $font-size-sm;
-  line-height: $leading-default;
 }
 
 .dc-btn:focus {
-  outline: none;
   border-color: var(--dc-btn-border-color-focus);
+  outline: none;
   box-shadow: (
     0 1px 2px #{rgba($black, $opacity-5)},
     0 0 0 3px var(--dc-btn-focus-ring-color)
@@ -55,10 +55,10 @@
 
 .dc-btn_size_xs,
 .dc-btn_size_sm {
-  --dc-btn-height: var(--dc-control-xs-h);
+  font-size: $font-size-xs;
 
   border-radius: $border-radius-sm;
-  font-size: $font-size-xs;
+  --dc-btn-height: var(--dc-control-xs-h);
 }
 
 .dc-btn_size_xs {
@@ -71,12 +71,12 @@
 }
 
 .dc-btn_size_lg {
-  --dc-btn-height: var(--dc-control-lg-h);
+  font-size: $font-size-base;
 
   padding-right: $gap-4x;
   padding-left: $gap-4x;
   border-radius: $border-radius-md;
-  font-size: $font-size-base;
+  --dc-btn-height: var(--dc-control-lg-h);
 }
 
 .dc-btn_secondary,
@@ -151,7 +151,9 @@
 }
 
 .dc-btn__text {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .dc-btn_full-width {
@@ -165,9 +167,9 @@
 }
 
 .dc-btn_rounded {
-  border-radius: calc(var(--dc-btn-height) / 2);
   padding-right: calc(var(--dc-btn-height) / 2);
   padding-left: calc(var(--dc-btn-height) / 2);
+  border-radius: calc(var(--dc-btn-height) / 2);
 }
 
 .dc-btn_circle {

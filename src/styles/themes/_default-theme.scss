@@ -154,6 +154,18 @@
   --dc-slider-fill-track-bg: #{$blue-500};
 
   /*------------------------------------*\
+   #DATE PICKER
+  \*------------------------------------*/
+  --dc-calendar-text-color: #{$gray-800};
+  --dc-calendar-text-secondary-color: #{$gray-500};
+  --dc-calendar-border-color: #{$gray-500};
+  --dc-calendar-border-secondary-color: #{$gray-200};
+  --dc-calendar-arrow-color: #{$blue-600};
+  --dc-calendar-current-day-text-color: #{$orange-600};
+  --dc-calendar-selected-day-text-color: #{$white};
+  --dc-calendar-selected-day-bg-color: #{$blue-500};
+
+  /*------------------------------------*\
    #ACTIONS GROUP
   \*------------------------------------*/
   --dc-actions-group-border: #{$gray-300};

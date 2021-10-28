@@ -9,7 +9,7 @@ module.exports = {
         'formatted-content',
         'label',
         'inline-message',
-        'spinner'
+        'spinner',
       ),
     },
     {
@@ -43,7 +43,8 @@ module.exports = {
         'radio-group',
         'switch',
         'slider',
-        'form-field'
+        'date-picker',
+        'form-field',
       ),
     },
     {
@@ -52,7 +53,7 @@ module.exports = {
         'breadcrumbs',
         'vertical-navigation',
         'segmented-control',
-        'scope-buttons'
+        'scope-buttons',
       ),
     },
     {
@@ -64,7 +65,7 @@ module.exports = {
         'dialog',
         'popover',
         'loading-view',
-        'non-ideal-state-view'
+        'non-ideal-state-view',
       ),
     },
   ],
