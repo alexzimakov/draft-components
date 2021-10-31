@@ -166,6 +166,18 @@
   --dc-calendar-selected-day-bg-color: #{$blue-500};
 
   /*------------------------------------*\
+   #DATE RANGE PICKER POPOVER
+  \*------------------------------------*/
+  --dc-date-preset-btn-text-color: #{$gray-500};
+  --dc-date-preset-btn-bg: none;
+  --dc-date-preset-phone-btn-text-color: #{$gray-800};
+  --dc-date-preset-phone-btn-bg: #{$gray-100};
+  --dc-date-preset-hover-btn-text-color: #{$gray-800};
+  --dc-date-preset-hover-btn-bg: #{$gray-100};
+  --dc-date-preset-selected-btn-text-color: #{$blue-700};
+  --dc-date-preset-selected-btn-bg: #{$blue-100};
+
+  /*------------------------------------*\
    #ACTIONS GROUP
   \*------------------------------------*/
   --dc-actions-group-border: #{$gray-300};

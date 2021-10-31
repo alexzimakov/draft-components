@@ -1,0 +1,112 @@
+.dc-date-range-picker-popover {
+  max-height: initial !important;
+}
+
+.dc-date-range-picker-popover__content {
+}
+
+.dc-date-range-picker-popover__content > * + * {
+  margin-top: $gap-4x;
+}
+
+.dc-date-range-picker-popover__content-body {
+  display: flex;
+}
+
+.dc-date-range-picker-popover__content-body > * + * {
+  margin-left: $gap-4x;
+}
+
+.dc-date-range-picker-popover__content-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.dc-date-range-picker-popover__content-footer > * + * {
+  margin-left: $gap-2x;
+}
+
+.dc-date-preset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dc-date-preset-list > * + * {
+  margin-top: $gap-1x;
+}
+
+.dc-date-preset-list-item {
+  width: 100%;
+}
+
+.dc-date-preset-list-item__btn {
+  font-size: $font-size-sm;
+  width: 100%;
+  padding: $gap-2x $gap-3x;
+  cursor: pointer;
+  text-align: left;
+  color: var(--dc-date-preset-btn-text-color);
+  border: none;
+  border-radius: $border-radius-md;
+  background: var(--dc-date-preset-btn-bg);
+  appearance: none;
+}
+
+.dc-date-preset-list-item__btn:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 px-to-rem(2px) var(--dc-focus-border-color);
+}
+
+.dc-date-preset-list-item__btn:hover {
+  color: var(--dc-date-preset-hover-btn-text-color);
+  background: var(--dc-date-preset-hover-btn-bg);
+}
+
+.dc-date-preset-list-item__btn_selected,
+.dc-date-preset-list-item__btn_selected:hover {
+  color: var(--dc-date-preset-selected-btn-text-color);
+  background: var(--dc-date-preset-selected-btn-bg);
+}
+
+@media screen and (max-width: 599px) {
+  .dc-date-range-picker-popover__content-body {
+    display: block;
+  }
+
+  .dc-date-range-picker-popover__content-body > * + * {
+    margin-top: $gap-1x;
+    margin-left: 0;
+  }
+
+  .dc-date-preset-list {
+    display: flex;
+    overflow-y: auto;
+    max-width: px-to-rem(258px);
+    padding-bottom: $gap-3x;
+  }
+
+  .dc-date-preset-list > * + * {
+    margin-top: 0;
+    margin-left: $gap-2x;
+  }
+
+  .dc-date-preset-list-item {
+    white-space: nowrap;
+  }
+
+  .dc-date-preset-list-item__btn {
+    border-radius: $border-radius-lg;
+  }
+
+  .dc-date-preset-list-item__btn:not(.dc-date-preset-list-item__btn_selected) {
+    color: var(--dc-date-preset-btn-text-color);
+    background: var(--dc-date-preset-btn-bg);
+  }
+
+  .dc-date-range-picker-popover__content-footer > * {
+    flex: auto;
+  }
+}

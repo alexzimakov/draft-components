@@ -8,6 +8,14 @@ export interface ISODateRange {
   endDate: string;
 }
 
+export interface DateRangeWithDatePreset extends DateRange {
+  datePreset?: string;
+}
+
+export interface ISODateRangeWithDatePreset extends ISODateRange {
+  datePreset?: string;
+}
+
 export const FIRST_DAY_OF_WEEK = 0;
 export const LAST_DAY_OF_WEEK = 6;
 export const DAYS_IN_WEEK = 7;
