@@ -2,17 +2,17 @@
 import { SegmentedControl } from '../segmented-control';
 
 const segments = [
-  { id: 1, label: 'Newest' },
-  { id: 2, label: 'Popular' },
-  { id: 3, label: 'Top rated' },
+  { value: 1, label: 'Newest' },
+  { value: 2, label: 'Popular' },
+  { value: 3, label: 'Top rated' },
 ];
-const [activeKey, setActiveKey] = React.useState(segments[0].id);
+const [selectedValue, setSelectedValue] = React.useState(segments[0].value);
 
 <SegmentedControl
   size="md"
   items={segments}
-  selectedValue={activeKey}
-  onChangeSelectedValue={setActiveKey}
+  selectedValue={selectedValue}
+  onChangeSelectedValue={setSelectedValue}
 />;
 ```
 
@@ -24,11 +24,11 @@ import { SvgIcon } from '../svg-icon';
 import { star } from '../../icons/star';
 
 const segments = [
-  { id: 'top_rated', label: 'Top rated', icon: <SvgIcon icon={star} /> },
-  { id: 'newest', label: 'Newest' },
-  { id: 'popular', label: 'Popular' },
+  { value: 'top_rated', label: 'Top rated', icon: <SvgIcon icon={star} /> },
+  { value: 'newest', label: 'Newest' },
+  { value: 'popular', label: 'Popular' },
 ];
-const [activeKey, setActiveKey] = React.useState(segments[0].id);
+const [activeKey, setActiveKey] = React.useState(segments[0].value);
 
 <SegmentedControl
   size="md"
