@@ -7,6 +7,7 @@ export * from './button';
 export * from './buttons-group';
 export * from './checkbox';
 export * from './date-picker';
+export * from './date-range-picker';
 export * from './datetime-input';
 export * from './dialog';
 export * from './form-field';

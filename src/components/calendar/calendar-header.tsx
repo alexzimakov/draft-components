@@ -1,6 +1,6 @@
 import { classNames } from '../../lib/react-helpers';
 import { Button, ButtonProps } from '../button';
-import { addMonths, addYears } from '../../lib/date-helpers';
+import { PlainDate } from '../../lib/plain-date';
 
 export interface CalendarHeaderProps {
   id: string;
@@ -10,9 +10,8 @@ export interface CalendarHeaderProps {
   nextMonthButtonLabel?: string;
   prevYearButtonLabel?: string;
   prevMonthButtonLabel?: string;
-  focusDate: Date;
-
-  onChangeFocusDate(focusDate: Date): void,
+  focusDate: PlainDate;
+  onChangeFocusDate(focusDate: PlainDate): void,
 }
 
 export function CalendarHeader({
@@ -26,37 +25,32 @@ export function CalendarHeader({
   focusDate,
   onChangeFocusDate,
 }: CalendarHeaderProps) {
-  const intl = new Intl.DateTimeFormat(locale, {
-    year: 'numeric',
-    month: 'long',
-  });
-
   return (
     <div className={classNames(className, 'dc-calendar-header')}>
       <ArrowButton
         ariaLabel={prevYearButtonLabel}
         iconPath="M11 19l-7-7 7-7m8 14l-7-7 7-7"
-        onClick={() => onChangeFocusDate(addYears(focusDate, -1))}
+        onClick={() => onChangeFocusDate(focusDate.addYears(-1))}
       />
       <ArrowButton
         ariaLabel={prevMonthButtonLabel}
         iconPath="M15 19l-7-7 7-7"
-        onClick={() => onChangeFocusDate(addMonths(focusDate, -1))}
+        onClick={() => onChangeFocusDate(focusDate.addMonths(-1))}
       />
 
       <span id={id} className="dc-calendar-header__title">
-        {intl.format(focusDate)}
+        {focusDate.format({ year: 'numeric', month: 'long' }, locale)}
       </span>
 
       <ArrowButton
         ariaLabel={nextMonthButtonLabel}
         iconPath="M9 5l7 7-7 7"
-        onClick={() => onChangeFocusDate(addMonths(focusDate, 1))}
+        onClick={() => onChangeFocusDate(focusDate.addMonths(1))}
       />
       <ArrowButton
         ariaLabel={nextYearButtonLabel}
         iconPath="M13 5l7 7-7 7M5 5l7 7-7 7"
-        onClick={() => onChangeFocusDate(addYears(focusDate, 1))}
+        onClick={() => onChangeFocusDate(focusDate.addYears(1))}
       />
     </div>
   );

@@ -24,8 +24,8 @@ it('renders without errors', () => {
     prevYearButtonLabel={prevYearAriaLabel}
     nextMonthButtonLabel={nextMonthAriaLabel}
     prevMonthButtonLabel={prevMonthAriaLabel}
-    range={{ startDate: '2021-10-05', endDate: '2021-10-21' }}
-    onChangeRange={jest.fn()}
+    value={{ start: '2021-10-05', end: '2021-10-21' }}
+    onChangeValue={jest.fn()}
   />);
 
   expect(screen.getByRole('grid')).toHaveAccessibleName('October 2021');
@@ -42,17 +42,21 @@ it('renders without errors', () => {
 it('invokes `onPick` callback when selecting a day', () => {
   const onChangeRangeMock = jest.fn();
   render(<DateRangePicker
-    range={{ startDate: '2021-10-05', endDate: '2021-10-21' }}
-    onChangeRange={onChangeRangeMock}
+    value={{ start: '2021-10-05', end: '2021-10-21' }}
+    onChangeValue={onChangeRangeMock}
   />);
 
   fireEvent.click(screen.getByText('13'));
   fireEvent.click(screen.getByText('28'));
 
-  expect(onChangeRangeMock).toHaveBeenCalledTimes(1);
+  expect(onChangeRangeMock).toHaveBeenCalledTimes(2);
   expect(onChangeRangeMock).toHaveBeenCalledWith({
-    startDate: '2021-10-13',
-    endDate: '2021-10-28',
+    start: '2021-10-13',
+    end: '2021-10-13',
+  });
+  expect(onChangeRangeMock).toHaveBeenCalledWith({
+    start: '2021-10-13',
+    end: '2021-10-28',
   });
 });
 
@@ -67,8 +71,8 @@ it('can select month and year using arrow buttons', () => {
     nextMonthButtonLabel={nextMonthAriaLabel}
     prevMonthButtonLabel={prevMonthAriaLabel}
     locale="en"
-    range={{ startDate: '2021-10-05', endDate: '2021-10-21' }}
-    onChangeRange={jest.fn()}
+    value={{ start: '2021-10-05', end: '2021-10-21' }}
+    onChangeValue={jest.fn()}
   />);
 
   screen.getByText('October 2021');
@@ -89,8 +93,8 @@ it('can select month and year using arrow buttons', () => {
 it('can select date using keyboard', () => {
   render(<DateRangePicker
     locale="en"
-    range={{ startDate: '2021-10-14', endDate: '2021-10-21' }}
-    onChangeRange={jest.fn()}
+    value={{ start: '2021-10-14', end: '2021-10-21' }}
+    onChangeValue={jest.fn()}
   />);
 
   // Move focus to the selected date.

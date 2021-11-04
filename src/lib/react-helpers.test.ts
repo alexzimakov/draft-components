@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { classNames, mergeRefs } from '../react-helpers';
+import { classNames, mergeRefs } from './react-helpers';
 
 describe('#classNames()', () => {
   it('should return className string without falsy classes', () => {

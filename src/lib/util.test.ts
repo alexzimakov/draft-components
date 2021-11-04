@@ -1,4 +1,4 @@
-import { once, randomInt, randomString, uniqueId } from '../util';
+import { once, randomInt, randomString, uniqueId } from './util';
 
 describe('#once()', () => {
   it('creates function that invokes only once', () => {

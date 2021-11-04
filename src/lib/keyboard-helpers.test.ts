@@ -1,4 +1,4 @@
-import { KeyCode, similarToClick } from '../keyboard-helpers';
+import { KeyCode, similarToClick } from './keyboard-helpers';
 
 describe('#similarToClick', () => {
   it('should return true when event fired after Enter of Space press', () => {

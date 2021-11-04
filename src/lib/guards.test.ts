@@ -1,4 +1,4 @@
-import { isFunction, isHTMLElement } from '../guards';
+import { isFunction, isHTMLElement } from './guards';
 
 describe('#isFunction()', () => {
   it('should return true when value is a function', () => {

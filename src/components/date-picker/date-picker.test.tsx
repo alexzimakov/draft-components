@@ -24,8 +24,8 @@ it('renders without errors', () => {
     prevYearButtonLabel={prevYearAriaLabel}
     nextMonthButtonLabel={nextMonthAriaLabel}
     prevMonthButtonLabel={prevMonthAriaLabel}
-    date="2021-10-20"
-    onChangeDate={jest.fn()}
+    value="2021-10-20"
+    onChangeValue={jest.fn()}
   />);
 
   expect(screen.getByRole('grid')).toHaveAccessibleName('October 2021');
@@ -41,8 +41,8 @@ it('renders without errors', () => {
 it('invokes `onPick` callback when selecting a day', () => {
   const onChangeDateMock = jest.fn();
   render(<DatePicker
-    date="2021-10-20"
-    onChangeDate={onChangeDateMock}
+    value="2021-10-20"
+    onChangeValue={onChangeDateMock}
   />);
 
   fireEvent.click(screen.getByText('13'));
@@ -62,8 +62,8 @@ it('can select month and year using arrow buttons', () => {
     nextMonthButtonLabel={nextMonthAriaLabel}
     prevMonthButtonLabel={prevMonthAriaLabel}
     locale="en"
-    date="2021-10-14"
-    onChangeDate={jest.fn()}
+    value="2021-10-14"
+    onChangeValue={jest.fn()}
   />);
 
   screen.getByText('October 2021');
@@ -82,7 +82,7 @@ it('can select month and year using arrow buttons', () => {
 });
 
 it('can select date using keyboard', () => {
-  render(<DatePicker locale="en" date="2021-10-14" onChangeDate={jest.fn()} />);
+  render(<DatePicker locale="en" value="2021-10-14" onChangeValue={jest.fn()} />);
 
   // Move focus to the selected date.
   fireEvent.keyDown(window.document, keyEventInfo.tab);

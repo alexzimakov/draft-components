@@ -1,6 +1,7 @@
-import { classNames } from '../../lib/react-helpers';
 import { useEffect, useRef } from 'react';
 import { isFunction } from '../../lib/guards';
+import { classNames } from '../../lib/react-helpers';
+import { PlainDate } from '../../lib/plain-date';
 
 export interface CalendarDayProps {
   className?: string;
@@ -13,11 +14,9 @@ export interface CalendarDayProps {
   isInRangePreview?: boolean;
   isRangePreviewStart?: boolean;
   isRangePreviewEnd?: boolean;
-  day: Date;
-
-  onPick(day: Date): void;
-
-  onHover?(day: Date): void;
+  date: PlainDate;
+  onPick(day: PlainDate): void;
+  onHover?(day: PlainDate): void;
 }
 
 export function CalendarDay({
@@ -31,7 +30,7 @@ export function CalendarDay({
   isInRangePreview,
   isRangePreviewStart,
   isRangePreviewEnd,
-  day,
+  date,
   onPick,
   onHover,
 }: CalendarDayProps) {
@@ -67,10 +66,10 @@ export function CalendarDay({
         className="dc-calendar-day__btn"
         tabIndex={isFocused ? 0 : -1}
         aria-selected={isSelected}
-        onClick={() => onPick(day)}
-        onMouseEnter={() => isFunction(onHover) && onHover(day)}
+        onClick={() => onPick(date)}
+        onMouseEnter={() => isFunction(onHover) && onHover(date)}
       >
-        {day.getDate()}
+        {date.day}
       </button>
     </div>
   );

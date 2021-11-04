@@ -1,4 +1,4 @@
-import { Stack } from '../stack';
+import { Stack } from './stack';
 
 it('should return the number of stack items', () => {
   const stack = new Stack([1, 2, 3]);
