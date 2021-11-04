@@ -44,7 +44,6 @@ module.exports = {
         'switch',
         'slider',
         'date-picker',
-        'date-range-picker-popover',
         'form-field',
       ),
     },
