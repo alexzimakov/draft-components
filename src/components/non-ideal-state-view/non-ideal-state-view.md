@@ -1,8 +1,8 @@
 ```jsx
 import { NonIdealStateView } from '../non-ideal-state-view';
 import { SvgIcon } from '../svg-icon';
-import { search } from '../../icons/search';
-import { people } from '../../icons/people';
+import { search } from '../../bootstrap-icons/search';
+import { people } from '../../bootstrap-icons/people';
 import { SearchInput } from '../search-input';
 
 <NonIdealStateView

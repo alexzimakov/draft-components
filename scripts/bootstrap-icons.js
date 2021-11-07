@@ -1,15 +1,18 @@
-const fs = require('fs/promises');
+const fsPromises = require('fs/promises');
 const path = require('path');
 const xml2js = require('xml2js');
 const prettier = require('prettier');
-const defaultPrettierOptions = require('../.prettierrc.json');
 
-const basePath = path.join(__dirname, '../');
-const nodeModulesDir = path.join(basePath, 'node_modules');
-const bootstrapIconsDir = path.join(nodeModulesDir, 'bootstrap-icons', 'icons');
-const iconsDir = path.join(basePath, 'src', 'icons');
-const prettierOptions = { ...defaultPrettierOptions, parser: 'babel' };
-const note = `/**
+const BASE_PATH = path.join(__dirname, '../');
+const NODE_MODULES = path.join(BASE_PATH, 'node_modules');
+const BOOTSTRAP_ICONS = path.join(NODE_MODULES, 'bootstrap-icons', 'icons');
+const OUTPUT_DIR = path.join(BASE_PATH, 'src', 'bootstrap-icons');
+const PRETTIER_OPTIONS = {
+  singleQuote: true,
+  trailingComma: 'es5',
+  parser: 'babel',
+};
+const FILE_NOTE = `/**
  * This file auto-generated with the \`scripts/bootstrap-icons.js\` script.
  */`;
 
@@ -23,16 +26,12 @@ function toCamelCase(iconName) {
   return variableName;
 }
 
-function formatCode(source) {
-  return prettier.format(source, prettierOptions);
-}
-
 function createDir(dirPath) {
-  return fs.mkdir(dirPath, { mode: 0o755 });
+  return fsPromises.mkdir(dirPath, { mode: 0o755 });
 }
 
 function writeFile(filePath, content) {
-  return fs.writeFile(filePath, content, { mode: 0o644 });
+  return fsPromises.writeFile(filePath, content, { mode: 0o644 });
 }
 
 function attrsToString(attrs = {}) {
@@ -107,11 +106,15 @@ function iconToFileSource(iconName, props) {
     throw new Error(`${iconName} is invalid`);
   }
 
-  const variableName = toCamelCase(iconName);
+  let variableName = toCamelCase(iconName);
+  if (variableName.match(/^\d/)) {
+    variableName = `icon${variableName}`;
+  }
+
   const { $: attrs, ...otherProps } = props;
 
-  return formatCode(
-    `${note}
+  return prettier.format(
+    `${FILE_NOTE}
 import { Icon } from '../components/svg-icon';
 
 // https://github.com/twbs/icons/blob/main/icons/${iconName}.svg
@@ -122,15 +125,15 @@ export const ${variableName}: Icon = {
   viewBox: '${attrs.viewBox || '0 0 16 16'}',
   children: ${toJsx(otherProps)},
 };`,
-    prettierOptions
+    PRETTIER_OPTIONS,
   );
 }
 
 async function main() {
-  const icons = await fs.readdir(bootstrapIconsDir);
+  const icons = await fsPromises.readdir(BOOTSTRAP_ICONS);
 
-  await fs.rmdir(iconsDir, { recursive: true });
-  await createDir(iconsDir);
+  await fsPromises.rmdir(OUTPUT_DIR, { recursive: true });
+  await createDir(OUTPUT_DIR);
 
   const xmlParser = new xml2js.Parser({
     explicitRoot: false,
@@ -138,25 +141,25 @@ async function main() {
     normalizeTags: true,
     normalize: true,
   });
-  let indexSource = note + '\n';
+  let indexSource = FILE_NOTE + '\n';
   for (const icon of icons) {
     if (icon) {
-      const svgString = await fs.readFile(path.join(bootstrapIconsDir, icon));
+      const svgString = await fsPromises.readFile(path.join(BOOTSTRAP_ICONS, icon));
       const iconName = path.basename(icon, '.svg');
       const fileSource = iconToFileSource(
         iconName,
-        await xmlParser.parseStringPromise(svgString)
+        await xmlParser.parseStringPromise(svgString),
       );
 
-      await writeFile(path.join(iconsDir, `${iconName}.tsx`), fileSource);
+      await writeFile(path.join(OUTPUT_DIR, `${iconName}.tsx`), fileSource);
       indexSource += `export * from './${iconName}';\n`;
     }
   }
 
-  await writeFile(path.join(iconsDir, 'index.ts'), indexSource);
+  await writeFile(path.join(OUTPUT_DIR, 'index.ts'), indexSource);
 }
 
-main().catch((e) => {
-  console.log(e.message);
+main().catch((err) => {
+  console.error(err);
   process.exit(1);
 });

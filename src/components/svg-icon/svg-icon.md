@@ -1,45 +1,6 @@
-[https://icons.getbootstrap.com](https://icons.getbootstrap.com)
-
 ```jsx padded
 import { SvgIcon } from '../svg-icon';
-import * as icons from '../../icons';
-
-const styles = {
-  list: {
-    display: 'grid',
-    rowGap: 32,
-    gridTemplateColumns: 'repeat(5, 1fr)',
-    padding: 0,
-    listStyle: 'none',
-  },
-  item: {
-    textAlign: 'center',
-  },
-  name: {
-    display: 'inline-block',
-    paddingTop: 12,
-    color: 'var(--dc-secondary-text-color)',
-    fontSize: 12,
-    fontFamily: 'var(--dc-font-code)',
-  },
-};
-
-<ol style={styles.list}>
-  {Object.entries(icons).map(([key, icon]) => (
-    <li key={key} style={styles.item}>
-      <SvgIcon size="xl" icon={icon} />
-      <br />
-      <code style={styles.name}>{key}</code>
-    </li>
-  ))}
-</ol>;
-```
-
-Sizes
-
-```jsx padded
-import { SvgIcon } from '../svg-icon';
-import { heartFill } from '../../icons/heart-fill';
+import { heartFill } from '../../bootstrap-icons/heart-fill';
 
 const icon = heartFill;
 
@@ -60,7 +21,7 @@ Linear Gradient
 
 ```jsx padded
 import { SvgIcon } from '../svg-icon';
-import { treeFill } from '../../icons/tree-fill';
+import { treeFill } from '../../bootstrap-icons/tree-fill';
 
 const props = {
   icon: treeFill,

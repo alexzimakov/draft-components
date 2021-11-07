@@ -65,7 +65,7 @@ Full width
 ```jsx
 import { Toast } from '../toast';
 import { SvgIcon } from '../svg-icon';
-import { bug } from '../../icons/bug';
+import { bug } from '../../bootstrap-icons/bug';
 
 <Toast
   fullWidth={true}

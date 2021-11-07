@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
 import { SvgIcon, SvgIconProps } from './svg-icon';
-import { alarm } from '../../icons/alarm';
+import { alarm } from '../../bootstrap-icons/alarm';
 
 it('renders without errors', () => {
   const size = 24;

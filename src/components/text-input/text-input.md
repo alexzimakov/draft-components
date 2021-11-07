@@ -13,7 +13,7 @@ With leading add-on
 ```jsx padded
 import { TextInput } from './';
 import { SvgIcon } from '../svg-icon';
-import { search } from '../../icons/search';
+import { search } from '../../bootstrap-icons/search';
 
 const icon = <SvgIcon size={16} icon={search} />;
 
@@ -28,7 +28,7 @@ With trailing add-on
 ```jsx padded
 import { TextInput } from './';
 import { SvgIcon } from '../svg-icon';
-import { exclamationCircle } from '../../icons/exclamation-circle';
+import { exclamationCircle } from '../../bootstrap-icons/exclamation-circle';
 
 const icon = <SvgIcon size={16} icon={exclamationCircle} />;
 

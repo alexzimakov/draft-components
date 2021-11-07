@@ -2,10 +2,10 @@ import { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { FormattedContent } from '../formatted-content';
 import { SvgIcon } from '../svg-icon';
-import { exclamationTriangle } from '../../icons/exclamation-triangle';
-import { exclamationCircle } from '../../icons/exclamation-circle';
-import { infoCircle } from '../../icons/info-circle';
-import { checkCircle } from '../../icons/check-circle';
+import { exclamationTriangle } from '../../bootstrap-icons/exclamation-triangle';
+import { exclamationCircle } from '../../bootstrap-icons/exclamation-circle';
+import { infoCircle } from '../../bootstrap-icons/info-circle';
+import { checkCircle } from '../../bootstrap-icons/check-circle';
 
 export interface NonIdealStateViewProps
   extends ComponentPropsWithoutRef<'div'> {

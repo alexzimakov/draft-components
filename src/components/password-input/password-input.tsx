@@ -3,8 +3,8 @@ import { classNames } from '../../lib/react-helpers';
 import { TextInput, TextInputProps } from '../text-input';
 import { Button } from '../button';
 import { SvgIcon, SvgIconProps } from '../svg-icon';
-import { eye } from '../../icons/eye';
-import { eyeSlash } from '../../icons/eye-slash';
+import { eye } from '../../bootstrap-icons/eye';
+import { eyeSlash } from '../../bootstrap-icons/eye-slash';
 
 export type PasswordInputBaseProps = Omit<
   TextInputProps,

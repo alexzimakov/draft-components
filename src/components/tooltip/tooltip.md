@@ -2,7 +2,7 @@
 import { Tooltip } from '../tooltip';
 import { Button } from '../button';
 import { SvgIcon } from '../svg-icon';
-import { bookmark } from '../../icons/bookmark';
+import { bookmark } from '../../bootstrap-icons/bookmark';
 
 <Tooltip content="Save to favorite">
   <Button

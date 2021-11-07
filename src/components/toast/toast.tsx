@@ -2,10 +2,10 @@ import { ComponentPropsWithRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { SvgIcon } from '../svg-icon';
 import { ToastButton } from './toast-button';
-import { exclamationCircleFill } from '../../icons/exclamation-circle-fill';
-import { exclamationTriangleFill } from '../../icons/exclamation-triangle-fill';
-import { checkCircleFill } from '../../icons/check-circle-fill';
-import { infoCircleFill } from '../../icons/info-circle-fill';
+import { exclamationCircleFill } from '../../bootstrap-icons/exclamation-circle-fill';
+import { exclamationTriangleFill } from '../../bootstrap-icons/exclamation-triangle-fill';
+import { checkCircleFill } from '../../bootstrap-icons/check-circle-fill';
+import { infoCircleFill } from '../../bootstrap-icons/info-circle-fill';
 
 interface BaseToastProps extends ComponentPropsWithRef<'div'> {
   appearance?: 'warning' | 'error' | 'info' | 'success';

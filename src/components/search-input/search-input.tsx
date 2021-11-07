@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { TextInput, TextInputProps } from '../text-input';
 import { SvgIcon } from '../svg-icon';
-import { search } from '../../icons/search';
+import { search } from '../../bootstrap-icons/search';
 
 export interface SearchInputProps extends TextInputProps {}
 

@@ -117,7 +117,7 @@ With leading icon
 ```jsx padded
 import { Button } from '../button';
 import { SvgIcon } from '../svg-icon';
-import { bookmark } from '../../icons/bookmark';
+import { bookmark } from '../../bootstrap-icons/bookmark';
 
 const getProps = (size) => ({
   size,
@@ -138,7 +138,7 @@ With trailing icon
 ```jsx padded
 import { Button } from '../button';
 import { SvgIcon } from '../svg-icon';
-import { heart } from '../../icons/heart';
+import { heart } from '../../bootstrap-icons/heart';
 
 const getProps = (size) => ({
   size,
@@ -180,7 +180,7 @@ Icon button
 ```jsx padded
 import { Button } from '../button';
 import { SvgIcon } from '../svg-icon';
-import { xLg } from '../../icons/x-lg';
+import { xLg } from '../../bootstrap-icons/x-lg';
 
 const getProps = (size) => ({
   size,
@@ -202,7 +202,7 @@ Icon circle button
 ```jsx padded
 import { Button } from '../button';
 import { SvgIcon } from '../svg-icon';
-import { plusLg } from '../../icons/plus-lg';
+import { plusLg } from '../../bootstrap-icons/plus-lg';
 
 const getProps = (size) => ({
   size,

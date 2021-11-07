@@ -14,7 +14,7 @@ import { Box } from '../box';
 import { Button } from '../button';
 import { FormattedContent, Headline } from '../formatted-content';
 import { SvgIcon } from '../svg-icon';
-import { xLg } from '../../icons/x-lg';
+import { xLg } from '../../bootstrap-icons/x-lg';
 
 export interface DialogProps extends ComponentPropsWithoutRef<'div'> {
   isOpen?: boolean;

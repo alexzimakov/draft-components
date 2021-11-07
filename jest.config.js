@@ -29,7 +29,7 @@ module.exports = {
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '/src/styleguide/',
-    '/src/icons/',
+    '/src/bootstrap-icons/',
   ],
 
   // Indicates which provider should be used to instrument code for coverage

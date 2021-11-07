@@ -38,12 +38,12 @@ With icons
 import { VerticalNavigation } from '../vertical-navigation';
 import { Tag } from '../tag';
 import { SvgIcon } from '../svg-icon';
-import { houseDoor } from '../../icons/house-door';
-import { arrowDownCircle } from '../../icons/arrow-down-circle';
-import { folder } from '../../icons/folder';
-import { clipboardData } from '../../icons/clipboard-data';
-import { questionCircle } from '../../icons/question-circle';
-import { telephone } from '../../icons/telephone';
+import { houseDoor } from '../../bootstrap-icons/house-door';
+import { arrowDownCircle } from '../../bootstrap-icons/arrow-down-circle';
+import { folder } from '../../bootstrap-icons/folder';
+import { clipboardData } from '../../bootstrap-icons/clipboard-data';
+import { questionCircle } from '../../bootstrap-icons/question-circle';
+import { telephone } from '../../bootstrap-icons/telephone';
 
 const projectsBadge = (
   <Tag size="sm" isRounded={true}>

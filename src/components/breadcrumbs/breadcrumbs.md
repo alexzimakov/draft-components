@@ -1,7 +1,7 @@
 ```jsx
 import { Breadcrumbs } from '../breadcrumbs';
 import { SvgIcon } from '../svg-icon';
-import { houseFill } from '../../icons/house-fill';
+import { houseFill } from '../../bootstrap-icons/house-fill';
 
 <Breadcrumbs>
   <Breadcrumbs.Item href="#/Navigation" icon={<SvgIcon icon={houseFill} />}>
@@ -19,8 +19,8 @@ Custom delimiter
 ```jsx
 import { Breadcrumbs } from '../breadcrumbs';
 import { SvgIcon } from '../svg-icon';
-import { houseFill } from '../../icons/house-fill';
-import { chevronRight } from '../../icons/chevron-right';
+import { houseFill } from '../../bootstrap-icons/house-fill';
+import { chevronRight } from '../../bootstrap-icons/chevron-right';
 
 <Breadcrumbs delimiter={<SvgIcon icon={chevronRight} />}>
   <Breadcrumbs.Item href="#/Navigation" icon={<SvgIcon icon={houseFill} />}>

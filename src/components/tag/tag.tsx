@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, MouseEventHandler, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { SvgIcon } from '../svg-icon';
-import { xLg } from '../../icons/x-lg';
+import { xLg } from '../../bootstrap-icons/x-lg';
 
 export interface TagProps extends ComponentPropsWithoutRef<'span'> {
   isRounded?: boolean;

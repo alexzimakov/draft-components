@@ -82,8 +82,8 @@ With icon
 ```jsx padded
 import { Avatar } from '../avatar';
 import { SvgIcon } from '../svg-icon';
-import { starFill } from '../../icons/star-fill';
-import { dropletFill } from '../../icons/droplet-fill';
+import { starFill } from '../../bootstrap-icons/star-fill';
+import { dropletFill } from '../../bootstrap-icons/droplet-fill';
 
 <>
   <Avatar

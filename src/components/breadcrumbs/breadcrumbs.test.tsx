@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { Breadcrumbs } from './breadcrumbs';
 import { BreadcrumbsItemProps } from './breadcrumbs-item';
 import { SvgIcon } from '../svg-icon';
-import { houseFill } from '../../icons/house-fill';
+import { houseFill } from '../../bootstrap-icons/house-fill';
 
 it('renders without errors', () => {
   render(

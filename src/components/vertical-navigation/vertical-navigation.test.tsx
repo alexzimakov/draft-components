@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { VerticalNavigation } from './vertical-navigation';
 import { Tag } from '../tag';
 import { SvgIcon } from '../svg-icon';
-import { clipboardData } from '../../icons/clipboard-data';
+import { clipboardData } from '../../bootstrap-icons/clipboard-data';
 import { VerticalNavigationItemProps } from './vertical-navigation-item';
 
 it('renders without errors', () => {

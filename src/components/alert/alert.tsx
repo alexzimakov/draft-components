@@ -2,10 +2,10 @@ import { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { FormattedContent } from '../formatted-content';
 import { Icon, SvgIcon } from '../svg-icon';
-import { exclamationTriangle } from '../../icons/exclamation-triangle';
-import { exclamationCircle } from '../../icons/exclamation-circle';
-import { checkCircle } from '../../icons/check-circle';
-import { infoCircle } from '../../icons/info-circle';
+import { exclamationTriangle } from '../../bootstrap-icons/exclamation-triangle';
+import { exclamationCircle } from '../../bootstrap-icons/exclamation-circle';
+import { checkCircle } from '../../bootstrap-icons/check-circle';
+import { infoCircle } from '../../bootstrap-icons/info-circle';
 
 export interface AlertProps extends ComponentPropsWithoutRef<'div'> {
   heading?: ReactNode;

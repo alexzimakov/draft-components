@@ -1,9 +1,9 @@
 import { ActionsGroup } from './actions-group';
 import { render, screen } from '@testing-library/react';
 import { SvgIcon } from '../svg-icon';
-import { bookmark } from '../../icons/bookmark';
-import { archive } from '../../icons/archive';
-import { chat } from '../../icons/chat';
+import { bookmark } from '../../bootstrap-icons/bookmark';
+import { archive } from '../../bootstrap-icons/archive';
+import { chat } from '../../bootstrap-icons/chat';
 
 it('renders without errors', () => {
   render(

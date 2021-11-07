@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { Toast } from './toast';
 import { SvgIcon } from '../svg-icon';
-import { handThumbsUp } from '../../icons/hand-thumbs-up';
+import { handThumbsUp } from '../../bootstrap-icons/hand-thumbs-up';
 
 const message = `Campaign saved!`;
 const informativeText = `Lorem ipsum dolor sit amet, consectetur adipisicing elit.`;

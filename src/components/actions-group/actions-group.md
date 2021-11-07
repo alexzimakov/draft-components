@@ -1,9 +1,9 @@
 ```jsx
 import { ActionsGroup } from '../actions-group';
 import { SvgIcon } from '../svg-icon';
-import { heart } from '../../icons/heart';
-import { bookmark } from '../../icons/bookmark';
-import { trash } from '../../icons/trash';
+import { heart } from '../../bootstrap-icons/heart';
+import { bookmark } from '../../bootstrap-icons/bookmark';
+import { trash } from '../../bootstrap-icons/trash';
 
 <ActionsGroup>
   <ActionsGroup.Button title="Like" icon={<SvgIcon size="lg" icon={heart} />} />

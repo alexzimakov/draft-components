@@ -31,7 +31,7 @@ With leading add-on
 ```jsx padded
 import { Tag } from '../tag';
 import { SvgIcon } from '../svg-icon';
-import { tagFill } from '../../icons/tag-fill';
+import { tagFill } from '../../bootstrap-icons/tag-fill';
 
 const icon = <SvgIcon icon={tagFill} />;
 

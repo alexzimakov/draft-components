@@ -6,8 +6,8 @@ import {
   SelectionControlBaseProps,
 } from '../selection-control';
 import { SvgIcon } from '../svg-icon';
-import { dash } from '../../icons/dash';
-import { check } from '../../icons/check';
+import { dash } from '../../bootstrap-icons/dash';
+import { check } from '../../bootstrap-icons/check';
 
 export type CheckboxHtmlAttrs = Omit<
   ComponentPropsWithRef<'input'>,

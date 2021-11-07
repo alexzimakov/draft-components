@@ -11,7 +11,7 @@ With add-ons
 ```jsx padded
 import { NumberInput } from './number-input';
 import { SvgIcon } from '../svg-icon';
-import { currencyExchange } from '../../icons/currency-exchange';
+import { currencyExchange } from '../../bootstrap-icons/currency-exchange';
 
 const [usd, setUsd] = React.useState('');
 const [exchangeRate, setExchangeRate] = React.useState('');
@@ -35,7 +35,7 @@ Sizes
 ```jsx padded
 import { NumberInput } from './number-input';
 import { SvgIcon } from '../svg-icon';
-import { currencyExchange } from '../../icons/currency-exchange';
+import { currencyExchange } from '../../bootstrap-icons/currency-exchange';
 
 const [first, setFirst] = React.useState('');
 const [second, setSecond] = React.useState('');

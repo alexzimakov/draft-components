@@ -10,11 +10,12 @@ module.exports = {
         'label',
         'inline-message',
         'spinner',
+        'svg-icon',
       ),
     },
     {
-      name: 'Icons',
-      components: getComponents('svg-icon'),
+      name: 'Bootstrap icons',
+      content: 'src/styleguide/bootstrap-icons.md',
     },
     {
       name: 'Layout',

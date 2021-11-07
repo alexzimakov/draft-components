@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { SearchInput } from '../search-input';
 import { SvgIcon } from '../svg-icon';
-import { search } from '../../icons/search';
-import { exclamationCircle } from '../../icons/exclamation-circle';
-import { exclamationTriangle } from '../../icons/exclamation-triangle';
-import { checkCircle } from '../../icons/check-circle';
-import { infoCircle } from '../../icons/info-circle';
+import { search } from '../../bootstrap-icons/search';
+import { exclamationCircle } from '../../bootstrap-icons/exclamation-circle';
+import { exclamationTriangle } from '../../bootstrap-icons/exclamation-triangle';
+import { checkCircle } from '../../bootstrap-icons/check-circle';
+import { infoCircle } from '../../bootstrap-icons/info-circle';
 import { NonIdealStateView } from './non-ideal-state-view';
 
 const heading = `No search results`;

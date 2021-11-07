@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { SvgIcon } from '../svg-icon';
-import { checkCircleFill } from '../../icons/check-circle-fill';
+import { checkCircleFill } from '../../bootstrap-icons/check-circle-fill';
 
 export interface RadioGroupItemProps extends ComponentPropsWithoutRef<'div'> {
   value: string;

@@ -21,7 +21,7 @@ With icon
 ```jsx
 import { SegmentedControl } from '../segmented-control';
 import { SvgIcon } from '../svg-icon';
-import { star } from '../../icons/star';
+import { star } from '../../bootstrap-icons/star';
 
 const segments = [
   { value: 'top_rated', label: 'Top rated', icon: <SvgIcon icon={star} /> },
