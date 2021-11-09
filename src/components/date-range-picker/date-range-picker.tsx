@@ -1,4 +1,4 @@
-import { ReactNodeArray, useEffect, useState } from 'react';
+import { ReactNode, ReactNodeArray, useEffect, useState } from 'react';
 import { Calendar } from '../calendar/calendar';
 import { CalendarRow } from '../calendar/calendar-row';
 import { CalendarDay } from '../calendar/calendar-day';
@@ -11,7 +11,7 @@ export interface DateRangePickerProps {
   nextMonthButtonLabel?: string;
   prevYearButtonLabel?: string;
   prevMonthButtonLabel?: string;
-  footer?: boolean;
+  footer?: ReactNode;
   value: ISODateRange | null;
   onChangeValue(isoDateRange: ISODateRange): void;
 }
@@ -115,7 +115,7 @@ export function DateRangePicker({
           key={`day-${date.toISOString()}`}
           date={date}
           isCurrent={date.equals(currentDate)}
-          isFocused={date.equals(focusDate)}
+          isFocusable={date.equals(focusDate)}
           isSelected={isSelected}
           isInRange={isInRange}
           isRangeStart={isRangeStart}

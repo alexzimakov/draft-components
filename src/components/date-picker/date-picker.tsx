@@ -65,7 +65,7 @@ export function DatePicker({
           key={`day-${date.toISOString()}`}
           date={date}
           isCurrent={date.equals(currentDate)}
-          isFocused={date.equals(focusDate)}
+          isFocusable={date.equals(focusDate)}
           isSelected={selectedDate ? date.equals(selectedDate) : false}
           onPick={handleDayPick}
         />,

@@ -1,7 +1,7 @@
-import { ReactNodeArray, useMemo } from 'react';
+import { ReactNodeArray, useEffect, useMemo, useRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { KeyCode } from '../../lib/keyboard-helpers';
-import { uniqueId } from '../../lib/util';
+import { once, uniqueId } from '../../lib/util';
 import { CalendarRow } from './calendar-row';
 import { CalendarHeader } from './calendar-header';
 import { PlainDate } from '../../lib/plain-date';
@@ -39,20 +39,30 @@ export function Calendar({
   focusDate,
   onChangeFocusDate,
 }: CalendarProps) {
-  const headerId = useMemo(() => uniqueId('dc-calendar-'), []);
-
+  const isFocused = useRef(false);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const headerId = useRef(once(uniqueId)('dc-calendar-'));
   const intl = useMemo(() => new Intl.DateTimeFormat(locale, {
     weekday: 'short',
   }), [locale]);
+
+  useEffect(() => {
+    if (gridRef.current && isFocused.current) {
+      const dayButtonEl = gridRef.current.querySelector('[tabindex="0"]');
+      if (dayButtonEl instanceof HTMLElement) {
+        dayButtonEl.focus();
+      }
+    }
+  }, [focusDate]);
 
   return (
     <div
       className={classNames(className, 'dc-calendar')}
       role="grid"
-      aria-labelledby={headerId}
+      aria-labelledby={headerId.current}
     >
       <CalendarHeader
-        id={headerId}
+        id={headerId.current}
         locale={locale}
         nextYearButtonLabel={nextYearButtonLabel}
         nextMonthButtonLabel={nextMonthButtonLabel}
@@ -77,8 +87,15 @@ export function Calendar({
       </div>
 
       <div
+        ref={gridRef}
         role="rowgroup"
         className="dc-calendar__row-group"
+        onFocus={() => {
+          isFocused.current = true;
+        }}
+        onBlur={() => {
+          isFocused.current = false;
+        }}
         onKeyDown={event => {
           let newFocusDate: PlainDate | null = null;
           if (event.key === KeyCode.arrowRight) {
