@@ -38,7 +38,6 @@ export function Secret({
       <Button
         className="dc-secret__btn"
         size="sm"
-        type="button"
         onClick={() => {
           setIsShown(!isShown);
           isFunction(onChange) && onChange(!isShown);

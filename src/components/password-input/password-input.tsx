@@ -6,12 +6,9 @@ import { SvgIcon, SvgIconProps } from '../svg-icon';
 import { eye } from '../../bootstrap-icons/eye';
 import { eyeSlash } from '../../bootstrap-icons/eye-slash';
 
-export type PasswordInputBaseProps = Omit<
-  TextInputProps,
-  'type' | 'trailingAddOn'
->;
+type BaseProps = Omit<TextInputProps, 'type' | 'trailingAddOn'>;
 
-export interface PasswordInputProps extends PasswordInputBaseProps {
+export interface PasswordInputProps extends BaseProps {
   showPasswordAriaTitle?: string;
   hidePasswordAriaTitle?: string;
 }
@@ -43,7 +40,6 @@ export function PasswordInput({
           noPadding={true}
           leadingIcon={<SvgIcon size="xl" icon={icon} />}
           title={title}
-          type="button"
           size="sm"
           onClick={() => setType(type === 'password' ? 'text' : 'password')}
         />

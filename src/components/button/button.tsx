@@ -1,5 +1,6 @@
 import { ComponentPropsWithRef, forwardRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
+import { isFunction } from '../../lib/guards';
 import { Spinner } from '../spinner';
 
 export type ButtonHtmlAttrs = ComponentPropsWithRef<'button'>;
@@ -31,6 +32,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     {
       size = 'md',
       appearance = 'default',
+      type = 'button',
       fullWidth,
       noPadding,
       isRounded,
@@ -43,7 +45,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       ...props
     },
-    ref
+    ref,
   ) {
     className = classNames(className, 'dc-btn', {
       'dc-btn_full-width': fullWidth,
@@ -68,7 +70,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       </>
     );
 
-    if (typeof renderAs === 'function') {
+    if (isFunction(renderAs)) {
       return renderAs({ className, children: content });
     }
 
@@ -77,5 +79,5 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {content}
       </button>
     );
-  }
+  },
 );

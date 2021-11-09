@@ -10,14 +10,13 @@ export const ScopeButton = forwardRef<HTMLButtonElement, ScopeButtonProps>(
   function ScopeButton({ isActive, className, children, ...props }, ref) {
     return (
       <Button
-        ref={ref}
-        type="button"
-        className={classNames(className, 'dc-scope-button')}
         {...props}
+        ref={ref}
+        className={classNames(className, 'dc-scope-button')}
         appearance={isActive ? 'secondary' : 'minimal'}
       >
         {children}
       </Button>
     );
-  }
+  },
 );
