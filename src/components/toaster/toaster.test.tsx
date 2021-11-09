@@ -1,4 +1,5 @@
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { act, render, screen, within } from '@testing-library/react';
 import { Toaster } from './toaster';
 import { ToastId, ToastRenderFn } from './use-toasts';
 
@@ -48,7 +49,7 @@ it('should dismiss toast using `dismiss` callback from render function props', (
 
   const toast = screen.getByTestId('test-toast');
 
-  fireEvent.click(within(toast).getByRole('button'));
+  userEvent.click(within(toast).getByRole('button'));
 
   expect(screen.queryByTestId('test-toast')).toBeNull();
 });
