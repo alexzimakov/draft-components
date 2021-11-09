@@ -16,7 +16,7 @@ it('renders with necessary elements', () => {
       actions={actions}
     >
       {content}
-    </Dialog>
+    </Dialog>,
   );
 
   const dialogEl = screen.getByRole('dialog');
@@ -36,7 +36,7 @@ it('renders without close button', () => {
   render(
     <Dialog isOpen={true} shouldShowCloseButton={false}>
       {content}
-    </Dialog>
+    </Dialog>,
   );
 
   expect(screen.queryByRole('button')).toBeNull();
@@ -59,7 +59,7 @@ it('should close dialog when click on close button', () => {
   render(
     <Dialog isOpen={true} onClose={onClose}>
       {content}
-    </Dialog>
+    </Dialog>,
   );
 
   userEvent.click(screen.getByRole('button'));
@@ -72,7 +72,7 @@ it('should close dialog when press Esc button', () => {
   render(
     <Dialog isOpen={true} onClose={onClose}>
       {content}
-    </Dialog>
+    </Dialog>,
   );
 
   userEvent.keyboard('{esc}');
@@ -85,7 +85,7 @@ it('should close dialog when click on outside the dialog', () => {
   render(
     <Dialog isOpen={true} onClose={onClose}>
       {content}
-    </Dialog>
+    </Dialog>,
   );
 
   userEvent.click(screen.getByTestId('dialog-container'));
@@ -106,7 +106,7 @@ it('should capture focus in the dialog', () => {
     <>
       <button data-testid="button-outside">Button outside dialog</button>
       <Dialog isOpen={true} actions={actions} />
-    </>
+    </>,
   );
 
   const dialogEl = screen.getByRole('dialog');
@@ -130,7 +130,7 @@ it('when open more than one dialog should close only the top dialog when press E
         {content}
       </Dialog>
       <Dialog isOpen={true} actions={actions} onClose={onDialog2Close} />
-    </>
+    </>,
   );
 
   userEvent.keyboard('{esc}');
@@ -144,7 +144,7 @@ it('when open more than one dialog should capture focus only in the top dialog',
     <>
       <Dialog isOpen={true} actions={actions} />
       <Dialog isOpen={true} actions={actions} />
-    </>
+    </>,
   );
 
   const [, dialog2] = screen.getAllByRole('dialog');

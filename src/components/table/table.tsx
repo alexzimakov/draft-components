@@ -23,7 +23,6 @@ export function Table({
   cellPadding,
   hasStickyHeader,
   shouldHighlightActiveRow,
-  style,
   className,
   children,
   ...props

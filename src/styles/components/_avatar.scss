@@ -1,6 +1,6 @@
 .dc-avatar {
-  display: inline-flex;
   position: relative;
+  display: inline-flex;
 }
 
 .dc-avatar_tint_blue {
@@ -8,6 +8,7 @@
   --dc-avatar-bg1-color: #6fd2fc;
   --dc-avatar-bg2-color: #2a9ef1;
 }
+
 .dc-avatar_icon-tint_blue {
   --dc-avatar-icon-color: #{$white};
   --dc-avatar-icon-bg: linear-gradient(#6fd2fc, #2a9ef1);
@@ -18,6 +19,7 @@
   --dc-avatar-bg1-color: #51ebd5;
   --dc-avatar-bg2-color: #28c9b7;
 }
+
 .dc-avatar_icon-tint_cyan {
   --dc-avatar-icon-color: #{$white};
   --dc-avatar-icon-bg: linear-gradient(#51ebd5, #28c9b7);
@@ -28,6 +30,7 @@
   --dc-avatar-bg1-color: #ff8e72;
   --dc-avatar-bg2-color: #ff5151;
 }
+
 .dc-avatar_icon-tint_red {
   --dc-avatar-icon-color: #{$white};
   --dc-avatar-icon-bg: linear-gradient(#ff8e72, #ff5151);
@@ -38,6 +41,7 @@
   --dc-avatar-bg1-color: #28ed7f;
   --dc-avatar-bg2-color: #16c059;
 }
+
 .dc-avatar_icon-tint_green {
   --dc-avatar-icon-color: #{$white};
   --dc-avatar-icon-bg: linear-gradient(#28ed7f, #16c032);
@@ -48,6 +52,7 @@
   --dc-avatar-bg1-color: #9ddd7d;
   --dc-avatar-bg2-color: #54cb68;
 }
+
 .dc-avatar_icon-tint_lime {
   --dc-avatar-icon-color: #{$white};
   --dc-avatar-icon-bg: linear-gradient(#9ddd7d, #54cb68);
@@ -58,6 +63,7 @@
   --dc-avatar-bg1-color: #80aaff;
   --dc-avatar-bg2-color: #665fff;
 }
+
 .dc-avatar_icon-tint_indigo {
   --dc-avatar-icon-color: #{$white};
   --dc-avatar-icon-bg: linear-gradient(#80aaff, #665fff);
@@ -68,6 +74,7 @@
   --dc-avatar-bg1-color: #ffd85e;
   --dc-avatar-bg2-color: #ffb92b;
 }
+
 .dc-avatar_icon-tint_yellow {
   --dc-avatar-icon-color: #{$white};
   --dc-avatar-icon-bg: linear-gradient(#ffd85e, #ffb92b);
@@ -78,6 +85,7 @@
   --dc-avatar-bg1-color: #ffc045;
   --dc-avatar-bg2-color: #ff8f15;
 }
+
 .dc-avatar_icon-tint_orange {
   --dc-avatar-icon-color: #{$white};
   --dc-avatar-icon-bg: linear-gradient(#ffc045, #ff8f15);
@@ -88,6 +96,7 @@
   --dc-avatar-bg1-color: #e09ff2;
   --dc-avatar-bg2-color: #d669ed;
 }
+
 .dc-avatar_icon-tint_pink {
   --dc-avatar-icon-color: #{$white};
   --dc-avatar-icon-bg: linear-gradient(#e09ff2, #d669ed);

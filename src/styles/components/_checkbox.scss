@@ -1,6 +1,8 @@
 .dc-checkbox {
   --dc-selection-control-size: var(--dc-checkbox-size);
+}
 
+.dc-checkbox {
   position: relative;
 }
 
@@ -17,8 +19,8 @@
   width: var(--dc-checkbox-size);
   height: var(--dc-checkbox-size);
   cursor: pointer;
-  border-radius: $border-radius-xs;
   border: var(--dc-input-border);
+  border-radius: $border-radius-xs;
   background: var(--dc-input-bg);
 }
 

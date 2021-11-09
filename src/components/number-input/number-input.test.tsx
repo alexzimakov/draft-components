@@ -5,7 +5,8 @@ import { render, screen } from '@testing-library/react';
 it('renders without errors', () => {
   const placeholder = 'Enter a number';
   render(
-    <NumberInput placeholder={placeholder} value="" onChangeValue={jest.fn()} />
+    <NumberInput placeholder={placeholder} value=""
+                 onChangeValue={jest.fn()} />,
   );
 
   const [decrementButton, incrementButton] = screen.getAllByRole('button');
@@ -23,7 +24,7 @@ it('renders with custom buttons labels', () => {
       decrementButtonLabel={decrementButtonLabel}
       value=""
       onChangeValue={jest.fn()}
-    />
+    />,
   );
 
   const [decrementButton, incrementButton] = screen.getAllByRole('button');
@@ -34,7 +35,7 @@ it('renders with custom buttons labels', () => {
 it('invokes `onChange` event handler', () => {
   const onChange = jest.fn();
   render(
-    <NumberInput value="10" onChangeValue={jest.fn()} onChange={onChange} />
+    <NumberInput value="10" onChangeValue={jest.fn()} onChange={onChange} />,
   );
 
   userEvent.paste(screen.getByRole('textbox'), '10');
@@ -133,7 +134,7 @@ it('can change a value in a specified range', () => {
       min={0}
       max={20}
       step={15}
-    />
+    />,
   );
   const input = screen.getByRole('textbox');
   const [decrementButton, incrementButton] = screen.getAllByRole('button');
@@ -145,7 +146,7 @@ it('can change a value in a specified range', () => {
   expect(onChangeValue).not.toHaveBeenCalled();
 
   rerender(
-    <NumberInput value="10" onChangeValue={onChangeValue} max={20} step={15} />
+    <NumberInput value="10" onChangeValue={onChangeValue} max={20} step={15} />,
   );
   userEvent.click(incrementButton);
   userEvent.click(decrementButton);
@@ -154,7 +155,7 @@ it('can change a value in a specified range', () => {
   onChangeValue.mockClear();
 
   rerender(
-    <NumberInput value="10" onChangeValue={onChangeValue} min={0} step={15} />
+    <NumberInput value="10" onChangeValue={onChangeValue} min={0} step={15} />,
   );
   userEvent.click(incrementButton);
   userEvent.click(decrementButton);
@@ -165,7 +166,7 @@ it('can change a value in a specified range', () => {
 it('unable change value using keyboard arrows or increment/decrement buttons when the field is `readOnly`', () => {
   const onChangeValue = jest.fn();
   render(
-    <NumberInput readOnly={true} value="0" onChangeValue={onChangeValue} />
+    <NumberInput readOnly={true} value="0" onChangeValue={onChangeValue} />,
   );
   const input = screen.getByRole('textbox');
   const [decrementButton, incrementButton] = screen.getAllByRole('button');

@@ -18,7 +18,7 @@ it('should toggle password visibility', () => {
       placeholder={placeholder}
       showPasswordAriaTitle={showPasswordA11yTitle}
       hidePasswordAriaTitle={hidePasswordA11yTitle}
-    />
+    />,
   );
 
   const inputEl = screen.getByPlaceholderText(placeholder);

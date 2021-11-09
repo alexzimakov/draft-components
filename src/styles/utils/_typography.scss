@@ -6,27 +6,35 @@
 .color-inherit {
   color: inherit !important;
 }
+
 .color-primary {
   color: var(--dc-primary-text-color) !important;
 }
+
 .color-secondary {
   color: var(--dc-secondary-text-color) !important;
 }
+
 .color-tertiary {
   color: var(--dc-tertiary-text-color) !important;
 }
+
 .color-link {
   color: var(--dc-link-text-color) !important;
 }
+
 .color-error {
   color: var(--dc-error-text-color) !important;
 }
+
 .color-warning {
   color: var(--dc-warning-text-color) !important;
 }
+
 .color-info {
   color: var(--dc-info-text-color) !important;
 }
+
 .color-success {
   color: var(--dc-success-text-color) !important;
 }
@@ -37,18 +45,23 @@
 .text-light {
   font-weight: 300 !important;
 }
+
 .text-normal {
   font-weight: 400 !important;
 }
+
 .text-medium {
   font-weight: 500 !important;
 }
+
 .text-semibold {
   font-weight: 600 !important;
 }
+
 .text-bold {
   font-weight: 700 !important;
 }
+
 .text-extrabold {
   font-weight: 800 !important;
 }
@@ -59,15 +72,19 @@
 .text-italic {
   font-style: italic !important;
 }
+
 .text-uppercase {
   text-transform: uppercase !important;
 }
+
 .text-no-underline {
   text-decoration: none !important;
 }
+
 .text-no-select {
   user-select: none !important;
 }
+
 .text-no-wrap {
   white-space: nowrap !important;
 }
@@ -78,9 +95,11 @@
 .text-right {
   text-align: right !important;
 }
+
 .text-center {
   text-align: center !important;
 }
+
 .text-left {
   text-align: left !important;
 }
@@ -91,21 +110,27 @@
 .fs-xs {
   font-size: dc.$font-size-xs !important;
 }
+
 .fs-sm {
   font-size: dc.$font-size-sm !important;
 }
+
 .fs-base {
   font-size: dc.$font-size-base !important;
 }
+
 .fs-lg {
   font-size: dc.$font-size-lg !important;
 }
+
 .fs-xl {
   font-size: dc.$font-size-xl !important;
 }
+
 .fs-2xl {
   font-size: dc.$font-size-2xl !important;
 }
+
 .fs-3xl {
   font-size: dc.$font-size-3xl !important;
 }
@@ -116,12 +141,15 @@
 .leading-default {
   $leading-default: 1 !important;
 }
+
 .leading-tight {
   $leading-tight: 1.25 !important;
 }
+
 .leading-normal {
   $leading-normal: 1.375 !important;
 }
+
 .leading-lg {
   $leading-lg: 1.5 !important;
 }

@@ -43,7 +43,7 @@ it('should fill with gradient', () => {
   expect(linearGradientEl).toHaveAttribute('y2', '0');
 
   rerender(
-    <SvgIcon {...props} linearGradient={['to right', '#666', '#333']} />
+    <SvgIcon {...props} linearGradient={['to right', '#666', '#333']} />,
   );
   expect(linearGradientEl).toHaveAttribute('x1', '0');
   expect(linearGradientEl).toHaveAttribute('x2', '1');

@@ -1,10 +1,10 @@
 .dc-loading-view {
+  font-family: var(--dc-font-base);
+  font-size: $font-size-base;
   padding-right: $gap-4x;
   padding-left: $gap-4x;
   text-align: center;
   color: var(--dc-primary-text-color);
-  font-family: var(--dc-font-base);
-  font-size: $font-size-base;
 }
 
 .dc-loading-view__spinner {

@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
-export interface TableCellProps extends ComponentPropsWithoutRef<'td'> {}
+export type TableCellProps = ComponentPropsWithoutRef<'td'>;
 
 export function TableCell({
   className,

@@ -13,7 +13,7 @@ it('renders without errors', () => {
         label="MasterCard"
         description="**** **** **** 9835"
       />
-    </RadioGroup>
+    </RadioGroup>,
   );
 
   const radios = screen.getAllByRole('radio');
@@ -36,8 +36,8 @@ it('throws an error when children is not a list of `RadioGroup.Item` elements', 
           label="MasterCard"
           description="**** **** **** 9835"
         />
-      </RadioGroup>
-    )
+      </RadioGroup>,
+    ),
   ).toThrow();
 });
 
@@ -54,7 +54,7 @@ it('invokes `onChangeValue` callback when select some option', () => {
         description="**** **** **** 9835"
       />
       <RadioGroup.Item value="amex" label="Amex" />
-    </RadioGroup>
+    </RadioGroup>,
   );
 
   userEvent.click(screen.getByText('MasterCard'));

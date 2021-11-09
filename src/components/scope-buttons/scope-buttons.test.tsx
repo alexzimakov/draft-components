@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { act, render, screen, within } from '@testing-library/react';
 import { ScopeButtons } from './scope-buttons';
 
@@ -9,7 +8,7 @@ function renderScopeButtons() {
       <ScopeButtons.Button>Desktop</ScopeButtons.Button>
       <ScopeButtons.Button>Mobile</ScopeButtons.Button>
       <ScopeButtons.Button>Web</ScopeButtons.Button>
-    </ScopeButtons>
+    </ScopeButtons>,
   );
 }
 
@@ -29,18 +28,23 @@ it('should additionally style container when its scrollWidth is larger than clie
   class ResizeObserverMock {
     static instance?: ResizeObserverMock;
 
-    constructor(public readonly callback: Function) {
+    constructor(public readonly callback: () => void) {
       ResizeObserverMock.instance = this;
     }
 
-    observe() {}
+    observe() {
+      return;
+    }
 
-    unobserve() {}
+    unobserve() {
+      return;
+    }
 
     runCallback() {
       act(() => this.callback());
     }
   }
+
   Object.defineProperty(window, 'ResizeObserver', {
     value: ResizeObserverMock,
   });
@@ -52,13 +56,13 @@ it('should additionally style container when its scrollWidth is larger than clie
     scrollWidth: { value: 120, configurable: true },
     clientWidth: { value: 100, configurable: true },
   });
-  ResizeObserverMock.instance!.runCallback();
+  ResizeObserverMock.instance?.runCallback();
   expect(container).toHaveClass('dc-scope-buttons_bottom-pad');
 
   Object.defineProperties(container, {
     scrollWidth: { value: 120, configurable: true },
     clientWidth: { value: 120, configurable: true },
   });
-  ResizeObserverMock.instance!.runCallback();
+  ResizeObserverMock.instance?.runCallback();
   expect(container).not.toHaveClass('dc-scope-buttons_bottom-pad');
 });

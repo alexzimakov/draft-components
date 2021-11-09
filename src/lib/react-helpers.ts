@@ -9,7 +9,7 @@ type ClassName =
   | ClassNameList
   | ClassNameMap;
 type ClassNameList = ClassName[];
-type ClassNameMap = { [className: string]: any };
+type ClassNameMap = { [className: string]: unknown };
 
 export function classNames(...classes: ClassName[]): string {
   let classString = '';
@@ -34,18 +34,14 @@ export function classNames(...classes: ClassName[]): string {
   return classString.trimEnd();
 }
 
-export function mergeRefs<T = any>(
+export function mergeRefs<T>(
   ...refs: (MutableRefObject<T> | LegacyRef<T> | null | undefined)[]
 ): RefCallback<T> {
   return (value) => {
     refs.forEach((ref) => {
       if (typeof ref === 'function') {
         ref(value);
-      } else if (
-        typeof ref === 'object' &&
-        ref &&
-        ref.hasOwnProperty('current')
-      ) {
+      } else if (typeof ref === 'object' && ref && 'current' in ref) {
         (ref as MutableRefObject<T | null>).current = value;
       }
     });

@@ -1,4 +1,5 @@
 .dc-textarea {
+  line-height: var(--dc-textarea-leading);
   width: calc(var(--dc-input-width) * 1.75);
   min-height: calc(
     5 * var(--dc-textarea-leading) * 1rem + var(--dc-input-gap) * 2
@@ -6,5 +7,4 @@
   padding: var(--dc-input-gap);
   resize: vertical;
   border: none;
-  line-height: var(--dc-textarea-leading);
 }

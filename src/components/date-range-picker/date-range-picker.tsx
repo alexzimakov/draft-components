@@ -1,4 +1,4 @@
-import { ReactNode, ReactNodeArray, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { Calendar } from '../calendar/calendar';
 import { CalendarRow } from '../calendar/calendar-row';
 import { CalendarDay } from '../calendar/calendar-day';
@@ -66,9 +66,9 @@ export function DateRangePicker({
   };
 
   let date = firstDate;
-  let renderedWeeks: ReactNodeArray = [];
+  const renderedWeeks: ReactNode[] = [];
   for (let w = 0; w < weeksCount; w += 1) {
-    const renderedDays: ReactNodeArray = [];
+    const renderedDays: ReactNode[] = [];
 
     let d;
     if (w === 0) {
@@ -93,9 +93,11 @@ export function DateRangePicker({
       let isInRange = false;
       let isRangeStart = false;
       let isRangeEnd = false;
+
       let isInRangePreview = false;
       let isRangePreviewStart = false;
       let isRangePreviewEnd = false;
+
       if (newRange) {
         isInRangePreview = newRange.contains(date);
         isRangePreviewStart = date.equals(newRange.start);
@@ -106,8 +108,8 @@ export function DateRangePicker({
         isRangePreviewEnd = isInRangePreview;
       } else if (selectedRange) {
         isInRange = selectedRange.contains(date);
-        isRangePreviewStart = date.equals(selectedRange.start);
-        isRangePreviewEnd = date.equals(selectedRange.end);
+        isRangeStart = date.equals(selectedRange.start);
+        isRangeEnd = date.equals(selectedRange.end);
       }
 
       renderedDays.push(

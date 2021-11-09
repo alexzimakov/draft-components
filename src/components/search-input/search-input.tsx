@@ -3,7 +3,7 @@ import { TextInput, TextInputProps } from '../text-input';
 import { SvgIcon } from '../svg-icon';
 import { search } from '../../bootstrap-icons/search';
 
-export interface SearchInputProps extends TextInputProps {}
+export type SearchInputProps = TextInputProps;
 
 const iconSize: Record<NonNullable<SearchInputProps['size']>, number> = {
   sm: 14,
@@ -25,5 +25,5 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
         leadingAddOn={leadingIcon}
       />
     );
-  }
+  },
 );

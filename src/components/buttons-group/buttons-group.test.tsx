@@ -9,7 +9,7 @@ it('renders without errors', () => {
       <Button>Week</Button>
       <Button>Month</Button>
       <Button>Year</Button>
-    </ButtonsGroup>
+    </ButtonsGroup>,
   );
 
   expect(screen.getAllByRole('button')).toHaveLength(4);

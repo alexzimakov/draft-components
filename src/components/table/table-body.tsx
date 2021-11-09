@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
-export interface TableBodyProps extends ComponentPropsWithoutRef<'tbody'> {}
+export type TableBodyProps = ComponentPropsWithoutRef<'tbody'>;
 
 export function TableBody({ className, children, ...props }: TableBodyProps) {
   return (

@@ -1,24 +1,22 @@
-import * as React from 'react';
+import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { ScopeButton } from './scope-button';
 
-export interface ScopeButtonsProps
-  extends React.ComponentPropsWithoutRef<'div'> {}
+export type ScopeButtonsProps = ComponentPropsWithoutRef<'div'>
 
 export function ScopeButtons({
   className,
   children,
-  onKeyDown,
   ...props
 }: ScopeButtonsProps) {
-  const containerRef = React.useRef<HTMLDivElement | null>(null);
-  const [overflowed, setOverflowed] = React.useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [hasScroll, setHasScroll] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const container = containerRef.current;
     if (container && 'ResizeObserver' in window) {
       const resizeObserver = new ResizeObserver(() => {
-        setOverflowed(container.scrollWidth > container.clientWidth);
+        setHasScroll(container.scrollWidth > container.clientWidth);
       });
 
       resizeObserver.observe(container);
@@ -32,9 +30,11 @@ export function ScopeButtons({
     <div
       {...props}
       ref={containerRef}
-      className={classNames(className, 'dc-scope-buttons', {
-        'dc-scope-buttons_bottom-pad': overflowed,
-      })}
+      className={classNames(
+        className,
+        'dc-scope-buttons',
+        hasScroll && 'dc-scope-buttons_bottom-pad',
+      )}
       role="group"
     >
       {children}

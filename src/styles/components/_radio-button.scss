@@ -1,6 +1,8 @@
 .dc-radio-btn {
   --dc-selection-control-size: var(--dc-radio-btn-size);
+}
 
+.dc-radio-btn {
   position: relative;
 }
 
@@ -17,8 +19,8 @@
   height: var(--dc-radio-btn-size);
   cursor: pointer;
   color: var(--dc-input-accent-secondary-color);
-  border-radius: 50%;
   border: var(--dc-input-border);
+  border-radius: 50%;
   background: var(--dc-input-bg);
 }
 
@@ -28,14 +30,14 @@
   border-color: var(--dc-input-accent-color);
   background: var(--dc-input-accent-color);
 }
+
 .dc-radio-btn__input:checked + .dc-radio-btn__radio::after {
-  --size: calc(var(--dc-radio-btn-size) / 2.618);
   position: absolute;
   top: 50%;
   left: 50%;
   display: inline-flex;
-  width: var(--size);
-  height: var(--size);
+  width: calc(var(--dc-radio-btn-size) / 2.618);
+  height: calc(var(--dc-radio-btn-size) / 2.618);
   content: '';
   transform: translate(-50%, -50%);
   border-radius: 50%;
@@ -52,6 +54,7 @@
   border-color: var(--dc-input-disabled-border-color);
   background: var(--dc-input-disabled-bg);
 }
+
 .dc-radio-btn__input:disabled + .dc-radio-btn__radio::after {
   color: var(--dc-input-disabled-text-color);
 }

@@ -12,5 +12,5 @@ export const Portal = forwardRef<HTMLDivElement, ComponentPropsWithRef<'div'>>(
     }
 
     return createPortal(<div ref={ref} {...props} />, portalsRoot);
-  }
+  },
 );

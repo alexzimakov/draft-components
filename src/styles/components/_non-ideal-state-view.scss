@@ -1,11 +1,11 @@
 .dc-non-ideal-state {
+  font-family: var(--dc-font-base);
+  font-size: $font-size-base;
   box-sizing: border-box;
   padding-right: $gap-4x;
   padding-left: $gap-4x;
   text-align: center;
   color: var(--dc-non-ideal-state-text-color);
-  font-family: var(--dc-font-base);
-  font-size: $font-size-base;
 }
 
 .dc-non-ideal-state__body {

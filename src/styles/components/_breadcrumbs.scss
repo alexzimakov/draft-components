@@ -1,7 +1,7 @@
 .dc-breadcrumbs {
+  font-family: var(--dc-font-base);
   overflow-y: auto;
   overflow-scrolling: touch;
-  font-family: var(--dc-font-base);
 }
 
 .dc-breadcrumbs__items {
@@ -18,19 +18,19 @@
 }
 
 .dc-breadcrumbs__delimiter {
-  color: var(--dc-breadcrumbs-delimiter-color);
   margin-right: $gap-4x;
   margin-left: $gap-4x;
+  color: var(--dc-breadcrumbs-delimiter-color);
 }
 
 .dc-breadcrumbs-item {
+  font-family: inherit;
   display: inline-flex;
   align-items: center;
   transition: $transition-quick;
   transition-property: color;
   text-decoration: none;
   color: var(--dc-breadcrumbs-item-color);
-  font-family: inherit;
 
   &:hover {
     color: var(--dc-breadcrumbs-item-hover-color);

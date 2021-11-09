@@ -17,7 +17,7 @@ it('should show icon', () => {
   render(
     <Alert heading={title} shouldShowIcon={true}>
       {description}
-    </Alert>
+    </Alert>,
   );
 
   const alertEl = screen.getByRole('alert');

@@ -39,7 +39,7 @@ function buildTs(done) {
     .catch((err) => {
       console.error(
         `${ANSI_CODES.red}${ANSI_CODES.boldOn}TypeScript compilation error:${ANSI_CODES.reset}`,
-        err.message
+        err.message,
       );
       done(err);
     });
@@ -60,7 +60,7 @@ function copyScss(done) {
 exports.default = gulp.series(
   clean,
   gulp.parallel(buildTs, buildScss),
-  copyScss
+  copyScss,
 );
 
 /**
@@ -80,7 +80,7 @@ async function tsc(module, outDir, declaration = true) {
         } else {
           resolve(stdout);
         }
-      }
+      },
     );
   });
 }

@@ -5,7 +5,6 @@ import {
   forwardRef,
   KeyboardEvent,
   ReactNode,
-  ReactNodeArray,
   useEffect,
   useRef,
   useState,
@@ -62,25 +61,25 @@ export const DatetimeInput = forwardRef<HTMLDivElement, DatetimeInputProps>(
       className,
       ...props
     },
-    ref
+    ref,
   ) {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const inputsRef = useRef<HTMLInputElement[]>([]);
 
-    const cancelBlur = useRef<Function>();
+    const cancelBlur = useRef<() => void>();
     const [focused, setFocused] = useState(false);
 
     useEffect(() => {
       if (containerRef.current) {
         inputsRef.current = Array.from(
-          containerRef.current.getElementsByTagName('input')
+          containerRef.current.getElementsByTagName('input'),
         );
       }
     }, [type]);
 
     function updateDateComponents(
       value: string | number,
-      component: DateComponent
+      component: DateComponent,
     ) {
       onChangeDateComponents(dateComponents.updatingValue(value, component));
     }
@@ -115,7 +114,7 @@ export const DatetimeInput = forwardRef<HTMLDivElement, DatetimeInputProps>(
     function handleBlur(event: FocusEvent<HTMLInputElement>) {
       const dateComponent = event.target.name as DateComponent;
       const dateComponentOptions = DateComponents.options[dateComponent];
-      let dateComponentValue = dateComponents[dateComponent];
+      const dateComponentValue = dateComponents[dateComponent];
       if (dateComponentValue != null) {
         if (dateComponentValue < dateComponentOptions.min) {
           updateDateComponents(dateComponentOptions.min, dateComponent);
@@ -198,9 +197,9 @@ export const DatetimeInput = forwardRef<HTMLDivElement, DatetimeInputProps>(
 
     function renderInputsGroup(
       components: DateComponent[],
-      separator: ReactNode
+      separator: ReactNode,
     ): JSX.Element {
-      const children: ReactNodeArray = [];
+      const children: ReactNode[] = [];
       components.forEach((dateComponent, index) => {
         if (index) {
           children.push(
@@ -209,7 +208,7 @@ export const DatetimeInput = forwardRef<HTMLDivElement, DatetimeInputProps>(
               className="dc-datetime-input__separator"
             >
               {separator}
-            </span>
+            </span>,
           );
         }
 
@@ -224,7 +223,7 @@ export const DatetimeInput = forwardRef<HTMLDivElement, DatetimeInputProps>(
             name={dateComponent}
             value={dateComponents.getDisplayedValue(dateComponent)}
             onChange={handleChange}
-          />
+          />,
         );
       });
 
@@ -251,17 +250,17 @@ export const DatetimeInput = forwardRef<HTMLDivElement, DatetimeInputProps>(
           onBlur={handleBlur}
         >
           {(type === 'date' || type === 'datetime') &&
-            renderInputsGroup(['day', 'month', 'year'], '/')}
+          renderInputsGroup(['day', 'month', 'year'], '/')}
 
           {(type === 'time' || type === 'datetime') &&
-            renderInputsGroup(['hour', 'minute'], ':')}
+          renderInputsGroup(['hour', 'minute'], ':')}
         </div>
       </div>
     );
-  }
+  },
 );
 
-function defer(callback: Function): () => void {
+function defer(callback: () => void): () => void {
   const timeout = window.setTimeout(callback, 1);
   return () => {
     window.clearTimeout(timeout);

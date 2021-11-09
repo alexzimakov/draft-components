@@ -1,7 +1,8 @@
-export function isHTMLElement(element: any): element is HTMLElement {
+export function isHTMLElement(element: unknown): element is HTMLElement {
   return element instanceof HTMLElement;
 }
 
-export function isFunction(fn: any): fn is Function {
+// eslint-disable-next-line @typescript-eslint/ban-types
+export function isFunction(fn: unknown): fn is Function {
   return typeof fn === 'function';
 }

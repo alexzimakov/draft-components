@@ -9,7 +9,7 @@ it('<Popover /> renders without errors', () => {
   render(
     <Popover isShown={true} data-testid="popover" content={popoverContent}>
       <button>Show popover</button>
-    </Popover>
+    </Popover>,
   );
 
   screen.getByRole('button');
@@ -24,7 +24,7 @@ it('<Popover /> renders without errors when children prop is function', () => {
           Show popover
         </button>
       )}
-    </Popover>
+    </Popover>,
   );
 
   screen.getByRole('button');
@@ -44,7 +44,7 @@ it('should invoke onClose callback when click outside of popover', () => {
       >
         <button>Show popover</button>
       </Popover>
-    </div>
+    </div>,
   );
 
   userEvent.click(screen.getByTestId('close-popover-btn'));
@@ -61,7 +61,7 @@ it('should invoke onClose callback when click press Esc button', () => {
       onClose={onClose}
     >
       <button>Show popover</button>
-    </Popover>
+    </Popover>,
   );
 
   userEvent.keyboard('{esc}');
@@ -81,7 +81,7 @@ it('should capture focus in the popover', () => {
       }
     >
       <button data-testid="button-outside">Button outside dialog</button>
-    </Popover>
+    </Popover>,
   );
 
   const inputInsidePopover = screen.getByTestId('input-inside');

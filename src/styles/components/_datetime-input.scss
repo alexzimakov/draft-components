@@ -44,8 +44,8 @@
 }
 
 .dc-date-component-input > [aria-hidden='true'] {
-  pointer-events: none;
   user-select: none;
+  pointer-events: none;
   opacity: 0;
 }
 
@@ -71,15 +71,15 @@
 }
 
 .dc-date-component-input > input::placeholder {
-  color: inherit;
   opacity: $opacity-40;
+  color: inherit;
 }
 
 .dc-date-component-input > input:focus {
   color: $white;
   outline: none;
-  caret-color: transparent;
   background: var(--dc-input-accent-color);
+  caret-color: transparent;
 }
 
 .dc-date-component-input > input::selection,

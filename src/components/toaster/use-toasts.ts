@@ -31,7 +31,7 @@ function reducer(toasts: Toast[], action: Action): Toast[] {
   }
 }
 
-let listeners: Array<(toasterState: Toast[]) => void> = [];
+const listeners: Array<(toasterState: Toast[]) => void> = [];
 let toasts: Toast[] = [];
 
 export function dispatch(action: Action): void {

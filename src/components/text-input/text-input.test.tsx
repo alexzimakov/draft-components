@@ -4,11 +4,8 @@ import { TextInput } from './text-input';
 
 it('renders without errors', () => {
   const placeholder = 'Email address';
-  const { getByPlaceholderText } = render(
-    <TextInput placeholder={placeholder} />
-  );
-
-  getByPlaceholderText(placeholder);
+  render(<TextInput placeholder={placeholder} />);
+  screen.getByPlaceholderText(placeholder);
 });
 
 it('should forward extra attrs to underlying <input />', () => {
@@ -17,8 +14,8 @@ it('should forward extra attrs to underlying <input />', () => {
     required: true,
     placeholder: 'Email address',
   } as const;
-  const { getByPlaceholderText } = render(<TextInput {...attrs} />);
-  const inputEl = getByPlaceholderText(attrs.placeholder);
+  render(<TextInput {...attrs} />);
+  const inputEl = screen.getByPlaceholderText(attrs.placeholder);
 
   expect(inputEl).toHaveAttribute('type', attrs.type);
   expect(inputEl).toHaveAttribute('required', '');
@@ -27,26 +24,24 @@ it('should forward extra attrs to underlying <input />', () => {
 
 it('renders with leading add-on', () => {
   const leadingAddOn = 'https://';
-  const { getByText } = render(<TextInput leadingAddOn={leadingAddOn} />);
+  render(<TextInput leadingAddOn={leadingAddOn} />);
 
-  getByText(leadingAddOn);
+  screen.getByText(leadingAddOn);
 });
 
 it('renders with trailing add-on', () => {
   const trailingAddOn = 'USD';
-  const { getByText } = render(<TextInput trailingAddOn={trailingAddOn} />);
+  render(<TextInput trailingAddOn={trailingAddOn} />);
 
-  getByText(trailingAddOn);
+  screen.getByText(trailingAddOn);
 });
 
 it('should invoke `onFocus` and `onBlur` event handlers', () => {
   const testId = 'native-input';
   const onFocus = jest.fn();
   const onBlur = jest.fn();
-  const { getByTestId } = render(
-    <TextInput data-testid={testId} onFocus={onFocus} onBlur={onBlur} />
-  );
-  const inputEl = getByTestId(testId);
+  render(<TextInput data-testid={testId} onFocus={onFocus} onBlur={onBlur} />);
+  const inputEl = screen.getByTestId(testId);
 
   inputEl.focus();
   inputEl.blur();

@@ -1,4 +1,4 @@
-import { ReactNode, ReactNodeArray, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { ISODate, PlainDate } from '../../lib/plain-date';
 import { Calendar } from '../calendar/calendar';
 import { CalendarRow } from '../calendar/calendar-row';
@@ -46,7 +46,7 @@ export function DatePicker({
   };
 
   let date = firstDate;
-  let renderedWeeks: ReactNodeArray = [];
+  const renderedWeeks: ReactNode[] = [];
   for (let w = 0; w < weeksCount; w += 1) {
     const renderedDays: ReactNode[] = [];
 

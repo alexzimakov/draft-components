@@ -1,7 +1,7 @@
 .dc-label {
+  font-weight: $font-weight-medium;
   position: relative;
   color: var(--dc-label-text-color);
-  font-weight: $font-weight-medium;
 }
 
 .dc-label_required::after {

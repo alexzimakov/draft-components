@@ -61,8 +61,8 @@ $thumb-shadow: 0 0 0 1px rgba($black, $opacity-10), $shadow-sm, $shadow-md;
 }
 
 .dc-slider::before {
-  content: '';
   width: 100%;
+  content: '';
   background: var(--dc-slider-track-bg);
 }
 
@@ -95,9 +95,11 @@ $thumb-shadow: 0 0 0 1px rgba($black, $opacity-10), $shadow-sm, $shadow-md;
   &::-webkit-slider-thumb {
     @include round-thumb-styles;
   }
+
   &::-moz-range-thumb {
     @include round-thumb-styles;
   }
+
   &::-ms-thumb {
     @include round-thumb-styles;
   }
@@ -105,12 +107,15 @@ $thumb-shadow: 0 0 0 1px rgba($black, $opacity-10), $shadow-sm, $shadow-md;
   &:focus {
     outline: none;
   }
+
   &:focus::-webkit-slider-thumb {
     @include thumb-focus-styles;
   }
+
   &:focus::-moz-range-thumb {
     @include thumb-focus-styles;
   }
+
   &:focus::-ms-thumb {
     @include thumb-focus-styles;
   }
@@ -124,9 +129,11 @@ $thumb-shadow: 0 0 0 1px rgba($black, $opacity-10), $shadow-sm, $shadow-md;
   &::-webkit-slider-thumb {
     @include rect-thumb-styles;
   }
+
   &::-moz-range-thumb {
     @include rect-thumb-styles;
   }
+
   &::-ms-thumb {
     @include rect-thumb-styles;
   }

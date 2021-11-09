@@ -114,7 +114,7 @@ describe('#getVerticalAxisOffset()', () => {
         viewportHeight,
         anchorHeight,
         targetHeight,
-      })
+      }),
     ).toBe(expectedOffset);
     expect(
       getVerticalAxisOffset({
@@ -125,7 +125,7 @@ describe('#getVerticalAxisOffset()', () => {
         viewportHeight,
         anchorHeight,
         targetHeight,
-      })
+      }),
     ).toBe(expectedOffset);
   });
 
@@ -142,7 +142,7 @@ describe('#getVerticalAxisOffset()', () => {
         viewportHeight,
         anchorHeight,
         targetHeight,
-      })
+      }),
     ).toBe(expectedOffset);
     expect(
       getVerticalAxisOffset({
@@ -153,7 +153,7 @@ describe('#getVerticalAxisOffset()', () => {
         viewportHeight,
         anchorHeight,
         targetHeight,
-      })
+      }),
     ).toBe(expectedOffset);
   });
 
@@ -169,7 +169,7 @@ describe('#getVerticalAxisOffset()', () => {
         viewportHeight,
         anchorHeight,
         targetHeight,
-      })
+      }),
     ).toBe(expectedOffset);
     expect(
       getVerticalAxisOffset({
@@ -180,7 +180,7 @@ describe('#getVerticalAxisOffset()', () => {
         viewportHeight,
         anchorHeight,
         targetHeight,
-      })
+      }),
     ).toBe(expectedOffset);
   });
 
@@ -197,7 +197,7 @@ describe('#getVerticalAxisOffset()', () => {
         viewportHeight,
         anchorHeight,
         targetHeight,
-      })
+      }),
     ).toBe(expectedOffset);
     expect(
       getVerticalAxisOffset({
@@ -208,7 +208,7 @@ describe('#getVerticalAxisOffset()', () => {
         viewportHeight,
         anchorHeight,
         targetHeight,
-      })
+      }),
     ).toBe(expectedOffset);
   });
 });
@@ -235,7 +235,7 @@ describe('#getElementCoordinates()', () => {
         alignment: 'start',
         anchorOffset: offset.anchor,
         viewportOffset: offset.viewport,
-      })
+      }),
     ).toEqual(expectedCoordinates);
   });
 
@@ -255,7 +255,7 @@ describe('#getElementCoordinates()', () => {
         anchorOffset: offset.anchor,
         viewportOffset: offset.viewport,
         isPositionedRelativeToViewport: true,
-      })
+      }),
     ).toEqual(expectedCoordinates);
   });
 
@@ -274,7 +274,7 @@ describe('#getElementCoordinates()', () => {
         alignment: 'start',
         anchorOffset: offset.anchor,
         viewportOffset: offset.viewport,
-      })
+      }),
     ).toEqual(expectedCoordinates);
   });
 
@@ -294,7 +294,7 @@ describe('#getElementCoordinates()', () => {
         alignment: 'start',
         anchorOffset: offset.anchor,
         viewportOffset: offset.viewport,
-      })
+      }),
     ).toEqual(expectedCoordinates);
   });
 
@@ -314,7 +314,7 @@ describe('#getElementCoordinates()', () => {
         alignment: 'start',
         anchorOffset: offset.anchor,
         viewportOffset: offset.viewport,
-      })
+      }),
     ).toEqual(expectedCoordinates);
   });
 });
@@ -343,7 +343,7 @@ describe('#usePositionElement()', () => {
         anchorOffset: offset.anchor,
         viewportOffset: offset.viewport,
         isShown: false,
-      })
+      }),
     );
 
     expect(target.style.transform).toBe(initialTargetTransform);
@@ -367,7 +367,7 @@ describe('#usePositionElement()', () => {
         anchorOffset: offset.anchor,
         viewportOffset: offset.viewport,
         isShown: true,
-      })
+      }),
     );
 
     expect(target.style.transform).toBe(`translate(${x}px, ${y}px)`);
@@ -392,7 +392,7 @@ describe('#usePositionElement()', () => {
         viewportOffset: offset.viewport,
         isShown: true,
         shouldUpdatePositionWhenScroll: true,
-      })
+      }),
     );
 
     expect(target.style.transform).toBe(`translate(${x}px, ${y}px)`);

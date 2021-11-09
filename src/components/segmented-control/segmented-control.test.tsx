@@ -14,7 +14,7 @@ it('renders without errors', () => {
       items={items}
       selectedValue={items[0].value}
       onChangeSelectedValue={jest.fn()}
-    />
+    />,
   );
 
   const radioGroup = screen.getByRole('radiogroup');
@@ -42,7 +42,7 @@ it('should change focus using keyboard', () => {
       items={items}
       selectedValue={items[0].value}
       onChangeSelectedValue={jest.fn()}
-    />
+    />,
   );
 
   const [popular, newest, topRated] = screen.getAllByRole('radio');
@@ -89,7 +89,7 @@ it('should call `onItemSelect` callback when select item', () => {
       items={segments}
       selectedValue={segments[0].value}
       onChangeSelectedValue={onItemSelect}
-    />
+    />,
   );
 
   const [popular, newest, topRated] = screen.getAllByRole('radio');

@@ -53,7 +53,7 @@ export class DateComponents {
   }
 
   static toDateComponentValue(
-    value: string | number | null | undefined
+    value: string | number | null | undefined,
   ): number | undefined {
     if (value == null || value === '') {
       return undefined;
@@ -70,7 +70,7 @@ export class DateComponents {
 
   updatingValue(
     value: string | number | null | undefined,
-    component: DateComponent
+    component: DateComponent,
   ): DateComponents {
     return new DateComponents({ ...this, [component]: value });
   }
@@ -121,10 +121,10 @@ export class DateComponents {
   toDateISO(): string {
     return this.isValidDate()
       ? this.getDisplayedValue('year') +
-          '-' +
-          this.getDisplayedValue('month') +
-          '-' +
-          this.getDisplayedValue('day')
+      '-' +
+      this.getDisplayedValue('month') +
+      '-' +
+      this.getDisplayedValue('day')
       : '';
   }
 

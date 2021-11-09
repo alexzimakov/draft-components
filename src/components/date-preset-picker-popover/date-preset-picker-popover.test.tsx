@@ -103,7 +103,7 @@ it('can toggle popover visibility', () => {
   const button = screen.getByText(anchorButtonLabel);
 
   userEvent.click(button);
-  expect(screen.queryByRole('grid')).not.toBeNull();
+  screen.getByRole('grid');
 
   userEvent.click(button);
   expect(screen.queryByRole('grid')).toBeNull();

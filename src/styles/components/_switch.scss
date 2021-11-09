@@ -1,6 +1,8 @@
 .dc-switch {
   --dc-selection-control-size: var(--dc-switch-width);
+}
 
+.dc-switch {
   position: relative;
 }
 
@@ -14,19 +16,17 @@
   box-sizing: border-box;
   width: var(--dc-switch-width);
   height: var(--dc-switch-height);
+  cursor: pointer;
   transition: $transition-quick;
   transition-property: border-color, background-color;
-  cursor: pointer;
   border-radius: calc(var(--dc-switch-height) / 2);
   background: var(--dc-switch-bg);
 }
 
 .dc-switch__check::after {
-  --offset: calc((var(--dc-switch-height) - var(--dc-switch-check-size)) / 2);
-
   position: absolute;
-  top: var(--offset);
-  left: var(--offset);
+  top: calc((var(--dc-switch-height) - var(--dc-switch-check-size)) / 2);
+  left: calc((var(--dc-switch-height) - var(--dc-switch-check-size)) / 2);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -36,14 +36,15 @@
   content: '';
   transition: inherit;
   transition-property: transform, border-color;
+  border-radius: 50%;
   background: var(--dc-input-accent-secondary-color);
   box-shadow: $shadow-sm, $shadow-md;
-  border-radius: 50%;
 }
 
 .dc-switch__input:checked + .dc-switch__check {
   background: var(--dc-input-accent-color);
 }
+
 .dc-switch__input:checked + .dc-switch__check::after {
   // noinspection CssInvalidFunction
   transform: translateX(calc(var(--dc-switch-width) - var(--dc-switch-height)));

@@ -80,15 +80,14 @@ export function getElementCoordinates(params: {
   viewportOffset: number;
   isPositionedRelativeToViewport?: boolean;
 }): { x: number; y: number } {
-  let {
-    anchorRect,
-    targetRect,
-    position,
-    alignment,
-    anchorOffset,
-    viewportOffset,
-    isPositionedRelativeToViewport,
-  } = params;
+  let position = params.position;
+  const anchorRect = params.anchorRect;
+  const targetRect = params.targetRect;
+  const alignment = params.alignment;
+  const anchorOffset = params.anchorOffset;
+  const viewportOffset = params.viewportOffset;
+  const isPositionedRelativeToViewport = params.isPositionedRelativeToViewport;
+
   const viewportWidth = document.documentElement.clientWidth;
   const viewportHeight = document.documentElement.clientHeight;
   const scrollX = isPositionedRelativeToViewport ? 0 : window.pageXOffset;

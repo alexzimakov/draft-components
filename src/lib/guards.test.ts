@@ -5,7 +5,7 @@ describe('#isFunction()', () => {
     expect(
       isFunction(function (a: number, b: number) {
         return a + b;
-      })
+      }),
     ).toBe(true);
     expect(isFunction((a: number, b: number) => a + b)).toBe(true);
     expect(isFunction(new Function('a', 'b', 'return a + b'))).toBe(true);

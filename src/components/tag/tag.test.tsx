@@ -26,7 +26,7 @@ it('should invoke `onRemove` callback when clicking on the remove button', () =>
       onRemove={onRemove}
     >
       Badge
-    </Tag>
+    </Tag>,
   );
 
   userEvent.click(screen.getByLabelText(ariaLabel));
@@ -45,7 +45,7 @@ it('should not invoke `onRemove` callback when remove button is disabled', () =>
       onRemove={onRemove}
     >
       Badge
-    </Tag>
+    </Tag>,
   );
 
   userEvent.click(screen.getByLabelText(ariaLabel));

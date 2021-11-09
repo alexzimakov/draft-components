@@ -53,7 +53,7 @@ export function AvatarGroup({
         size: sizeInPixels,
         subtract: subtract,
         style: { marginLeft: offsetX + itemGap },
-      })
+      }),
     );
   }
 
@@ -76,7 +76,7 @@ function renderItem(
     path: string;
     style?: CSSProperties;
     subtract?: ReactNode;
-  }
+  },
 ): JSX.Element {
   return (
     <li

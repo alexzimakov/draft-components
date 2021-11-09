@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { once } from '../lib/util';
 
-export function useDisableBodyScroll(isEnabled: boolean = true) {
+export function useDisableBodyScroll(isEnabled = true) {
   useEffect(() => {
     if (isEnabled) {
       return disableBodyScroll();

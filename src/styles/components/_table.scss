@@ -1,9 +1,9 @@
 .dc-table-container {
   position: relative;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   border-top: var(--dc-table-border);
   border-bottom: var(--dc-table-border);
+  -webkit-overflow-scrolling: touch;
 
   &:focus {
     outline: none;
@@ -12,13 +12,13 @@
 }
 
 .dc-table {
+  font-family: var(--dc-font-base);
+  font-size: $font-size-sm;
+  font-weight: $font-weight-normal;
   width: 100%;
   height: auto;
   border-spacing: 0;
   border-collapse: separate;
-  font-family: var(--dc-font-base);
-  font-size: $font-size-sm;
-  font-weight: $font-weight-normal;
   font-variant-numeric: tabular-nums;
 }
 
@@ -40,15 +40,16 @@
   background: var(--dc-table-cell-bg);
 
   .dc-table-head & {
+    font-size: 90%;
     padding-top: px-to-rem(8px);
     padding-bottom: px-to-rem(8px);
     white-space: nowrap;
-    font-size: 90%;
   }
 
   .dc-table_padding_lg & {
     padding: px-to-rem(14px);
   }
+
   .dc-table_padding_lg .dc-table-head & {
     padding-top: px-to-rem(12px);
     padding-bottom: px-to-rem(12px);
@@ -60,8 +61,8 @@
 }
 
 .dc-table-cell_header {
-  background: var(--dc-table-header-cell-bg);
   font-weight: $font-weight-medium;
+  background: var(--dc-table-header-cell-bg);
 }
 
 .dc-table-cell__body {
@@ -93,28 +94,29 @@
 
 // noinspection CssMissingComma
 .dc-table_striped
-  > .dc-table-body
-  > .dc-table-row:nth-child(2n)
-  > .dc-table-cell {
+> .dc-table-body
+> .dc-table-row:nth-child(2n)
+> .dc-table-cell {
   background: var(--dc-table-striped-row-bg);
 }
 
 //noinspection CssMissingComma
 .dc-table.dc-table_row_highlighted:not(.dc-table_loading)
-  > .dc-table-body
-  > .dc-table-row:hover
-  > .dc-table-cell {
+> .dc-table-body
+> .dc-table-row:hover
+> .dc-table-cell {
   background: var(--dc-table-hover-row-bg);
 }
 
 .dc-table-row_selected > .dc-table-cell {
   background: var(--dc-table-selected-row-bg);
 }
+
 // noinspection CssMissingComma
 .dc-table_striped
-  > .dc-table-body
-  > .dc-table-row_selected:nth-child(2n)
-  > .dc-table-cell {
+> .dc-table-body
+> .dc-table-row_selected:nth-child(2n)
+> .dc-table-cell {
   background: var(--dc-table-selected-stiped-row-bg);
 }
 
@@ -146,17 +148,17 @@
     height: 1rem;
     max-height: 100%;
     content: '';
-    border-radius: $border-radius-2xs;
     animation: shine 2s infinite linear;
+    border-radius: $border-radius-2xs;
     background-color: var(--dc-skeleton-bg-color);
     background-image: linear-gradient(
-      90deg,
-      var(--dc-skeleton-bg-color) 0%,
-      var(--dc-skeleton-color) 50%,
-      var(--dc-skeleton-bg-color) 100%
+        90deg,
+        var(--dc-skeleton-bg-color) 0%,
+        var(--dc-skeleton-color) 50%,
+        var(--dc-skeleton-bg-color) 100%
     );
     background-repeat: no-repeat;
-    background-size: $shine-width 100%;
     background-position: -$shine-width 0;
+    background-size: $shine-width 100%;
   }
 }

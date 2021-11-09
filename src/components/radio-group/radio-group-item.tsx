@@ -18,7 +18,11 @@ export function RadioGroupItem({
   ...props
 }: RadioGroupItemProps) {
   return (
-    <div {...props} className={classNames(className, 'dc-radio-group-item')}>
+    <div
+      {...props}
+      data-value={value}
+      className={classNames(className, 'dc-radio-group-item')}
+    >
       <span className="dc-radio-group-item__check">
         <SvgIcon
           className="dc-radio-group-item__check-icon"

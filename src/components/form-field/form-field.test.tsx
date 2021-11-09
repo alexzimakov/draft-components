@@ -7,7 +7,7 @@ it('<FormField /> renders without errors', () => {
   render(
     <FormField label={label} hint={hint}>
       <input />
-    </FormField>
+    </FormField>,
   );
   screen.getByRole('textbox');
   screen.getByText(label);
@@ -25,7 +25,7 @@ it('should show a validation error', () => {
   render(
     <FormField hint={hint} validationError={validationError}>
       <input />
-    </FormField>
+    </FormField>,
   );
   screen.getByText(validationError);
   expect(screen.queryByText(hint)).toBeNull();

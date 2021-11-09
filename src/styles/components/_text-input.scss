@@ -4,22 +4,22 @@
 }
 
 .dc-text-input__native-input {
+  font: inherit;
+  line-height: var(--dc-input-height);
   flex: auto;
   box-sizing: border-box;
   width: 100%;
-  height: inherit;
   min-width: 0;
+  height: inherit;
   padding: 0 calc(var(--dc-input-gap) * 0.75);
   color: inherit;
   border: none;
   background: none;
-  font: inherit;
-  line-height: var(--dc-input-height);
 }
 
 .dc-text-input__native-input::placeholder {
-  color: inherit;
   opacity: $opacity-40;
+  color: inherit;
 }
 
 .dc-text-input__native-input:focus {

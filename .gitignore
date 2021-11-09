@@ -111,5 +111,5 @@ dist
 /scss/**/*
 /components/**/*
 /hooks/**/*
-/icons/**/*
+/bootstrap-icons/**/*
 /lib/**/*

@@ -45,4 +45,5 @@ export function BreadcrumbsItem({
     );
   }
 }
+
 BreadcrumbsItem.SELECTED_ITEM_CSS_MODIFIER = 'dc-breadcrumbs-item_selected';

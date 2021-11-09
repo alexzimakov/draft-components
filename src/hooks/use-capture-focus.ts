@@ -50,7 +50,7 @@ interface CaptureFocusParams {
   focusElementAfterRelease: Element | null;
 }
 
-let modalStack = new Stack<Element>();
+const modalStack = new Stack<Element>();
 let lastFocusedElement: Element | null = null;
 
 function captureFocus(

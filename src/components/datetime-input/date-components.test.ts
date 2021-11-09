@@ -2,16 +2,16 @@ import { DateComponents } from './date-components';
 
 it('should create instances from datetime ISO string', () => {
   expect(DateComponents.makeFormDatetimeISO('2021-05-27 18:19')).toEqual(
-    new DateComponents({ year: 2021, month: 5, day: 27, hour: 18, minute: 19 })
+    new DateComponents({ year: 2021, month: 5, day: 27, hour: 18, minute: 19 }),
   );
   expect(DateComponents.makeFormDatetimeISO('2021-05-27T18:19')).toEqual(
-    new DateComponents({ year: 2021, month: 5, day: 27, hour: 18, minute: 19 })
+    new DateComponents({ year: 2021, month: 5, day: 27, hour: 18, minute: 19 }),
   );
   expect(DateComponents.makeFormDatetimeISO('2021-05-27')).toEqual(
-    new DateComponents({ year: 2021, month: 5, day: 27 })
+    new DateComponents({ year: 2021, month: 5, day: 27 }),
   );
   expect(DateComponents.makeFormDatetimeISO('18:19')).toEqual(
-    new DateComponents({ hour: 18, minute: 19 })
+    new DateComponents({ hour: 18, minute: 19 }),
   );
   expect(DateComponents.makeFormDatetimeISO()).toEqual(new DateComponents());
 });
@@ -31,7 +31,7 @@ it('returns datetime ISO or empty string if combination of components is not val
       day: 27,
       hour: 18,
       minute: 35,
-    }).toDatetimeISO()
+    }).toDatetimeISO(),
   ).toBe('2021-05-27T18:35');
   expect(
     new DateComponents({
@@ -40,26 +40,26 @@ it('returns datetime ISO or empty string if combination of components is not val
       day: 31,
       hour: 18,
       minute: 35,
-    }).toDatetimeISO()
+    }).toDatetimeISO(),
   ).toBe('');
   expect(
-    new DateComponents({ year: 2021, month: 5, day: 27 }).toDatetimeISO()
+    new DateComponents({ year: 2021, month: 5, day: 27 }).toDatetimeISO(),
   ).toBe('');
 });
 
 it('returns date ISO or empty string if combination of components is not valid date', () => {
   expect(
-    new DateComponents({ year: 2021, month: 5, day: 27 }).toDateISO()
+    new DateComponents({ year: 2021, month: 5, day: 27 }).toDateISO(),
   ).toBe('2021-05-27');
   expect(
-    new DateComponents({ year: 2021, month: 4, day: 31 }).toDateISO()
+    new DateComponents({ year: 2021, month: 4, day: 31 }).toDateISO(),
   ).toBe('');
   expect(new DateComponents({ year: 2021, month: 5 }).toDateISO()).toBe('');
 });
 
 it('returns time ISO or empty string if combination of components is not valid date', () => {
   expect(new DateComponents({ hour: 18, minute: 50 }).toTimeISO()).toBe(
-    '18:50'
+    '18:50',
   );
   expect(new DateComponents({ hour: 27, minute: 50 }).toTimeISO()).toBe('');
   expect(new DateComponents({ hour: 12 }).toTimeISO()).toBe('');

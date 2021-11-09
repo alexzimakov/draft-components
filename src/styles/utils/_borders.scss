@@ -1,27 +1,35 @@
 .rounded-none {
   border-radius: 0 !important;
 }
+
 .rounded-2xs {
   border-radius: $border-radius-2xs !important;
 }
+
 .rounded-xs {
   border-radius: $border-radius-xs !important;
 }
+
 .rounded-sm {
   border-radius: $border-radius-sm !important;
 }
+
 .rounded-md {
   border-radius: $border-radius-md !important;
 }
+
 .rounded-lg {
   border-radius: $border-radius-lg !important;
 }
+
 .rounded-xl {
   border-radius: $border-radius-xl !important;
 }
+
 .rounded-2xl {
   border-radius: $border-radius-2xl !important;
 }
+
 .rounded-circle {
   border-radius: 50% !important;
 }
@@ -29,15 +37,19 @@
 .border {
   border: 1px solid $gray-300 !important;
 }
+
 .border-top {
   border-top: 1px solid $gray-300 !important;
 }
+
 .border-right {
   border-right: 1px solid $gray-300 !important;
 }
+
 .border-bottom {
   border-bottom: 1px solid $gray-300 !important;
 }
+
 .border-left {
   border-left: 1px solid $gray-300 !important;
 }
@@ -45,15 +57,19 @@
 .border-0 {
   border: 0 !important;
 }
+
 .border-top-0 {
   border-top: 0 !important;
 }
+
 .border-right-0 {
   border-right: 0 !important;
 }
+
 .border-bottom-0 {
   border-bottom: 0 !important;
 }
+
 .border-left-0 {
   border-left: 0 !important;
 }
@@ -61,6 +77,7 @@
 .border-dashed {
   border-style: dashed !important;
 }
+
 .border-dotted {
   border-style: dotted !important;
 }

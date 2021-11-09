@@ -22,7 +22,7 @@ it('should reveal secret', () => {
       onChange={onChange}
     >
       {secret}
-    </Secret>
+    </Secret>,
   );
 
   expect(screen.getByText(secret)).toHaveStyle(expectedStyle);
@@ -42,7 +42,7 @@ it('should hide secret', () => {
       onChange={onChange}
     >
       {secret}
-    </Secret>
+    </Secret>,
   );
 
   expect(screen.getByText(secret)).not.toHaveStyle(expectedStyle);

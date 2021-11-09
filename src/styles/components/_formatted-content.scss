@@ -10,18 +10,18 @@
 .dc-fmt-content__caption,
 .dc-fmt-content__link,
 .dc-fmt-content__code {
+  font-family: var(--dc-font-base);
   margin-top: 0;
   margin-bottom: 0;
-  color: inherit;
-  font-family: var(--dc-font-base);
   letter-spacing: $tracking-normal;
+  color: inherit;
 }
 
 .dc-fmt-content,
 .dc-fmt-content__paragraph {
   font-size: $font-size-base;
-  line-height: $leading-lg;
   font-weight: $font-weight-normal;
+  line-height: $leading-lg;
 }
 
 .dc-fmt-content b,
@@ -54,9 +54,9 @@
 .dc-fmt-content__code,
 .dc-fmt-content code,
 .dc-fmt-content__paragraph code {
-  padding: 0.2em 0.4em;
   font-family: $font-mono;
   font-size: 85%;
+  padding: 0.2em 0.4em;
   border-radius: $border-radius-xs;
   background: rgba($black, $opacity-5);
 }
@@ -113,9 +113,9 @@
 }
 
 .dc-fmt-content__caption {
-  opacity: $opacity-90;
   font-size: $font-size-xs;
   line-height: $leading-tight;
+  opacity: $opacity-90;
 }
 
 .dc-fmt-content {

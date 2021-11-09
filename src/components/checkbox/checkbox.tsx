@@ -9,8 +9,7 @@ import { SvgIcon } from '../svg-icon';
 import { dash } from '../../bootstrap-icons/dash';
 import { check } from '../../bootstrap-icons/check';
 
-export type CheckboxHtmlAttrs = Omit<
-  ComponentPropsWithRef<'input'>,
+export type CheckboxHtmlAttrs = Omit<ComponentPropsWithRef<'input'>,
   | 'accept'
   | 'alt'
   | 'capture'
@@ -32,8 +31,7 @@ export type CheckboxHtmlAttrs = Omit<
   | 'src'
   | 'step'
   | 'type'
-  | 'width'
->;
+  | 'width'>;
 
 export interface CheckboxProps
   extends SelectionControlBaseProps,
@@ -55,7 +53,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       onCheck,
       ...props
     },
-    ref
+    ref,
   ) {
     return (
       <SelectionControl
@@ -85,5 +83,5 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         </span>
       </SelectionControl>
     );
-  }
+  },
 );

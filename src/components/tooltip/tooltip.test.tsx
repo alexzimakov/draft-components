@@ -8,7 +8,7 @@ it('<Tooltip /> renders without errors', () => {
   render(
     <Tooltip content={tooltipContent}>
       <button>Notifications</button>
-    </Tooltip>
+    </Tooltip>,
   );
   const buttonEl = screen.getByRole('button');
 
@@ -34,7 +34,7 @@ it('<Tooltip /> renders without errors when children prop is function', () => {
           Notifications
         </button>
       )}
-    </Tooltip>
+    </Tooltip>,
   );
   const buttonEl = screen.getByRole('button');
 

@@ -1,12 +1,14 @@
 .dc-selection-control {
   --dc-selection-control-size: #{px-to-rem(18px)};
   --dc-selection-control-gap: #{$gap-3x};
+}
 
+.dc-selection-control {
+  font-family: var(--dc-font-base);
   display: inline-flex;
   align-items: flex-start;
-  justify-content: flex-start;
   flex-direction: column;
-  font-family: var(--dc-font-base);
+  justify-content: flex-start;
 }
 
 .dc-selection-control__body {
@@ -16,24 +18,22 @@
 }
 
 .dc-selection-control__label {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: $leading-default;
   display: inline-block;
   margin-left: var(--dc-selection-control-gap);
   user-select: none;
   color: var(--dc-primary-text-color);
-  font-size: $font-size-sm;
-  font-weight: $font-weight-medium;
-  line-height: $leading-default;
   @include text-truncate;
 }
 
 .dc-selection-control__description {
-  margin-top: $gap-1x;
-  margin-left: calc(
-    var(--dc-selection-control-size) + var(--dc-selection-control-gap)
-  );
-  color: var(--dc-secondary-text-color);
   font-size: $font-size-sm;
   line-height: $leading-tight;
+  margin-top: $gap-1x;
+  margin-left: calc(var(--dc-selection-control-size) + var(--dc-selection-control-gap));
+  color: var(--dc-secondary-text-color);
 }
 
 .dc-selection-control_disabled .dc-selection-control__label,

@@ -4,7 +4,7 @@ interface ShapePathParams {
   offsetY?: number;
 }
 
-function roundNumber(n: number, fractionDigits: number = 2): number {
+function roundNumber(n: number, fractionDigits = 2): number {
   return Number.isInteger(n) ? n : Number(n.toFixed(fractionDigits));
 }
 

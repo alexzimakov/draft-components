@@ -2,37 +2,37 @@
   --dc-tag-height: #{px-to-rem(26px)};
   --dc-tag-color: #{$gray-700};
   --dc-tag-fill-color: #{$gray-200};
+}
 
-  display: inline-flex;
-  align-items: center;
-  padding: 0 $gap-3x;
-  min-height: var(--dc-tag-height);
-  color: var(--dc-tag-color);
-  border-radius: $border-radius-sm;
-  background: var(--dc-tag-fill-color);
+.dc-tag {
   font-family: var(--dc-font-base);
   font-size: $font-size-sm;
   font-weight: $font-weight-normal;
   line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--dc-tag-height);
+  padding: 0 $gap-3x;
+  color: var(--dc-tag-color);
+  border-radius: $border-radius-sm;
+  background: var(--dc-tag-fill-color);
 }
 
 .dc-tag_size_sm {
-  --dc-tag-height: #{px-to-rem(24px)};
-
   font-size: $font-size-xs;
+  --dc-tag-height: #{px-to-rem(24px)};
 }
 
 .dc-tag_size_lg {
-  --dc-tag-height: #{px-to-rem(28px)};
-
-  border-radius: $border-radius-md;
   font-size: $font-size-base;
+  border-radius: $border-radius-md;
+  --dc-tag-height: #{px-to-rem(28px)};
 }
 
 .dc-tag_rounded {
-  border-radius: calc(var(--dc-tag-height) / 2);
   padding-right: calc(var(--dc-tag-height) / 2);
   padding-left: calc(var(--dc-tag-height) / 2);
+  border-radius: calc(var(--dc-tag-height) / 2);
 }
 
 .dc-tag__icon {
@@ -45,33 +45,33 @@
 .dc-tag__btn {
   display: inline-flex;
   box-sizing: border-box;
-  padding: 0;
   margin-left: px-to-em(6px, 14px);
-  transform: translateY(0.05em);
+  padding: 0;
+  cursor: pointer;
   transition: $transition-quick;
   transition-property: opacity;
+  transform: translateY(0.05em);
   opacity: $opacity-60;
-  cursor: pointer;
   color: inherit;
-  border-radius: px-to-rem(1px);
   border: none;
+  border-radius: px-to-rem(1px);
   background: none;
   appearance: none;
+}
 
-  &:disabled {
-    opacity: var(--dc-disabled-state-opacity);
-    cursor: not-allowed;
-  }
+.dc-tag__btn:disabled {
+  cursor: not-allowed;
+  opacity: var(--dc-disabled-state-opacity);
+}
 
-  &:enabled:hover {
-    opacity: $opacity-100;
-  }
+.dc-tag__btn:enabled:hover {
+  opacity: $opacity-100;
+}
 
-  &:focus {
-    outline: none;
-    opacity: $opacity-100;
-    box-shadow: 0 0 0 2px var(--dc-tag-fill-color), 0 0 0 4px currentColor;
-  }
+.dc-tag:focus {
+  opacity: $opacity-100;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--dc-tag-fill-color), 0 0 0 4px currentColor;
 }
 
 .dc-tag_color_blue {

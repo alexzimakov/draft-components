@@ -10,7 +10,7 @@ beforeEach(() => {
 
 it('renders without errors', () => {
   render(
-    <DatetimeInput value={new DateComponents()} onChangeValue={jest.fn()} />
+    <DatetimeInput value={new DateComponents()} onChangeValue={jest.fn()} />,
   );
 
   screen.getByLabelText('year');
@@ -26,7 +26,7 @@ it('renders with required inputs when type is `date`', () => {
       type="date"
       value={new DateComponents()}
       onChangeValue={jest.fn()}
-    />
+    />,
   );
 
   screen.getByLabelText('year');
@@ -42,7 +42,7 @@ it('renders with required inputs when type is `time`', () => {
       type="time"
       value={new DateComponents()}
       onChangeValue={jest.fn()}
-    />
+    />,
   );
 
   expect(screen.queryByLabelText('year')).toBeNull();
@@ -55,7 +55,10 @@ it('renders with required inputs when type is `time`', () => {
 it('should invoke `onChangeValue` callback when edit value', () => {
   const onChangeValue = jest.fn();
   render(
-    <DatetimeInput value={new DateComponents()} onChangeValue={onChangeValue} />
+    <DatetimeInput
+      value={new DateComponents()}
+      onChangeValue={onChangeValue}
+    />,
   );
 
   const monthInput = screen.getByLabelText('month');
@@ -67,7 +70,7 @@ it('should invoke `onChangeValue` callback when edit value', () => {
   expect(onChangeValue).toHaveBeenCalledTimes(1);
   expect(onChangeValue).toHaveBeenNthCalledWith(
     1,
-    new DateComponents({ month: 5 })
+    new DateComponents({ month: 5 }),
   );
 });
 
@@ -77,7 +80,7 @@ it('should clear value of date component when backspace pressed', () => {
     <DatetimeInput
       value={new DateComponents({ month: 5 })}
       onChangeValue={onChangeValue}
-    />
+    />,
   );
 
   const monthInput = screen.getByLabelText('month');
@@ -86,7 +89,7 @@ it('should clear value of date component when backspace pressed', () => {
   expect(onChangeValue).toHaveBeenCalledTimes(1);
   expect(onChangeValue).toHaveBeenNthCalledWith(
     1,
-    new DateComponents({ month: undefined })
+    new DateComponents({ month: undefined }),
   );
 });
 
@@ -96,7 +99,7 @@ it('can move focus between input using keyboard left and right arrows', () => {
       type="time"
       value={new DateComponents()}
       onChangeValue={jest.fn()}
-    />
+    />,
   );
 
   const hourInput = screen.getByLabelText('hour');
@@ -125,7 +128,7 @@ it('can move focus between input using keyboard left and right arrows', () => {
 
 it('should auto focus the next date component input when in the current has been entered max value', () => {
   render(
-    <DatetimeInput value={new DateComponents()} onChangeValue={jest.fn()} />
+    <DatetimeInput value={new DateComponents()} onChangeValue={jest.fn()} />,
   );
 
   userEvent.type(screen.getByLabelText('month'), '7');
@@ -164,23 +167,23 @@ it('should correct value in date component input when it loses focus', () => {
   expect(onChangeValue).toHaveBeenCalledTimes(5);
   expect(onChangeValue).toHaveBeenNthCalledWith(
     1,
-    new DateComponents({ day: 0 })
+    new DateComponents({ day: 0 }),
   );
   expect(onChangeValue).toHaveBeenNthCalledWith(
     2,
-    new DateComponents({ day: 1 })
+    new DateComponents({ day: 1 }),
   );
   expect(onChangeValue).toHaveBeenNthCalledWith(
     3,
-    new DateComponents({ day: 1, month: 1 })
+    new DateComponents({ day: 1, month: 1 }),
   );
   expect(onChangeValue).toHaveBeenNthCalledWith(
     4,
-    new DateComponents({ day: 1, month: 13 })
+    new DateComponents({ day: 1, month: 13 }),
   );
   expect(onChangeValue).toHaveBeenNthCalledWith(
     5,
-    new DateComponents({ day: 1, month: 12 })
+    new DateComponents({ day: 1, month: 12 }),
   );
 });
 
@@ -216,7 +219,7 @@ it('can edit date component using keyboard up and down arrows', () => {
   const testOfDateComponentValueChange = (
     dateComponent: DateComponent,
     numberOfKeyDowns: number,
-    arrow: '{arrowup}' | '{arrowdown}'
+    arrow: '{arrowup}' | '{arrowdown}',
   ) => {
     onChangeValue.mockClear();
 
@@ -231,7 +234,7 @@ it('can edit date component using keyboard up and down arrows', () => {
 
     const newDateComponents = dateComponents.updatingValue(
       dateComponentNewValue,
-      dateComponent
+      dateComponent,
     );
 
     userEvent.tab();
@@ -260,7 +263,7 @@ it('should not out range of date component values when edit using keyboard arrow
     <DatetimeInput
       value={new DateComponents({ day: 1, month: 12 })}
       onChangeValue={onChangeValue}
-    />
+    />,
   );
 
   userEvent.type(screen.getByLabelText('day'), '{arrowdown}');
@@ -271,11 +274,11 @@ it('should not out range of date component values when edit using keyboard arrow
   expect(onChangeValue).toHaveBeenCalledTimes(2);
   expect(onChangeValue).toHaveBeenNthCalledWith(
     1,
-    new DateComponents({ day: 31, month: 12 })
+    new DateComponents({ day: 31, month: 12 }),
   );
   expect(onChangeValue).toHaveBeenNthCalledWith(
     2,
-    new DateComponents({ day: 1, month: 1 })
+    new DateComponents({ day: 1, month: 1 }),
   );
 });
 

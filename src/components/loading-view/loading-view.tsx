@@ -22,7 +22,7 @@ export function LoadingView({
       className={classNames(
         className,
         'dc-loading-view',
-        `dc-loading-view_pad-y_${padY}`
+        `dc-loading-view_pad-y_${padY}`,
       )}
     >
       <Spinner className="dc-loading-view__spinner" size={spinnerSize} />

@@ -4,8 +4,8 @@ $dc-scope-buttons-space: $gap-1x;
   display: inline-flex;
   overflow-x: auto;
   overflow-y: hidden;
-  height: auto;
   max-width: 100%;
+  height: auto;
 
   &::-webkit-scrollbar {
     height: 0.625rem;
