@@ -12,7 +12,7 @@ import { useDisableBodyScroll } from '../../hooks/use-disable-body-scroll';
 import { Portal } from '../portal';
 import { Box } from '../box';
 import { Button } from '../button';
-import { FormattedContent, Headline } from '../formatted-content';
+import { Headline, Subheadline } from '../formatted-content';
 import { SvgIcon } from '../svg-icon';
 import { xLg } from '../../bootstrap-icons/x-lg';
 
@@ -60,8 +60,6 @@ export function Dialog({
     return null;
   }
 
-  const labelId = '';
-  const descriptionId = '';
   return (
     <Portal>
       <div
@@ -88,22 +86,11 @@ export function Dialog({
           <div className="dc-dialog__header">
             {(heading || description) && (
               <div className="dc-dialog__header-content">
-                {heading && (
-                  <Headline id={labelId} as="h2">
-                    {heading}
-                  </Headline>
-                )}
-
+                {heading && <Headline as="h2">{heading}</Headline>}
                 {description && (
-                  <div
-                    id={descriptionId}
-                    className={classNames(
-                      'dc-dialog__description',
-                      FormattedContent.CSSClasses.subheadline
-                    )}
-                  >
+                  <Subheadline as="div" className="dc-dialog__description">
                     {description}
-                  </div>
+                  </Subheadline>
                 )}
               </div>
             )}

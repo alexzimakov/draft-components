@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { FormattedContent } from '../formatted-content';
+import { Styles } from '../formatted-content';
 
 export interface LabelProps extends ComponentPropsWithoutRef<'label'> {
   isRequired?: boolean;
@@ -17,9 +17,9 @@ export function Label({
       {...props}
       className={classNames(
         className,
-        FormattedContent.CSSClasses.subheadline,
+        Styles.subheadline,
         'dc-label',
-        { 'dc-label_required': isRequired }
+        isRequired && 'dc-label_required',
       )}
     >
       {children}

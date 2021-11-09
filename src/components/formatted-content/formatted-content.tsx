@@ -1,7 +1,7 @@
-import { ComponentPropsWithoutRef, HTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
-const CSSClasses = {
+export const Styles = {
   formattedContent: 'dc-fmt-content',
   largeTitle: 'dc-fmt-content__large-title',
   title1: 'dc-fmt-content__title-1',
@@ -21,11 +21,12 @@ export function FormattedContent({
   return (
     <div
       {...props}
-      className={classNames(className, CSSClasses.formattedContent)}
+      className={classNames(className, Styles.formattedContent)}
     />
   );
 }
-FormattedContent.CSSClasses = CSSClasses;
+
+FormattedContent.Styles = Styles;
 FormattedContent.LargeTitle = LargeTitle;
 FormattedContent.Title1 = Title1;
 FormattedContent.Title2 = Title2;
@@ -36,8 +37,16 @@ FormattedContent.Subheadline = Subheadline;
 FormattedContent.Footnote = Footnote;
 FormattedContent.Caption = Caption;
 
-export interface TitleProps extends HTMLAttributes<HTMLHeadingElement> {
+export interface TitleProps extends ComponentPropsWithoutRef<'h1'> {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+}
+
+export interface TextBlockProps extends ComponentPropsWithoutRef<'div'> {
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div';
+}
+
+export interface InlineTextProps extends ComponentPropsWithoutRef<'span'> {
+  as?: 'span' | 'small' | 'em' | 'i' | 'strong' | 'b';
 }
 
 export function LargeTitle({
@@ -48,7 +57,7 @@ export function LargeTitle({
   return (
     <Component
       {...props}
-      className={classNames(className, CSSClasses.largeTitle)}
+      className={classNames(className, Styles.largeTitle)}
     />
   );
 }
@@ -61,7 +70,7 @@ export function Title1({
   return (
     <Component
       {...props}
-      className={classNames(className, CSSClasses.title1)}
+      className={classNames(className, Styles.title1)}
     />
   );
 }
@@ -74,7 +83,7 @@ export function Title2({
   return (
     <Component
       {...props}
-      className={classNames(className, CSSClasses.title2)}
+      className={classNames(className, Styles.title2)}
     />
   );
 }
@@ -87,7 +96,7 @@ export function Title3({
   return (
     <Component
       {...props}
-      className={classNames(className, CSSClasses.title3)}
+      className={classNames(className, Styles.title3)}
     />
   );
 }
@@ -100,43 +109,59 @@ export function Headline({
   return (
     <Component
       {...props}
-      className={classNames(className, CSSClasses.headline)}
+      className={classNames(className, Styles.headline)}
     />
   );
 }
 
 export function Paragraph({
   className,
+  as: Component = 'p',
   ...props
-}: ComponentPropsWithoutRef<'p'>) {
+}: TextBlockProps) {
   return (
-    <p {...props} className={classNames(className, CSSClasses.paragraph)} />
+    <Component
+      {...props}
+      className={classNames(className, Styles.paragraph)}
+    />
   );
 }
 
 export function Subheadline({
   className,
+  as: Component = 'p',
   ...props
-}: ComponentPropsWithoutRef<'p'>) {
+}: TextBlockProps) {
   return (
-    <p {...props} className={classNames(className, CSSClasses.subheadline)} />
+    <Component
+      {...props}
+      className={classNames(className, Styles.subheadline)}
+    />
   );
 }
 
 export function Footnote({
   className,
+  as: Component = 'small',
   ...props
-}: ComponentPropsWithoutRef<'small'>) {
+}: InlineTextProps) {
   return (
-    <small {...props} className={classNames(className, CSSClasses.footnote)} />
+    <Component
+      {...props}
+      className={classNames(className, Styles.footnote)}
+    />
   );
 }
 
 export function Caption({
   className,
+  as: Component = 'small',
   ...props
-}: ComponentPropsWithoutRef<'small'>) {
+}: InlineTextProps) {
   return (
-    <small {...props} className={classNames(className, CSSClasses.caption)} />
+    <Component
+      {...props}
+      className={classNames(className, Styles.caption)}
+    />
   );
 }

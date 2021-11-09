@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { FormattedContent } from '../formatted-content';
+import { Subheadline } from '../formatted-content';
 import { Icon, SvgIcon } from '../svg-icon';
 import { exclamationTriangle } from '../../bootstrap-icons/exclamation-triangle';
 import { exclamationCircle } from '../../bootstrap-icons/exclamation-circle';
@@ -37,7 +37,7 @@ export function Alert({
       })}
       role="alert"
     >
-      {shouldShowIcon ? (
+      {shouldShowIcon && (
         <SvgIcon
           data-testid="alert-icon"
           className="dc-alert__icon"
@@ -45,28 +45,18 @@ export function Alert({
           width={18}
           height={18}
         />
-      ) : null}
+      )}
       <div className="dc-alert__body">
-        {heading ? (
-          <h3
-            className={classNames(
-              'dc-alert__heading',
-              FormattedContent.CSSClasses.subheadline
-            )}
-          >
+        {heading && (
+          <Subheadline as="h3" className="dc-alert__heading">
             {heading}
-          </h3>
-        ) : null}
-        {children ? (
-          <div
-            className={classNames(
-              'dc-alert__description',
-              FormattedContent.CSSClasses.subheadline
-            )}
-          >
+          </Subheadline>
+        )}
+        {children && (
+          <Subheadline as="div" className="dc-alert__description">
             {children}
-          </div>
-        ) : null}
+          </Subheadline>
+        )}
       </div>
     </div>
   );

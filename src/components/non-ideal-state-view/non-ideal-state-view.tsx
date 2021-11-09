@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { FormattedContent } from '../formatted-content';
+import { Headline, Paragraph, Subheadline } from '../formatted-content';
 import { SvgIcon } from '../svg-icon';
 import { exclamationTriangle } from '../../bootstrap-icons/exclamation-triangle';
 import { exclamationCircle } from '../../bootstrap-icons/exclamation-circle';
@@ -38,15 +38,12 @@ export function NonIdealStateView({
       <div className="dc-non-ideal-state__body">
         {icon && getIcon(icon)}
 
-        <h2 className={FormattedContent.CSSClasses.headline}>{heading}</h2>
+        <Headline as="h2">{heading}</Headline>
 
         {description && (
-          <div className={classNames(
-            'dc-non-ideal-state__description',
-            FormattedContent.CSSClasses.paragraph,
-          )}>
+          <Paragraph as="div" className="dc-non-ideal-state__description">
             {description}
-          </div>
+          </Paragraph>
         )}
 
         {actions && (
@@ -54,12 +51,9 @@ export function NonIdealStateView({
         )}
 
         {children && (
-          <div className={classNames(
-            'dc-non-ideal-state__content',
-            FormattedContent.CSSClasses.subheadline,
-          )}>
+          <Subheadline as="div" className="dc-non-ideal-state__content">
             {children}
-          </div>
+          </Subheadline>
         )}
       </div>
     </section>

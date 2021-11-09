@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { FormattedContent } from '../formatted-content';
+import { Footnote } from '../formatted-content';
 import { Icon, SvgIcon } from '../svg-icon';
 import { exclamationCircleFill } from '../../bootstrap-icons/exclamation-circle-fill';
 import { exclamationTriangleFill } from '../../bootstrap-icons/exclamation-triangle-fill';
@@ -12,10 +12,8 @@ export interface InlineMessageProps extends ComponentPropsWithoutRef<'small'> {
   shouldShowIcon?: boolean;
 }
 
-const inlineMessageIcons: Record<
-  NonNullable<InlineMessageProps['appearance']>,
-  Icon
-> = {
+const inlineMessageIcons: Record<NonNullable<InlineMessageProps['appearance']>,
+  Icon> = {
   error: exclamationCircleFill,
   warning: exclamationTriangleFill,
   success: checkCircleFill,
@@ -31,13 +29,12 @@ export function InlineMessage({
   ...props
 }: InlineMessageProps) {
   return (
-    <small
+    <Footnote
       {...props}
       className={classNames(
         className,
-        FormattedContent.CSSClasses.footnote,
         'dc-inline-message',
-        `dc-inline-message_${appearance}`
+        `dc-inline-message_${appearance}`,
       )}
     >
       {shouldShowIcon ? (
@@ -50,6 +47,6 @@ export function InlineMessage({
         />
       ) : null}
       {children}
-    </small>
+    </Footnote>
   );
 }
