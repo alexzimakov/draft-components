@@ -3,7 +3,7 @@ import {
   Children,
   ComponentPropsWithoutRef,
   isValidElement,
-  ReactNodeArray,
+  ReactNode,
 } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { RadioGroupItem } from './radio-group-item';
@@ -12,7 +12,8 @@ import { uniqueId } from '../../lib/util';
 export interface RadioGroupProps extends ComponentPropsWithoutRef<'ul'> {
   disabled?: boolean;
   readOnly?: boolean;
-  children: ReactNodeArray;
+  type?: 'stacked-cards' | 'simple-list';
+  children: ReactNode[];
   name?: string;
   value: string;
   onChangeValue(value: string): void;
@@ -23,6 +24,7 @@ export function RadioGroup({
   children,
   disabled,
   readOnly,
+  type = 'stacked-cards',
   name = uniqueId('radio-group-'),
   value: checkedValue,
   onChangeValue,
@@ -33,11 +35,15 @@ export function RadioGroup({
   }
 
   return (
-    <ul {...props} className={classNames(className, 'dc-radio-group')}>
+    <ul {...props} className={classNames(
+      className,
+      'dc-radio-group',
+      `dc-radio-group_type_${type}`,
+    )}>
       {Children.map(children, (child) => {
         if (!isValidElement(child) || child.type !== RadioGroupItem) {
           throw new Error(
-            'RadioGroup children must be an array of `RadioGroup.Item` elements'
+            'RadioGroup children must be an array of `RadioGroup.Item` elements',
           );
         }
 

@@ -93,6 +93,46 @@ const [value, setValue] = React.useState('');
 </RadioGroup>;
 ```
 
+Simple list
+
+```jsx
+import { RadioGroup } from '../radio-group';
+
+const [value, setValue] = React.useState('admin');
+
+<RadioGroup type="simple-list" value={value} onChangeValue={setValue}>
+  <RadioGroup.Item value="admin" label="Administrator" />
+  <RadioGroup.Item value="developer" label="Developer" />
+  <RadioGroup.Item value="support" label="Support" />
+</RadioGroup>;
+```
+
+Simple list with description
+
+```jsx
+import { RadioGroup } from '../radio-group';
+
+const [value, setValue] = React.useState('admin');
+
+<RadioGroup type="simple-list" value={value} onChangeValue={setValue}>
+  <RadioGroup.Item
+    value="admin"
+    label="Administrator"
+    description="Can view API keys, add new users, change app settings, etc."
+  />
+  <RadioGroup.Item
+    value="developer"
+    label="Developer"
+    description="Can view API keys, change app settings, view logs, etc."
+  />
+  <RadioGroup.Item
+    value="support"
+    label="Support"
+    description="The user can view users, view repots."
+  />
+</RadioGroup>;
+```
+
 Disabled state
 
 ```jsx
