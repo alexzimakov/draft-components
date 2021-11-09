@@ -14,7 +14,7 @@ import { Box } from '../box';
 import { Button } from '../button';
 import { Headline, Subheadline } from '../formatted-content';
 import { SvgIcon } from '../svg-icon';
-import { xLg } from '../../bootstrap-icons/x-lg';
+import { x } from '../../bootstrap-icons/x';
 
 export interface DialogProps extends ComponentPropsWithoutRef<'div'> {
   isOpen?: boolean;
@@ -28,7 +28,17 @@ export interface DialogProps extends ComponentPropsWithoutRef<'div'> {
   actions?: ReactNode;
 }
 
+const dialogWidths = {
+  sm: 320,
+  md: 640,
+  lg: 960,
+};
+
+const closeIcon = <SvgIcon size="2x" icon={x} />;
+
 export function Dialog({
+  style,
+  className,
   isOpen,
   onClose = noop,
   shouldShowCloseButton = true,
@@ -39,11 +49,13 @@ export function Dialog({
   description,
   children,
   actions,
-  style,
-  className,
   ...props
 }: DialogProps) {
   const dialogRef = useRef<HTMLDivElement | null>(null);
+  const widthInPx = (typeof width === 'string'
+      ? dialogWidths[width]
+      : width
+  ) || dialogWidths.md;
 
   useDisableBodyScroll(isOpen);
 
@@ -52,8 +64,8 @@ export function Dialog({
   useCaptureFocus({
     isEnabled: isOpen,
     modalRef: dialogRef,
-    focusAfterCaptureRef: focusElementRefAfterOpen,
-    focusAfterReleaseRef: focusElementRefAfterClose,
+    focusElementRefAfterCapture: focusElementRefAfterOpen,
+    focusElementRefAfterRelease: focusElementRefAfterClose,
   });
 
   if (!isOpen) {
@@ -75,7 +87,7 @@ export function Dialog({
         <Box
           {...props}
           ref={dialogRef}
-          style={{ ...style, width: getDialogWidth(width) }}
+          style={{ ...style, width: widthInPx }}
           className={classNames(className, 'dc-dialog')}
           borderRadius="lg"
           padding="none"
@@ -102,29 +114,18 @@ export function Dialog({
                 appearance="minimal"
                 size="sm"
                 noPadding={true}
-                leadingIcon={<SvgIcon icon={xLg} />}
+                leadingIcon={closeIcon}
                 onClick={onClose}
               />
             )}
           </div>
+
           <div className="dc-dialog__content">{children}</div>
-          {actions ? <div className="dc-dialog__actions">{actions}</div> : null}
+
+          {actions && <div className="dc-dialog__actions">{actions}</div>}
         </Box>
         <div tabIndex={0} />
       </div>
     </Portal>
   );
-}
-
-function getDialogWidth(width: DialogProps['width']): string {
-  if (typeof width === 'number' && width > 0) {
-    return `${(width / 16).toFixed(5)}rem`;
-  }
-  if (width === 'sm') {
-    return '20rem';
-  }
-  if (width === 'lg') {
-    return '60rem';
-  }
-  return '40rem';
 }

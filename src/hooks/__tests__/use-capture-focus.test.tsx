@@ -1,7 +1,7 @@
 import { ReactNode, useRef } from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
-import { CaptureFocusParams, useCaptureFocus } from '../use-capture-focus';
+import { useCaptureFocus, UseCaptureFocusParams } from '../use-capture-focus';
 
 const elementsOutOfDialog = createElements();
 
@@ -18,7 +18,7 @@ beforeEach(() => {
   document.body.append(
     elementsOutOfDialog.button,
     elementsOutOfDialog.container,
-    elementsOutOfDialog.link
+    elementsOutOfDialog.link,
   );
 });
 
@@ -52,7 +52,7 @@ it('should set focus on the passed element when capture focus', () => {
     <CaptureFocusExample focusAfterCaptureRef={buttonRef}>
       <button ref={buttonRef}>Button inside modal</button>
     </CaptureFocusExample>,
-    { container: elementsOutOfDialog.container }
+    { container: elementsOutOfDialog.container },
   );
 
   expect(buttonRef.current).toHaveFocus();
@@ -63,7 +63,7 @@ it('should set focus on the passed element when release focus', () => {
     <CaptureFocusExample
       focusAfterReleaseRef={{ current: elementsOutOfDialog.button }}
     />,
-    { container: elementsOutOfDialog.container }
+    { container: elementsOutOfDialog.container },
   );
 
   unmount();
@@ -77,7 +77,7 @@ it('should not set focus automatically', () => {
     <CaptureFocusExample autoFocusAfterCapture={false}>
       <button ref={buttonRef}>Button inside modal</button>
     </CaptureFocusExample>,
-    { container: elementsOutOfDialog.container }
+    { container: elementsOutOfDialog.container },
   );
 
   expect(document.body).toHaveFocus();
@@ -86,17 +86,17 @@ it('should not set focus automatically', () => {
 function CaptureFocusExample(props: {
   children?: ReactNode;
   autoFocusAfterCapture?: boolean;
-  focusAfterCaptureRef?: CaptureFocusParams['focusAfterCaptureRef'];
-  focusAfterReleaseRef?: CaptureFocusParams['focusAfterReleaseRef'];
+  focusAfterCaptureRef?: UseCaptureFocusParams['focusElementRefAfterCapture'];
+  focusAfterReleaseRef?: UseCaptureFocusParams['focusElementRefAfterRelease'];
 }) {
   const modalRef = useRef<HTMLDivElement | null>(null);
 
   useCaptureFocus({
     modalRef,
     isEnabled: true,
-    autoFocusAfterCapture: props.autoFocusAfterCapture,
-    focusAfterCaptureRef: props?.focusAfterCaptureRef,
-    focusAfterReleaseRef: props?.focusAfterReleaseRef,
+    shouldFocusFirstDescendant: props.autoFocusAfterCapture,
+    focusElementRefAfterCapture: props?.focusAfterCaptureRef,
+    focusElementRefAfterRelease: props?.focusAfterReleaseRef,
   });
 
   return (

@@ -1,25 +1,20 @@
-import {
-  ComponentPropsWithRef,
-  forwardRef,
-  MutableRefObject,
-  useRef,
-} from 'react';
+import { ComponentPropsWithRef, forwardRef, useRef } from 'react';
 import { mergeRefs } from '../../lib/react-helpers';
 import {
-  PositionElementParams,
   usePositionElement,
+  UsePositionElementParams as BaseProps,
 } from '../../hooks/use-position-element';
 import { Portal } from '../portal';
 
 export interface PositionerProps extends ComponentPropsWithRef<'div'> {
-  anchorRef: MutableRefObject<HTMLElement | null>;
-  position?: PositionElementParams['position'];
-  arrangement?: PositionElementParams['arrangement'];
-  alignment?: PositionElementParams['alignment'];
-  anchorOffset?: number;
-  viewportOffset?: number;
-  isShown?: boolean;
-  shouldUpdatePositionWhenScroll?: boolean;
+  anchorRef: BaseProps['anchorRef'];
+  position?: BaseProps['position'];
+  alignment?: BaseProps['alignment'];
+  anchorOffset?: BaseProps['anchorOffset'];
+  viewportOffset?: BaseProps['viewportOffset'];
+  isShown?: BaseProps['isShown'];
+  isPositionedRelativeToViewport?: BaseProps['isPositionedRelativeToViewport'];
+  shouldUpdatePositionWhenScroll?: BaseProps['shouldUpdatePositionWhenScroll'];
 }
 
 export const Positioner = forwardRef<HTMLDivElement, PositionerProps>(
@@ -28,28 +23,28 @@ export const Positioner = forwardRef<HTMLDivElement, PositionerProps>(
       anchorRef,
       anchorOffset = 4,
       viewportOffset = 8,
-      position = 'absolute',
-      arrangement = 'bottom',
+      position = 'bottom',
       alignment = 'start',
       isShown = false,
+      isPositionedRelativeToViewport = false,
       shouldUpdatePositionWhenScroll = false,
       style,
       children,
       ...props
     },
-    ref
+    ref,
   ) {
     const targetRef = useRef<HTMLDivElement | null>(null);
 
     usePositionElement({
-      anchorRef,
       targetRef,
-      isShown,
+      anchorRef,
       anchorOffset,
       viewportOffset,
       position,
-      arrangement,
       alignment,
+      isShown,
+      isPositionedRelativeToViewport,
       shouldUpdatePositionWhenScroll,
     });
 
@@ -63,7 +58,7 @@ export const Positioner = forwardRef<HTMLDivElement, PositionerProps>(
         ref={mergeRefs(targetRef, ref)}
         style={{
           ...style,
-          position,
+          position: isPositionedRelativeToViewport ? 'fixed' : 'absolute',
           top: 0,
           left: 0,
           width: 'auto',
@@ -73,5 +68,5 @@ export const Positioner = forwardRef<HTMLDivElement, PositionerProps>(
         {children}
       </Portal>
     );
-  }
+  },
 );

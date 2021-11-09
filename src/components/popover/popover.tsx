@@ -1,4 +1,10 @@
-import { cloneElement, MutableRefObject, ReactNode, useRef } from 'react';
+import {
+  cloneElement,
+  MutableRefObject,
+  ReactNode,
+  RefObject,
+  useRef,
+} from 'react';
 import { noop } from '../../lib/util';
 import { classNames, mergeRefs } from '../../lib/react-helpers';
 import { useCloseOnEscPress } from '../../hooks/use-close-on-esc-press';
@@ -7,81 +13,80 @@ import { useCaptureFocus } from '../../hooks/use-capture-focus';
 import { Positioner, PositionerProps } from '../positioner';
 import { Box, BoxProps } from '../box';
 
-interface ElementWithRef extends JSX.Element {
-  ref?: MutableRefObject<HTMLElement | null> | null;
+type BaseProps = Omit<PositionerProps, 'anchorRef'>
+
+type RenderFn = (props: { ref: RefObject<HTMLElement> }) => JSX.Element;
+
+interface JSXElementWithRef extends JSX.Element {
+  ref?: RefObject<HTMLElement>;
 }
 
-interface RenderChildren {
-  (props: { ref: MutableRefObject<HTMLElement | null> }): JSX.Element;
-}
-
-export interface PopoverProps extends BoxProps {
-  position?: PositionerProps['position'];
-  arrangement?: PositionerProps['arrangement'];
-  alignment?: PositionerProps['alignment'];
-  anchorOffset?: number;
-  viewportOffset?: number;
-  isOpen?: boolean;
-  shouldUpdatePositionWhenScroll?: boolean;
+export interface PopoverProps extends BaseProps, BoxProps {
+  isShown?: boolean;
   shouldCaptureFocus?: boolean;
-  onClose?: () => void;
+  focusElementRefAfterOpen?: MutableRefObject<Element | null>;
+  focusElementRefAfterClose?: MutableRefObject<Element | null>;
   content: ReactNode;
-  children: RenderChildren | ElementWithRef;
+  children: RenderFn | JSXElementWithRef;
+  onClose?(): void;
 }
 
 export function Popover({
+  className,
+  isShown,
   position,
-  arrangement,
   alignment,
   anchorOffset,
   viewportOffset,
-  isOpen,
-  shouldUpdatePositionWhenScroll,
   shouldCaptureFocus = true,
-  onClose = noop,
+  shouldUpdatePositionWhenScroll = false,
+  isPositionedRelativeToViewport = false,
+  focusElementRefAfterOpen,
+  focusElementRefAfterClose,
   content,
-  children: anchor,
-  className,
+  children,
+  onClose = noop,
   ...props
 }: PopoverProps) {
-  const anchorRef = useRef<HTMLElement | null>(null);
-  const popoverRef = useRef<HTMLDivElement | null>(null);
+  const anchorRef = useRef<HTMLElement>(null);
+  const popoverRef = useRef<HTMLDivElement>(null);
 
-  useCloseOnEscPress(onClose, isOpen);
+  useCloseOnEscPress(onClose, isShown);
 
   useCloseOnClickOutside(onClose, popoverRef, {
-    isEnabled: isOpen,
+    isEnabled: isShown,
     ignoreElements: [anchorRef.current],
   });
 
   useCaptureFocus({
+    isEnabled: shouldCaptureFocus && isShown,
     modalRef: popoverRef,
-    isEnabled: shouldCaptureFocus && isOpen,
-    autoFocusAfterRelease: false,
+    focusElementRefAfterCapture: focusElementRefAfterOpen,
+    focusElementRefAfterRelease: focusElementRefAfterClose,
   });
 
-  const renderAnchor = () => {
-    if (typeof anchor === 'function') {
-      return anchor({ ref: anchorRef });
+  function render(): JSX.Element {
+    if (typeof children === 'function') {
+      return children({ ref: anchorRef });
     }
 
-    return cloneElement(anchor, {
-      ref: mergeRefs(anchor.ref, anchorRef),
+    return cloneElement(children, {
+      ref: mergeRefs(children.ref, anchorRef),
     });
-  };
+  }
 
   return (
     <>
-      {renderAnchor()}
+      {render()}
       <Positioner
         className="dc-popover-container"
         anchorRef={anchorRef}
         position={position}
-        arrangement={arrangement}
         alignment={alignment}
         anchorOffset={anchorOffset}
         viewportOffset={viewportOffset}
-        isShown={isOpen}
+        isShown={isShown}
+        isPositionedRelativeToViewport={isPositionedRelativeToViewport}
         shouldUpdatePositionWhenScroll={shouldUpdatePositionWhenScroll}
       >
         <div tabIndex={0} />

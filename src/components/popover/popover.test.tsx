@@ -7,7 +7,7 @@ const popoverContent = `Lorem ipsum dolor sit amet, consectetur adipisicing elit
 
 it('<Popover /> renders without errors', () => {
   render(
-    <Popover isOpen={true} data-testid="popover" content={popoverContent}>
+    <Popover isShown={true} data-testid="popover" content={popoverContent}>
       <button>Show popover</button>
     </Popover>
   );
@@ -18,7 +18,7 @@ it('<Popover /> renders without errors', () => {
 
 it('<Popover /> renders without errors when children prop is function', () => {
   render(
-    <Popover isOpen={true} data-testid="popover" content={popoverContent}>
+    <Popover isShown={true} data-testid="popover" content={popoverContent}>
       {({ ref }) => (
         <button ref={ref as MutableRefObject<HTMLButtonElement | null>}>
           Show popover
@@ -37,7 +37,7 @@ it('should invoke onClose callback when click outside of popover', () => {
     <div>
       <button data-testid="close-popover-btn">Close popover</button>
       <Popover
-        isOpen={true}
+        isShown={true}
         data-testid="popover"
         content={popoverContent}
         onClose={onClose}
@@ -55,7 +55,7 @@ it('should invoke onClose callback when click press Esc button', () => {
   const onClose = jest.fn();
   render(
     <Popover
-      isOpen={true}
+      isShown={true}
       data-testid="popover"
       content={popoverContent}
       onClose={onClose}
@@ -71,7 +71,7 @@ it('should invoke onClose callback when click press Esc button', () => {
 it('should capture focus in the popover', () => {
   render(
     <Popover
-      isOpen={true}
+      isShown={true}
       data-testid="popover"
       content={
         <div>

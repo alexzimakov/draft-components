@@ -10,7 +10,7 @@ const callbackStack = new Stack<MutableRefObject<CloseCallback>>();
 
 export function useCloseOnEscPress(
   onClose: CloseCallback,
-  isEnabled: boolean = true
+  isEnabled = true,
 ) {
   const savedCloseCallback = useRef(noop);
 

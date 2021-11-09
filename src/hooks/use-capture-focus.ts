@@ -1,34 +1,32 @@
-import { MutableRefObject, useEffect } from 'react';
+import { RefObject, useEffect } from 'react';
 import { Stack } from '../lib/stack';
 
-export interface CaptureFocusParams {
-  modalRef: MutableRefObject<Element | null>;
+export interface UseCaptureFocusParams {
+  modalRef: RefObject<Element>;
   isEnabled?: boolean;
-  autoFocusAfterCapture?: boolean;
-  autoFocusAfterRelease?: boolean;
-  focusAfterCaptureRef?: MutableRefObject<Element | null>;
-  focusAfterReleaseRef?: MutableRefObject<Element | null>;
+  shouldFocusFirstDescendant?: boolean;
+  shouldRestoreFocusAfterRelease?: boolean;
+  focusElementRefAfterCapture?: RefObject<Element>;
+  focusElementRefAfterRelease?: RefObject<Element>;
 }
 
 export function useCaptureFocus({
   modalRef,
   isEnabled = true,
-  autoFocusAfterCapture = true,
-  autoFocusAfterRelease = true,
-  focusAfterCaptureRef,
-  focusAfterReleaseRef,
-}: CaptureFocusParams) {
+  shouldFocusFirstDescendant = true,
+  shouldRestoreFocusAfterRelease = true,
+  focusElementRefAfterCapture,
+  focusElementRefAfterRelease,
+}: UseCaptureFocusParams) {
   useEffect(() => {
     const modal = modalRef.current;
 
     if (isEnabled && modal) {
-      const focusAfterCapture = focusAfterCaptureRef?.current;
-      const focusAfterRelease = focusAfterReleaseRef?.current;
       const releaseFocus = captureFocus(modal, {
-        autoFocusAfterCapture,
-        autoFocusAfterRelease,
-        focusAfterCapture,
-        focusAfterRelease,
+        shouldFocusFirstDescendant,
+        shouldRestoreFocusAfterRelease,
+        focusElementAfterCapture: focusElementRefAfterCapture?.current || null,
+        focusElementAfterRelease: focusElementRefAfterRelease?.current || null,
       });
 
       return () => {
@@ -38,73 +36,82 @@ export function useCaptureFocus({
   }, [
     modalRef,
     isEnabled,
-    autoFocusAfterCapture,
-    autoFocusAfterRelease,
-    focusAfterCaptureRef,
-    focusAfterReleaseRef,
+    shouldFocusFirstDescendant,
+    shouldRestoreFocusAfterRelease,
+    focusElementRefAfterCapture,
+    focusElementRefAfterRelease,
   ]);
 }
 
-const modalStack = new Stack<Element>();
-let lastElement: Element | null = null;
+interface CaptureFocusParams {
+  shouldFocusFirstDescendant: boolean;
+  shouldRestoreFocusAfterRelease: boolean;
+  focusElementAfterCapture: Element | null;
+  focusElementAfterRelease: Element | null;
+}
+
+let modalStack = new Stack<Element>();
+let lastFocusedElement: Element | null = null;
 
 function captureFocus(
   modal: Element,
-  options?: {
-    autoFocusAfterCapture?: boolean;
-    autoFocusAfterRelease?: boolean;
-    focusAfterCapture?: Element | null;
-    focusAfterRelease?: Element | null;
-  }
+  {
+    shouldFocusFirstDescendant,
+    shouldRestoreFocusAfterRelease,
+    focusElementAfterCapture,
+    focusElementAfterRelease,
+  }: CaptureFocusParams,
 ) {
-  const focusBeforeCapture = lastElement || document.activeElement;
-  const autoFocusAfterCapture = options?.autoFocusAfterCapture;
-  const autoFocusAfterRelease = options?.autoFocusAfterRelease;
-  const focusAfterCapture = options?.focusAfterCapture;
-  const focusAfterRelease = options?.focusAfterRelease;
+  const focusedElementBeforeCapture = (
+    lastFocusedElement || document.activeElement
+  );
 
   if (modalStack.isEmpty) {
-    document.addEventListener('focus', onFocus, true);
+    document.addEventListener('focus', handleFocus, true);
   }
 
   modalStack.push(modal);
 
-  if (focusAfterCapture) {
-    attemptFocus(focusAfterCapture);
-  } else if (autoFocusAfterCapture) {
-    attemptFocus(getFirstFocusElement(modal));
+  if (focusElementAfterCapture) {
+    attemptFocus(focusElementAfterCapture);
+  } else if (shouldFocusFirstDescendant) {
+    attemptFocus(getFirstFocusableElement(modal));
   }
 
   return function releaseFocus() {
     modalStack.remove(modal);
 
-    if (focusAfterRelease) {
-      attemptFocus(focusAfterRelease);
-    } else if (autoFocusAfterRelease) {
-      attemptFocus(focusBeforeCapture);
+    if (focusElementAfterRelease) {
+      attemptFocus(focusElementAfterRelease);
+    } else if (shouldRestoreFocusAfterRelease && (
+      document.activeElement == null ||
+      document.activeElement === document.body
+    )) {
+      attemptFocus(focusedElementBeforeCapture);
     }
 
     if (modalStack.isEmpty) {
-      document.removeEventListener('focus', onFocus, true);
-      lastElement = null;
+      document.removeEventListener('focus', handleFocus, true);
+      lastFocusedElement = null;
     }
   };
 }
 
-function onFocus(event: FocusEvent) {
-  const target = event.target;
-  const topModal = modalStack.last;
+function handleFocus(event: FocusEvent) {
+  const focusedElement = event.target;
+  const modal = modalStack.last;
 
-  if (topModal && target instanceof HTMLElement) {
-    if (topModal.contains(target)) {
-      lastElement = target;
+  if (modal && focusedElement instanceof Element) {
+    if (modal.contains(focusedElement)) {
+      lastFocusedElement = focusedElement;
     } else {
-      let nextFocusElement = getFirstFocusElement(topModal);
-      if (lastElement === nextFocusElement) {
-        nextFocusElement = getLastFocusElement(topModal);
-      }
+      const firstFocusableDescendant = getFirstFocusableElement(modal);
+      const lastFocusableDescendant = getLastFocusableElement(modal);
+      const nextFocusElement = lastFocusedElement === firstFocusableDescendant
+        ? lastFocusableDescendant
+        : firstFocusableDescendant;
       if (attemptFocus(nextFocusElement)) {
-        lastElement = nextFocusElement;
+        lastFocusedElement = nextFocusElement;
       }
     }
   }
@@ -128,11 +135,11 @@ function getFocusElements(parent: Element): Element[] {
   return Array.from(parent.querySelectorAll(FOCUS_ELEMENTS_SELECTOR));
 }
 
-function getFirstFocusElement(parent: Element): Element {
+function getFirstFocusableElement(parent: Element): Element {
   return getFocusElements(parent)[0] ?? parent;
 }
 
-function getLastFocusElement(parent: Element): Element {
+function getLastFocusableElement(parent: Element): Element {
   const focusableElements = getFocusElements(parent);
   return focusableElements[focusableElements.length - 1] ?? parent;
 }

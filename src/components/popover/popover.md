@@ -4,12 +4,12 @@ import { Button } from '../button';
 
 const [state, setState] = React.useState({});
 
-function renderPopover(arrangement, alignment) {
-  const key = `${arrangement}_${alignment}`;
+function renderPopover(position, alignment) {
+  const key = `${position}_${alignment}`;
   return (
     <Popover
-      isOpen={!!state[key]}
-      arrangement={arrangement}
+      isShown={Boolean(state[key])}
+      position={position}
       alignment={alignment}
       content={
         <div>
@@ -22,7 +22,7 @@ function renderPopover(arrangement, alignment) {
       onClose={() => setState({ ...state, [key]: false })}
     >
       <Button onClick={() => setState({ ...state, [key]: !state[key] })}>
-        {arrangement} {alignment}
+        {position} {alignment}
       </Button>
     </Popover>
   );
@@ -76,16 +76,16 @@ import { Popover } from '../popover';
 import { Tooltip } from '../tooltip';
 import { Button } from '../button';
 
-const [isOpen, setIsOpen] = React.useState(false);
+const [isShown, setIsShown] = React.useState(false);
 
 <Popover
-  isOpen={isOpen}
-  onClose={() => setIsOpen(false)}
+  isShown={isShown}
+  onClose={() => setIsShown(false)}
   content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus deserunt doloribus enim ipsum iusto modi nihil porro!"
 >
   {({ ref }) => (
     <Tooltip content="Tooltip text">
-      <Button ref={ref} onClick={() => setIsOpen(!isOpen)}>
+      <Button ref={ref} onClick={() => setIsShown(!isShown)}>
         Press or hover over me
       </Button>
     </Tooltip>

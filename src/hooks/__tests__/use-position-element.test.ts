@@ -107,7 +107,7 @@ describe('#getVerticalAxisOffset()', () => {
 
     expect(
       getVerticalAxisOffset({
-        arrangement: 'top',
+        position: 'top',
         anchorOffset,
         scrollY,
         anchorY,
@@ -118,7 +118,7 @@ describe('#getVerticalAxisOffset()', () => {
     ).toBe(expectedOffset);
     expect(
       getVerticalAxisOffset({
-        arrangement: 'left',
+        position: 'left',
         anchorOffset,
         scrollY,
         anchorY,
@@ -135,7 +135,7 @@ describe('#getVerticalAxisOffset()', () => {
 
     expect(
       getVerticalAxisOffset({
-        arrangement: 'top',
+        position: 'top',
         anchorOffset,
         scrollY,
         anchorY,
@@ -146,7 +146,7 @@ describe('#getVerticalAxisOffset()', () => {
     ).toBe(expectedOffset);
     expect(
       getVerticalAxisOffset({
-        arrangement: 'left',
+        position: 'left',
         anchorOffset,
         scrollY,
         anchorY,
@@ -162,7 +162,7 @@ describe('#getVerticalAxisOffset()', () => {
 
     expect(
       getVerticalAxisOffset({
-        arrangement: 'bottom',
+        position: 'bottom',
         anchorOffset,
         scrollY,
         anchorY,
@@ -173,7 +173,7 @@ describe('#getVerticalAxisOffset()', () => {
     ).toBe(expectedOffset);
     expect(
       getVerticalAxisOffset({
-        arrangement: 'right',
+        position: 'right',
         anchorOffset,
         scrollY,
         anchorY,
@@ -190,7 +190,7 @@ describe('#getVerticalAxisOffset()', () => {
 
     expect(
       getVerticalAxisOffset({
-        arrangement: 'bottom',
+        position: 'bottom',
         anchorOffset,
         scrollY,
         anchorY,
@@ -201,7 +201,7 @@ describe('#getVerticalAxisOffset()', () => {
     ).toBe(expectedOffset);
     expect(
       getVerticalAxisOffset({
-        arrangement: 'right',
+        position: 'right',
         anchorOffset,
         scrollY,
         anchorY,
@@ -231,8 +231,7 @@ describe('#getElementCoordinates()', () => {
       getElementCoordinates({
         anchorRect,
         targetRect,
-        position: 'absolute',
-        arrangement: 'bottom',
+        position: 'bottom',
         alignment: 'start',
         anchorOffset: offset.anchor,
         viewportOffset: offset.viewport,
@@ -251,11 +250,11 @@ describe('#getElementCoordinates()', () => {
       getElementCoordinates({
         anchorRect,
         targetRect,
-        position: 'fixed',
-        arrangement: 'bottom',
+        position: 'bottom',
         alignment: 'start',
         anchorOffset: offset.anchor,
         viewportOffset: offset.viewport,
+        isPositionedRelativeToViewport: true,
       })
     ).toEqual(expectedCoordinates);
   });
@@ -271,8 +270,7 @@ describe('#getElementCoordinates()', () => {
       getElementCoordinates({
         anchorRect,
         targetRect,
-        position: 'absolute',
-        arrangement: 'right',
+        position: 'right',
         alignment: 'start',
         anchorOffset: offset.anchor,
         viewportOffset: offset.viewport,
@@ -292,8 +290,7 @@ describe('#getElementCoordinates()', () => {
       getElementCoordinates({
         anchorRect,
         targetRect,
-        position: 'absolute',
-        arrangement: 'bottom',
+        position: 'bottom',
         alignment: 'start',
         anchorOffset: offset.anchor,
         viewportOffset: offset.viewport,
@@ -313,8 +310,7 @@ describe('#getElementCoordinates()', () => {
       getElementCoordinates({
         anchorRect,
         targetRect,
-        position: 'absolute',
-        arrangement: 'right',
+        position: 'right',
         alignment: 'start',
         anchorOffset: offset.anchor,
         viewportOffset: offset.viewport,
@@ -342,8 +338,7 @@ describe('#usePositionElement()', () => {
       usePositionElement({
         anchorRef: { current: anchor },
         targetRef: { current: target },
-        position: 'absolute',
-        arrangement: 'bottom',
+        position: 'bottom',
         alignment: 'start',
         anchorOffset: offset.anchor,
         viewportOffset: offset.viewport,
@@ -367,8 +362,7 @@ describe('#usePositionElement()', () => {
       usePositionElement({
         anchorRef: { current: anchor },
         targetRef: { current: target },
-        position: 'absolute',
-        arrangement: 'bottom',
+        position: 'bottom',
         alignment: 'start',
         anchorOffset: offset.anchor,
         viewportOffset: offset.viewport,
@@ -392,8 +386,7 @@ describe('#usePositionElement()', () => {
       usePositionElement({
         anchorRef: { current: anchor },
         targetRef: { current: target },
-        position: 'absolute',
-        arrangement: 'bottom',
+        position: 'bottom',
         alignment: 'start',
         anchorOffset: offset.anchor,
         viewportOffset: offset.viewport,

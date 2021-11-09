@@ -1,8 +1,8 @@
 import {
   cloneElement,
   ComponentPropsWithoutRef,
-  MutableRefObject,
   ReactNode,
+  RefObject,
   useRef,
   useState,
 } from 'react';
@@ -11,67 +11,74 @@ import { isFunction } from '../../lib/guards';
 import { classNames, mergeRefs } from '../../lib/react-helpers';
 import { Positioner, PositionerProps } from '../positioner';
 
-interface ElementWithRef extends JSX.Element {
-  ref?: MutableRefObject<HTMLElement | null> | null;
-}
+type RenderFn = (props: {
+  ref: RefObject<HTMLElement>;
+  tooltipId?: string;
+  hideTooltip(): void;
+  showTooltip(): void;
+}) => JSX.Element;
 
-interface RenderChildren {
-  (props: {
-    ref: MutableRefObject<HTMLElement | null>;
-    showTooltip: () => void;
-    hideTooltip: () => void;
-    tooltipId: string | undefined;
-  }): JSX.Element;
+interface JSXElementWithRef extends JSX.Element {
+  ref?: RefObject<HTMLElement>;
 }
 
 export interface TooltipProps extends ComponentPropsWithoutRef<'div'> {
-  content: ReactNode;
-  children: RenderChildren | ElementWithRef;
-  arrangement?: PositionerProps['arrangement'];
+  position?: PositionerProps['position'];
   alignment?: PositionerProps['alignment'];
   anchorOffset?: PositionerProps['anchorOffset'];
+  content: ReactNode;
+  children: RenderFn | JSXElementWithRef;
 }
 
 export function Tooltip({
-  content,
-  children: anchor,
-  arrangement = 'bottom',
+  className,
+  position = 'bottom',
   alignment = 'center',
   anchorOffset = 8,
-  className,
+  content,
+  children,
   ...props
 }: TooltipProps) {
   const anchorRef = useRef<HTMLElement | null>(null);
+
   const [isShown, setIsShown] = useState(false);
-  const show = () => setIsShown(true);
-  const hide = () => setIsShown(false);
   const tooltipId = isShown ? uniqueId('tooltip-') : undefined;
 
-  const renderAnchor = () => {
-    if (typeof anchor === 'function') {
-      return anchor({
-        ref: anchorRef,
+  function showTooltip(): void {
+    setIsShown(true);
+  }
+
+  function hideTooltip(): void {
+    setIsShown(false);
+  }
+
+  function renderAnchor(): JSX.Element {
+    if (typeof children === 'function') {
+      return children({
         tooltipId,
-        showTooltip: show,
-        hideTooltip: hide,
+        showTooltip,
+        hideTooltip,
+        ref: anchorRef,
       });
     }
 
-    return cloneElement(anchor, {
-      ref: mergeRefs(anchor.ref, anchorRef),
-      'aria-labelledby': tooltipId,
+    return cloneElement(children, {
+      ref: mergeRefs(children.ref, anchorRef),
       onMouseEnter: (event: MouseEvent) => {
-        show();
-        const onMouseEnter = anchor.props.onMouseEnter;
-        isFunction(onMouseEnter) && onMouseEnter(event);
+        showTooltip();
+        if (isFunction(children.props.onMouseEnter)) {
+          children.props.onMouseEnter(event);
+        }
       },
       onMouseLeave: (event: MouseEvent) => {
-        hide();
-        const onMouseLeave = anchor.props.onMouseLeave;
-        isFunction(onMouseLeave) && onMouseLeave(event);
+        hideTooltip();
+        if (isFunction(children.props.onMouseLeave)) {
+          children.props.onMouseLeave(event);
+        }
       },
+      'aria-labelledby': tooltipId,
     });
-  };
+  }
 
   return (
     <>
@@ -79,15 +86,15 @@ export function Tooltip({
       <Positioner
         anchorRef={anchorRef}
         isShown={isShown}
-        arrangement={arrangement}
+        position={position}
         alignment={alignment}
         anchorOffset={anchorOffset}
       >
         <div
           {...props}
           id={tooltipId}
-          className={classNames(className, 'dc-tooltip')}
           role="tooltip"
+          className={classNames(className, 'dc-tooltip')}
         >
           {content}
         </div>

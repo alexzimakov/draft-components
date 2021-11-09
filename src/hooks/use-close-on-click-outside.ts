@@ -1,17 +1,20 @@
-import { MutableRefObject, useEffect } from 'react';
+import { RefObject, useEffect } from 'react';
 import { isFunction, isHTMLElement } from '../lib/guards';
 
-type MaybeHTMLElement = HTMLElement | null;
+export interface UseCloseOnClickOutsideParams {
+  isEnabled?: boolean;
+  ignoreElements?: Array<Element | null>;
+}
 
 export function useCloseOnClickOutside(
   onClose: () => void,
-  containerRef: MutableRefObject<MaybeHTMLElement>,
-  params?: { isEnabled?: boolean; ignoreElements?: MaybeHTMLElement[] }
+  ref: RefObject<Element>,
+  params?: UseCloseOnClickOutsideParams,
 ) {
   useEffect(() => {
     const isEnabled = params?.isEnabled ?? true;
     const ignoreElements = (params?.ignoreElements ?? []).filter(isHTMLElement);
-    const container = containerRef.current;
+    const container = ref.current;
 
     if (!isEnabled || !isFunction(onClose) || !isHTMLElement(container)) {
       return;
@@ -19,9 +22,9 @@ export function useCloseOnClickOutside(
 
     const onBodyClick = (event: MouseEvent) => {
       const target = event.target;
-      const shouldIgnoreClick = ignoreElements.some((element) =>
-        contains(element, target)
-      );
+      const shouldIgnoreClick = ignoreElements.some((element) => {
+        return contains(element, target);
+      });
 
       if (!shouldIgnoreClick && !contains(container, target)) {
         onClose();
@@ -32,9 +35,11 @@ export function useCloseOnClickOutside(
     return () => {
       document.body.removeEventListener('click', onBodyClick);
     };
-  }, [onClose, containerRef, params]);
+  }, [onClose, ref, params]);
 }
 
-function contains(parent: HTMLElement, other: EventTarget | null): boolean {
-  return parent === other || parent.contains(other as Node);
+function contains(parent: Element, other: EventTarget | null): boolean {
+  return other
+    ? parent === other || parent.contains(other as Node)
+    : false;
 }

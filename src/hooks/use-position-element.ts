@@ -1,18 +1,17 @@
-import { MutableRefObject, useLayoutEffect } from 'react';
+import { RefObject, useLayoutEffect } from 'react';
 
-type Arrangement = 'top' | 'right' | 'bottom' | 'left';
+type Position = 'top' | 'right' | 'bottom' | 'left';
 type Alignment = 'start' | 'center' | 'end';
-type Position = 'absolute' | 'fixed';
 
-export interface PositionElementParams {
-  anchorRef: MutableRefObject<HTMLElement | null>;
-  targetRef: MutableRefObject<HTMLElement | null>;
+export interface UsePositionElementParams {
+  anchorRef: RefObject<HTMLElement>;
+  targetRef: RefObject<HTMLElement>;
   position: Position;
-  arrangement: Arrangement;
   alignment: Alignment;
   anchorOffset: number;
   viewportOffset: number;
   isShown: boolean;
+  isPositionedRelativeToViewport?: boolean;
   shouldUpdatePositionWhenScroll?: boolean;
 }
 
@@ -20,13 +19,13 @@ export function usePositionElement({
   anchorRef,
   targetRef,
   position,
-  arrangement,
   alignment,
   anchorOffset,
   viewportOffset,
   isShown,
   shouldUpdatePositionWhenScroll,
-}: PositionElementParams) {
+  isPositionedRelativeToViewport,
+}: UsePositionElementParams) {
   useLayoutEffect(() => {
     const anchor = anchorRef.current;
     const target = targetRef.current;
@@ -36,13 +35,13 @@ export function usePositionElement({
 
     const updatePopoverPosition = () => {
       const { x, y } = getElementCoordinates({
+        position,
+        alignment,
+        anchorOffset,
+        viewportOffset,
+        isPositionedRelativeToViewport,
         anchorRect: anchor.getBoundingClientRect(),
         targetRect: target.getBoundingClientRect(),
-        position,
-        arrangement,
-        alignment,
-        anchorOffset: anchorOffset,
-        viewportOffset: viewportOffset,
       });
       target.style.transform = `translate(${x}px, ${y}px)`;
     };
@@ -64,11 +63,11 @@ export function usePositionElement({
     targetRef,
     isShown,
     position,
-    arrangement,
     alignment,
     anchorOffset,
     viewportOffset,
     shouldUpdatePositionWhenScroll,
+    isPositionedRelativeToViewport,
   ]);
 }
 
@@ -76,35 +75,35 @@ export function getElementCoordinates(params: {
   anchorRect: DOMRect;
   targetRect: DOMRect;
   position: Position;
-  arrangement: Arrangement;
   alignment: Alignment;
   anchorOffset: number;
   viewportOffset: number;
+  isPositionedRelativeToViewport?: boolean;
 }): { x: number; y: number } {
   let {
     anchorRect,
     targetRect,
     position,
-    arrangement,
     alignment,
     anchorOffset,
     viewportOffset,
+    isPositionedRelativeToViewport,
   } = params;
   const viewportWidth = document.documentElement.clientWidth;
   const viewportHeight = document.documentElement.clientHeight;
-  const scrollX = position === 'fixed' ? 0 : window.pageXOffset;
-  const scrollY = position === 'fixed' ? 0 : window.pageYOffset;
+  const scrollX = isPositionedRelativeToViewport ? 0 : window.pageXOffset;
+  const scrollY = isPositionedRelativeToViewport ? 0 : window.pageYOffset;
   const maxWidthWhenArrangedVertically = viewportWidth - 2 * viewportOffset;
   const maxWidthWhenArrangedHorizontally = Math.max(
     anchorRect.left - anchorOffset - viewportOffset,
-    viewportWidth - anchorRect.right - anchorOffset - viewportOffset
+    viewportWidth - anchorRect.right - anchorOffset - viewportOffset,
   );
 
   if (
-    (arrangement === 'left' || arrangement === 'right') &&
+    (position === 'left' || position === 'right') &&
     targetRect.width >= maxWidthWhenArrangedHorizontally
   ) {
-    arrangement = 'bottom';
+    position = 'bottom';
   }
 
   let x = 0;
@@ -112,7 +111,7 @@ export function getElementCoordinates(params: {
   if (targetRect.width >= maxWidthWhenArrangedVertically) {
     x = scrollX + viewportOffset;
     y = getVerticalAxisOffset({
-      arrangement,
+      position,
       anchorOffset,
       scrollY,
       viewportHeight,
@@ -120,9 +119,9 @@ export function getElementCoordinates(params: {
       anchorHeight: anchorRect.height,
       targetHeight: targetRect.height,
     });
-  } else if (arrangement === 'left' || arrangement === 'right') {
+  } else if (position === 'left' || position === 'right') {
     x = getVerticalAxisOffset({
-      arrangement,
+      position,
       anchorOffset,
       scrollY: scrollX,
       viewportHeight: viewportWidth,
@@ -150,7 +149,7 @@ export function getElementCoordinates(params: {
       targetWidth: targetRect.width,
     });
     y = getVerticalAxisOffset({
-      arrangement,
+      position,
       anchorOffset,
       scrollY,
       viewportHeight,
@@ -201,7 +200,7 @@ export function getHorizontalAxisOffset(params: {
 }
 
 export function getVerticalAxisOffset(params: {
-  arrangement: Arrangement;
+  position: Position;
   anchorOffset: number;
   scrollY: number;
   anchorY: number;
@@ -210,7 +209,7 @@ export function getVerticalAxisOffset(params: {
   targetHeight: number;
 }): number {
   const {
-    arrangement,
+    position,
     anchorOffset,
     viewportHeight,
     scrollY,
@@ -223,7 +222,7 @@ export function getVerticalAxisOffset(params: {
   const offsetBottom = scrollY + anchorY + anchorHeight + anchorOffset;
 
   let y;
-  if (arrangement === 'top' || arrangement === 'left') {
+  if (position === 'top' || position === 'left') {
     y = offsetTop;
 
     if (y < scrollY && anchorY < anchorOffsetBottom) {
