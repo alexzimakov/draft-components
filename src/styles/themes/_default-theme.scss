@@ -219,6 +219,18 @@
   --dc-segmented-control-bg-active: #{$blue-500};
 
   /*------------------------------------*\
+   #TABS
+  \*------------------------------------*/
+  --dc-tab-text-color: #{$gray-500};
+  --dc-tab-selected-text-color: #{$blue-500};
+  --dc-tab-badge-text-color: #{$white};
+  --dc-tab-badge-bg-color: #{$gray-300};
+  --dc-tab-badge-selected-text-color: #{$white};
+  --dc-tab-selected-badge-bg-color: #{$blue-500};
+  --dc-tab-pointer-color: #{$blue-500};
+  --dc-tabs-border-color: #{$gray-200};
+
+  /*------------------------------------*\
    #LABEL
   \*------------------------------------*/
   --dc-label-text-color: var(--dc-primary-text-color);

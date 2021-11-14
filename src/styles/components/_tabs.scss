@@ -1,0 +1,91 @@
+@use 'sass:math' as math;
+
+.dc-tab {
+  font-size: $font-size-sm;
+  line-height: 1;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: px-to-rem(28px);
+  padding: 0 $gap-1x;
+  cursor: pointer;
+  white-space: nowrap;
+  color: var(--dc-tab-text-color);
+  border: none;
+  border-radius: $border-radius-md;
+  background: none;
+  appearance: none;
+}
+
+.dc-tab:focus {
+  outline: none;
+  @include focus-ring;
+}
+
+.dc-tab_selected {
+  color: var(--dc-tab-selected-text-color);
+}
+
+.dc-tab__icon {
+  flex: 0;
+  margin-right: $gap-2x;
+}
+
+.dc-tab__badge {
+  $_size: px-to-rem(18px);
+
+  font-size: $font-size-xs;
+  line-height: $_size;
+  box-sizing: border-box;
+  min-width: $_size;
+  height: $_size;
+  margin-left: $gap-2x;
+  padding: 0 $gap-1x;
+  color: var(--dc-tab-badge-text-color);
+  border-radius: math.div($_size, 2);
+  background: var(--dc-tab-badge-bg-color);
+}
+
+.dc-tab_selected .dc-tab__badge {
+  color: var(--dc-tab-badge-selected-text-color);
+  background: var(--dc-tab-selected-badge-bg-color);
+}
+
+.dc-tabs {
+  font-family: var(--dc-font-base);
+}
+
+.dc-tabs__list {
+  position: relative;
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: $gap-2x - 0.1rem;
+  border-bottom: 1px solid var(--dc-tabs-border-color);
+}
+
+.dc-tabs__tab {
+  /* Need to add space for the focus ring because of .dc-tabs__list has overflow auto property. */
+  margin: 0.2rem;
+}
+
+.dc-tabs__list > .dc-tabs__tab + .dc-tabs__tab {
+  margin-left: $gap-4x;
+}
+
+.dc-tabs__tab-pointer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: px-to-rem(4px);
+  transition: $transition-normal;
+  transition-timing-function: ease;
+  transition-property: transform, max-width;
+  border-top-left-radius: px-to-rem(2px);
+  border-top-right-radius: px-to-rem(2px);
+  background: var(--dc-tab-pointer-color);
+  will-change: max-width;
+}
+
+.dc-tabs__panel {
+}

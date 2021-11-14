@@ -33,6 +33,7 @@ export * from './spinner';
 export * from './svg-icon';
 export * from './switch';
 export * from './table';
+export * from './tabs';
 export * from './tag';
 export * from './text-input';
 export * from './textarea';
