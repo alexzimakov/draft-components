@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, useLayoutEffect, useRef } from 'react';
+import { ComponentPropsWithoutRef, useEffect, useRef } from 'react';
 import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
 import { useTabsState } from './tabs-state';
@@ -14,6 +14,7 @@ export function TabList({
   onKeyDown,
   ...props
 }: TabListProps) {
+  const mounted = useRef(false);
   const focused = useRef(false);
   const tabPointer = useRef<HTMLSpanElement>(null);
   const {
@@ -25,14 +26,22 @@ export function TabList({
   } = useTabsState();
   const selectedTabId = getTabId(selectedTabKey);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const tabPointerEl = tabPointer.current;
     const tabEl = document.getElementById(selectedTabId);
     if (tabPointerEl && tabEl) {
-      tabPointerEl.style.maxWidth = `${tabEl.offsetWidth}px`;
+      tabPointerEl.style.transitionDuration = mounted.current ? '0.2s' : '0s';
       tabPointerEl.style.transform = `translateX(${tabEl.offsetLeft}px)`;
+      tabPointerEl.style.width = `${tabEl.offsetWidth}px`;
     }
   }, [selectedTabId]);
+
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
 
   return (
     <div

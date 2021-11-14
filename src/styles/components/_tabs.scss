@@ -76,11 +76,10 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 0;
   height: px-to-rem(4px);
-  transition: $transition-normal;
   transition-timing-function: ease;
-  transition-property: transform, max-width;
+  transition-property: transform, width;
   border-top-left-radius: px-to-rem(2px);
   border-top-right-radius: px-to-rem(2px);
   background: var(--dc-tab-pointer-color);
