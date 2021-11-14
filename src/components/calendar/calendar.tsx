@@ -1,7 +1,7 @@
-import { ReactNodeArray, useEffect, useMemo, useRef } from 'react';
+import { ReactNode, useEffect, useMemo, useRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { KeyCode } from '../../lib/keyboard-helpers';
-import { once, uniqueId } from '../../lib/util';
+import { uniqueId } from '../../lib/util';
 import { CalendarRow } from './calendar-row';
 import { CalendarHeader } from './calendar-header';
 import { PlainDate } from '../../lib/plain-date';
@@ -13,7 +13,7 @@ export interface CalendarProps {
   nextMonthButtonLabel?: string;
   prevYearButtonLabel?: string;
   prevMonthButtonLabel?: string;
-  children: ReactNodeArray;
+  children: ReactNode[];
   focusDate: PlainDate;
   onChangeFocusDate(focusDate: PlainDate): void;
 }
@@ -41,7 +41,7 @@ export function Calendar({
 }: CalendarProps) {
   const isFocused = useRef(false);
   const gridRef = useRef<HTMLDivElement>(null);
-  const headerId = useRef(once(uniqueId)('dc-calendar-'));
+  const headerId = useRef('');
   const intl = useMemo(() => new Intl.DateTimeFormat(locale, {
     weekday: 'short',
   }), [locale]);
@@ -54,6 +54,10 @@ export function Calendar({
       }
     }
   }, [focusDate]);
+
+  if (!headerId.current) {
+    headerId.current = uniqueId('dc-calendar-');
+  }
 
   return (
     <div

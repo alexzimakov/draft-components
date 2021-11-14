@@ -1,10 +1,10 @@
-import { Children, ComponentPropsWithoutRef, ReactNodeArray } from 'react';
+import { Children, ComponentPropsWithoutRef, ReactNode } from 'react';
 import { VerticalNavigationItem } from './vertical-navigation-item';
 import { classNames } from '../../lib/react-helpers';
 
 export interface VerticalNavigationProps
   extends ComponentPropsWithoutRef<'nav'> {
-  children: ReactNodeArray;
+  children: ReactNode[];
 }
 
 export function VerticalNavigation({

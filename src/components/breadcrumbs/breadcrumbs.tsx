@@ -1,14 +1,9 @@
-import {
-  Children,
-  ComponentPropsWithoutRef,
-  ReactNode,
-  ReactNodeArray,
-} from 'react';
+import { Children, ComponentPropsWithoutRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { BreadcrumbsItem } from './breadcrumbs-item';
 
 export interface BreadcrumbsProps extends ComponentPropsWithoutRef<'nav'> {
-  children: ReactNodeArray;
+  children: ReactNode[];
   delimiter?: ReactNode;
 }
 

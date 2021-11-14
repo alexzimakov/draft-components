@@ -1,10 +1,10 @@
-import { ReactNodeArray } from 'react';
+import { ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 export interface CalendarWeekProps {
   className?: string;
   isHead?: boolean;
-  children: ReactNodeArray;
+  children: ReactNode[];
 }
 
 export function CalendarRow({
