@@ -2,16 +2,18 @@
 
 .dc-tab {
   font-size: $font-size-sm;
-  line-height: 1;
+  line-height: px-to-rem(40px);
   position: relative;
   display: inline-flex;
-  align-items: center;
-  height: px-to-rem(28px);
-  padding: 0 $gap-1x;
+  align-items: baseline;
+  height: px-to-rem(40px);
+  padding: 0 $gap-2x;
   cursor: pointer;
+  user-select: none;
   white-space: nowrap;
   color: var(--dc-tab-text-color);
   border: none;
+  border-bottom: 2px solid transparent;
   border-radius: $border-radius-md;
   background: none;
   appearance: none;
@@ -19,27 +21,31 @@
 
 .dc-tab:focus {
   outline: none;
-  @include focus-ring;
+  @include focus-ring-inset;
 }
 
 .dc-tab_selected {
   color: var(--dc-tab-selected-text-color);
+  border-bottom-color: var(--dc-tab-pointer-color);
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .dc-tab__icon {
   flex: 0;
-  margin-right: $gap-2x;
+  margin-right: $gap-3x;
 }
 
 .dc-tab__badge {
-  $_size: px-to-rem(18px);
+  $_size: px-to-rem(20px);
 
   font-size: $font-size-xs;
   line-height: $_size;
+  display: inline-block;
   box-sizing: border-box;
   min-width: $_size;
   height: $_size;
-  margin-left: $gap-2x;
+  margin-left: $gap-3x;
   padding: 0 $gap-1x;
   color: var(--dc-tab-badge-text-color);
   border-radius: math.div($_size, 2);
@@ -59,31 +65,14 @@
   position: relative;
   display: flex;
   overflow-x: auto;
-  padding-bottom: $gap-2x - 0.1rem;
   border-bottom: 1px solid var(--dc-tabs-border-color);
 }
 
-.dc-tabs__tab {
-  /* Need to add space for the focus ring because of .dc-tabs__list has overflow auto property. */
-  margin: 0.2rem;
-}
-
 .dc-tabs__list > .dc-tabs__tab + .dc-tabs__tab {
-  margin-left: $gap-4x;
+  margin-left: $gap-2x;
 }
 
 .dc-tabs__tab-pointer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: px-to-rem(4px);
-  transition-timing-function: ease;
-  transition-property: transform, width;
-  border-top-left-radius: px-to-rem(2px);
-  border-top-right-radius: px-to-rem(2px);
-  background: var(--dc-tab-pointer-color);
-  will-change: max-width;
 }
 
 .dc-tabs__panel {

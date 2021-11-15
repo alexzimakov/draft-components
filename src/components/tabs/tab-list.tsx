@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, useEffect, useRef } from 'react';
+import { ComponentPropsWithoutRef, useRef } from 'react';
 import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
 import { useTabsState } from './tabs-state';
@@ -14,34 +14,8 @@ export function TabList({
   onKeyDown,
   ...props
 }: TabListProps) {
-  const mounted = useRef(false);
   const focused = useRef(false);
-  const tabPointer = useRef<HTMLSpanElement>(null);
-  const {
-    tabsOrder,
-    selectedTabKey,
-    focusedTabKey,
-    focusTab,
-    getTabId,
-  } = useTabsState();
-  const selectedTabId = getTabId(selectedTabKey);
-
-  useEffect(() => {
-    const tabPointerEl = tabPointer.current;
-    const tabEl = document.getElementById(selectedTabId);
-    if (tabPointerEl && tabEl) {
-      tabPointerEl.style.transitionDuration = mounted.current ? '0.2s' : '0s';
-      tabPointerEl.style.transform = `translateX(${tabEl.offsetLeft}px)`;
-      tabPointerEl.style.width = `${tabEl.offsetWidth}px`;
-    }
-  }, [selectedTabId]);
-
-  useEffect(() => {
-    mounted.current = true;
-    return () => {
-      mounted.current = false;
-    };
-  }, []);
+  const { tabsOrder, focusedTabKey, focusTab } = useTabsState();
 
   return (
     <div
@@ -87,11 +61,6 @@ export function TabList({
       }}
     >
       {children}
-      <span
-        ref={tabPointer}
-        className="dc-tabs__tab-pointer"
-        aria-hidden={true}
-      />
     </div>
   );
 }

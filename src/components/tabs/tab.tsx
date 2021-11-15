@@ -2,8 +2,6 @@ import { ComponentPropsWithoutRef, ReactNode, useEffect } from 'react';
 import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
 import { useTabsState } from './tabs-state';
-import { key } from '../../bootstrap-icons';
-import { Tag } from '../tag';
 
 export interface TabProps extends ComponentPropsWithoutRef<'button'> {
   tabKey: string;
@@ -54,9 +52,9 @@ export function Tab({
         isFunction(onClick) && onClick(event);
       }}
     >
-      {icon && <div className="dc-tab__icon">{icon}</div>}
+      {icon != null && <div className="dc-tab__icon">{icon}</div>}
       {children}
-      {badge && <div className="dc-tab__badge">{badge}</div>}
+      {badge != null && <div className="dc-tab__badge">{badge}</div>}
     </button>
   );
 }
