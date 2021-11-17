@@ -1,9 +1,14 @@
-import { ComponentPropsWithoutRef, MouseEventHandler, ReactNode } from 'react';
+import {
+  ComponentPropsWithRef,
+  forwardRef,
+  MouseEventHandler,
+  ReactNode,
+} from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { SvgIcon } from '../svg-icon';
 import { xLg } from '../../bootstrap-icons/x-lg';
 
-export interface TagProps extends ComponentPropsWithoutRef<'span'> {
+export interface TagProps extends ComponentPropsWithRef<'span'> {
   isRounded?: boolean;
   size?: 'sm' | 'md' | 'lg';
   fillColor?:
@@ -29,7 +34,7 @@ const removeButtonIconSize: Record<NonNullable<TagProps['size']>, number> = {
   lg: 12,
 };
 
-export function Tag({
+export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag({
   isRounded,
   size = 'md',
   fillColor = 'gray',
@@ -41,10 +46,11 @@ export function Tag({
   onRemove,
   className,
   ...props
-}: TagProps) {
+}, ref) {
   return (
     <span
       {...props}
+      ref={ref}
       className={classNames(className, 'dc-tag', {
         'dc-tag_rounded': isRounded,
         [`dc-tag_color_${fillColor}`]: fillColor,
@@ -70,4 +76,4 @@ export function Tag({
       )}
     </span>
   );
-}
+});
