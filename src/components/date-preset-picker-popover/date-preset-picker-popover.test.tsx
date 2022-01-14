@@ -175,7 +175,7 @@ it('can select date range with date preset using calendar', () => {
       cancelButtonLabel={cancelButtonLabel}
       confirmButtonLabel={confirmButtonLabel}
       options={options}
-      value={null}
+      value={options[0]}
       onChangeValue={onChangeValueMock}
     >
       {(props) => (
