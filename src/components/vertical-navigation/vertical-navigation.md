@@ -99,3 +99,71 @@ const reportsBadge = (
   </VerticalNavigation.Item>
 </VerticalNavigation>;
 ```
+
+With header
+
+```jsx
+import { VerticalNavigation } from '../vertical-navigation';
+import { Tag } from '../tag';
+import { SvgIcon } from '../svg-icon';
+import { houseDoor } from '../../bootstrap-icons/house-door';
+import { arrowDownCircle } from '../../bootstrap-icons/arrow-down-circle';
+import { folder } from '../../bootstrap-icons/folder';
+import { clipboardData } from '../../bootstrap-icons/clipboard-data';
+import { questionCircle } from '../../bootstrap-icons/question-circle';
+import { telephone } from '../../bootstrap-icons/telephone';
+
+const projectsBadge = (
+  <Tag size="sm" isRounded={true}>
+    7
+  </Tag>
+);
+
+const reportsBadge = (
+  <Tag size="sm" isRounded={true}>
+    50+
+  </Tag>
+);
+
+<VerticalNavigation style={{ maxWidth: 288 }} header="Primary navigation">
+  <VerticalNavigation.Item
+    href="#home"
+    selected={true}
+    icon={<SvgIcon icon={houseDoor} />}
+  >
+    Home
+  </VerticalNavigation.Item>
+  <VerticalNavigation.Item
+    href="#downloads"
+    icon={<SvgIcon icon={arrowDownCircle} />}
+  >
+    Downloads
+  </VerticalNavigation.Item>
+  <VerticalNavigation.Item
+    href="#projects"
+    badge={projectsBadge}
+    icon={<SvgIcon icon={folder} />}
+  >
+    Projects
+  </VerticalNavigation.Item>
+  <VerticalNavigation.Item
+    href="#reports"
+    badge={reportsBadge}
+    icon={<SvgIcon icon={clipboardData} />}
+  >
+    Reports
+  </VerticalNavigation.Item>
+  <VerticalNavigation.Item
+    href="#home"
+    icon={<SvgIcon icon={questionCircle} />}
+  >
+    Help
+  </VerticalNavigation.Item>
+  <VerticalNavigation.Item
+    href="#contact-us"
+    icon={<SvgIcon icon={telephone} />}
+  >
+    Contact Us
+  </VerticalNavigation.Item>
+</VerticalNavigation>;
+```

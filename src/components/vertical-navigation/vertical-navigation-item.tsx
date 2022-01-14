@@ -24,7 +24,7 @@ export function VerticalNavigationItem({
   ...props
 }: VerticalNavigationItemProps) {
   className = classNames(className, 'dc-vertical-nav-item', {
-    [VerticalNavigationItem.SELECT_ITEM_CSS_MODIFIER]: selected,
+    [VerticalNavigationItem.SELECTED_STATE_CSS_MODIFIER]: selected,
   });
 
   const content = (
@@ -46,5 +46,5 @@ export function VerticalNavigationItem({
   }
 }
 
-VerticalNavigationItem.SELECT_ITEM_CSS_MODIFIER =
+VerticalNavigationItem.SELECTED_STATE_CSS_MODIFIER =
   'dc-vertical-nav-item_selected';
