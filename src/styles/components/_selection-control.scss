@@ -20,7 +20,7 @@
 .dc-selection-control__label {
   font-size: $font-size-sm;
   font-weight: $font-weight-medium;
-  line-height: $leading-default;
+  line-height: $leading-tight;
   display: inline-block;
   margin-left: var(--dc-selection-control-gap);
   user-select: none;
