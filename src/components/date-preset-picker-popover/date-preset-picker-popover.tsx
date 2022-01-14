@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { forwardRef, useRef, useState } from 'react';
 import { ISODateRange } from '../../lib/plain-date-range';
 import { Popover, PopoverProps } from '../popover';
 import { DatePresetPicker, DatePresetPickerProps } from './date-preset-picker';
@@ -41,23 +41,29 @@ interface SelectionState {
   dateRange: ISODateRange | null;
 }
 
-export function DatePresetPickerPopover({
-  locale,
-  timeZone,
-  defaultIsOpen = false,
-  hideSelectedRange = false,
-  position = 'bottom',
-  alignment = 'start',
-  cancelButtonLabel,
-  confirmButtonLabel,
-  customDatePresetLabel,
-  disableActionButtons,
-  showLoadingIndicator,
-  options,
-  value,
-  onChangeValue,
-  children: render,
-}: DatePresetPickerPopoverProps) {
+export const DatePresetPickerPopover = forwardRef<
+  HTMLDivElement,
+  DatePresetPickerPopoverProps
+>(function DatePresetPickerPopover(
+  {
+    locale,
+    timeZone,
+    defaultIsOpen = false,
+    hideSelectedRange = false,
+    position = 'bottom',
+    alignment = 'start',
+    cancelButtonLabel,
+    confirmButtonLabel,
+    customDatePresetLabel,
+    disableActionButtons,
+    showLoadingIndicator,
+    options,
+    value,
+    onChangeValue,
+    children: render,
+  },
+  ref
+) {
   const [isShown, setIsShown] = useState(defaultIsOpen);
   const confirmButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -168,6 +174,7 @@ export function DatePresetPickerPopover({
 
   return (
     <Popover
+      ref={ref}
       className="dc-date-preset-picker-popover"
       isShown={isShown}
       position={position}
@@ -210,4 +217,4 @@ export function DatePresetPickerPopover({
       })}
     </Popover>
   );
-}
+});
