@@ -15,6 +15,7 @@
     "test": "jest",
     "test-coverage": "npm run test -- --coverage --no-cache",
     "lint": "eslint src --fix",
+    "format": "prettier --write --ignore-unknown .",
     "check-types": "tsc --noEmit",
     "styleguide": "styleguidist server",
     "styleguide-build": "styleguidist build",

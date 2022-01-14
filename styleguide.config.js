@@ -95,6 +95,7 @@ module.exports = {
   },
   title: 'Draft Components',
   webpackConfig: {
+    devtool: 'eval-source-map',
     module: {
       rules: [
         {

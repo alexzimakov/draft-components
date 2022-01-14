@@ -39,7 +39,7 @@ function buildTs(done) {
     .catch((err) => {
       console.error(
         `${ANSI_CODES.red}${ANSI_CODES.boldOn}TypeScript compilation error:${ANSI_CODES.reset}`,
-        err.message,
+        err.message
       );
       done(err);
     });
@@ -60,27 +60,26 @@ function copyScss(done) {
 exports.default = gulp.series(
   clean,
   gulp.parallel(buildTs, buildScss),
-  copyScss,
+  copyScss
 );
 
 /**
  * Performs `tsc` command within shell.
  * @param {string} module - Specify module code generation: "None", "CommonJS", "AMD", "System", "UMD", "ES6", "ES2015" or "ESNext".
  * @param {string} outDir - Redirect output structure to the directory.
- * @param {boolean} declaration - Generates corresponding .d.ts file.
  * @returns {Promise<string>}
  */
-async function tsc(module, outDir, declaration = true) {
+async function tsc(module, outDir) {
   return new Promise((resolve, reject) => {
     exec(
-      `tsc --module ${module} --outDir "${outDir}" --declaration ${declaration}`,
+      `tsc --module ${module} --outDir "${outDir}" --project tsconfig.build.json`,
       (err, stdout) => {
         if (err) {
           reject(new Error(stdout));
         } else {
           resolve(stdout);
         }
-      },
+      }
     );
   });
 }
