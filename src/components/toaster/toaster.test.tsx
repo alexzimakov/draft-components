@@ -11,18 +11,13 @@ it('throws an error when trying to show toast but not render <Toaster />', () =>
 
 it('should show/dismiss toasts components', () => {
   const renderToast: ToastRenderFn = () => (
-    <div data-testid="test-toast">
-      Toast message
-    </div>
+    <div data-testid="test-toast">Toast message</div>
   );
   render(<Toaster />);
 
   const toastIds: ToastId[] = [];
   act(() => {
-    toastIds.push(
-      Toaster.show(renderToast),
-      Toaster.show(renderToast),
-    );
+    toastIds.push(Toaster.show(renderToast), Toaster.show(renderToast));
   });
 
   expect(screen.getAllByTestId('test-toast')).toHaveLength(2);
@@ -58,9 +53,7 @@ it('should dismiss toast by timeout', () => {
   jest.useFakeTimers();
 
   const renderToast: ToastRenderFn = () => (
-    <div data-testid="test-toast">
-      Toast message
-    </div>
+    <div data-testid="test-toast">Toast message</div>
   );
   render(<Toaster />);
 

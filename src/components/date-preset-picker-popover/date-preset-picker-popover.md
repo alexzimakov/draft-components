@@ -12,7 +12,7 @@ const datePresets = [
     datePreset: 'today',
     get dateRange() {
       const today = PlainDate.now().toISOString();
-      return { start: today, end: today }
+      return { start: today, end: today };
     },
   },
   {
@@ -20,7 +20,7 @@ const datePresets = [
     datePreset: 'yesterday',
     get dateRange() {
       const yesterday = PlainDate.now().addDays(-1).toISOString();
-      return { start: yesterday, end: yesterday }
+      return { start: yesterday, end: yesterday };
     },
   },
   {
@@ -31,7 +31,7 @@ const datePresets = [
       return {
         start: yesterday.addDays(-6).toISOString(),
         end: yesterday.toISOString(),
-      }
+      };
     },
   },
   {
@@ -42,7 +42,7 @@ const datePresets = [
       return {
         start: yesterday.addDays(-13).toISOString(),
         end: yesterday.toISOString(),
-      }
+      };
     },
   },
   {
@@ -53,7 +53,7 @@ const datePresets = [
       return {
         start: yesterday.addDays(-29).toISOString(),
         end: yesterday.toISOString(),
-      }
+      };
     },
   },
   {
@@ -64,7 +64,7 @@ const datePresets = [
       return {
         start: today.startOfWeek.toISOString(),
         end: today.toISOString(),
-      }
+      };
     },
   },
   {
@@ -75,7 +75,7 @@ const datePresets = [
       return {
         start: date.startOfWeek.toISOString(),
         end: date.endOfWeek.toISOString(),
-      }
+      };
     },
   },
   {
@@ -86,7 +86,7 @@ const datePresets = [
       return {
         start: today.startOfMonth.toISOString(),
         end: today.toISOString(),
-      }
+      };
     },
   },
   {
@@ -97,7 +97,7 @@ const datePresets = [
       return {
         start: date.startOfMonth.toISOString(),
         end: date.endOfMonth.toISOString(),
-      }
+      };
     },
   },
 ];

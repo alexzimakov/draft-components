@@ -34,19 +34,22 @@ const removeButtonIconSize: Record<NonNullable<TagProps['size']>, number> = {
   lg: 12,
 };
 
-export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag({
-  isRounded,
-  size = 'md',
-  fillColor = 'gray',
-  children: text,
-  leadingIcon,
-  isRemovable,
-  isRemoveButtonDisabled,
-  removeButtonAriaLabel,
-  onRemove,
-  className,
-  ...props
-}, ref) {
+export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
+  {
+    isRounded,
+    size = 'md',
+    fillColor = 'gray',
+    children: text,
+    leadingIcon,
+    isRemovable,
+    isRemoveButtonDisabled,
+    removeButtonAriaLabel,
+    onRemove,
+    className,
+    ...props
+  },
+  ref
+) {
   return (
     <span
       {...props}

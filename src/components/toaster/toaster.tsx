@@ -10,13 +10,13 @@ import { classNames } from '../../lib/react-helpers';
 
 type ToasterVerticalPosition = 'top' | 'bottom';
 type ToasterHorizontalPosition = 'left' | 'center' | 'right';
-type ToasterPosition = `${ToasterVerticalPosition}-${ToasterHorizontalPosition}`;
+type ToasterPosition =
+  `${ToasterVerticalPosition}-${ToasterHorizontalPosition}`;
 
 export interface ToasterProps extends ComponentPropsWithoutRef<'ul'> {
   position?: ToasterPosition;
   toastGap?: number;
 }
-
 
 let isToasterRendered = false;
 const toastTimeouts = new Map<ToastId, number>();
@@ -70,7 +70,11 @@ export function Toaster({
     <ul
       {...props}
       ref={ref}
-      className={classNames(className, 'toaster', `toaster_position_${position}`)}
+      className={classNames(
+        className,
+        'toaster',
+        `toaster_position_${position}`
+      )}
     >
       {toasts.map((toast) => (
         <li key={toast.id}>
@@ -94,9 +98,14 @@ export function dismissToast(toastId: ToastId): void {
   dispatch({ type: 'DELETE_TOAST', toastId });
 }
 
-export function showToast(renderToast: ToastRenderFn, durationMs = 1e4): ToastId {
+export function showToast(
+  renderToast: ToastRenderFn,
+  durationMs = 1e4
+): ToastId {
   if (!isToasterRendered) {
-    throw new Error('To show toast put <Toatser /> component somewhere on the page.');
+    throw new Error(
+      'To show toast put <Toatser /> component somewhere on the page.'
+    );
   }
 
   const toast = createToast(renderToast);

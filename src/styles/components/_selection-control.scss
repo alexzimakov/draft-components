@@ -32,7 +32,9 @@
   font-size: $font-size-sm;
   line-height: $leading-tight;
   margin-top: $gap-1x;
-  margin-left: calc(var(--dc-selection-control-size) + var(--dc-selection-control-gap));
+  margin-left: calc(
+    var(--dc-selection-control-size) + var(--dc-selection-control-gap)
+  );
   color: var(--dc-secondary-text-color);
 }
 

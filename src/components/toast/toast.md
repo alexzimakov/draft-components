@@ -14,9 +14,7 @@ const buttons = (
 );
 
 <div style={{ display: 'grid', rowGap: 16, justifyItems: 'flex-start' }}>
-  <Toast message={message}>
-    {buttons}
-  </Toast>
+  <Toast message={message}>{buttons}</Toast>
   <Toast appearance="warning" message={message}>
     {buttons}
   </Toast>

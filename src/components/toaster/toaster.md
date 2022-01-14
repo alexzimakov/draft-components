@@ -4,18 +4,16 @@ import { Toast } from '../toast';
 import { Button } from '../button';
 
 const showToast = () => {
-  Toaster.show(
-    (props) => (
-      <Toast
-        className={props.className}
-        appearance="success"
-        message="Successfully saved"
-        informativeText="Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-      >
-        <Toast.Button onClick={props.dismiss}>Got it</Toast.Button>
-      </Toast>
-    ),
-  );
+  Toaster.show((props) => (
+    <Toast
+      className={props.className}
+      appearance="success"
+      message="Successfully saved"
+      informativeText="Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+    >
+      <Toast.Button onClick={props.dismiss}>Got it</Toast.Button>
+    </Toast>
+  ));
 };
 
 <div>

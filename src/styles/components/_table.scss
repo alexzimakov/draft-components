@@ -94,17 +94,17 @@
 
 // noinspection CssMissingComma
 .dc-table_striped
-> .dc-table-body
-> .dc-table-row:nth-child(2n)
-> .dc-table-cell {
+  > .dc-table-body
+  > .dc-table-row:nth-child(2n)
+  > .dc-table-cell {
   background: var(--dc-table-striped-row-bg);
 }
 
 //noinspection CssMissingComma
 .dc-table.dc-table_row_highlighted:not(.dc-table_loading)
-> .dc-table-body
-> .dc-table-row:hover
-> .dc-table-cell {
+  > .dc-table-body
+  > .dc-table-row:hover
+  > .dc-table-cell {
   background: var(--dc-table-hover-row-bg);
 }
 
@@ -114,9 +114,9 @@
 
 // noinspection CssMissingComma
 .dc-table_striped
-> .dc-table-body
-> .dc-table-row_selected:nth-child(2n)
-> .dc-table-cell {
+  > .dc-table-body
+  > .dc-table-row_selected:nth-child(2n)
+  > .dc-table-cell {
   background: var(--dc-table-selected-stiped-row-bg);
 }
 
@@ -152,10 +152,10 @@
     border-radius: $border-radius-2xs;
     background-color: var(--dc-skeleton-bg-color);
     background-image: linear-gradient(
-        90deg,
-        var(--dc-skeleton-bg-color) 0%,
-        var(--dc-skeleton-color) 50%,
-        var(--dc-skeleton-bg-color) 100%
+      90deg,
+      var(--dc-skeleton-bg-color) 0%,
+      var(--dc-skeleton-color) 50%,
+      var(--dc-skeleton-bg-color) 100%
     );
     background-repeat: no-repeat;
     background-position: -$shine-width 0;

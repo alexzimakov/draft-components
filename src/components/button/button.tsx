@@ -45,7 +45,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       ...props
     },
-    ref,
+    ref
   ) {
     className = classNames(className, 'dc-btn', {
       'dc-btn_full-width': fullWidth,
@@ -79,5 +79,5 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {content}
       </button>
     );
-  },
+  }
 );

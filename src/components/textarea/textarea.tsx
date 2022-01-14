@@ -20,7 +20,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       onChangeValue,
       ...props
     },
-    ref,
+    ref
   ) {
     return (
       <textarea
@@ -37,5 +37,5 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         }}
       />
     );
-  },
+  }
 );

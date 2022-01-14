@@ -11,7 +11,7 @@ export interface CalendarHeaderProps {
   prevYearButtonLabel?: string;
   prevMonthButtonLabel?: string;
   focusDate: PlainDate;
-  onChangeFocusDate(focusDate: PlainDate): void,
+  onChangeFocusDate(focusDate: PlainDate): void;
 }
 
 export function CalendarHeader({

@@ -32,7 +32,7 @@ export const Positioner = forwardRef<HTMLDivElement, PositionerProps>(
       children,
       ...props
     },
-    ref,
+    ref
   ) {
     const targetRef = useRef<HTMLDivElement | null>(null);
 
@@ -68,5 +68,5 @@ export const Positioner = forwardRef<HTMLDivElement, PositionerProps>(
         {children}
       </Portal>
     );
-  },
+  }
 );

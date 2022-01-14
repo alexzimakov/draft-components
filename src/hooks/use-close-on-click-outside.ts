@@ -9,7 +9,7 @@ export interface UseCloseOnClickOutsideParams {
 export function useCloseOnClickOutside(
   onClose: () => void,
   ref: RefObject<Element>,
-  params?: UseCloseOnClickOutsideParams,
+  params?: UseCloseOnClickOutsideParams
 ) {
   useEffect(() => {
     const isEnabled = params?.isEnabled ?? true;
@@ -39,7 +39,5 @@ export function useCloseOnClickOutside(
 }
 
 function contains(parent: Element, other: EventTarget | null): boolean {
-  return other
-    ? parent === other || parent.contains(other as Node)
-    : false;
+  return other ? parent === other || parent.contains(other as Node) : false;
 }

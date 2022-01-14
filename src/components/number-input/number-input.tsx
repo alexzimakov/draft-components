@@ -35,7 +35,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
       onChangeValue,
       ...props
     },
-    ref,
+    ref
   ) {
     const numericValue = Number(value) || 0;
 
@@ -54,7 +54,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
     function increment(step: number) {
       const fractionDigits = Math.max(
         getFractionDigits(numericValue),
-        getFractionDigits(step),
+        getFractionDigits(step)
       );
       const sum = numericValue + step;
       if (inRange(sum)) {
@@ -65,7 +65,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
     function decrement(step: number) {
       const fractionDigits = Math.max(
         getFractionDigits(numericValue),
-        getFractionDigits(step),
+        getFractionDigits(step)
       );
       const diff = numericValue - step;
       if (inRange(diff)) {
@@ -152,7 +152,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
         </Button>
       </div>
     );
-  },
+  }
 );
 
 function getFractionDigits(n: number): number {

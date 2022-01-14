@@ -13,7 +13,7 @@ import { useCaptureFocus } from '../../hooks/use-capture-focus';
 import { Positioner, PositionerProps } from '../positioner';
 import { Box, BoxProps } from '../box';
 
-type BaseProps = Omit<PositionerProps, 'anchorRef'>
+type BaseProps = Omit<PositionerProps, 'anchorRef'>;
 
 type RenderFn = (props: { ref: RefObject<HTMLElement> }) => JSX.Element;
 

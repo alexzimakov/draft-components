@@ -25,7 +25,8 @@ export interface SvgIconProps extends ComponentPropsWithoutRef<'svg'> {
     | '5x'
     | string
     | number;
-  linearGradient?: ['to bottom' | 'to top' | 'to left' | 'to right',
+  linearGradient?: [
+    'to bottom' | 'to top' | 'to left' | 'to right',
     string,
     string
   ];

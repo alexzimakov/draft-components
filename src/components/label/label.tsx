@@ -19,7 +19,7 @@ export function Label({
         className,
         Styles.subheadline,
         'dc-label',
-        isRequired && 'dc-label_required',
+        isRequired && 'dc-label_required'
       )}
     >
       {children}

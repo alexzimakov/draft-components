@@ -14,7 +14,7 @@ it('renders without errors', () => {
       <Breadcrumbs.Item href="#breadcrumbs" selected={true}>
         Breadcrumbs
       </Breadcrumbs.Item>
-    </Breadcrumbs>,
+    </Breadcrumbs>
   );
 
   const links = screen.getAllByRole('link');
@@ -40,7 +40,7 @@ it('should render item using custom renderer', () => {
       <Breadcrumbs.Item href="#breadcrumbs" renderAs={renderItem}>
         Breadcrumbs
       </Breadcrumbs.Item>
-    </Breadcrumbs>,
+    </Breadcrumbs>
   );
 
   const buttons = screen.getAllByRole('button');
@@ -54,7 +54,7 @@ it('renders with custom delimiter', () => {
       <Breadcrumbs.Item href="#home">Home</Breadcrumbs.Item>
       <Breadcrumbs.Item href="#navigation">Navigation</Breadcrumbs.Item>
       <Breadcrumbs.Item href="#breadcrumbs">Breadcrumbs</Breadcrumbs.Item>
-    </Breadcrumbs>,
+    </Breadcrumbs>
   );
 
   const delimiters = screen.getAllByTestId('delimiter');

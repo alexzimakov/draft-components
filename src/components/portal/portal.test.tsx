@@ -9,12 +9,12 @@ it('<Portal /> should create root node and mounts portals to it.', () => {
   render(
     <Portal data-testid={testId}>
       <div>{firstPortalContent}</div>
-    </Portal>,
+    </Portal>
   );
   render(
     <Portal data-testid={testId}>
       <div>{secondPortalContent}</div>
-    </Portal>,
+    </Portal>
   );
 
   const portalRoots = screen.getAllByTestId('portals-root');
@@ -29,7 +29,7 @@ it('<Portal /> should create root node and mounts portals to it.', () => {
 it('should remove not used portal containers', () => {
   const testId = 'portal';
   const { unmount } = render(
-    <Portal data-testid={testId}>Portal content</Portal>,
+    <Portal data-testid={testId}>Portal content</Portal>
   );
 
   screen.getAllByTestId(testId);

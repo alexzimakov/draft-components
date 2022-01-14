@@ -8,14 +8,16 @@ it('renders without errors', () => {
   const nextMonthAriaLabel = 'next month';
   const prevMonthAriaLabel = 'prev month';
 
-  render(<DateRangePicker
-    nextYearButtonLabel={nextYearAriaLabel}
-    prevYearButtonLabel={prevYearAriaLabel}
-    nextMonthButtonLabel={nextMonthAriaLabel}
-    prevMonthButtonLabel={prevMonthAriaLabel}
-    value={{ start: '2021-10-05', end: '2021-10-21' }}
-    onChangeValue={jest.fn()}
-  />);
+  render(
+    <DateRangePicker
+      nextYearButtonLabel={nextYearAriaLabel}
+      prevYearButtonLabel={prevYearAriaLabel}
+      nextMonthButtonLabel={nextMonthAriaLabel}
+      prevMonthButtonLabel={prevMonthAriaLabel}
+      value={{ start: '2021-10-05', end: '2021-10-21' }}
+      onChangeValue={jest.fn()}
+    />
+  );
 
   expect(screen.getByRole('grid')).toHaveAccessibleName('October 2021');
   screen.getByLabelText(nextYearAriaLabel);
@@ -30,10 +32,12 @@ it('renders without errors', () => {
 
 it('invokes `onPick` callback when selecting a day', () => {
   const onChangeRangeMock = jest.fn();
-  render(<DateRangePicker
-    value={{ start: '2021-10-05', end: '2021-10-21' }}
-    onChangeValue={onChangeRangeMock}
-  />);
+  render(
+    <DateRangePicker
+      value={{ start: '2021-10-05', end: '2021-10-21' }}
+      onChangeValue={onChangeRangeMock}
+    />
+  );
 
   userEvent.click(screen.getByText('13'));
   userEvent.click(screen.getByText('28'));
@@ -54,15 +58,17 @@ it('can select month and year using arrow buttons', () => {
   const prevYearAriaLabel = 'prev year';
   const nextMonthAriaLabel = 'next month';
   const prevMonthAriaLabel = 'prev month';
-  render(<DateRangePicker
-    nextYearButtonLabel={nextYearAriaLabel}
-    prevYearButtonLabel={prevYearAriaLabel}
-    nextMonthButtonLabel={nextMonthAriaLabel}
-    prevMonthButtonLabel={prevMonthAriaLabel}
-    locale="en"
-    value={{ start: '2021-10-05', end: '2021-10-21' }}
-    onChangeValue={jest.fn()}
-  />);
+  render(
+    <DateRangePicker
+      nextYearButtonLabel={nextYearAriaLabel}
+      prevYearButtonLabel={prevYearAriaLabel}
+      nextMonthButtonLabel={nextMonthAriaLabel}
+      prevMonthButtonLabel={prevMonthAriaLabel}
+      locale="en"
+      value={{ start: '2021-10-05', end: '2021-10-21' }}
+      onChangeValue={jest.fn()}
+    />
+  );
 
   screen.getByText('October 2021');
 
@@ -80,11 +86,13 @@ it('can select month and year using arrow buttons', () => {
 });
 
 it('can select date using keyboard', () => {
-  render(<DateRangePicker
-    locale="en"
-    value={{ start: '2021-10-14', end: '2021-10-21' }}
-    onChangeValue={jest.fn()}
-  />);
+  render(
+    <DateRangePicker
+      locale="en"
+      value={{ start: '2021-10-14', end: '2021-10-21' }}
+      onChangeValue={jest.fn()}
+    />
+  );
 
   // Move focus to the selected date.
   userEvent.tab();

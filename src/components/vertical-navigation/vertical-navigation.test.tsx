@@ -21,7 +21,7 @@ it('renders without errors', () => {
       >
         Reports
       </VerticalNavigation.Item>
-    </VerticalNavigation>,
+    </VerticalNavigation>
   );
 
   const links = screen.getAllByRole('link');
@@ -47,7 +47,7 @@ it('should render item using custom renderer', () => {
       <VerticalNavigation.Item renderAs={renderItem}>
         Reports
       </VerticalNavigation.Item>
-    </VerticalNavigation>,
+    </VerticalNavigation>
   );
 
   const buttons = screen.getAllByRole('button');

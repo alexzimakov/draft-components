@@ -16,7 +16,7 @@ export const Switch = forwardRef<HTMLInputElement, CheckboxProps>(
       onCheck,
       ...props
     },
-    ref,
+    ref
   ) {
     return (
       <SelectionControl
@@ -40,5 +40,5 @@ export const Switch = forwardRef<HTMLInputElement, CheckboxProps>(
         <span className="dc-switch__check" aria-hidden={true} />
       </SelectionControl>
     );
-  },
+  }
 );

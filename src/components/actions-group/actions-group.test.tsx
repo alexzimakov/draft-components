@@ -14,7 +14,7 @@ it('renders without errors', () => {
       />
       <ActionsGroup.Button title="Archive" icon={<SvgIcon icon={archive} />} />
       <ActionsGroup.Button title="Reply" icon={<SvgIcon icon={chat} />} />
-    </ActionsGroup>,
+    </ActionsGroup>
   );
 
   screen.getByTitle('Bookmark');

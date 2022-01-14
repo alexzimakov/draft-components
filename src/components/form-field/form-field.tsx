@@ -46,10 +46,10 @@ export function FormField({
       <div className="dc-form-field__input">
         {typeof children === 'function'
           ? children({
-            id: inputId.current,
-            required: Boolean(required),
-            invalid: Boolean(validationError),
-          })
+              id: inputId.current,
+              required: Boolean(required),
+              invalid: Boolean(validationError),
+            })
           : children}
       </div>
       {(function () {

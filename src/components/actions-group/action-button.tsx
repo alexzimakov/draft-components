@@ -1,8 +1,10 @@
 import { classNames } from '../../lib/react-helpers';
 import { Button, ButtonProps } from '../button';
 
-export type ActionButtonBaseProps = Omit<ButtonProps,
-  'leadingIcon' | 'trailingIcon' | 'appearance' | 'isLoading'>;
+export type ActionButtonBaseProps = Omit<
+  ButtonProps,
+  'leadingIcon' | 'trailingIcon' | 'appearance' | 'isLoading'
+>;
 
 export interface ActionButtonProps extends ActionButtonBaseProps {
   title: string;

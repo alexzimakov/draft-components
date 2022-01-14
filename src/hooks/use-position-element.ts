@@ -95,7 +95,7 @@ export function getElementCoordinates(params: {
   const maxWidthWhenArrangedVertically = viewportWidth - 2 * viewportOffset;
   const maxWidthWhenArrangedHorizontally = Math.max(
     anchorRect.left - anchorOffset - viewportOffset,
-    viewportWidth - anchorRect.right - anchorOffset - viewportOffset,
+    viewportWidth - anchorRect.right - anchorOffset - viewportOffset
   );
 
   if (

@@ -125,7 +125,7 @@ export const ${variableName}: Icon = {
   viewBox: '${attrs.viewBox || '0 0 16 16'}',
   children: ${toJsx(otherProps)},
 };`,
-    PRETTIER_OPTIONS,
+    PRETTIER_OPTIONS
   );
 }
 
@@ -144,11 +144,13 @@ async function main() {
   let indexSource = FILE_NOTE + '\n';
   for (const icon of icons) {
     if (icon) {
-      const svgString = await fsPromises.readFile(path.join(BOOTSTRAP_ICONS, icon));
+      const svgString = await fsPromises.readFile(
+        path.join(BOOTSTRAP_ICONS, icon)
+      );
       const iconName = path.basename(icon, '.svg');
       const fileSource = iconToFileSource(
         iconName,
-        await xmlParser.parseStringPromise(svgString),
+        await xmlParser.parseStringPromise(svgString)
       );
 
       await writeFile(path.join(OUTPUT_DIR, `${iconName}.tsx`), fileSource);

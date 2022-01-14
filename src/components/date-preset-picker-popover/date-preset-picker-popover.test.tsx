@@ -6,7 +6,7 @@ function mockMatchMedia(matches = false): void {
   // https://jestjs.io/docs/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
-    value: jest.fn().mockImplementation(query => ({
+    value: jest.fn().mockImplementation((query) => ({
       matches,
       media: query,
       onchange: null,
@@ -45,38 +45,42 @@ const options = [
 ];
 
 it('renders without errors', () => {
-  render(<DatePresetPickerPopover
-    locale="en"
-    defaultIsOpen={true}
-    cancelButtonLabel={cancelButtonLabel}
-    confirmButtonLabel={confirmButtonLabel}
-    options={options}
-    value={options[0]}
-    onChangeValue={jest.fn()}
-  >
-    {() => <button>{anchorButtonLabel}</button>}
-  </DatePresetPickerPopover>);
+  render(
+    <DatePresetPickerPopover
+      locale="en"
+      defaultIsOpen={true}
+      cancelButtonLabel={cancelButtonLabel}
+      confirmButtonLabel={confirmButtonLabel}
+      options={options}
+      value={options[0]}
+      onChangeValue={jest.fn()}
+    >
+      {() => <button>{anchorButtonLabel}</button>}
+    </DatePresetPickerPopover>
+  );
 
   screen.getByText(anchorButtonLabel);
   screen.getByRole('grid');
   screen.getByText(cancelButtonLabel);
   screen.getByText(confirmButtonLabel);
-  options.forEach(option => screen.getByText(option.label));
+  options.forEach((option) => screen.getByText(option.label));
 });
 
 it('renders `Select` element instead of `RadioGroup` on phones', () => {
   mockMatchMedia(true);
-  render(<DatePresetPickerPopover
-    locale="en"
-    defaultIsOpen={true}
-    cancelButtonLabel={cancelButtonLabel}
-    confirmButtonLabel={confirmButtonLabel}
-    options={options}
-    value={options[0]}
-    onChangeValue={jest.fn()}
-  >
-    {() => <button>{anchorButtonLabel}</button>}
-  </DatePresetPickerPopover>);
+  render(
+    <DatePresetPickerPopover
+      locale="en"
+      defaultIsOpen={true}
+      cancelButtonLabel={cancelButtonLabel}
+      confirmButtonLabel={confirmButtonLabel}
+      options={options}
+      value={options[0]}
+      onChangeValue={jest.fn()}
+    >
+      {() => <button>{anchorButtonLabel}</button>}
+    </DatePresetPickerPopover>
+  );
 
   screen.getByText(anchorButtonLabel);
   screen.getByRole('grid');
@@ -93,11 +97,9 @@ it('can toggle popover visibility', () => {
       onChangeValue={jest.fn()}
     >
       {(props) => (
-        <button onClick={props.togglePopover}>
-          {anchorButtonLabel}
-        </button>
+        <button onClick={props.togglePopover}>{anchorButtonLabel}</button>
       )}
-    </DatePresetPickerPopover>,
+    </DatePresetPickerPopover>
   );
 
   const button = screen.getByText(anchorButtonLabel);
@@ -120,11 +122,9 @@ it('can select date range using calendar', () => {
       onChangeValue={onChangeValueMock}
     >
       {(props) => (
-        <button onClick={props.togglePopover}>
-          {anchorButtonLabel}
-        </button>
+        <button onClick={props.togglePopover}>{anchorButtonLabel}</button>
       )}
-    </DatePresetPickerPopover>,
+    </DatePresetPickerPopover>
   );
 
   userEvent.click(screen.getByText(anchorButtonLabel));
@@ -150,11 +150,9 @@ it('can select date range using date preset select', () => {
       onChangeValue={onChangeValueMock}
     >
       {(props) => (
-        <button onClick={props.togglePopover}>
-          {anchorButtonLabel}
-        </button>
+        <button onClick={props.togglePopover}>{anchorButtonLabel}</button>
       )}
-    </DatePresetPickerPopover>,
+    </DatePresetPickerPopover>
   );
 
   userEvent.click(screen.getByText(anchorButtonLabel));
@@ -179,11 +177,9 @@ it('can select date range with date preset using calendar', () => {
       onChangeValue={onChangeValueMock}
     >
       {(props) => (
-        <button onClick={props.togglePopover}>
-          {anchorButtonLabel}
-        </button>
+        <button onClick={props.togglePopover}>{anchorButtonLabel}</button>
       )}
-    </DatePresetPickerPopover>,
+    </DatePresetPickerPopover>
   );
 
   userEvent.click(screen.getByText(anchorButtonLabel));

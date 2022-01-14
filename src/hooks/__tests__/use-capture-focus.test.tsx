@@ -18,7 +18,7 @@ beforeEach(() => {
   document.body.append(
     elementsOutOfDialog.button,
     elementsOutOfDialog.container,
-    elementsOutOfDialog.link,
+    elementsOutOfDialog.link
   );
 });
 
@@ -52,7 +52,7 @@ it('should set focus on the passed element when capture focus', () => {
     <CaptureFocusExample focusAfterCaptureRef={buttonRef}>
       <button ref={buttonRef}>Button inside modal</button>
     </CaptureFocusExample>,
-    { container: elementsOutOfDialog.container },
+    { container: elementsOutOfDialog.container }
   );
 
   expect(buttonRef.current).toHaveFocus();
@@ -63,7 +63,7 @@ it('should set focus on the passed element when release focus', () => {
     <CaptureFocusExample
       focusAfterReleaseRef={{ current: elementsOutOfDialog.button }}
     />,
-    { container: elementsOutOfDialog.container },
+    { container: elementsOutOfDialog.container }
   );
 
   unmount();
@@ -77,7 +77,7 @@ it('should not set focus automatically', () => {
     <CaptureFocusExample autoFocusAfterCapture={false}>
       <button ref={buttonRef}>Button inside modal</button>
     </CaptureFocusExample>,
-    { container: elementsOutOfDialog.container },
+    { container: elementsOutOfDialog.container }
   );
 
   expect(document.body).toHaveFocus();

@@ -31,7 +31,7 @@ it('renders without errors', () => {
           </Table.Row>
         </Table.Body>
       </Table>
-    </Table.Container>,
+    </Table.Container>
   );
 
   const tableContainer = screen.getByRole('group');
@@ -39,10 +39,10 @@ it('renders without errors', () => {
   expect(within(table).getAllByRole('rowgroup')).toHaveLength(2);
   expect(within(table).getAllByRole('row')).toHaveLength(expectedRowCount);
   expect(within(table).getAllByRole('columnheader')).toHaveLength(
-    expectedHeaderCellCount,
+    expectedHeaderCellCount
   );
   expect(within(table).getAllByRole('cell')).toHaveLength(
-    expectedDataCellCount,
+    expectedDataCellCount
   );
 
   for (const header of headers) {
@@ -95,7 +95,7 @@ it('renders with sortable header cells', () => {
           <Table.Cell>45</Table.Cell>
         </Table.Row>
       </Table.Body>
-    </Table>,
+    </Table>
   );
 
   const [idHeaderCell, personHeaderCell, ageHeaderCell] =

@@ -36,7 +36,7 @@ describe('<Avatar />', () => {
     );
 
     render(
-      <Avatar src={src} alt={alt} initials={initials} icon={iconElement} />,
+      <Avatar src={src} alt={alt} initials={initials} icon={iconElement} />
     );
 
     screen.getByTestId(iconTestId);

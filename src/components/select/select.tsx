@@ -21,7 +21,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       onChangeValue,
       ...props
     },
-    ref,
+    ref
   ) {
     return (
       <select
@@ -38,5 +38,5 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         }}
       />
     );
-  },
+  }
 );

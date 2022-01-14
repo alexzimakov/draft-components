@@ -62,7 +62,9 @@
   border-color: var(--dc-radio-group-selection-color);
 }
 
-.dc-radio-group-input:checked ~ .dc-radio-group-item .dc-radio-group-item__check-icon {
+.dc-radio-group-input:checked
+  ~ .dc-radio-group-item
+  .dc-radio-group-item__check-icon {
   visibility: visible;
 }
 

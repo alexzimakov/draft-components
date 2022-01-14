@@ -30,21 +30,18 @@ export function DateRangePicker({
 
   const [start, setStart] = useState<PlainDate | null>(null);
   const [end, setEnd] = useState<PlainDate | null>(null);
-  const newRange = start && end
-    ? new PlainDateRange(start, end)
-    : null;
+  const newRange = start && end ? new PlainDateRange(start, end) : null;
 
   const currentDate = PlainDate.now();
-  const [focusDate, setFocusDate] = useState(selectedRange
-    ? selectedRange.start
-    : currentDate.startOfMonth,
+  const [focusDate, setFocusDate] = useState(
+    selectedRange ? selectedRange.start : currentDate.startOfMonth
   );
   const firstDate = focusDate.startOfMonth;
   const lastDate = focusDate.endOfMonth;
   const firstWeekday = firstDate.weekday;
   const lastWeekday = lastDate.weekday;
   const weeksCount = Math.ceil(
-    (firstWeekday + focusDate.lastDay) / PlainDate.DAYS_IN_WEEK,
+    (firstWeekday + focusDate.lastDay) / PlainDate.DAYS_IN_WEEK
   );
 
   const handleDayPick = (day: PlainDate) => {
@@ -84,10 +81,8 @@ export function DateRangePicker({
       if (start) {
         isSelected = date.equals(start);
       } else if (selectedRange) {
-        isSelected = (
-          date.equals(selectedRange.start) ||
-          date.equals(selectedRange.end)
-        );
+        isSelected =
+          date.equals(selectedRange.start) || date.equals(selectedRange.end);
       }
 
       let isInRange = false;
@@ -127,22 +122,23 @@ export function DateRangePicker({
           isRangePreviewEnd={isRangePreviewEnd}
           onPick={handleDayPick}
           onHover={handleDayHover}
-        />,
+        />
       );
 
       date = date.addDays(1);
     }
 
     renderedWeeks.push(
-      <CalendarRow key={`week-${w}`}>{renderedDays}</CalendarRow>,
+      <CalendarRow key={`week-${w}`}>{renderedDays}</CalendarRow>
     );
   }
 
   useEffect(() => {
     if (value?.start) {
-      setFocusDate((focusDate) => focusDate.toISOString() !== value.start
-        ? PlainDate.fromISODate(value.start)
-        : focusDate,
+      setFocusDate((focusDate) =>
+        focusDate.toISOString() !== value.start
+          ? PlainDate.fromISODate(value.start)
+          : focusDate
       );
     }
   }, [value?.start]);
@@ -169,4 +165,3 @@ export function DateRangePicker({
     </div>
   );
 }
-

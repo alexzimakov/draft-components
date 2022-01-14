@@ -29,7 +29,7 @@ export function Slider({
     (event: ChangeEvent<HTMLInputElement>) => {
       onChangeValue(Number(event.target.value));
     },
-    [onChangeValue],
+    [onChangeValue]
   );
 
   return (
@@ -56,7 +56,7 @@ export function Slider({
         {...props}
         className={classNames(
           'dc-slider__input',
-          thumbStyle && `dc-slider__input_thumb_style_${thumbStyle}`,
+          thumbStyle && `dc-slider__input_thumb_style_${thumbStyle}`
         )}
         type="range"
         min={min}

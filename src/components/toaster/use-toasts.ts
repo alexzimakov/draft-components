@@ -18,14 +18,14 @@ type Toast = {
 
 type Action =
   | { type: 'CREATE_TOAST'; toast: Toast }
-  | { type: 'DELETE_TOAST'; toastId: ToastId; }
+  | { type: 'DELETE_TOAST'; toastId: ToastId };
 
 function reducer(toasts: Toast[], action: Action): Toast[] {
   switch (action.type) {
     case 'CREATE_TOAST':
       return [action.toast, ...toasts].slice(0, MAX_TOASTS);
     case 'DELETE_TOAST':
-      return toasts.filter(toast => toast.id !== action.toastId);
+      return toasts.filter((toast) => toast.id !== action.toastId);
     default:
       return toasts;
   }
@@ -36,7 +36,7 @@ let toasts: Toast[] = [];
 
 export function dispatch(action: Action): void {
   toasts = reducer(toasts, action);
-  listeners.forEach(listener => listener(toasts));
+  listeners.forEach((listener) => listener(toasts));
 }
 
 export function createToast(renderToast: ToastRenderFn): Toast {
@@ -49,7 +49,7 @@ export function useToasts(): Toast[] {
   useEffect(() => {
     listeners.push(setToasts);
     return () => {
-      const index = listeners.findIndex(listener => listener === setToasts);
+      const index = listeners.findIndex((listener) => listener === setToasts);
       if (~index) {
         listeners.splice(index, 1);
       }

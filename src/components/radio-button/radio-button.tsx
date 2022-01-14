@@ -6,7 +6,8 @@ import {
   SelectionControlBaseProps,
 } from '../selection-control';
 
-export type RadioButtonHtmlAttrs = Omit<ComponentPropsWithRef<'input'>,
+export type RadioButtonHtmlAttrs = Omit<
+  ComponentPropsWithRef<'input'>,
   | 'accept'
   | 'alt'
   | 'capture'
@@ -28,9 +29,12 @@ export type RadioButtonHtmlAttrs = Omit<ComponentPropsWithRef<'input'>,
   | 'src'
   | 'step'
   | 'type'
-  | 'width'>;
+  | 'width'
+>;
 
-export interface RadioButtonProps extends SelectionControlBaseProps, RadioButtonHtmlAttrs {
+export interface RadioButtonProps
+  extends SelectionControlBaseProps,
+    RadioButtonHtmlAttrs {
   onCheck?(checked: boolean): void;
 }
 
@@ -46,7 +50,7 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
       onCheck,
       ...props
     },
-    ref,
+    ref
   ) {
     return (
       <SelectionControl
@@ -70,5 +74,5 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
         <span className="dc-radio-btn__radio" aria-hidden={true} />
       </SelectionControl>
     );
-  },
+  }
 );

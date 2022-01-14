@@ -37,7 +37,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
     className,
     ...props
   },
-  ref,
+  ref
 ) {
   return (
     <div
@@ -53,7 +53,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
         paddingTop && `dc-box_pt_${paddingTop}`,
         paddingRight && `dc-box_pr_${paddingRight}`,
         paddingBottom && `dc-box_pb_${paddingBottom}`,
-        paddingLeft && `dc-box_pl_${paddingLeft}`,
+        paddingLeft && `dc-box_pl_${paddingLeft}`
       )}
       {...props}
     />

@@ -82,17 +82,16 @@ export function TabsStateProvider({
     };
   }, []);
 
-  const state = useMemo(() => ({
-    ...deps,
-    selectedTabKey,
-    focusedTabKey,
-  }), [selectedTabKey, focusedTabKey, deps]);
-
-  return (
-    <TabsContext.Provider value={state}>
-      {children}
-    </TabsContext.Provider>
+  const state = useMemo(
+    () => ({
+      ...deps,
+      selectedTabKey,
+      focusedTabKey,
+    }),
+    [selectedTabKey, focusedTabKey, deps]
   );
+
+  return <TabsContext.Provider value={state}>{children}</TabsContext.Provider>;
 }
 
 export function useTabsState() {

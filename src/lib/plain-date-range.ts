@@ -10,16 +10,13 @@ export class PlainDateRange {
   end: PlainDate;
 
   static create(): PlainDateRange {
-    return new PlainDateRange(
-      PlainDate.now(),
-      PlainDate.now(),
-    );
+    return new PlainDateRange(PlainDate.now(), PlainDate.now());
   }
 
   static fromISODateRange(isoDateRange: ISODateRange): PlainDateRange {
     return new PlainDateRange(
       PlainDate.fromISODate(isoDateRange.start),
-      PlainDate.fromISODate(isoDateRange.end),
+      PlainDate.fromISODate(isoDateRange.end)
     );
   }
 

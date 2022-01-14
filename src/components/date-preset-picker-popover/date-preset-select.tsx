@@ -27,7 +27,9 @@ export function DatePresetSelect({
 }: DatePresetSelectProps) {
   return shouldRenderAsNativeSelect ? (
     <Select fullWidth={true} value={value} onChangeValue={onChangeValue}>
-      <option value="" disabled={true}>{customDatePresetLabel}</option>
+      <option value="" disabled={true}>
+        {customDatePresetLabel}
+      </option>
       {options.map((option) => (
         <option key={option.datePreset} value={option.datePreset}>
           {option.label}

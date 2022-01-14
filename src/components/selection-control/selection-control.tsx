@@ -1,15 +1,19 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
-export type SelectionControlHtmlAttrs = Omit<ComponentPropsWithoutRef<'div'>,
-  'children'>;
+export type SelectionControlHtmlAttrs = Omit<
+  ComponentPropsWithoutRef<'div'>,
+  'children'
+>;
 
 export interface SelectionControlBaseProps {
   label?: ReactNode;
   description?: ReactNode;
 }
 
-export interface SelectionControlProps extends SelectionControlBaseProps, SelectionControlHtmlAttrs {
+export interface SelectionControlProps
+  extends SelectionControlBaseProps,
+    SelectionControlHtmlAttrs {
   children: JSX.Element | JSX.Element[];
   isDisabled?: boolean;
 }

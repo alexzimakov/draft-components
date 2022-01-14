@@ -61,7 +61,7 @@ export const DatetimeInput = forwardRef<HTMLDivElement, DatetimeInputProps>(
       className,
       ...props
     },
-    ref,
+    ref
   ) {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const inputsRef = useRef<HTMLInputElement[]>([]);
@@ -72,14 +72,14 @@ export const DatetimeInput = forwardRef<HTMLDivElement, DatetimeInputProps>(
     useEffect(() => {
       if (containerRef.current) {
         inputsRef.current = Array.from(
-          containerRef.current.getElementsByTagName('input'),
+          containerRef.current.getElementsByTagName('input')
         );
       }
     }, [type]);
 
     function updateDateComponents(
       value: string | number,
-      component: DateComponent,
+      component: DateComponent
     ) {
       onChangeDateComponents(dateComponents.updatingValue(value, component));
     }
@@ -197,7 +197,7 @@ export const DatetimeInput = forwardRef<HTMLDivElement, DatetimeInputProps>(
 
     function renderInputsGroup(
       components: DateComponent[],
-      separator: ReactNode,
+      separator: ReactNode
     ): JSX.Element {
       const children: ReactNode[] = [];
       components.forEach((dateComponent, index) => {
@@ -208,7 +208,7 @@ export const DatetimeInput = forwardRef<HTMLDivElement, DatetimeInputProps>(
               className="dc-datetime-input__separator"
             >
               {separator}
-            </span>,
+            </span>
           );
         }
 
@@ -223,7 +223,7 @@ export const DatetimeInput = forwardRef<HTMLDivElement, DatetimeInputProps>(
             name={dateComponent}
             value={dateComponents.getDisplayedValue(dateComponent)}
             onChange={handleChange}
-          />,
+          />
         );
       });
 
@@ -250,14 +250,14 @@ export const DatetimeInput = forwardRef<HTMLDivElement, DatetimeInputProps>(
           onBlur={handleBlur}
         >
           {(type === 'date' || type === 'datetime') &&
-          renderInputsGroup(['day', 'month', 'year'], '/')}
+            renderInputsGroup(['day', 'month', 'year'], '/')}
 
           {(type === 'time' || type === 'datetime') &&
-          renderInputsGroup(['hour', 'minute'], ':')}
+            renderInputsGroup(['hour', 'minute'], ':')}
         </div>
       </div>
     );
-  },
+  }
 );
 
 function defer(callback: () => void): () => void {

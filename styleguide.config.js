@@ -10,7 +10,7 @@ module.exports = {
         'label',
         'inline-message',
         'spinner',
-        'svg-icon',
+        'svg-icon'
       ),
     },
     {
@@ -23,13 +23,7 @@ module.exports = {
     },
     {
       name: 'Data display',
-      components: getComponents(
-        'avatar',
-        'tag',
-        'secret',
-        'tooltip',
-        'table',
-      ),
+      components: getComponents('avatar', 'tag', 'secret', 'tooltip', 'table'),
     },
     {
       name: 'Controls',
@@ -53,7 +47,7 @@ module.exports = {
         'date-picker',
         'date-range-picker',
         'date-preset-picker-popover',
-        'form-field',
+        'form-field'
       ),
     },
     {
@@ -63,7 +57,7 @@ module.exports = {
         'vertical-navigation',
         'segmented-control',
         'scope-buttons',
-        'tabs',
+        'tabs'
       ),
     },
     {
@@ -75,7 +69,7 @@ module.exports = {
         'dialog',
         'popover',
         'loading-view',
-        'non-ideal-state-view',
+        'non-ideal-state-view'
       ),
     },
   ],

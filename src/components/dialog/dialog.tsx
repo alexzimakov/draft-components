@@ -52,10 +52,9 @@ export function Dialog({
   ...props
 }: DialogProps) {
   const dialogRef = useRef<HTMLDivElement | null>(null);
-  const widthInPx = (typeof width === 'string'
-      ? dialogWidths[width]
-      : width
-  ) || dialogWidths.md;
+  const widthInPx =
+    (typeof width === 'string' ? dialogWidths[width] : width) ||
+    dialogWidths.md;
 
   useDisableBodyScroll(isOpen);
 

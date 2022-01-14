@@ -5,7 +5,9 @@ export function noop(): void {
   return;
 }
 
-export function once<T extends AnyFunction>(fn: T): (...args: Parameters<T>) => ReturnType<T> {
+export function once<T extends AnyFunction>(
+  fn: T
+): (...args: Parameters<T>) => ReturnType<T> {
   let called = false;
   let result: ReturnType<T>;
   return (...args) => {

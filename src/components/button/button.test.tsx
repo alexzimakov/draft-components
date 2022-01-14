@@ -22,7 +22,7 @@ it('renders in custom wrapper', () => {
       )}
     >
       {label}
-    </Button>,
+    </Button>
   );
 
   const linkEl = screen.getByRole('link');
@@ -41,7 +41,7 @@ it('renders with the leading icon', () => {
   render(
     <Button leadingIcon={<SvgIcon icon={heart} data-testid={iconTestId} />}>
       Button text
-    </Button>,
+    </Button>
   );
 
   within(screen.getByRole('button')).getByTestId(iconTestId);
@@ -52,7 +52,7 @@ it('renders with the trailing icon', () => {
   render(
     <Button trailingIcon={<SvgIcon icon={heart} data-testid={iconTestId} />}>
       Button text
-    </Button>,
+    </Button>
   );
 
   within(screen.getByRole('button')).getByTestId(iconTestId);

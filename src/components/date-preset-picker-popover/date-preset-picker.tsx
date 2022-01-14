@@ -66,10 +66,12 @@ export function DatePresetPicker({
   }, [phoneBreakpoint]);
 
   return (
-    <div className={classNames(
-      'dc-date-preset-picker',
-      isPhoneView && 'dc-date-preset-picker_phone-view',
-    )}>
+    <div
+      className={classNames(
+        'dc-date-preset-picker',
+        isPhoneView && 'dc-date-preset-picker_phone-view'
+      )}
+    >
       <div className="dc-date-preset-picker__body">
         {options.length > 0 && (
           <DatePresetSelect

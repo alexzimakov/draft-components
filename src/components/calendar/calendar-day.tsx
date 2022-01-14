@@ -45,7 +45,7 @@ export function CalendarDay({
         isRangeEnd && 'dc-calendar-day_range-end',
         isInRangePreview && 'dc-calendar-day_in-range-preview',
         isRangePreviewStart && 'dc-calendar-day_range-preview-start',
-        isRangePreviewEnd && 'dc-calendar-day_range-preview-end',
+        isRangePreviewEnd && 'dc-calendar-day_range-preview-end'
       )}
       role="gridcell"
     >

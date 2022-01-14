@@ -10,11 +10,7 @@ export class PlainDate {
 
   static now(): PlainDate {
     const date = new Date();
-    return new PlainDate(
-      date.getFullYear(),
-      date.getMonth(),
-      date.getDate(),
-    );
+    return new PlainDate(date.getFullYear(), date.getMonth(), date.getDate());
   }
 
   static fromISODate(isoDate: ISODate): PlainDate {
@@ -42,7 +38,7 @@ export class PlainDate {
     return new Date(
       this._date.getFullYear(),
       this._date.getMonth() + 1,
-      0,
+      0
     ).getDate();
   }
 
@@ -59,7 +55,7 @@ export class PlainDate {
     return new PlainDate(
       this._date.getFullYear(),
       this._date.getMonth(),
-      this._date.getDate() - weekday,
+      this._date.getDate() - weekday
     );
   }
 
@@ -68,23 +64,19 @@ export class PlainDate {
     return new PlainDate(
       this._date.getFullYear(),
       this._date.getMonth(),
-      this._date.getDate() + (PlainDate.LAST_WEEKDAY - weekday),
+      this._date.getDate() + (PlainDate.LAST_WEEKDAY - weekday)
     );
   }
 
   get startOfMonth(): PlainDate {
-    return new PlainDate(
-      this._date.getFullYear(),
-      this._date.getMonth(),
-      1,
-    );
+    return new PlainDate(this._date.getFullYear(), this._date.getMonth(), 1);
   }
 
   get endOfMonth(): PlainDate {
     return new PlainDate(
       this._date.getFullYear(),
       this._date.getMonth() + 1,
-      0,
+      0
     );
   }
 
@@ -120,7 +112,7 @@ export class PlainDate {
     return new PlainDate(
       this._date.getFullYear(),
       this._date.getMonth(),
-      this._date.getDate() + days,
+      this._date.getDate() + days
     );
   }
 
@@ -133,7 +125,7 @@ export class PlainDate {
     const date = new PlainDate(
       this._date.getFullYear(),
       this._date.getMonth() + (months >> 0),
-      1,
+      1
     );
     date._date.setDate(day > date.lastDay ? date.lastDay : day);
     return date;
@@ -148,19 +140,24 @@ export class PlainDate {
       return '';
     }
     return (
-      String(this.year).padStart(4, '0') + '-' +
-      String(this.month).padStart(2, '0') + '-' +
+      String(this.year).padStart(4, '0') +
+      '-' +
+      String(this.month).padStart(2, '0') +
+      '-' +
       String(this.day).padStart(2, '0')
     );
   }
 
-  format(options: {
-    weekday?: 'long' | 'short' | 'narrow';
-    era?: 'long' | 'short' | 'narrow';
-    year?: 'numeric' | '2-digit';
-    month?: 'numeric' | '2-digit' | 'long' | 'short' | 'narrow';
-    day?: 'numeric' | '2-digit';
-  }, locale?: string): string {
+  format(
+    options: {
+      weekday?: 'long' | 'short' | 'narrow';
+      era?: 'long' | 'short' | 'narrow';
+      year?: 'numeric' | '2-digit';
+      month?: 'numeric' | '2-digit' | 'long' | 'short' | 'narrow';
+      day?: 'numeric' | '2-digit';
+    },
+    locale?: string
+  ): string {
     const intl = new Intl.DateTimeFormat(locale, options);
     return intl.format(this._date);
   }

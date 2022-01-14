@@ -4,7 +4,7 @@ import { classNames } from '../../lib/react-helpers';
 import { useTabsState } from './tabs-state';
 import { KeyCode } from '../../lib/keyboard-helpers';
 
-export type TabListProps = ComponentPropsWithoutRef<'div'>
+export type TabListProps = ComponentPropsWithoutRef<'div'>;
 
 export function TabList({
   className,
@@ -22,15 +22,15 @@ export function TabList({
       {...props}
       className={classNames(className, 'dc-tabs__list')}
       role="tablist"
-      onFocus={event => {
+      onFocus={(event) => {
         focused.current = true;
         isFunction(onFocus) && onFocus(event);
       }}
-      onBlur={event => {
+      onBlur={(event) => {
         focused.current = false;
         isFunction(onBlur) && onBlur(event);
       }}
-      onKeyDown={event => {
+      onKeyDown={(event) => {
         const focusedTabIndex = tabsOrder.indexOf(focusedTabKey);
         const firstTabIndex = 0;
         const lastTabIndex = tabsOrder.length - 1;

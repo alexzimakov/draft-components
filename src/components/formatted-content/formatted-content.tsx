@@ -68,10 +68,7 @@ export function Title1({
   ...props
 }: TitleProps) {
   return (
-    <Component
-      {...props}
-      className={classNames(className, Styles.title1)}
-    />
+    <Component {...props} className={classNames(className, Styles.title1)} />
   );
 }
 
@@ -81,10 +78,7 @@ export function Title2({
   ...props
 }: TitleProps) {
   return (
-    <Component
-      {...props}
-      className={classNames(className, Styles.title2)}
-    />
+    <Component {...props} className={classNames(className, Styles.title2)} />
   );
 }
 
@@ -94,10 +88,7 @@ export function Title3({
   ...props
 }: TitleProps) {
   return (
-    <Component
-      {...props}
-      className={classNames(className, Styles.title3)}
-    />
+    <Component {...props} className={classNames(className, Styles.title3)} />
   );
 }
 
@@ -107,10 +98,7 @@ export function Headline({
   ...props
 }: TitleProps) {
   return (
-    <Component
-      {...props}
-      className={classNames(className, Styles.headline)}
-    />
+    <Component {...props} className={classNames(className, Styles.headline)} />
   );
 }
 
@@ -120,10 +108,7 @@ export function Paragraph({
   ...props
 }: TextBlockProps) {
   return (
-    <Component
-      {...props}
-      className={classNames(className, Styles.paragraph)}
-    />
+    <Component {...props} className={classNames(className, Styles.paragraph)} />
   );
 }
 
@@ -146,10 +131,7 @@ export function Footnote({
   ...props
 }: InlineTextProps) {
   return (
-    <Component
-      {...props}
-      className={classNames(className, Styles.footnote)}
-    />
+    <Component {...props} className={classNames(className, Styles.footnote)} />
   );
 }
 
@@ -159,9 +141,6 @@ export function Caption({
   ...props
 }: InlineTextProps) {
   return (
-    <Component
-      {...props}
-      className={classNames(className, Styles.caption)}
-    />
+    <Component {...props} className={classNames(className, Styles.caption)} />
   );
 }

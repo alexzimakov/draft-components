@@ -32,11 +32,11 @@
       $background-color calc(50% - #{$border-width * 0.5}),
       $border-color,
       $background-color calc(50% + #{$border-width * 0.5})
-  ),
-  linear-gradient(
+    ),
+    linear-gradient(
       to top right,
       $background-color calc(50% - #{$border-width * 0.5}),
       $border-color,
       $background-color calc(50% + #{$border-width * 0.5})
-  );
+    );
 }

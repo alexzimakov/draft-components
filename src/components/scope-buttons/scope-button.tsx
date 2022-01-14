@@ -18,5 +18,5 @@ export const ScopeButton = forwardRef<HTMLButtonElement, ScopeButtonProps>(
         {children}
       </Button>
     );
-  },
+  }
 );

@@ -32,5 +32,3 @@ export function Tabs({
 Tabs.List = TabList;
 Tabs.Tab = Tab;
 Tabs.Panel = TabPanel;
-
-

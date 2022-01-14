@@ -17,7 +17,7 @@ export function CalendarRow({
       className={classNames(
         className,
         'dc-calendar-row',
-        isHead && 'dc-calendar-row_head',
+        isHead && 'dc-calendar-row_head'
       )}
       role="row"
     >

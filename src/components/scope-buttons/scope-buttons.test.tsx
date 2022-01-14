@@ -8,7 +8,7 @@ function renderScopeButtons() {
       <ScopeButtons.Button>Desktop</ScopeButtons.Button>
       <ScopeButtons.Button>Mobile</ScopeButtons.Button>
       <ScopeButtons.Button>Web</ScopeButtons.Button>
-    </ScopeButtons>,
+    </ScopeButtons>
   );
 }
 

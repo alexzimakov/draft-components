@@ -35,15 +35,18 @@ export function RadioGroup({
   }
 
   return (
-    <ul {...props} className={classNames(
-      className,
-      'dc-radio-group',
-      `dc-radio-group_type_${type}`,
-    )}>
+    <ul
+      {...props}
+      className={classNames(
+        className,
+        'dc-radio-group',
+        `dc-radio-group_type_${type}`
+      )}
+    >
       {Children.map(children, (child) => {
         if (!isValidElement(child) || child.type !== RadioGroupItem) {
           throw new Error(
-            'RadioGroup children must be an array of `RadioGroup.Item` elements',
+            'RadioGroup children must be an array of `RadioGroup.Item` elements'
           );
         }
 

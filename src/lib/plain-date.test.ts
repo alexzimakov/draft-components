@@ -38,33 +38,33 @@ describe('`weekday` getter', () => {
 
 describe('`startOfWeek` getter', () => {
   it('returns a `PlainDate` object that represents the start of week', () => {
-    expect(
-      PlainDate.fromISODate('2021-10-13').startOfWeek,
-    ).toEqual(PlainDate.fromISODate('2021-10-11'));
+    expect(PlainDate.fromISODate('2021-10-13').startOfWeek).toEqual(
+      PlainDate.fromISODate('2021-10-11')
+    );
   });
 });
 
 describe('`endOfWeek` getter', () => {
   it('returns a `PlainDate` object that represents the end of week', () => {
-    expect(
-      PlainDate.fromISODate('2021-10-13').endOfWeek,
-    ).toEqual(PlainDate.fromISODate('2021-10-17'));
+    expect(PlainDate.fromISODate('2021-10-13').endOfWeek).toEqual(
+      PlainDate.fromISODate('2021-10-17')
+    );
   });
 });
 
 describe('`startOfMonth` getter', () => {
   it('returns a `PlainDate` object that represents the start of month', () => {
-    expect(
-      PlainDate.fromISODate('2021-10-13').startOfMonth,
-    ).toEqual(PlainDate.fromISODate('2021-10-01'));
+    expect(PlainDate.fromISODate('2021-10-13').startOfMonth).toEqual(
+      PlainDate.fromISODate('2021-10-01')
+    );
   });
 });
 
 describe('`endOfMonth` getter', () => {
   it('returns a `PlainDate` object that represents the end of month', () => {
-    expect(
-      PlainDate.fromISODate('2021-10-13').endOfMonth,
-    ).toEqual(PlainDate.fromISODate('2021-10-31'));
+    expect(PlainDate.fromISODate('2021-10-13').endOfMonth).toEqual(
+      PlainDate.fromISODate('2021-10-31')
+    );
   });
 });
 
@@ -207,7 +207,8 @@ describe('#format()', () => {
 
   it('returns formatted date with non-default locale', () => {
     const d = PlainDate.fromISODate('2021-10-20');
-    expect(d.format({ year: 'numeric', month: 'long' }, 'ru'))
-      .toBe('октябрь 2021 г.');
+    expect(d.format({ year: 'numeric', month: 'long' }, 'ru')).toBe(
+      'октябрь 2021 г.'
+    );
   });
 });

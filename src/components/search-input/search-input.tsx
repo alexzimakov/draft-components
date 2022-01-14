@@ -25,5 +25,5 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
         leadingAddOn={leadingIcon}
       />
     );
-  },
+  }
 );

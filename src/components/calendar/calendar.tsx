@@ -42,9 +42,13 @@ export function Calendar({
   const isFocused = useRef(false);
   const gridRef = useRef<HTMLDivElement>(null);
   const headerId = useRef('');
-  const intl = useMemo(() => new Intl.DateTimeFormat(locale, {
-    weekday: 'short',
-  }), [locale]);
+  const intl = useMemo(
+    () =>
+      new Intl.DateTimeFormat(locale, {
+        weekday: 'short',
+      }),
+    [locale]
+  );
 
   useEffect(() => {
     if (gridRef.current && isFocused.current) {
@@ -100,7 +104,7 @@ export function Calendar({
         onBlur={() => {
           isFocused.current = false;
         }}
-        onKeyDown={event => {
+        onKeyDown={(event) => {
           let newFocusDate: PlainDate | null = null;
           if (event.key === KeyCode.arrowRight) {
             newFocusDate = focusDate.addDays(1);

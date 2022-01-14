@@ -13,9 +13,7 @@ it('renders without errors', () => {
   render(
     <Tabs selectedTabKey={TabKeys.DEVELOP} onSelectTab={jest.fn()}>
       <Tabs.List>
-        <Tabs.Tab tabKey={TabKeys.WORK}>
-          Work
-        </Tabs.Tab>
+        <Tabs.Tab tabKey={TabKeys.WORK}>Work</Tabs.Tab>
         <Tabs.Tab tabKey={TabKeys.DEVELOP} icon={<SvgIcon icon={hammer} />}>
           Develop
         </Tabs.Tab>
@@ -24,16 +22,14 @@ it('renders without errors', () => {
         </Tabs.Tab>
       </Tabs.List>
 
-      <Tabs.Panel associatedTabKey={TabKeys.WORK}>
-        Work tab content
-      </Tabs.Panel>
+      <Tabs.Panel associatedTabKey={TabKeys.WORK}>Work tab content</Tabs.Panel>
       <Tabs.Panel associatedTabKey={TabKeys.DEVELOP}>
         Develop tab content
       </Tabs.Panel>
       <Tabs.Panel associatedTabKey={TabKeys.GAMES}>
         Games tab content
       </Tabs.Panel>
-    </Tabs>,
+    </Tabs>
   );
 
   screen.getByRole('tablist');
@@ -59,16 +55,14 @@ it('can select tab using mouse', () => {
         <Tabs.Tab tabKey={TabKeys.GAMES}>Games</Tabs.Tab>
       </Tabs.List>
 
-      <Tabs.Panel associatedTabKey={TabKeys.WORK}>
-        Work tab content
-      </Tabs.Panel>
+      <Tabs.Panel associatedTabKey={TabKeys.WORK}>Work tab content</Tabs.Panel>
       <Tabs.Panel associatedTabKey={TabKeys.DEVELOP}>
         Develop tab content
       </Tabs.Panel>
       <Tabs.Panel associatedTabKey={TabKeys.GAMES}>
         Games tab content
       </Tabs.Panel>
-    </Tabs>,
+    </Tabs>
   );
 
   userEvent.click(screen.getByText('Games'));
@@ -92,16 +86,14 @@ it('can move focus between tabs using keyboard', () => {
         <Tabs.Tab tabKey={TabKeys.GAMES}>{TabKeys.GAMES}</Tabs.Tab>
       </Tabs.List>
 
-      <Tabs.Panel associatedTabKey={TabKeys.WORK}>
-        Work tab content
-      </Tabs.Panel>
+      <Tabs.Panel associatedTabKey={TabKeys.WORK}>Work tab content</Tabs.Panel>
       <Tabs.Panel associatedTabKey={TabKeys.DEVELOP}>
         Develop tab content
       </Tabs.Panel>
       <Tabs.Panel associatedTabKey={TabKeys.GAMES}>
         Games tab content
       </Tabs.Panel>
-    </Tabs>,
+    </Tabs>
   );
 
   userEvent.tab();

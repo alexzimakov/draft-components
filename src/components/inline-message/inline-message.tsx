@@ -12,8 +12,10 @@ export interface InlineMessageProps extends ComponentPropsWithoutRef<'small'> {
   shouldShowIcon?: boolean;
 }
 
-const inlineMessageIcons: Record<NonNullable<InlineMessageProps['appearance']>,
-  Icon> = {
+const inlineMessageIcons: Record<
+  NonNullable<InlineMessageProps['appearance']>,
+  Icon
+> = {
   error: exclamationCircleFill,
   warning: exclamationTriangleFill,
   success: checkCircleFill,
@@ -34,7 +36,7 @@ export function InlineMessage({
       className={classNames(
         className,
         'dc-inline-message',
-        `dc-inline-message_${appearance}`,
+        `dc-inline-message_${appearance}`
       )}
     >
       {shouldShowIcon ? (

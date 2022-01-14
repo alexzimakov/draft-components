@@ -28,16 +28,15 @@ export function DatePicker({
   const selectedDate = value ? PlainDate.fromISODate(value) : null;
 
   const currentDate = PlainDate.now();
-  const [focusDate, setFocusDate] = useState(selectedDate
-    ? selectedDate
-    : currentDate.startOfMonth,
+  const [focusDate, setFocusDate] = useState(
+    selectedDate ? selectedDate : currentDate.startOfMonth
   );
   const firstDate = focusDate.startOfMonth;
   const lastDate = focusDate.endOfMonth;
   const firstWeekday = firstDate.weekday;
   const lastWeekday = lastDate.weekday;
   const weeksCount = Math.ceil(
-    (firstWeekday + focusDate.lastDay) / PlainDate.DAYS_IN_WEEK,
+    (firstWeekday + focusDate.lastDay) / PlainDate.DAYS_IN_WEEK
   );
 
   const handleDayPick = (day: PlainDate) => {
@@ -68,22 +67,23 @@ export function DatePicker({
           isFocusable={date.equals(focusDate)}
           isSelected={selectedDate ? date.equals(selectedDate) : false}
           onPick={handleDayPick}
-        />,
+        />
       );
 
       date = date.addDays(1);
     }
 
     renderedWeeks.push(
-      <CalendarRow key={`week-${w}`}>{renderedDays}</CalendarRow>,
+      <CalendarRow key={`week-${w}`}>{renderedDays}</CalendarRow>
     );
   }
 
   useEffect(() => {
     if (value) {
-      setFocusDate((focusDate) => focusDate.toISOString() !== value
-        ? PlainDate.fromISODate(value)
-        : focusDate,
+      setFocusDate((focusDate) =>
+        focusDate.toISOString() !== value
+          ? PlainDate.fromISODate(value)
+          : focusDate
       );
     }
   }, [value]);
@@ -105,4 +105,3 @@ export function DatePicker({
     </div>
   );
 }
-

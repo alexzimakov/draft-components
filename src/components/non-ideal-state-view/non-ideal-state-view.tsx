@@ -32,7 +32,7 @@ export function NonIdealStateView({
       className={classNames(
         className,
         'dc-non-ideal-state',
-        `dc-non-ideal-state_spacing_${spacing}`,
+        `dc-non-ideal-state_spacing_${spacing}`
       )}
     >
       <div className="dc-non-ideal-state__body">
@@ -61,7 +61,7 @@ export function NonIdealStateView({
 }
 
 function getIcon(
-  icon: NonNullable<NonIdealStateViewProps['icon']>,
+  icon: NonNullable<NonIdealStateViewProps['icon']>
 ): JSX.Element {
   let modifier = '';
   let renderedIcon: JSX.Element;

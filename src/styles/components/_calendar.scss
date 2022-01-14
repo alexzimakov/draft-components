@@ -4,7 +4,6 @@ $_calendar-cell-gap: $gap-2x;
 $_calendar-cell-size: px-to-rem(30px);
 $_calendar-day-border: 1px dashed var(--dc-calendar-border-color);
 
-
 .dc-calendar {
   font-family: var(--dc-font-base);
 }
@@ -109,8 +108,10 @@ $_calendar-day-border: 1px dashed var(--dc-calendar-border-color);
   @include focus-ring;
 }
 
-.dc-calendar-day_range-preview-start:not(.dc-calendar-day_selected) .dc-calendar-day__btn,
-.dc-calendar-day_range-preview-end:not(.dc-calendar-day_selected) .dc-calendar-day__btn {
+.dc-calendar-day_range-preview-start:not(.dc-calendar-day_selected)
+  .dc-calendar-day__btn,
+.dc-calendar-day_range-preview-end:not(.dc-calendar-day_selected)
+  .dc-calendar-day__btn {
   border-color: var(--dc-calendar-border-color);
 }
 

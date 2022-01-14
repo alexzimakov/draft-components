@@ -22,7 +22,7 @@ it('renders without errors', () => {
       actions={<SearchInput placeholder={placeholder} />}
     >
       {content}
-    </NonIdealStateView>,
+    </NonIdealStateView>
   );
 
   screen.getByRole('img');
@@ -40,7 +40,7 @@ it('renders without errors when passed only heading', () => {
 
 it('renders with right icon', () => {
   const { rerender } = render(
-    <NonIdealStateView icon="info" heading={heading} />,
+    <NonIdealStateView icon="info" heading={heading} />
   );
 
   screen.getByTestId(`svg-icon-${infoCircle.name}`);
@@ -55,7 +55,7 @@ it('renders with right icon', () => {
   screen.getByTestId(`svg-icon-${exclamationTriangle.name}`);
 
   rerender(
-    <NonIdealStateView icon={<SvgIcon icon={search} />} heading={heading} />,
+    <NonIdealStateView icon={<SvgIcon icon={search} />} heading={heading} />
   );
   screen.getByTestId(`svg-icon-${search.name}`);
 });

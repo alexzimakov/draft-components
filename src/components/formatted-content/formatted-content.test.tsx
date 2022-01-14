@@ -32,7 +32,7 @@ it('renders without errors', () => {
       </FormattedContent.Subheadline>
       <FormattedContent.Footnote>{content.footnote}</FormattedContent.Footnote>
       <FormattedContent.Caption>{content.caption}</FormattedContent.Caption>
-    </>,
+    </>
   );
 
   screen.getByText(content.formatted);

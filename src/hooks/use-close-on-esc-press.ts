@@ -8,10 +8,7 @@ type CloseCallback = () => void;
 
 const callbackStack = new Stack<MutableRefObject<CloseCallback>>();
 
-export function useCloseOnEscPress(
-  onClose: CloseCallback,
-  isEnabled = true,
-) {
+export function useCloseOnEscPress(onClose: CloseCallback, isEnabled = true) {
   const savedCloseCallback = useRef(noop);
 
   useEffect(() => {

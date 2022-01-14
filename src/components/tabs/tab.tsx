@@ -41,13 +41,16 @@ export function Tab({
       id={getTabId(tabKey, id)}
       name={tabKey}
       className={classNames(
-        className, 'dc-tabs__tab', 'dc-tab', selected && 'dc-tab_selected',
+        className,
+        'dc-tabs__tab',
+        'dc-tab',
+        selected && 'dc-tab_selected'
       )}
       role="tab"
       aria-selected={selected}
       aria-controls={getTabPanelId(tabKey, ariaControls)}
       tabIndex={focused ? 0 : -1}
-      onClick={event => {
+      onClick={(event) => {
         selectTab(tabKey);
         isFunction(onClick) && onClick(event);
       }}

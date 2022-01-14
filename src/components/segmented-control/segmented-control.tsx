@@ -56,7 +56,7 @@ export function SegmentedControl<T extends SegmentId>({
       } else {
         nextSegment = Array.prototype.indexOf.call(
           event.currentTarget.children,
-          document.activeElement,
+          document.activeElement
         );
         if (code === KeyCode.arrowLeft) {
           nextSegment -= 1;
@@ -83,7 +83,7 @@ export function SegmentedControl<T extends SegmentId>({
       className={classNames(
         className,
         'dc-segmented-control',
-        `dc-segmented-control_size_${size}`,
+        `dc-segmented-control_size_${size}`
       )}
       role="radiogroup"
       onKeyDown={handleKeyDown}

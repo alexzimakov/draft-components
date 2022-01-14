@@ -2,8 +2,10 @@ import { ComponentPropsWithRef, forwardRef, ReactNode, useState } from 'react';
 import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
 
-export type TextInputHtmlAttrs = Omit<ComponentPropsWithRef<'input'>,
-  'checked' | 'defaultChecked' | 'size'>;
+export type TextInputHtmlAttrs = Omit<
+  ComponentPropsWithRef<'input'>,
+  'checked' | 'defaultChecked' | 'size'
+>;
 
 export const textInputTypes = new Set([
   'email',
@@ -46,7 +48,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       onChangeValue,
       ...props
     },
-    ref,
+    ref
   ) {
     const [focused, setFocused] = useState(false);
     return (
@@ -89,5 +91,5 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
         )}
       </div>
     );
-  },
+  }
 );

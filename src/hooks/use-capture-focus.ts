@@ -60,11 +60,10 @@ function captureFocus(
     shouldRestoreFocusAfterRelease,
     focusElementAfterCapture,
     focusElementAfterRelease,
-  }: CaptureFocusParams,
+  }: CaptureFocusParams
 ) {
-  const focusedElementBeforeCapture = (
-    lastFocusedElement || document.activeElement
-  );
+  const focusedElementBeforeCapture =
+    lastFocusedElement || document.activeElement;
 
   if (modalStack.isEmpty) {
     document.addEventListener('focus', handleFocus, true);
@@ -83,10 +82,11 @@ function captureFocus(
 
     if (focusElementAfterRelease) {
       attemptFocus(focusElementAfterRelease);
-    } else if (shouldRestoreFocusAfterRelease && (
-      document.activeElement == null ||
-      document.activeElement === document.body
-    )) {
+    } else if (
+      shouldRestoreFocusAfterRelease &&
+      (document.activeElement == null ||
+        document.activeElement === document.body)
+    ) {
       attemptFocus(focusedElementBeforeCapture);
     }
 
@@ -107,9 +107,10 @@ function handleFocus(event: FocusEvent) {
     } else {
       const firstFocusableDescendant = getFirstFocusableElement(modal);
       const lastFocusableDescendant = getLastFocusableElement(modal);
-      const nextFocusElement = lastFocusedElement === firstFocusableDescendant
-        ? lastFocusableDescendant
-        : firstFocusableDescendant;
+      const nextFocusElement =
+        lastFocusedElement === firstFocusableDescendant
+          ? lastFocusableDescendant
+          : firstFocusableDescendant;
       if (attemptFocus(nextFocusElement)) {
         lastFocusedElement = nextFocusElement;
       }

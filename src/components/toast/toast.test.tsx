@@ -17,7 +17,7 @@ it('renders without error', () => {
     >
       <Toast.Button>{cancelButtonText}</Toast.Button>
       <Toast.Button>{confirmButtonText}</Toast.Button>
-    </Toast>,
+    </Toast>
   );
 
   screen.getByText(message);

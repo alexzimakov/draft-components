@@ -79,9 +79,8 @@ export function DatePresetPickerPopover({
     });
     const startDate = intl.format(new Date(selectedDateRange.start));
     const endDate = intl.format(new Date(selectedDateRange.end));
-    formattedDateRange = startDate !== endDate
-      ? `${startDate} - ${endDate}`
-      : startDate;
+    formattedDateRange =
+      startDate !== endDate ? `${startDate} - ${endDate}` : startDate;
   }
 
   let formattedTimeZone = '';
@@ -128,19 +127,20 @@ export function DatePresetPickerPopover({
   }
 
   function handleConfirm(): void {
-    if (selectedOption && (
-      value == null ||
-      value.datePreset !== selectedOption.datePreset
-    )) {
+    if (
+      selectedOption &&
+      (value == null || value.datePreset !== selectedOption.datePreset)
+    ) {
       onChangeValue({
         datePreset: selectedOption.datePreset,
         dateRange: selectedOption.dateRange,
       });
-    } else if (selectedDateRange && (
-      value == null ||
-      value.dateRange.start !== selectedDateRange.start ||
-      value.dateRange.end !== selectedDateRange.end
-    )) {
+    } else if (
+      selectedDateRange &&
+      (value == null ||
+        value.dateRange.start !== selectedDateRange.start ||
+        value.dateRange.end !== selectedDateRange.end)
+    ) {
       onChangeValue({
         datePreset: '',
         dateRange: selectedDateRange,
@@ -172,24 +172,26 @@ export function DatePresetPickerPopover({
       isShown={isShown}
       position={position}
       alignment={alignment}
-      content={<DatePresetPicker
-        confirmButtonRef={confirmButtonRef}
-        locale={locale}
-        formattedDateRange={hideSelectedRange ? null : formattedDateRange}
-        formattedTimeZone={formattedTimeZone}
-        cancelButtonLabel={cancelButtonLabel}
-        confirmButtonLabel={confirmButtonLabel}
-        customDatePresetLabel={customDatePresetLabel}
-        disableActionButtons={disableActionButtons}
-        showLoadingIndicator={showLoadingIndicator}
-        options={options}
-        datePreset={selectionState.option?.datePreset || ''}
-        dateRange={selectionState.dateRange}
-        onChangeDatePreset={handleChangeDatePreset}
-        onChangeDateRange={handleChangeDateRange}
-        onCancel={closePopover}
-        onConfirm={handleConfirm}
-      />}
+      content={
+        <DatePresetPicker
+          confirmButtonRef={confirmButtonRef}
+          locale={locale}
+          formattedDateRange={hideSelectedRange ? null : formattedDateRange}
+          formattedTimeZone={formattedTimeZone}
+          cancelButtonLabel={cancelButtonLabel}
+          confirmButtonLabel={confirmButtonLabel}
+          customDatePresetLabel={customDatePresetLabel}
+          disableActionButtons={disableActionButtons}
+          showLoadingIndicator={showLoadingIndicator}
+          options={options}
+          datePreset={selectionState.option?.datePreset || ''}
+          dateRange={selectionState.dateRange}
+          onChangeDatePreset={handleChangeDatePreset}
+          onChangeDateRange={handleChangeDateRange}
+          onCancel={closePopover}
+          onConfirm={handleConfirm}
+        />
+      }
       focusElementRefAfterOpen={confirmButtonRef}
       onClose={closePopover}
     >
@@ -201,9 +203,10 @@ export function DatePresetPickerPopover({
         formattedDatePreset,
         formattedDateRange,
         formattedTimeZone,
-        formattedValue: formattedDatePreset && formattedDateRange
-          ? `${formattedDatePreset}: ${formattedDateRange}`
-          : formattedDateRange,
+        formattedValue:
+          formattedDatePreset && formattedDateRange
+            ? `${formattedDatePreset}: ${formattedDateRange}`
+            : formattedDateRange,
       })}
     </Popover>
   );

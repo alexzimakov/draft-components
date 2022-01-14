@@ -12,5 +12,5 @@ export const ToastButton = forwardRef<HTMLButtonElement, ToastButtonProps>(
         className={classNames(className, 'dc-toast-btn')}
       />
     );
-  },
+  }
 );

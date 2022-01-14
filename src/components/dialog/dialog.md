@@ -148,8 +148,8 @@ const closeNestedDialog = () => setIsNestedDialogOpen(false);
         </code>
         . The first paragraph is also contained inside the element that provides
         the dialog description, i.e., the element that is referenced by <code>
-        aria-describedby
-      </code>. With some screen readers, this may have one negative but relatively
+          aria-describedby
+        </code>. With some screen readers, this may have one negative but relatively
         insignificant side effect when the dialog opens -- the first paragraph may
         be announced twice. Nonetheless, making the first paragraph focusable and
         setting the initial focus on it is the most broadly accessible option.
