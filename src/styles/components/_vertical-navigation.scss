@@ -1,12 +1,14 @@
+@use '../abstracts' as dc;
+
 .dc-vertical-nav {
   font-family: var(--dc-font-base);
 }
 
 .dc-vertical-nav__header {
-  font-size: $font-size-xs;
-  font-weight: $font-weight-medium;
-  margin-bottom: $gap-2x;
-  padding-left: $gap-2x;
+  font-size: dc.$font-size-xs;
+  font-weight: dc.$font-weight-medium;
+  margin-bottom: dc.$gap-2x;
+  padding-left: dc.$gap-2x;
   letter-spacing: 0.075em;
   text-transform: uppercase;
   color: var(--dc-secondary-text-color);
@@ -19,41 +21,41 @@
 }
 
 .dc-vertical-nav__items > * + * {
-  margin-top: $gap-1x;
+  margin-top: dc.$gap-1x;
 }
 
 .dc-vertical-nav-item {
-  font-size: $font-size-base;
+  font-size: dc.$font-size-base;
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  height: px-to-rem(36px);
-  padding: 0 $gap-2x;
+  height: dc.px-to-rem(36px);
+  padding: 0 dc.$gap-2x;
   cursor: default;
   user-select: none;
   text-decoration: none;
   color: var(--dc-secondary-text-color);
-  border-radius: $border-radius-sm;
+  border-radius: dc.$border-radius-sm;
 }
 
 .dc-vertical-nav-item:focus {
   outline: none;
-  @include focus-ring;
+  @include dc.focus-ring;
 }
 
 .dc-vertical-nav-item:hover {
-  background: rgba($black, $opacity-5);
+  background: rgba(dc.$black, dc.$opacity-5);
 }
 
 .dc-vertical-nav-item_selected {
   color: var(--dc-primary-text-color);
-  background: rgba($black, $opacity-5);
+  background: rgba(dc.$black, dc.$opacity-5);
 }
 
 .dc-vertical-nav-item__icon {
   display: inline-flex;
   flex: none;
-  padding-right: $gap-2x;
+  padding-right: dc.$gap-2x;
 }
 
 .dc-vertical-nav-item__content {
@@ -67,5 +69,5 @@
 .dc-vertical-nav-item__badge {
   display: inline-flex;
   flex: none;
-  padding-left: $gap-1x;
+  padding-left: dc.$gap-1x;
 }

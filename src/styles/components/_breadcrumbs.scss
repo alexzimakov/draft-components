@@ -1,3 +1,5 @@
+@use '../abstracts' as dc;
+
 .dc-breadcrumbs {
   font-family: var(--dc-font-base);
   overflow-y: auto;
@@ -18,8 +20,8 @@
 }
 
 .dc-breadcrumbs__delimiter {
-  margin-right: $gap-4x;
-  margin-left: $gap-4x;
+  margin-right: dc.$gap-4x;
+  margin-left: dc.$gap-4x;
   color: var(--dc-breadcrumbs-delimiter-color);
 }
 
@@ -27,7 +29,7 @@
   font-family: inherit;
   display: inline-flex;
   align-items: center;
-  transition: $transition-quick;
+  transition: dc.$transition-quick;
   transition-property: color;
   text-decoration: none;
   color: var(--dc-breadcrumbs-item-color);
@@ -42,5 +44,5 @@
 }
 
 .dc-breadcrumbs-item__icon {
-  margin-right: $gap-2x;
+  margin-right: dc.$gap-2x;
 }

@@ -1,3 +1,5 @@
+@use '../abstracts' as dc;
+
 .dc-date-preset-picker-popover {
   max-width: initial;
   max-height: initial;
@@ -11,7 +13,7 @@
 }
 
 .dc-date-preset-picker__body > * + * {
-  margin-left: $gap-6x;
+  margin-left: dc.$gap-6x;
 }
 
 .dc-date-preset-picker_phone-view .dc-date-preset-picker__body {
@@ -19,7 +21,7 @@
 }
 
 .dc-date-preset-picker_phone-view .dc-date-preset-picker__body > * + * {
-  margin-top: $gap-4x;
+  margin-top: dc.$gap-4x;
   margin-left: 0;
 }
 
@@ -27,17 +29,17 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-top: $gap-4x;
-  padding-top: $gap-4x;
+  margin-top: dc.$gap-4x;
+  padding-top: dc.$gap-4x;
   border-top: 1px solid var(--dc-secondary-border-color);
 }
 
 .dc-date-preset-picker__footer > * + * {
-  margin-left: $gap-4x;
+  margin-left: dc.$gap-4x;
 }
 
 .dc-date-preset-picker__selection {
-  font-size: $font-size-xs;
+  font-size: dc.$font-size-xs;
   text-align: right;
 }
 
@@ -46,7 +48,7 @@
 }
 
 .dc-date-preset-picker__selection > small {
-  font-size: $font-size-2xs;
+  font-size: dc.$font-size-2xs;
   color: var(--dc-secondary-text-color);
 }
 
@@ -56,7 +58,7 @@
 }
 
 .dc-date-preset-picker__btns > * + * {
-  margin-left: $gap-2x;
+  margin-left: dc.$gap-2x;
 }
 
 .dc-date-preset-picker_phone-view .dc-date-preset-picker__footer {
@@ -67,7 +69,7 @@
 }
 
 .dc-date-preset-picker_phone-view .dc-date-preset-picker__footer > * + * {
-  margin-top: $gap-3x;
+  margin-top: dc.$gap-3x;
   margin-left: 0;
 }
 

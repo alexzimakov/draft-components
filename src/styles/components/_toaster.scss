@@ -1,8 +1,10 @@
+@use '../abstracts' as dc;
+
 .toaster {
   position: fixed;
-  z-index: $zindex-toast;
-  right: $gap-2x;
-  left: $gap-2x;
+  z-index: dc.$zindex-toast;
+  right: dc.$gap-2x;
+  left: dc.$gap-2x;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -13,13 +15,13 @@
 .toaster_position_top-left,
 .toaster_position_top-center,
 .toaster_position_top-right {
-  top: $gap-2x;
+  top: dc.$gap-2x;
 }
 
 .toaster_position_bottom-left,
 .toaster_position_bottom-center,
 .toaster_position_bottom-right {
-  bottom: $gap-2x;
+  bottom: dc.$gap-2x;
 }
 
 .toaster_position_top-left > *,
@@ -48,7 +50,7 @@
 .toaster__item {
   animation: 250ms ease forwards;
   pointer-events: all;
-  box-shadow: 0 0 0 1px $gray-600, $shadow-lg;
+  box-shadow: 0 0 0 1px dc.$gray-600, dc.$shadow-lg;
 }
 
 @keyframes dc-show-toast-from-top {

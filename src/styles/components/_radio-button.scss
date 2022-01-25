@@ -1,3 +1,5 @@
+@use '../abstracts' as dc;
+
 .dc-radio-btn {
   --dc-selection-control-size: var(--dc-radio-btn-size);
 }
@@ -7,7 +9,7 @@
 }
 
 .dc-radio-btn__input {
-  @include visually-hidden;
+  @include dc.visually-hidden;
 }
 
 .dc-radio-btn__radio {
@@ -42,7 +44,7 @@
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background: currentColor;
-  box-shadow: $shadow-xs;
+  box-shadow: dc.$shadow-xs;
 }
 
 .dc-radio-btn__input:focus + .dc-radio-btn__radio {

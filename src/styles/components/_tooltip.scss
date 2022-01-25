@@ -1,13 +1,15 @@
+@use '../abstracts' as dc;
+
 .dc-tooltip {
   font-family: var(--dc-font-base);
-  font-size: $font-size-sm;
-  line-height: $leading-normal;
+  font-size: dc.$font-size-sm;
+  line-height: dc.$leading-normal;
   display: inline-block;
   box-sizing: border-box;
   width: auto;
   max-width: 18rem;
-  padding: $gap-1x $gap-2x;
+  padding: dc.$gap-1x dc.$gap-2x;
   color: var(--dc-tooltip-text-color);
-  border-radius: $border-radius-sm;
+  border-radius: dc.$border-radius-sm;
   background: var(--dc-tooltip-bg-color);
 }

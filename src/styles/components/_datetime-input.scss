@@ -1,3 +1,5 @@
+@use '../abstracts' as dc;
+
 .dc-datetime-input {
   display: inline-block;
   border: none;
@@ -12,7 +14,7 @@
 
 .dc-datetime-input__body {
   width: auto;
-  padding: $gap-1x calc(var(--dc-input-gap) - #{px-to-rem(2px)});
+  padding: dc.$gap-1x calc(var(--dc-input-gap) - #{dc.px-to-rem(2px)});
 }
 
 .dc-datetime-input__group {
@@ -20,13 +22,13 @@
 }
 
 .dc-datetime-input__group + .dc-datetime-input__group {
-  margin-left: $gap-3x;
+  margin-left: dc.$gap-3x;
 }
 
 .dc-datetime-input__separator {
   display: inline-block;
-  padding: 0 px-to-rem(2px);
-  opacity: $opacity-50;
+  padding: 0 dc.px-to-rem(2px);
+  opacity: dc.$opacity-50;
 }
 
 .dc-date-component-input {
@@ -39,8 +41,8 @@
 }
 
 .dc-date-component-input > * {
-  padding: 0 px-to-rem(2px);
   font-variant-numeric: tabular-nums;
+  padding: 0 dc.px-to-rem(2px);
 }
 
 .dc-date-component-input > [aria-hidden='true'] {
@@ -58,7 +60,7 @@
   height: 100%;
   margin: 0;
   border: none;
-  border-radius: $border-radius-2xs;
+  border-radius: dc.$border-radius-2xs;
   background: none;
   appearance: none;
   -moz-appearance: textfield;
@@ -71,12 +73,12 @@
 }
 
 .dc-date-component-input > input::placeholder {
-  opacity: $opacity-40;
+  opacity: dc.$opacity-40;
   color: inherit;
 }
 
 .dc-date-component-input > input:focus {
-  color: $white;
+  color: dc.$white;
   outline: none;
   background: var(--dc-input-accent-color);
   caret-color: transparent;
@@ -88,5 +90,5 @@
 }
 
 .dc-date-component-input > input:focus::placeholder {
-  opacity: $opacity-80;
+  opacity: dc.$opacity-80;
 }

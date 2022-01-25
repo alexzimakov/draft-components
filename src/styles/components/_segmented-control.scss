@@ -1,20 +1,22 @@
+@use '../abstracts' as dc;
+
 .dc-segmented-control {
   position: relative;
   display: inline-flex;
   margin-top: 0;
   margin-bottom: 0;
-  padding: px-to-rem(1px) px-to-rem(2px);
+  padding: dc.px-to-rem(1px) dc.px-to-rem(2px);
   list-style: none;
-  border-radius: $border-radius-lg;
-  background: rgba($gray-900, $opacity-5);
+  border-radius: dc.$border-radius-lg;
+  background: rgba(dc.$gray-900, dc.$opacity-5);
 }
 
 .dc-segmented-control_size_sm {
-  border-radius: $border-radius-md;
+  border-radius: dc.$border-radius-md;
 }
 
 .dc-segmented-control_size_lg {
-  border-radius: $border-radius-xl;
+  border-radius: dc.$border-radius-xl;
 }
 
 .dc-segmented-control__radio-btn {

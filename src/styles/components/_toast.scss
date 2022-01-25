@@ -1,39 +1,41 @@
+@use '../abstracts' as dc;
+
 .dc-toast-btn {
-  font-size: $font-size-sm;
-  padding: $gap-1x $gap-3x;
+  font-size: dc.$font-size-sm;
+  padding: dc.$gap-1x dc.$gap-3x;
   cursor: pointer;
-  transition: $transition-quick;
+  transition: dc.$transition-quick;
   transition-property: opacity;
-  opacity: $opacity-65;
+  opacity: dc.$opacity-65;
   color: var(--dc-toast-btn-text-color);
   border: none;
-  border-radius: $border-radius-md;
+  border-radius: dc.$border-radius-md;
   background: var(--dc-toast-btn-bg);
   appearance: none;
 
   &:hover {
-    opacity: $opacity-100;
+    opacity: dc.$opacity-100;
   }
 
   &:focus {
-    opacity: $opacity-100;
+    opacity: dc.$opacity-100;
     outline: none;
-    box-shadow: 0 0 0 0.125rem $gray-500;
+    box-shadow: 0 0 0 0.125rem dc.$gray-500;
   }
 }
 
 .dc-toast {
   font-family: var(--dc-font-base);
-  font-size: $font-size-sm;
+  font-size: dc.$font-size-sm;
   position: relative;
   display: inline-flex;
   box-sizing: border-box;
   width: auto;
-  min-width: px-to-rem(256px);
-  max-width: px-to-rem(600px);
+  min-width: dc.px-to-rem(256px);
+  max-width: dc.px-to-rem(600px);
   text-align: left;
   color: var(--dc-toast-text-color);
-  border-radius: $border-radius-xl;
+  border-radius: dc.$border-radius-xl;
   background: var(--dc-toast-bg);
 }
 
@@ -50,45 +52,45 @@
 
 .dc-toast__body {
   flex: auto;
-  padding: $gap-4x;
+  padding: dc.$gap-4x;
 }
 
 .dc-toast__btns {
   flex: none;
   flex-direction: column;
-  padding: $gap-1x;
+  padding: dc.$gap-1x;
 }
 
 .dc-toast__btns > * + * {
-  margin-top: $gap-1x;
+  margin-top: dc.$gap-1x;
 }
 
 .dc-toast__icon {
-  margin-top: px-to-rem(2px);
-  margin-right: $gap-4x;
+  margin-top: dc.px-to-rem(2px);
+  margin-right: dc.$gap-4x;
 }
 
 .dc-toast_appearance_error .dc-toast__icon {
-  color: $red-500;
+  color: dc.$red-500;
 }
 
 .dc-toast_appearance_warning .dc-toast__icon {
-  color: $orange-500;
+  color: dc.$orange-500;
 }
 
 .dc-toast_appearance_success .dc-toast__icon {
-  color: $green-400;
+  color: dc.$green-400;
 }
 
 .dc-toast_appearance_info .dc-toast__icon {
-  color: $blue-400;
+  color: dc.$blue-400;
 }
 
 .dc-toast__message,
 .dc-toast__informative-text {
   font-size: inherit;
-  font-weight: $font-weight-normal;
-  line-height: $leading-normal;
+  font-weight: dc.$font-weight-normal;
+  line-height: dc.$leading-normal;
   margin: 0;
 }
 

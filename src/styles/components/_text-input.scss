@@ -1,3 +1,5 @@
+@use '../abstracts' as dc;
+
 .dc-text-input {
   display: inline-flex;
   align-items: center;
@@ -18,7 +20,7 @@
 }
 
 .dc-text-input__native-input::placeholder {
-  opacity: $opacity-40;
+  opacity: dc.$opacity-40;
   color: inherit;
 }
 

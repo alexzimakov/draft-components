@@ -1,32 +1,34 @@
+@use '../abstracts' as dc;
+
 .dc-tag {
-  --dc-tag-height: #{px-to-rem(26px)};
-  --dc-tag-color: #{$gray-700};
-  --dc-tag-fill-color: #{$gray-200};
+  --dc-tag-height: #{dc.px-to-rem(26px)};
+  --dc-tag-color: #{dc.$gray-700};
+  --dc-tag-fill-color: #{dc.$gray-200};
 }
 
 .dc-tag {
   font-family: var(--dc-font-base);
-  font-size: $font-size-sm;
-  font-weight: $font-weight-normal;
+  font-size: dc.$font-size-sm;
+  font-weight: dc.$font-weight-normal;
   line-height: 1;
   display: inline-flex;
   align-items: center;
   min-height: var(--dc-tag-height);
-  padding: 0 $gap-3x;
+  padding: 0 dc.$gap-3x;
   color: var(--dc-tag-color);
-  border-radius: $border-radius-sm;
+  border-radius: dc.$border-radius-sm;
   background: var(--dc-tag-fill-color);
 }
 
 .dc-tag_size_sm {
-  font-size: $font-size-xs;
-  --dc-tag-height: #{px-to-rem(24px)};
+  font-size: dc.$font-size-xs;
+  --dc-tag-height: #{dc.px-to-rem(24px)};
 }
 
 .dc-tag_size_lg {
-  font-size: $font-size-base;
-  border-radius: $border-radius-md;
-  --dc-tag-height: #{px-to-rem(28px)};
+  font-size: dc.$font-size-base;
+  border-radius: dc.$border-radius-md;
+  --dc-tag-height: #{dc.px-to-rem(28px)};
 }
 
 .dc-tag_rounded {
@@ -36,7 +38,7 @@
 }
 
 .dc-tag__icon {
-  margin-right: px-to-em(6px, 14px);
+  margin-right: dc.px-to-em(6px, 14px);
 }
 
 .dc-tag__text {
@@ -45,16 +47,16 @@
 .dc-tag__btn {
   display: inline-flex;
   box-sizing: border-box;
-  margin-left: px-to-em(6px, 14px);
+  margin-left: dc.px-to-em(6px, 14px);
   padding: 0;
   cursor: pointer;
-  transition: $transition-quick;
+  transition: dc.$transition-quick;
   transition-property: opacity;
   transform: translateY(0.05em);
-  opacity: $opacity-60;
+  opacity: dc.$opacity-60;
   color: inherit;
   border: none;
-  border-radius: px-to-rem(1px);
+  border-radius: dc.px-to-rem(1px);
   background: none;
   appearance: none;
 }
@@ -65,51 +67,51 @@
 }
 
 .dc-tag__btn:enabled:hover {
-  opacity: $opacity-100;
+  opacity: dc.$opacity-100;
 }
 
 .dc-tag:focus {
-  opacity: $opacity-100;
+  opacity: dc.$opacity-100;
   outline: none;
   box-shadow: 0 0 0 2px var(--dc-tag-fill-color), 0 0 0 4px currentColor;
 }
 
 .dc-tag_color_blue {
-  --dc-tag-color: #{$blue-800};
-  --dc-tag-fill-color: #{$blue-100};
+  --dc-tag-color: #{dc.$blue-800};
+  --dc-tag-fill-color: #{dc.$blue-100};
 }
 
 .dc-tag_color_cyan {
-  --dc-tag-color: #{$cyan-900};
-  --dc-tag-fill-color: #{$cyan-100};
+  --dc-tag-color: #{dc.$cyan-900};
+  --dc-tag-fill-color: #{dc.$cyan-100};
 }
 
 .dc-tag_color_red {
-  --dc-tag-color: #{$red-900};
-  --dc-tag-fill-color: #{$red-100};
+  --dc-tag-color: #{dc.$red-900};
+  --dc-tag-fill-color: #{dc.$red-100};
 }
 
 .dc-tag_color_green {
-  --dc-tag-color: #{$green-800};
-  --dc-tag-fill-color: #{$green-200};
+  --dc-tag-color: #{dc.$green-800};
+  --dc-tag-fill-color: #{dc.$green-200};
 }
 
 .dc-tag_color_lime {
-  --dc-tag-color: #{$lime-900};
-  --dc-tag-fill-color: #{$lime-100};
+  --dc-tag-color: #{dc.$lime-900};
+  --dc-tag-fill-color: #{dc.$lime-100};
 }
 
 .dc-tag_color_indigo {
-  --dc-tag-color: #{$indigo-900};
-  --dc-tag-fill-color: #{$indigo-100};
+  --dc-tag-color: #{dc.$indigo-900};
+  --dc-tag-fill-color: #{dc.$indigo-100};
 }
 
 .dc-tag_color_yellow {
-  --dc-tag-color: #{$yellow-900};
-  --dc-tag-fill-color: #{$yellow-100};
+  --dc-tag-color: #{dc.$yellow-900};
+  --dc-tag-fill-color: #{dc.$yellow-100};
 }
 
 .dc-tag_color_orange {
-  --dc-tag-color: #{$orange-900};
-  --dc-tag-fill-color: #{$orange-100};
+  --dc-tag-color: #{dc.$orange-900};
+  --dc-tag-fill-color: #{dc.$orange-100};
 }

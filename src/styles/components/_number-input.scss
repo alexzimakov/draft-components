@@ -1,3 +1,5 @@
+@use '../abstracts' as dc;
+
 .dc-number-input {
   display: inline-flex;
   align-items: center;
@@ -8,10 +10,10 @@
 }
 
 .dc-number-input > * + * {
-  margin-left: $gap-1x;
+  margin-left: dc.$gap-1x;
 }
 
 .dc-number-input__text-input {
   flex: auto;
-  width: px-to-rem(160px);
+  width: dc.px-to-rem(160px);
 }

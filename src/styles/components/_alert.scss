@@ -1,20 +1,22 @@
+@use '../abstracts' as dc;
+
 .dc-alert {
-  --dc-alert-bg-color: #{$gray-50};
-  --dc-alert-border-color: #{$gray-200};
-  --dc-alert-icon-color: #{$gray-400};
-  --dc-alert-primary-text-color: #{$gray-800};
-  --dc-alert-secondary-text-color: #{$gray-600};
+  --dc-alert-bg-color: #{dc.$gray-50};
+  --dc-alert-border-color: #{dc.$gray-200};
+  --dc-alert-icon-color: #{dc.$gray-400};
+  --dc-alert-primary-text-color: #{dc.$gray-800};
+  --dc-alert-secondary-text-color: #{dc.$gray-600};
 }
 
 .dc-alert {
   font-family: var(--dc-font-base);
-  font-weight: $font-weight-normal;
+  font-weight: dc.$font-weight-normal;
   position: relative;
   display: flex;
   box-sizing: border-box;
-  padding: $gap-3x $gap-4x;
+  padding: dc.$gap-3x dc.$gap-4x;
   border: 0.0625rem solid var(--dc-alert-border-color);
-  border-radius: $border-radius-md;
+  border-radius: dc.$border-radius-md;
   background: var(--dc-alert-bg-color);
 }
 
@@ -22,7 +24,7 @@
   flex-shrink: 0;
   width: 1.125rem;
   height: 1.125rem;
-  margin-right: $gap-3x;
+  margin-right: dc.$gap-3x;
   color: var(--dc-alert-icon-color);
 }
 
@@ -30,7 +32,7 @@
 }
 
 .dc-alert__heading {
-  font-weight: $font-weight-medium;
+  font-weight: dc.$font-weight-medium;
   line-height: 1.125rem;
   margin: 0;
   color: var(--dc-alert-primary-text-color);
@@ -46,12 +48,12 @@
     padding: 0 0 0 1em;
 
     li + li {
-      margin-top: $gap-1x;
+      margin-top: dc.$gap-1x;
     }
   }
 
   * + & {
-    margin-top: $gap-1x;
+    margin-top: dc.$gap-1x;
   }
 }
 
@@ -61,33 +63,33 @@
 }
 
 .dc-alert_appearance_warning {
-  --dc-alert-bg-color: #{$yellow-50};
-  --dc-alert-border-color: #{$yellow-200};
-  --dc-alert-icon-color: #{$yellow-600};
-  --dc-alert-primary-text-color: #{$yellow-900};
-  --dc-alert-secondary-text-color: #{$yellow-800};
+  --dc-alert-bg-color: #{dc.$yellow-50};
+  --dc-alert-border-color: #{dc.$yellow-200};
+  --dc-alert-icon-color: #{dc.$yellow-600};
+  --dc-alert-primary-text-color: #{dc.$yellow-900};
+  --dc-alert-secondary-text-color: #{dc.$yellow-800};
 }
 
 .dc-alert_appearance_error {
-  --dc-alert-bg-color: #{$red-50};
-  --dc-alert-border-color: #{$red-200};
-  --dc-alert-icon-color: #{$red-500};
-  --dc-alert-primary-text-color: #{$red-900};
-  --dc-alert-secondary-text-color: #{$red-800};
+  --dc-alert-bg-color: #{dc.$red-50};
+  --dc-alert-border-color: #{dc.$red-200};
+  --dc-alert-icon-color: #{dc.$red-500};
+  --dc-alert-primary-text-color: #{dc.$red-900};
+  --dc-alert-secondary-text-color: #{dc.$red-800};
 }
 
 .dc-alert_appearance_info {
-  --dc-alert-bg-color: #{$blue-50};
-  --dc-alert-border-color: #{$blue-200};
-  --dc-alert-icon-color: #{$blue-500};
-  --dc-alert-primary-text-color: #{$blue-800};
-  --dc-alert-secondary-text-color: #{$blue-700};
+  --dc-alert-bg-color: #{dc.$blue-50};
+  --dc-alert-border-color: #{dc.$blue-200};
+  --dc-alert-icon-color: #{dc.$blue-500};
+  --dc-alert-primary-text-color: #{dc.$blue-800};
+  --dc-alert-secondary-text-color: #{dc.$blue-700};
 }
 
 .dc-alert_appearance_success {
-  --dc-alert-bg-color: #{$green-100};
-  --dc-alert-border-color: #{$green-300};
-  --dc-alert-icon-color: #{$green-500};
-  --dc-alert-primary-text-color: #{$green-900};
-  --dc-alert-secondary-text-color: #{$green-800};
+  --dc-alert-bg-color: #{dc.$green-100};
+  --dc-alert-border-color: #{dc.$green-300};
+  --dc-alert-icon-color: #{dc.$green-500};
+  --dc-alert-primary-text-color: #{dc.$green-900};
+  --dc-alert-secondary-text-color: #{dc.$green-800};
 }

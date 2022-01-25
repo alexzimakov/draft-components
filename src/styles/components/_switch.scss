@@ -1,3 +1,5 @@
+@use '../abstracts' as dc;
+
 .dc-switch {
   --dc-selection-control-size: var(--dc-switch-width);
 }
@@ -7,7 +9,7 @@
 }
 
 .dc-switch__input {
-  @include visually-hidden;
+  @include dc.visually-hidden;
 }
 
 .dc-switch__check {
@@ -17,7 +19,7 @@
   width: var(--dc-switch-width);
   height: var(--dc-switch-height);
   cursor: pointer;
-  transition: $transition-quick;
+  transition: dc.$transition-quick;
   transition-property: border-color, background-color;
   border-radius: calc(var(--dc-switch-height) / 2);
   background: var(--dc-switch-bg);
@@ -38,7 +40,7 @@
   transition-property: transform, border-color;
   border-radius: 50%;
   background: var(--dc-input-accent-secondary-color);
-  box-shadow: $shadow-sm, $shadow-md;
+  box-shadow: dc.$shadow-sm, dc.$shadow-md;
 }
 
 .dc-switch__input:checked + .dc-switch__check {

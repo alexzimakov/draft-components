@@ -1,4 +1,6 @@
-$dc-scope-buttons-space: $gap-1x;
+@use '../abstracts' as dc;
+
+$dc-scope-buttons-space: dc.$gap-1x;
 
 .dc-scope-buttons {
   display: inline-flex;
@@ -29,7 +31,7 @@ $dc-scope-buttons-space: $gap-1x;
 }
 
 .dc-scope-buttons_bottom-pad {
-  padding-bottom: $gap-1x;
+  padding-bottom: dc.$gap-1x;
 }
 
 .dc-scope-buttons > .dc-scope-button + .dc-scope-button {

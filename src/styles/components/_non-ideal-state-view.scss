@@ -1,9 +1,11 @@
+@use '../abstracts' as dc;
+
 .dc-non-ideal-state {
   font-family: var(--dc-font-base);
-  font-size: $font-size-base;
+  font-size: dc.$font-size-base;
   box-sizing: border-box;
-  padding-right: $gap-4x;
-  padding-left: $gap-4x;
+  padding-right: dc.$gap-4x;
+  padding-left: dc.$gap-4x;
   text-align: center;
   color: var(--dc-non-ideal-state-text-color);
 }
@@ -14,7 +16,7 @@
 }
 
 .dc-non-ideal-state__icon {
-  margin-bottom: $gap-8x;
+  margin-bottom: dc.$gap-8x;
   color: var(--dc-non-ideal-state-icon-color);
 }
 
@@ -23,31 +25,31 @@
 }
 
 .dc-non-ideal-state__icon_red {
-  color: $red-500;
+  color: dc.$red-500;
 }
 
 .dc-non-ideal-state__icon_orange {
-  color: $orange-500;
+  color: dc.$orange-500;
 }
 
 .dc-non-ideal-state__icon_blue {
-  color: $blue-500;
+  color: dc.$blue-500;
 }
 
 .dc-non-ideal-state__icon_green {
-  color: $green-500;
+  color: dc.$green-500;
 }
 
 .dc-non-ideal-state__description {
-  margin-top: $gap-2x;
+  margin-top: dc.$gap-2x;
 }
 
 .dc-non-ideal-state__actions {
-  margin-top: $gap-4x;
+  margin-top: dc.$gap-4x;
 }
 
 .dc-non-ideal-state__content {
-  margin-top: $gap-4x;
+  margin-top: dc.$gap-4x;
 }
 
 .dc-non-ideal-state_spacing_none {
@@ -56,36 +58,36 @@
 }
 
 .dc-non-ideal-state_spacing_2xs {
-  padding-top: $gap-1x;
-  padding-bottom: $gap-1x;
+  padding-top: dc.$gap-1x;
+  padding-bottom: dc.$gap-1x;
 }
 
 .dc-non-ideal-state_spacing_xs {
-  padding-top: $gap-2x;
-  padding-bottom: $gap-2x;
+  padding-top: dc.$gap-2x;
+  padding-bottom: dc.$gap-2x;
 }
 
 .dc-non-ideal-state_spacing_sm {
-  padding-top: $gap-4x;
-  padding-bottom: $gap-4x;
+  padding-top: dc.$gap-4x;
+  padding-bottom: dc.$gap-4x;
 }
 
 .dc-non-ideal-state_spacing_md {
-  padding-top: $gap-8x;
-  padding-bottom: $gap-8x;
+  padding-top: dc.$gap-8x;
+  padding-bottom: dc.$gap-8x;
 }
 
 .dc-non-ideal-state_spacing_lg {
-  padding-top: $gap-16x;
-  padding-bottom: $gap-16x;
+  padding-top: dc.$gap-16x;
+  padding-bottom: dc.$gap-16x;
 }
 
 .dc-non-ideal-state_spacing_xl {
-  padding-top: $gap-20x;
-  padding-bottom: $gap-20x;
+  padding-top: dc.$gap-20x;
+  padding-bottom: dc.$gap-20x;
 }
 
 .dc-non-ideal-state_spacing_2xl {
-  padding-top: $gap-24x;
-  padding-bottom: $gap-24x;
+  padding-top: dc.$gap-24x;
+  padding-bottom: dc.$gap-24x;
 }

@@ -1,11 +1,14 @@
+@use '../abstracts' as dc;
+
 .dc-label {
-  font-weight: $font-weight-medium;
+  font-weight: dc.$font-weight-medium;
   position: relative;
+  display: inline-block;
   color: var(--dc-label-text-color);
 }
 
 .dc-label_required::after {
-  padding-left: $gap-1x;
+  padding-left: dc.$gap-1x;
   content: '*';
   color: var(--dc-label-required-mark-color);
 }

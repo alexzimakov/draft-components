@@ -1,3 +1,5 @@
+@use '../abstracts' as dc;
+
 .dc-table-container {
   position: relative;
   overflow-x: auto;
@@ -7,19 +9,19 @@
 
   &:focus {
     outline: none;
-    @include focus-ring;
+    @include dc.focus-ring;
   }
 }
 
 .dc-table {
   font-family: var(--dc-font-base);
-  font-size: $font-size-sm;
-  font-weight: $font-weight-normal;
+  font-size: dc.$font-size-sm;
+  font-weight: dc.$font-weight-normal;
+  font-variant-numeric: tabular-nums;
   width: 100%;
   height: auto;
   border-spacing: 0;
   border-collapse: separate;
-  font-variant-numeric: tabular-nums;
 }
 
 .dc-table-head {
@@ -35,33 +37,33 @@
 }
 
 .dc-table-cell {
-  padding: px-to-rem(10px);
+  padding: dc.px-to-rem(10px);
   border-bottom: var(--dc-table-border);
   background: var(--dc-table-cell-bg);
 
   .dc-table-head & {
     font-size: 90%;
-    padding-top: px-to-rem(8px);
-    padding-bottom: px-to-rem(8px);
+    padding-top: dc.px-to-rem(8px);
+    padding-bottom: dc.px-to-rem(8px);
     white-space: nowrap;
   }
 
   .dc-table_padding_lg & {
-    padding: px-to-rem(14px);
+    padding: dc.px-to-rem(14px);
   }
 
   .dc-table_padding_lg .dc-table-head & {
-    padding-top: px-to-rem(12px);
-    padding-bottom: px-to-rem(12px);
+    padding-top: dc.px-to-rem(12px);
+    padding-bottom: dc.px-to-rem(12px);
   }
 
   .dc-table_padding_sm & {
-    padding: px-to-rem(8px);
+    padding: dc.px-to-rem(8px);
   }
 }
 
 .dc-table-cell_header {
-  font-weight: $font-weight-medium;
+  font-weight: dc.$font-weight-medium;
   background: var(--dc-table-header-cell-bg);
 }
 
@@ -71,11 +73,11 @@
 }
 
 .dc-table-cell__sort-btn {
-  margin-right: $gap-2x;
+  margin-right: dc.$gap-2x;
 }
 
 .dc-table-sort-btn .dc-btn__text {
-  @include visually-hidden;
+  @include dc.visually-hidden;
 }
 
 .dc-table_sticky-header > .dc-table-head > .dc-table-row > .dc-table-cell {
@@ -149,7 +151,7 @@
     max-height: 100%;
     content: '';
     animation: shine 2s infinite linear;
-    border-radius: $border-radius-2xs;
+    border-radius: dc.$border-radius-2xs;
     background-color: var(--dc-skeleton-bg-color);
     background-image: linear-gradient(
       90deg,

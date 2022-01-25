@@ -1,8 +1,10 @@
+@use '../abstracts' as dc;
+
 .dc-btn {
   font-family: var(--dc-font-base);
-  font-size: $font-size-sm;
-  font-weight: $font-weight-medium;
-  line-height: $leading-default;
+  font-size: dc.$font-size-sm;
+  font-weight: dc.$font-weight-medium;
+  line-height: dc.$leading-default;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -12,25 +14,25 @@
   min-width: var(--dc-btn-height);
   max-width: 100%;
   min-height: var(--dc-btn-height);
-  padding: 0 $gap-3x;
+  padding: 0 dc.$gap-3x;
   cursor: pointer;
   user-select: none;
-  transition: $transition-quick;
+  transition: dc.$transition-quick;
   transition-property: opacity, background-color;
   text-decoration: none;
-  letter-spacing: $tracking-tight;
+  letter-spacing: dc.$tracking-tight;
   color: var(--dc-btn-text-color);
   border: 1px solid var(--dc-btn-border-color);
-  border-radius: $border-radius-md;
+  border-radius: dc.$border-radius-md;
   background: var(--dc-btn-bg);
-  box-shadow: 0 1px 2px #{rgba($black, $opacity-5)};
+  box-shadow: 0 1px 2px #{rgba(dc.$black, dc.$opacity-5)};
 }
 
 .dc-btn:focus {
   border-color: var(--dc-btn-border-color-focus);
   outline: none;
   box-shadow: (
-    0 1px 2px #{rgba($black, $opacity-5)},
+    0 1px 2px #{rgba(dc.$black, dc.$opacity-5)},
     0 0 0 3px var(--dc-btn-focus-ring-color)
   );
 }
@@ -50,20 +52,20 @@
 }
 
 .dc-btn > * + * {
-  margin-left: $gap-2x;
+  margin-left: dc.$gap-2x;
 }
 
 .dc-btn_size_xs,
 .dc-btn_size_sm {
-  font-size: $font-size-xs;
+  font-size: dc.$font-size-xs;
 
-  border-radius: $border-radius-sm;
+  border-radius: dc.$border-radius-sm;
   --dc-btn-height: var(--dc-control-xs-h);
 }
 
 .dc-btn_size_xs {
-  padding-right: $gap-2x;
-  padding-left: $gap-2x;
+  padding-right: dc.$gap-2x;
+  padding-left: dc.$gap-2x;
 }
 
 .dc-btn_size_sm {
@@ -71,11 +73,11 @@
 }
 
 .dc-btn_size_lg {
-  font-size: $font-size-base;
+  font-size: dc.$font-size-base;
 
-  padding-right: $gap-4x;
-  padding-left: $gap-4x;
-  border-radius: $border-radius-md;
+  padding-right: dc.$gap-4x;
+  padding-left: dc.$gap-4x;
+  border-radius: dc.$border-radius-md;
   --dc-btn-height: var(--dc-control-lg-h);
 }
 

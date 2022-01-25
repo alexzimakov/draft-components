@@ -1,17 +1,19 @@
+@use '../abstracts' as dc;
+
 $margin-scale: (
   0: 0,
-  1: $gap-1x,
-  2: $gap-2x,
-  3: $gap-3x,
-  4: $gap-4x,
-  5: $gap-5x,
-  6: $gap-6x,
-  8: $gap-8x,
-  10: $gap-10x,
-  12: $gap-12x,
-  16: $gap-16x,
-  20: $gap-20x,
-  24: $gap-24x,
+  1: dc.$gap-1x,
+  2: dc.$gap-2x,
+  3: dc.$gap-3x,
+  4: dc.$gap-4x,
+  5: dc.$gap-5x,
+  6: dc.$gap-6x,
+  8: dc.$gap-8x,
+  10: dc.$gap-10x,
+  12: dc.$gap-12x,
+  16: dc.$gap-16x,
+  20: dc.$gap-20x,
+  24: dc.$gap-24x,
 );
 
 @each $scale, $margin in $margin-scale {
