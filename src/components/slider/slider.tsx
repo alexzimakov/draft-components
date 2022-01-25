@@ -1,13 +1,23 @@
-import { ChangeEvent, ComponentPropsWithoutRef, useCallback } from 'react';
+import {
+  ChangeEventHandler,
+  ComponentPropsWithoutRef,
+  ReactNode,
+  useCallback,
+  useRef,
+} from 'react';
+import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
+import { uniqueId } from '../../lib/util';
 
 export interface SliderProps extends ComponentPropsWithoutRef<'input'> {
+  thumb?: 'round' | 'rect';
+  numberOfTickMarks?: number;
+  step?: number;
   min?: number;
   max?: number;
-  step?: number;
-  thumbStyle?: 'round' | 'rect';
-  tickMarksCount?: number;
   value: number;
+
+  renderTickMarkLabel?(at: number): ReactNode;
   onChangeValue(value: number): void;
 }
 
@@ -16,56 +26,84 @@ export function Slider({
   className,
   disabled,
   readOnly,
+  thumb = 'round',
+  numberOfTickMarks = 0,
+  step = 1,
   min = 0,
   max = 100,
-  step = 1,
-  thumbStyle = 'round',
-  tickMarksCount,
-  value,
+  value = 0,
+  renderTickMarkLabel,
   onChangeValue,
   ...props
 }: SliderProps) {
-  const handleChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      onChangeValue(Number(event.target.value));
-    },
+  const id = useRef(props.id);
+  if (!id.current) {
+    id.current = uniqueId('slider_');
+  }
+
+  const handleChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
+    (event) => onChangeValue(Number(event.target.value)),
     [onChangeValue]
   );
 
+  const valuePercent = `${((value - min) / (max - min)) * 100}%`;
+  const background = `linear-gradient(
+    to right,
+    var(--dc-slider-fill-track-bg) 0%,
+    var(--dc-slider-fill-track-bg) ${valuePercent},
+    var(--dc-slider-track-bg) ${valuePercent},
+    var(--dc-slider-track-bg) ${valuePercent}
+  )`;
   return (
     <div
       style={style}
-      className={classNames(className, 'dc-slider', {
-        'dc-slider_readOnly': readOnly,
-        'dc-slider_disabled': disabled,
-      })}
-    >
-      {tickMarksCount && tickMarksCount > 2 ? (
-        <div className="dc-slider__tick_marks">
-          {Array.from({ length: tickMarksCount }).map((_, index) => (
-            <span key={index} />
-          ))}
-        </div>
-      ) : (
-        <div
-          style={{ width: `${((value - min) / (max - min)) * 100}%` }}
-          className="dc-slider__fill-track"
-        />
+      className={classNames(
+        'dc-slider',
+        thumb && `dc-slider_thumb_${thumb}`,
+        disabled && 'dc-slider_disabled',
+        className
       )}
+    >
       <input
         {...props}
-        className={classNames(
-          'dc-slider__input',
-          thumbStyle && `dc-slider__input_thumb_style_${thumbStyle}`
-        )}
+        id={id.current ?? uniqueId('slider_')}
+        style={{ background }}
+        className="dc-slider__input"
         type="range"
         min={min}
         max={max}
         step={step}
-        disabled={disabled || readOnly}
         value={value}
+        disabled={disabled}
+        readOnly={readOnly}
         onChange={handleChange}
       />
+      <SliderTickMarks
+        numberOfTickMarks={numberOfTickMarks}
+        renderTickMarkLabel={renderTickMarkLabel}
+      />
+    </div>
+  );
+}
+
+function SliderTickMarks(props: {
+  numberOfTickMarks: number;
+  renderTickMarkLabel: ((at: number) => ReactNode) | undefined;
+}) {
+  const { numberOfTickMarks, renderTickMarkLabel } = props;
+  const withLabel = isFunction(renderTickMarkLabel);
+  return (
+    <div className="dc-slider__tick-marks">
+      {Array.from({ length: numberOfTickMarks }).map((_, index) => {
+        const label = withLabel && renderTickMarkLabel(index);
+        return (
+          <div key={index} className="dc-slider-tick-mark">
+            {label && (
+              <span className="dc-slider-tick-mark__label">{label}</span>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }

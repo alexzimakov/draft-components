@@ -1,187 +1,193 @@
+@use '../abstracts' as dc;
+
 :root {
   /*------------------------------------*\
    #COMMON
   \*------------------------------------*/
-  --dc-font-base: #{$font-sans-serif};
-  --dc-font-code: #{$font-mono};
+  --dc-font-base: #{dc.$font-sans-serif};
+  --dc-font-code: #{dc.$font-mono};
 
-  --dc-primary-text-color: #{$gray-800};
-  --dc-secondary-text-color: #{$gray-500};
-  --dc-tertiary-text-color: #{$gray-400};
-  --dc-link-text-color: #{$blue-500};
-  --dc-error-text-color: #{$red-500};
-  --dc-warning-text-color: #{$orange-500};
-  --dc-info-text-color: #{$blue-500};
-  --dc-success-text-color: #{$green-500};
+  --dc-primary-text-color: #{dc.$gray-800};
+  --dc-secondary-text-color: #{dc.$gray-500};
+  --dc-tertiary-text-color: #{dc.$gray-400};
+  --dc-link-text-color: #{dc.$blue-500};
+  --dc-error-text-color: #{dc.$red-500};
+  --dc-warning-text-color: #{dc.$orange-500};
+  --dc-info-text-color: #{dc.$blue-500};
+  --dc-success-text-color: #{dc.$green-500};
 
-  --dc-primary-border-color: #{$gray-300};
-  --dc-secondary-border-color: #{$gray-200};
+  --dc-primary-border-color: #{dc.$gray-300};
+  --dc-secondary-border-color: #{dc.$gray-200};
 
-  --dc-primary-bg-color: #{$white};
-  --dc-secondary-bg-color: #{$gray-50};
-  --dc-tertiary-bg-color: #{$gray-100};
+  --dc-primary-bg-color: #{dc.$white};
+  --dc-secondary-bg-color: #{dc.$gray-50};
+  --dc-tertiary-bg-color: #{dc.$gray-100};
 
-  --dc-skeleton-color: #{$gray-100};
-  --dc-skeleton-bg-color: #{$gray-200};
+  --dc-skeleton-color: #{dc.$gray-100};
+  --dc-skeleton-bg-color: #{dc.$gray-200};
 
-  --dc-focus-border-color: #{$blue-500};
-  --dc-focus-ring-color: #{rgba($blue-500, $opacity-45)};
-  --dc-focus-ring-secondary-color: #{$white};
-  --dc-focus-danger-border-color: #{$red-500};
-  --dc-focus-danger-ring-color: #{rgba($red-500, $opacity-40)};
+  --dc-focus-border-color: #{dc.$blue-500};
+  --dc-focus-ring-color: #{rgba(dc.$blue-500, dc.$opacity-45)};
+  --dc-focus-ring-secondary-color: #{dc.$white};
+  --dc-focus-danger-border-color: #{dc.$red-500};
+  --dc-focus-danger-ring-color: #{rgba(dc.$red-500, dc.$opacity-40)};
 
-  --dc-zindex-base: #{$zindex-base};
-  --dc-zindex-sticky: #{$zindex-sticky};
-  --dc-zindex-fixed: #{$zindex-fixed};
-  --dc-zindex-overlay: #{$zindex-overlay};
+  --dc-zindex-base: #{dc.$zindex-base};
+  --dc-zindex-sticky: #{dc.$zindex-sticky};
+  --dc-zindex-fixed: #{dc.$zindex-fixed};
+  --dc-zindex-overlay: #{dc.$zindex-overlay};
 
-  --dc-disabled-state-opacity: #{$opacity-50};
+  --dc-disabled-state-opacity: #{dc.$opacity-50};
 
-  --dc-control-xs-h: #{px-to-rem(22px)};
-  --dc-control-sm-h: #{px-to-rem(28px)};
-  --dc-control-md-h: #{px-to-rem(32px)};
-  --dc-control-lg-h: #{px-to-rem(36px)};
+  --dc-control-xs-h: #{dc.px-to-rem(22px)};
+  --dc-control-sm-h: #{dc.px-to-rem(28px)};
+  --dc-control-md-h: #{dc.px-to-rem(32px)};
+  --dc-control-lg-h: #{dc.px-to-rem(36px)};
 
   /*------------------------------------*\
    #SCROLL BAR
   \*------------------------------------*/
-  --dc-scrollbar-track-bg-color: #{$gray-100};
-  --dc-scrollbar-track-bg-hover-color: #{$gray-200};
-  --dc-scrollbar-thumb-bg-color: #{$gray-300};
-  --dc-scrollbar-thumb-bg-hover-color: #{$gray-500};
+  --dc-scrollbar-track-bg-color: #{dc.$gray-100};
+  --dc-scrollbar-track-bg-hover-color: #{dc.$gray-200};
+  --dc-scrollbar-thumb-bg-color: #{dc.$gray-300};
+  --dc-scrollbar-thumb-bg-hover-color: #{dc.$gray-500};
 
   /*------------------------------------*\
    #BUTTONS
   \*------------------------------------*/
   --dc-btn-height: var(--dc-control-md-h);
-  --dc-btn-text-color: #{$gray-700};
-  --dc-btn-bg: #{$white};
-  --dc-btn-bg-hover: #{$gray-100};
-  --dc-btn-bg-active: #{$gray-200};
-  --dc-btn-border-color: #{$gray-200};
-  --dc-btn-border-color-focus: #{$gray-200};
+  --dc-btn-text-color: #{dc.$gray-700};
+  --dc-btn-bg: #{dc.$white};
+  --dc-btn-bg-hover: #{dc.$gray-100};
+  --dc-btn-bg-active: #{dc.$gray-200};
+  --dc-btn-border-color: #{dc.$gray-200};
+  --dc-btn-border-color-focus: #{dc.$gray-200};
   --dc-btn-focus-ring-color: var(--dc-focus-ring-color);
 
-  --dc-btn-secondary-text-color: #{$gray-700};
-  --dc-btn-secondary-bg: #{rgba($gray-500, $opacity-10)};
-  --dc-btn-secondary-bg-hover: #{rgba($gray-500, $opacity-15)};
-  --dc-btn-secondary-bg-active: #{rgba($gray-500, $opacity-20)};
-  --dc-btn-secondary-border-color: #{rgba($gray-500, $opacity-10)};
-  --dc-btn-secondary-border-color-focus: #{rgba($gray-500, $opacity-10)};
+  --dc-btn-secondary-text-color: #{dc.$gray-700};
+  --dc-btn-secondary-bg: #{rgba(dc.$gray-500, dc.$opacity-10)};
+  --dc-btn-secondary-bg-hover: #{rgba(dc.$gray-500, dc.$opacity-15)};
+  --dc-btn-secondary-bg-active: #{rgba(dc.$gray-500, dc.$opacity-20)};
+  --dc-btn-secondary-border-color: #{rgba(dc.$gray-500, dc.$opacity-10)};
+  --dc-btn-secondary-border-color-focus: #{rgba(dc.$gray-500, dc.$opacity-10)};
   --dc-btn-secondary-focus-ring-color: var(--dc-focus-ring-color);
 
-  --dc-btn-minimal-text-color: #{$gray-700};
-  --dc-btn-minimal-bg: #{rgba($gray-500, $opacity-0)};
-  --dc-btn-minimal-bg-hover: #{rgba($gray-500, $opacity-10)};
-  --dc-btn-minimal-bg-active: #{rgba($gray-500, $opacity-15)};
-  --dc-btn-minimal-border-color: #{rgba($gray-500, $opacity-0)};
-  --dc-btn-minimal-border-color-focus: #{rgba($gray-500, $opacity-0)};
+  --dc-btn-minimal-text-color: #{dc.$gray-700};
+  --dc-btn-minimal-bg: #{rgba(dc.$gray-500, dc.$opacity-0)};
+  --dc-btn-minimal-bg-hover: #{rgba(dc.$gray-500, dc.$opacity-10)};
+  --dc-btn-minimal-bg-active: #{rgba(dc.$gray-500, dc.$opacity-15)};
+  --dc-btn-minimal-border-color: #{rgba(dc.$gray-500, dc.$opacity-0)};
+  --dc-btn-minimal-border-color-focus: #{rgba(dc.$gray-500, dc.$opacity-0)};
   --dc-btn-minimal-focus-ring-color: var(--dc-focus-ring-color);
 
-  --dc-btn-primary-text-color: #{$white};
-  --dc-btn-primary-bg: #{$blue-500};
-  --dc-btn-primary-bg-hover: #{$blue-600};
-  --dc-btn-primary-bg-active: #{$blue-700};
-  --dc-btn-primary-border-color: #{$blue-500};
-  --dc-btn-primary-border-color-focus: #{$blue-600};
+  --dc-btn-primary-text-color: #{dc.$white};
+  --dc-btn-primary-bg: #{dc.$blue-500};
+  --dc-btn-primary-bg-hover: #{dc.$blue-600};
+  --dc-btn-primary-bg-active: #{dc.$blue-700};
+  --dc-btn-primary-border-color: #{dc.$blue-500};
+  --dc-btn-primary-border-color-focus: #{dc.$blue-600};
   --dc-btn-primary-focus-ring-color: var(--dc-focus-ring-color);
 
-  --dc-btn-danger-text-color: #{$white};
-  --dc-btn-danger-bg: #{$red-600};
-  --dc-btn-danger-bg-hover: #{$red-700};
-  --dc-btn-danger-bg-active: #{$red-800};
-  --dc-btn-danger-border-color: #{$red-600};
-  --dc-btn-danger-border-color-focus: #{$red-800};
-  --dc-btn-danger-focus-ring-color: #{rgba($red-600, $opacity-50)};
+  --dc-btn-danger-text-color: #{dc.$white};
+  --dc-btn-danger-bg: #{dc.$red-600};
+  --dc-btn-danger-bg-hover: #{dc.$red-700};
+  --dc-btn-danger-bg-active: #{dc.$red-800};
+  --dc-btn-danger-border-color: #{dc.$red-600};
+  --dc-btn-danger-border-color-focus: #{dc.$red-800};
+  --dc-btn-danger-focus-ring-color: #{rgba(dc.$red-600, dc.$opacity-50)};
 
-  --dc-btn-success-text-color: #{$white};
-  --dc-btn-success-bg: #{$green-500};
-  --dc-btn-success-bg-hover: #{$green-600};
-  --dc-btn-success-bg-active: #{$green-700};
-  --dc-btn-success-border-color: #{$green-500};
-  --dc-btn-success-border-color-focus: #{$green-600};
-  --dc-btn-success-focus-ring-color: #{rgba($green-500, $opacity-50)};
+  --dc-btn-success-text-color: #{dc.$white};
+  --dc-btn-success-bg: #{dc.$green-500};
+  --dc-btn-success-bg-hover: #{dc.$green-600};
+  --dc-btn-success-bg-active: #{dc.$green-700};
+  --dc-btn-success-border-color: #{dc.$green-500};
+  --dc-btn-success-border-color-focus: #{dc.$green-600};
+  --dc-btn-success-focus-ring-color: #{rgba(dc.$green-500, dc.$opacity-50)};
 
   /*------------------------------------*\
    #FORM INPUTS
   \*------------------------------------*/
-  --dc-input-text-color: #{$gray-800};
-  --dc-input-add-on-color: #{$gray-600};
-  --dc-input-border-color: #{$gray-300};
+  --dc-input-text-color: #{dc.$gray-800};
+  --dc-input-add-on-color: #{dc.$gray-600};
+  --dc-input-border-color: #{dc.$gray-300};
   --dc-input-border: 1px solid var(--dc-input-border-color);
-  --dc-input-bg: #{$white};
+  --dc-input-bg: #{dc.$white};
 
-  --dc-input-disabled-text-color: #{$gray-400};
-  --dc-input-disabled-add-on-color: #{$gray-400};
-  --dc-input-disabled-border-color: #{$gray-200};
-  --dc-input-disabled-bg: #{$gray-50};
+  --dc-input-disabled-text-color: #{dc.$gray-400};
+  --dc-input-disabled-add-on-color: #{dc.$gray-400};
+  --dc-input-disabled-border-color: #{dc.$gray-200};
+  --dc-input-disabled-bg: #{dc.$gray-50};
 
-  --dc-input-error-color: #{$red-600};
-  --dc-input-accent-color: #{$blue-500};
-  --dc-input-accent-secondary-color: #{$white};
+  --dc-input-error-color: #{dc.$red-600};
+  --dc-input-accent-color: #{dc.$blue-500};
+  --dc-input-accent-secondary-color: #{dc.$white};
 
-  --dc-input-width: #{px-to-rem(288px)};
+  --dc-input-width: #{dc.px-to-rem(288px)};
   --dc-input-height: var(--dc-control-md-h);
-  --dc-input-gap: #{px-to-em(12px)};
-  --dc-input-border-radius: #{$border-radius-xs};
-  --dc-input-font-size: #{$font-size-sm};
+  --dc-input-gap: #{dc.px-to-em(12px)};
+  --dc-input-border-radius: #{dc.$border-radius-xs};
+  --dc-input-font-size: #{dc.$font-size-sm};
 
-  --dc-textarea-leading: #{$leading-normal};
+  --dc-textarea-leading: #{dc.$leading-normal};
 
   /*------------------------------------*\
    #SELECTION CONTROLS
   \*------------------------------------*/
-  --dc-checkbox-size: #{px-to-rem(18px)};
+  --dc-checkbox-size: #{dc.px-to-rem(18px)};
 
-  --dc-radio-btn-size: #{px-to-rem(18px)};
+  --dc-radio-btn-size: #{dc.px-to-rem(18px)};
 
-  --dc-switch-check-size: #{px-to-rem(16px)};
-  --dc-switch-width: #{px-to-rem(32px)};
-  --dc-switch-height: #{px-to-rem(20px)};
-  --dc-switch-bg: #{$gray-200};
+  --dc-switch-check-size: #{dc.px-to-rem(16px)};
+  --dc-switch-width: #{dc.px-to-rem(32px)};
+  --dc-switch-height: #{dc.px-to-rem(20px)};
+  --dc-switch-bg: #{dc.$gray-200};
 
   /*------------------------------------*\
    #RADIO GROUP
   \*------------------------------------*/
-  --dc-radio-group-selection-color: #{$blue-500};
-  --dc-radio-group-border-color: #{rgba($black, $opacity-10)};
+  --dc-radio-group-selection-color: #{dc.$blue-500};
+  --dc-radio-group-border-color: #{rgba(dc.$black, dc.$opacity-10)};
 
   /*------------------------------------*\
    #SLIDER
   \*------------------------------------*/
-  --dc-slider-thumb-bg: #{$white};
-  --dc-slider-track-bg: #{$gray-400};
-  --dc-slider-fill-track-bg: #{$blue-500};
+  --dc-slider-thumb-width: 20px;
+  --dc-slider-thumb-height: 20px;
+  --dc-slider-track-height: 4px;
+  --dc-slider-thumb-bg: #{dc.$white};
+  --dc-slider-track-bg: #{dc.$gray-200};
+  --dc-slider-fill-track-bg: #{dc.$blue-500};
+  --dc-slider-tick-mark-color: #{dc.$gray-700};
 
   /*------------------------------------*\
    #DATE PICKER
   \*------------------------------------*/
-  --dc-calendar-text-color: #{$gray-800};
-  --dc-calendar-text-secondary-color: #{$gray-500};
-  --dc-calendar-border-color: #{$gray-500};
-  --dc-calendar-border-secondary-color: #{$gray-200};
-  --dc-calendar-arrow-color: #{$blue-600};
-  --dc-calendar-current-day-text-color: #{$orange-600};
-  --dc-calendar-selected-day-text-color: #{$white};
-  --dc-calendar-selected-day-bg-color: #{$blue-500};
+  --dc-calendar-text-color: #{dc.$gray-800};
+  --dc-calendar-text-secondary-color: #{dc.$gray-500};
+  --dc-calendar-border-color: #{dc.$gray-500};
+  --dc-calendar-border-secondary-color: #{dc.$gray-200};
+  --dc-calendar-arrow-color: #{dc.$blue-600};
+  --dc-calendar-current-day-text-color: #{dc.$orange-600};
+  --dc-calendar-selected-day-text-color: #{dc.$white};
+  --dc-calendar-selected-day-bg-color: #{dc.$blue-500};
 
   /*------------------------------------*\
    #DATE RANGE PICKER POPOVER
   \*------------------------------------*/
-  --dc-date-preset-btn-text-color: #{$gray-500};
+  --dc-date-preset-btn-text-color: #{dc.$gray-500};
   --dc-date-preset-btn-bg: none;
-  --dc-date-preset-phone-btn-text-color: #{$gray-800};
-  --dc-date-preset-phone-btn-bg: #{$gray-100};
-  --dc-date-preset-hover-btn-text-color: #{$gray-800};
-  --dc-date-preset-hover-btn-bg: #{$gray-100};
-  --dc-date-preset-selected-btn-text-color: #{$blue-700};
-  --dc-date-preset-selected-btn-bg: #{$blue-100};
+  --dc-date-preset-phone-btn-text-color: #{dc.$gray-800};
+  --dc-date-preset-phone-btn-bg: #{dc.$gray-100};
+  --dc-date-preset-hover-btn-text-color: #{dc.$gray-800};
+  --dc-date-preset-hover-btn-bg: #{dc.$gray-100};
+  --dc-date-preset-selected-btn-text-color: #{dc.$blue-700};
+  --dc-date-preset-selected-btn-bg: #{dc.$blue-100};
 
   /*------------------------------------*\
    #ACTIONS GROUP
   \*------------------------------------*/
-  --dc-actions-group-border: #{$gray-300};
-  --dc-actions-group-bg: #{$white};
+  --dc-actions-group-border: #{dc.$gray-300};
+  --dc-actions-group-bg: #{dc.$white};
 
   /*------------------------------------*\
    #NON IDEAL STATE VIEW
@@ -193,11 +199,11 @@
   /*------------------------------------*\
    #TOAST
   \*------------------------------------*/
-  --dc-toast-bg: #{$gray-700};
-  --dc-toast-text-color: #{$white};
-  --dc-toast-secondary-text-color: #{$gray-300};
-  --dc-toast-btn-bg: #{rgba($white, $opacity-10)};
-  --dc-toast-btn-text-color: #{$white};
+  --dc-toast-bg: #{dc.$gray-700};
+  --dc-toast-text-color: #{dc.$white};
+  --dc-toast-secondary-text-color: #{dc.$gray-300};
+  --dc-toast-btn-bg: #{rgba(dc.$white, dc.$opacity-10)};
+  --dc-toast-btn-text-color: #{dc.$white};
 
   /*------------------------------------*\
    #BREADCRUMBS
@@ -205,47 +211,47 @@
   --dc-breadcrumbs-item-color: var(--dc-secondary-text-color);
   --dc-breadcrumbs-item-hover-color: var(--dc-primary-text-color);
   --dc-breadcrumbs-selected-item-color: var(--dc-primary-text-color);
-  --dc-breadcrumbs-delimiter-color: #{$gray-400};
+  --dc-breadcrumbs-delimiter-color: #{dc.$gray-400};
 
   /*------------------------------------*\
    #SEGMENTED CONTROL
   \*------------------------------------*/
-  --dc-segmented-control-text-color: #{$gray-700};
-  --dc-segmented-control-text-color-active: #{$white};
-  --dc-segmented-control-border-color: #{rgba($gray-900, $opacity-15)};
-  --dc-segmented-control-border-focus: #{$blue-500};
-  --dc-segmented-control-separator-color: #{rgba($gray-900, $opacity-20)};
-  --dc-segmented-control-bg: #{rgba($gray-500, $opacity-5)};
-  --dc-segmented-control-bg-active: #{$blue-500};
+  --dc-segmented-control-text-color: #{dc.$gray-700};
+  --dc-segmented-control-text-color-active: #{dc.$white};
+  --dc-segmented-control-border-color: #{rgba(dc.$gray-900, dc.$opacity-15)};
+  --dc-segmented-control-border-focus: #{dc.$blue-500};
+  --dc-segmented-control-separator-color: #{rgba(dc.$gray-900, dc.$opacity-20)};
+  --dc-segmented-control-bg: #{rgba(dc.$gray-500, dc.$opacity-5)};
+  --dc-segmented-control-bg-active: #{dc.$blue-500};
 
   /*------------------------------------*\
    #TABS
   \*------------------------------------*/
-  --dc-tab-text-color: #{$gray-500};
-  --dc-tab-selected-text-color: #{$blue-500};
-  --dc-tab-badge-text-color: #{$white};
-  --dc-tab-badge-bg-color: #{$gray-300};
-  --dc-tab-badge-selected-text-color: #{$white};
-  --dc-tab-selected-badge-bg-color: #{$blue-500};
-  --dc-tab-pointer-color: #{$blue-500};
-  --dc-tabs-border-color: #{$gray-200};
+  --dc-tab-text-color: #{dc.$gray-500};
+  --dc-tab-selected-text-color: #{dc.$blue-500};
+  --dc-tab-badge-text-color: #{dc.$white};
+  --dc-tab-badge-bg-color: #{dc.$gray-300};
+  --dc-tab-badge-selected-text-color: #{dc.$white};
+  --dc-tab-selected-badge-bg-color: #{dc.$blue-500};
+  --dc-tab-pointer-color: #{dc.$blue-500};
+  --dc-tabs-border-color: #{dc.$gray-200};
 
   /*------------------------------------*\
    #LABEL
   \*------------------------------------*/
   --dc-label-text-color: var(--dc-primary-text-color);
-  --dc-label-required-mark-color: #{$red-600};
+  --dc-label-required-mark-color: #{dc.$red-600};
 
   /*------------------------------------*\
    #TOOLTIP
   \*------------------------------------*/
-  --dc-tooltip-bg-color: #{$gray-800};
-  --dc-tooltip-text-color: #{$gray-100};
+  --dc-tooltip-bg-color: #{dc.$gray-800};
+  --dc-tooltip-text-color: #{dc.$gray-100};
 
   /*------------------------------------*\
    #TABLE
   \*------------------------------------*/
-  --dc-table-border-color: #{rgba($gray-500, $opacity-25)};
+  --dc-table-border-color: #{rgba(dc.$gray-500, dc.$opacity-25)};
   --dc-table-border: 1px solid var(--dc-table-border-color);
   --dc-table-cell-bg: var(--dc-primary-bg-color);
   --dc-table-header-cell-bg: var(--dc-secondary-bg-color);
@@ -257,9 +263,9 @@
   /*------------------------------------*\
    #AVATAR
   \*------------------------------------*/
-  --dc-avatar-color: #{$white};
-  --dc-avatar-bg1-color: #{$gray-400};
-  --dc-avatar-bg2-color: #{$gray-500};
-  --dc-avatar-icon-color: #{$white};
-  --dc-avatar-icon-bg: linear-gradient(#{$gray-400}, #{$gray-500});
+  --dc-avatar-color: #{dc.$white};
+  --dc-avatar-bg1-color: #{dc.$gray-400};
+  --dc-avatar-bg2-color: #{dc.$gray-500};
+  --dc-avatar-icon-color: #{dc.$white};
+  --dc-avatar-icon-bg: linear-gradient(#{dc.$gray-400}, #{dc.$gray-500});
 }

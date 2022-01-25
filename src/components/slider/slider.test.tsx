@@ -7,8 +7,30 @@ it('renders without errors', () => {
 });
 
 it('renders without errors with tick marks', () => {
-  render(<Slider value={50} onChangeValue={jest.fn()} tickMarksCount={5} />);
+  render(<Slider value={50} onChangeValue={jest.fn()} numberOfTickMarks={5} />);
   screen.getByRole('slider');
+});
+
+it('renders tick mark lables', () => {
+  const tickLabel1 = 'Small';
+  const tickLabel2 = 'Large';
+  render(
+    <Slider
+      value={50}
+      onChangeValue={jest.fn()}
+      numberOfTickMarks={2}
+      renderTickMarkLabel={(index) => {
+        if (index === 0) {
+          return tickLabel1;
+        } else if (index === 1) {
+          return tickLabel2;
+        }
+      }}
+    />
+  );
+  screen.getByRole('slider');
+  screen.getByText(tickLabel1);
+  screen.getByText(tickLabel2);
 });
 
 it('invokes `onChangeValue` when value changes', () => {
