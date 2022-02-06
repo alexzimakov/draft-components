@@ -122,7 +122,8 @@
   background: var(--dc-table-selected-stiped-row-bg);
 }
 
-.dc-table_loading > .dc-table-body .dc-table-cell {
+.dc-table_loading > .dc-table-body .dc-table-cell,
+.dc-table-cell_loading {
   position: relative;
   color: transparent;
 
