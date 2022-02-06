@@ -7,6 +7,7 @@ export interface CalendarDayProps {
   isCurrent?: boolean;
   isFocusable?: boolean;
   isSelected?: boolean;
+  isDisabled?: boolean;
   isInRange?: boolean;
   isRangeStart?: boolean;
   isRangeEnd?: boolean;
@@ -23,6 +24,7 @@ export function CalendarDay({
   isCurrent,
   isFocusable,
   isSelected,
+  isDisabled,
   isInRange,
   isRangeStart,
   isRangeEnd,
@@ -40,6 +42,7 @@ export function CalendarDay({
         'dc-calendar-day',
         isCurrent && 'dc-calendar-day_current',
         isSelected && 'dc-calendar-day_selected',
+        isDisabled && 'dc-calendar-day_disabled',
         isInRange && 'dc-calendar-day_in-range',
         isRangeStart && 'dc-calendar-day_range-start',
         isRangeEnd && 'dc-calendar-day_range-end',
@@ -54,6 +57,7 @@ export function CalendarDay({
         className="dc-calendar-day__btn"
         tabIndex={isFocusable ? 0 : -1}
         aria-selected={isSelected}
+        disabled={isDisabled}
         onClick={() => onPick(date)}
         onMouseEnter={() => isFunction(onHover) && onHover(date)}
       >

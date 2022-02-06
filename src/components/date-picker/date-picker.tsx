@@ -11,6 +11,8 @@ export interface DatePickerProps {
   prevYearButtonLabel?: string;
   prevMonthButtonLabel?: string;
   footer?: ReactNode;
+  min?: ISODate;
+  max?: ISODate;
   value: ISODate | null;
   onChangeValue(isoDate: ISODate): void;
 }
@@ -22,12 +24,16 @@ export function DatePicker({
   prevYearButtonLabel,
   prevMonthButtonLabel,
   footer,
+  min,
+  max,
   value,
   onChangeValue,
 }: DatePickerProps) {
   const selectedDate = value ? PlainDate.fromISODate(value) : null;
 
   const currentDate = PlainDate.now();
+  const minDate = min ? PlainDate.fromISODate(min) : null;
+  const maxDate = max ? PlainDate.fromISODate(max) : null;
   const [focusDate, setFocusDate] = useState(
     selectedDate ? selectedDate : currentDate.startOfMonth
   );
@@ -66,6 +72,10 @@ export function DatePicker({
           isCurrent={date.equals(currentDate)}
           isFocusable={date.equals(focusDate)}
           isSelected={selectedDate ? date.equals(selectedDate) : false}
+          isDisabled={
+            (minDate != null && date.isBefore(minDate)) ||
+            (maxDate != null && date.isAfter(maxDate))
+          }
           onPick={handleDayPick}
         />
       );
@@ -96,6 +106,8 @@ export function DatePicker({
         nextMonthButtonLabel={nextMonthButtonLabel}
         prevYearButtonLabel={prevYearButtonLabel}
         prevMonthButtonLabel={prevMonthButtonLabel}
+        minDate={minDate}
+        maxDate={maxDate}
         focusDate={focusDate}
         onChangeFocusDate={setFocusDate}
       >

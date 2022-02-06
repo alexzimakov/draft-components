@@ -128,3 +128,40 @@ it('can select date using keyboard', () => {
   screen.getByText('October 2021');
   expect(screen.getByText('17')).toHaveFocus();
 });
+
+it('cannot pick disabled dates', () => {
+  const handleChangeValue = jest.fn();
+  render(
+    <DatePicker
+      locale="en"
+      min="2021-10-10"
+      max="2021-10-24"
+      value="2021-10-14"
+      onChangeValue={handleChangeValue}
+    />
+  );
+
+  // Move focus to the selected date.
+  userEvent.tab();
+  userEvent.tab();
+  userEvent.tab();
+  userEvent.tab();
+  userEvent.tab();
+  expect(screen.getByText('14')).toHaveFocus();
+
+  // Try to move focus to the previous week.
+  userEvent.keyboard('{ArrowUp}');
+  expect(screen.getByText('14')).toHaveFocus();
+
+  // Try to move focus to the 9th october.
+  userEvent.keyboard('{ArrowLeft}');
+  userEvent.keyboard('{ArrowLeft}');
+  userEvent.keyboard('{ArrowLeft}');
+  userEvent.keyboard('{ArrowLeft}');
+  userEvent.keyboard('{ArrowLeft}');
+  expect(screen.getByText('10')).toHaveFocus();
+
+  userEvent.click(screen.getByText('9'));
+  userEvent.click(screen.getByText('25'));
+  expect(handleChangeValue).not.toHaveBeenCalled();
+});

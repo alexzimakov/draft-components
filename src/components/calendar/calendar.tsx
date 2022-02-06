@@ -13,8 +13,10 @@ export interface CalendarProps {
   nextMonthButtonLabel?: string;
   prevYearButtonLabel?: string;
   prevMonthButtonLabel?: string;
-  children: ReactNode[];
+  minDate?: PlainDate | null;
+  maxDate?: PlainDate | null;
   focusDate: PlainDate;
+  children: ReactNode[];
   onChangeFocusDate(focusDate: PlainDate): void;
 }
 
@@ -35,8 +37,10 @@ export function Calendar({
   nextMonthButtonLabel,
   prevYearButtonLabel,
   prevMonthButtonLabel,
-  children,
+  minDate,
+  maxDate,
   focusDate,
+  children,
   onChangeFocusDate,
 }: CalendarProps) {
   const isFocused = useRef(false);
@@ -130,7 +134,12 @@ export function Calendar({
 
           if (newFocusDate) {
             event.preventDefault();
-            onChangeFocusDate(newFocusDate);
+            const isNewFocusDateDisabled =
+              (minDate != null && newFocusDate.isBefore(minDate)) ||
+              (maxDate != null && newFocusDate.isAfter(maxDate));
+            if (!isNewFocusDateDisabled) {
+              onChangeFocusDate(newFocusDate);
+            }
           }
         }}
       >

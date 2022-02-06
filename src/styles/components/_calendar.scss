@@ -175,3 +175,11 @@ $_calendar-day-border: 1px dashed var(--dc-calendar-border-color);
 .dc-calendar-day_selected .dc-calendar-day__btn:hover {
   border-color: var(--dc-calendar-selected-day-bg-color);
 }
+
+.dc-calendar-day_disabled {
+  opacity: var(--dc-disabled-state-opacity);
+}
+
+.dc-calendar-day_disabled > .dc-calendar-day__btn {
+  border-color: transparent;
+}
