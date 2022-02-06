@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 export type TableCellProps = ComponentPropsWithoutRef<'td'> & {
-  isLoading: boolean;
+  isLoading?: boolean;
 };
 
 export function TableCell({
