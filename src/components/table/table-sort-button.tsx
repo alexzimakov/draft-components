@@ -32,8 +32,8 @@ const orderIcons: Record<Order, Icon> = {
       />
     ),
   },
-  desc: {
-    name: 'sort-down',
+  asc: {
+    name: 'sort-asc',
     width: 16,
     height: 16,
     viewBox: '0 0 16 16',
@@ -44,8 +44,8 @@ const orderIcons: Record<Order, Icon> = {
       />
     ),
   },
-  asc: {
-    name: 'sort-up',
+  desc: {
+    name: 'sort-desc',
     width: 16,
     height: 16,
     viewBox: '0 0 16 16',

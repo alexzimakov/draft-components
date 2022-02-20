@@ -73,6 +73,14 @@
 }
 
 .dc-table-cell__sort-btn {
+  margin-left: dc.$gap-2x;
+}
+
+.dc-table-cell_header[align='right'] .dc-table-cell__body {
+  flex-direction: row-reverse;
+}
+
+.dc-table-cell_header[align='right'] .dc-table-cell__sort-btn {
   margin-right: dc.$gap-2x;
 }
 

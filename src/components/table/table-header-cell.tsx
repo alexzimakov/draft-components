@@ -39,6 +39,7 @@ export function TableHeaderCell({
       align={align}
     >
       <div className="dc-table-cell__body">
+        {children}
         {isSortable && (
           <TableSortButton
             className="dc-table-cell__sort-btn"
@@ -48,7 +49,6 @@ export function TableHeaderCell({
             renderLabel={renderSortButtonLabel}
           />
         )}
-        {children}
       </div>
     </th>
   );
