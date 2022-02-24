@@ -98,8 +98,12 @@
   border-bottom: none;
 }
 
-.dc-table_bordered .dc-table-cell + .dc-table-cell {
-  border-left: var(--dc-table-border);
+.dc-table_bordered .dc-table-cell {
+  border-right: var(--dc-table-border);
+}
+
+.dc-table_bordered .dc-table-cell:last-child {
+  border-right: none;
 }
 
 // noinspection CssMissingComma
