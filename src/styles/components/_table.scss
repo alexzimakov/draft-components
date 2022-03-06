@@ -37,6 +37,7 @@
 }
 
 .dc-table-cell {
+  box-sizing: border-box;
   padding: dc.px-to-rem(10px);
   border-bottom: var(--dc-table-border);
   background: var(--dc-table-cell-bg);
