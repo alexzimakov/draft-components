@@ -1,6 +1,12 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen, within } from '@testing-library/react';
+import { TableContainer } from './table-container';
 import { Table } from './table';
+import { TableHead } from './table-head';
+import { TableBody } from './table-body';
+import { TableRow } from './table-row';
+import { TableHeaderCell } from './table-header-cell';
+import { TableCell } from './table-cell';
 
 it('renders without errors', () => {
   const headers = ['Person', 'Age'];
@@ -12,26 +18,26 @@ it('renders without errors', () => {
   const expectedHeaderCellCount = headers.length;
   const expectedDataCellCount = rows.length * headers.length;
   render(
-    <Table.Container>
+    <TableContainer>
       <Table>
-        <Table.Head>
-          <Table.Row>
-            <Table.HeaderCell>{headers[0]}</Table.HeaderCell>
-            <Table.HeaderCell>{headers[1]}</Table.HeaderCell>
-          </Table.Row>
-        </Table.Head>
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>{rows[0][0]}</Table.Cell>
-            <Table.Cell>{rows[0][1]}</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>{rows[1][0]}</Table.Cell>
-            <Table.Cell>{rows[1][1]}</Table.Cell>
-          </Table.Row>
-        </Table.Body>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>{headers[0]}</TableHeaderCell>
+            <TableHeaderCell>{headers[1]}</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>{rows[0][0]}</TableCell>
+            <TableCell>{rows[0][1]}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>{rows[1][0]}</TableCell>
+            <TableCell>{rows[1][1]}</TableCell>
+          </TableRow>
+        </TableBody>
       </Table>
-    </Table.Container>
+    </TableContainer>
   );
 
   const tableContainer = screen.getByRole('group');
@@ -62,39 +68,39 @@ it('renders with sortable header cells', () => {
   const onChangeAgeOrder = jest.fn();
   render(
     <Table>
-      <Table.Head>
-        <Table.Row>
-          <Table.HeaderCell isSortable={true} onChangeOrder={onChangeIdOrder}>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell isSortable={true} onChangeOrder={onChangeIdOrder}>
             ID
-          </Table.HeaderCell>
-          <Table.HeaderCell
+          </TableHeaderCell>
+          <TableHeaderCell
             isSortable={true}
             order="asc"
             onChangeOrder={onChangePersonOrder}
           >
             Person
-          </Table.HeaderCell>
-          <Table.HeaderCell
+          </TableHeaderCell>
+          <TableHeaderCell
             isSortable={true}
             order="desc"
             onChangeOrder={onChangeAgeOrder}
           >
             Age
-          </Table.HeaderCell>
-        </Table.Row>
-      </Table.Head>
-      <Table.Body>
-        <Table.Row>
-          <Table.Cell>1</Table.Cell>
-          <Table.Cell>Chris</Table.Cell>
-          <Table.Cell>38</Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>1</Table.Cell>
-          <Table.Cell>Dennis</Table.Cell>
-          <Table.Cell>45</Table.Cell>
-        </Table.Row>
-      </Table.Body>
+          </TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell>1</TableCell>
+          <TableCell>Chris</TableCell>
+          <TableCell>38</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>1</TableCell>
+          <TableCell>Dennis</TableCell>
+          <TableCell>45</TableCell>
+        </TableRow>
+      </TableBody>
     </Table>
   );
 

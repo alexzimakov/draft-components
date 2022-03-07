@@ -1,10 +1,16 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
-export type TableHeadProps = ComponentPropsWithoutRef<'thead'>;
+export type TableHeadProps = ComponentPropsWithRef<'thead'>;
 
-export function TableHead({ className, ...props }: TableHeadProps) {
-  return (
-    <thead {...props} className={classNames(className, 'dc-table-head')} />
-  );
-}
+export const TableHead = forwardRef<HTMLTableSectionElement, TableHeadProps>(
+  function TableHead({ className, ...props }, ref) {
+    return (
+      <thead
+        {...props}
+        ref={ref}
+        className={classNames(className, 'dc-table-head')}
+      />
+    );
+  }
+);

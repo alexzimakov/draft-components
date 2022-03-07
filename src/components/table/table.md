@@ -1,5 +1,13 @@
 ```jsx
-import { Table } from '../table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+} from '../table';
 
 const headers = [
   { id: 'browser', label: 'Browser' },
@@ -39,36 +47,44 @@ const rows = [
   },
 ];
 
-<Table.Container>
+<TableContainer>
   <Table>
-    <Table.Head>
-      <Table.Row>
+    <TableHead>
+      <TableRow>
         {headers.map((header) => (
-          <Table.HeaderCell key={header.id} align={header.align}>
+          <TableHeaderCell key={header.id} align={header.align}>
             {header.label}
-          </Table.HeaderCell>
+          </TableHeaderCell>
         ))}
-      </Table.Row>
-    </Table.Head>
-    <Table.Body>
+      </TableRow>
+    </TableHead>
+    <TableBody>
       {rows.map((row, index) => (
-        <Table.Row key={index}>
+        <TableRow key={index}>
           {headers.map((header) => (
-            <Table.Cell key={header.id} align={header.align}>
+            <TableCell key={header.id} align={header.align}>
               {row[header.id]}
-            </Table.Cell>
+            </TableCell>
           ))}
-        </Table.Row>
+        </TableRow>
       ))}
-    </Table.Body>
+    </TableBody>
   </Table>
-</Table.Container>;
+</TableContainer>;
 ```
 
 Bordered
 
 ```jsx
-import { Table } from '../table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+} from '../table';
 
 const headers = [
   { id: 'browser', label: 'Browser' },
@@ -108,36 +124,44 @@ const rows = [
   },
 ];
 
-<Table.Container>
+<TableContainer>
   <Table isBordered={true}>
-    <Table.Head>
-      <Table.Row>
+    <TableHead>
+      <TableRow>
         {headers.map((header) => (
-          <Table.HeaderCell key={header.id} align={header.align}>
+          <TableHeaderCell key={header.id} align={header.align}>
             {header.label}
-          </Table.HeaderCell>
+          </TableHeaderCell>
         ))}
-      </Table.Row>
-    </Table.Head>
-    <Table.Body>
+      </TableRow>
+    </TableHead>
+    <TableBody>
       {rows.map((row, index) => (
-        <Table.Row key={index}>
+        <TableRow key={index}>
           {headers.map((header) => (
-            <Table.Cell key={header.id} align={header.align}>
+            <TableCell key={header.id} align={header.align}>
               {row[header.id]}
-            </Table.Cell>
+            </TableCell>
           ))}
-        </Table.Row>
+        </TableRow>
       ))}
-    </Table.Body>
+    </TableBody>
   </Table>
-</Table.Container>;
+</TableContainer>;
 ```
 
 Striped
 
 ```jsx
-import { Table } from '../table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+} from '../table';
 
 const headers = [
   { id: 'browser', label: 'Browser' },
@@ -177,30 +201,30 @@ const rows = [
   },
 ];
 
-<Table.Container>
+<TableContainer>
   <Table isStriped={true}>
-    <Table.Head>
-      <Table.Row>
+    <TableHead>
+      <TableRow>
         {headers.map((header) => (
-          <Table.HeaderCell key={header.id} align={header.align}>
+          <TableHeaderCell key={header.id} align={header.align}>
             {header.label}
-          </Table.HeaderCell>
+          </TableHeaderCell>
         ))}
-      </Table.Row>
-    </Table.Head>
-    <Table.Body>
+      </TableRow>
+    </TableHead>
+    <TableBody>
       {rows.map((row, index) => (
-        <Table.Row key={index}>
+        <TableRow key={index}>
           {headers.map((header) => (
-            <Table.Cell key={header.id} align={header.align}>
+            <TableCell key={header.id} align={header.align}>
               {row[header.id]}
-            </Table.Cell>
+            </TableCell>
           ))}
-        </Table.Row>
+        </TableRow>
       ))}
-    </Table.Body>
+    </TableBody>
   </Table>
-</Table.Container>;
+</TableContainer>;
 ```
 
 With sticky header
@@ -208,7 +232,15 @@ With sticky header
 > _It only works when for table container defined height!_
 
 ```jsx
-import { Table } from '../table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+} from '../table';
 
 const headers = [
   { id: 'browser', label: 'Browser' },
@@ -276,36 +308,44 @@ const rows = [
   },
 ];
 
-<Table.Container style={{ width: '100%', height: 272 }}>
+<TableContainer style={{ width: '100%', height: 272 }}>
   <Table hasStickyHeader={true} isBordered={true}>
-    <Table.Head>
-      <Table.Row>
+    <TableHead>
+      <TableRow>
         {headers.map((header) => (
-          <Table.HeaderCell key={header.id} align={header.align}>
+          <TableHeaderCell key={header.id} align={header.align}>
             {header.label}
-          </Table.HeaderCell>
+          </TableHeaderCell>
         ))}
-      </Table.Row>
-    </Table.Head>
-    <Table.Body>
+      </TableRow>
+    </TableHead>
+    <TableBody>
       {rows.map((row, index) => (
-        <Table.Row key={index}>
+        <TableRow key={index}>
           {headers.map((header) => (
-            <Table.Cell key={header.id} align={header.align}>
+            <TableCell key={header.id} align={header.align}>
               {row[header.id]}
-            </Table.Cell>
+            </TableCell>
           ))}
-        </Table.Row>
+        </TableRow>
       ))}
-    </Table.Body>
+    </TableBody>
   </Table>
-</Table.Container>;
+</TableContainer>;
 ```
 
 Selectable
 
 ```jsx
-import { Table } from '../table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+} from '../table';
 import { Checkbox } from '../checkbox';
 
 const [selectedRows, setSelectedRows] = React.useState(new Set());
@@ -350,11 +390,11 @@ const styles = {
   firstCell: { width: 18 },
 };
 
-<Table.Container>
+<TableContainer>
   <Table>
-    <Table.Head>
-      <Table.Row>
-        <Table.HeaderCell style={styles.firstCell}>
+    <TableHead>
+      <TableRow>
+        <TableHeaderCell style={styles.firstCell}>
           <Checkbox
             checked={selectedRows.size > 0}
             isMixed={selectedRows.size < rows.length}
@@ -368,20 +408,20 @@ const styles = {
               setSelectedRows(newSelectedRows);
             }}
           />
-        </Table.HeaderCell>
+        </TableHeaderCell>
         {headers.map((header) => (
-          <Table.HeaderCell key={header.id} align={header.align}>
+          <TableHeaderCell key={header.id} align={header.align}>
             {header.label}
-          </Table.HeaderCell>
+          </TableHeaderCell>
         ))}
-      </Table.Row>
-    </Table.Head>
-    <Table.Body>
+      </TableRow>
+    </TableHead>
+    <TableBody>
       {rows.map((row, index) => {
         const isSelected = selectedRows.has(row.browser);
         return (
-          <Table.Row key={index} isSelected={isSelected}>
-            <Table.Cell style={styles.firstCell}>
+          <TableRow key={index} isSelected={isSelected}>
+            <TableCell style={styles.firstCell}>
               <Checkbox
                 checked={isSelected}
                 onChange={() => {
@@ -394,24 +434,32 @@ const styles = {
                   setSelectedRows(newSelectedRows);
                 }}
               />
-            </Table.Cell>
+            </TableCell>
             {headers.map((header) => (
-              <Table.Cell key={header.id} align={header.align}>
+              <TableCell key={header.id} align={header.align}>
                 {row[header.id]}
-              </Table.Cell>
+              </TableCell>
             ))}
-          </Table.Row>
+          </TableRow>
         );
       })}
-    </Table.Body>
+    </TableBody>
   </Table>
-</Table.Container>;
+</TableContainer>;
 ```
 
 Loading
 
 ```jsx
-import { Table } from '../table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+} from '../table';
 
 const headers = [
   { id: 'browser', label: 'Browser' },
@@ -451,36 +499,44 @@ const rows = [
   },
 ];
 
-<Table.Container>
+<TableContainer>
   <Table isLoading={true}>
-    <Table.Head>
-      <Table.Row>
+    <TableHead>
+      <TableRow>
         {headers.map((header) => (
-          <Table.HeaderCell key={header.id} align={header.align}>
+          <TableHeaderCell key={header.id} align={header.align}>
             {header.label}
-          </Table.HeaderCell>
+          </TableHeaderCell>
         ))}
-      </Table.Row>
-    </Table.Head>
-    <Table.Body>
+      </TableRow>
+    </TableHead>
+    <TableBody>
       {rows.map((row, index) => (
-        <Table.Row key={index}>
+        <TableRow key={index}>
           {headers.map((header) => (
-            <Table.Cell key={header.id} align={header.align}>
+            <TableCell key={header.id} align={header.align}>
               {row[header.id]}
-            </Table.Cell>
+            </TableCell>
           ))}
-        </Table.Row>
+        </TableRow>
       ))}
-    </Table.Body>
+    </TableBody>
   </Table>
-</Table.Container>;
+</TableContainer>;
 ```
 
 Sortable
 
 ```jsx
-import { Table } from '../table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+} from '../table';
 
 const headers = [
   { id: 'browser', label: 'Browser' },
@@ -565,12 +621,12 @@ const getSortedRows = () => {
   return rowsCopy;
 };
 
-<Table.Container>
+<TableContainer>
   <Table shouldHighlightActiveRow={true}>
-    <Table.Head>
-      <Table.Row>
+    <TableHead>
+      <TableRow>
         {headers.map((header) => (
-          <Table.HeaderCell
+          <TableHeaderCell
             key={header.id}
             align={header.align}
             isSortable={header.isSortable}
@@ -578,29 +634,37 @@ const getSortedRows = () => {
             onChangeOrder={(order) => setSorting({ column: header.id, order })}
           >
             {header.label}
-          </Table.HeaderCell>
+          </TableHeaderCell>
         ))}
-      </Table.Row>
-    </Table.Head>
-    <Table.Body>
+      </TableRow>
+    </TableHead>
+    <TableBody>
       {getSortedRows().map((row, index) => (
-        <Table.Row key={index}>
+        <TableRow key={index}>
           {headers.map((header) => (
-            <Table.Cell key={header.id} align={header.align}>
+            <TableCell key={header.id} align={header.align}>
               {row[header.id]}
-            </Table.Cell>
+            </TableCell>
           ))}
-        </Table.Row>
+        </TableRow>
       ))}
-    </Table.Body>
+    </TableBody>
   </Table>
-</Table.Container>;
+</TableContainer>;
 ```
 
 `lg` cell padding
 
 ```jsx
-import { Table } from '../table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+} from '../table';
 
 const headers = [
   { id: 'browser', label: 'Browser' },
@@ -668,36 +732,44 @@ const rows = [
   },
 ];
 
-<Table.Container>
+<TableContainer>
   <Table shouldHighlightActiveRow={true} cellPadding="lg">
-    <Table.Head>
-      <Table.Row>
+    <TableHead>
+      <TableRow>
         {headers.map((header) => (
-          <Table.HeaderCell key={header.id} align={header.align}>
+          <TableHeaderCell key={header.id} align={header.align}>
             {header.label}
-          </Table.HeaderCell>
+          </TableHeaderCell>
         ))}
-      </Table.Row>
-    </Table.Head>
-    <Table.Body>
+      </TableRow>
+    </TableHead>
+    <TableBody>
       {rows.map((row, index) => (
-        <Table.Row key={index}>
+        <TableRow key={index}>
           {headers.map((header) => (
-            <Table.Cell key={header.id} align={header.align}>
+            <TableCell key={header.id} align={header.align}>
               {row[header.id]}
-            </Table.Cell>
+            </TableCell>
           ))}
-        </Table.Row>
+        </TableRow>
       ))}
-    </Table.Body>
+    </TableBody>
   </Table>
-</Table.Container>;
+</TableContainer>;
 ```
 
 `sm` cell padding
 
 ```jsx
-import { Table } from '../table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+} from '../table';
 
 const headers = [
   { id: 'browser', label: 'Browser' },
@@ -765,28 +837,28 @@ const rows = [
   },
 ];
 
-<Table.Container>
+<TableContainer>
   <Table shouldHighlightActiveRow={true} cellPadding="sm">
-    <Table.Head>
-      <Table.Row>
+    <TableHead>
+      <TableRow>
         {headers.map((header) => (
-          <Table.HeaderCell key={header.id} align={header.align}>
+          <TableHeaderCell key={header.id} align={header.align}>
             {header.label}
-          </Table.HeaderCell>
+          </TableHeaderCell>
         ))}
-      </Table.Row>
-    </Table.Head>
-    <Table.Body>
+      </TableRow>
+    </TableHead>
+    <TableBody>
       {rows.map((row, index) => (
-        <Table.Row key={index}>
+        <TableRow key={index}>
           {headers.map((header) => (
-            <Table.Cell key={header.id} align={header.align}>
+            <TableCell key={header.id} align={header.align}>
               {row[header.id]}
-            </Table.Cell>
+            </TableCell>
           ))}
-        </Table.Row>
+        </TableRow>
       ))}
-    </Table.Body>
+    </TableBody>
   </Table>
-</Table.Container>;
+</TableContainer>;
 ```

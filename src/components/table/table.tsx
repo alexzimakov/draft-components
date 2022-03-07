@@ -1,13 +1,7 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { TableContainer } from './table-container';
-import { TableHead } from './table-head';
-import { TableBody } from './table-body';
-import { TableRow } from './table-row';
-import { TableHeaderCell } from './table-header-cell';
-import { TableCell } from './table-cell';
 
-export interface TableProps extends ComponentPropsWithoutRef<'table'> {
+export interface TableProps extends ComponentPropsWithRef<'table'> {
   isLoading?: boolean;
   isBordered?: boolean;
   isStriped?: boolean;
@@ -16,20 +10,24 @@ export interface TableProps extends ComponentPropsWithoutRef<'table'> {
   shouldHighlightActiveRow?: boolean;
 }
 
-export function Table({
-  isLoading,
-  isBordered,
-  isStriped,
-  cellPadding,
-  hasStickyHeader,
-  shouldHighlightActiveRow,
-  className,
-  children,
-  ...props
-}: TableProps) {
+export const Table = forwardRef<HTMLTableElement, TableProps>(function Table(
+  {
+    isLoading,
+    isBordered,
+    isStriped,
+    cellPadding,
+    hasStickyHeader,
+    shouldHighlightActiveRow,
+    className,
+    children,
+    ...props
+  },
+  ref
+) {
   return (
     <table
       {...props}
+      ref={ref}
       className={classNames(className, 'dc-table', {
         'dc-table_loading': isLoading,
         'dc-table_bordered': isBordered,
@@ -43,11 +41,4 @@ export function Table({
       {children}
     </table>
   );
-}
-
-Table.Container = TableContainer;
-Table.Head = TableHead;
-Table.Body = TableBody;
-Table.Row = TableRow;
-Table.HeaderCell = TableHeaderCell;
-Table.Cell = TableCell;
+});

@@ -1,12 +1,18 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
-export type TableBodyProps = ComponentPropsWithoutRef<'tbody'>;
+export type TableBodyProps = ComponentPropsWithRef<'tbody'>;
 
-export function TableBody({ className, children, ...props }: TableBodyProps) {
-  return (
-    <tbody {...props} className={classNames(className, 'dc-table-body')}>
-      {children}
-    </tbody>
-  );
-}
+export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
+  function TableBody({ className, children, ...props }, ref) {
+    return (
+      <tbody
+        {...props}
+        ref={ref}
+        className={classNames(className, 'dc-table-body')}
+      >
+        {children}
+      </tbody>
+    );
+  }
+);

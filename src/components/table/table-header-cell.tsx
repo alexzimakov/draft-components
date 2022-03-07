@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import {
   Order,
@@ -6,7 +6,7 @@ import {
   TableSortButtonProps,
 } from './table-sort-button';
 
-export interface TableHeaderCellProps extends ComponentPropsWithoutRef<'th'> {
+export interface TableHeaderCellProps extends ComponentPropsWithRef<'th'> {
   isSortable?: boolean;
   order?: TableSortButtonProps['order'];
   onChangeOrder?: TableSortButtonProps['onSort'];
@@ -19,21 +19,28 @@ const ariaSortValues: Record<Order, TableHeaderCellProps['aria-sort']> = {
   desc: 'descending',
 };
 
-export function TableHeaderCell({
-  isSortable,
-  order = 'none',
-  renderSortButtonLabel,
-  onChangeOrder,
-  className,
-  role = 'columnheader',
-  align = 'left',
-  children,
-  ...props
-}: TableHeaderCellProps) {
+export const TableHeaderCell = forwardRef<
+  HTMLTableHeaderCellElement,
+  TableHeaderCellProps
+>(function TableHeaderCell(
+  {
+    isSortable,
+    order = 'none',
+    renderSortButtonLabel,
+    onChangeOrder,
+    className,
+    role = 'columnheader',
+    align = 'left',
+    children,
+    ...props
+  },
+  ref
+) {
   return (
     <th
       aria-sort={isSortable ? ariaSortValues[order] : undefined}
       {...props}
+      ref={ref}
       className={classNames(className, 'dc-table-cell', 'dc-table-cell_header')}
       role={role}
       align={align}
@@ -52,4 +59,4 @@ export function TableHeaderCell({
       </div>
     </th>
   );
-}
+});
