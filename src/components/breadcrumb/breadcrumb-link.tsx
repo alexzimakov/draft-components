@@ -1,9 +1,7 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
-type AnchorProps = ComponentPropsWithoutRef<'a'>;
-
-export type BreadcrumbsLinkProps = AnchorProps & {
+export type BreadcrumbLinkProps = ComponentPropsWithoutRef<'a'> & {
   selected?: boolean;
   icon?: ReactNode;
   children?: ReactNode;
@@ -21,7 +19,7 @@ export function BreadcrumbLink({
   selected,
   renderAs,
   ...props
-}: BreadcrumbsLinkProps) {
+}: BreadcrumbLinkProps) {
   const label = (
     <>
       {icon && <span className="dc-breadcrumb-link__icon">{icon}</span>}

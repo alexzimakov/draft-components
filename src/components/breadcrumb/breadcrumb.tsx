@@ -1,7 +1,7 @@
 import { Children, ComponentPropsWithoutRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
-export type BreadcrumbsProps = ComponentPropsWithoutRef<'nav'> & {
+export type BreadcrumbProps = ComponentPropsWithoutRef<'nav'> & {
   delimiter?: ReactNode;
   children: JSX.Element[];
 };
@@ -11,7 +11,7 @@ export function Breadcrumb({
   children,
   delimiter = '|',
   ...props
-}: BreadcrumbsProps) {
+}: BreadcrumbProps) {
   return (
     <nav {...props} className={classNames(className, 'dc-breadcrumb')}>
       <ul className="dc-breadcrumb__items">

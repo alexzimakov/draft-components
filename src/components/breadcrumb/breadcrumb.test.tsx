@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { Breadcrumb } from './breadcrumb';
-import { BreadcrumbLink, BreadcrumbsLinkProps } from './breadcrumb-link';
+import { BreadcrumbLink, BreadcrumbLinkProps } from './breadcrumb-link';
 import { SvgIcon } from '../svg-icon';
 import { houseFill } from '../../bootstrap-icons/house-fill';
 
@@ -26,7 +26,7 @@ it('renders without errors', () => {
 });
 
 it('should render item using custom renderer', () => {
-  const renderLink: BreadcrumbsLinkProps['renderAs'] = ({
+  const renderLink: BreadcrumbLinkProps['renderAs'] = ({
     className,
     children,
   }) => <button className={className}>{children}</button>;
