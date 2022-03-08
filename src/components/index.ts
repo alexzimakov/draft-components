@@ -2,7 +2,7 @@ export * from './actions-group';
 export * from './alert';
 export * from './avatar';
 export * from './box';
-export * from './breadcrumbs';
+export * from './breadcrumb';
 export * from './button';
 export * from './buttons-group';
 export * from './checkbox';

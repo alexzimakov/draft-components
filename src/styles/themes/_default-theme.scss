@@ -208,10 +208,10 @@
   /*------------------------------------*\
    #BREADCRUMBS
   \*------------------------------------*/
-  --dc-breadcrumbs-item-color: var(--dc-secondary-text-color);
-  --dc-breadcrumbs-item-hover-color: var(--dc-primary-text-color);
-  --dc-breadcrumbs-selected-item-color: var(--dc-primary-text-color);
-  --dc-breadcrumbs-delimiter-color: #{dc.$gray-400};
+  --dc-breadcrumb-link-color: var(--dc-secondary-text-color);
+  --dc-breadcrumb-link-hover-color: var(--dc-primary-text-color);
+  --dc-breadcrumb-link-selected-color: var(--dc-primary-text-color);
+  --dc-breadcrumb-delimiter-color: #{dc.$gray-400};
 
   /*------------------------------------*\
    #SEGMENTED CONTROL

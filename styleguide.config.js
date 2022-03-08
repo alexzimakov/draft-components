@@ -54,7 +54,7 @@ module.exports = {
     {
       name: 'Navigation',
       components: getComponents(
-        'breadcrumbs',
+        'breadcrumb',
         'vertical-navigation',
         'segmented-control',
         'scope-buttons',

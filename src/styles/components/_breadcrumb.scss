@@ -1,12 +1,12 @@
 @use '../abstracts' as dc;
 
-.dc-breadcrumbs {
+.dc-breadcrumb {
   font-family: var(--dc-font-base);
   overflow-y: auto;
   overflow-scrolling: touch;
 }
 
-.dc-breadcrumbs__items {
+.dc-breadcrumb__items {
   display: flex;
   align-items: center;
   margin: 0;
@@ -14,35 +14,42 @@
   list-style: none;
 }
 
-.dc-breadcrumbs__items > * {
+.dc-breadcrumb__items > * {
   display: inline-flex;
   align-items: center;
 }
 
-.dc-breadcrumbs__delimiter {
+.dc-breadcrumb__delimiter {
+  display: inline-flex;
   margin-right: dc.$gap-4x;
   margin-left: dc.$gap-4x;
-  color: var(--dc-breadcrumbs-delimiter-color);
+  color: var(--dc-breadcrumb-delimiter-color);
 }
 
-.dc-breadcrumbs-item {
+.dc-breadcrumb-link {
   font-family: inherit;
   display: inline-flex;
   align-items: center;
+  cursor: default;
   transition: dc.$transition-quick;
   transition-property: color;
   text-decoration: none;
-  color: var(--dc-breadcrumbs-item-color);
+  color: var(--dc-breadcrumb-link-color);
 
   &:hover {
-    color: var(--dc-breadcrumbs-item-hover-color);
+    color: var(--dc-breadcrumb-link-hover-color);
   }
 }
 
-.dc-breadcrumbs-item_selected {
-  color: var(--dc-breadcrumbs-selected-item-color);
+.dc-breadcrumb-link[href] {
+  cursor: pointer;
 }
 
-.dc-breadcrumbs-item__icon {
+.dc-breadcrumb-link_selected {
+  color: var(--dc-breadcrumb-link-selected-color);
+}
+
+.dc-breadcrumb-link__icon {
+  display: inline-flex;
   margin-right: dc.$gap-2x;
 }
