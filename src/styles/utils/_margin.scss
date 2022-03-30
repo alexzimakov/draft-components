@@ -1,6 +1,7 @@
 @use '../abstracts' as dc;
 
 $margin-scale: (
+  auto: auto,
   0: 0,
   1: dc.$gap-1x,
   2: dc.$gap-2x,
@@ -46,9 +47,4 @@ $margin-scale: (
   .ml-#{$scale} {
     margin-left: $margin !important;
   }
-}
-
-.mx-auto {
-  margin-right: auto !important;
-  margin-left: auto !important;
 }
