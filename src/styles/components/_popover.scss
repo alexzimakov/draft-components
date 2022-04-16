@@ -1,8 +1,70 @@
-.dc-popover-container {
-  z-index: var(--dc-zindex-overlay);
-}
+@use '../abstracts' as dc;
 
 .dc-popover {
   max-width: 28rem;
   max-height: 28rem;
+}
+
+.dc-popover_bubble-transition {
+  transition-timing-function: ease;
+  transition-duration: 150ms;
+  transition-property: opacity, transform;
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+.dc-popover_open {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.dc-popover_closing {
+}
+
+.dc-popover-container[data-position='top-start'] .dc-popover {
+  transform-origin: bottom left;
+}
+
+.dc-popover-container[data-position='top-center'] .dc-popover {
+  transform-origin: bottom center;
+}
+
+.dc-popover-container[data-position='top-right'] .dc-popover {
+  transform-origin: bottom left;
+}
+
+.dc-popover-container[data-position='right-start'] .dc-popover {
+  transform-origin: left top;
+}
+
+.dc-popover-container[data-position='right-center'] .dc-popover {
+  transform-origin: left center;
+}
+
+.dc-popover-container[data-position='right-right'] .dc-popover {
+  transform-origin: left bottom;
+}
+
+.dc-popover-container[data-position='bottom-start'] .dc-popover {
+  transform-origin: top left;
+}
+
+.dc-popover-container[data-position='bottom-center'] .dc-popover {
+  transform-origin: top center;
+}
+
+.dc-popover-container[data-position='bottom-right'] .dc-popover {
+  transform-origin: top left;
+}
+
+.dc-popover-container[data-position='left-start'] .dc-popover {
+  transform-origin: right top;
+}
+
+.dc-popover-container[data-position='left-center'] .dc-popover {
+  transform-origin: right center;
+}
+
+.dc-popover-container[data-position='left-right'] .dc-popover {
+  transform-origin: right bottom;
 }

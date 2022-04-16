@@ -245,8 +245,8 @@
   /*------------------------------------*\
    #TOOLTIP
   \*------------------------------------*/
-  --dc-tooltip-bg-color: #{dc.$gray-800};
-  --dc-tooltip-text-color: #{dc.$gray-100};
+  --dc-tooltip-bg-color: #{rgba(dc.$gray-900, dc.$opacity-85)};
+  --dc-tooltip-text-color: #{dc.$gray-200};
 
   /*------------------------------------*\
    #TABLE

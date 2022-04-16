@@ -101,11 +101,27 @@ const datePresets = [
     },
   },
 ];
+const formattedDatePresets = new Map(
+  datePresets.map((item) => [item.datePreset, item.label])
+);
 
 const [value, setValue] = useState({
-  datePreset: datePresets[0].datePreset,
   dateRange: datePresets[0].dateRange,
+  datePreset: datePresets[0].datePreset,
 });
+const formatValue = ({ dateRange, datePreset }) => {
+  if (dateRange && datePreset) {
+    return (
+      formattedDatePresets.get(datePreset) +
+      ': ' +
+      DatePresetPickerPopover.formatDateRange(dateRange)
+    );
+  }
+  if (dateRange) {
+    return DatePresetPickerPopover.formatDateRange(dateRange);
+  }
+  return 'Select date preset';
+};
 
 <DatePresetPickerPopover
   locale="en"
@@ -114,13 +130,8 @@ const [value, setValue] = useState({
   value={value}
   onChangeValue={setValue}
 >
-  {(props) => (
-    <Button
-      leadingIcon={<SvgIcon size="md" icon={calendar2} />}
-      onClick={props.togglePopover}
-    >
-      {props.formattedValue || 'Select date preset'}
-    </Button>
-  )}
+  <Button leadingIcon={<SvgIcon size="md" icon={calendar2} />}>
+    {formatValue(value)}
+  </Button>
 </DatePresetPickerPopover>;
 ```

@@ -1,72 +1,100 @@
-import { ComponentPropsWithRef, forwardRef, useRef } from 'react';
-import { mergeRefs } from '../../lib/react-helpers';
 import {
-  usePositionElement,
-  UsePositionElementParams as BaseProps,
-} from '../../hooks/use-position-element';
+  CSSProperties,
+  ReactNode,
+  RefCallback,
+  useLayoutEffect,
+  useState,
+} from 'react';
+import { Alignment, Placement, Rect } from './types';
+import { getPosition } from './get-position';
 import { Portal } from '../portal';
 
-export interface PositionerProps extends ComponentPropsWithRef<'div'> {
-  anchorRef: BaseProps['anchorRef'];
-  position?: BaseProps['position'];
-  alignment?: BaseProps['alignment'];
-  anchorOffset?: BaseProps['anchorOffset'];
-  viewportOffset?: BaseProps['viewportOffset'];
-  isShown?: BaseProps['isShown'];
-  isPositionedRelativeToViewport?: BaseProps['isPositionedRelativeToViewport'];
-  shouldUpdatePositionWhenScroll?: BaseProps['shouldUpdatePositionWhenScroll'];
-}
+export type PositionerProps = {
+  placement?: Placement;
+  alignment?: Alignment;
+  anchorGap?: number;
+  viewportGap?: number;
+  renderAnchor(params: { setRef: RefCallback<HTMLElement> }): ReactNode;
+  renderContent(params: {
+    style: CSSProperties;
+    setRef: RefCallback<HTMLElement>;
+  }): ReactNode;
+};
 
-export const Positioner = forwardRef<HTMLDivElement, PositionerProps>(
-  function Positioner(
-    {
-      anchorRef,
-      anchorOffset = 4,
-      viewportOffset = 8,
-      position = 'bottom',
-      alignment = 'start',
-      isShown = false,
-      isPositionedRelativeToViewport = false,
-      shouldUpdatePositionWhenScroll = false,
-      style,
-      children,
-      ...props
-    },
-    ref
-  ) {
-    const targetRef = useRef<HTMLDivElement | null>(null);
+export function Positioner({
+  placement = 'bottom',
+  alignment = 'start',
+  anchorGap = 4,
+  viewportGap = 8,
+  renderAnchor,
+  renderContent,
+}: PositionerProps) {
+  const [anchor, setAnchor] = useState<HTMLElement | null>(null);
+  const [content, setContent] = useState<HTMLElement | null>(null);
 
-    usePositionElement({
-      targetRef,
-      anchorRef,
-      anchorOffset,
-      viewportOffset,
-      position,
-      alignment,
-      isShown,
-      isPositionedRelativeToViewport,
-      shouldUpdatePositionWhenScroll,
-    });
-
-    if (!isShown) {
-      return null;
+  useLayoutEffect(() => {
+    if (!anchor || !content) {
+      return;
     }
 
-    return (
-      <Portal
-        {...props}
-        ref={mergeRefs(targetRef, ref)}
-        style={{
-          ...style,
-          position: isPositionedRelativeToViewport ? 'fixed' : 'absolute',
-          top: 0,
-          left: 0,
-          width: 'auto',
-          maxWidth: `calc(100% - ${2 * viewportOffset}px)`,
-        }}
-      >
-        {children}
+    const update = () => {
+      const isContentPositionedFixed = content.style.position === 'fixed';
+      const result = getPosition({
+        placement,
+        alignment,
+        anchorRect: getRect(anchor),
+        contentRect: getRect(content),
+        viewportWidth: document.documentElement.clientWidth,
+        viewportHeight: document.documentElement.clientHeight,
+        scrollX: isContentPositionedFixed ? 0 : Math.round(window.scrollX),
+        scrollY: isContentPositionedFixed ? 0 : Math.round(window.scrollY),
+        anchorGap: anchorGap,
+        viewportGap: viewportGap,
+      });
+      content.style.transform = `translate(${result.x}px, ${result.y}px)`;
+      content.dataset.position = `${result.placement}-${result.alignment}`;
+    };
+
+    update();
+    window.addEventListener('resize', update);
+    window.addEventListener('scroll', update);
+
+    return () => {
+      window.removeEventListener('resize', update);
+      window.removeEventListener('scroll', update);
+    };
+  }, [anchor, content, placement, alignment, anchorGap, viewportGap]);
+
+  return (
+    <>
+      {renderAnchor({ setRef: setAnchor })}
+      <Portal>
+        {renderContent({
+          setRef: setContent,
+          style: {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            maxWidth: `calc(100% - ${viewportGap * 2}px)`,
+          },
+        })}
       </Portal>
-    );
-  }
-);
+    </>
+  );
+}
+
+function getRect(element: HTMLElement): Rect {
+  const domRect = element.getBoundingClientRect();
+  const width = Math.round(domRect.width);
+  const height = Math.round(domRect.height);
+  const top = Math.round(domRect.top);
+  const left = Math.round(domRect.left);
+  return {
+    width,
+    height,
+    top,
+    left,
+    right: left + width,
+    bottom: top + height,
+  };
+}

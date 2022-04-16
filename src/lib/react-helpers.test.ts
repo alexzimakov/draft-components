@@ -47,7 +47,7 @@ describe('#mergeRefs()', () => {
     const ref1: MutableRefObject<HTMLElement | null> = { current: null };
     const ref2: MutableRefObject<HTMLElement | null> = { current: null };
     const instance = document.createElement('div');
-    const refCallback = mergeRefs(ref1, (ref) => (ref2.current = ref), 'ref3');
+    const refCallback = mergeRefs(ref1, (ref) => (ref2.current = ref));
 
     refCallback(instance);
 

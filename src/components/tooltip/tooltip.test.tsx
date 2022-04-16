@@ -1,48 +1,59 @@
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import { Tooltip } from './tooltip';
 
-const tooltipContent = 'View notifications and manage settings';
+const anchorLabel = 'Show Tooltip';
+const tooltipContent = 'Tooltip Content';
 
 it('<Tooltip /> renders without errors', () => {
+  jest.useFakeTimers();
+
   render(
-    <Tooltip content={tooltipContent}>
-      <button>Notifications</button>
+    <Tooltip label={tooltipContent}>
+      <button>{anchorLabel}</button>
     </Tooltip>
   );
-  const buttonEl = screen.getByRole('button');
 
   expect(screen.queryByRole('tooltip')).toBeNull();
 
-  userEvent.hover(buttonEl);
+  userEvent.hover(screen.getByRole('button'));
   expect(screen.getByRole('tooltip')).toHaveTextContent(tooltipContent);
 
-  userEvent.unhover(buttonEl);
+  userEvent.unhover(screen.getByRole('button'));
+  act(() => {
+    jest.runOnlyPendingTimers();
+  });
   expect(screen.queryByRole('tooltip')).toBeNull();
 });
 
 it('<Tooltip /> renders without errors when children prop is function', () => {
+  jest.useFakeTimers();
+
+  const anchorTestId = 'anchor';
   render(
-    <Tooltip content={tooltipContent}>
-      {({ ref, tooltipId, showTooltip, hideTooltip }) => (
-        <button
-          ref={ref as React.MutableRefObject<HTMLButtonElement | null>}
+    <Tooltip label={tooltipContent}>
+      {({ setRef, tooltipId, showTooltip, hideTooltip }) => (
+        <span
+          ref={setRef}
+          data-testid={anchorTestId}
           aria-labelledby={tooltipId}
           onMouseEnter={showTooltip}
           onMouseLeave={hideTooltip}
         >
-          Notifications
-        </button>
+          {anchorLabel}
+        </span>
       )}
     </Tooltip>
   );
-  const buttonEl = screen.getByRole('button');
 
   expect(screen.queryByRole('tooltip')).toBeNull();
 
-  userEvent.hover(buttonEl);
+  userEvent.hover(screen.getByTestId(anchorTestId));
   expect(screen.getByRole('tooltip')).toHaveTextContent(tooltipContent);
 
-  userEvent.unhover(buttonEl);
+  userEvent.unhover(screen.getByTestId(anchorTestId));
+  act(() => {
+    jest.runOnlyPendingTimers();
+  });
   expect(screen.queryByRole('tooltip')).toBeNull();
 });

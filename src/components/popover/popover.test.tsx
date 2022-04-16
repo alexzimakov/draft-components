@@ -1,97 +1,146 @@
-import { MutableRefObject } from 'react';
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import { Popover } from './popover';
 
-const popoverContent = `Lorem ipsum dolor sit amet, consectetur adipisicing elit.`;
+const anchorLabel = 'Show Popover';
+const popoverContent = 'Popover Content';
 
 it('<Popover /> renders without errors', () => {
+  const popoverTestId = 'popover';
   render(
-    <Popover isShown={true} data-testid="popover" content={popoverContent}>
-      <button>Show popover</button>
+    <Popover
+      anchor={<button>{anchorLabel}</button>}
+      defaultIsOpen={true}
+      data-testid={popoverTestId}
+    >
+      {popoverContent}
     </Popover>
   );
 
   screen.getByRole('button');
-  expect(screen.getByTestId('popover')).toHaveTextContent(popoverContent);
+  expect(screen.getByTestId(popoverTestId)).toHaveTextContent(popoverContent);
 });
 
-it('<Popover /> renders without errors when children prop is function', () => {
+it('<Popover /> renders without errors when anchor property is function', () => {
+  const popoverTestId = 'popover';
   render(
-    <Popover isShown={true} data-testid="popover" content={popoverContent}>
-      {({ ref }) => (
-        <button ref={ref as MutableRefObject<HTMLButtonElement | null>}>
-          Show popover
-        </button>
-      )}
+    <Popover
+      anchor={({ setRef }) => <button ref={setRef}>{anchorLabel}</button>}
+      defaultIsOpen={true}
+      data-testid={popoverTestId}
+    >
+      {popoverContent}
     </Popover>
   );
 
   screen.getByRole('button');
-  expect(screen.getByTestId('popover')).toHaveTextContent(popoverContent);
+  expect(screen.getByTestId(popoverTestId)).toHaveTextContent(popoverContent);
 });
 
-it('should invoke onClose callback when click outside of popover', () => {
-  const onClose = jest.fn();
+it('should open popover when click on anchor element', () => {
+  const onOpenMock = jest.fn();
+  const anchorTestId = 'anchor';
+  const popoverTestId = 'popover';
+  render(
+    <Popover
+      anchor={<button data-testid={anchorTestId}>{anchorLabel}</button>}
+      data-testid={popoverTestId}
+      onOpen={onOpenMock}
+    >
+      {popoverContent}
+    </Popover>
+  );
+
+  expect(screen.queryByTestId(popoverTestId)).toBeNull();
+
+  userEvent.click(screen.getByTestId(anchorTestId));
+  screen.getByTestId(popoverTestId);
+  expect(onOpenMock).toHaveBeenCalledTimes(1);
+});
+
+it('should close popover when click on element outside of popover', () => {
+  jest.useFakeTimers();
+
+  const onCloseMock = jest.fn();
+  const popoverTestId = 'popover';
+  const externalElementTestId = 'close-popover';
   render(
     <div>
-      <button data-testid="close-popover-btn">Close popover</button>
+      <button data-testid={externalElementTestId}>Close popover</button>
       <Popover
-        isShown={true}
-        data-testid="popover"
-        content={popoverContent}
-        onClose={onClose}
+        anchor={<button>{anchorLabel}</button>}
+        defaultIsOpen={true}
+        data-testid={popoverTestId}
+        onClose={onCloseMock}
       >
-        <button>Show popover</button>
+        {popoverContent}
       </Popover>
     </div>
   );
 
-  userEvent.click(screen.getByTestId('close-popover-btn'));
-  expect(onClose).toHaveBeenCalledTimes(1);
+  screen.getByTestId(popoverTestId);
+
+  userEvent.click(screen.getByTestId(externalElementTestId));
+  act(() => {
+    jest.runOnlyPendingTimers();
+  });
+  expect(screen.queryByTestId(popoverTestId)).toBeNull();
+  expect(onCloseMock).toHaveBeenCalledTimes(1);
 });
 
-it('should invoke onClose callback when click press Esc button', () => {
-  const onClose = jest.fn();
+it('should close popover when press Esc button', () => {
+  jest.useFakeTimers();
+
+  const onCloseMock = jest.fn();
+  const popoverTestId = 'popover';
   render(
     <Popover
-      isShown={true}
-      data-testid="popover"
-      content={popoverContent}
-      onClose={onClose}
+      anchor={<button>{anchorLabel}</button>}
+      defaultIsOpen={true}
+      data-testid={popoverTestId}
+      onClose={onCloseMock}
     >
-      <button>Show popover</button>
+      {popoverContent}
     </Popover>
   );
+
+  screen.getByTestId(popoverTestId);
 
   userEvent.keyboard('{esc}');
-  expect(onClose).toHaveBeenCalledTimes(1);
+  act(() => {
+    jest.runOnlyPendingTimers();
+  });
+  expect(screen.queryByTestId(popoverTestId)).toBeNull();
+  expect(onCloseMock).toHaveBeenCalledTimes(1);
 });
 
-it('should capture focus in the popover', () => {
+it('should capture focus within popover', () => {
+  const onCloseMock = jest.fn();
+  const popoverTestId = 'popover';
+  const inputTestId = 'input';
+  const buttonTestId = 'button';
   render(
     <Popover
-      isShown={true}
-      data-testid="popover"
-      content={
-        <div>
-          <input data-testid="input-inside" />
-          <button data-testid="button-inside">Button inside popover</button>
-        </div>
-      }
+      anchor={<button>{anchorLabel}</button>}
+      defaultIsOpen={true}
+      data-testid={popoverTestId}
+      onClose={onCloseMock}
     >
-      <button data-testid="button-outside">Button outside dialog</button>
+      <input data-testid={inputTestId} />
+      <button data-testid={buttonTestId}>Add</button>
     </Popover>
   );
 
-  const inputInsidePopover = screen.getByTestId('input-inside');
-  const buttonInsidePopover = screen.getByTestId('button-inside');
+  const input = screen.getByTestId(inputTestId);
+  const button = screen.getByTestId(buttonTestId);
 
-  expect(inputInsidePopover).toHaveFocus();
+  userEvent.tab();
+  expect(input).toHaveFocus();
+  userEvent.tab();
+  expect(button).toHaveFocus();
 
-  userEvent.tab(); // Move focus to the button in the popover.
-  expect(buttonInsidePopover).toHaveFocus();
-
-  userEvent.tab(); // Move focus to the button outside the popover.
-  expect(inputInsidePopover).toHaveFocus();
+  userEvent.tab({ shift: true });
+  expect(input).toHaveFocus();
+  userEvent.tab({ shift: true });
+  expect(button).toHaveFocus();
 });

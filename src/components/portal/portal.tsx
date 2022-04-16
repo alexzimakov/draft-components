@@ -1,16 +1,19 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
-let portalsRoot: HTMLDivElement | undefined;
+let portalContainer: HTMLDivElement | null = null;
 
-export const Portal = forwardRef<HTMLDivElement, ComponentPropsWithRef<'div'>>(
-  function Portal(props, ref) {
-    if (!portalsRoot) {
-      portalsRoot = document.createElement('div');
-      portalsRoot.dataset.testid = 'portals-root';
-      document.body.appendChild(portalsRoot);
-    }
+export type PortalProps = {
+  children: ReactNode;
+};
 
-    return createPortal(<div ref={ref} {...props} />, portalsRoot);
+export function Portal({ children }: PortalProps) {
+  if (!portalContainer) {
+    portalContainer = document.createElement('div');
+    portalContainer.dataset.testid = 'dc-portal-container';
+    portalContainer.classList.add('dc-portal');
+    document.body.appendChild(portalContainer);
   }
-);
+
+  return createPortal(children, portalContainer);
+}

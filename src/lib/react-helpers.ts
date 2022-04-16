@@ -1,6 +1,7 @@
-import { LegacyRef, MutableRefObject, RefCallback } from 'react';
+import { MutableRefObject, RefCallback } from 'react';
+import { isFunction } from './guards';
 
-type ClassName =
+export type ClassName =
   | string
   | number
   | boolean
@@ -8,8 +9,8 @@ type ClassName =
   | null
   | ClassNameList
   | ClassNameMap;
-type ClassNameList = ClassName[];
-type ClassNameMap = { [className: string]: unknown };
+export type ClassNameList = ClassName[];
+export type ClassNameMap = { [className: string]: unknown };
 
 export function classNames(...classes: ClassName[]): string {
   let classString = '';
@@ -34,16 +35,22 @@ export function classNames(...classes: ClassName[]): string {
   return classString.trimEnd();
 }
 
-export function mergeRefs<T>(
-  ...refs: (MutableRefObject<T> | LegacyRef<T> | null | undefined)[]
-): RefCallback<T> {
-  return (value) => {
-    refs.forEach((ref) => {
-      if (typeof ref === 'function') {
-        ref(value);
-      } else if (typeof ref === 'object' && ref && 'current' in ref) {
-        (ref as MutableRefObject<T | null>).current = value;
+export type MaybeRef<T> =
+  | MutableRefObject<T>
+  | RefCallback<T>
+  | null
+  | undefined;
+
+export function mergeRefs<T>(...refs: MaybeRef<T>[]): RefCallback<T> {
+  return (instance) => {
+    for (const ref of refs) {
+      if (ref) {
+        if (isFunction(ref)) {
+          ref(instance);
+        } else {
+          ref.current = instance as T;
+        }
       }
-    });
+    }
   };
 }

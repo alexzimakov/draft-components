@@ -1,7 +1,7 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useRef } from 'react';
 import { ISODate } from '../../lib/plain-date';
-import { Popover } from '../popover';
 import { DatePicker } from '../date-picker';
+import { Popover, PopoverRef } from '../popover';
 
 export type DatePickerPopoverProps = {
   defaultIsOpen?: boolean;
@@ -10,13 +10,8 @@ export type DatePickerPopoverProps = {
   min?: ISODate;
   max?: ISODate;
   value: ISODate | null;
+  children: JSX.Element;
   onChangeValue(value: ISODate): void;
-  children(props: {
-    isOpen: boolean;
-    openPopover(): void;
-    closePopover(): void;
-    togglePopover(): void;
-  }): JSX.Element;
 };
 
 export function DatePickerPopover({
@@ -26,53 +21,26 @@ export function DatePickerPopover({
   min,
   max,
   value,
-  onChangeValue,
   children,
+  onChangeValue,
 }: DatePickerPopoverProps) {
-  const [isOpen, setIsOpen] = useState(defaultIsOpen);
-
-  function openPopover(): void {
-    setIsOpen(true);
-  }
-
-  function closePopover(): void {
-    setIsOpen(false);
-  }
-
-  function togglePopover(): void {
-    if (isOpen) {
-      closePopover();
-    } else {
-      openPopover();
-    }
-  }
+  const popover = useRef<PopoverRef>(null);
 
   function handleChangeValue(value: ISODate): void {
     onChangeValue(value);
-    closePopover();
+    popover.current?.close();
   }
 
   return (
-    <Popover
-      isShown={isOpen}
-      onClose={closePopover}
-      content={
-        <DatePicker
-          locale={locale}
-          footer={footer}
-          min={min}
-          max={max}
-          value={value}
-          onChangeValue={handleChangeValue}
-        />
-      }
-    >
-      {children({
-        isOpen,
-        openPopover,
-        closePopover,
-        togglePopover,
-      })}
+    <Popover ref={popover} defaultIsOpen={defaultIsOpen} anchor={children}>
+      <DatePicker
+        locale={locale}
+        footer={footer}
+        min={min}
+        max={max}
+        value={value}
+        onChangeValue={handleChangeValue}
+      />
     </Popover>
   );
 }

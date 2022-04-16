@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import { DatePickerPopover } from './date-picker-popover';
 
 const buttonLabel = 'Select date';
@@ -12,7 +12,7 @@ it('renders without errors', () => {
       value={null}
       onChangeValue={jest.fn()}
     >
-      {() => <button>{buttonLabel}</button>}
+      <button>{buttonLabel}</button>
     </DatePickerPopover>
   );
 
@@ -21,9 +21,11 @@ it('renders without errors', () => {
 });
 
 it('can toggle popover visibility', () => {
+  jest.useFakeTimers();
+
   render(
     <DatePickerPopover value={null} onChangeValue={jest.fn()}>
-      {(props) => <button onClick={props.togglePopover}>{buttonLabel}</button>}
+      <button>{buttonLabel}</button>
     </DatePickerPopover>
   );
 
@@ -33,20 +35,27 @@ it('can toggle popover visibility', () => {
   screen.getByRole('grid');
 
   userEvent.click(button);
+  act(() => {
+    jest.runOnlyPendingTimers();
+  });
   expect(screen.queryByRole('grid')).toBeNull();
 });
 
 it('can select date using calendar', () => {
-  const buttonLabel = 'Select date';
+  jest.useFakeTimers();
+
   const handleChangeValue = jest.fn();
   render(
     <DatePickerPopover value="2022-02-06" onChangeValue={handleChangeValue}>
-      {(props) => <button onClick={props.togglePopover}>{buttonLabel}</button>}
+      <button>{buttonLabel}</button>
     </DatePickerPopover>
   );
 
   userEvent.click(screen.getByText(buttonLabel));
   userEvent.click(screen.getByText('3'));
+  act(() => {
+    jest.runOnlyPendingTimers();
+  });
 
   expect(screen.queryByRole('grid')).toBeNull();
   expect(handleChangeValue).toHaveBeenCalledTimes(1);

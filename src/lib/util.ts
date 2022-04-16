@@ -1,11 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type AnyFunction = (...args: any[]) => any;
-
 export function noop(): void {
   return;
 }
 
-export function once<T extends AnyFunction>(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function once<T extends (...args: any[]) => any>(
   fn: T
 ): (...args: Parameters<T>) => ReturnType<T> {
   let called = false;

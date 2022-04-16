@@ -1,220 +1,198 @@
-import { forwardRef, useRef, useState } from 'react';
+import { ReactNode, useRef, useState } from 'react';
 import { ISODateRange } from '../../lib/plain-date-range';
-import { Popover, PopoverProps } from '../popover';
-import { DatePresetPicker, DatePresetPickerProps } from './date-preset-picker';
+import { Alignment, Placement } from '../positioner/types';
+import { Popover, PopoverRef } from '../popover';
+import { DatePresetPicker } from './date-preset-picker';
 import { DatePreset, DatePresetOption } from './date-preset-select';
 
-export interface ISODateRangeWithPreset {
+export type ISODateRangeWithPreset = {
   datePreset: DatePreset;
   dateRange: ISODateRange;
-}
+};
 
-export interface DatePresetPickerPopoverProps {
+export type DateRangeFormatter = (
+  dateRange: ISODateRange,
+  locale?: string | string[]
+) => string;
+
+export type TimeZoneFormatter = (
+  timeZone: string,
+  locale?: string | string[]
+) => string;
+
+export type DatePresetPickerPopoverProps = {
   locale?: string;
   timeZone?: string;
   defaultIsOpen?: boolean;
   hideSelectedRange?: boolean;
-  position?: PopoverProps['position'];
-  alignment?: PopoverProps['alignment'];
-  cancelButtonLabel?: DatePresetPickerProps['cancelButtonLabel'];
-  confirmButtonLabel?: DatePresetPickerProps['confirmButtonLabel'];
-  customDatePresetLabel?: DatePresetPickerProps['customDatePresetLabel'];
-  disableActionButtons?: DatePresetPickerProps['disableActionButtons'];
-  showLoadingIndicator?: DatePresetPickerProps['showLoadingIndicator'];
+  placement?: Placement;
+  alignment?: Alignment;
+  formatTimeZone?: TimeZoneFormatter;
+  formatDateRange?: DateRangeFormatter;
+  cancelButtonLabel?: ReactNode;
+  confirmButtonLabel?: ReactNode;
+  customDatePresetLabel?: string;
+  disableActionButtons?: boolean;
+  showLoadingIndicator?: boolean;
   options: DatePresetOption[];
   value: ISODateRangeWithPreset | null;
+  children: JSX.Element;
   onChangeValue(value: ISODateRangeWithPreset): void;
-  children(props: {
-    isShown: boolean;
-    formattedValue: string;
-    formattedDatePreset: string;
-    formattedDateRange: string;
-    formattedTimeZone: string;
-    openPopover(): void;
-    closePopover(): void;
-    togglePopover(): void;
-  }): JSX.Element;
-}
+};
 
-interface SelectionState {
+type Selection = {
   option: DatePresetOption | null;
   dateRange: ISODateRange | null;
-}
+};
 
-export const DatePresetPickerPopover = forwardRef<
-  HTMLDivElement,
-  DatePresetPickerPopoverProps
->(function DatePresetPickerPopover(
-  {
-    locale,
-    timeZone,
-    defaultIsOpen = false,
-    hideSelectedRange = false,
-    position = 'bottom',
-    alignment = 'start',
-    cancelButtonLabel,
-    confirmButtonLabel,
-    customDatePresetLabel,
-    disableActionButtons,
-    showLoadingIndicator,
-    options,
-    value,
-    onChangeValue,
-    children: render,
-  },
-  ref
-) {
-  const [isShown, setIsShown] = useState(defaultIsOpen);
-  const confirmButtonRef = useRef<HTMLButtonElement>(null);
+export function DatePresetPickerPopover({
+  locale,
+  timeZone,
+  defaultIsOpen = false,
+  hideSelectedRange = false,
+  placement = 'bottom',
+  alignment = 'start',
+  formatTimeZone = DatePresetPickerPopover.formatTimeZone,
+  formatDateRange = DatePresetPickerPopover.formatDateRange,
+  cancelButtonLabel,
+  confirmButtonLabel,
+  customDatePresetLabel,
+  disableActionButtons,
+  showLoadingIndicator,
+  options,
+  value,
+  children,
+  onChangeValue,
+}: DatePresetPickerPopoverProps) {
+  const popover = useRef<PopoverRef>(null);
+  const [selection, setSelection] = useState(() =>
+    mapValueToSelection(value, options)
+  );
+  const selectedDateRange = selection.dateRange;
+  const selectedOption = selection.option;
 
-  const [selectionState, setSelectionState] = useState(valueToSelectionState);
-  const selectedDateRange = selectionState.dateRange;
-  const selectedOption = selectionState.option;
-
-  let formattedDatePreset = '';
-  if (selectedOption) {
-    formattedDatePreset = selectedOption.label;
+  function handleOpenPopover(): void {
+    setSelection(mapValueToSelection(value, options));
   }
 
-  let formattedDateRange = '';
-  if (selectedDateRange) {
-    const intl = new Intl.DateTimeFormat(locale, {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    });
-    const startDate = intl.format(new Date(selectedDateRange.start));
-    const endDate = intl.format(new Date(selectedDateRange.end));
-    formattedDateRange =
-      startDate !== endDate ? `${startDate} - ${endDate}` : startDate;
-  }
-
-  let formattedTimeZone = '';
-  if (timeZone) {
-    const intl = new Intl.DateTimeFormat(locale, {
-      timeZone,
-      second: '2-digit',
-      timeZoneName: 'long',
-    });
-    formattedTimeZone = intl.format(new Date()).replace(/^\d{1,2} /, '');
-  }
-
-  function valueToSelectionState(): SelectionState {
-    const emptySelectionState = { option: null, dateRange: null };
-    if (!value) {
-      return emptySelectionState;
-    } else if (!value.datePreset && value.dateRange) {
-      return { option: null, dateRange: value.dateRange };
-    } else {
-      const datePreset = value.datePreset;
-      const option = options.find((option) => option.datePreset === datePreset);
-      return option
-        ? { option, dateRange: option.dateRange }
-        : emptySelectionState;
-    }
-  }
-
-  function handleChangeDatePreset(preset: string): void {
-    const option = options.find((option) => option.datePreset === preset);
+  function handleChangeDatePreset(datePreset: DatePreset): void {
+    const option = options.find((option) => option.datePreset === datePreset);
     if (option) {
-      setSelectionState({ option, dateRange: option.dateRange });
+      setSelection({ option, dateRange: option.dateRange });
     }
   }
 
   function handleChangeDateRange(dateRange: ISODateRange): void {
     const option = options.find((option) => {
-      const optionDateRange = option.dateRange;
       return (
-        optionDateRange.start === dateRange.start &&
-        optionDateRange.end === dateRange.end
+        option.dateRange.start === dateRange.start &&
+        option.dateRange.end === dateRange.end
       );
     });
-    setSelectionState({ dateRange, option: option || null });
+    setSelection({ dateRange, option: option || null });
+  }
+
+  function handleCancel(): void {
+    popover.current?.close();
   }
 
   function handleConfirm(): void {
-    if (
-      selectedOption &&
-      (value == null || value.datePreset !== selectedOption.datePreset)
-    ) {
-      onChangeValue({
-        datePreset: selectedOption.datePreset,
-        dateRange: selectedOption.dateRange,
-      });
-    } else if (
-      selectedDateRange &&
-      (value == null ||
+    if (selectedOption) {
+      const isChanged =
+        value == null || value.datePreset !== selectedOption.datePreset;
+
+      if (isChanged) {
+        onChangeValue({
+          datePreset: selectedOption.datePreset,
+          dateRange: selectedOption.dateRange,
+        });
+      }
+    } else if (selectedDateRange) {
+      const isChanged =
+        value == null ||
         value.dateRange.start !== selectedDateRange.start ||
-        value.dateRange.end !== selectedDateRange.end)
-    ) {
-      onChangeValue({
-        datePreset: '',
-        dateRange: selectedDateRange,
-      });
+        value.dateRange.end !== selectedDateRange.end;
+
+      if (isChanged) {
+        onChangeValue({ datePreset: '', dateRange: selectedDateRange });
+      }
     }
-    setIsShown(false);
+
+    popover.current?.close();
   }
 
-  function openPopover(): void {
-    setIsShown(true);
-  }
-
-  function closePopover(): void {
-    setSelectionState(valueToSelectionState());
-    setIsShown(false);
-  }
-
-  function togglePopover(): void {
-    if (isShown) {
-      closePopover();
-    } else {
-      openPopover();
-    }
-  }
-
+  const formattedTimeZone = timeZone ? formatTimeZone(timeZone) : '';
+  const formattedDateRange = selectedDateRange
+    ? formatDateRange(selectedDateRange)
+    : '';
   return (
     <Popover
-      ref={ref}
+      ref={popover}
       className="dc-date-preset-picker-popover"
-      isShown={isShown}
-      position={position}
+      defaultIsOpen={defaultIsOpen}
+      placement={placement}
       alignment={alignment}
-      content={
-        <DatePresetPicker
-          confirmButtonRef={confirmButtonRef}
-          locale={locale}
-          formattedDateRange={hideSelectedRange ? null : formattedDateRange}
-          formattedTimeZone={formattedTimeZone}
-          cancelButtonLabel={cancelButtonLabel}
-          confirmButtonLabel={confirmButtonLabel}
-          customDatePresetLabel={customDatePresetLabel}
-          disableActionButtons={disableActionButtons}
-          showLoadingIndicator={showLoadingIndicator}
-          options={options}
-          datePreset={selectionState.option?.datePreset || ''}
-          dateRange={selectionState.dateRange}
-          onChangeDatePreset={handleChangeDatePreset}
-          onChangeDateRange={handleChangeDateRange}
-          onCancel={closePopover}
-          onConfirm={handleConfirm}
-        />
-      }
-      focusElementRefAfterOpen={confirmButtonRef}
-      onClose={closePopover}
+      anchor={children}
+      onOpen={handleOpenPopover}
     >
-      {render({
-        isShown,
-        openPopover,
-        closePopover,
-        togglePopover,
-        formattedDatePreset,
-        formattedDateRange,
-        formattedTimeZone,
-        formattedValue:
-          formattedDatePreset && formattedDateRange
-            ? `${formattedDatePreset}: ${formattedDateRange}`
-            : formattedDateRange,
-      })}
+      <DatePresetPicker
+        locale={locale}
+        formattedTimeZone={formattedTimeZone}
+        formattedDateRange={hideSelectedRange ? '' : formattedDateRange}
+        cancelButtonLabel={cancelButtonLabel}
+        confirmButtonLabel={confirmButtonLabel}
+        customDatePresetLabel={customDatePresetLabel}
+        disableActionButtons={disableActionButtons}
+        showLoadingIndicator={showLoadingIndicator}
+        options={options}
+        dateRange={selection.dateRange}
+        datePreset={selection.option?.datePreset || ''}
+        onChangeDatePreset={handleChangeDatePreset}
+        onChangeDateRange={handleChangeDateRange}
+        onCancel={handleCancel}
+        onConfirm={handleConfirm}
+      />
     </Popover>
   );
-});
+}
+
+function mapValueToSelection(
+  value: ISODateRangeWithPreset | null,
+  options: DatePresetOption[]
+): Selection {
+  if (value?.datePreset) {
+    const datePreset = value.datePreset;
+    const option = options.find((option) => option.datePreset === datePreset);
+    if (option) {
+      return { option, dateRange: option.dateRange };
+    }
+  }
+
+  if (value?.dateRange) {
+    return { option: null, dateRange: value.dateRange };
+  }
+
+  return { option: null, dateRange: null };
+}
+
+const formatDateRange: DateRangeFormatter = (dateRange, locale) => {
+  const intl = new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+  const startDate = intl.format(new Date(dateRange.start));
+  const endDate = intl.format(new Date(dateRange.end));
+  return startDate !== endDate ? `${startDate} - ${endDate}` : startDate;
+};
+DatePresetPickerPopover.formatDateRange = formatDateRange;
+
+const formatTimeZone: TimeZoneFormatter = (timeZone, locale) => {
+  const intl = new Intl.DateTimeFormat(locale, {
+    timeZone,
+    second: '2-digit',
+    timeZoneName: 'long',
+  });
+  return intl.format(new Date()).replace(/^\d{1,2} /, '');
+};
+DatePresetPickerPopover.formatTimeZone = formatTimeZone;

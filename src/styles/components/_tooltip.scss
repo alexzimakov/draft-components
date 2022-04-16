@@ -2,14 +2,28 @@
 
 .dc-tooltip {
   font-family: var(--dc-font-base);
-  font-size: dc.$font-size-sm;
-  line-height: dc.$leading-normal;
+  font-size: dc.$font-size-xs;
+  font-weight: dc.$font-weight-normal;
+  line-height: dc.$leading-lg;
   display: inline-block;
   box-sizing: border-box;
-  width: auto;
-  max-width: 18rem;
+  max-width: dc.px-to-rem(256px);
   padding: dc.$gap-1x dc.$gap-2x;
   color: var(--dc-tooltip-text-color);
-  border-radius: dc.$border-radius-sm;
+  border-radius: dc.$border-radius-md;
   background: var(--dc-tooltip-bg-color);
+  box-shadow: dc.$shadow-sm, dc.$shadow-md;
+
+  @supports (backdrop-filter: blur()) {
+    backdrop-filter: blur(8px);
+  }
+}
+
+.dc-tooltip_fade-transition {
+  transition: opacity 150ms ease;
+  opacity: 0;
+}
+
+.dc-tooltip_show {
+  opacity: 1;
 }

@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import { DatePresetPickerPopover } from './date-preset-picker-popover';
 
 function mockMatchMedia(matches = false): void {
@@ -55,7 +55,7 @@ it('renders without errors', () => {
       value={options[0]}
       onChangeValue={jest.fn()}
     >
-      {() => <button>{anchorButtonLabel}</button>}
+      <button>{anchorButtonLabel}</button>
     </DatePresetPickerPopover>
   );
 
@@ -78,7 +78,7 @@ it('renders `Select` element instead of `RadioGroup` on phones', () => {
       value={options[0]}
       onChangeValue={jest.fn()}
     >
-      {() => <button>{anchorButtonLabel}</button>}
+      <button>{anchorButtonLabel}</button>
     </DatePresetPickerPopover>
   );
 
@@ -90,24 +90,30 @@ it('renders `Select` element instead of `RadioGroup` on phones', () => {
 });
 
 it('can toggle popover visibility', () => {
+  jest.useFakeTimers();
+
   render(
     <DatePresetPickerPopover
       options={[]}
       value={null}
       onChangeValue={jest.fn()}
     >
-      {(props) => (
-        <button onClick={props.togglePopover}>{anchorButtonLabel}</button>
-      )}
+      <button>{anchorButtonLabel}</button>
     </DatePresetPickerPopover>
   );
 
   const button = screen.getByText(anchorButtonLabel);
 
   userEvent.click(button);
+  act(() => {
+    jest.runOnlyPendingTimers();
+  });
   screen.getByRole('grid');
 
   userEvent.click(button);
+  act(() => {
+    jest.runOnlyPendingTimers();
+  });
   expect(screen.queryByRole('grid')).toBeNull();
 });
 
@@ -121,9 +127,7 @@ it('can select date range using calendar', () => {
       value={options[0]}
       onChangeValue={onChangeValueMock}
     >
-      {(props) => (
-        <button onClick={props.togglePopover}>{anchorButtonLabel}</button>
-      )}
+      <button>{anchorButtonLabel}</button>
     </DatePresetPickerPopover>
   );
 
@@ -149,9 +153,7 @@ it('can select date range using date preset select', () => {
       value={options[0]}
       onChangeValue={onChangeValueMock}
     >
-      {(props) => (
-        <button onClick={props.togglePopover}>{anchorButtonLabel}</button>
-      )}
+      <button>{anchorButtonLabel}</button>
     </DatePresetPickerPopover>
   );
 
@@ -176,9 +178,7 @@ it('can select date range with date preset using calendar', () => {
       value={options[0]}
       onChangeValue={onChangeValueMock}
     >
-      {(props) => (
-        <button onClick={props.togglePopover}>{anchorButtonLabel}</button>
-      )}
+      <button>{anchorButtonLabel}</button>
     </DatePresetPickerPopover>
   );
 

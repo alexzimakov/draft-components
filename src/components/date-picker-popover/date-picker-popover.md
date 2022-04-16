@@ -13,13 +13,8 @@ const intl = new Intl.DateTimeFormat('en', {
 });
 
 <DatePickerPopover value={value} onChangeValue={setValue}>
-  {(props) => (
-    <Button
-      leadingIcon={<SvgIcon size="md" icon={calendar2} />}
-      onClick={props.togglePopover}
-    >
-      {intl.format(new Date(value))}
-    </Button>
-  )}
+  <Button leadingIcon={<SvgIcon size="md" icon={calendar2} />}>
+    {intl.format(new Date(value))}
+  </Button>
 </DatePickerPopover>;
 ```

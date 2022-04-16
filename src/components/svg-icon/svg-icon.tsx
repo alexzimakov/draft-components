@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, useRef } from 'react';
+import { ComponentPropsWithoutRef, useRef, forwardRef } from 'react';
 import { uniqueId } from '../../lib/util';
 import { classNames } from '../../lib/react-helpers';
 
@@ -45,14 +45,10 @@ const svgIconSizes: Record<string, string | number> = {
   '5x': '5em',
 };
 
-export function SvgIcon({
-  icon,
-  size = 'md',
-  linearGradient,
-  style,
-  className,
-  ...props
-}: SvgIconProps) {
+export const SvgIcon = forwardRef<SVGSVGElement, SvgIconProps>(function SvgIcon(
+  { icon, size = 'md', linearGradient, style, className, ...props },
+  ref
+) {
   const iconSize = svgIconSizes[size] || size || svgIconSizes.base;
   const gradientId = useRef(uniqueId('gradient-def-'));
   let fill = 'currentColor';
@@ -95,6 +91,7 @@ export function SvgIcon({
 
   return (
     <svg
+      ref={ref}
       style={{ fontSize: iconSize, ...style }}
       className={classNames(className, 'dc-svg-icon', {
         [`dc-svg-icon_size_${size}`]: size in svgIconSizes,
@@ -113,4 +110,4 @@ export function SvgIcon({
       {icon.children}
     </svg>
   );
-}
+});

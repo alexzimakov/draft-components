@@ -7,7 +7,6 @@ import {
   DatePreset,
   DatePresetOption,
   DatePresetSelect,
-  DatePresetSelectProps,
 } from './date-preset-select';
 
 export interface DatePresetPickerProps {
@@ -18,7 +17,7 @@ export interface DatePresetPickerProps {
   confirmButtonLabel?: ReactNode;
   formattedDateRange?: ReactNode;
   formattedTimeZone?: ReactNode;
-  customDatePresetLabel?: DatePresetSelectProps['customDatePresetLabel'];
+  customDatePresetLabel?: string;
   disableActionButtons?: boolean;
   showLoadingIndicator?: boolean;
   options: DatePresetOption[];
@@ -31,8 +30,6 @@ export interface DatePresetPickerProps {
 }
 
 export function DatePresetPicker({
-  cancelButtonRef,
-  confirmButtonRef,
   locale,
   cancelButtonLabel = 'Cancel',
   confirmButtonLabel = 'Confirm',
@@ -97,7 +94,6 @@ export function DatePresetPicker({
         )}
         <div className="dc-date-preset-picker__btns">
           <Button
-            ref={cancelButtonRef}
             appearance="secondary"
             disabled={disableActionButtons}
             onClick={onCancel}
@@ -105,7 +101,6 @@ export function DatePresetPicker({
             {cancelButtonLabel}
           </Button>
           <Button
-            ref={confirmButtonRef}
             appearance="primary"
             disabled={disableActionButtons}
             isLoading={showLoadingIndicator}

@@ -24,7 +24,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
-    'plugin:testing-library/react',
   ],
 
   rules: {
@@ -57,6 +56,10 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-var-requires': 'off',
       },
+    },
+    {
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+      extends: ['plugin:testing-library/react'],
     },
   ],
 };

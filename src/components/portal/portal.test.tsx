@@ -17,24 +17,7 @@ it('<Portal /> should create root node and mounts portals to it.', () => {
     </Portal>
   );
 
-  const portalRoots = screen.getAllByTestId('portals-root');
-  expect(portalRoots).toHaveLength(1);
-
-  const portalContainers = within(portalRoots[0]).getAllByTestId(testId);
-  expect(portalContainers).toHaveLength(2);
-  expect(portalContainers[0]).toHaveTextContent(firstPortalContent);
-  expect(portalContainers[1]).toHaveTextContent(secondPortalContent);
-});
-
-it('should remove not used portal containers', () => {
-  const testId = 'portal';
-  const { unmount } = render(
-    <Portal data-testid={testId}>Portal content</Portal>
-  );
-
-  screen.getAllByTestId(testId);
-
-  unmount();
-
-  expect(screen.queryByTestId(testId)).toBeNull();
+  const portalContainer = screen.getByTestId('dc-portal-container');
+  within(portalContainer).getByText(firstPortalContent);
+  within(portalContainer).getByText(secondPortalContent);
 });
