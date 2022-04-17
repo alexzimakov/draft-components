@@ -73,15 +73,20 @@ export function Dialog({
   useFocusTrap(dialogRef, isOpen);
 
   useEffect(() => {
-    if (shouldRender) {
-      if (focusAfterOpen?.current) {
-        focusAfterOpen.current.focus();
-      }
-    } else {
-      if (focusAfterClose?.current) {
-        focusAfterClose.current.focus();
-      }
+    if (!shouldRender) {
+      return;
     }
+
+    const focusAfterOpenEl = focusAfterOpen?.current;
+    const focusAfterCloseEl = focusAfterClose?.current;
+    if (focusAfterOpenEl) {
+      focusAfterOpenEl.focus();
+    }
+    return () => {
+      if (focusAfterCloseEl) {
+        focusAfterCloseEl.focus();
+      }
+    };
   }, [shouldRender, focusAfterOpen, focusAfterClose]);
 
   if (!shouldRender) {
