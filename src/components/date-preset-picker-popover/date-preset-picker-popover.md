@@ -109,22 +109,27 @@ const [value, setValue] = useState({
   dateRange: datePresets[0].dateRange,
   datePreset: datePresets[0].datePreset,
 });
+
+const locale = 'en';
+
 const formatValue = ({ dateRange, datePreset }) => {
   if (dateRange && datePreset) {
     return (
       formattedDatePresets.get(datePreset) +
       ': ' +
-      DatePresetPickerPopover.formatDateRange(dateRange)
+      DatePresetPickerPopover.formatDateRange(dateRange, locale)
     );
   }
+
   if (dateRange) {
-    return DatePresetPickerPopover.formatDateRange(dateRange);
+    return DatePresetPickerPopover.formatDateRange(dateRange, locale);
   }
+
   return 'Select date preset';
 };
 
 <DatePresetPickerPopover
-  locale="en"
+  locale={locale}
   timeZone="America/New_York"
   options={datePresets}
   value={value}

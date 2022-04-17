@@ -121,9 +121,9 @@ export function DatePresetPickerPopover({
     popover.current?.close();
   }
 
-  const formattedTimeZone = timeZone ? formatTimeZone(timeZone) : '';
+  const formattedTimeZone = timeZone ? formatTimeZone(timeZone, locale) : '';
   const formattedDateRange = selectedDateRange
-    ? formatDateRange(selectedDateRange)
+    ? formatDateRange(selectedDateRange, locale)
     : '';
   return (
     <Popover
