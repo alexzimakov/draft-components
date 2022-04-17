@@ -132,7 +132,7 @@ export const ${variableName}: Icon = {
 async function main() {
   const icons = await fsPromises.readdir(BOOTSTRAP_ICONS);
 
-  await fsPromises.rmdir(OUTPUT_DIR, { recursive: true });
+  await fsPromises.rm(OUTPUT_DIR, { recursive: true });
   await createDir(OUTPUT_DIR);
 
   const xmlParser = new xml2js.Parser({
