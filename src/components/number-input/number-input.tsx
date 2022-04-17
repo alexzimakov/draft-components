@@ -1,10 +1,12 @@
-import { forwardRef, KeyboardEvent, ReactNode } from 'react';
+import { forwardRef, KeyboardEvent, FocusEvent, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { KeyCode } from '../../lib/keyboard-helpers';
 import { Button } from '../button';
 import { TextInput, TextInputProps } from '../text-input';
+import { isFunction } from '../../lib/guards';
 
-export interface NumberInputProps extends TextInputProps {
+export type NumberInputProps = {
+  showIncrementButtons?: boolean;
   incrementButtonLabel?: ReactNode;
   decrementButtonLabel?: ReactNode;
   min?: number;
@@ -12,7 +14,7 @@ export interface NumberInputProps extends TextInputProps {
   step?: number;
   value: string;
   onChangeValue(value: string): void;
-}
+} & TextInputProps;
 
 const NUMBER_REGEXP = /^[-+]?([0-9]+(\.[0-9]*)?|\.[0-9]+)([eE][-+]?[0-9]+)?$/;
 
@@ -21,6 +23,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
     {
       style,
       className,
+      showIncrementButtons = true,
       incrementButtonLabel = '↑',
       decrementButtonLabel = '↓',
       min,
@@ -31,6 +34,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
       fullWidth,
       size,
       value,
+      onBlur,
       onKeyDown,
       onChangeValue,
       ...props
@@ -73,6 +77,13 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
       }
     }
 
+    function handleBlur(event: FocusEvent<HTMLInputElement>): void {
+      if (value.endsWith('.')) {
+        onChangeValue(value.replace(/\.$/, ''));
+      }
+      isFunction(onBlur) && onBlur(event);
+    }
+
     function handleChangeValue(value: string) {
       if (value === '') {
         onChangeValue(value);
@@ -107,9 +118,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
         event.preventDefault();
       }
 
-      if (typeof onKeyDown === 'function') {
-        onKeyDown(event);
-      }
+      isFunction(onKeyDown) && onKeyDown(event);
     }
 
     return (
@@ -119,15 +128,17 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
           'dc-number-input_full-width': fullWidth,
         })}
       >
-        <Button
-          appearance="secondary"
-          size={size}
-          noPadding={true}
-          disabled={disabled}
-          onClick={() => !readOnly && decrement(step)}
-        >
-          {decrementButtonLabel}
-        </Button>
+        {showIncrementButtons && (
+          <Button
+            appearance="secondary"
+            size={size}
+            noPadding={true}
+            disabled={disabled}
+            onClick={() => !readOnly && decrement(step)}
+          >
+            {decrementButtonLabel}
+          </Button>
+        )}
         <TextInput
           {...props}
           ref={ref}
@@ -138,18 +149,21 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
           fullWidth={fullWidth}
           type="text"
           value={value}
+          onBlur={handleBlur}
           onKeyDown={handleKeyDown}
           onChangeValue={handleChangeValue}
         />
-        <Button
-          appearance="secondary"
-          size={size}
-          noPadding={true}
-          disabled={disabled}
-          onClick={() => !readOnly && increment(step)}
-        >
-          {incrementButtonLabel}
-        </Button>
+        {showIncrementButtons && (
+          <Button
+            appearance="secondary"
+            size={size}
+            noPadding={true}
+            disabled={disabled}
+            onClick={() => !readOnly && increment(step)}
+          >
+            {incrementButtonLabel}
+          </Button>
+        )}
       </div>
     );
   }

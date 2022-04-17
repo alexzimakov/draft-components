@@ -1,5 +1,5 @@
 ```jsx
-import { NumberInput } from './number-input';
+import { NumberInput } from '../number-input';
 
 const [value, setValue] = React.useState('10');
 
@@ -9,7 +9,7 @@ const [value, setValue] = React.useState('10');
 With add-ons
 
 ```jsx padded
-import { NumberInput } from './number-input';
+import { NumberInput } from '../number-input';
 import { SvgIcon } from '../svg-icon';
 import { currencyExchange } from '../../bootstrap-icons/currency-exchange';
 
@@ -30,10 +30,27 @@ const [exchangeRate, setExchangeRate] = React.useState('');
 </>;
 ```
 
+Without increment buttons
+
+```jsx
+import { NumberInput } from '../number-input';
+
+const [value, setValue] = React.useState('10');
+
+<NumberInput
+  value={value}
+  onChangeValue={setValue}
+  trailingAddOn="%"
+  min={0}
+  max={100}
+  showIncrementButtons={false}
+/>;
+```
+
 Sizes
 
 ```jsx padded
-import { NumberInput } from './number-input';
+import { NumberInput } from '../number-input';
 import { SvgIcon } from '../svg-icon';
 import { currencyExchange } from '../../bootstrap-icons/currency-exchange';
 
@@ -51,7 +68,7 @@ const [third, setThird] = React.useState('');
 Full width
 
 ```jsx
-import { NumberInput } from './number-input';
+import { NumberInput } from '../number-input';
 
 const [value, setValue] = React.useState('');
 
@@ -61,7 +78,7 @@ const [value, setValue] = React.useState('');
 Disabled state
 
 ```jsx
-import { NumberInput } from './number-input';
+import { NumberInput } from '../number-input';
 
 const [value, setValue] = React.useState('');
 

@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
 import { NumberInput } from './number-input';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 it('renders without errors', () => {
   const placeholder = 'Enter a number';
@@ -31,6 +31,23 @@ it('renders with custom buttons labels', () => {
   expect(incrementButton).toHaveTextContent(incrementButtonLabel);
 });
 
+it('renders without increment/decrement buttons', () => {
+  const incrementButtonLabel = '+1';
+  const decrementButtonLabel = '-1';
+  render(
+    <NumberInput
+      showIncrementButtons={false}
+      incrementButtonLabel={incrementButtonLabel}
+      decrementButtonLabel={decrementButtonLabel}
+      value=""
+      onChangeValue={jest.fn()}
+    />
+  );
+
+  expect(screen.queryByText(incrementButtonLabel)).toBeNull();
+  expect(screen.queryByText(decrementButtonLabel)).toBeNull();
+});
+
 it('invokes `onChange` event handler', () => {
   const onChange = jest.fn();
   render(
@@ -49,7 +66,9 @@ it('invokes `onChangeValue` callback when entering a correct number', () => {
   const negativeInteger = '-20';
   const negativeFloat = '-0.8';
   const onChangeValue = jest.fn();
-  render(<NumberInput value="" onChangeValue={onChangeValue} />);
+  const { rerender } = render(
+    <NumberInput value="" onChangeValue={onChangeValue} />
+  );
 
   const input = screen.getByRole('textbox');
 
@@ -59,11 +78,15 @@ it('invokes `onChangeValue` callback when entering a correct number', () => {
   userEvent.paste(input, negativeInteger);
   userEvent.paste(input, negativeFloat);
 
-  expect(onChangeValue).toHaveBeenCalledTimes(4);
+  rerender(<NumberInput value="1" onChangeValue={onChangeValue} />);
+  userEvent.clear(input);
+
+  expect(onChangeValue).toHaveBeenCalledTimes(5);
   expect(onChangeValue).toHaveBeenNthCalledWith(1, integer);
   expect(onChangeValue).toHaveBeenNthCalledWith(2, float);
   expect(onChangeValue).toHaveBeenNthCalledWith(3, negativeInteger);
   expect(onChangeValue).toHaveBeenNthCalledWith(4, negativeFloat);
+  expect(onChangeValue).toHaveBeenNthCalledWith(5, '');
 });
 
 it('increments value when clicking on the increment button', () => {
@@ -89,8 +112,15 @@ it('decrements value when clicking on the increment button', () => {
 });
 
 it('increments value when press arrow up key', () => {
-  const onChangeValue = jest.fn();
-  render(<NumberInput value="10" onChangeValue={onChangeValue} />);
+  const onChangeValueMock = jest.fn();
+  const onKeyDownMock = jest.fn();
+  render(
+    <NumberInput
+      value="10"
+      onChangeValue={onChangeValueMock}
+      onKeyDown={onKeyDownMock}
+    />
+  );
   const input = screen.getByRole('textbox');
 
   input.focus();
@@ -99,11 +129,18 @@ it('increments value when press arrow up key', () => {
   userEvent.keyboard('{Shift}[ArrowUp]{/Shift}');
   userEvent.keyboard('{Shift}{Alt}[ArrowUp]{/Shift}{/Alt}');
 
-  expect(onChangeValue).toHaveBeenCalledTimes(4);
-  expect(onChangeValue).toHaveBeenNthCalledWith(1, '11');
-  expect(onChangeValue).toHaveBeenNthCalledWith(2, '10.1');
-  expect(onChangeValue).toHaveBeenNthCalledWith(3, '20');
-  expect(onChangeValue).toHaveBeenNthCalledWith(4, '110');
+  expect(onChangeValueMock).toHaveBeenCalledTimes(4);
+  expect(onChangeValueMock).toHaveBeenNthCalledWith(1, '11');
+  expect(onChangeValueMock).toHaveBeenNthCalledWith(2, '10.1');
+  expect(onChangeValueMock).toHaveBeenNthCalledWith(3, '20');
+  expect(onChangeValueMock).toHaveBeenNthCalledWith(4, '110');
+
+  // ArrowUp = 1
+  // Alt + ArrowUp = 2
+  // Shift + ArrowUp = 2
+  // Shift + Alt + ArrowUp = 3
+  // total = 8
+  expect(onKeyDownMock).toHaveBeenCalledTimes(8);
 });
 
 it('decrements value when press arrow down key', () => {
@@ -176,4 +213,24 @@ it('unable change value using keyboard arrows or increment/decrement buttons whe
   userEvent.click(incrementButton);
 
   expect(onChangeValue).not.toHaveBeenCalled();
+});
+
+it('should format on blur', () => {
+  const onChangeValueMock = jest.fn();
+  const onBlurMock = jest.fn();
+  render(
+    <NumberInput
+      readOnly={true}
+      value="100."
+      onBlur={onBlurMock}
+      onChangeValue={onChangeValueMock}
+    />
+  );
+
+  fireEvent.blur(screen.getByRole('textbox'));
+
+  expect(onChangeValueMock).toHaveBeenCalledTimes(1);
+  expect(onChangeValueMock).toHaveBeenCalledWith('100');
+
+  expect(onBlurMock).toHaveBeenCalledTimes(1);
 });
