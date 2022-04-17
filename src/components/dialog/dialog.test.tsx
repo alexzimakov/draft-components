@@ -1,6 +1,7 @@
 import userEvent from '@testing-library/user-event';
-import { render, screen, within } from '@testing-library/react';
+import { act, render, screen, within } from '@testing-library/react';
 import { Dialog } from './dialog';
+import { useRef, useState } from 'react';
 
 const heading = 'Title text';
 const description = 'Description text';
@@ -11,9 +12,10 @@ it('renders with necessary elements', () => {
   render(
     <Dialog
       isOpen={true}
+      width={320}
       heading={heading}
       description={description}
-      actions={actions}
+      footerButtons={actions}
     >
       {content}
     </Dialog>
@@ -34,7 +36,7 @@ it('renders nothing when `isOpen` prop is false', () => {
 
 it('renders without close button', () => {
   render(
-    <Dialog isOpen={true} shouldShowCloseButton={false}>
+    <Dialog isOpen={true} showCloseButton={false}>
       {content}
     </Dialog>
   );
@@ -80,19 +82,6 @@ it('should close dialog when press Esc button', () => {
   expect(onClose).toHaveBeenCalledTimes(1);
 });
 
-it('should close dialog when click on outside the dialog', () => {
-  const onClose = jest.fn();
-  render(
-    <Dialog isOpen={true} onClose={onClose}>
-      {content}
-    </Dialog>
-  );
-
-  userEvent.click(screen.getByTestId('dialog-container'));
-
-  expect(onClose).toHaveBeenCalledTimes(1);
-});
-
 it('should not throw an error when `onClose` callback is not given', () => {
   render(<Dialog isOpen={true}>{content}</Dialog>);
 
@@ -105,19 +94,20 @@ it('should capture focus in the dialog', () => {
   render(
     <>
       <button data-testid="button-outside">Button outside dialog</button>
-      <Dialog isOpen={true} actions={actions} />
+      <Dialog isOpen={true} footerButtons={actions} />
     </>
   );
 
   const dialogEl = screen.getByRole('dialog');
   const [closeButton, confirmButton] = within(dialogEl).getAllByRole('button');
 
+  userEvent.tab();
   expect(closeButton).toHaveFocus();
 
-  userEvent.tab(); // Move focus to the confirm button in the dialog.
+  userEvent.tab();
   expect(confirmButton).toHaveFocus();
 
-  userEvent.tab(); // Move focus to the button outside the dialog.
+  userEvent.tab();
   expect(closeButton).toHaveFocus();
 });
 
@@ -129,7 +119,7 @@ it('when open more than one dialog should close only the top dialog when press E
       <Dialog isOpen={true} onClose={onDialog1Close}>
         {content}
       </Dialog>
-      <Dialog isOpen={true} actions={actions} onClose={onDialog2Close} />
+      <Dialog isOpen={true} footerButtons={actions} onClose={onDialog2Close} />
     </>
   );
 
@@ -142,8 +132,8 @@ it('when open more than one dialog should close only the top dialog when press E
 it('when open more than one dialog should capture focus only in the top dialog', () => {
   render(
     <>
-      <Dialog isOpen={true} actions={actions} />
-      <Dialog isOpen={true} actions={actions} />
+      <Dialog isOpen={true} footerButtons={actions} />
+      <Dialog isOpen={true} footerButtons={actions} />
     </>
   );
 
@@ -151,11 +141,74 @@ it('when open more than one dialog should capture focus only in the top dialog',
   const [closeButtonOfDialog2, confirmButtonOfDialog2] =
     within(dialog2).getAllByRole('button');
 
+  userEvent.tab();
   expect(closeButtonOfDialog2).toHaveFocus();
 
-  userEvent.tab(); // Move focus to confirm button in the dialog 2.
+  userEvent.tab();
   expect(confirmButtonOfDialog2).toHaveFocus();
 
-  userEvent.tab(); // Move focus to close button in the dialog 1.
+  userEvent.tab();
   expect(closeButtonOfDialog2).toHaveFocus();
+});
+
+it('should focus a passed element after the dialog is opened', () => {
+  const openButtonTestId = 'open-dialog';
+  const focusElementTestId = 'focus-button';
+  const TestDialog = () => {
+    const ref = useRef<HTMLButtonElement>(null);
+    const [isOpen, setIsOpen] = useState(false);
+    return (
+      <div>
+        <button
+          data-testid={openButtonTestId}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          Open
+        </button>
+        <Dialog isOpen={isOpen} focusAfterOpen={ref} heading="Test dialog">
+          <button ref={ref} data-testid={focusElementTestId}>
+            Focus button
+          </button>
+        </Dialog>
+      </div>
+    );
+  };
+
+  render(<TestDialog />);
+
+  userEvent.click(screen.getByTestId(openButtonTestId));
+  expect(screen.getByTestId(focusElementTestId)).toHaveFocus();
+});
+
+it('should focus a passed element after the dialog is closed', () => {
+  jest.useFakeTimers();
+
+  const closeButtonTestId = 'close-dialog';
+  const focusElementTestId = 'focus-button';
+  const TestDialog = () => {
+    const ref = useRef<HTMLButtonElement>(null);
+    const [isOpen, setIsOpen] = useState(true);
+    return (
+      <div>
+        <button
+          data-testid={closeButtonTestId}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          Open
+        </button>
+        <button ref={ref} data-testid={focusElementTestId}>
+          Focus button
+        </button>
+        <Dialog isOpen={isOpen} focusAfterClose={ref} heading="Test dialog" />
+      </div>
+    );
+  };
+
+  render(<TestDialog />);
+
+  userEvent.click(screen.getByTestId(closeButtonTestId));
+  act(() => {
+    jest.runOnlyPendingTimers();
+  });
+  expect(screen.getByTestId(focusElementTestId)).toHaveFocus();
 });

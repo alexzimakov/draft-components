@@ -17,6 +17,7 @@ export * from './formatted-content';
 export * from './inline-message';
 export * from './label';
 export * from './loading-view';
+export * from './menu';
 export * from './non-ideal-state-view';
 export * from './number-input';
 export * from './password-input';

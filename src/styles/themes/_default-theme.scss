@@ -277,4 +277,13 @@
   --dc-menu-button-bg-color: transparent;
   --dc-menu-button-focus-color: white;
   --dc-menu-button-focus-bg-color: #{dc.$blue-500};
+
+  /*------------------------------------*\
+   #DIALOG
+  \*------------------------------------*/
+  --dc-dialog-header-color: #{dc.$gray-900};
+  --dc-dialog-description-color: #{dc.$gray-700};
+  --dc-dialog-backdrop-color: #{rgba(dc.$gray-900, dc.$opacity-30)};
+  --dc-dialog-border-color: white;
+  --dc-dialog-bg-color: white;
 }

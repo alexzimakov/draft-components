@@ -1,5 +1,5 @@
 import { RefObject, useEffect } from 'react';
-import { KeyCode } from '../../lib/keyboard-helpers';
+import { KeyCode } from '../lib/keyboard-helpers';
 
 const modalList: RefObject<HTMLElement>[] = [];
 

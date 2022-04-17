@@ -1,101 +1,118 @@
 import {
   ComponentPropsWithoutRef,
-  MutableRefObject,
   ReactNode,
+  RefObject,
+  useEffect,
   useRef,
 } from 'react';
-import { noop } from '../../lib/util';
+import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
-import { useCaptureFocus } from '../../hooks/use-capture-focus';
-import { useCloseOnEscPress } from '../../hooks/use-close-on-esc-press';
 import { useDisableBodyScroll } from '../../hooks/use-disable-body-scroll';
+import { useEscKeyDown } from '../../hooks/use-esc-key-down';
+import { useFocusTrap } from '../../hooks/use-focus-trap';
 import { Portal } from '../portal';
 import { Box } from '../box';
 import { Button } from '../button';
 import { Headline, Subheadline } from '../formatted-content';
 import { SvgIcon } from '../svg-icon';
-import { x } from '../../bootstrap-icons/x';
+import { x as close } from '../../bootstrap-icons/x';
+import { useCloseAnimation } from '../../hooks';
 
-export interface DialogProps extends ComponentPropsWithoutRef<'div'> {
+export type DialogProps = {
+  /**
+   * A ref to an element that should receive focus after open.
+   */
+  focusAfterOpen?: RefObject<HTMLElement>;
+  /**
+   * A ref to an element that should receive focus after close.
+   */
+  focusAfterClose?: RefObject<HTMLElement>;
   isOpen?: boolean;
-  onClose?: () => void;
-  shouldShowCloseButton?: boolean;
-  focusElementRefAfterOpen?: MutableRefObject<Element | null>;
-  focusElementRefAfterClose?: MutableRefObject<Element | null>;
+  showCloseButton?: boolean;
   width?: 'sm' | 'md' | 'lg' | number;
   heading?: ReactNode;
   description?: ReactNode;
-  actions?: ReactNode;
-}
+  footerButtons?: ReactNode;
+  onClose?(): void;
+} & ComponentPropsWithoutRef<'div'>;
 
-const dialogWidths = {
+const DIALOG_WIDTH = {
   sm: 320,
   md: 640,
   lg: 960,
 };
 
-const closeIcon = <SvgIcon size="2x" icon={x} />;
-
 export function Dialog({
   style,
   className,
-  isOpen,
-  onClose = noop,
-  shouldShowCloseButton = true,
-  focusElementRefAfterOpen,
-  focusElementRefAfterClose,
+  isOpen = false,
+  showCloseButton = true,
+  focusAfterOpen,
+  focusAfterClose,
   width = 'md',
   heading,
   description,
+  footerButtons,
   children,
-  actions,
+  onClose,
   ...props
 }: DialogProps) {
-  const dialogRef = useRef<HTMLDivElement | null>(null);
-  const widthInPx =
-    (typeof width === 'string' ? dialogWidths[width] : width) ||
-    dialogWidths.md;
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const { shouldRender, animationClassName } = useCloseAnimation({
+    isOpen,
+    closeDurationMs: 200,
+    className: 'dc-dialog-container_with-animation',
+    openClassName: 'dc-dialog-container_open',
+    closingClassName: 'dc-dialog-container_closing',
+  });
 
   useDisableBodyScroll(isOpen);
 
-  useCloseOnEscPress(onClose, isOpen);
+  useEscKeyDown(() => isFunction(onClose) && onClose(), isOpen);
 
-  useCaptureFocus({
-    isEnabled: isOpen,
-    modalRef: dialogRef,
-    focusElementRefAfterCapture: focusElementRefAfterOpen,
-    focusElementRefAfterRelease: focusElementRefAfterClose,
-  });
+  useFocusTrap(dialogRef, isOpen);
 
-  if (!isOpen) {
+  useEffect(() => {
+    if (shouldRender) {
+      if (focusAfterOpen?.current) {
+        focusAfterOpen.current.focus();
+      }
+    } else {
+      if (focusAfterClose?.current) {
+        focusAfterClose.current.focus();
+      }
+    }
+  }, [shouldRender, focusAfterOpen, focusAfterClose]);
+
+  if (!shouldRender) {
     return null;
   }
 
+  let widthPx: number;
+  if (typeof width === 'string') {
+    widthPx = DIALOG_WIDTH[width] || DIALOG_WIDTH.md;
+  } else {
+    widthPx = width || DIALOG_WIDTH.md;
+  }
   return (
     <Portal>
       <div
         data-testid="dialog-container"
-        className="dc-dialog-container"
-        onClick={(event) => {
-          if (!dialogRef.current?.contains(event.target as Node)) {
-            onClose();
-          }
-        }}
+        className={classNames('dc-dialog-container', animationClassName)}
       >
-        <div tabIndex={0} />
         <Box
           {...props}
           ref={dialogRef}
-          style={{ ...style, width: widthInPx }}
+          style={{ ...style, width: widthPx }}
           className={classNames(className, 'dc-dialog')}
-          borderRadius="lg"
+          aria-modal={true}
+          role="dialog"
           padding="none"
           elevation="lg"
-          role="dialog"
-          aria-modal={true}
+          borderRadius="lg"
         >
           <div className="dc-dialog__header">
-            {(heading || description) && (
+            {Boolean(heading || description) && (
               <div className="dc-dialog__header-content">
                 {heading && <Headline as="h2">{heading}</Headline>}
                 {description && (
@@ -106,14 +123,14 @@ export function Dialog({
               </div>
             )}
 
-            {shouldShowCloseButton && (
+            {showCloseButton && (
               <Button
-                data-testid="dialog-close-button"
                 className="dc-dialog__close-btn"
-                appearance="minimal"
                 size="sm"
                 noPadding={true}
-                leadingIcon={closeIcon}
+                appearance="minimal"
+                data-testid="dialog-close-button"
+                leadingIcon={<SvgIcon size="2x" icon={close} />}
                 onClick={onClose}
               />
             )}
@@ -121,9 +138,10 @@ export function Dialog({
 
           <div className="dc-dialog__content">{children}</div>
 
-          {actions && <div className="dc-dialog__actions">{actions}</div>}
+          {footerButtons && (
+            <div className="dc-dialog__actions">{footerButtons}</div>
+          )}
         </Box>
-        <div tabIndex={0} />
       </div>
     </Portal>
   );

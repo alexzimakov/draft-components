@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { KeyCode } from '../../lib/keyboard-helpers';
+import { KeyCode } from '../lib/keyboard-helpers';
 
 type Handler = () => void;
 

@@ -19,29 +19,33 @@ export function useCloseAnimation(
   params: UseCloseAnimationParams
 ): UseCloseAnimationResult {
   const isMounted = useIsMounted();
-  const timeoutId = useRef<number>();
+  const openTimout = useRef<number>();
+  const closeTimeout = useRef<number>();
   const [shouldRender, setShouldRender] = useState(params.isOpen);
   const [shouldAddOpenClass, setShouldAddOpenClass] = useState(false);
 
   useEffect(() => {
     if (params.isOpen) {
       setShouldRender(true);
-      window.requestAnimationFrame(() => {
+      openTimout.current = window.setTimeout(() => {
         if (isMounted.current) {
           setShouldAddOpenClass(true);
         }
-      });
+      }, 16);
     } else {
       setShouldAddOpenClass(false);
-      timeoutId.current = window.setTimeout(() => {
+      closeTimeout.current = window.setTimeout(() => {
         if (isMounted.current) {
           setShouldRender(false);
         }
       }, params.closeDurationMs);
 
       return () => {
-        window.clearTimeout(timeoutId.current);
-        timeoutId.current = undefined;
+        window.clearTimeout(openTimout.current);
+        openTimout.current = undefined;
+
+        window.clearTimeout(closeTimeout.current);
+        closeTimeout.current = undefined;
       };
     }
   }, [params.isOpen, params.closeDurationMs, isMounted]);
@@ -51,7 +55,7 @@ export function useCloseAnimation(
     animationClassName: classNames(
       params.className,
       shouldAddOpenClass && params.openClassName,
-      timeoutId.current && params.closingClassName
+      closeTimeout.current && params.closingClassName
     ),
   };
 }
