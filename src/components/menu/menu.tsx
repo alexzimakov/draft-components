@@ -15,6 +15,7 @@ import { KeyCode } from '../../lib/keyboard-helpers';
 import { uniqueId } from '../../lib/util';
 import { isFunction } from '../../lib/guards';
 import { BoxElevation } from '../box';
+import { Alignment, Placement } from '../positioner/types';
 import { Popover } from '../popover';
 import { Button } from '../button';
 import { MenuButton } from './menu-button';
@@ -33,6 +34,10 @@ type RenderLabel = (props: {
 export type MenuProps = {
   className?: string;
   elevation?: BoxElevation;
+  placement?: Placement;
+  alignment?: Alignment;
+  anchorGap?: number;
+  viewportGap?: number;
   defaultIsOpen?: boolean;
   label: ReactNode | RenderLabel;
   children: ReactNode;
@@ -41,6 +46,10 @@ export type MenuProps = {
 export function Menu({
   className,
   elevation,
+  placement,
+  alignment,
+  anchorGap,
+  viewportGap,
   defaultIsOpen = false,
   label,
   children,
@@ -122,6 +131,10 @@ export function Menu({
     <Popover
       className={classNames('dc-menu', className)}
       elevation={elevation}
+      placement={placement}
+      alignment={alignment}
+      anchorGap={anchorGap}
+      viewportGap={viewportGap}
       isOpen={isOpen}
       onClose={closeMenu}
       anchor={

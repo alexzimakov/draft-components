@@ -40,6 +40,8 @@ export type PopoverProps = {
   shouldFocusAnchorAfterClose?: boolean;
   placement?: Placement;
   alignment?: Alignment;
+  anchorGap?: number;
+  viewportGap?: number;
   anchor: ReactNode | RenderFn;
   children: ReactNode;
   onOpen?(): void;
@@ -53,6 +55,8 @@ export const Popover = forwardRef<PopoverRef, PopoverProps>(function Popover(
     shouldFocusAnchorAfterClose = true,
     placement = 'bottom',
     alignment = 'start',
+    anchorGap,
+    viewportGap,
     borderRadius = 'lg',
     elevation = 'md',
     anchor,
@@ -131,6 +135,8 @@ export const Popover = forwardRef<PopoverRef, PopoverProps>(function Popover(
     <Positioner
       placement={placement}
       alignment={alignment}
+      anchorGap={anchorGap}
+      viewportGap={viewportGap}
       renderAnchor={({ setRef }) => {
         if (isFunction(anchor)) {
           return anchor({
