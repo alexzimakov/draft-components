@@ -167,11 +167,11 @@ const anchor = (
 Popover with tooltip
 
 ```jsx
-import {Popover} from '../popover';
-import {Tooltip} from '../tooltip';
-import {Button} from '../button';
+import { Popover } from '../popover';
+import { Tooltip } from '../tooltip';
+import { Button } from '../button';
 
-const renderAnchor = ({setRef, togglePopover}) => (
+const renderAnchor = ({ setRef, togglePopover }) => (
   <Tooltip label="Click on me!">
     <Button ref={setRef} onClick={togglePopover}>
       Hover on me
@@ -180,6 +180,6 @@ const renderAnchor = ({setRef, togglePopover}) => (
 );
 
 <Popover anchor={renderAnchor}>
-  <div style={{margin: 16}}>Popover Content</div>
+  <div style={{ margin: 16 }}>Popover Content</div>
 </Popover>;
 ```

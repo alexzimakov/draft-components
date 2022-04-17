@@ -59,11 +59,14 @@ const handleClick = (event) => {
 };
 
 <Menu
-  label={(props) => (
-    <Button {...props} appearance="secondary" noPadding={true}>
-      <SvgIcon size="lg" icon={toggles} />
-    </Button>
-  )}
+  label={({ ...props }) => {
+    delete props.isOpen;
+    return (
+      <Button {...props} appearance="secondary" noPadding={true}>
+        <SvgIcon size="lg" icon={toggles} />
+      </Button>
+    );
+  }}
 >
   <MenuButton onClick={handleClick}>General</MenuButton>
   <MenuButton onClick={handleClick}>Users & Groups</MenuButton>
