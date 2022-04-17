@@ -1,0 +1,43 @@
+@use '../abstracts' as dc;
+
+.dc-menu {
+  min-width: dc.px-to-rem(128px);
+  padding: dc.$gap-1x;
+}
+
+.dc-menu__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.dc-menu__divider {
+  margin: dc.$gap-1x dc.$gap-2x;
+  border: 0.5px solid var(--dc-menu-divider-color);
+  justify-self: stretch;
+}
+
+.dc-menu-button {
+  font-size: dc.$font-size-sm;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: dc.px-to-rem(28px);
+  padding: 0 dc.$gap-3x;
+  text-align: left;
+  white-space: nowrap;
+  color: var(--dc-menu-button-color);
+  border: none;
+  border-radius: dc.$border-radius-sm;
+  background: var(--dc-menu-button-bg-color);
+  appearance: none;
+}
+
+.dc-menu-button > * + * {
+  margin-left: dc.$gap-2x;
+}
+
+.dc-menu-button:focus {
+  color: var(--dc-menu-button-focus-color);
+  outline: none;
+  background: var(--dc-menu-button-focus-bg-color);
+}

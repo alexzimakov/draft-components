@@ -268,4 +268,13 @@
   --dc-avatar-bg2-color: #{dc.$gray-500};
   --dc-avatar-icon-color: #{dc.$white};
   --dc-avatar-icon-bg: linear-gradient(#{dc.$gray-400}, #{dc.$gray-500});
+
+  /*------------------------------------*\
+   #MENU
+  \*------------------------------------*/
+  --dc-menu-divider-color: #{dc.$gray-200};
+  --dc-menu-button-color: #{dc.$gray-800};
+  --dc-menu-button-bg-color: transparent;
+  --dc-menu-button-focus-color: white;
+  --dc-menu-button-focus-bg-color: #{dc.$blue-500};
 }

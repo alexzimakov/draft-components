@@ -12,7 +12,7 @@ import {
 import { isFunction } from '../../lib/guards';
 import { classNames, mergeRefs } from '../../lib/react-helpers';
 import { useIsFirstRender } from '../../hooks/use-is-first-render';
-import { useCloseTransition } from '../../hooks/use-close-transition';
+import { useCloseAnimation } from '../../hooks/use-close-animation';
 import { useBodyClick } from './use-body-click';
 import { useEscKeyDown } from './use-esc-key-down';
 import { useFocusTrap } from './use-focus-trap';
@@ -68,7 +68,7 @@ export const Popover = forwardRef<PopoverRef, PopoverProps>(function Popover(
   const isFirstRender = useIsFirstRender();
   const [defaultIsOpen, setDefaultIsOpen] = useState(props.defaultIsOpen);
   const isOpen = props.isOpen ?? defaultIsOpen ?? false;
-  const { isMounted, transitionClassName } = useCloseTransition({
+  const { shouldRender, animationClassName } = useCloseAnimation({
     isOpen,
     closeDurationMs: 150,
     className: !isFirstRender && 'dc-popover_bubble-transition',
@@ -77,17 +77,13 @@ export const Popover = forwardRef<PopoverRef, PopoverProps>(function Popover(
   });
 
   const openPopover = useCallback(() => {
-    setDefaultIsOpen(() => {
-      isFunction(onOpen) && onOpen();
-      return true;
-    });
+    setDefaultIsOpen(true);
+    isFunction(onOpen) && onOpen();
   }, [onOpen]);
 
   const closePopover = useCallback(() => {
-    setDefaultIsOpen(() => {
-      isFunction(onClose) && onClose();
-      return false;
-    });
+    setDefaultIsOpen(false);
+    isFunction(onClose) && onClose();
   }, [onClose]);
 
   const togglePopover = useCallback(() => {
@@ -167,7 +163,7 @@ export const Popover = forwardRef<PopoverRef, PopoverProps>(function Popover(
         );
       }}
       renderContent={({ style, setRef }) => {
-        if (isMounted) {
+        if (shouldRender) {
           delete props.defaultIsOpen;
           delete props.isOpen;
 
@@ -177,7 +173,7 @@ export const Popover = forwardRef<PopoverRef, PopoverProps>(function Popover(
                 ref={contentRef}
                 className={classNames(
                   'dc-popover',
-                  transitionClassName,
+                  animationClassName,
                   className
                 )}
                 borderRadius={borderRadius}

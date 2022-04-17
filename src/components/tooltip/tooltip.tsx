@@ -12,7 +12,7 @@ import {
 import { uniqueId } from '../../lib/util';
 import { isFunction } from '../../lib/guards';
 import { classNames, mergeRefs } from '../../lib/react-helpers';
-import { useCloseTransition } from '../../hooks/use-close-transition';
+import { useCloseAnimation } from '../../hooks/use-close-animation';
 import { Positioner } from '../positioner';
 import { Alignment, Placement } from '../positioner/types';
 
@@ -44,7 +44,7 @@ export function Tooltip({
   const tooltipId = useRef(id);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const [isShown, setIsShown] = useState(false);
-  const { isMounted, transitionClassName } = useCloseTransition({
+  const { shouldRender, animationClassName } = useCloseAnimation({
     isOpen: isShown,
     closeDurationMs: 150,
     className: 'dc-tooltip_fade-transition',
@@ -103,7 +103,7 @@ export function Tooltip({
         );
       }}
       renderContent={({ style, setRef }) => {
-        if (isMounted) {
+        if (shouldRender) {
           return (
             <div ref={setRef} style={style} className="dc-tooltip-container">
               <div
@@ -112,7 +112,7 @@ export function Tooltip({
                 id={tooltipId.current}
                 className={classNames(
                   'dc-tooltip',
-                  transitionClassName,
+                  animationClassName,
                   className
                 )}
                 role="tooltip"
