@@ -19,7 +19,7 @@
   --dc-primary-border-color: #{dc.$gray-300};
   --dc-secondary-border-color: #{dc.$gray-200};
 
-  --dc-primary-bg-color: #{dc.$white};
+  --dc-primary-bg-color: white;
   --dc-secondary-bg-color: #{dc.$gray-50};
   --dc-tertiary-bg-color: #{dc.$gray-100};
 
@@ -28,14 +28,9 @@
 
   --dc-focus-border-color: #{dc.$blue-500};
   --dc-focus-ring-color: #{rgba(dc.$blue-500, dc.$opacity-45)};
-  --dc-focus-ring-secondary-color: #{dc.$white};
+  --dc-focus-ring-secondary-color: white;
   --dc-focus-danger-border-color: #{dc.$red-500};
   --dc-focus-danger-ring-color: #{rgba(dc.$red-500, dc.$opacity-40)};
-
-  --dc-zindex-base: #{dc.$zindex-base};
-  --dc-zindex-sticky: #{dc.$zindex-sticky};
-  --dc-zindex-fixed: #{dc.$zindex-fixed};
-  --dc-zindex-overlay: #{dc.$zindex-overlay};
 
   --dc-disabled-state-opacity: #{dc.$opacity-50};
 
@@ -57,7 +52,7 @@
   \*------------------------------------*/
   --dc-btn-height: var(--dc-control-md-h);
   --dc-btn-text-color: #{dc.$gray-700};
-  --dc-btn-bg: #{dc.$white};
+  --dc-btn-bg: white;
   --dc-btn-bg-hover: #{dc.$gray-100};
   --dc-btn-bg-active: #{dc.$gray-200};
   --dc-btn-border-color: #{dc.$gray-200};
@@ -80,7 +75,7 @@
   --dc-btn-minimal-border-color-focus: #{rgba(dc.$gray-500, dc.$opacity-0)};
   --dc-btn-minimal-focus-ring-color: var(--dc-focus-ring-color);
 
-  --dc-btn-primary-text-color: #{dc.$white};
+  --dc-btn-primary-text-color: white;
   --dc-btn-primary-bg: #{dc.$blue-500};
   --dc-btn-primary-bg-hover: #{dc.$blue-600};
   --dc-btn-primary-bg-active: #{dc.$blue-700};
@@ -88,7 +83,7 @@
   --dc-btn-primary-border-color-focus: #{dc.$blue-600};
   --dc-btn-primary-focus-ring-color: var(--dc-focus-ring-color);
 
-  --dc-btn-danger-text-color: #{dc.$white};
+  --dc-btn-danger-text-color: white;
   --dc-btn-danger-bg: #{dc.$red-600};
   --dc-btn-danger-bg-hover: #{dc.$red-700};
   --dc-btn-danger-bg-active: #{dc.$red-800};
@@ -96,7 +91,7 @@
   --dc-btn-danger-border-color-focus: #{dc.$red-800};
   --dc-btn-danger-focus-ring-color: #{rgba(dc.$red-600, dc.$opacity-50)};
 
-  --dc-btn-success-text-color: #{dc.$white};
+  --dc-btn-success-text-color: white;
   --dc-btn-success-bg: #{dc.$green-500};
   --dc-btn-success-bg-hover: #{dc.$green-600};
   --dc-btn-success-bg-active: #{dc.$green-700};
@@ -111,7 +106,7 @@
   --dc-input-add-on-color: #{dc.$gray-600};
   --dc-input-border-color: #{dc.$gray-300};
   --dc-input-border: 1px solid var(--dc-input-border-color);
-  --dc-input-bg: #{dc.$white};
+  --dc-input-bg: white;
 
   --dc-input-disabled-text-color: #{dc.$gray-400};
   --dc-input-disabled-add-on-color: #{dc.$gray-400};
@@ -120,7 +115,7 @@
 
   --dc-input-error-color: #{dc.$red-600};
   --dc-input-accent-color: #{dc.$blue-500};
-  --dc-input-accent-secondary-color: #{dc.$white};
+  --dc-input-accent-secondary-color: white;
 
   --dc-input-width: #{dc.px-to-rem(288px)};
   --dc-input-height: var(--dc-control-md-h);
@@ -156,7 +151,7 @@
    #RADIO GROUP
   \*------------------------------------*/
   --dc-radio-group-selection-color: #{dc.$blue-500};
-  --dc-radio-group-border-color: #{rgba(dc.$black, dc.$opacity-10)};
+  --dc-radio-group-border-color: #{rgba(black, dc.$opacity-10)};
 
   /*------------------------------------*\
    #SLIDER
@@ -164,7 +159,7 @@
   --dc-slider-thumb-width: 20px;
   --dc-slider-thumb-height: 20px;
   --dc-slider-track-height: 4px;
-  --dc-slider-thumb-bg: #{dc.$white};
+  --dc-slider-thumb-bg: white;
   --dc-slider-track-bg: #{dc.$gray-200};
   --dc-slider-fill-track-bg: #{dc.$blue-500};
   --dc-slider-tick-mark-color: #{dc.$gray-700};
@@ -178,7 +173,7 @@
   --dc-calendar-border-secondary-color: #{dc.$gray-200};
   --dc-calendar-arrow-color: #{dc.$blue-600};
   --dc-calendar-current-day-text-color: #{dc.$orange-600};
-  --dc-calendar-selected-day-text-color: #{dc.$white};
+  --dc-calendar-selected-day-text-color: white;
   --dc-calendar-selected-day-bg-color: #{dc.$blue-500};
 
   /*------------------------------------*\
@@ -197,7 +192,7 @@
    #ACTIONS GROUP
   \*------------------------------------*/
   --dc-actions-group-border: #{dc.$gray-300};
-  --dc-actions-group-bg: #{dc.$white};
+  --dc-actions-group-bg: white;
 
   /*------------------------------------*\
    #NON IDEAL STATE VIEW
@@ -210,10 +205,10 @@
    #TOAST
   \*------------------------------------*/
   --dc-toast-bg: #{dc.$gray-700};
-  --dc-toast-text-color: #{dc.$white};
+  --dc-toast-text-color: white;
   --dc-toast-secondary-text-color: #{dc.$gray-300};
-  --dc-toast-btn-bg: #{rgba(dc.$white, dc.$opacity-10)};
-  --dc-toast-btn-text-color: #{dc.$white};
+  --dc-toast-btn-bg: #{rgba(white, dc.$opacity-10)};
+  --dc-toast-btn-text-color: white;
 
   /*------------------------------------*\
    #BREADCRUMBS
@@ -227,7 +222,7 @@
    #SEGMENTED CONTROL
   \*------------------------------------*/
   --dc-segmented-control-text-color: #{dc.$gray-700};
-  --dc-segmented-control-text-color-active: #{dc.$white};
+  --dc-segmented-control-text-color-active: white;
   --dc-segmented-control-border-color: #{rgba(dc.$gray-900, dc.$opacity-15)};
   --dc-segmented-control-border-focus: #{dc.$blue-500};
   --dc-segmented-control-separator-color: #{rgba(dc.$gray-900, dc.$opacity-20)};
@@ -239,9 +234,9 @@
   \*------------------------------------*/
   --dc-tab-text-color: #{dc.$gray-500};
   --dc-tab-selected-text-color: #{dc.$blue-500};
-  --dc-tab-badge-text-color: #{dc.$white};
+  --dc-tab-badge-text-color: white;
   --dc-tab-badge-bg-color: #{dc.$gray-300};
-  --dc-tab-badge-selected-text-color: #{dc.$white};
+  --dc-tab-badge-selected-text-color: white;
   --dc-tab-selected-badge-bg-color: #{dc.$blue-500};
   --dc-tab-pointer-color: #{dc.$blue-500};
   --dc-tabs-border-color: #{dc.$gray-200};
@@ -273,10 +268,10 @@
   /*------------------------------------*\
    #AVATAR
   \*------------------------------------*/
-  --dc-avatar-color: #{dc.$white};
+  --dc-avatar-color: white;
   --dc-avatar-bg1-color: #{dc.$gray-400};
   --dc-avatar-bg2-color: #{dc.$gray-500};
-  --dc-avatar-icon-color: #{dc.$white};
+  --dc-avatar-icon-color: white;
   --dc-avatar-icon-bg: linear-gradient(#{dc.$gray-400}, #{dc.$gray-500});
 
   /*------------------------------------*\

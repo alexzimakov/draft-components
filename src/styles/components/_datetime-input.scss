@@ -41,8 +41,8 @@
 }
 
 .dc-date-component-input > * {
-  font-variant-numeric: tabular-nums;
   padding: 0 dc.px-to-rem(2px);
+  font-variant-numeric: tabular-nums;
 }
 
 .dc-date-component-input > [aria-hidden='true'] {
@@ -78,7 +78,7 @@
 }
 
 .dc-date-component-input > input:focus {
-  color: dc.$white;
+  color: white;
   outline: none;
   background: var(--dc-input-accent-color);
   caret-color: transparent;

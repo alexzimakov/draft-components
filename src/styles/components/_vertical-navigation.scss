@@ -44,12 +44,12 @@
 }
 
 .dc-vertical-nav-item:hover {
-  background: rgba(dc.$black, dc.$opacity-5);
+  background: rgba(black, dc.$opacity-5);
 }
 
 .dc-vertical-nav-item_selected {
   color: var(--dc-primary-text-color);
-  background: rgba(dc.$black, dc.$opacity-5);
+  background: rgba(black, dc.$opacity-5);
 }
 
 .dc-vertical-nav-item__icon {
