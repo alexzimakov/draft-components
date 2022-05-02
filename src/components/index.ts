@@ -12,6 +12,7 @@ export * from './date-preset-picker-popover';
 export * from './date-range-picker';
 export * from './datetime-input';
 export * from './dialog';
+export * from './file-input';
 export * from './form-field';
 export * from './formatted-content';
 export * from './inline-message';

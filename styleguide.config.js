@@ -44,6 +44,7 @@ module.exports = {
         'radio-group',
         'switch',
         'slider',
+        'file-input',
         'date-picker',
         'date-range-picker',
         'date-picker-popover',

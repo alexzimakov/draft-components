@@ -131,6 +131,16 @@
   --dc-textarea-leading: #{dc.$leading-normal};
 
   /*------------------------------------*\
+   #FILE INPUT
+  \*------------------------------------*/
+  --dc-file-input-text-color: #{dc.$gray-800};
+  --dc-file-input-icon-color: #{dc.$gray-400};
+  --dc-file-input-label-color: #{dc.$blue-500};
+  --dc-file-input-help-text-color: #{dc.$gray-500};
+  --dc-file-input-border-color: #{dc.$gray-400};
+  --dc-file-input-drag-border-color: #{dc.$gray-400};
+
+  /*------------------------------------*\
    #SELECTION CONTROLS
   \*------------------------------------*/
   --dc-checkbox-size: #{dc.px-to-rem(18px)};

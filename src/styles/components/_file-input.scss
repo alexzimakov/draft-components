@@ -1,0 +1,71 @@
+@use '../abstracts' as dc;
+
+.dc-file-input {
+  font-family: var(--dc-font-base);
+  font-size: dc.$font-size-sm;
+  width: 100%;
+  color: var(--dc-file-input-text-color);
+}
+
+.dc-file-input__drop-zone {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 100%;
+  padding: dc.$gap-8x dc.$gap-6x;
+  border: 1px dashed var(--dc-file-input-border-color);
+  border-radius: dc.$border-radius-lg;
+}
+
+.dc-file-input__drop-zone_drag-over {
+  border-color: var(--dc-file-input-drag-border-color);
+}
+
+.dc-file-input__content {
+  text-align: center;
+}
+
+.dc-file-input__icon {
+  display: inline-flex;
+  margin-bottom: dc.$gap-5x;
+  color: var(--dc-file-input-icon-color);
+}
+
+.dc-file-input__button {
+  padding: dc.px-to-rem(2px);
+  cursor: pointer;
+  transition: dc.$transition-quick;
+  transition-property: box-shadow, color;
+  color: var(--dc-file-input-label-color);
+  border-radius: dc.$border-radius-xs;
+}
+
+.dc-file-input__help-text {
+  font-size: 90%;
+  margin-top: dc.$gap-2x;
+  color: var(--dc-file-input-help-text-color);
+}
+
+.dc-file-input__native {
+  @include dc.visually-hidden;
+}
+
+.dc-file-input__native:focus + .dc-file-input__drop-zone {
+  .dc-file-input__button {
+    box-shadow: 0 0 0 2px var(--dc-focus-border-color);
+  }
+}
+
+.dc-file-input_disabled {
+  opacity: var(--dc-disabled-state-opacity);
+}
+
+.dc-file-input_disabled * {
+  cursor: default;
+}
+
+.dc-file-input_disabled .dc-file-input__drop-zone_drag-over {
+  border-color: var(--dc-file-input-border-color);
+}
