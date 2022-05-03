@@ -7,7 +7,7 @@
 }
 
 .dc-select {
-  line-height: dc.$leading-default;
+  line-height: dc.$leading-tight;
   width: auto;
   padding-right: calc(1.25em + var(--dc-input-gap));
   padding-left: var(--dc-input-gap);
