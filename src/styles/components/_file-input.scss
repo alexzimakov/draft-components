@@ -8,6 +8,7 @@
 }
 
 .dc-file-input__drop-zone {
+  position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -45,7 +46,29 @@
 .dc-file-input__help-text {
   font-size: 90%;
   margin-top: dc.$gap-2x;
+  text-align: center;
   color: var(--dc-file-input-help-text-color);
+}
+
+.dc-file-input__loading-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 200ms linear;
+  transition-property: opacity;
+  opacity: 1;
+  border-radius: inherit;
+  background: rgba(white, dc.$opacity-75);
+}
+
+.dc-file-input__loading-overlay[hidden] {
+  pointer-events: none;
+  opacity: 0;
 }
 
 .dc-file-input__native {

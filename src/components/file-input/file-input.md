@@ -27,6 +27,25 @@ import { image } from '../../bootstrap-icons/image';
 </FileInput>;
 ```
 
+Loading state
+
+```jsx
+import { FileInput, FileInputButton } from '../file-input';
+import { SvgIcon } from '../svg-icon';
+import { image } from '../../bootstrap-icons/image';
+
+<FileInput
+  icon={<SvgIcon size="3x" icon={image} />}
+  helpText="png, jpg or webp up to 2MB"
+  accept="images/*"
+  isLoading={true}
+  multiple={true}
+  onSelectFiles={(files) => alert(`Selected files: ${files.length}`)}
+>
+  <FileInputButton>Choose image</FileInputButton> or drag and drop
+</FileInput>;
+```
+
 Disabled state
 
 ```jsx

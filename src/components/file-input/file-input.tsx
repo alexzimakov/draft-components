@@ -11,12 +11,14 @@ import { uniqueId } from '../../lib/util';
 import { FileInputContextProvider } from './file-input-context';
 import { SvgIcon } from '../svg-icon';
 import { fileEarmarkArrowUp } from '../../bootstrap-icons/file-earmark-arrow-up';
+import { Spinner } from '../spinner';
 
 export type FileInputProps = {
   id?: string;
   style?: CSSProperties;
   className?: string;
   shouldShowIcon?: boolean;
+  isLoading?: boolean;
   multiple?: boolean;
   disabled?: boolean;
   accept?: string;
@@ -33,6 +35,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
       style,
       className,
       shouldShowIcon = true,
+      isLoading = false,
       multiple = false,
       disabled = false,
       accept,
@@ -47,10 +50,11 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
     if (!id.current) {
       id.current = uniqueId('file_input_');
     }
+    const isDisabled = disabled || isLoading;
     const [isDragOver, setIsDragOver] = useState(false);
 
     function handleSelectFiles(fileList: FileList | null): void {
-      if (disabled) {
+      if (isDisabled) {
         return;
       }
 
@@ -101,7 +105,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
             id={id.current}
             accept={accept}
             className="dc-file-input__native"
-            disabled={disabled}
+            disabled={isDisabled}
             multiple={multiple}
             type="file"
             onChange={(event) => {
@@ -117,7 +121,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
               'dc-file-input__drop-zone',
               isDragOver && 'dc-file-input__drop-zone_drag-over'
             )}
-            draggable={!disabled}
+            draggable={!isDisabled}
             onDrag={handleDrag}
             onDragStart={handleDrag}
             onDragOver={handleDragOver}
@@ -137,6 +141,9 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
             {helpText && (
               <div className="dc-file-input__help-text">{helpText}</div>
             )}
+            <div className="dc-file-input__loading-overlay" hidden={!isLoading}>
+              <Spinner />
+            </div>
           </div>
         </div>
       </FileInputContextProvider>

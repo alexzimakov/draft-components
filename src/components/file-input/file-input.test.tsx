@@ -131,6 +131,28 @@ it('should not invoke onSelectFiles callback when disabled is true', () => {
   expect(onSelectFilesMock).not.toHaveBeenCalled();
 });
 
+it('should not invoke onSelectFiles callback when isLoading is true', () => {
+  const buttonLabel = 'Choose Files';
+  const expectedFiles = [
+    new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' }),
+  ];
+  const onSelectFilesMock = jest.fn();
+
+  render(
+    <FileInput isLoading={true} onSelectFiles={onSelectFilesMock}>
+      <FileInputButton>{buttonLabel}</FileInputButton>
+    </FileInput>
+  );
+
+  fireEvent.drop(screen.getByTestId('dc-file-input-drop-zone'), {
+    dataTransfer: {
+      files: expectedFiles,
+    },
+  });
+
+  expect(onSelectFilesMock).not.toHaveBeenCalled();
+});
+
 it('should invoke onSelectFiles callback with empty array', () => {
   const buttonLabel = 'Choose Files';
   const onSelectFilesMock = jest.fn();
