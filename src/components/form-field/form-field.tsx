@@ -14,7 +14,7 @@ export interface FormFieldProps extends ComponentPropsWithoutRef<'div'> {
   required?: boolean;
   hint?: ReactNode;
   validationError?: ReactNode;
-  children: JSX.Element | InputRenderFn;
+  children: ReactNode | InputRenderFn;
 }
 
 export function FormField({

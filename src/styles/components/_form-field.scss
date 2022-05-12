@@ -9,6 +9,8 @@
 }
 
 .dc-form-field__input {
+  display: flex;
+  flex-direction: column;
 }
 
 .dc-form-field__hint,
