@@ -4,10 +4,6 @@
   --dc-selection-control-size: var(--dc-checkbox-size);
 }
 
-.dc-checkbox {
-  position: relative;
-}
-
 .dc-checkbox__input {
   @include dc.visually-hidden;
 }

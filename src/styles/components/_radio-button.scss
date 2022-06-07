@@ -4,10 +4,6 @@
   --dc-selection-control-size: var(--dc-radio-btn-size);
 }
 
-.dc-radio-btn {
-  position: relative;
-}
-
 .dc-radio-btn__input {
   @include dc.visually-hidden;
 }

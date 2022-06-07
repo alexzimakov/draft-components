@@ -4,10 +4,6 @@
   --dc-selection-control-size: var(--dc-switch-width);
 }
 
-.dc-switch {
-  position: relative;
-}
-
 .dc-switch__input {
   @include dc.visually-hidden;
 }

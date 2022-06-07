@@ -1,29 +1,24 @@
 @use '../abstracts' as dc;
 
 .dc-selection-control {
-  --dc-selection-control-size: #{dc.px-to-rem(18px)};
-  --dc-selection-control-gap: #{dc.$gap-3x};
-}
-
-.dc-selection-control {
   font-family: var(--dc-font-base);
+  font-size: dc.$font-size-sm;
+  line-height: dc.$leading-tight;
   display: inline-flex;
   align-items: flex-start;
   flex-direction: column;
-  justify-content: flex-start;
+
+  --dc-selection-control-size: #{dc.px-to-rem(18px)};
+  --dc-selection-control-gap: #{dc.$gap-3x};
 }
 
 .dc-selection-control__body {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
 }
 
 .dc-selection-control__label {
-  font-size: dc.$font-size-sm;
   font-weight: dc.$font-weight-medium;
-  line-height: dc.$leading-tight;
-  display: inline-block;
   margin-left: var(--dc-selection-control-gap);
   user-select: none;
   color: var(--dc-primary-text-color);
@@ -31,8 +26,6 @@
 }
 
 .dc-selection-control__description {
-  font-size: dc.$font-size-sm;
-  line-height: dc.$leading-tight;
   margin-top: dc.$gap-1x;
   margin-left: calc(
     var(--dc-selection-control-size) + var(--dc-selection-control-gap)
