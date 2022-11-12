@@ -39,8 +39,8 @@
   },
   "homepage": "https://alexzimakov.github.io/draft-components",
   "peerDependencies": {
-    "react": "^17",
-    "react-dom": "^17"
+    "react": ">= 16.8.0",
+    "react-dom": ">= 16.8.0"
   },
   "devDependencies": {
     "@babel/core": "7.17.9",
