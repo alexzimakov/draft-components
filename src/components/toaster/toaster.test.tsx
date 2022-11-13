@@ -3,11 +3,15 @@ import { act, render, screen, within } from '@testing-library/react';
 import { Toaster } from './toaster';
 import { ToastId, ToastRenderFn } from './use-toasts';
 
-it('throws an error when trying to show toast but not render <Toaster />', () => {
-  expect(() => {
-    Toaster.show(() => <div>Toast mock</div>);
-  }).toThrow();
-});
+it(
+  'throws an error when trying to show toast ' +
+  'but not render <Toaster />',
+  () => {
+    expect(() => {
+      Toaster.show(() => <div>Toast mock</div>);
+    }).toThrow();
+  }
+);
 
 it('should show/dismiss toasts components', () => {
   const renderToast: ToastRenderFn = () => (
@@ -29,25 +33,28 @@ it('should show/dismiss toasts components', () => {
   expect(screen.queryAllByTestId('test-toast')).toHaveLength(0);
 });
 
-it('should dismiss toast using `dismiss` callback from render function props', () => {
-  const renderToast: ToastRenderFn = (props) => (
-    <div data-testid="test-toast">
-      Toast message
-      <button onClick={props.dismiss}>Close</button>
-    </div>
-  );
-  render(<Toaster position="bottom-center" />);
+it(
+  'should dismiss toast using `dismiss` callback from render function props',
+  () => {
+    const renderToast: ToastRenderFn = (props) => (
+      <div data-testid="test-toast">
+        Toast message
+        <button onClick={props.dismiss}>Close</button>
+      </div>
+    );
+    render(<Toaster position="bottom-center" />);
 
-  act(() => {
-    Toaster.show(renderToast);
-  });
+    act(() => {
+      Toaster.show(renderToast);
+    });
 
-  const toast = screen.getByTestId('test-toast');
+    const toast = screen.getByTestId('test-toast');
 
-  userEvent.click(within(toast).getByRole('button'));
+    userEvent.click(within(toast).getByRole('button'));
 
-  expect(screen.queryByTestId('test-toast')).toBeNull();
-});
+    expect(screen.queryByTestId('test-toast')).toBeNull();
+  }
+);
 
 it('should dismiss toast by timeout', () => {
   jest.useFakeTimers();

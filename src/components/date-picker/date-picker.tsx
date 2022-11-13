@@ -90,11 +90,10 @@ export function DatePicker({
 
   useEffect(() => {
     if (value) {
-      setFocusDate((focusDate) =>
-        focusDate.toISOString() !== value
-          ? PlainDate.fromISODate(value)
-          : focusDate
-      );
+      setFocusDate((focusDate) => (focusDate.toISOString() !== value
+        ? PlainDate.fromISODate(value)
+        : focusDate
+      ));
     }
   }, [value]);
 

@@ -75,18 +75,26 @@ describe('#makeInitials()', () => {
     expect(Avatar.makeInitials('')).toBe('');
   });
 
-  it('should return an empty string when passed a string that contains only whitespace characters', () => {
-    expect(Avatar.makeInitials(' \n \t')).toBe('');
-  });
+  it(
+    'should return an empty string when passed a string that ' +
+    'contains only whitespace characters',
+    () => {
+      expect(Avatar.makeInitials(' \n \t')).toBe('');
+    }
+  );
 
   it('should return a first capitalized letter when passing one word', () => {
     expect(Avatar.makeInitials('john')).toBe('J');
   });
 
-  it('should return the first capitalized letter of 2 start words when passed a string with 2 or more words', () => {
-    expect(Avatar.makeInitials('john doe')).toBe('JD');
-    expect(Avatar.makeInitials('john walker doe')).toBe('JW');
-  });
+  it(
+    'should return the first capitalized letter of 2 start words ' +
+    'when passed a string with 2 or more words',
+    () => {
+      expect(Avatar.makeInitials('john doe')).toBe('JD');
+      expect(Avatar.makeInitials('john walker doe')).toBe('JW');
+    }
+  );
 
   it('should ignore multiple spaces', () => {
     expect(Avatar.makeInitials('John   Doe')).toBe('JD');

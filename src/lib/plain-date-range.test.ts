@@ -11,15 +11,16 @@ it('creates a new `PlainDateRange` instance from ISO date range', () => {
   expect(r.end).toEqual(PlainDate.fromISODate(isoDateRange.end));
 });
 
-it('creates a new `PlainDateRange` instance from ISO date range when start greater when end', () => {
-  const isoDateRange = {
-    start: '2021-10-21',
-    end: '2021-10-05',
-  };
-  const r = PlainDateRange.fromISODateRange(isoDateRange);
-  expect(r.start).toEqual(PlainDate.fromISODate(isoDateRange.end));
-  expect(r.end).toEqual(PlainDate.fromISODate(isoDateRange.start));
-});
+it(
+  'creates a new `PlainDateRange` instance from ISO date range ' +
+  'when start greater when end',
+  () => {
+    const isoDateRange = { start: '2021-10-21', end: '2021-10-05' };
+    const r = PlainDateRange.fromISODateRange(isoDateRange);
+    expect(r.start).toEqual(PlainDate.fromISODate(isoDateRange.end));
+    expect(r.end).toEqual(PlainDate.fromISODate(isoDateRange.start));
+  }
+);
 
 it('creates a new `PlainDateRange` instance representing current date', () => {
   const d = PlainDate.now();

@@ -98,11 +98,15 @@ describe('#isBefore()', () => {
     expect(d.isBefore(PlainDate.fromISODate('2021-11-05'))).toBe(true);
   });
 
-  it('returns false when `PlainDate` object greater than or equal to the given', () => {
-    const d = PlainDate.fromISODate('2021-11-04');
-    expect(d.isBefore(PlainDate.fromISODate('2021-11-03'))).toBe(false);
-    expect(d.isBefore(PlainDate.fromISODate('2021-11-04'))).toBe(false);
-  });
+  it(
+    'returns false when `PlainDate` object greater than ' +
+    'or equal to the given',
+    () => {
+      const d = PlainDate.fromISODate('2021-11-04');
+      expect(d.isBefore(PlainDate.fromISODate('2021-11-03'))).toBe(false);
+      expect(d.isBefore(PlainDate.fromISODate('2021-11-04'))).toBe(false);
+    }
+  );
 });
 
 describe('#isAfter()', () => {
@@ -111,19 +115,27 @@ describe('#isAfter()', () => {
     expect(d.isAfter(PlainDate.fromISODate('2021-11-03'))).toBe(true);
   });
 
-  it('returns false when `PlainDate` object less than or equal to the given', () => {
-    const d = PlainDate.fromISODate('2021-11-04');
-    expect(d.isAfter(PlainDate.fromISODate('2021-11-05'))).toBe(false);
-    expect(d.isAfter(PlainDate.fromISODate('2021-11-04'))).toBe(false);
-  });
+  it(
+    'returns false when `PlainDate` object less than ' +
+    'or equal to the given',
+    () => {
+      const d = PlainDate.fromISODate('2021-11-04');
+      expect(d.isAfter(PlainDate.fromISODate('2021-11-05'))).toBe(false);
+      expect(d.isAfter(PlainDate.fromISODate('2021-11-04'))).toBe(false);
+    }
+  );
 });
 
 describe('#isBeforeOrEqual()', () => {
-  it('returns true when `PlainDate` object less than or equal to the given', () => {
-    const d = PlainDate.fromISODate('2021-11-04');
-    expect(d.isBeforeOrEqual(PlainDate.fromISODate('2021-11-05'))).toBe(true);
-    expect(d.isBeforeOrEqual(PlainDate.fromISODate('2021-11-04'))).toBe(true);
-  });
+  it(
+    'returns true when `PlainDate` object less than ' +
+    'or equal to the given',
+    () => {
+      const d = PlainDate.fromISODate('2021-11-04');
+      expect(d.isBeforeOrEqual(PlainDate.fromISODate('2021-11-05'))).toBe(true);
+      expect(d.isBeforeOrEqual(PlainDate.fromISODate('2021-11-04'))).toBe(true);
+    }
+  );
 
   it('returns false when `PlainDate` object greater than the given', () => {
     const d = PlainDate.fromISODate('2021-11-04');
@@ -132,16 +144,24 @@ describe('#isBeforeOrEqual()', () => {
 });
 
 describe('#isAfterOrEqual()', () => {
-  it('returns true when `PlainDate` object greater than or equal to the given', () => {
-    const d = PlainDate.fromISODate('2021-11-04');
-    expect(d.isAfterOrEqual(PlainDate.fromISODate('2021-11-03'))).toBe(true);
-    expect(d.isAfterOrEqual(PlainDate.fromISODate('2021-11-04'))).toBe(true);
-  });
+  it(
+    'returns true when `PlainDate` object greater than ' +
+    'or equal to the given',
+    () => {
+      const d = PlainDate.fromISODate('2021-11-04');
+      expect(d.isAfterOrEqual(PlainDate.fromISODate('2021-11-03'))).toBe(true);
+      expect(d.isAfterOrEqual(PlainDate.fromISODate('2021-11-04'))).toBe(true);
+    }
+  );
 
-  it('returns false when `PlainDate` object less than or equal to the given', () => {
-    const d = PlainDate.fromISODate('2021-11-04');
-    expect(d.isAfterOrEqual(PlainDate.fromISODate('2021-11-05'))).toBe(false);
-  });
+  it(
+    'returns false when `PlainDate` object less than ' +
+    'or equal to the given',
+    () => {
+      const d = PlainDate.fromISODate('2021-11-04');
+      expect(d.isAfterOrEqual(PlainDate.fromISODate('2021-11-05'))).toBe(false);
+    }
+  );
 });
 
 describe('#addDays()', () => {
@@ -177,10 +197,14 @@ describe('#addMonths()', () => {
     expect(d.addMonths(-1)).toEqual(PlainDate.fromISODate('2021-09-20'));
   });
 
-  it('returns a `PlainDate` object that represents end of month if day does not exist in new month', () => {
-    const d = PlainDate.fromISODate('2021-10-31');
-    expect(d.addMonths(1)).toEqual(PlainDate.fromISODate('2021-11-30'));
-  });
+  it(
+    'returns a `PlainDate` object that represents end of month ' +
+    'if day does not exist in new month',
+    () => {
+      const d = PlainDate.fromISODate('2021-10-31');
+      expect(d.addMonths(1)).toEqual(PlainDate.fromISODate('2021-11-30'));
+    }
+  );
 });
 
 describe('#addYears()', () => {

@@ -29,8 +29,10 @@ describe("calculates position for the 'top' placement", () => {
     viewportGap: 20,
   };
 
-  const y =
-    params.scrollY + anchorRect.top - contentRect.height - params.anchorGap;
+  const y = params.scrollY +
+    anchorRect.top -
+    contentRect.height -
+    params.anchorGap;
   const testCases = [
     {
       alignment: 'end',
@@ -50,11 +52,10 @@ describe("calculates position for the 'top' placement", () => {
       alignment: 'center',
       coordinates: {
         y,
-        x:
-          params.scrollX +
+        x: params.scrollX +
           anchorRect.left +
-          anchorRect.width / 2 -
-          contentRect.width / 2,
+          (anchorRect.width / 2) -
+          (contentRect.width / 2),
       },
     },
   ];
@@ -126,11 +127,10 @@ describe("calculates position for the 'bottom' placement", () => {
       alignment: 'center',
       coordinates: {
         y,
-        x:
-          params.scrollX +
+        x: params.scrollX +
           anchorRect.left +
-          anchorRect.width / 2 -
-          contentRect.width / 2,
+          (anchorRect.width / 2) -
+          (contentRect.width / 2),
       },
     },
   ];
@@ -182,8 +182,10 @@ describe("calculates position for the 'left' placement", () => {
     viewportGap: 20,
   };
 
-  const x =
-    params.scrollX + anchorRect.left - contentRect.width - params.anchorGap;
+  const x = params.scrollX +
+    anchorRect.left -
+    contentRect.width -
+    params.anchorGap;
   const testCases = [
     {
       alignment: 'end',
@@ -203,11 +205,10 @@ describe("calculates position for the 'left' placement", () => {
       alignment: 'center',
       coordinates: {
         x,
-        y:
-          params.scrollY +
+        y: params.scrollY +
           anchorRect.top +
-          anchorRect.height / 2 -
-          contentRect.height / 2,
+          (anchorRect.height / 2) -
+          (contentRect.height / 2),
       },
     },
   ];
@@ -279,11 +280,10 @@ describe("calculates position for the 'right' placement", () => {
       alignment: 'center',
       coordinates: {
         x,
-        y:
-          params.scrollY +
+        y: params.scrollY +
           anchorRect.top +
-          anchorRect.height / 2 -
-          contentRect.height / 2,
+          (anchorRect.height / 2) -
+          (contentRect.height / 2),
       },
     },
   ];
@@ -307,95 +307,98 @@ describe("calculates position for the 'right' placement", () => {
   });
 });
 
-describe('should correct position by X-axis when content out of viewport bounds', () => {
-  it('at the left edge', () => {
-    const anchorRect: Rect = {
-      width: 200,
-      height: 100,
-      left: 100,
-      right: 300,
-      top: 450,
-      bottom: 550,
-    };
-    const contentRect: Rect = {
-      width: 400,
-      height: 200,
-      left: 0,
-      right: 400,
-      top: 0,
-      bottom: 200,
-    };
-    const params = {
-      anchorRect,
-      contentRect,
-      viewportWidth: 1000,
-      viewportHeight: 1000,
-      scrollY: 0,
-      scrollX: 0,
-      anchorGap: 10,
-      viewportGap: 20,
-    };
+describe(
+  'should correct position by X-axis when content out of viewport bounds',
+  () => {
+    it('at the left edge', () => {
+      const anchorRect: Rect = {
+        width: 200,
+        height: 100,
+        left: 100,
+        right: 300,
+        top: 450,
+        bottom: 550,
+      };
+      const contentRect: Rect = {
+        width: 400,
+        height: 200,
+        left: 0,
+        right: 400,
+        top: 0,
+        bottom: 200,
+      };
+      const params = {
+        anchorRect,
+        contentRect,
+        viewportWidth: 1000,
+        viewportHeight: 1000,
+        scrollY: 0,
+        scrollX: 0,
+        anchorGap: 10,
+        viewportGap: 20,
+      };
 
-    expect(
-      getPosition({
-        ...params,
+      expect(
+        getPosition({
+          ...params,
+          placement: 'bottom',
+          alignment: 'end',
+        })
+      ).toEqual({
+        y: params.scrollY + anchorRect.bottom + params.anchorGap,
+        x: params.scrollX + params.viewportGap,
         placement: 'bottom',
         alignment: 'end',
-      })
-    ).toEqual({
-      y: params.scrollY + anchorRect.bottom + params.anchorGap,
-      x: params.scrollX + params.viewportGap,
-      placement: 'bottom',
-      alignment: 'end',
+      });
     });
-  });
 
-  it('at the right edge', () => {
-    const anchorRect: Rect = {
-      width: 200,
-      height: 100,
-      left: 700,
-      right: 900,
-      top: 450,
-      bottom: 550,
-    };
-    const contentRect: Rect = {
-      width: 400,
-      height: 200,
-      left: 0,
-      right: 400,
-      top: 0,
-      bottom: 200,
-    };
-    const params = {
-      anchorRect,
-      contentRect,
-      viewportWidth: 1000,
-      viewportHeight: 1000,
-      scrollY: 0,
-      scrollX: 0,
-      anchorGap: 10,
-      viewportGap: 20,
-    };
+    it('at the right edge', () => {
+      const anchorRect: Rect = {
+        width: 200,
+        height: 100,
+        left: 700,
+        right: 900,
+        top: 450,
+        bottom: 550,
+      };
+      const contentRect: Rect = {
+        width: 400,
+        height: 200,
+        left: 0,
+        right: 400,
+        top: 0,
+        bottom: 200,
+      };
+      const params = {
+        anchorRect,
+        contentRect,
+        viewportWidth: 1000,
+        viewportHeight: 1000,
+        scrollY: 0,
+        scrollX: 0,
+        anchorGap: 10,
+        viewportGap: 20,
+      };
 
-    expect(
-      getPosition({
-        ...params,
+      expect(
+        getPosition({
+          ...params,
+          placement: 'bottom',
+          alignment: 'start',
+        })
+      ).toEqual({
+        y: params.scrollY + anchorRect.bottom + params.anchorGap,
+        x:
+          params.scrollX +
+          params.viewportWidth -
+          contentRect.width -
+          params.viewportGap,
         placement: 'bottom',
         alignment: 'start',
-      })
-    ).toEqual({
-      y: params.scrollY + anchorRect.bottom + params.anchorGap,
-      x:
-        params.scrollX +
-        params.viewportWidth -
-        contentRect.width -
-        params.viewportGap,
-      placement: 'bottom',
-      alignment: 'start',
+      });
     });
-  });
-});
+  }
+);
 
 describe('should flip placement when content out of viewport bounds', () => {
   it('at the top edge', () => {
@@ -526,57 +529,60 @@ it('should place content at the start of left edge if not enough width', () => {
   });
 });
 
-it('should place content on bottom if not enough space on right or left side', () => {
-  const anchorRect: Rect = {
-    width: 200,
-    height: 100,
-    left: 400,
-    right: 600,
-    top: 450,
-    bottom: 550,
-  };
-  const contentRect: Rect = {
-    width: 500,
-    height: 200,
-    left: 0,
-    right: 500,
-    top: 0,
-    bottom: 200,
-  };
-  const params = {
-    anchorRect,
-    contentRect,
-    viewportWidth: 1000,
-    viewportHeight: 1000,
-    scrollY: 0,
-    scrollX: 0,
-    anchorGap: 10,
-    viewportGap: 20,
-  };
+it(
+  'should place content on bottom if not enough space on right or left side',
+  () => {
+    const anchorRect: Rect = {
+      width: 200,
+      height: 100,
+      left: 400,
+      right: 600,
+      top: 450,
+      bottom: 550,
+    };
+    const contentRect: Rect = {
+      width: 500,
+      height: 200,
+      left: 0,
+      right: 500,
+      top: 0,
+      bottom: 200,
+    };
+    const params = {
+      anchorRect,
+      contentRect,
+      viewportWidth: 1000,
+      viewportHeight: 1000,
+      scrollY: 0,
+      scrollX: 0,
+      anchorGap: 10,
+      viewportGap: 20,
+    };
 
-  expect(
-    getPosition({
-      ...params,
-      placement: 'left',
+    expect(
+      getPosition({
+        ...params,
+        placement: 'left',
+        alignment: 'start',
+      })
+    ).toEqual({
+      y: params.scrollY + anchorRect.bottom + params.anchorGap,
+      x: params.scrollX + anchorRect.left,
+      placement: 'bottom',
       alignment: 'start',
-    })
-  ).toEqual({
-    y: params.scrollY + anchorRect.bottom + params.anchorGap,
-    x: params.scrollX + anchorRect.left,
-    placement: 'bottom',
-    alignment: 'start',
-  });
+    });
 
-  expect(
-    getPosition({
-      ...params,
-      placement: 'right',
+    expect(
+      getPosition({
+        ...params,
+        placement: 'right',
+        alignment: 'start',
+      })
+    ).toEqual({
+      y: params.scrollY + anchorRect.bottom + params.anchorGap,
+      x: params.scrollX + anchorRect.left,
+      placement: 'bottom',
       alignment: 'start',
-    })
-  ).toEqual({
-    y: params.scrollY + anchorRect.bottom + params.anchorGap,
-    x: params.scrollX + anchorRect.left,
-    placement: 'bottom',
-    alignment: 'start',
-  });
-});
+    });
+  }
+);

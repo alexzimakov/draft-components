@@ -43,7 +43,7 @@ export function Avatar({
     const iconSize = sizeInPixels * iconRatio;
     const iconOffset = sizeInPixels - iconSize;
     const iconGap = Math.max(sizeInPixels * 0.05, 2);
-    const subtractSize = iconSize + 2 * iconGap;
+    const subtractSize = iconSize + (2 * iconGap);
     const subtractOffset = sizeInPixels - iconSize - iconGap;
 
     subtract = (

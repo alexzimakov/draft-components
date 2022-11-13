@@ -16,39 +16,45 @@ it('renders with leading icon', () => {
   screen.getByTestId(iconTestId);
 });
 
-it('should invoke `onRemove` callback when clicking on the remove button', () => {
-  const onRemove = jest.fn();
-  const ariaLabel = 'Remove tag';
-  render(
-    <Tag
-      isRemovable={true}
-      removeButtonAriaLabel={ariaLabel}
-      onRemove={onRemove}
-    >
-      Badge
-    </Tag>
-  );
+it(
+  'should invoke `onRemove` callback when clicking on the remove button',
+  () => {
+    const onRemove = jest.fn();
+    const ariaLabel = 'Remove tag';
+    render(
+      <Tag
+        isRemovable={true}
+        removeButtonAriaLabel={ariaLabel}
+        onRemove={onRemove}
+      >
+        Badge
+      </Tag>
+    );
 
-  userEvent.click(screen.getByLabelText(ariaLabel));
+    userEvent.click(screen.getByLabelText(ariaLabel));
 
-  expect(onRemove).toHaveBeenCalledTimes(1);
-});
+    expect(onRemove).toHaveBeenCalledTimes(1);
+  }
+);
 
-it('should not invoke `onRemove` callback when remove button is disabled', () => {
-  const onRemove = jest.fn();
-  const ariaLabel = 'Remove tag';
-  render(
-    <Tag
-      isRemovable={true}
-      isRemoveButtonDisabled={true}
-      removeButtonAriaLabel={ariaLabel}
-      onRemove={onRemove}
-    >
-      Badge
-    </Tag>
-  );
+it(
+  'should not invoke `onRemove` callback when remove button is disabled',
+  () => {
+    const onRemove = jest.fn();
+    const ariaLabel = 'Remove tag';
+    render(
+      <Tag
+        isRemovable={true}
+        isRemoveButtonDisabled={true}
+        removeButtonAriaLabel={ariaLabel}
+        onRemove={onRemove}
+      >
+        Badge
+      </Tag>
+    );
 
-  userEvent.click(screen.getByLabelText(ariaLabel));
+    userEvent.click(screen.getByLabelText(ariaLabel));
 
-  expect(onRemove).toHaveBeenCalledTimes(0);
-});
+    expect(onRemove).toHaveBeenCalledTimes(0);
+  }
+);

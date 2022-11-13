@@ -31,9 +31,7 @@ export function Tab({
   const selected = tabKey === selectedTabKey;
   const focused = tabKey === focusedTabKey;
 
-  useEffect(() => {
-    return registerTab(tabKey);
-  }, [tabKey, registerTab]);
+  useEffect(() => registerTab(tabKey), [tabKey, registerTab]);
 
   return (
     <button

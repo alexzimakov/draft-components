@@ -199,21 +199,25 @@ it('can change a value in a specified range', () => {
   expect(onChangeValue).toHaveBeenCalledWith('25');
 });
 
-it('unable change value using keyboard arrows or increment/decrement buttons when the field is `readOnly`', () => {
-  const onChangeValue = jest.fn();
-  render(
-    <NumberInput readOnly={true} value="0" onChangeValue={onChangeValue} />
-  );
-  const input = screen.getByRole('textbox');
-  const [decrementButton, incrementButton] = screen.getAllByRole('button');
+it(
+  'unable change value using keyboard arrows or increment/decrement buttons ' +
+  'when the field is `readOnly`',
+  () => {
+    const onChangeValue = jest.fn();
+    render(
+      <NumberInput readOnly={true} value="0" onChangeValue={onChangeValue} />
+    );
+    const input = screen.getByRole('textbox');
+    const [decrementButton, incrementButton] = screen.getAllByRole('button');
 
-  input.focus();
-  userEvent.keyboard('[ArrowDown]');
-  userEvent.click(decrementButton);
-  userEvent.click(incrementButton);
+    input.focus();
+    userEvent.keyboard('[ArrowDown]');
+    userEvent.click(decrementButton);
+    userEvent.click(incrementButton);
 
-  expect(onChangeValue).not.toHaveBeenCalled();
-});
+    expect(onChangeValue).not.toHaveBeenCalled();
+  }
+);
 
 it('should format on blur', () => {
   const onChangeValueMock = jest.fn();

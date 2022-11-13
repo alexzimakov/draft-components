@@ -123,18 +123,22 @@ it('can move focus between input using keyboard left and right arrows', () => {
   jest.runAllTimers();
 });
 
-it('should auto focus the next date component input when in the current has been entered max value', () => {
-  render(
-    <DatetimeInput value={new DateComponents()} onChangeValue={jest.fn()} />
-  );
+it(
+  'should auto focus the next date component input ' +
+  'when in the current has been entered max value',
+  () => {
+    render(
+      <DatetimeInput value={new DateComponents()} onChangeValue={jest.fn()} />
+    );
 
-  userEvent.type(screen.getByLabelText('month'), '7');
-  jest.runAllTimers();
+    userEvent.type(screen.getByLabelText('month'), '7');
+    jest.runAllTimers();
 
-  expect(screen.getByLabelText('year')).toHaveFocus();
+    expect(screen.getByLabelText('year')).toHaveFocus();
 
-  jest.useRealTimers();
-});
+    jest.useRealTimers();
+  }
+);
 
 it('should correct value in date component input when it loses focus', () => {
   const onChangeValue = jest.fn();
@@ -254,30 +258,34 @@ it('can edit date component using keyboard up and down arrows', () => {
   resetDateMock();
 });
 
-it('should not out range of date component values when edit using keyboard arrows', () => {
-  const onChangeValue = jest.fn();
-  render(
-    <DatetimeInput
-      value={new DateComponents({ day: 1, month: 12 })}
-      onChangeValue={onChangeValue}
-    />
-  );
+it(
+  'should not out range of date component values ' +
+  'when edit using keyboard arrows',
+  () => {
+    const onChangeValue = jest.fn();
+    render(
+      <DatetimeInput
+        value={new DateComponents({ day: 1, month: 12 })}
+        onChangeValue={onChangeValue}
+      />
+    );
 
-  userEvent.type(screen.getByLabelText('day'), '{arrowdown}');
-  jest.runAllTimers();
-  userEvent.type(screen.getByLabelText('month'), '{arrowup}');
-  jest.runAllTimers();
+    userEvent.type(screen.getByLabelText('day'), '{arrowdown}');
+    jest.runAllTimers();
+    userEvent.type(screen.getByLabelText('month'), '{arrowup}');
+    jest.runAllTimers();
 
-  expect(onChangeValue).toHaveBeenCalledTimes(2);
-  expect(onChangeValue).toHaveBeenNthCalledWith(
-    1,
-    new DateComponents({ day: 31, month: 12 })
-  );
-  expect(onChangeValue).toHaveBeenNthCalledWith(
-    2,
-    new DateComponents({ day: 1, month: 1 })
-  );
-});
+    expect(onChangeValue).toHaveBeenCalledTimes(2);
+    expect(onChangeValue).toHaveBeenNthCalledWith(
+      1,
+      new DateComponents({ day: 31, month: 12 })
+    );
+    expect(onChangeValue).toHaveBeenNthCalledWith(
+      2,
+      new DateComponents({ day: 1, month: 1 })
+    );
+  }
+);
 
 function mockDate(date: Date): () => void {
   const OriginalDate = Date;

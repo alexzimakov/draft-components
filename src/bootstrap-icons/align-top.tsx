@@ -9,7 +9,5 @@ export const alignTop: Icon = {
   width: 16,
   height: 16,
   viewBox: '0 0 16 16',
-  children: (
-    <rect width="4" height="12" rx="1" transform="matrix(1 0 0 -1 6 15)" />
-  ),
+  children: <rect width="4" height="12" rx="1" transform="matrix(1 0 0 -1 6 15)" />,
 };

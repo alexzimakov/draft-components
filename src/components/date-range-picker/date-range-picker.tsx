@@ -81,8 +81,10 @@ export function DateRangePicker({
       if (start) {
         isSelected = date.equals(start);
       } else if (selectedRange) {
-        isSelected =
-          date.equals(selectedRange.start) || date.equals(selectedRange.end);
+        isSelected = (
+          date.equals(selectedRange.start) ||
+          date.equals(selectedRange.end)
+        );
       }
 
       let isInRange = false;
@@ -135,11 +137,10 @@ export function DateRangePicker({
 
   useEffect(() => {
     if (value?.start) {
-      setFocusDate((focusDate) =>
-        focusDate.toISOString() !== value.start
-          ? PlainDate.fromISODate(value.start)
-          : focusDate
-      );
+      setFocusDate((focusDate) => (focusDate.toISOString() !== value.start
+        ? PlainDate.fromISODate(value.start)
+        : focusDate
+      ));
     }
   }, [value?.start]);
 

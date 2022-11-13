@@ -18,9 +18,9 @@ export function VerticalNavigation({
     <div {...props} className={classNames(className, 'dc-vertical-nav')}>
       {header && <div className="dc-vertical-nav__header">{header}</div>}
       <ul className="dc-vertical-nav__items">
-        {Children.map(children, (child, index) => {
-          return <li key={`vertical-navigation-item-${index}`}>{child}</li>;
-        })}
+        {Children.map(children, (child, index) => (
+          <li key={`vertical-navigation-item-${index}`}>{child}</li>
+        ))}
       </ul>
     </div>
   );

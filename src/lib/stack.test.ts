@@ -36,11 +36,15 @@ it('should return number of items in the stack', () => {
   expect(stack.count).toBe(3);
 });
 
-it('should return true if the item is last in the stack and false otherwise', () => {
-  const stack = new Stack([1, 2, 3]);
-  expect(stack.isLast(3)).toBe(true);
-  expect(stack.isLast(1)).toBe(false);
-});
+it(
+  'should return true if the item is last in the stack ' +
+  'and false otherwise',
+  () => {
+    const stack = new Stack([1, 2, 3]);
+    expect(stack.isLast(3)).toBe(true);
+    expect(stack.isLast(1)).toBe(false);
+  }
+);
 
 it('should return the last item in the stack', () => {
   const stack = new Stack([1, 2, 3]);

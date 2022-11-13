@@ -13,11 +13,12 @@ describe('#similarToClick', () => {
     expect(similarToClick(spacePressEvent)).toBe(true);
   });
 
-  it('should return false when event not fired after Enter of Space press', () => {
-    const tabPressEvent = new KeyboardEvent('keydown', {
-      code: KeyCode.tab,
-    });
-
-    expect(similarToClick(tabPressEvent)).toBe(false);
-  });
+  it(
+    'should return false when event not fired ' +
+    'after Enter of Space press',
+    () => {
+      const tabPressEvent = new KeyboardEvent('keydown', { code: KeyCode.tab });
+      expect(similarToClick(tabPressEvent)).toBe(false);
+    }
+  );
 });

@@ -20,7 +20,7 @@ export function makeRoundShapePath({
     `M${x},${y}`,
     `a${r},${r} 0 0 0 ${size},0`,
     `a${r},${r} 0 0 0 ${-size},0`,
-    `z`,
+    'z',
   ].join(' ');
 }
 
@@ -30,7 +30,7 @@ export function makeSquareShapePath({
   offsetY = 0,
 }: ShapePathParams) {
   const r = roundNumber(size * 0.15);
-  const h = roundNumber(size - r * 2);
+  const h = roundNumber(size - (r * 2));
   const x = roundNumber(offsetX);
   const y = roundNumber(r + offsetY);
   return [
@@ -42,7 +42,7 @@ export function makeSquareShapePath({
     `q0,${r} ${-r},${r}`,
     `h${-h}`,
     `q${-r},0 ${-r},${-r}`,
-    `z`,
+    'z',
   ].join(' ');
 }
 

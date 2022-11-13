@@ -8,10 +8,12 @@ import { checkCircle } from '../../bootstrap-icons/check-circle';
 import { infoCircle } from '../../bootstrap-icons/info-circle';
 import { NonIdealStateView } from './non-ideal-state-view';
 
-const heading = `No search results`;
-const description = `Your search didn't match any files. Try searching for something else.`;
-const content = `Return to the home or try another search term`;
-const placeholder = `Search`;
+const heading = 'No search results';
+const description = (
+  "Your search didn't match any files. Try searching for something else."
+);
+const content = 'Return to the home or try another search term';
+const placeholder = 'Search';
 
 it('renders without errors', () => {
   render(

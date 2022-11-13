@@ -65,8 +65,8 @@ export function DatePresetPickerPopover({
   onChangeValue,
 }: DatePresetPickerPopoverProps) {
   const popover = useRef<PopoverRef>(null);
-  const [selection, setSelection] = useState(() =>
-    mapValueToSelection(value, options)
+  const [selection, setSelection] = useState(
+    () => mapValueToSelection(value, options)
   );
   const selectedDateRange = selection.dateRange;
   const selectedOption = selection.option;
@@ -83,12 +83,10 @@ export function DatePresetPickerPopover({
   }
 
   function handleChangeDateRange(dateRange: ISODateRange): void {
-    const option = options.find((option) => {
-      return (
-        option.dateRange.start === dateRange.start &&
-        option.dateRange.end === dateRange.end
-      );
-    });
+    const option = options.find((option) => (
+      option.dateRange.start === dateRange.start &&
+      option.dateRange.end === dateRange.end
+    ));
     setSelection({ dateRange, option: option || null });
   }
 
@@ -98,8 +96,10 @@ export function DatePresetPickerPopover({
 
   function handleConfirm(): void {
     if (selectedOption) {
-      const isChanged =
-        value == null || value.datePreset !== selectedOption.datePreset;
+      const isChanged = (
+        value == null ||
+        value.datePreset !== selectedOption.datePreset
+      );
 
       if (isChanged) {
         onChangeValue({
@@ -108,10 +108,11 @@ export function DatePresetPickerPopover({
         });
       }
     } else if (selectedDateRange) {
-      const isChanged =
+      const isChanged = (
         value == null ||
         value.dateRange.start !== selectedDateRange.start ||
-        value.dateRange.end !== selectedDateRange.end;
+        value.dateRange.end !== selectedDateRange.end
+      );
 
       if (isChanged) {
         onChangeValue({ datePreset: '', dateRange: selectedDateRange });

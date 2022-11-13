@@ -9,7 +9,5 @@ export const slash: Icon = {
   width: 16,
   height: 16,
   viewBox: '0 0 16 16',
-  children: (
-    <path d="M11.354 4.646a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708l6-6a.5.5 0 0 1 .708 0z" />
-  ),
+  children: <path d="M11.354 4.646a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708l6-6a.5.5 0 0 1 .708 0z" />,
 };

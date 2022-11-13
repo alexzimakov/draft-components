@@ -47,10 +47,7 @@ export function Calendar({
   const gridRef = useRef<HTMLDivElement>(null);
   const headerId = useRef('');
   const intl = useMemo(
-    () =>
-      new Intl.DateTimeFormat(locale, {
-        weekday: 'short',
-      }),
+    () => new Intl.DateTimeFormat(locale, { weekday: 'short' }),
     [locale]
   );
 
@@ -134,9 +131,10 @@ export function Calendar({
 
           if (newFocusDate) {
             event.preventDefault();
-            const isNewFocusDateDisabled =
+            const isNewFocusDateDisabled = (
               (minDate != null && newFocusDate.isBefore(minDate)) ||
-              (maxDate != null && newFocusDate.isAfter(maxDate));
+              (maxDate != null && newFocusDate.isAfter(maxDate))
+            );
             if (!isNewFocusDateDisabled) {
               onChangeFocusDate(newFocusDate);
             }

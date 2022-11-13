@@ -39,17 +39,15 @@ it('renders without errors when label property is function', () => {
   render(
     <Menu
       defaultIsOpen={true}
-      label={({ isOpen, ...props }) => {
-        return (
-          <button
-            {...props}
-            className={isOpen ? 'open' : 'close'}
-            data-testid={anchorTestId}
-          >
-            {label}
-          </button>
-        );
-      }}
+      label={({ isOpen, ...props }) => (
+        <button
+          {...props}
+          className={isOpen ? 'open' : 'close'}
+          data-testid={anchorTestId}
+        >
+          {label}
+        </button>
+      )}
     >
       <MenuButton>{actions[0]}</MenuButton>
       <MenuButton>{actions[1]}</MenuButton>
@@ -113,7 +111,7 @@ it('should close the menu when Esc key pressed', () => {
 
   screen.getByRole('menu');
 
-  userEvent.keyboard(`{esc}`);
+  userEvent.keyboard('{esc}');
   act(() => {
     jest.runOnlyPendingTimers();
   });
@@ -147,57 +145,65 @@ it('should close the menu when click on outside the menu', () => {
   expect(screen.queryByRole('menu')).toBeNull();
 });
 
-it('should open the menu and moves focus to the first item when Arrow Down key pressed', () => {
-  jest.useFakeTimers();
+it(
+  'should open the menu and moves focus to the first item ' +
+  'when Arrow Down key pressed',
+  () => {
+    jest.useFakeTimers();
 
-  render(
-    <Menu label={label}>
-      <MenuButton>{actions[0]}</MenuButton>
-      <MenuButton>{actions[1]}</MenuButton>
-      <MenuDivider />
-      <MenuButton>{actions[2]}</MenuButton>
-    </Menu>
-  );
+    render(
+      <Menu label={label}>
+        <MenuButton>{actions[0]}</MenuButton>
+        <MenuButton>{actions[1]}</MenuButton>
+        <MenuDivider />
+        <MenuButton>{actions[2]}</MenuButton>
+      </Menu>
+    );
 
-  expect(screen.queryByRole('menu')).toBeNull();
+    expect(screen.queryByRole('menu')).toBeNull();
 
-  userEvent.tab();
-  userEvent.keyboard('{ArrowDown}');
+    userEvent.tab();
+    userEvent.keyboard('{ArrowDown}');
 
-  screen.getByRole('menu');
+    screen.getByRole('menu');
 
-  act(() => {
-    jest.runOnlyPendingTimers();
-  });
-  const menuItems = screen.getAllByRole('menuitem');
-  expect(menuItems[0]).toHaveFocus();
-});
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
+    const menuItems = screen.getAllByRole('menuitem');
+    expect(menuItems[0]).toHaveFocus();
+  }
+);
 
-it('should open the menu and moves focus to the last item when Arrow Up key pressed', () => {
-  jest.useFakeTimers();
+it(
+  'should open the menu and moves focus to the last item ' +
+  'when Arrow Up key pressed',
+  () => {
+    jest.useFakeTimers();
 
-  render(
-    <Menu label={label}>
-      <MenuButton>{actions[0]}</MenuButton>
-      <MenuButton>{actions[1]}</MenuButton>
-      <MenuDivider />
-      <MenuButton>{actions[2]}</MenuButton>
-    </Menu>
-  );
+    render(
+      <Menu label={label}>
+        <MenuButton>{actions[0]}</MenuButton>
+        <MenuButton>{actions[1]}</MenuButton>
+        <MenuDivider />
+        <MenuButton>{actions[2]}</MenuButton>
+      </Menu>
+    );
 
-  expect(screen.queryByRole('menu')).toBeNull();
+    expect(screen.queryByRole('menu')).toBeNull();
 
-  userEvent.tab();
-  userEvent.keyboard('{ArrowUp}');
+    userEvent.tab();
+    userEvent.keyboard('{ArrowUp}');
 
-  screen.getByRole('menu');
+    screen.getByRole('menu');
 
-  act(() => {
-    jest.runOnlyPendingTimers();
-  });
-  const menuItems = screen.getAllByRole('menuitem');
-  expect(menuItems[menuItems.length - 1]).toHaveFocus();
-});
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
+    const menuItems = screen.getAllByRole('menuitem');
+    expect(menuItems[menuItems.length - 1]).toHaveFocus();
+  }
+);
 
 it('should navigate through menu items using keyboard', () => {
   jest.useFakeTimers();
@@ -221,22 +227,22 @@ it('should navigate through menu items using keyboard', () => {
 
   expect(third).toHaveFocus();
 
-  userEvent.keyboard(`{ArrowDown}`);
+  userEvent.keyboard('{ArrowDown}');
   expect(first).toHaveFocus();
 
-  userEvent.keyboard(`{ArrowDown}`);
+  userEvent.keyboard('{ArrowDown}');
   expect(second).toHaveFocus();
 
-  userEvent.keyboard(`{ArrowUp}`);
+  userEvent.keyboard('{ArrowUp}');
   expect(first).toHaveFocus();
 
-  userEvent.keyboard(`{ArrowUp}`);
+  userEvent.keyboard('{ArrowUp}');
   expect(third).toHaveFocus();
 
-  userEvent.keyboard(`{home}`);
+  userEvent.keyboard('{home}');
   expect(first).toHaveFocus();
 
-  userEvent.keyboard(`{end}`);
+  userEvent.keyboard('{end}');
   expect(third).toHaveFocus();
 
   userEvent.keyboard('d');

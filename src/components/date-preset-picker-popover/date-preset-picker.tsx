@@ -46,9 +46,10 @@ export function DatePresetPicker({
   onCancel,
   onConfirm,
 }: DatePresetPickerProps) {
-  const phoneBreakpoint = useMemo(() => {
-    return window.matchMedia('(max-width: 599px)');
-  }, []);
+  const phoneBreakpoint = useMemo(
+    () => window.matchMedia('(max-width: 599px)'),
+    []
+  );
   const [isPhoneView, setIsPhoneView] = useState(phoneBreakpoint.matches);
 
   useEffect(() => {

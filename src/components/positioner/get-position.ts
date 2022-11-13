@@ -30,7 +30,7 @@ export function getPosition({
   anchorGap,
   viewportGap,
 }: GetPositionParams): GetPositionResult {
-  const maxWidth = viewportWidth - 2 * viewportGap;
+  const maxWidth = viewportWidth - (2 * viewportGap);
   const maxSideWidth = Math.max(
     anchorRect.left - anchorGap - viewportGap,
     viewportWidth - anchorRect.right - anchorGap - viewportGap
@@ -134,7 +134,7 @@ function getXAxisOffset({
   } else if (alignment === 'end') {
     x = scrollX + anchorX + anchorWidth - contentWidth;
   } else {
-    x = scrollX + anchorX + anchorWidth / 2 - contentWidth / 2;
+    x = scrollX + anchorX + (anchorWidth / 2) - (contentWidth / 2);
   }
 
   if (x < scrollX) {

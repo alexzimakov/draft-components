@@ -104,8 +104,9 @@ it('renders with sortable header cells', () => {
     </Table>
   );
 
-  const [idHeaderCell, personHeaderCell, ageHeaderCell] =
-    screen.getAllByRole('columnheader');
+  const [idHeaderCell, personHeaderCell, ageHeaderCell] = (
+    screen.getAllByRole('columnheader')
+  );
   expect(idHeaderCell).toHaveAttribute('aria-sort', 'none');
   expect(personHeaderCell).toHaveAttribute('aria-sort', 'ascending');
   expect(ageHeaderCell).toHaveAttribute('aria-sort', 'descending');

@@ -7,9 +7,7 @@ coverage
 !.nvmrc
 !.npmrc
 !.editorconfig
-!.eslintrc.js
-!.prettierrc
-!.prettierignore
+!.eslintrc.json
 
 # Artifacts
 /css

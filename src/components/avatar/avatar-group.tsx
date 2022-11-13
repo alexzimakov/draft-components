@@ -39,8 +39,8 @@ export function AvatarGroup({
   const renderedItems = [
     renderItem({
       ...items[0],
+      path,
       index: 0,
-      path: path,
       size: sizeInPixels,
     }),
   ];
@@ -48,10 +48,10 @@ export function AvatarGroup({
     renderedItems.push(
       renderItem({
         ...items[i],
+        path,
+        subtract,
         index: i,
-        path: path,
         size: sizeInPixels,
-        subtract: subtract,
         style: { marginLeft: offsetX + itemGap },
       })
     );

@@ -85,29 +85,33 @@ it('should select files using drag and drop', () => {
   );
 });
 
-it('should invoke onSelectFiles callback with only all files when multiple is true', () => {
-  const buttonLabel = 'Choose Files';
-  const expectedFiles = [
-    new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' }),
-    new File(['(⌐□_□)'], 'chucknorris2.png', { type: 'image/png' }),
-  ];
-  const onSelectFilesMock = jest.fn();
+it(
+  'should invoke onSelectFiles callback with only all files ' +
+  'when multiple is true',
+  () => {
+    const buttonLabel = 'Choose Files';
+    const expectedFiles = [
+      new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' }),
+      new File(['(⌐□_□)'], 'chucknorris2.png', { type: 'image/png' }),
+    ];
+    const onSelectFilesMock = jest.fn();
 
-  render(
-    <FileInput multiple={true} onSelectFiles={onSelectFilesMock}>
-      <FileInputButton>{buttonLabel}</FileInputButton>
-    </FileInput>
-  );
+    render(
+      <FileInput multiple={true} onSelectFiles={onSelectFilesMock}>
+        <FileInputButton>{buttonLabel}</FileInputButton>
+      </FileInput>
+    );
 
-  fireEvent.drop(screen.getByTestId('dc-file-input-drop-zone'), {
-    dataTransfer: {
-      files: expectedFiles,
-    },
-  });
+    fireEvent.drop(screen.getByTestId('dc-file-input-drop-zone'), {
+      dataTransfer: {
+        files: expectedFiles,
+      },
+    });
 
-  expect(onSelectFilesMock).toHaveBeenCalledTimes(1);
-  expect(onSelectFilesMock).toHaveBeenNthCalledWith(1, expectedFiles);
-});
+    expect(onSelectFilesMock).toHaveBeenCalledTimes(1);
+    expect(onSelectFilesMock).toHaveBeenNthCalledWith(1, expectedFiles);
+  }
+);
 
 it('should not invoke onSelectFiles callback when disabled is true', () => {
   const buttonLabel = 'Choose Files';

@@ -140,8 +140,9 @@ export const DatetimeInput = forwardRef<HTMLDivElement, DatetimeInputProps>(
         event.preventDefault();
 
         const siblings = getInputSiblings(input);
-        const nextFocus =
-          code === KeyCode.arrowLeft ? siblings.prev : siblings.next;
+        const nextFocus = code === KeyCode.arrowLeft
+          ? siblings.prev
+          : siblings.next;
         nextFocus.focus();
       } else if (readOnly) {
         return;
@@ -280,5 +281,6 @@ function getDefaultValue(component: DateComponent): number {
       return now.getHours();
     case 'minute':
       return now.getMinutes();
+    // no default
   }
 }

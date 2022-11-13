@@ -21,11 +21,12 @@ it('renders without errors', () => {
   expect(radios).toHaveLength(2);
 });
 
-it('throws an error when children is not a list of `RadioGroup.Item` elements', () => {
-  // Suppress React error logging.
-  jest.spyOn(console, 'error').mockImplementation(jest.fn());
-  expect(() =>
-    render(
+it(
+  'throws an error when children is not a list of `RadioGroup.Item` elements',
+  () => {
+    // Suppress React error logging.
+    jest.spyOn(console, 'error').mockImplementation(jest.fn());
+    expect(() => render(
       <RadioGroup value="visa" onChangeValue={jest.fn()}>
         <span>Amex</span>
         <RadioGroup.Item value="visa" label="Visa">
@@ -37,9 +38,9 @@ it('throws an error when children is not a list of `RadioGroup.Item` elements', 
           description="**** **** **** 9835"
         />
       </RadioGroup>
-    )
-  ).toThrow();
-});
+    )).toThrow();
+  }
+);
 
 it('invokes `onChangeValue` callback when select some option', () => {
   const onChangeValue = jest.fn();

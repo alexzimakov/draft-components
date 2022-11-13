@@ -76,7 +76,7 @@ export function AvatarShape({
           }
 
           return renderImageFallback({
-            path: path,
+            path,
             fill: `url(#${ids.gradient})`,
           });
         })()}

@@ -46,5 +46,6 @@ export function VerticalNavigationItem({
   }
 }
 
-VerticalNavigationItem.SELECTED_STATE_CSS_MODIFIER =
-  'dc-vertical-nav-item_selected';
+VerticalNavigationItem.SELECTED_STATE_CSS_MODIFIER = (
+  'dc-vertical-nav-item_selected'
+);

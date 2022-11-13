@@ -1,8 +1,8 @@
 import { render, screen, within } from '@testing-library/react';
 import { Alert } from './alert';
 
-const title = `Alert title`;
-const description = `Alert description.`;
+const title = 'Alert title';
+const description = 'Alert description.';
 
 it('renders without errors', () => {
   render(<Alert heading={title}>{description}</Alert>);

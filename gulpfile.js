@@ -65,7 +65,8 @@ exports.default = gulp.series(
 
 /**
  * Performs `tsc` command within shell.
- * @param {string} module - Specify module code generation: "None", "CommonJS", "AMD", "System", "UMD", "ES6", "ES2015" or "ESNext".
+ * @param {string} module - Specify module code generation:
+ *   "None", "CommonJS", "AMD", "System", "UMD", "ES6", "ES2015" or "ESNext".
  * @param {string} outDir - Redirect output structure to the directory.
  * @returns {Promise<string>}
  */

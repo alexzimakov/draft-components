@@ -84,15 +84,18 @@ export class DateComponents {
       return false;
     }
 
-    const isYearValid =
+    const isYearValid = (
       this.year >= DateComponents.options.year.min &&
-      this.year <= DateComponents.options.year.max;
-    const isMonthValid =
+      this.year <= DateComponents.options.year.max
+    );
+    const isMonthValid = (
       this.month >= DateComponents.options.month.min &&
-      this.month <= DateComponents.options.month.max;
-    const isDayValid =
+      this.month <= DateComponents.options.month.max
+    );
+    const isDayValid = (
       this.day >= DateComponents.options.day.min &&
-      this.day <= new Date(this.year, this.month, 0).getUTCDate();
+      this.day <= new Date(this.year, this.month, 0).getUTCDate()
+    );
 
     return isYearValid && isMonthValid && isDayValid;
   }
@@ -102,12 +105,14 @@ export class DateComponents {
       return false;
     }
 
-    const isHourValid =
+    const isHourValid = (
       this.hour >= DateComponents.options.hour.min &&
-      this.hour <= DateComponents.options.hour.max;
-    const isMinuteValid =
+      this.hour <= DateComponents.options.hour.max
+    );
+    const isMinuteValid = (
       this.minute >= DateComponents.options.minute.min &&
-      this.minute <= DateComponents.options.minute.max;
+      this.minute <= DateComponents.options.minute.max
+    );
 
     return isHourValid && isMinuteValid;
   }

@@ -83,7 +83,7 @@ module.exports = {
   skipComponentsWithoutExample: true,
   styleguideDir: 'docs',
   template: {
-    favicon: `https://raw.githubusercontent.com/alexzimakov/draft-components/master/src/styleguide/favicon.ico`,
+    favicon: 'https://raw.githubusercontent.com/alexzimakov/draft-components/master/src/styleguide/favicon.ico',
   },
   theme: {
     fontFamily: {

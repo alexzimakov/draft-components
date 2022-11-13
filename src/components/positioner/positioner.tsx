@@ -42,14 +42,14 @@ export function Positioner({
       const result = getPosition({
         placement,
         alignment,
+        anchorGap,
+        viewportGap,
         anchorRect: getRect(anchor),
         contentRect: getRect(content),
         viewportWidth: document.documentElement.clientWidth,
         viewportHeight: document.documentElement.clientHeight,
         scrollX: isContentPositionedFixed ? 0 : Math.round(window.scrollX),
         scrollY: isContentPositionedFixed ? 0 : Math.round(window.scrollY),
-        anchorGap: anchorGap,
-        viewportGap: viewportGap,
       });
       content.style.transform = `translate(${result.x}px, ${result.y}px)`;
       content.dataset.position = `${result.placement}-${result.alignment}`;

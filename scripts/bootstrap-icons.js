@@ -1,17 +1,11 @@
 const fsPromises = require('fs/promises');
 const path = require('path');
 const xml2js = require('xml2js');
-const prettier = require('prettier');
 
 const BASE_PATH = path.join(__dirname, '../');
 const NODE_MODULES = path.join(BASE_PATH, 'node_modules');
 const BOOTSTRAP_ICONS = path.join(NODE_MODULES, 'bootstrap-icons', 'icons');
 const OUTPUT_DIR = path.join(BASE_PATH, 'src', 'bootstrap-icons');
-const PRETTIER_OPTIONS = {
-  singleQuote: true,
-  trailingComma: 'es5',
-  parser: 'babel',
-};
 const FILE_NOTE = `/**
  * This file auto-generated with the \`scripts/bootstrap-icons.js\` script.
  */`;
@@ -113,8 +107,7 @@ function iconToFileSource(iconName, props) {
 
   const { $: attrs, ...otherProps } = props;
 
-  return prettier.format(
-    `${FILE_NOTE}
+  return `${FILE_NOTE}
 import { Icon } from '../components/svg-icon';
 
 // https://github.com/twbs/icons/blob/main/icons/${iconName}.svg
@@ -124,9 +117,8 @@ export const ${variableName}: Icon = {
   height: ${attrs.height || 16},
   viewBox: '${attrs.viewBox || '0 0 16 16'}',
   children: ${toJsx(otherProps)},
-};`,
-    PRETTIER_OPTIONS
-  );
+};
+`;
 }
 
 async function main() {

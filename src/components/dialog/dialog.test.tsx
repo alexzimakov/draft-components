@@ -111,45 +111,57 @@ it('should capture focus in the dialog', () => {
   expect(closeButton).toHaveFocus();
 });
 
-it('when open more than one dialog should close only the top dialog when press Esc key', () => {
-  const onDialog1Close = jest.fn();
-  const onDialog2Close = jest.fn();
-  render(
-    <>
-      <Dialog isOpen={true} onClose={onDialog1Close}>
-        {content}
-      </Dialog>
-      <Dialog isOpen={true} footerButtons={actions} onClose={onDialog2Close} />
-    </>
-  );
+it(
+  'when open more than one dialog should close only the top dialog ' +
+  'when press Esc key',
+  () => {
+    const onDialog1Close = jest.fn();
+    const onDialog2Close = jest.fn();
+    render(
+      <>
+        <Dialog isOpen={true} onClose={onDialog1Close}>
+          {content}
+        </Dialog>
+        <Dialog
+          isOpen={true}
+          footerButtons={actions}
+          onClose={onDialog2Close}
+        />
+      </>
+    );
 
-  userEvent.keyboard('{esc}');
+    userEvent.keyboard('{esc}');
 
-  expect(onDialog1Close).not.toHaveBeenCalled();
-  expect(onDialog2Close).toHaveBeenCalled();
-});
+    expect(onDialog1Close).not.toHaveBeenCalled();
+    expect(onDialog2Close).toHaveBeenCalled();
+  }
+);
 
-it('when open more than one dialog should capture focus only in the top dialog', () => {
-  render(
-    <>
-      <Dialog isOpen={true} footerButtons={actions} />
-      <Dialog isOpen={true} footerButtons={actions} />
-    </>
-  );
+it(
+  'when open more than one dialog should capture focus only in the top dialog',
+  () => {
+    render(
+      <>
+        <Dialog isOpen={true} footerButtons={actions} />
+        <Dialog isOpen={true} footerButtons={actions} />
+      </>
+    );
 
-  const [, dialog2] = screen.getAllByRole('dialog');
-  const [closeButtonOfDialog2, confirmButtonOfDialog2] =
-    within(dialog2).getAllByRole('button');
+    const [, dialog2] = screen.getAllByRole('dialog');
+    const [closeButtonOfDialog2, confirmButtonOfDialog2] = (
+      within(dialog2).getAllByRole('button')
+    );
 
-  userEvent.tab();
-  expect(closeButtonOfDialog2).toHaveFocus();
+    userEvent.tab();
+    expect(closeButtonOfDialog2).toHaveFocus();
 
-  userEvent.tab();
-  expect(confirmButtonOfDialog2).toHaveFocus();
+    userEvent.tab();
+    expect(confirmButtonOfDialog2).toHaveFocus();
 
-  userEvent.tab();
-  expect(closeButtonOfDialog2).toHaveFocus();
-});
+    userEvent.tab();
+    expect(closeButtonOfDialog2).toHaveFocus();
+  }
+);
 
 it('should focus a passed element after the dialog is opened', () => {
   const openButtonTestId = 'open-dialog';

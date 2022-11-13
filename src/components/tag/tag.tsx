@@ -72,7 +72,7 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
           onClick={onRemove}
         >
           <SvgIcon
-            size={removeButtonIconSize[size] || removeButtonIconSize['md']}
+            size={removeButtonIconSize[size] || removeButtonIconSize.md}
             icon={xLg}
           />
         </button>

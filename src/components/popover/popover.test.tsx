@@ -21,21 +21,24 @@ it('<Popover /> renders without errors', () => {
   expect(screen.getByTestId(popoverTestId)).toHaveTextContent(popoverContent);
 });
 
-it('<Popover /> renders without errors when anchor property is function', () => {
-  const popoverTestId = 'popover';
-  render(
-    <Popover
-      anchor={({ setRef }) => <button ref={setRef}>{anchorLabel}</button>}
-      defaultIsOpen={true}
-      data-testid={popoverTestId}
-    >
-      {popoverContent}
-    </Popover>
-  );
+it(
+  '<Popover /> renders without errors when anchor property is function',
+  () => {
+    const popoverTestId = 'popover';
+    render(
+      <Popover
+        anchor={({ setRef }) => <button ref={setRef}>{anchorLabel}</button>}
+        defaultIsOpen={true}
+        data-testid={popoverTestId}
+      >
+        {popoverContent}
+      </Popover>
+    );
 
-  screen.getByRole('button');
-  expect(screen.getByTestId(popoverTestId)).toHaveTextContent(popoverContent);
-});
+    screen.getByRole('button');
+    expect(screen.getByTestId(popoverTestId)).toHaveTextContent(popoverContent);
+  }
+);
 
 it('should open popover when click on anchor element', () => {
   const onOpenMock = jest.fn();

@@ -33,9 +33,9 @@ it('renders without errors', () => {
 });
 
 it('should render item using custom renderer', () => {
-  const renderItem: VerticalNavigationItemProps['renderAs'] = (props) => {
-    return <button {...props} />;
-  };
+  const renderItem: VerticalNavigationItemProps['renderAs'] = (props) => (
+    <button {...props} />
+  );
   render(
     <VerticalNavigation>
       <VerticalNavigation.Item renderAs={renderItem}>

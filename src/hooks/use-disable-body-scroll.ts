@@ -16,15 +16,16 @@ let initialPaddingRight = '';
 function disableBodyScroll() {
   if (!disableAttempts) {
     const bodyStyle = window.getComputedStyle(document.body);
-    const scrollbarWidth =
-      window.innerWidth - document.documentElement.clientWidth;
+    const scrollbarWidth = (
+      window.innerWidth - document.documentElement.clientWidth
+    );
 
     initialOverflow = bodyStyle.overflow;
     initialPaddingRight = bodyStyle.paddingRight;
 
     document.body.style.overflow = 'hidden';
     document.body.style.paddingRight = `${
-      parseInt(initialPaddingRight) + scrollbarWidth
+      parseInt(initialPaddingRight, 10) + scrollbarWidth
     }px`;
   }
   disableAttempts += 1;
