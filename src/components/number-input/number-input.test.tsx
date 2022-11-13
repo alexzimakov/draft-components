@@ -48,70 +48,80 @@ it('renders without increment/decrement buttons', () => {
   expect(screen.queryByText(decrementButtonLabel)).toBeNull();
 });
 
-it('invokes `onChange` event handler', () => {
+it('invokes `onChange` event handler', async () => {
+  const user = userEvent.setup();
   const onChange = jest.fn();
   render(
     <NumberInput value="10" onChangeValue={jest.fn()} onChange={onChange} />
   );
 
-  userEvent.paste(screen.getByRole('textbox'), '10');
+  await user.click(screen.getByRole('textbox'));
+  await user.paste('10');
 
   expect(onChange).toHaveBeenCalledTimes(1);
 });
 
-it('invokes `onChangeValue` callback when entering a correct number', () => {
-  const invalidNumber = 'one hundred';
-  const integer = '100';
-  const float = '1.5';
-  const negativeInteger = '-20';
-  const negativeFloat = '-0.8';
-  const onChangeValue = jest.fn();
-  const { rerender } = render(
-    <NumberInput value="" onChangeValue={onChangeValue} />
-  );
+it(
+  'invokes `onChangeValue` callback when entering a correct number',
+  async () => {
+    const user = userEvent.setup();
+    const invalidNumber = 'one hundred';
+    const integer = '100';
+    const float = '1.5';
+    const negativeInteger = '-20';
+    const negativeFloat = '-0.8';
+    const onChangeValue = jest.fn();
+    const { rerender } = render(
+      <NumberInput value="" onChangeValue={onChangeValue} />
+    );
 
-  const input = screen.getByRole('textbox');
+    const input = screen.getByRole('textbox');
 
-  userEvent.paste(input, invalidNumber);
-  userEvent.paste(input, integer);
-  userEvent.paste(input, float);
-  userEvent.paste(input, negativeInteger);
-  userEvent.paste(input, negativeFloat);
+    await user.click(input);
+    await user.paste(invalidNumber);
+    await user.paste(integer);
+    await user.paste(float);
+    await user.paste(negativeInteger);
+    await user.paste(negativeFloat);
 
-  rerender(<NumberInput value="1" onChangeValue={onChangeValue} />);
-  userEvent.clear(input);
+    rerender(<NumberInput value="1" onChangeValue={onChangeValue} />);
+    await user.clear(input);
 
-  expect(onChangeValue).toHaveBeenCalledTimes(5);
-  expect(onChangeValue).toHaveBeenNthCalledWith(1, integer);
-  expect(onChangeValue).toHaveBeenNthCalledWith(2, float);
-  expect(onChangeValue).toHaveBeenNthCalledWith(3, negativeInteger);
-  expect(onChangeValue).toHaveBeenNthCalledWith(4, negativeFloat);
-  expect(onChangeValue).toHaveBeenNthCalledWith(5, '');
-});
+    expect(onChangeValue).toHaveBeenCalledTimes(5);
+    expect(onChangeValue).toHaveBeenNthCalledWith(1, integer);
+    expect(onChangeValue).toHaveBeenNthCalledWith(2, float);
+    expect(onChangeValue).toHaveBeenNthCalledWith(3, negativeInteger);
+    expect(onChangeValue).toHaveBeenNthCalledWith(4, negativeFloat);
+    expect(onChangeValue).toHaveBeenNthCalledWith(5, '');
+  }
+);
 
-it('increments value when clicking on the increment button', () => {
+it('increments value when clicking on the increment button', async () => {
+  const user = userEvent.setup();
   const onChangeValue = jest.fn();
   render(<NumberInput value="15" onChangeValue={onChangeValue} step={5} />);
   const [, incrementButton] = screen.getAllByRole('button');
 
-  userEvent.click(incrementButton);
+  await user.click(incrementButton);
 
   expect(onChangeValue).toHaveBeenCalledTimes(1);
   expect(onChangeValue).toHaveBeenCalledWith('20');
 });
 
-it('decrements value when clicking on the increment button', () => {
+it('decrements value when clicking on the increment button', async () => {
+  const user = userEvent.setup();
   const onChangeValue = jest.fn();
   render(<NumberInput value="15" onChangeValue={onChangeValue} step={5} />);
   const [decrementButton] = screen.getAllByRole('button');
 
-  userEvent.click(decrementButton);
+  await user.click(decrementButton);
 
   expect(onChangeValue).toHaveBeenCalledTimes(1);
   expect(onChangeValue).toHaveBeenCalledWith('10');
 });
 
-it('increments value when press arrow up key', () => {
+it('increments value when press arrow up key', async () => {
+  const user = userEvent.setup();
   const onChangeValueMock = jest.fn();
   const onKeyDownMock = jest.fn();
   render(
@@ -124,10 +134,10 @@ it('increments value when press arrow up key', () => {
   const input = screen.getByRole('textbox');
 
   input.focus();
-  userEvent.keyboard('[ArrowUp]');
-  userEvent.keyboard('{Alt}[ArrowUp]{/Alt}');
-  userEvent.keyboard('{Shift}[ArrowUp]{/Shift}');
-  userEvent.keyboard('{Shift}{Alt}[ArrowUp]{/Shift}{/Alt}');
+  await user.keyboard('[ArrowUp]');
+  await user.keyboard('{Alt>}[ArrowUp]{/Alt}');
+  await user.keyboard('{Shift>}[ArrowUp]{/Shift}');
+  await user.keyboard('{Shift>}{Alt>}[ArrowUp]{/Shift}{/Alt}');
 
   expect(onChangeValueMock).toHaveBeenCalledTimes(4);
   expect(onChangeValueMock).toHaveBeenNthCalledWith(1, '11');
@@ -143,16 +153,17 @@ it('increments value when press arrow up key', () => {
   expect(onKeyDownMock).toHaveBeenCalledTimes(8);
 });
 
-it('decrements value when press arrow down key', () => {
+it('decrements value when press arrow down key', async () => {
+  const user = userEvent.setup();
   const onChangeValue = jest.fn();
   render(<NumberInput value="10" onChangeValue={onChangeValue} />);
   const input = screen.getByRole('textbox');
 
   input.focus();
-  userEvent.keyboard('[ArrowDown]');
-  userEvent.keyboard('{Alt}[ArrowDown]{/Alt}');
-  userEvent.keyboard('{Shift}[ArrowDown]{/Shift}');
-  userEvent.keyboard('{Shift}{Alt}[ArrowDown]{/Shift}{/Alt}');
+  await user.keyboard('[ArrowDown]');
+  await user.keyboard('{Alt>}[ArrowDown]{/Alt}');
+  await user.keyboard('{Shift>}[ArrowDown]{/Shift}');
+  await user.keyboard('{Shift>}{Alt>}[ArrowDown]{/Shift}{/Alt}');
 
   expect(onChangeValue).toHaveBeenCalledTimes(4);
   expect(onChangeValue).toHaveBeenNthCalledWith(1, '9');
@@ -161,7 +172,8 @@ it('decrements value when press arrow down key', () => {
   expect(onChangeValue).toHaveBeenNthCalledWith(4, '-90');
 });
 
-it('can change a value in a specified range', () => {
+it('can change a value in a specified range', async () => {
+  const user = userEvent.setup();
   const onChangeValue = jest.fn();
   const { rerender } = render(
     <NumberInput
@@ -175,17 +187,18 @@ it('can change a value in a specified range', () => {
   const input = screen.getByRole('textbox');
   const [decrementButton, incrementButton] = screen.getAllByRole('button');
 
-  userEvent.paste(input, '30');
-  userEvent.click(decrementButton);
-  userEvent.click(incrementButton);
+  await user.click(input);
+  await user.paste('30');
+  await user.click(decrementButton);
+  await user.click(incrementButton);
 
   expect(onChangeValue).not.toHaveBeenCalled();
 
   rerender(
     <NumberInput value="10" onChangeValue={onChangeValue} max={20} step={15} />
   );
-  userEvent.click(incrementButton);
-  userEvent.click(decrementButton);
+  await user.click(incrementButton);
+  await user.click(decrementButton);
   expect(onChangeValue).toHaveBeenCalledTimes(1);
   expect(onChangeValue).toHaveBeenCalledWith('-5');
   onChangeValue.mockClear();
@@ -193,8 +206,8 @@ it('can change a value in a specified range', () => {
   rerender(
     <NumberInput value="10" onChangeValue={onChangeValue} min={0} step={15} />
   );
-  userEvent.click(incrementButton);
-  userEvent.click(decrementButton);
+  await user.click(incrementButton);
+  await user.click(decrementButton);
   expect(onChangeValue).toHaveBeenCalledTimes(1);
   expect(onChangeValue).toHaveBeenCalledWith('25');
 });
@@ -202,7 +215,8 @@ it('can change a value in a specified range', () => {
 it(
   'unable change value using keyboard arrows or increment/decrement buttons ' +
   'when the field is `readOnly`',
-  () => {
+  async () => {
+    const user = userEvent.setup();
     const onChangeValue = jest.fn();
     render(
       <NumberInput readOnly={true} value="0" onChangeValue={onChangeValue} />
@@ -211,15 +225,15 @@ it(
     const [decrementButton, incrementButton] = screen.getAllByRole('button');
 
     input.focus();
-    userEvent.keyboard('[ArrowDown]');
-    userEvent.click(decrementButton);
-    userEvent.click(incrementButton);
+    await user.keyboard('[ArrowDown]');
+    await user.click(decrementButton);
+    await user.click(incrementButton);
 
     expect(onChangeValue).not.toHaveBeenCalled();
   }
 );
 
-it('should format on blur', () => {
+it('should format on blur', async () => {
   const onChangeValueMock = jest.fn();
   const onBlurMock = jest.fn();
   render(

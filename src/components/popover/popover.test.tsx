@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import { act, render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { Popover } from './popover';
 
 const anchorLabel = 'Show Popover';
@@ -40,7 +40,8 @@ it(
   }
 );
 
-it('should open popover when click on anchor element', () => {
+it('should open popover when click on anchor element', async () => {
+  const user = userEvent.setup();
   const onOpenMock = jest.fn();
   const anchorTestId = 'anchor';
   const popoverTestId = 'popover';
@@ -56,44 +57,42 @@ it('should open popover when click on anchor element', () => {
 
   expect(screen.queryByTestId(popoverTestId)).toBeNull();
 
-  userEvent.click(screen.getByTestId(anchorTestId));
+  await user.click(screen.getByTestId(anchorTestId));
   screen.getByTestId(popoverTestId);
   expect(onOpenMock).toHaveBeenCalledTimes(1);
 });
 
-it('should close popover when click on element outside of popover', () => {
-  jest.useFakeTimers();
+it(
+  'should close popover when click on element outside of popover',
+  async () => {
+    const user = userEvent.setup();
+    const onCloseMock = jest.fn();
+    const popoverTestId = 'popover';
+    const externalElementTestId = 'close-popover';
+    render(
+      <div>
+        <button data-testid={externalElementTestId}>Close popover</button>
+        <Popover
+          anchor={<button>{anchorLabel}</button>}
+          defaultIsOpen={true}
+          data-testid={popoverTestId}
+          onClose={onCloseMock}
+        >
+          {popoverContent}
+        </Popover>
+      </div>
+    );
 
-  const onCloseMock = jest.fn();
-  const popoverTestId = 'popover';
-  const externalElementTestId = 'close-popover';
-  render(
-    <div>
-      <button data-testid={externalElementTestId}>Close popover</button>
-      <Popover
-        anchor={<button>{anchorLabel}</button>}
-        defaultIsOpen={true}
-        data-testid={popoverTestId}
-        onClose={onCloseMock}
-      >
-        {popoverContent}
-      </Popover>
-    </div>
-  );
+    screen.getByTestId(popoverTestId);
 
-  screen.getByTestId(popoverTestId);
+    await user.click(screen.getByTestId(externalElementTestId));
+    await waitFor(() => expect(screen.queryByTestId(popoverTestId)).toBeNull());
+    expect(onCloseMock).toHaveBeenCalledTimes(1);
+  }
+);
 
-  userEvent.click(screen.getByTestId(externalElementTestId));
-  act(() => {
-    jest.runOnlyPendingTimers();
-  });
-  expect(screen.queryByTestId(popoverTestId)).toBeNull();
-  expect(onCloseMock).toHaveBeenCalledTimes(1);
-});
-
-it('should close popover when press Esc button', () => {
-  jest.useFakeTimers();
-
+it('should close popover when press Esc button', async () => {
+  const user = userEvent.setup();
   const onCloseMock = jest.fn();
   const popoverTestId = 'popover';
   render(
@@ -109,15 +108,13 @@ it('should close popover when press Esc button', () => {
 
   screen.getByTestId(popoverTestId);
 
-  userEvent.keyboard('{esc}');
-  act(() => {
-    jest.runOnlyPendingTimers();
-  });
-  expect(screen.queryByTestId(popoverTestId)).toBeNull();
+  await user.keyboard('{Escape}');
+  await waitFor(() => expect(screen.queryByTestId(popoverTestId)).toBeNull());
   expect(onCloseMock).toHaveBeenCalledTimes(1);
 });
 
-it('should capture focus within popover', () => {
+it('should capture focus within popover', async () => {
+  const user = userEvent.setup();
   const onCloseMock = jest.fn();
   const popoverTestId = 'popover';
   const inputTestId = 'input';
@@ -137,13 +134,13 @@ it('should capture focus within popover', () => {
   const input = screen.getByTestId(inputTestId);
   const button = screen.getByTestId(buttonTestId);
 
-  userEvent.tab();
+  await user.tab();
   expect(input).toHaveFocus();
-  userEvent.tab();
+  await user.tab();
   expect(button).toHaveFocus();
 
-  userEvent.tab({ shift: true });
+  await user.tab({ shift: true });
   expect(input).toHaveFocus();
-  userEvent.tab({ shift: true });
+  await user.tab({ shift: true });
   expect(button).toHaveFocus();
 });

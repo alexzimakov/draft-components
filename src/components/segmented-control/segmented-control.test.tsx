@@ -31,7 +31,8 @@ it('renders without errors', () => {
   expect(topRated).toHaveTextContent(items[2].label);
 });
 
-it('should change focus using keyboard', () => {
+it('should change focus using keyboard', async () => {
+  const user = userEvent.setup();
   const items = [
     { value: 1, label: 'Popular' },
     { value: 2, label: 'Newest' },
@@ -49,35 +50,36 @@ it('should change focus using keyboard', () => {
 
   expect(document.body).toHaveFocus();
 
-  userEvent.tab();
+  await user.tab();
   expect(popular).toHaveFocus();
 
   // Move focus to the "Newest" item.
-  userEvent.type(popular, '{arrowright}', { skipClick: true });
+  await user.type(popular, '{ArrowRight}', { skipClick: true });
   expect(newest).toHaveFocus();
 
   // Move focus to the "Popular" item.
-  userEvent.type(newest, '{arrowleft}', { skipClick: true });
+  await user.type(newest, '{ArrowLeft}', { skipClick: true });
   expect(popular).toHaveFocus();
 
   // Move focus to the "Top-Rated" item.
-  userEvent.type(popular, '{arrowleft}', { skipClick: true });
+  await user.type(popular, '{ArrowLeft}', { skipClick: true });
   expect(topRated).toHaveFocus();
 
   // Move focus to the "Popular" item.
-  userEvent.type(topRated, '{arrowright}', { skipClick: true });
+  await user.type(topRated, '{ArrowRight}', { skipClick: true });
   expect(popular).toHaveFocus();
 
   // Move focus to the "Top-Rated" item.
-  userEvent.type(popular, '{end}', { skipClick: true });
+  await user.type(popular, '{End}', { skipClick: true });
   expect(topRated).toHaveFocus();
 
   // Move focus to the "Popular" item.
-  userEvent.type(topRated, '{home}', { skipClick: true });
+  await user.type(topRated, '{Home}', { skipClick: true });
   expect(popular).toHaveFocus();
 });
 
-it('should call `onItemSelect` callback when select item', () => {
+it('should call `onItemSelect` callback when select item', async () => {
+  const user = userEvent.setup();
   const segments = [
     { value: 1, label: 'Popular' },
     { value: 2, label: 'Newest' },
@@ -92,16 +94,16 @@ it('should call `onItemSelect` callback when select item', () => {
     />
   );
 
-  const [popular, newest, topRated] = screen.getAllByRole('radio');
+  const [popular] = screen.getAllByRole('radio');
 
   // Select first radio via click.
-  userEvent.click(popular);
+  await user.click(popular);
   // Move focus to second radio and select it via `Enter` press.
-  userEvent.type(popular, '{arrowright}', { skipClick: true });
-  userEvent.type(newest, '{enter}', { skipClick: true });
+  await user.keyboard('{ArrowRight}');
+  await user.keyboard('{Enter}');
   // Move focus to third radio and select it via `Space` press.
-  userEvent.type(newest, '{arrowright}', { skipClick: true });
-  userEvent.type(topRated, '{space}', { skipClick: true });
+  await user.keyboard('{ArrowRight}');
+  await user.keyboard(' ');
 
   expect(onItemSelect).toHaveBeenCalledTimes(2);
   expect(onItemSelect).toHaveBeenNthCalledWith(1, segments[1].value);

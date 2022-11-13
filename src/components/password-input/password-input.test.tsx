@@ -9,7 +9,8 @@ it('renders without errors', () => {
   screen.getByPlaceholderText(placeholder);
 });
 
-it('should toggle password visibility', () => {
+it('should toggle password visibility', async () => {
+  const user = userEvent.setup();
   const placeholder = 'Search';
   const showPasswordA11yTitle = 'Show password';
   const hidePasswordA11yTitle = 'Hide password';
@@ -23,9 +24,9 @@ it('should toggle password visibility', () => {
 
   const inputEl = screen.getByPlaceholderText(placeholder);
 
-  userEvent.click(screen.getByTitle(showPasswordA11yTitle));
+  await user.click(screen.getByTitle(showPasswordA11yTitle));
   expect(inputEl).toHaveAttribute('type', 'text');
 
-  userEvent.click(screen.getByTitle(hidePasswordA11yTitle));
+  await user.click(screen.getByTitle(hidePasswordA11yTitle));
   expect(inputEl).toHaveAttribute('type', 'password');
 });

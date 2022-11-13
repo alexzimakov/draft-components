@@ -1,7 +1,6 @@
 import {
   cloneElement,
   forwardRef,
-  isValidElement,
   ReactNode,
   RefCallback,
   useCallback,
@@ -9,7 +8,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { isFunction } from '../../lib/guards';
+import { isFunction, isReactElement } from '../../lib/guards';
 import { classNames, mergeRefs } from '../../lib/react-helpers';
 import { useIsFirstRender } from '../../hooks/use-is-first-render';
 import { useCloseAnimation } from '../../hooks/use-close-animation';
@@ -147,10 +146,9 @@ export const Popover = forwardRef<PopoverRef, PopoverProps>(function Popover(
           });
         }
 
-        if (isValidElement(anchor)) {
+        if (isReactElement(anchor)) {
           return cloneElement(anchor, {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            ref: mergeRefs(setRef, anchorRef, (anchor as any).ref),
+            ref: mergeRefs(setRef, anchorRef, anchor.ref),
             onClick: (event: MouseEvent): void => {
               const onClick = anchor.props.onClick;
               if (isFunction(onClick)) {

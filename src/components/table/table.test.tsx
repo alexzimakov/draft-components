@@ -62,7 +62,8 @@ it('renders without errors', () => {
   }
 });
 
-it('renders with sortable header cells', () => {
+it('renders with sortable header cells', async () => {
+  const user = userEvent.setup();
   const onChangeIdOrder = jest.fn();
   const onChangePersonOrder = jest.fn();
   const onChangeAgeOrder = jest.fn();
@@ -111,15 +112,15 @@ it('renders with sortable header cells', () => {
   expect(personHeaderCell).toHaveAttribute('aria-sort', 'ascending');
   expect(ageHeaderCell).toHaveAttribute('aria-sort', 'descending');
 
-  userEvent.click(within(idHeaderCell).getByRole('button'));
+  await user.click(within(idHeaderCell).getByRole('button'));
   expect(onChangeIdOrder).toHaveBeenCalledTimes(1);
   expect(onChangeIdOrder).toHaveBeenCalledWith('asc');
 
-  userEvent.click(within(personHeaderCell).getByRole('button'));
+  await user.click(within(personHeaderCell).getByRole('button'));
   expect(onChangePersonOrder).toHaveBeenCalledTimes(1);
   expect(onChangePersonOrder).toHaveBeenCalledWith('desc');
 
-  userEvent.click(within(ageHeaderCell).getByRole('button'));
+  await user.click(within(ageHeaderCell).getByRole('button'));
   expect(onChangeAgeOrder).toHaveBeenCalledTimes(1);
   expect(onChangeAgeOrder).toHaveBeenCalledWith('none');
 });

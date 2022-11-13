@@ -40,7 +40,8 @@ it('renders without errors', () => {
   screen.getByText('Develop tab content');
 });
 
-it('can select tab using mouse', () => {
+it('can select tab using mouse', async () => {
+  const user = userEvent.setup();
   const TabKeys = {
     WORK: 'work',
     DEVELOP: 'develop',
@@ -65,13 +66,14 @@ it('can select tab using mouse', () => {
     </Tabs>
   );
 
-  userEvent.click(screen.getByText('Games'));
+  await user.click(screen.getByText('Games'));
 
   expect(onSelectTabMock).toHaveBeenCalledTimes(1);
   expect(onSelectTabMock).toHaveBeenCalledWith(TabKeys.GAMES);
 });
 
-it('can move focus between tabs using keyboard', () => {
+it('can move focus between tabs using keyboard', async () => {
+  const user = userEvent.setup();
   const TabKeys = {
     WORK: 'work',
     DEVELOP: 'develop',
@@ -96,24 +98,24 @@ it('can move focus between tabs using keyboard', () => {
     </Tabs>
   );
 
-  userEvent.tab();
+  await user.tab();
   expect(screen.getByText(TabKeys.DEVELOP)).toHaveFocus();
 
-  userEvent.keyboard('{ArrowLeft}');
+  await user.keyboard('{ArrowLeft}');
   expect(screen.getByText(TabKeys.WORK)).toHaveFocus();
 
-  userEvent.keyboard('{ArrowLeft}');
+  await user.keyboard('{ArrowLeft}');
   expect(screen.getByText(TabKeys.GAMES)).toHaveFocus();
 
-  userEvent.keyboard('{ArrowRight}');
+  await user.keyboard('{ArrowRight}');
   expect(screen.getByText(TabKeys.WORK)).toHaveFocus();
 
-  userEvent.keyboard('{ArrowRight}');
+  await user.keyboard('{ArrowRight}');
   expect(screen.getByText(TabKeys.DEVELOP)).toHaveFocus();
 
-  userEvent.keyboard('{Home}');
+  await user.keyboard('{Home}');
   expect(screen.getByText(TabKeys.WORK)).toHaveFocus();
 
-  userEvent.keyboard('{End}');
+  await user.keyboard('{End}');
   expect(screen.getByText(TabKeys.GAMES)).toHaveFocus();
 });

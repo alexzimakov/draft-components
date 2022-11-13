@@ -21,21 +21,25 @@ it('should forward extra props underlying <textarea />', () => {
   expect(textareaEl).toHaveAttribute('spellcheck', 'false');
 });
 
-it('invokes `onChange` event handler', () => {
+it('invokes `onChange` event handler', async () => {
+  const user = userEvent.setup();
   const onChange = jest.fn();
   render(<Textarea onChange={onChange} />);
 
-  userEvent.paste(screen.getByRole('textbox'), 'lorem');
+  await user.click(screen.getByRole('textbox'));
+  await user.paste('lorem');
 
   expect(onChange).toHaveBeenCalledTimes(1);
 });
 
-it('invokes `onChangeValue` with changed value', () => {
+it('invokes `onChangeValue` with changed value', async () => {
+  const user = userEvent.setup();
   const onChangeValue = jest.fn();
   const expectedValue = 'lorem';
   render(<Textarea onChangeValue={onChangeValue} />);
 
-  userEvent.paste(screen.getByRole('textbox'), expectedValue);
+  await user.click(screen.getByRole('textbox'));
+  await user.paste(expectedValue);
 
   expect(onChangeValue).toHaveBeenCalledTimes(1);
   expect(onChangeValue).toHaveBeenNthCalledWith(1, expectedValue);

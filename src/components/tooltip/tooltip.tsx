@@ -1,7 +1,6 @@
 import {
   cloneElement,
   ComponentPropsWithoutRef,
-  isValidElement,
   MouseEvent,
   ReactNode,
   RefCallback,
@@ -10,7 +9,7 @@ import {
   useState,
 } from 'react';
 import { uniqueId } from '../../lib/util';
-import { isFunction } from '../../lib/guards';
+import { isFunction, isReactElement } from '../../lib/guards';
 import { classNames, mergeRefs } from '../../lib/react-helpers';
 import { useCloseAnimation } from '../../hooks/use-close-animation';
 import { Positioner } from '../positioner';
@@ -74,10 +73,9 @@ export function Tooltip({
           });
         }
 
-        if (isValidElement(children)) {
+        if (isReactElement(children)) {
           return cloneElement(children, {
-            /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-            ref: mergeRefs(setRef, (children as any).ref),
+            ref: mergeRefs(setRef, children.ref),
             onMouseEnter: (event: MouseEvent): void => {
               const onMouseEnter = children.props.onMouseEnter;
               isFunction(onMouseEnter) && onMouseEnter(event);

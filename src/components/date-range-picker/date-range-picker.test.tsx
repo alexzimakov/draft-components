@@ -30,7 +30,8 @@ it('renders without errors', () => {
   expect(screen.getByText('21')).toHaveAttribute('aria-selected', 'true');
 });
 
-it('invokes `onPick` callback when selecting a day', () => {
+it('invokes `onPick` callback when selecting a day', async () => {
+  const user = userEvent.setup();
   const onChangeRangeMock = jest.fn();
   render(
     <DateRangePicker
@@ -39,8 +40,8 @@ it('invokes `onPick` callback when selecting a day', () => {
     />
   );
 
-  userEvent.click(screen.getByText('13'));
-  userEvent.click(screen.getByText('28'));
+  await user.click(screen.getByText('13'));
+  await user.click(screen.getByText('28'));
 
   expect(onChangeRangeMock).toHaveBeenCalledTimes(2);
   expect(onChangeRangeMock).toHaveBeenCalledWith({
@@ -53,7 +54,8 @@ it('invokes `onPick` callback when selecting a day', () => {
   });
 });
 
-it('can select month and year using arrow buttons', () => {
+it('can select month and year using arrow buttons', async () => {
+  const user = userEvent.setup();
   const nextYearAriaLabel = 'next year';
   const prevYearAriaLabel = 'prev year';
   const nextMonthAriaLabel = 'next month';
@@ -72,20 +74,21 @@ it('can select month and year using arrow buttons', () => {
 
   screen.getByText('October 2021');
 
-  userEvent.click(screen.getByLabelText(nextYearAriaLabel));
+  await user.click(screen.getByLabelText(nextYearAriaLabel));
   screen.getByText('October 2022');
 
-  userEvent.click(screen.getByLabelText(prevMonthAriaLabel));
+  await user.click(screen.getByLabelText(prevMonthAriaLabel));
   screen.getByText('September 2022');
 
-  userEvent.click(screen.getByLabelText(nextMonthAriaLabel));
+  await user.click(screen.getByLabelText(nextMonthAriaLabel));
   screen.getByText('October 2022');
 
-  userEvent.click(screen.getByLabelText(prevYearAriaLabel));
+  await user.click(screen.getByLabelText(prevYearAriaLabel));
   screen.getByText('October 2021');
 });
 
-it('can select date using keyboard', () => {
+it('can select date using keyboard', async () => {
+  const user = userEvent.setup();
   render(
     <DateRangePicker
       locale="en"
@@ -95,54 +98,54 @@ it('can select date using keyboard', () => {
   );
 
   // Move focus to the selected date.
-  userEvent.tab();
-  userEvent.tab();
-  userEvent.tab();
-  userEvent.tab();
-  userEvent.tab();
+  await user.tab();
+  await user.tab();
+  await user.tab();
+  await user.tab();
+  await user.tab();
   expect(screen.getByText('14')).toHaveFocus();
 
   // Move focus to the next day.
-  userEvent.keyboard('{ArrowRight}');
+  await user.keyboard('{ArrowRight}');
   expect(screen.getByText('15')).toHaveFocus();
 
   // Move focus to the previous day.
-  userEvent.keyboard('{ArrowLeft}');
+  await user.keyboard('{ArrowLeft}');
   expect(screen.getByText('14')).toHaveFocus();
 
   // Move focus to the same day of the previous week.
-  userEvent.keyboard('{ArrowUp}');
+  await user.keyboard('{ArrowUp}');
   expect(screen.getByText('7')).toHaveFocus();
 
   // Move focus to the same day of the next week.
-  userEvent.keyboard('{ArrowDown}');
+  await user.keyboard('{ArrowDown}');
   expect(screen.getByText('14')).toHaveFocus();
 
   // Moves focus to the first day of the current week.
-  userEvent.keyboard('{Home}');
+  await user.keyboard('{Home}');
   expect(screen.getByText('11')).toHaveFocus();
 
   // Moves focus to the last day of the current week.
-  userEvent.keyboard('{End}');
+  await user.keyboard('{End}');
   expect(screen.getByText('17')).toHaveFocus();
 
   // Moves focus to the same day of the previous month.
-  userEvent.keyboard('{PageUp}');
+  await user.keyboard('{PageUp}');
   screen.getByText('September 2021');
   expect(screen.getByText('17')).toHaveFocus();
 
   // Moves focus to the same day of the next month.
-  userEvent.keyboard('{PageDown}');
+  await user.keyboard('{PageDown}');
   screen.getByText('October 2021');
   expect(screen.getByText('17')).toHaveFocus();
 
   // Moves focus to the same day of the previous year.
-  userEvent.keyboard('{Shift>}{PageUp}{/Shift}');
+  await user.keyboard('{Shift>}{PageUp}{/Shift}');
   screen.getByText('October 2020');
   expect(screen.getByText('17')).toHaveFocus();
 
   // Moves focus to the same day of the next year.
-  userEvent.keyboard('{Shift>}{PageDown}{/Shift}');
+  await user.keyboard('{Shift>}{PageDown}{/Shift}');
   screen.getByText('October 2021');
   expect(screen.getByText('17')).toHaveFocus();
 });

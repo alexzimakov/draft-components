@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import { act, render, screen, within } from '@testing-library/react';
+import { render, screen, waitFor, within } from '@testing-library/react';
 import { Menu } from './menu';
 import { MenuButton } from './menu-button';
 import { MenuDivider } from './menu-divider';
@@ -73,9 +73,8 @@ it('renders without errors when label property is function', () => {
   within(menu).getByTestId('dc-menu-divider');
 });
 
-it('should open the menu by click on the label', () => {
-  jest.useFakeTimers();
-
+it('should open the menu by click on the label', async () => {
+  const user = userEvent.setup();
   render(
     <Menu label={label}>
       <MenuButton>{actions[0]}</MenuButton>
@@ -87,18 +86,15 @@ it('should open the menu by click on the label', () => {
 
   expect(screen.queryByRole('menu')).toBeNull();
 
-  userEvent.click(screen.getByText(label));
+  await user.click(screen.getByText(label));
   screen.getByRole('menu');
 
-  userEvent.click(screen.getByText(label));
-  act(() => {
-    jest.runOnlyPendingTimers();
-  });
-  expect(screen.queryByRole('menu')).toBeNull();
+  await user.click(screen.getByText(label));
+  await waitFor(() => expect(screen.queryByRole('menu')).toBeNull());
 });
 
-it('should close the menu when Esc key pressed', () => {
-  jest.useFakeTimers();
+it('should close the menu when Esc key pressed', async () => {
+  const user = userEvent.setup();
 
   render(
     <Menu defaultIsOpen={true} label={label}>
@@ -111,16 +107,12 @@ it('should close the menu when Esc key pressed', () => {
 
   screen.getByRole('menu');
 
-  userEvent.keyboard('{esc}');
-  act(() => {
-    jest.runOnlyPendingTimers();
-  });
-
-  expect(screen.queryByRole('menu')).toBeNull();
+  await user.keyboard('{Escape}');
+  await waitFor(() => expect(screen.queryByRole('menu')).toBeNull());
 });
 
-it('should close the menu when click on outside the menu', () => {
-  jest.useFakeTimers();
+it('should close the menu when click on outside the menu', async () => {
+  const user = userEvent.setup();
 
   const externalButtonTestId = 'external-button';
   render(
@@ -137,19 +129,15 @@ it('should close the menu when click on outside the menu', () => {
 
   screen.getByRole('menu');
 
-  userEvent.click(screen.getByTestId(externalButtonTestId));
-  act(() => {
-    jest.runOnlyPendingTimers();
-  });
-
-  expect(screen.queryByRole('menu')).toBeNull();
+  await user.click(screen.getByTestId(externalButtonTestId));
+  await waitFor(() => expect(screen.queryByRole('menu')).toBeNull());
 });
 
 it(
   'should open the menu and moves focus to the first item ' +
   'when Arrow Down key pressed',
-  () => {
-    jest.useFakeTimers();
+  async () => {
+    const user = userEvent.setup();
 
     render(
       <Menu label={label}>
@@ -162,24 +150,20 @@ it(
 
     expect(screen.queryByRole('menu')).toBeNull();
 
-    userEvent.tab();
-    userEvent.keyboard('{ArrowDown}');
+    await user.tab();
+    await user.keyboard('{ArrowDown}');
 
     screen.getByRole('menu');
-
-    act(() => {
-      jest.runOnlyPendingTimers();
-    });
-    const menuItems = screen.getAllByRole('menuitem');
-    expect(menuItems[0]).toHaveFocus();
+    const [first] = screen.getAllByRole('menuitem');
+    expect(first).toHaveFocus();
   }
 );
 
 it(
   'should open the menu and moves focus to the last item ' +
   'when Arrow Up key pressed',
-  () => {
-    jest.useFakeTimers();
+  async () => {
+    const user = userEvent.setup();
 
     render(
       <Menu label={label}>
@@ -192,21 +176,17 @@ it(
 
     expect(screen.queryByRole('menu')).toBeNull();
 
-    userEvent.tab();
-    userEvent.keyboard('{ArrowUp}');
+    await user.tab();
+    await user.keyboard('{ArrowUp}');
 
     screen.getByRole('menu');
-
-    act(() => {
-      jest.runOnlyPendingTimers();
-    });
     const menuItems = screen.getAllByRole('menuitem');
     expect(menuItems[menuItems.length - 1]).toHaveFocus();
   }
 );
 
-it('should navigate through menu items using keyboard', () => {
-  jest.useFakeTimers();
+it('should navigate through menu items using keyboard', async () => {
+  const user = userEvent.setup();
 
   render(
     <Menu label={label}>
@@ -217,42 +197,39 @@ it('should navigate through menu items using keyboard', () => {
     </Menu>
   );
 
-  userEvent.tab();
-  userEvent.keyboard('{ArrowUp}');
-  act(() => {
-    jest.runOnlyPendingTimers();
-  });
+  await user.tab();
+  await user.keyboard('{ArrowUp}');
 
   const [first, second, third] = screen.getAllByRole('menuitem');
-
   expect(third).toHaveFocus();
 
-  userEvent.keyboard('{ArrowDown}');
+  await user.keyboard('{ArrowDown}');
   expect(first).toHaveFocus();
 
-  userEvent.keyboard('{ArrowDown}');
+  await user.keyboard('{ArrowDown}');
   expect(second).toHaveFocus();
 
-  userEvent.keyboard('{ArrowUp}');
+  await user.keyboard('{ArrowUp}');
   expect(first).toHaveFocus();
 
-  userEvent.keyboard('{ArrowUp}');
+  await user.keyboard('{ArrowUp}');
   expect(third).toHaveFocus();
 
-  userEvent.keyboard('{home}');
+  await user.keyboard('{home}');
   expect(first).toHaveFocus();
 
-  userEvent.keyboard('{end}');
+  await user.keyboard('{end}');
   expect(third).toHaveFocus();
 
-  userEvent.keyboard('d');
+  await user.keyboard('d');
   expect(first).toHaveFocus();
 
-  userEvent.keyboard('i');
+  await user.keyboard('i');
   expect(first).toHaveFocus();
 });
 
-it('should focus menu item on mouse hover', () => {
+it('should focus menu item on mouse hover', async () => {
+  const user = userEvent.setup();
   const onMouseEnterMock = jest.fn();
   render(
     <Menu defaultIsOpen={true} label={label}>
@@ -263,20 +240,19 @@ it('should focus menu item on mouse hover', () => {
     </Menu>
   );
 
-  const menuItems = screen.getAllByRole('menuitem');
+  const [first, second] = screen.getAllByRole('menuitem');
 
-  userEvent.hover(menuItems[0]);
-  expect(menuItems[0]).toHaveFocus();
+  await user.hover(first);
+  expect(first).toHaveFocus();
 
-  userEvent.hover(menuItems[2]);
-  expect(menuItems[2]).toHaveFocus();
+  await user.hover(second);
+  expect(second).toHaveFocus();
 
   expect(onMouseEnterMock).toHaveBeenCalledTimes(2);
 });
 
-it('should close the menu when click on any menu item', () => {
-  jest.useFakeTimers();
-
+it('should close the menu when click on any menu item', async () => {
+  const user = userEvent.setup();
   const onClickMock = jest.fn();
   render(
     <Menu defaultIsOpen={true} label={label}>
@@ -287,12 +263,9 @@ it('should close the menu when click on any menu item', () => {
     </Menu>
   );
 
-  const menuItems = screen.getAllByRole('menuitem');
+  const [first] = screen.getAllByRole('menuitem');
 
-  userEvent.click(menuItems[0]);
-  act(() => {
-    jest.runOnlyPendingTimers();
-  });
-  expect(screen.queryByRole('menu')).toBeNull();
+  await user.click(first);
+  await waitFor(() => expect(screen.queryByRole('menu')).toBeNull());
   expect(onClickMock).toHaveBeenCalledTimes(1);
 });

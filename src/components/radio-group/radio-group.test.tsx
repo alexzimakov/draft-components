@@ -1,6 +1,6 @@
+import userEvent from '@testing-library/user-event';
 import { RadioGroup } from './radio-group';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 it('renders without errors', () => {
   render(
@@ -42,7 +42,8 @@ it(
   }
 );
 
-it('invokes `onChangeValue` callback when select some option', () => {
+it('invokes `onChangeValue` callback when select some option', async () => {
+  const user = userEvent.setup();
   const onChangeValue = jest.fn();
   render(
     <RadioGroup value="visa" onChangeValue={onChangeValue}>
@@ -58,8 +59,8 @@ it('invokes `onChangeValue` callback when select some option', () => {
     </RadioGroup>
   );
 
-  userEvent.click(screen.getByText('MasterCard'));
-  userEvent.click(screen.getByText('Amex'));
+  await user.click(screen.getByText('MasterCard'));
+  await user.click(screen.getByText('Amex'));
   expect(onChangeValue).toHaveBeenCalledTimes(2);
   expect(onChangeValue).toHaveBeenNthCalledWith(1, 'mastercard');
   expect(onChangeValue).toHaveBeenNthCalledWith(2, 'amex');

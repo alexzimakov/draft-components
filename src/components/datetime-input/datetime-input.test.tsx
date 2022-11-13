@@ -1,12 +1,8 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import { useState } from 'react';
-import { DateComponent, DateComponents } from './date-components';
 import { DatetimeInput } from './datetime-input';
-
-beforeEach(() => {
-  jest.useFakeTimers();
-});
+import { DateComponent, DateComponents } from './date-components';
 
 it('renders without errors', () => {
   render(
@@ -52,17 +48,16 @@ it('renders with required inputs when type is `time`', () => {
   screen.getByLabelText('minute');
 });
 
-it('should invoke `onChangeValue` callback when edit value', () => {
+it('should invoke `onChangeValue` callback when edit value', async () => {
+  const user = userEvent.setup();
   const onChangeValue = jest.fn();
   render(
     <DatetimeInput value={new DateComponents()} onChangeValue={onChangeValue} />
   );
 
   const monthInput = screen.getByLabelText('month');
-  userEvent.type(monthInput, 'may');
-  jest.runAllTimers();
-  userEvent.type(monthInput, '5');
-  jest.runAllTimers();
+  await user.type(monthInput, 'may');
+  await user.type(monthInput, '5');
 
   expect(onChangeValue).toHaveBeenCalledTimes(1);
   expect(onChangeValue).toHaveBeenNthCalledWith(
@@ -71,7 +66,8 @@ it('should invoke `onChangeValue` callback when edit value', () => {
   );
 });
 
-it('should clear value of date component when backspace pressed', () => {
+it('should clear value of date component when backspace pressed', async () => {
+  const user = userEvent.setup();
   const onChangeValue = jest.fn();
   render(
     <DatetimeInput
@@ -81,7 +77,7 @@ it('should clear value of date component when backspace pressed', () => {
   );
 
   const monthInput = screen.getByLabelText('month');
-  userEvent.type(monthInput, '{backspace}');
+  await user.type(monthInput, '{backspace}');
 
   expect(onChangeValue).toHaveBeenCalledTimes(1);
   expect(onChangeValue).toHaveBeenNthCalledWith(
@@ -90,105 +86,103 @@ it('should clear value of date component when backspace pressed', () => {
   );
 });
 
-it('can move focus between input using keyboard left and right arrows', () => {
-  render(
-    <DatetimeInput
-      type="time"
-      value={new DateComponents()}
-      onChangeValue={jest.fn()}
-    />
-  );
+it(
+  'can move focus between input using keyboard left and right arrows',
+  async () => {
+    const user = userEvent.setup();
+    render(
+      <DatetimeInput
+        type="time"
+        value={new DateComponents()}
+        onChangeValue={jest.fn()}
+      />
+    );
 
-  const hourInput = screen.getByLabelText('hour');
-  const minuteInput = screen.getByLabelText('minute');
+    const hourInput = screen.getByLabelText('hour');
+    const minuteInput = screen.getByLabelText('minute');
 
-  userEvent.tab();
-  expect(hourInput).toHaveFocus();
-  jest.runAllTimers();
+    await user.tab();
+    expect(hourInput).toHaveFocus();
 
-  userEvent.type(hourInput, '{arrowrleft}', { skipClick: true });
-  expect(hourInput).toHaveFocus();
-  jest.runAllTimers();
+    await user.type(hourInput, '{arrowrleft}', { skipClick: true });
+    expect(hourInput).toHaveFocus();
 
-  userEvent.type(hourInput, '{arrowright}', { skipClick: true });
-  expect(minuteInput).toHaveFocus();
-  jest.runAllTimers();
+    await user.type(hourInput, '{arrowright}', { skipClick: true });
+    expect(minuteInput).toHaveFocus();
 
-  userEvent.type(minuteInput, '{arrowright}', { skipClick: true });
-  expect(minuteInput).toHaveFocus();
-  jest.runAllTimers();
+    await user.type(minuteInput, '{arrowright}', { skipClick: true });
+    expect(minuteInput).toHaveFocus();
 
-  userEvent.type(minuteInput, '{arrowleft}', { skipClick: true });
-  expect(hourInput).toHaveFocus();
-  jest.runAllTimers();
-});
+    await user.type(minuteInput, '{arrowleft}', { skipClick: true });
+    expect(hourInput).toHaveFocus();
+  }
+);
 
 it(
   'should auto focus the next date component input ' +
   'when in the current has been entered max value',
-  () => {
+  async () => {
+    const user = userEvent.setup();
     render(
       <DatetimeInput value={new DateComponents()} onChangeValue={jest.fn()} />
     );
 
-    userEvent.type(screen.getByLabelText('month'), '7');
-    jest.runAllTimers();
-
+    await user.type(screen.getByLabelText('month'), '7');
     expect(screen.getByLabelText('year')).toHaveFocus();
-
-    jest.useRealTimers();
   }
 );
 
-it('should correct value in date component input when it loses focus', () => {
-  const onChangeValue = jest.fn();
-  const TestExample = () => {
-    const [value, setValue] = useState(new DateComponents());
-    return (
-      <DatetimeInput
-        type="date"
-        value={value}
-        onChangeValue={(value) => {
-          onChangeValue(value);
-          setValue(value);
-        }}
-      />
+it(
+  'should correct value in date component input when it loses focus',
+  async () => {
+    const user = userEvent.setup();
+    const onChangeValue = jest.fn();
+    const TestExample = () => {
+      const [value, setValue] = useState(new DateComponents());
+      return (
+        <DatetimeInput
+          type="date"
+          value={value}
+          onChangeValue={(value) => {
+            onChangeValue(value);
+            setValue(value);
+          }}
+        />
+      );
+    };
+    render(<TestExample />);
+
+    await user.type(screen.getByLabelText('day'), '0');
+    await user.tab();
+
+    await user.type(screen.getByLabelText('month'), '13', { skipClick: true });
+    await user.tab();
+
+    expect(onChangeValue).toHaveBeenCalledTimes(5);
+    expect(onChangeValue).toHaveBeenNthCalledWith(
+      1,
+      new DateComponents({ day: 0 })
     );
-  };
-  render(<TestExample />);
+    expect(onChangeValue).toHaveBeenNthCalledWith(
+      2,
+      new DateComponents({ day: 1 })
+    );
+    expect(onChangeValue).toHaveBeenNthCalledWith(
+      3,
+      new DateComponents({ day: 1, month: 1 })
+    );
+    expect(onChangeValue).toHaveBeenNthCalledWith(
+      4,
+      new DateComponents({ day: 1, month: 13 })
+    );
+    expect(onChangeValue).toHaveBeenNthCalledWith(
+      5,
+      new DateComponents({ day: 1, month: 12 })
+    );
+  }
+);
 
-  userEvent.type(screen.getByLabelText('day'), '0');
-  userEvent.tab();
-  jest.runAllTimers();
-
-  userEvent.type(screen.getByLabelText('month'), '13', { skipClick: true });
-  userEvent.tab();
-  jest.runAllTimers();
-
-  expect(onChangeValue).toHaveBeenCalledTimes(5);
-  expect(onChangeValue).toHaveBeenNthCalledWith(
-    1,
-    new DateComponents({ day: 0 })
-  );
-  expect(onChangeValue).toHaveBeenNthCalledWith(
-    2,
-    new DateComponents({ day: 1 })
-  );
-  expect(onChangeValue).toHaveBeenNthCalledWith(
-    3,
-    new DateComponents({ day: 1, month: 1 })
-  );
-  expect(onChangeValue).toHaveBeenNthCalledWith(
-    4,
-    new DateComponents({ day: 1, month: 13 })
-  );
-  expect(onChangeValue).toHaveBeenNthCalledWith(
-    5,
-    new DateComponents({ day: 1, month: 12 })
-  );
-});
-
-it('can edit date component using keyboard up and down arrows', () => {
+it('can edit date component using keyboard up and down arrows', async () => {
   const mockCurrentDate = new Date(Date.UTC(2021, 4, 20, 5, 30));
   const resetDateMock = mockDate(mockCurrentDate);
 
@@ -217,7 +211,8 @@ it('can edit date component using keyboard up and down arrows', () => {
 
   render(<TestExample />);
 
-  const testOfDateComponentValueChange = (
+  const user = userEvent.setup();
+  const testOfDateComponentValueChange = async (
     dateComponent: DateComponent,
     numberOfKeyDowns: number,
     arrow: '{arrowup}' | '{arrowdown}'
@@ -238,22 +233,21 @@ it('can edit date component using keyboard up and down arrows', () => {
       dateComponent
     );
 
-    userEvent.tab();
+    await user.tab();
     expect(inputEl).toHaveFocus();
 
     for (let i = 0; i < numberOfKeyDowns; i += 1) {
-      userEvent.type(inputEl, arrow, { skipClick: true });
-      jest.runAllTimers();
+      await user.type(inputEl, arrow, { skipClick: true });
     }
     expect(onChangeValue).toHaveBeenCalledTimes(numberOfKeyDowns);
     expect(onChangeValue).toHaveBeenLastCalledWith(newDateComponents);
   };
 
-  testOfDateComponentValueChange('day', 2, '{arrowup}');
-  testOfDateComponentValueChange('month', 3, '{arrowdown}');
-  testOfDateComponentValueChange('year', 1, '{arrowup}');
-  testOfDateComponentValueChange('hour', 2, '{arrowup}');
-  testOfDateComponentValueChange('minute', 2, '{arrowdown}');
+  await testOfDateComponentValueChange('day', 2, '{arrowup}');
+  await testOfDateComponentValueChange('month', 3, '{arrowdown}');
+  await testOfDateComponentValueChange('year', 1, '{arrowup}');
+  await testOfDateComponentValueChange('hour', 2, '{arrowup}');
+  await testOfDateComponentValueChange('minute', 2, '{arrowdown}');
 
   resetDateMock();
 });
@@ -261,7 +255,8 @@ it('can edit date component using keyboard up and down arrows', () => {
 it(
   'should not out range of date component values ' +
   'when edit using keyboard arrows',
-  () => {
+  async () => {
+    const user = userEvent.setup();
     const onChangeValue = jest.fn();
     render(
       <DatetimeInput
@@ -270,10 +265,8 @@ it(
       />
     );
 
-    userEvent.type(screen.getByLabelText('day'), '{arrowdown}');
-    jest.runAllTimers();
-    userEvent.type(screen.getByLabelText('month'), '{arrowup}');
-    jest.runAllTimers();
+    await user.type(screen.getByLabelText('day'), '{arrowdown}');
+    await user.type(screen.getByLabelText('month'), '{arrowup}');
 
     expect(onChangeValue).toHaveBeenCalledTimes(2);
     expect(onChangeValue).toHaveBeenNthCalledWith(

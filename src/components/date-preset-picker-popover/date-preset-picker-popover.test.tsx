@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import { act, render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { DatePresetPickerPopover } from './date-preset-picker-popover';
 
 function mockMatchMedia(matches = false): void {
@@ -89,8 +89,8 @@ it('renders `Select` element instead of `RadioGroup` on phones', () => {
   screen.getByRole('combobox');
 });
 
-it('can toggle popover visibility', () => {
-  jest.useFakeTimers();
+it('can toggle popover visibility', async () => {
+  const user = userEvent.setup();
 
   render(
     <DatePresetPickerPopover
@@ -104,20 +104,15 @@ it('can toggle popover visibility', () => {
 
   const button = screen.getByText(anchorButtonLabel);
 
-  userEvent.click(button);
-  act(() => {
-    jest.runOnlyPendingTimers();
-  });
+  await user.click(button);
   screen.getByRole('grid');
 
-  userEvent.click(button);
-  act(() => {
-    jest.runOnlyPendingTimers();
-  });
-  expect(screen.queryByRole('grid')).toBeNull();
+  await user.click(button);
+  await waitFor(() => expect(screen.queryByRole('grid')).toBeNull());
 });
 
-it('can select date range using calendar', () => {
+it('can select date range using calendar', async () => {
+  const user = userEvent.setup();
   const onChangeValueMock = jest.fn();
   render(
     <DatePresetPickerPopover
@@ -131,10 +126,10 @@ it('can select date range using calendar', () => {
     </DatePresetPickerPopover>
   );
 
-  userEvent.click(screen.getByText(anchorButtonLabel));
-  userEvent.click(screen.getByText('8'));
-  userEvent.click(screen.getByText('25'));
-  userEvent.click(screen.getByText(confirmButtonLabel));
+  await user.click(screen.getByText(anchorButtonLabel));
+  await user.click(screen.getByText('8'));
+  await user.click(screen.getByText('25'));
+  await user.click(screen.getByText(confirmButtonLabel));
 
   expect(onChangeValueMock).toHaveBeenCalledTimes(1);
   expect(onChangeValueMock).toHaveBeenCalledWith({
@@ -143,7 +138,8 @@ it('can select date range using calendar', () => {
   });
 });
 
-it('can select date range using date preset select', () => {
+it('can select date range using date preset select', async () => {
+  const user = userEvent.setup();
   const onChangeValueMock = jest.fn();
   render(
     <DatePresetPickerPopover
@@ -157,9 +153,9 @@ it('can select date range using date preset select', () => {
     </DatePresetPickerPopover>
   );
 
-  userEvent.click(screen.getByText(anchorButtonLabel));
-  userEvent.click(screen.getByText(options[1].label));
-  userEvent.click(screen.getByText(confirmButtonLabel));
+  await user.click(screen.getByText(anchorButtonLabel));
+  await user.click(screen.getByText(options[1].label));
+  await user.click(screen.getByText(confirmButtonLabel));
 
   expect(onChangeValueMock).toHaveBeenCalledTimes(1);
   expect(onChangeValueMock).toHaveBeenCalledWith({
@@ -168,7 +164,8 @@ it('can select date range using date preset select', () => {
   });
 });
 
-it('can select date range with date preset using calendar', () => {
+it('can select date range with date preset using calendar', async () => {
+  const user = userEvent.setup();
   const onChangeValueMock = jest.fn();
   render(
     <DatePresetPickerPopover
@@ -182,9 +179,9 @@ it('can select date range with date preset using calendar', () => {
     </DatePresetPickerPopover>
   );
 
-  userEvent.click(screen.getByText(anchorButtonLabel));
-  userEvent.click(screen.getByText('8'));
-  userEvent.click(screen.getByText(confirmButtonLabel));
+  await user.click(screen.getByText(anchorButtonLabel));
+  await user.click(screen.getByText('8'));
+  await user.click(screen.getByText(confirmButtonLabel));
 
   expect(onChangeValueMock).toHaveBeenCalledTimes(1);
   expect(onChangeValueMock).toHaveBeenCalledWith({

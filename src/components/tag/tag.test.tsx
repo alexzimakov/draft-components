@@ -18,7 +18,8 @@ it('renders with leading icon', () => {
 
 it(
   'should invoke `onRemove` callback when clicking on the remove button',
-  () => {
+  async () => {
+    const user = userEvent.setup();
     const onRemove = jest.fn();
     const ariaLabel = 'Remove tag';
     render(
@@ -31,7 +32,7 @@ it(
       </Tag>
     );
 
-    userEvent.click(screen.getByLabelText(ariaLabel));
+    await user.click(screen.getByLabelText(ariaLabel));
 
     expect(onRemove).toHaveBeenCalledTimes(1);
   }
@@ -39,7 +40,8 @@ it(
 
 it(
   'should not invoke `onRemove` callback when remove button is disabled',
-  () => {
+  async () => {
+    const user = userEvent.setup();
     const onRemove = jest.fn();
     const ariaLabel = 'Remove tag';
     render(
@@ -53,7 +55,7 @@ it(
       </Tag>
     );
 
-    userEvent.click(screen.getByLabelText(ariaLabel));
+    await user.click(screen.getByLabelText(ariaLabel));
 
     expect(onRemove).toHaveBeenCalledTimes(0);
   }

@@ -12,7 +12,8 @@ const expectedStyle = {
   filter: 'blur(4px)',
 };
 
-it('should reveal secret', () => {
+it('should reveal secret', async () => {
+  const user = userEvent.setup();
   const onChange = jest.fn();
   const secret = 'bcTd5koyfVgPJAoTp87Y';
   render(
@@ -27,12 +28,13 @@ it('should reveal secret', () => {
 
   expect(screen.getByText(secret)).toHaveStyle(expectedStyle);
 
-  userEvent.click(screen.getByText(buttonLabels.show));
+  await user.click(screen.getByText(buttonLabels.show));
   expect(onChange).toHaveBeenCalledTimes(1);
   expect(onChange).toHaveBeenLastCalledWith(true);
 });
 
-it('should hide secret', () => {
+it('should hide secret', async () => {
+  const user = userEvent.setup();
   const onChange = jest.fn();
   render(
     <Secret
@@ -47,7 +49,7 @@ it('should hide secret', () => {
 
   expect(screen.getByText(secret)).not.toHaveStyle(expectedStyle);
 
-  userEvent.click(screen.getByText(buttonLabels.hide));
+  await user.click(screen.getByText(buttonLabels.hide));
   expect(onChange).toHaveBeenCalledTimes(1);
   expect(onChange).toHaveBeenLastCalledWith(false);
 });

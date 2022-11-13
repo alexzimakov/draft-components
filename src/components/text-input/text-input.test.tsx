@@ -50,21 +50,25 @@ it('should invoke `onFocus` and `onBlur` event handlers', () => {
   expect(onBlur).toHaveBeenCalledTimes(1);
 });
 
-it('invokes `onChange` event handler', () => {
+it('invokes `onChange` event handler', async () => {
+  const user = userEvent.setup();
   const onChange = jest.fn();
   render(<TextInput onChange={onChange} />);
 
-  userEvent.paste(screen.getByRole('textbox'), 'lorem');
+  await user.click(screen.getByRole('textbox'));
+  await user.paste('lorem');
 
   expect(onChange).toHaveBeenCalledTimes(1);
 });
 
-it('invokes `onChangeValue` with changed value', () => {
+it('invokes `onChangeValue` with changed value', async () => {
+  const user = userEvent.setup();
   const onChangeValue = jest.fn();
   const expectedValue = 'lorem';
   render(<TextInput onChangeValue={onChangeValue} />);
 
-  userEvent.paste(screen.getByRole('textbox'), expectedValue);
+  await user.click(screen.getByRole('textbox'));
+  await user.paste(expectedValue);
 
   expect(onChangeValue).toHaveBeenCalledTimes(1);
   expect(onChangeValue).toHaveBeenNthCalledWith(1, expectedValue);

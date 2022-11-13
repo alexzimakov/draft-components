@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import { act, render, screen, within } from '@testing-library/react';
+import { act, render, screen, waitFor, within } from '@testing-library/react';
 import { Toaster } from './toaster';
 import { ToastId, ToastRenderFn } from './use-toasts';
 
@@ -35,7 +35,8 @@ it('should show/dismiss toasts components', () => {
 
 it(
   'should dismiss toast using `dismiss` callback from render function props',
-  () => {
+  async () => {
+    const user = userEvent.setup();
     const renderToast: ToastRenderFn = (props) => (
       <div data-testid="test-toast">
         Toast message
@@ -50,9 +51,8 @@ it(
 
     const toast = screen.getByTestId('test-toast');
 
-    userEvent.click(within(toast).getByRole('button'));
-
-    expect(screen.queryByTestId('test-toast')).toBeNull();
+    await user.click(within(toast).getByRole('button'));
+    await waitFor(() => expect(screen.queryByTestId('test-toast')).toBeNull());
   }
 );
 
