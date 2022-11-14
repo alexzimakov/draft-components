@@ -13,12 +13,14 @@
   "plugins": [
     "@typescript-eslint",
     "react",
-    "jsx-a11y"
+    "jsx-a11y",
+    "storybook"
   ],
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    "plugin:react/jsx-runtime"
+    "plugin:react/jsx-runtime",
+    "plugin:storybook/recommended"
   ],
   "settings": {
     "react": {
@@ -26,6 +28,8 @@
     }
   },
   "rules": {
+    "react/no-unescaped-entities": ["error", { "forbid": [">", "}"] }],
+
     // https://github.com/facebook/create-react-app/blob/main/packages/eslint-config-react-app/index.js#L260
     "jsx-a11y/alt-text": "warn",
     "jsx-a11y/anchor-has-content": "warn",
@@ -50,6 +54,7 @@
   },
   "overrides": [
     {
+      // https://github.com/testing-library/eslint-plugin-testing-library#run-the-plugin-only-against-test-files
       "files": [
         "**/__tests__/**/*.[jt]s?(x)",
         "**/?(*.)+(spec|test).[jt]s?(x)"

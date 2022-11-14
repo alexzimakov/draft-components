@@ -1,6 +1,6 @@
 ```jsx
 import { Menu, MenuButton, MenuDivider } from '../menu';
-import { Button } from '../button';
+import { Button } from '../Button';
 
 const handleClick = (event) => {
   alert(event.currentTarget.innerText);
@@ -50,7 +50,7 @@ Custom label
 
 ```jsx
 import { Menu, MenuButton, MenuDivider } from '../menu';
-import { Button } from '../button';
+import { Button } from '../Button';
 import { SvgIcon } from '../svg-icon';
 import { toggles } from '../../bootstrap-icons/toggles';
 

@@ -8,6 +8,8 @@ coverage
 !.npmrc
 !.editorconfig
 !.eslintrc.json
+!.eslintignore
+!.storybook
 
 # Artifacts
 /css

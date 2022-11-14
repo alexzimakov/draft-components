@@ -1,5 +1,5 @@
 import { render, screen, within } from '@testing-library/react';
-import { Button } from './button';
+import { Button } from './Button';
 import { SvgIcon } from '../svg-icon';
 import { heart } from '../../bootstrap-icons/heart';
 

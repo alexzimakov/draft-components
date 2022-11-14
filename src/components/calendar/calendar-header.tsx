@@ -1,5 +1,5 @@
 import { classNames } from '../../lib/react-helpers';
-import { Button, ButtonProps } from '../button';
+import { Button, ButtonProps } from '../Button';
 import { PlainDate } from '../../lib/plain-date';
 
 export interface CalendarHeaderProps {

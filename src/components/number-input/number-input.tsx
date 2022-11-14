@@ -1,7 +1,7 @@
 import { forwardRef, KeyboardEvent, FocusEvent, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { KeyCode } from '../../lib/keyboard-helpers';
-import { Button } from '../button';
+import { Button } from '../Button';
 import { TextInput, TextInputProps } from '../text-input';
 import { isFunction } from '../../lib/guards';
 

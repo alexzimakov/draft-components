@@ -5,16 +5,6 @@
     "node": true
   },
   "extends": ["eslint:recommended"],
-  "ignorePatterns": [
-    "/bootstrap-icons",
-    "/components",
-    "/coverage",
-    "/css",
-    "/docs",
-    "/hooks",
-    "/lib",
-    "/scss"
-  ],
   "rules": {
     "array-callback-return": "error",
     "class-methods-use-this": "error",

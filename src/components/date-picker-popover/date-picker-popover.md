@@ -1,11 +1,12 @@
 ```jsx
 import { useState } from 'react';
 import { DatePickerPopover } from './date-picker-popover';
-import { Button } from '../button';
+import { Button } from '../Button';
 import { SvgIcon } from '../svg-icon';
 import { calendar2 } from '../../bootstrap-icons/calendar2';
 
-const [value, setValue] = useState(new Date().toISOString().split('T')[0]);
+const [value, setValue] = useState(new Date().toISOString()
+  .split('T')[0]);
 const intl = new Intl.DateTimeFormat('en', {
   year: 'numeric',
   month: 'long',

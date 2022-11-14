@@ -12,7 +12,7 @@ import { useEscKeyDown } from '../../hooks/use-esc-key-down';
 import { useFocusTrap } from '../../hooks/use-focus-trap';
 import { Portal } from '../portal';
 import { Box } from '../box';
-import { Button } from '../button';
+import { Button } from '../Button';
 import { Headline, Subheadline } from '../formatted-content';
 import { SvgIcon } from '../svg-icon';
 import { x as close } from '../../bootstrap-icons/x';

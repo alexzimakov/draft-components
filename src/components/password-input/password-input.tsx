@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { TextInput, TextInputProps } from '../text-input';
-import { Button } from '../button';
+import { Button } from '../Button';
 import { SvgIcon, SvgIconProps } from '../svg-icon';
 import { eye } from '../../bootstrap-icons/eye';
 import { eyeSlash } from '../../bootstrap-icons/eye-slash';

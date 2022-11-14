@@ -1,0 +1,11 @@
+node_modules
+/bootstrap-icons
+/components
+/coverage
+/css
+/docs
+/hooks
+/lib
+/scss
+
+!.storybook

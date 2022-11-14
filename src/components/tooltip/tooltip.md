@@ -1,6 +1,6 @@
 ```jsx
 import { Tooltip } from '../tooltip';
-import { Button } from '../button';
+import { Button } from '../Button';
 import { SvgIcon } from '../svg-icon';
 import { bookmark } from '../../bootstrap-icons/bookmark';
 
@@ -32,10 +32,14 @@ Controlled
 
 ```jsx
 import { Tooltip } from '../tooltip';
-import { Button } from '../button';
+import { Button } from '../Button';
 
 <Tooltip label="Controlled Tooltip content">
-  {({ setRef, showTooltip, hideTooltip }) => (
+  {({
+    setRef,
+    showTooltip,
+    hideTooltip
+  }) => (
     <Button ref={setRef} onMouseEnter={showTooltip} onMouseLeave={hideTooltip}>
       Show Tooltip
     </Button>

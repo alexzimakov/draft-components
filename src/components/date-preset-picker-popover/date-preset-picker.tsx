@@ -2,7 +2,7 @@ import { ReactNode, RefObject, useEffect, useMemo, useState } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { ISODateRange } from '../../lib/plain-date-range';
 import { DateRangePicker } from '../date-range-picker';
-import { Button } from '../button';
+import { Button } from '../Button';
 import {
   DatePreset,
   DatePresetOption,

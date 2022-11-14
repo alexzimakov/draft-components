@@ -1,7 +1,7 @@
 ```jsx
 import { useRef } from 'react';
 import { Dialog } from '../dialog';
-import { Button } from '../button';
+import { Button } from '../Button';
 import { Menu, MenuButton } from '../menu';
 import { FormField } from '../form-field';
 import { TextInput } from '../text-input';
@@ -36,7 +36,10 @@ const closeVerifyDialog = () => setIsVerifyDialogOpen(false);
     footerButtons={
       <>
         <Menu
-          label={({ isOpen, ...props }) => (
+          label={({
+            isOpen,
+            ...props
+          }) => (
             <Button
               {...props}
               ref={verifyPhoneButton}

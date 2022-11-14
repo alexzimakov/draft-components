@@ -3,7 +3,7 @@ export * from './alert';
 export * from './avatar';
 export * from './box';
 export * from './breadcrumb';
-export * from './button';
+export * from './Button';
 export * from './buttons-group';
 export * from './checkbox';
 export * from './date-picker';

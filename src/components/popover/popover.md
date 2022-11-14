@@ -1,6 +1,6 @@
 ```jsx
 import { Popover } from '../popover';
-import { Button } from '../button';
+import { Button } from '../Button';
 
 function renderPopover(placement, alignment) {
   return (
@@ -63,7 +63,7 @@ Nested popovers
 
 ```jsx
 import { Popover } from '../popover';
-import { Button } from '../button';
+import { Button } from '../Button';
 import { Checkbox } from '../checkbox';
 import { TextInput } from '../text-input';
 import { Textarea } from '../textarea';
@@ -129,7 +129,10 @@ const Styles = {
         fullWidth={true}
       />
       <Textarea
-        style={{ ...Styles.field, minHeight: 92 }}
+        style={{
+          ...Styles.field,
+          minHeight: 92
+        }}
         placeholder="Write a description"
         fullWidth={true}
       />
@@ -151,7 +154,7 @@ Controlled
 ```jsx
 import { useState } from 'react';
 import { Popover } from '../popover';
-import { Button } from '../button';
+import { Button } from '../Button';
 
 const [isOpen, setIsOpen] = useState(false);
 
@@ -169,9 +172,12 @@ Popover with tooltip
 ```jsx
 import { Popover } from '../popover';
 import { Tooltip } from '../tooltip';
-import { Button } from '../button';
+import { Button } from '../Button';
 
-const renderAnchor = ({ setRef, togglePopover }) => (
+const renderAnchor = ({
+  setRef,
+  togglePopover
+}) => (
   <Tooltip label="Click on me!">
     <Button ref={setRef} onClick={togglePopover}>
       Hover on me

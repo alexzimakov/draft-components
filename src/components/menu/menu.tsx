@@ -17,7 +17,7 @@ import { isFunction } from '../../lib/guards';
 import { BoxElevation } from '../box';
 import { Alignment, Placement } from '../positioner/types';
 import { Popover } from '../popover';
-import { Button } from '../button';
+import { Button } from '../Button';
 import { MenuButton } from './menu-button';
 import { classNames } from '../../lib/react-helpers';
 
