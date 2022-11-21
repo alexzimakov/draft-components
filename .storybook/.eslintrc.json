@@ -1,8 +1,0 @@
-{
-  "overrides": [
-    {
-      "files": ["preview.js"],
-      "parserOptions": { "sourceType": "module" }
-    }
-  ]
-}

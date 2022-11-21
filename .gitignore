@@ -7,7 +7,7 @@ coverage
 !.nvmrc
 !.npmrc
 !.editorconfig
-!.eslintrc.json
+!.eslintrc.js
 !.eslintignore
 !.storybook
 
