@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, KeyboardEvent, ReactNode } from 'react';
 import { isFunction } from '../../lib/guards';
 import { classNames } from '../../lib/react-helpers';
 import { KeyCode, similarToClick } from '../../lib/keyboard-helpers';
-import { Button } from '../Button';
+import { Button } from '../button';
 
 type SegmentId = string | number;
 

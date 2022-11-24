@@ -10,8 +10,10 @@ it('renders without errors', () => {
 
 it('renders with custom size', () => {
   const testId = 'spinner';
-  const size = 32;
+  const size = '1em';
   render(<Spinner data-testid={testId} size={size} />);
 
-  expect(screen.getByTestId(testId)).toHaveStyle({ fontSize: size });
+  const spinner = screen.getByTestId(testId);
+  expect(spinner).toHaveAttribute('width', size);
+  expect(spinner).toHaveAttribute('height', size);
 });

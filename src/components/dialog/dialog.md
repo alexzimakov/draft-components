@@ -1,14 +1,14 @@
 ```jsx
-import { useRef } from 'react';
-import { Dialog } from '../dialog';
-import { Button } from '../Button';
-import { Menu, MenuButton } from '../menu';
-import { FormField } from '../form-field';
-import { TextInput } from '../text-input';
-import { SvgIcon } from '../svg-icon';
-import { envelope } from '../../bootstrap-icons/envelope';
-import { key } from '../../bootstrap-icons/key';
-import { telephone } from '../../bootstrap-icons/telephone';
+import {useRef} from 'react';
+import {Dialog} from '../dialog';
+import {Button} from '../button';
+import {Menu, MenuButton} from '../menu';
+import {FormField} from '../form-field';
+import {TextInput} from '../text-input';
+import {SvgIcon} from '../svg-icon';
+import {envelope} from '../../bootstrap-icons/envelope';
+import {key} from '../../bootstrap-icons/key';
+import {telephone} from '../../bootstrap-icons/telephone';
 
 const addAddressButton = useRef();
 const cancelButton = useRef();
@@ -43,7 +43,7 @@ const closeVerifyDialog = () => setIsVerifyDialogOpen(false);
             <Button
               {...props}
               ref={verifyPhoneButton}
-              style={{ marginRight: 'auto' }}
+              style={{marginRight: 'auto'}}
               appearance={isOpen ? 'secondary' : 'minimal'}
             >
               Verify phone number
@@ -67,7 +67,7 @@ const closeVerifyDialog = () => setIsVerifyDialogOpen(false);
   >
     <div>
       <FormField label="Phone:">
-        {({ id }) => (
+        {({id}) => (
           <TextInput
             id={id}
             fullWidth={true}
@@ -75,8 +75,8 @@ const closeVerifyDialog = () => setIsVerifyDialogOpen(false);
           />
         )}
       </FormField>
-      <FormField label="Email:" style={{ marginTop: 8 }}>
-        {({ id }) => (
+      <FormField label="Email:" style={{marginTop: 8}}>
+        {({id}) => (
           <TextInput
             id={id}
             fullWidth={true}
@@ -87,9 +87,9 @@ const closeVerifyDialog = () => setIsVerifyDialogOpen(false);
       <FormField
         label="Password:"
         hint="Minimum 10 characters, at least one number, capitalized letter and special character."
-        style={{ marginTop: 8 }}
+        style={{marginTop: 8}}
       >
-        {({ id }) => (
+        {({id}) => (
           <TextInput
             id={id}
             type="password"
@@ -126,7 +126,7 @@ const closeVerifyDialog = () => setIsVerifyDialogOpen(false);
     onClose={closeVerifyDialog}
   >
     <FormField label="Verification code:">
-      {({ id }) => <TextInput ref={codeInput} id={id} fullWidth={true} />}
+      {({id}) => <TextInput ref={codeInput} id={id} fullWidth={true} />}
     </FormField>
   </Dialog>
 </div>;

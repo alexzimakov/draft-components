@@ -1,6 +1,6 @@
 ```jsx
-import { Menu, MenuButton, MenuDivider } from '../menu';
-import { Button } from '../Button';
+import {Menu, MenuButton, MenuDivider} from '../menu';
+import {Button} from '../button';
 
 const handleClick = (event) => {
   alert(event.currentTarget.innerText);
@@ -49,17 +49,17 @@ const handleClick = (event) => {
 Custom label
 
 ```jsx
-import { Menu, MenuButton, MenuDivider } from '../menu';
-import { Button } from '../Button';
-import { SvgIcon } from '../svg-icon';
-import { toggles } from '../../bootstrap-icons/toggles';
+import {Menu, MenuButton, MenuDivider} from '../menu';
+import {Button} from '../button';
+import {SvgIcon} from '../svg-icon';
+import {toggles} from '../../bootstrap-icons/toggles';
 
 const handleClick = (event) => {
   alert(event.currentTarget.innerText);
 };
 
 <Menu
-  label={({ ...props }) => {
+  label={({...props}) => {
     delete props.isOpen;
     return (
       <Button {...props} appearance="secondary" noPadding={true}>

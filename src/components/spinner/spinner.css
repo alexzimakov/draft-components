@@ -1,0 +1,36 @@
+@keyframes dc-spinner-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dc-spinner-dash-animation {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -30;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -120;
+  }
+}
+
+.dc-spinner {
+  animation: dc-spinner-rotate 2s linear infinite;
+}
+
+.dc-spinner circle {
+  transition: color 0.2s;
+  animation: dc-spinner-dash-animation 1.5s ease-in-out infinite;
+  stroke-linecap: round;
+}

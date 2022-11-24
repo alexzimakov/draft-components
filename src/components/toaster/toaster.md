@@ -1,7 +1,7 @@
 ```jsx
-import { Toaster } from '../toaster';
-import { Toast } from '../toast';
-import { Button } from '../Button';
+import {Toaster} from '../toaster';
+import {Toast} from '../toast';
+import {Button} from '../button';
 
 const showToast = () => {
   Toaster.show((props) => (

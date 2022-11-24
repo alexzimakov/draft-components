@@ -1,54 +1,50 @@
-import { MutableRefObject, RefCallback } from 'react';
-import { isFunction } from './guards';
+import { MutableRefObject, RefCallback, RefObject } from 'react';
 
+export type ClassNamesObject = { [className: string]: unknown };
 export type ClassName =
   | string
   | number
   | boolean
   | undefined
   | null
-  | ClassNameList
-  | ClassNameMap;
-export type ClassNameList = ClassName[];
-export type ClassNameMap = { [className: string]: unknown };
+  | ClassNamesObject;
 
 export function classNames(...classes: ClassName[]): string {
-  let classString = '';
-  for (const cn of classes) {
-    if (cn !== 0 && !cn) {
+  let resultString = '';
+  for (const className of classes) {
+    if (!className) {
       continue;
     }
 
-    if (Array.isArray(cn)) {
-      classString += classNames(...cn) + ' ';
-    } else if (typeof cn === 'object') {
-      for (const key of Object.keys(cn)) {
-        if (cn[key]) {
-          classString += key + ' ';
+    if (typeof className === 'object') {
+      for (const key of Object.keys(className)) {
+        if (className[key]) {
+          resultString += key + ' ';
         }
       }
     } else {
-      classString += cn + ' ';
+      resultString += className + ' ';
     }
   }
 
-  return classString.trimEnd();
+  return resultString.trimEnd();
 }
 
-export type MaybeRef<T> =
+export type Ref<T> =
+  | RefObject<T>
   | MutableRefObject<T>
   | RefCallback<T>
   | null
   | undefined;
 
-export function mergeRefs<T>(...refs: MaybeRef<T>[]): RefCallback<T> {
+export function mergeRefs<T>(...refs: Ref<T>[]): RefCallback<T> {
   return (instance) => {
     for (const ref of refs) {
-      if (ref) {
-        if (isFunction(ref)) {
+      if (ref != null) {
+        if (typeof ref === 'function') {
           ref(instance);
         } else {
-          ref.current = instance as T;
+          Object.assign(ref, { current: instance });
         }
       }
     }

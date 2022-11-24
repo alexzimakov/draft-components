@@ -1,9 +1,9 @@
 ```jsx
-import { useState } from 'react';
-import { DatePickerPopover } from './date-picker-popover';
-import { Button } from '../Button';
-import { SvgIcon } from '../svg-icon';
-import { calendar2 } from '../../bootstrap-icons/calendar2';
+import {useState} from 'react';
+import {DatePickerPopover} from './date-picker-popover';
+import {Button} from '../button';
+import {SvgIcon} from '../svg-icon';
+import {calendar2} from '../../bootstrap-icons/calendar2';
 
 const [value, setValue] = useState(new Date().toISOString()
   .split('T')[0]);

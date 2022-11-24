@@ -1,6 +1,6 @@
 ```jsx
-import { ButtonsGroup } from '../buttons-group';
-import { Button } from '../Button';
+import {ButtonsGroup} from '../buttons-group';
+import {Button} from '../button';
 
 <ButtonsGroup>
   <Button>Day</Button>

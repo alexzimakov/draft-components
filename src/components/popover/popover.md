@@ -1,6 +1,6 @@
 ```jsx
-import { Popover } from '../popover';
-import { Button } from '../Button';
+import {Popover} from '../popover';
+import {Button} from '../button';
 
 function renderPopover(placement, alignment) {
   return (
@@ -13,7 +13,7 @@ function renderPopover(placement, alignment) {
         </Button>
       }
     >
-      <div style={{ margin: 16 }}>Popover Content</div>
+      <div style={{margin: 16}}>Popover Content</div>
     </Popover>
   );
 }
@@ -62,11 +62,11 @@ function renderPopover(placement, alignment) {
 Nested popovers
 
 ```jsx
-import { Popover } from '../popover';
-import { Button } from '../Button';
-import { Checkbox } from '../checkbox';
-import { TextInput } from '../text-input';
-import { Textarea } from '../textarea';
+import {Popover} from '../popover';
+import {Button} from '../button';
+import {Checkbox} from '../checkbox';
+import {TextInput} from '../text-input';
+import {Textarea} from '../textarea';
 
 const Styles = {
   headline: {
@@ -152,9 +152,9 @@ const Styles = {
 Controlled
 
 ```jsx
-import { useState } from 'react';
-import { Popover } from '../popover';
-import { Button } from '../Button';
+import {useState} from 'react';
+import {Popover} from '../popover';
+import {Button} from '../button';
 
 const [isOpen, setIsOpen] = useState(false);
 
@@ -163,16 +163,16 @@ const anchor = (
 );
 
 <Popover anchor={anchor} isOpen={isOpen} onClose={() => setIsOpen(false)}>
-  <div style={{ margin: 16 }}>Controlled Popover Content</div>
+  <div style={{margin: 16}}>Controlled Popover Content</div>
 </Popover>;
 ```
 
 Popover with tooltip
 
 ```jsx
-import { Popover } from '../popover';
-import { Tooltip } from '../tooltip';
-import { Button } from '../Button';
+import {Popover} from '../popover';
+import {Tooltip} from '../tooltip';
+import {Button} from '../button';
 
 const renderAnchor = ({
   setRef,
@@ -186,6 +186,6 @@ const renderAnchor = ({
 );
 
 <Popover anchor={renderAnchor}>
-  <div style={{ margin: 16 }}>Popover Content</div>
+  <div style={{margin: 16}}>Popover Content</div>
 </Popover>;
 ```

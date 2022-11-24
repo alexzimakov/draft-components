@@ -1,8 +1,8 @@
 ```jsx
-import { Tooltip } from '../tooltip';
-import { Button } from '../Button';
-import { SvgIcon } from '../svg-icon';
-import { bookmark } from '../../bootstrap-icons/bookmark';
+import {Tooltip} from '../tooltip';
+import {Button} from '../button';
+import {SvgIcon} from '../svg-icon';
+import {bookmark} from '../../bootstrap-icons/bookmark';
 
 <Tooltip label="Save to favorite">
   <Button
@@ -31,8 +31,8 @@ const content =
 Controlled
 
 ```jsx
-import { Tooltip } from '../tooltip';
-import { Button } from '../Button';
+import {Tooltip} from '../tooltip';
+import {Button} from '../button';
 
 <Tooltip label="Controlled Tooltip content">
   {({

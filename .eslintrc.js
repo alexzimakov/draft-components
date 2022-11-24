@@ -214,7 +214,7 @@ module.exports = {
     },
 
     {
-      files: ['.storybook/preview.jsx'],
+      files: ['.storybook/preview.js?(x)'],
       env: { browser: true },
       parserOptions: {
         sourceType: 'module',

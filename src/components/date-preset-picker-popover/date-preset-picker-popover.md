@@ -1,10 +1,10 @@
 ```jsx
-import { useState } from 'react';
-import { PlainDate } from '../../lib/plain-date';
-import { DatePresetPickerPopover } from '../date-preset-picker-popover';
-import { Button } from '../Button';
-import { SvgIcon } from '../svg-icon';
-import { calendar2 } from '../../bootstrap-icons/calendar2';
+import {useState} from 'react';
+import {PlainDate} from '../../lib/plain-date';
+import {DatePresetPickerPopover} from '../date-preset-picker-popover';
+import {Button} from '../button';
+import {SvgIcon} from '../svg-icon';
+import {calendar2} from '../../bootstrap-icons/calendar2';
 
 const datePresets = [
   {

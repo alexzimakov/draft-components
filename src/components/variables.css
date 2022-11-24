@@ -1,0 +1,93 @@
+:root {
+  /* Typography */
+
+  /* https://tailwindcss.com/docs/font-family */
+  --dc-font-serif: ui-serif, georgia, cambria, "Times New Roman", times, serif;
+  --dc-font-sans:
+    ui-sans-serif, system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", roboto,
+    "Helvetica Neue", arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  --dc-font-mono:
+    ui-monospace, sfmono-regular, menlo, monaco, consolas, "Liberation Mono",
+    "Courier New", monospace;
+  --dc-font-primary: var(--dc-font-sans);
+
+  /* https://tailwindcss.com/docs/font-size */
+  --dc-text-2xs: 0.625rem;
+  --dc-text-xs: 0.75rem;
+  --dc-text-sm: 0.875rem;
+  --dc-text-md: 1rem;
+  --dc-text-lg: 1.125rem;
+  --dc-text-xl: 1.25rem;
+  --dc-text-2xl: 1.5rem;
+  --dc-text-3xl: 1.875rem;
+  --dc-text-4xl: 2.25rem;
+  --dc-text-5xl: 3rem;
+  --dc-text-6xl: 3.75rem;
+  --dc-text-7xl: 4.5rem;
+  --dc-text-8xl: 6rem;
+  --dc-text-9xl: 8rem;
+
+  /* https://tailwindcss.com/docs/line-height */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+
+  /* Colors  */
+
+  /* https://tailwindcss.com/docs/customizing-colors */
+  /* Gray */
+  --dc-gray-50: rgb(249 250 251);
+  --dc-gray-100: rgb(243 244 246);
+  --dc-gray-200: rgb(225 231 239);
+  --dc-gray-300: rgb(209 213 219);
+  --dc-gray-400: rgb(156 163 176);
+  --dc-gray-500: rgb(107 114 128);
+  --dc-gray-600: rgb(75 85 99);
+  --dc-gray-700: rgb(56 66 82);
+  --dc-gray-800: rgb(31 41 55);
+  --dc-gray-900: rgb(17 24 39);
+
+  /* Red */
+  --dc-red-50: rgb(254 242 242);
+  --dc-red-100: rgb(254 226 226);
+  --dc-red-200: rgb(254 202 202);
+  --dc-red-300: rgb(252 165 165);
+  --dc-red-400: rgb(248 113 113);
+  --dc-red-500: rgb(239 68 68);
+  --dc-red-600: rgb(220 38 38);
+  --dc-red-700: rgb(185 28 28);
+  --dc-red-800: rgb(153 27 27);
+  --dc-red-900: rgb(127 29 29);
+
+  /* Green */
+  --dc-green-50: rgb(240 253 244);
+  --dc-green-100: rgb(220 252 231);
+  --dc-green-200: rgb(187 247 208);
+  --dc-green-300: rgb(134 239 172);
+  --dc-green-400: rgb(74 222 128);
+  --dc-green-500: rgb(34 197 94);
+  --dc-green-600: rgb(22 163 74);
+  --dc-green-700: rgb(21 128 61);
+  --dc-green-800: rgb(22 101 52);
+  --dc-green-900: rgb(20 83 45);
+
+  /* Blue */
+  --dc-blue-50: rgb(239 246 255);
+  --dc-blue-100: rgb(219 234 254);
+  --dc-blue-200: rgb(191 219 254);
+  --dc-blue-300: rgb(147 197 253);
+  --dc-blue-400: rgb(96 165 250);
+  --dc-blue-500: rgb(59 130 246);
+  --dc-blue-600: rgb(37 99 235);
+  --dc-blue-700: rgb(29 78 216);
+  --dc-blue-800: rgb(30 64 175);
+  --dc-blue-900: rgb(30 58 138);
+
+  /* Component states */
+  --dc-focus-ring-color: rgb(59 130 246 / 75%);
+  --dc-disabled-opacity: 0.5;
+}

@@ -1,5 +1,5 @@
 import { classNames } from '../../lib/react-helpers';
-import { Button, ButtonProps } from '../Button';
+import { Button, ButtonProps } from '../button';
 
 export type ActionButtonBaseProps = Omit<
   ButtonProps,

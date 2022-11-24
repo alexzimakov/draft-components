@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { ButtonsGroup } from './buttons-group';
-import { Button } from '../Button';
+import { Button } from '../button';
 
 it('renders without errors', () => {
   render(

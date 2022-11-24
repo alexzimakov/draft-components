@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { Button, ButtonProps } from '../Button';
+import { Button, ButtonProps } from '../button';
 
 export interface ScopeButtonProps extends Omit<ButtonProps, 'appearance'> {
   isActive?: boolean;
@@ -13,7 +13,7 @@ export const ScopeButton = forwardRef<HTMLButtonElement, ScopeButtonProps>(
         {...props}
         ref={ref}
         className={classNames(className, 'dc-scope-button')}
-        appearance={isActive ? 'secondary' : 'minimal'}
+        variant={isActive ? 'tinted' : 'plain'}
       >
         {children}
       </Button>
