@@ -1,93 +1,106 @@
-import { ComponentPropsWithRef, forwardRef, ReactNode, useState } from 'react';
-import { isFunction } from '../../lib/guards';
+import { forwardRef, type ComponentPropsWithRef, type ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
-export type TextInputHtmlAttrs = Omit<
-  ComponentPropsWithRef<'input'>,
-  'checked' | 'defaultChecked' | 'size'
->;
-
-export const textInputTypes = new Set([
-  'email',
-  'password',
-  'search',
-  'tel',
-  'text',
-  'url',
-  'datetime',
-  'date',
-  'time',
-  'week',
-  'month',
-]);
-
-export interface TextInputProps extends TextInputHtmlAttrs {
-  size?: 'sm' | 'md' | 'lg';
-  invalid?: boolean;
-  fullWidth?: boolean;
-  leadingAddOn?: ReactNode;
-  trailingAddOn?: ReactNode;
-  onChangeValue?(value: string): void;
-}
+type TextInputHTMLProps = ComponentPropsWithRef<'input'>;
+type TextInputBaseProps = Omit<TextInputHTMLProps,
+  | 'type'
+  | 'width'
+  | 'size'
+  | 'prefix'>;
+export type TextInputType =
+  | 'date'
+  | 'datetime-local'
+  | 'email'
+  | 'number'
+  | 'password'
+  | 'search'
+  | 'tel'
+  | 'text'
+  | 'time'
+  | 'url';
+export type TextInputWidth =
+  | '2-char'
+  | '3-char'
+  | '4-char'
+  | '5-char'
+  | '10-char'
+  | '20-char';
+export type TextInputSize = 'sm' | 'md' | 'lg';
+export type TextInputChangeValueHandler = (value: string) => void;
+export type TextInputProps = TextInputBaseProps & {
+  hasError?: boolean;
+  isBlock?: boolean;
+  type?: TextInputType;
+  width?: TextInputWidth;
+  size?: TextInputSize;
+  prefix?: ReactNode;
+  suffix?: ReactNode;
+  htmlSize?: TextInputHTMLProps['size'];
+  onChangeValue?: TextInputChangeValueHandler;
+};
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
-  function TextInput(
-    {
-      size = 'md',
-      invalid,
-      fullWidth,
-      leadingAddOn,
-      trailingAddOn,
-      style,
-      className,
-      type = 'text',
-      disabled,
-      onFocus,
-      onBlur,
-      onChange,
-      onChangeValue,
-      ...props
-    },
-    ref
-  ) {
-    const [focused, setFocused] = useState(false);
+  function TextInput({
+    disabled = false,
+    hasError = false,
+    isBlock = false,
+    type = 'text',
+    width,
+    size = 'md',
+    style = {},
+    className = '',
+    prefix = null,
+    suffix = null,
+    htmlSize,
+    onChange,
+    onChangeValue,
+    ...props
+  }, ref) {
+    const shouldRenderPrefix = Boolean(prefix);
+    const shouldRenderSuffix = Boolean(suffix);
+
     return (
       <div
         style={style}
-        className={classNames(className, 'dc-input', 'dc-text-input', {
-          'dc-input_disabled': disabled,
-          'dc-input_invalid': invalid,
-          'dc-input_focused': focused,
-          'dc-input_full_width': fullWidth,
-          [`dc-input_size_${size}`]: size,
+        className={classNames(className, 'dc-text-input__container', {
+          'dc-text-input__container_disabled': disabled,
+          'dc-text-input__container_has_error': hasError,
+          'dc-text-input__container_block': isBlock,
+          'dc-text-input__container_sm': size === 'sm',
+          'dc-text-input__container_md': size === 'md',
+          'dc-text-input__container_lg': size === 'lg',
         })}
       >
-        {leadingAddOn && (
-          <span className="dc-text-input__add-on">{leadingAddOn}</span>
+        {shouldRenderPrefix && (
+          <div className="dc-text-input__prefix" aria-hidden={true}>
+            {prefix}
+          </div>
         )}
-
         <input
           {...props}
-          className="dc-text-input__native-input"
+          className={classNames('dc-text-input', {
+            'dc-text-input_has_prefix': shouldRenderPrefix,
+            'dc-text-input_has_suffix': shouldRenderSuffix,
+            'dc-text-input_width_2': width === '2-char',
+            'dc-text-input_width_3': width === '3-char',
+            'dc-text-input_width_4': width === '4-char',
+            'dc-text-input_width_5': width === '5-char',
+            'dc-text-input_width_10': width === '10-char',
+            'dc-text-input_width_20': width === '20-char',
+          })}
           ref={ref}
           type={type}
+          size={htmlSize}
           disabled={disabled}
-          onFocus={(event) => {
-            setFocused(true);
-            isFunction(onFocus) && onFocus(event);
-          }}
-          onBlur={(event) => {
-            setFocused(false);
-            isFunction(onBlur) && onBlur(event);
-          }}
           onChange={(event) => {
-            isFunction(onChangeValue) && onChangeValue(event.target.value);
-            isFunction(onChange) && onChange(event);
+            onChange?.(event);
+            onChangeValue?.(event.target.value);
           }}
         />
-
-        {trailingAddOn && (
-          <span className="dc-text-input__add-on">{trailingAddOn}</span>
+        {shouldRenderSuffix && (
+          <div className="dc-text-input__suffix" aria-hidden={true}>
+            {suffix}
+          </div>
         )}
       </div>
     );

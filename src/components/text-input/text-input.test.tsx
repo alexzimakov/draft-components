@@ -3,17 +3,18 @@ import { render, screen } from '@testing-library/react';
 import { TextInput } from './text-input';
 
 it('renders without errors', () => {
-  const placeholder = 'Email address';
+  const placeholder = 'Your name';
   render(<TextInput placeholder={placeholder} />);
+
   screen.getByPlaceholderText(placeholder);
 });
 
-it('should forward extra attrs to underlying <input />', () => {
+it('should forward extra props to underlying <input />', () => {
   const attrs = {
-    type: 'email',
+    type: 'email' as const,
+    placeholder: 'Your email',
     required: true,
-    placeholder: 'Email address',
-  } as const;
+  };
   render(<TextInput {...attrs} />);
   const inputEl = screen.getByPlaceholderText(attrs.placeholder);
 
@@ -22,54 +23,58 @@ it('should forward extra attrs to underlying <input />', () => {
   expect(inputEl).toHaveAttribute('placeholder', attrs.placeholder);
 });
 
-it('renders with leading add-on', () => {
-  const leadingAddOn = 'https://';
-  render(<TextInput leadingAddOn={leadingAddOn} />);
+it('renders with prefix', () => {
+  const prefix = 'USD';
+  render(<TextInput prefix={prefix} />);
 
-  screen.getByText(leadingAddOn);
+  screen.getByText(prefix);
 });
 
-it('renders with trailing add-on', () => {
-  const trailingAddOn = 'USD';
-  render(<TextInput trailingAddOn={trailingAddOn} />);
+it('renders with suffix', () => {
+  const suffix = 'kg';
+  render(<TextInput suffix={suffix} />);
 
-  screen.getByText(trailingAddOn);
+  screen.getByText(suffix);
 });
 
-it('should invoke `onFocus` and `onBlur` event handlers', () => {
-  const testId = 'native-input';
-  const onFocus = jest.fn();
-  const onBlur = jest.fn();
-  render(<TextInput data-testid={testId} onFocus={onFocus} onBlur={onBlur} />);
-  const inputEl = screen.getByTestId(testId);
+it('renders with prefix and suffix', () => {
+  const prefix = '$';
+  const suffix = 'per item';
+  render(<TextInput prefix={prefix} suffix={suffix} />);
 
-  inputEl.focus();
-  inputEl.blur();
-
-  expect(onFocus).toHaveBeenCalledTimes(1);
-  expect(onBlur).toHaveBeenCalledTimes(1);
+  screen.getByText(prefix);
+  screen.getByText(suffix);
 });
 
 it('invokes `onChange` event handler', async () => {
   const user = userEvent.setup();
-  const onChange = jest.fn();
-  render(<TextInput onChange={onChange} />);
+  const placeholder = 'Your name';
+  const name = 'John Doe';
+  const onChangeMock = jest.fn();
+  render(<TextInput placeholder={placeholder} onChange={onChangeMock} />);
 
-  await user.click(screen.getByRole('textbox'));
-  await user.paste('lorem');
+  await user.click(screen.getByPlaceholderText(placeholder));
+  await user.keyboard(name);
 
-  expect(onChange).toHaveBeenCalledTimes(1);
+  expect(onChangeMock).toHaveBeenCalledTimes(name.length);
 });
 
-it('invokes `onChangeValue` with changed value', async () => {
+it('invokes `onChangeValue` callback with changed value', async () => {
   const user = userEvent.setup();
-  const onChangeValue = jest.fn();
-  const expectedValue = 'lorem';
-  render(<TextInput onChangeValue={onChangeValue} />);
+  const placeholder = 'Your name';
+  const name = 'John Doe';
+  const onChangeValueMock = jest.fn();
+  render(<TextInput
+    placeholder={placeholder}
+    onChangeValue={onChangeValueMock}
+  />);
 
-  await user.click(screen.getByRole('textbox'));
-  await user.paste(expectedValue);
+  await user.click(screen.getByPlaceholderText(placeholder));
+  await user.keyboard(name);
 
-  expect(onChangeValue).toHaveBeenCalledTimes(1);
-  expect(onChangeValue).toHaveBeenNthCalledWith(1, expectedValue);
+  expect(onChangeValueMock).toHaveBeenCalledTimes(name.length);
+  for (let n = 1; n <= name.length; n += 1) {
+    const value = name.slice(0, n);
+    expect(onChangeValueMock).toHaveBeenNthCalledWith(n, value);
+  }
 });
