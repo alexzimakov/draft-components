@@ -3,53 +3,48 @@ import { render, screen } from '@testing-library/react';
 import { Switch } from './switch';
 
 it('renders without errors', () => {
-  const title = 'Enable Location Services';
-  render(<Switch title={title} />);
+  const ariaLabel = 'Enable Location Services';
+  render(<Switch aria-label={ariaLabel} />);
 
-  screen.getByTitle(title);
+  screen.getByLabelText(ariaLabel);
 });
 
 it('should forward extra attrs to underlying <input />', () => {
-  const attrs = {
-    'data-testid': 'switch',
-    name: 'locationServices',
-    value: 'enabled',
-  } as const;
-  render(<Switch {...attrs} />);
-  const inputEl = screen.getByTestId(attrs['data-testid']);
+  const ariaLabel = 'Enable Location Services';
+  const attrs = { name: 'locationServices', value: 'enabled' };
+  render(<Switch aria-label={ariaLabel} {...attrs} />);
 
+  const inputEl = screen.getByLabelText(ariaLabel);
   expect(inputEl).toHaveAttribute('name', attrs.name);
   expect(inputEl).toHaveAttribute('value', attrs.value);
 });
 
-it('renders with label and description', () => {
-  const label = 'Enable Location Services';
-  const description = 'Allow selected apps to determine your location.';
-  render(<Switch label={label} description={description} />);
+it('renders with check icon', () => {
+  render(<Switch showCheckIcon={true} />);
 
-  screen.getByText(label);
-  screen.getByText(description);
+  screen.getByTestId('switch-icon');
 });
 
-it('should check when click on label', async () => {
+it('invokes `onChange` event handler', async () => {
   const user = userEvent.setup();
-  const label = 'Enable Location Services';
-  const onChange = jest.fn();
-  render(<Switch label={label} onChange={onChange} />);
+  const onChangeMock = jest.fn();
+  render(<Switch onChange={onChangeMock} />);
 
-  await user.click(screen.getByText(label));
+  await user.click(screen.getByTestId('switch-track'));
 
-  expect(onChange).toHaveBeenCalledTimes(1);
+  expect(onChangeMock).toHaveBeenCalledTimes(1);
 });
 
-it('invokes `onCheck` callback', async () => {
+it('invokes `onToggle` callback with checked flag', async () => {
   const user = userEvent.setup();
-  const label = 'Enable Location Services';
-  const onCheck = jest.fn();
-  render(<Switch label={label} onCheck={onCheck} />);
+  const onToggleMock = jest.fn();
+  render(<Switch onToggle={onToggleMock} />);
 
-  await user.click(screen.getByText(label));
+  const trackEl = screen.getByTestId('switch-track');
+  await user.click(trackEl);
+  await user.click(trackEl);
 
-  expect(onCheck).toHaveBeenCalledTimes(1);
-  expect(onCheck).toHaveBeenNthCalledWith(1, true);
+  expect(onToggleMock).toHaveBeenCalledTimes(2);
+  expect(onToggleMock).toHaveBeenNthCalledWith(1, true);
+  expect(onToggleMock).toHaveBeenNthCalledWith(2, false);
 });
