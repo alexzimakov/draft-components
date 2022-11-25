@@ -50,6 +50,10 @@
   box-shadow: 0 0 0 var(--dc-button-focus-ring-width) var(--dc-button-focus-ring-color);
 }
 
+.dc-button:focus:not(:focus-visible)::after {
+  content: none;
+}
+
 .dc-button:not(.dc-button_loading):hover {
   background: var(--dc-button-background-hover);
 }
