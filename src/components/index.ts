@@ -24,7 +24,7 @@ export * from './number-input';
 export * from './password-input';
 export * from './popover';
 export * from './portal';
-export * from './radio-button';
+export * from './radio';
 export * from './radio-group';
 export * from './scope-buttons';
 export * from './search-input';

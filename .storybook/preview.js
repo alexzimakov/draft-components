@@ -1,6 +1,7 @@
 import { useLayoutEffect } from 'react';
 import '../src/components/index.css';
 import '../src/components/index.dark.css';
+import './preview.css';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
