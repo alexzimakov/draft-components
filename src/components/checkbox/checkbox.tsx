@@ -1,89 +1,85 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
-import { isFunction } from '../../lib/guards';
+import { forwardRef, type ComponentPropsWithRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import {
-  SelectionControl,
-  SelectionControlBaseProps,
-} from '../selection-control';
-import { SvgIcon } from '../svg-icon';
-import { dash } from '../../bootstrap-icons/dash';
-import { check } from '../../bootstrap-icons/check';
 
-export type CheckboxHtmlAttrs = Omit<
-  ComponentPropsWithRef<'input'>,
-  | 'accept'
-  | 'alt'
-  | 'capture'
-  | 'dirname'
-  | 'formAction'
-  | 'formEncType'
-  | 'formMethod'
-  | 'formNoValidate'
-  | 'formTarget'
-  | 'height'
-  | 'max'
-  | 'maxLength'
-  | 'min'
-  | 'minLength'
-  | 'multiple'
-  | 'pattern'
-  | 'placeholder'
-  | 'size'
-  | 'src'
-  | 'step'
-  | 'type'
-  | 'width'
->;
-
-export interface CheckboxProps
-  extends SelectionControlBaseProps,
-    CheckboxHtmlAttrs {
-  isMixed?: boolean;
-  onCheck?(checked: boolean): void;
-}
+type CheckboxHTMLProps = ComponentPropsWithRef<'input'>;
+type CheckboxBaseProps = Omit<CheckboxHTMLProps, 'type'>;
+export type CheckboxToggleHandler = (checked: boolean) => void;
+export type CheckboxProps = CheckboxBaseProps & {
+  hasMixedState?: boolean;
+  onToggle?: CheckboxToggleHandler;
+};
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  function Checkbox(
-    {
-      label,
-      description,
-      style,
-      className,
-      disabled,
-      isMixed,
-      onChange,
-      onCheck,
-      ...props
-    },
-    ref
-  ) {
+  function Checkbox({
+    hasMixedState = false,
+    style = {},
+    className = '',
+    onChange,
+    onToggle,
+    ...props
+  }, ref) {
     return (
-      <SelectionControl
-        className={classNames(className, 'dc-checkbox')}
-        style={style}
-        label={label}
-        description={description}
-        isDisabled={disabled}
-      >
+      <label style={style} className={classNames('dc-checkbox', className)}>
         <input
           {...props}
-          className="dc-checkbox__input"
           ref={ref}
           type="checkbox"
-          disabled={disabled}
+          className="dc-checkbox__input"
           onChange={(event) => {
-            isFunction(onChange) && onChange(event);
-            isFunction(onCheck) && onCheck(event.target.checked);
+            onChange?.(event);
+            onToggle?.(event.target.checked);
           }}
         />
-        <span className="dc-checkbox__check" aria-hidden={true}>
-          <SvgIcon
-            className="dc-checkbox__check-icon"
-            icon={isMixed ? dash : check}
-            size="lg"
-          />
+        <span
+          className="dc-checkbox__check"
+          data-testid="checkbox-check"
+          aria-hidden={true}
+        >
+          {hasMixedState ? dashIcon : checkIcon}
         </span>
-      </SelectionControl>
+      </label>
     );
   }
+);
+
+const checkIcon = (
+  <svg
+    data-testid="checkbox-check-icon"
+    className="dc-checkbox__icon"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="1em"
+    height="1em"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={3}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"
+    />
+  </svg>
+);
+
+const dashIcon = (
+  <svg
+    data-testid="checkbox-dash-icon"
+    className="dc-checkbox__icon"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="1em"
+    height="1em"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={3}
+  >
+    <line
+      x1={4}
+      y1={12}
+      x2={20}
+      y2={12}
+      stroke="currentColor"
+      strokeLinecap="round"
+    />
+  </svg>
 );

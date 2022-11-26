@@ -3,53 +3,48 @@ import { render, screen } from '@testing-library/react';
 import { Checkbox } from './checkbox';
 
 it('renders without errors', () => {
-  const title = 'Enable Location Services';
-  render(<Checkbox title={title} />);
+  const ariaLabel = 'Enable Location Services';
+  render(<Checkbox aria-label={ariaLabel} />);
 
-  screen.getByTitle(title);
+  screen.getByLabelText(ariaLabel);
 });
 
 it('should forward extra attrs to underlying <input />', () => {
-  const attrs = {
-    'data-testid': 'checkbox',
-    name: 'locationServices',
-    value: 'enabled',
-  } as const;
-  render(<Checkbox {...attrs} />);
-  const inputEl = screen.getByTestId(attrs['data-testid']);
+  const ariaLabel = 'Enable Location Services';
+  const attrs = { name: 'locationServices', value: 'enabled' };
+  render(<Checkbox aria-label={ariaLabel} {...attrs} />);
 
+  const inputEl = screen.getByLabelText(ariaLabel);
   expect(inputEl).toHaveAttribute('name', attrs.name);
   expect(inputEl).toHaveAttribute('value', attrs.value);
 });
 
-it('renders with label and description', () => {
-  const label = 'Enable Location Services';
-  const description = 'Allow selected apps to determine your location.';
-  render(<Checkbox label={label} description={description} />);
+it('renders with dash icon', () => {
+  render(<Checkbox defaultChecked={true} hasMixedState={true} />);
 
-  screen.getByText(label);
-  screen.getByText(description);
+  screen.getByTestId('checkbox-dash-icon');
 });
 
-it('should check when click on label', async () => {
+it('invokes `onChange` event handler', async () => {
   const user = userEvent.setup();
-  const label = 'Enable Location Services';
-  const onChange = jest.fn();
-  render(<Checkbox label={label} onChange={onChange} />);
+  const onChangeMock = jest.fn();
+  render(<Checkbox onChange={onChangeMock} />);
 
-  await user.click(screen.getByText(label));
+  await user.click(screen.getByTestId('checkbox-check'));
 
-  expect(onChange).toHaveBeenCalledTimes(1);
+  expect(onChangeMock).toHaveBeenCalledTimes(1);
 });
 
-it('invokes `onCheck` callback', async () => {
+it('invokes `onToggle` callback with checked flag', async () => {
   const user = userEvent.setup();
-  const label = 'Enable Location Services';
-  const onCheck = jest.fn();
-  render(<Checkbox label={label} onCheck={onCheck} />);
+  const onToggleMock = jest.fn();
+  render(<Checkbox onToggle={onToggleMock} />);
 
-  await user.click(screen.getByText(label));
+  const checkEl = screen.getByTestId('checkbox-check');
+  await user.click(checkEl);
+  await user.click(checkEl);
 
-  expect(onCheck).toHaveBeenCalledTimes(1);
-  expect(onCheck).toHaveBeenNthCalledWith(1, true);
+  expect(onToggleMock).toHaveBeenCalledTimes(2);
+  expect(onToggleMock).toHaveBeenNthCalledWith(1, true);
+  expect(onToggleMock).toHaveBeenNthCalledWith(2, false);
 });

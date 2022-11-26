@@ -1,0 +1,75 @@
+.dc-checkbox {
+  --dc-checkbox-size: 1.25rem;
+  --dc-checkbox-border-radius: 0.3125rem;
+  --dc-checkbox-background-color: white;
+  --dc-checkbox-background-color-checked: var(--dc-blue-500);
+  --dc-checkbox-border-color: var(--dc-gray-300);
+  --dc-checkbox-border-color-checked: var(--dc-blue-500);
+  --dc-checkbox-icon-color: white;
+  --dc-checkbox-focus-ring-color: var(--dc-focus-ring-color);
+  --dc-checkbox-focus-ring-offset: 0.125rem;
+  --dc-checkbox-focus-ring-width: 0.1875rem;
+}
+
+.dc-checkbox__input {
+  appearance: none;
+  position: absolute;
+}
+
+.dc-checkbox__check {
+  font-size: 1rem;
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--dc-checkbox-size);
+  height: var(--dc-checkbox-size);
+  transition: opacity 0.2s;
+  border: 1px solid var(--dc-checkbox-border-color);
+  border-radius: var(--dc-checkbox-border-radius);
+  background: var(--dc-checkbox-background-color);
+}
+
+.dc-checkbox__icon {
+  color: var(--dc-checkbox-icon-color);
+  display: none;
+  width: 80%;
+  height: 80%;
+}
+
+.dc-checkbox__input:checked + .dc-checkbox__check {
+  border-color: var(--dc-checkbox-border-color-checked);
+  background: var(--dc-checkbox-background-color-checked);
+}
+
+.dc-checkbox__input:checked + .dc-checkbox__check .dc-checkbox__icon {
+  display: initial;
+}
+
+.dc-checkbox__input:disabled + .dc-checkbox__check {
+  opacity: var(--dc-disabled-opacity);
+  cursor: default;
+}
+
+.dc-checkbox__input:focus {
+  outline: none;
+}
+
+.dc-checkbox__input:focus + .dc-checkbox__check::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: calc(-1px - var(--dc-checkbox-focus-ring-offset));
+  right: calc(-1px - var(--dc-checkbox-focus-ring-offset));
+  bottom: calc(-1px - var(--dc-checkbox-focus-ring-offset));
+  left: calc(-1px - var(--dc-checkbox-focus-ring-offset));
+  border-radius: calc(var(--dc-checkbox-border-radius) + var(--dc-checkbox-focus-ring-offset));
+  box-shadow: 0 0 0 var(--dc-checkbox-focus-ring-width) var(--dc-checkbox-focus-ring-color);
+}
+
+.dc-checkbox__input:focus:not(:focus-visible) + .dc-checkbox__check::after {
+  content: none;
+}
