@@ -88,6 +88,6 @@
   --dc-blue-900: rgb(30 58 138);
 
   /* Component states */
-  --dc-focus-ring-color: rgb(59 130 246 / 75%);
+  --dc-focus-ring-color: rgb(59 130 246 / 80%);
   --dc-disabled-opacity: 0.5;
 }
