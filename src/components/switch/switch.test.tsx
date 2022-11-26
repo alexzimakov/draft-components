@@ -22,7 +22,7 @@ it('should forward extra attrs to underlying <input />', () => {
 it('renders with check icon', () => {
   render(<Switch showCheckIcon={true} />);
 
-  screen.getByTestId('switch-icon');
+  screen.getByTestId('switch-check-icon');
 });
 
 it('invokes `onChange` event handler', async () => {

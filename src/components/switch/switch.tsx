@@ -13,7 +13,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   function Switch({
     style = {},
     className = '',
-    showCheckIcon = false,
+    showCheckIcon = true,
     onChange,
     onToggle,
     ...props
@@ -36,27 +36,30 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
           aria-hidden={true}
         >
           <span className="dc-switch__thumb">
-            {showCheckIcon && (
-              <svg
-                data-testid="switch-icon"
-                className="dc-switch__icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="1em"
-                height="1em"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={3}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"
-                />
-              </svg>
-            )}
+            {showCheckIcon && checkIcon}
           </span>
         </span>
       </label>
     );
   }
+);
+
+const checkIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 20 20"
+    width="20"
+    height="20"
+    className="dc-switch__icon"
+    data-testid="switch-check-icon"
+  >
+    <path
+      d="M6 10.353L9 13L13.5 7"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
 );
