@@ -18,18 +18,19 @@ Basic.args = {};
 export const States: ComponentStory<typeof Checkbox> = (args) => (
   <div style={{
     display: 'flex',
+    flexWrap: 'wrap',
     alignItems: 'center',
     gap: '1rem 4rem',
   }}>
-    <View caption="Unchecked">
+    <StateView caption="Unchecked">
       <Checkbox {...args} checked={false} />
-    </View>
-    <View caption="Checked">
+    </StateView>
+    <StateView caption="Checked">
       <Checkbox {...args} checked={true} />
-    </View>
-    <View caption="Mixed">
+    </StateView>
+    <StateView caption="Mixed state">
       <Checkbox {...args} checked={true} hasMixedState={true} />
-    </View>
+    </StateView>
   </div>
 );
 States.parameters = {
@@ -49,12 +50,9 @@ Disabled.args = {
   disabled: true,
 };
 
-function View(props: { children: JSX.Element, caption: string }) {
+function StateView(props: { children: JSX.Element, caption: string }) {
   return (
-    <div style={{
-      fontSize: 14,
-      fontFamily: 'var(--dc-font-primary)',
-    }}>
+    <div style={{ fontSize: '0.875rem' }}>
       <div style={{ marginBottom: '0.5rem' }}>{props.caption}</div>
       {props.children}
     </div>

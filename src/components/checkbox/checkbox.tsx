@@ -44,41 +44,38 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 
 const checkIcon = (
   <svg
-    data-testid="checkbox-check-icon"
-    className="dc-checkbox__icon"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    width="1em"
-    height="1em"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth={3}
+    width="24"
+    height="24"
+    className="dc-checkbox__icon"
+    data-testid="checkbox-check-icon"
   >
     <path
+      d="M6 12.5556L10.8 17L18 7"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
       strokeLinecap="round"
-      strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"
+      strokeLinejoin="round"
     />
   </svg>
 );
 
 const dashIcon = (
   <svg
-    data-testid="checkbox-dash-icon"
-    className="dc-checkbox__icon"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    width="1em"
-    height="1em"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth={3}
+    width="24"
+    height="24"
+    className="dc-checkbox__icon"
+    data-testid="checkbox-dash-icon"
   >
-    <line
-      x1={4}
-      y1={12}
-      x2={20}
-      y2={12}
+    <path
+      d="M6 12H18"
+      fill="none"
       stroke="currentColor"
+      strokeWidth="2.5"
       strokeLinecap="round"
     />
   </svg>
