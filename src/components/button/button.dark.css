@@ -1,16 +1,16 @@
 .dark .dc-button,
 .dark.dc-button {
-  --dc-button-text-color: var(--dc-gray-50);
+  --dc-button-text-color: var(--dc-primary-text-color-dark);
   --dc-button-border-color: rgb(249 250 251 / 10%);
   --dc-button-background: var(--dc-gray-700);
   --dc-button-background-hover: var(--dc-gray-600);
-  --dc-button-focus-ring-color: var(--dc-focus-ring-color);
+  --dc-button-focus-ring-color: var(--dc-focus-ring-color-dark);
   --dc-button-shadow: 0 1px 1px rgb(249 250 251 / 5%);
 }
 
 .dark .dc-button_appearance_default.dc-button_variant_tinted,
 .dark.dc-button_appearance_default.dc-button_variant_tinted {
-  --dc-button-text-color: var(--dc-gray-50);
+  --dc-button-text-color: var(--dc-primary-text-color-dark);
   --dc-button-border-color: rgb(225 231 239 / 0%);
   --dc-button-background: rgb(225 231 239 / 15%);
   --dc-button-background-hover: rgb(225 231 239 / 25%);
@@ -19,7 +19,7 @@
 
 .dark .dc-button_appearance_default.dc-button_variant_plain,
 .dark.dc-button_appearance_default.dc-button_variant_plain {
-  --dc-button-text-color: var(--dc-gray-50);
+  --dc-button-text-color: var(--dc-primary-text-color-dark);
   --dc-button-border-color: rgb(225 231 239 / 0%);
   --dc-button-background: rgb(225 231 239 / 0%);
   --dc-button-background-hover: rgb(225 231 239 / 15%);

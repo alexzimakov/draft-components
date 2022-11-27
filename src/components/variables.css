@@ -87,7 +87,12 @@
   --dc-blue-800: rgb(30 64 175);
   --dc-blue-900: rgb(30 58 138);
 
+  /* Text colors */
+  --dc-primary-text-color: var(--dc-gray-700);
+  --dc-secondary-text-color: var(--dc-gray-500);
+  --dc-tertiary-text-color: var(--dc-gray-300);
+
   /* Component states */
-  --dc-focus-ring-color: rgb(59 130 246 / 80%);
+  --dc-focus-ring-color: rgb(59 130 246 / 65%);
   --dc-disabled-opacity: 0.5;
 }

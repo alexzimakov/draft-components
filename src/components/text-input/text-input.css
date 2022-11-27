@@ -1,14 +1,14 @@
 .dc-text-input__container {
   --dc-input-font-size: 0.875rem;
-  --dc-input-text-color: var(--dc-gray-900);
+  --dc-input-text-color: var(--dc-primary-text-color);
   --dc-input-height: 2.25rem;
   --dc-input-padding-x: 0.75rem;
   --dc-input-border-radius: 0.375rem;
   --dc-input-border-color: var(--dc-gray-300);
   --dc-input-border-color-invalid: var(--dc-red-400);
   --dc-input-background: white;
-  --dc-input-prefix-text-color: var(--dc-gray-500);
-  --dc-input-suffix-text-color: var(--dc-gray-500);
+  --dc-input-prefix-text-color: var(--dc-secondary-text-color);
+  --dc-input-suffix-text-color: var(--dc-secondary-text-color);
   --dc-input-focus-ring-color: var(--dc-blue-500);
 
   font-family: var(--dc-primary-font);

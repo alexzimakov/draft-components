@@ -1,5 +1,5 @@
 .dc-button {
-  --dc-button-text-color: var(--dc-gray-900);
+  --dc-button-text-color: var(--dc-primary-text-color);
   --dc-button-size: 2.25rem;
   --dc-button-padding-x: 1rem;
   --dc-button-border-radius: 0.5625rem;
@@ -77,7 +77,7 @@
 }
 
 .dc-button_appearance_default.dc-button_variant_tinted {
-  --dc-button-text-color: var(--dc-gray-900);
+  --dc-button-text-color: var(--dc-primary-text-color);
   --dc-button-border-color: rgb(107 114 128 / 0%);
   --dc-button-background: rgb(107 114 128 / 15%);
   --dc-button-background-hover: rgb(107 114 128 / 25%);
@@ -85,7 +85,7 @@
 }
 
 .dc-button_appearance_default.dc-button_variant_plain {
-  --dc-button-text-color: var(--dc-gray-900);
+  --dc-button-text-color: var(--dc-primary-text-color);
   --dc-button-border-color: rgb(107 114 128 / 0%);
   --dc-button-background: rgb(107 114 128 / 0%);
   --dc-button-background-hover: rgb(107 114 128 / 15%);

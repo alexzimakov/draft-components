@@ -1,4 +1,9 @@
 :root {
+  /* Text colors */
+  --dc-primary-text-color-dark: var(--dc-gray-200);
+  --dc-secondary-text-color-dark: var(--dc-gray-400);
+  --dc-tertiary-text-color-dark: var(--dc-gray-600);
+
   /* Component states */
-  --dc-focus-ring-color: rgb(96 165 250 / 80%);
+  --dc-focus-ring-color-dark: rgb(96 165 250 / 75%);
 }
