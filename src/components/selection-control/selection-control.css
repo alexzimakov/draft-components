@@ -1,0 +1,23 @@
+.dc-selection-control {
+  display: grid;
+  grid-template-areas:
+    "input label"
+    ".     caption";
+  grid-template-columns: auto 1fr;
+  grid-gap: 2px 12px;
+  justify-items: start;
+}
+
+.dc-selection-control__input {
+  grid-area: input;
+}
+
+.dc-selection-control__label {
+  user-select: none;
+  grid-area: label;
+  align-self: center;
+}
+
+.dc-selection-control__caption {
+  grid-area: caption;
+}

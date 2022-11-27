@@ -27,6 +27,7 @@
   width: var(--dc-radio-size);
   height: var(--dc-radio-size);
   transition: opacity 0.2s;
+  vertical-align: middle;
   border: 1px solid var(--dc-radio-border-color);
   border-radius: 50%;
   background: var(--dc-radio-background-color);

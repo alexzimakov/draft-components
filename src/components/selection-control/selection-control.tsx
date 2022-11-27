@@ -1,45 +1,32 @@
-import { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
+import { Label } from '../label';
+import { Caption } from '../caption';
 
-export type SelectionControlHtmlAttrs = Omit<
-  ComponentPropsWithoutRef<'div'>,
-  'children'
->;
-
-export interface SelectionControlBaseProps {
-  label?: ReactNode;
-  description?: ReactNode;
-}
-
-export interface SelectionControlProps
-  extends SelectionControlBaseProps,
-    SelectionControlHtmlAttrs {
-  children: JSX.Element | JSX.Element[];
-  isDisabled?: boolean;
-}
+export type SelectionControlProps = ComponentPropsWithoutRef<'div'> & {
+  htmlFor?: string;
+  caption?: ReactNode;
+  label: ReactNode;
+};
 
 export function SelectionControl({
-  children,
+  htmlFor = '',
+  className = '',
   label,
-  description,
-  isDisabled,
-  className,
+  caption,
+  children,
   ...props
 }: SelectionControlProps) {
-  return (
-    <div
-      {...props}
-      className={classNames(className, 'dc-selection-control', {
-        'dc-selection-control_disabled': isDisabled,
-      })}
-    >
-      <label className="dc-selection-control__body">
-        {children}
-        {label && <span className="dc-selection-control__label">{label}</span>}
-      </label>
+  const shouldRenderCaption = Boolean(caption);
 
-      {description && (
-        <div className="dc-selection-control__description">{description}</div>
+  return (
+    <div {...props} className={classNames('dc-selection-control', className)}>
+      <div className="dc-selection-control__input">{children}</div>
+      <Label className="dc-selection-control__label" htmlFor={htmlFor}>
+        {label}
+      </Label>
+      {shouldRenderCaption && (
+        <Caption className="dc-selection-control__caption">{caption}</Caption>
       )}
     </div>
   );

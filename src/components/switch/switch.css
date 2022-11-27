@@ -28,6 +28,7 @@
   height: var(--dc-switch-height);
   transition-duration: 0.2s;
   transition-property: opacity, background-color;
+  vertical-align: middle;
   border-radius: calc(var(--dc-switch-width) * 0.5);
   background: var(--dc-switch-track-color);
 }

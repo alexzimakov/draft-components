@@ -28,6 +28,7 @@
   width: var(--dc-checkbox-size);
   height: var(--dc-checkbox-size);
   transition: opacity 0.2s;
+  vertical-align: middle;
   border: 1px solid var(--dc-checkbox-border-color);
   border-radius: var(--dc-checkbox-border-radius);
   background: var(--dc-checkbox-background-color);
