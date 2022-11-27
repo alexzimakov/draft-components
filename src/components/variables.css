@@ -63,6 +63,18 @@
   --dc-red-800: rgb(153 27 27);
   --dc-red-900: rgb(127 29 29);
 
+  /* Amber */
+  --dc-amber-50: rgb(255 251 235);
+  --dc-amber-100: rgb(254 243 199);
+  --dc-amber-200: rgb(253 230 138);
+  --dc-amber-300: rgb(252 211 77);
+  --dc-amber-400: rgb(251 191 36);
+  --dc-amber-500: rgb(245 158 11);
+  --dc-amber-600: rgb(217 119 6);
+  --dc-amber-700: rgb(180 83 9);
+  --dc-amber-800: rgb(146 64 14);
+  --dc-amber-900: rgb(120 53 15);
+
   /* Green */
   --dc-green-50: rgb(240 253 244);
   --dc-green-100: rgb(220 252 231);

@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, ReactNode, useRef } from 'react';
 import { uniqueId } from '../../lib/util';
 import { classNames } from '../../lib/react-helpers';
 import { Label } from '../label';
-import { InlineMessage } from '../inline-message';
+import { Caption } from '../caption';
 
 export interface InputRenderFn {
   (props: { id: string; required: boolean; invalid: boolean }): JSX.Element;
@@ -55,20 +55,20 @@ export function FormField({
       {(function () {
         if (validationError) {
           return (
-            <InlineMessage
+            <Caption
               className="dc-form-field__error"
-              shouldShowIcon={true}
+              showIcon={true}
               appearance="error"
             >
               {validationError}
-            </InlineMessage>
+            </Caption>
           );
         }
         if (hint) {
           return (
-            <InlineMessage className="dc-form-field__hint">
+            <Caption className="dc-form-field__hint">
               {hint}
-            </InlineMessage>
+            </Caption>
           );
         }
         return null;
