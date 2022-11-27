@@ -10,7 +10,7 @@
   --dc-font-mono:
     ui-monospace, sfmono-regular, menlo, monaco, consolas, "Liberation Mono",
     "Courier New", monospace;
-  --dc-font-primary: var(--dc-font-sans);
+  --dc-primary-font: var(--dc-font-sans);
 
   /* https://tailwindcss.com/docs/font-size */
   --dc-text-2xs: 0.625rem;

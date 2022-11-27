@@ -11,7 +11,7 @@
   --dc-input-suffix-text-color: var(--dc-gray-500);
   --dc-input-focus-ring-color: var(--dc-blue-500);
 
-  font-family: var(--dc-font-primary);
+  font-family: var(--dc-primary-font);
   font-size: var(--dc-input-font-size);
   font-weight: 400;
   line-height: 1;

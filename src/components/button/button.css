@@ -12,7 +12,7 @@
   --dc-button-shadow: 0 1px 1px rgb(17 24 39 / 5%);
 
   appearance: none;
-  font-family: var(--dc-font-primary);
+  font-family: var(--dc-primary-font);
   font-size: var(--dc-text-md);
   font-weight: 400;
   line-height: var(--leading-none);
