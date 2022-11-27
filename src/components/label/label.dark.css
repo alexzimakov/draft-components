@@ -1,0 +1,5 @@
+.dark .dc-label,
+.dark.dc-label {
+  --dc-label-text-color: var(--dc-primary-text-color-dark);
+  --dc-label-required-mark-color: var(--dc-red-600);
+}

@@ -37,7 +37,7 @@ export function FormField({
       {label ? (
         <Label
           className="dc-form-field__label"
-          isRequired={required}
+          required={required}
           htmlFor={inputId.current}
         >
           {label}

@@ -1,28 +1,25 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { forwardRef, type ComponentPropsWithRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { Styles } from '../formatted-content';
 
-export interface LabelProps extends ComponentPropsWithoutRef<'label'> {
-  isRequired?: boolean;
-}
+export type LabelProps = ComponentPropsWithRef<'label'> & {
+  required?: boolean;
+};
 
-export function Label({
-  isRequired,
-  className,
+export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label({
+  required = false,
+  className = '',
   children,
   ...props
-}: LabelProps) {
+}, ref) {
   return (
     <label
       {...props}
-      className={classNames(
-        className,
-        Styles.subheadline,
-        'dc-label',
-        isRequired && 'dc-label_required'
-      )}
+      ref={ref}
+      className={classNames(className, 'dc-label', {
+        'dc-label_required': required,
+      })}
     >
       {children}
     </label>
   );
-}
+});
