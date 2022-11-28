@@ -34,11 +34,7 @@ export const Caption = forwardRef<HTMLParagraphElement, CaptionProps>(
 
     return (
       <p ref={ref} className={classNames(className, 'dc-caption', {
-        'dc-caption_appearance_default': appearance === 'default',
-        'dc-caption_appearance_info': appearance === 'info',
-        'dc-caption_appearance_success': appearance === 'success',
-        'dc-caption_appearance_error': appearance === 'error',
-        'dc-caption_appearance_warning': appearance === 'warning',
+        [`dc-caption_appearance_${appearance}`]: appearance !== undefined,
       })}>
         {icon}
         {children}
