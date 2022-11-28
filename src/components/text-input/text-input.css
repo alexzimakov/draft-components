@@ -1,9 +1,9 @@
 .dc-text-input__container {
-  --dc-input-font-size: 0.875rem;
+  --dc-input-font-size: 14px;
   --dc-input-text-color: var(--dc-primary-text-color);
-  --dc-input-height: 2.25rem;
-  --dc-input-padding-x: 0.75rem;
-  --dc-input-border-radius: 0.375rem;
+  --dc-input-height: 36px;
+  --dc-input-padding-x: 12px;
+  --dc-input-border-radius: 6px;
   --dc-input-border-color: var(--dc-gray-300);
   --dc-input-border-color-invalid: var(--dc-red-400);
   --dc-input-background: white;
@@ -45,17 +45,17 @@
 }
 
 .dc-text-input__container_sm {
-  --dc-input-font-size: 0.8125rem;
-  --dc-input-height: 2rem;
-  --dc-input-padding-x: 0.5rem;
-  --dc-input-border-radius: 0.3125rem;
+  --dc-input-font-size: 13px;
+  --dc-input-height: 32px;
+  --dc-input-padding-x: 8px;
+  --dc-input-border-radius: 5px;
 }
 
 .dc-text-input__container_lg {
-  --dc-input-font-size: 0.9375rem;
-  --dc-input-height: 2.5rem;
-  --dc-input-padding-x: 1rem;
-  --dc-input-border-radius: 0.4375rem;
+  --dc-input-font-size: 15px;
+  --dc-input-height: 40px;
+  --dc-input-padding-x: 16px;
+  --dc-input-border-radius: 7px;
 }
 
 .dc-text-input {
@@ -63,7 +63,6 @@
   font: inherit;
   color: inherit;
   flex: auto;
-  box-sizing: border-box;
   min-width: 0;
   max-width: 100%;
   margin: 0;
@@ -81,28 +80,32 @@
   outline: none;
 }
 
-.dc-text-input_width_2 {
-  width: calc(2em + var(--dc-input-padding-x) * 2);
+.dc-text-input_width_2ch {
+  width: 2.5ch;
 }
 
-.dc-text-input_width_3 {
-  max-width: calc(3em + var(--dc-input-padding-x) * 2);
+.dc-text-input_width_3ch {
+  width: 3.5ch;
 }
 
-.dc-text-input_width_4 {
-  max-width: calc(4em + var(--dc-input-padding-x) * 2);
+.dc-text-input_width_4ch {
+  width: 4.5ch;
 }
 
-.dc-text-input_width_5 {
-  max-width: calc(5em + var(--dc-input-padding-x) * 2);
+.dc-text-input_width_5ch {
+  width: 5.5ch;
 }
 
-.dc-text-input_width_10 {
-  max-width: calc(10em + var(--dc-input-padding-x) * 2);
+.dc-text-input_width_10ch {
+  width: 10.5ch;
 }
 
-.dc-text-input_width_20 {
-  max-width: calc(20em + var(--dc-input-padding-x) * 2);
+.dc-text-input_width_20ch {
+  width: 20.5ch;
+}
+
+.dc-text-input_width_40ch {
+  width: 40.5ch;
 }
 
 .dc-text-input__prefix,

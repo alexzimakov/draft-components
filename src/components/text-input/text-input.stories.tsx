@@ -43,6 +43,7 @@ export const HasError = Basic.bind({});
 HasError.args = {
   placeholder: 'Your email',
   defaultValue: 'you@examplecom',
+  type: 'email',
   hasError: true,
 };
 
@@ -55,41 +56,43 @@ FullWidth.args = {
 export const Prefix = Basic.bind({});
 Prefix.args = {
   placeholder: '0.00',
-  width: '4-char',
+  width: '4ch',
   prefix: '€',
 };
 
 export const Suffix = Basic.bind({});
 Suffix.args = {
   placeholder: '0.00',
-  width: '4-char',
+  width: '4ch',
   suffix: 'kg',
 };
 
 export const PrefixAndSuffix = Basic.bind({});
 PrefixAndSuffix.args = {
   placeholder: '0.00',
-  width: '4-char',
+  width: '4ch',
   prefix: '$',
   suffix: 'per item',
 };
 
 export const Widths: ComponentStory<typeof TextInput> = (args) => {
   const widths: TextInputWidth[] = [
-    '20-char',
-    '10-char',
-    '5-char',
-    '4-char',
-    '3-char',
-    '2-char',
+    '40ch',
+    '20ch',
+    '10ch',
+    '5ch',
+    '4ch',
+    '3ch',
+    '2ch',
   ];
   const labels: Record<TextInputWidth, string> = {
-    '20-char': '20 char width',
-    '10-char': '10 char width',
-    '5-char': '5 char width',
-    '4-char': '4 char width',
-    '3-char': '3 char width',
-    '2-char': '2 char width',
+    '40ch': '40 character width',
+    '20ch': '20 character width',
+    '10ch': '10 character width',
+    '5ch': '5 character width',
+    '4ch': '4 character width',
+    '3ch': '3 character width',
+    '2ch': '2 character width',
   };
   const labelStyle = {
     fontFamily: 'var(--dc-font-sans)',
