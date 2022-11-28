@@ -8,9 +8,9 @@ const [error, setError] = React.useState('');
 <FormField
   label="Username"
   labelFor="fieldGroupExample"
-  hint="You can use letters, numbers & periods"
+  caption="You can use letters, numbers & periods"
   required={true}
-  validationError={error}
+  error={error}
 >
   <TextInput
     id="fieldGroupExample"
@@ -39,11 +39,15 @@ const [error, setError] = React.useState('');
 
 <FormField
   label="Username"
-  hint="You can use letters, numbers & periods"
+  caption="You can use letters, numbers & periods"
   required={true}
-  validationError={error}
+  error={error}
 >
-  {({ id, invalid, required }) => (
+  {({
+    id,
+    invalid,
+    required
+  }) => (
     <TextInput
       id={id}
       required={required}

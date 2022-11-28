@@ -1,32 +1,36 @@
 import { render, screen } from '@testing-library/react';
 import { FormField } from './form-field';
 
-it('<FormField /> renders without errors', () => {
-  const label = 'Username';
-  const hint = 'You can use letters, numbers & periods';
+it('renders without errors', () => {
+  const id = 'name';
+  const label = 'Your name';
+  const caption = 'People will be able to find you by this name.';
   render(
-    <FormField label={label} hint={hint}>
-      <input />
+    <FormField labelFor={id} label={label} caption={caption}>
+      <input id={id} name="name" />
     </FormField>
   );
-  screen.getByRole('textbox');
+
+  expect(screen.getByLabelText(label)).toBe(screen.getByRole('textbox'));
   screen.getByText(label);
-  screen.getByText(hint);
+  screen.getByText(caption);
 });
 
-it('<FormField /> renders without errors when `children` is a function', () => {
+it('renders without errors when `children` is a function', () => {
   render(<FormField>{({ id }) => <input id={id} />}</FormField>);
-  screen.getByRole('textbox');
+
+  expect(screen.getByRole('textbox')).toHaveAttribute('id');
 });
 
-it('should show a validation error', () => {
-  const hint = 'You can use letters, numbers & periods';
-  const validationError = 'Invalid input value';
+it('should show an error', () => {
+  const caption = 'People will be able to find you this username.';
+  const error = 'Username must have at least 5 characters.';
   render(
-    <FormField hint={hint} validationError={validationError}>
-      <input />
+    <FormField caption={caption} error={error}>
+      <input name="username" />
     </FormField>
   );
-  screen.getByText(validationError);
-  expect(screen.queryByText(hint)).toBeNull();
+
+  screen.getByText(error);
+  expect(screen.queryByText(caption)).toBeNull();
 });

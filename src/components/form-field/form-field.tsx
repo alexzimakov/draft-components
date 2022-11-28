@@ -1,78 +1,69 @@
-import { ComponentPropsWithoutRef, ReactNode, useRef } from 'react';
-import { uniqueId } from '../../lib/util';
+import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
+import { useUniqueId } from '../../hooks';
 import { classNames } from '../../lib/react-helpers';
 import { Label } from '../label';
 import { Caption } from '../caption';
 
-export interface InputRenderFn {
-  (props: { id: string; required: boolean; invalid: boolean }): JSX.Element;
-}
-
-export interface FormFieldProps extends ComponentPropsWithoutRef<'div'> {
-  label?: ReactNode;
-  labelFor?: string;
+export type FormFieldRenderFn = (props: {
+  id: string;
+  required: boolean;
+  hasError: boolean;
+}) => ReactNode;
+export type FormFieldProps = ComponentPropsWithoutRef<'div'> & {
   required?: boolean;
-  hint?: ReactNode;
-  validationError?: ReactNode;
-  children: ReactNode | InputRenderFn;
+  labelFor?: string;
+  label?: ReactNode;
+  caption?: ReactNode;
+  error?: ReactNode;
+  children: ReactNode | FormFieldRenderFn;
 }
 
 export function FormField({
+  required = false,
+  labelFor = '',
   label,
-  labelFor,
-  required,
-  hint,
-  validationError,
-  className,
+  caption,
+  error,
+  className = '',
   children,
   ...props
 }: FormFieldProps) {
-  const inputId = useRef(labelFor);
-  if (!inputId.current) {
-    inputId.current = uniqueId('form-field-input-');
+  const id = useUniqueId({ default: labelFor, prefix: 'form-field-input-' });
+  const hasError = Boolean(error);
+  const shouldRenderLabel = Boolean(label);
+
+  let captionEl: JSX.Element | null = null;
+  if (hasError) {
+    captionEl = (
+      <Caption
+        className="dc-form-field__error"
+        appearance="error"
+        showIcon={true}
+      >
+        {error}
+      </Caption>
+    );
+  } else if (caption) {
+    captionEl = <Caption className="dc-form-field__caption">{caption}</Caption>;
   }
 
   return (
-    <div {...props} className={classNames(className, 'dc-form-field')}>
-      {label ? (
+    <div {...props} className={classNames('dc-form-field', className)}>
+      {shouldRenderLabel && (
         <Label
           className="dc-form-field__label"
+          htmlFor={id}
           required={required}
-          htmlFor={inputId.current}
         >
           {label}
         </Label>
-      ) : null}
+      )}
       <div className="dc-form-field__input">
         {typeof children === 'function'
-          ? children({
-            id: inputId.current,
-            required: Boolean(required),
-            invalid: Boolean(validationError),
-          })
+          ? children({ id, required, hasError })
           : children}
       </div>
-      {(function () {
-        if (validationError) {
-          return (
-            <Caption
-              className="dc-form-field__error"
-              showIcon={true}
-              appearance="error"
-            >
-              {validationError}
-            </Caption>
-          );
-        }
-        if (hint) {
-          return (
-            <Caption className="dc-form-field__hint">
-              {hint}
-            </Caption>
-          );
-        }
-        return null;
-      })()}
+      {captionEl}
     </div>
   );
 }
