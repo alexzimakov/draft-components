@@ -1,15 +1,15 @@
 .dc-switch {
-  --dc-switch-width: 2.375rem;
-  --dc-switch-height: 1.5rem;
+  --dc-switch-width: 38px;
+  --dc-switch-height: 24px;
   --dc-switch-track-color: var(--dc-gray-300);
   --dc-switch-track-color-checked: var(--dc-blue-500);
   --dc-switch-thumb-color: white;
-  --dc-switch-thumb-offset: 0.125rem;
+  --dc-switch-thumb-offset: 2px;
   --dc-switch-thumb-size: calc(var(--dc-switch-height) - var(--dc-switch-thumb-offset) * 2);
   --dc-switch-icon-color: var(--dc-blue-500);
   --dc-switch-focus-ring-color: var(--dc-focus-ring-color);
-  --dc-switch-focus-ring-offset: 0.125rem;
-  --dc-switch-focus-ring-width: 0.1875rem;
+  --dc-switch-focus-ring-offset: 2px;
+  --dc-switch-focus-ring-width: 3px;
 }
 
 .dc-switch__input {
@@ -18,7 +18,7 @@
 }
 
 .dc-switch__track {
-  font-size: 1rem;
+  font-size: 16px;
   position: relative;
   display: inline-flex;
   cursor: pointer;

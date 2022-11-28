@@ -1,13 +1,13 @@
 .dc-radio {
-  --dc-radio-size: 1.25rem;
+  --dc-radio-size: 20px;
   --dc-radio-background-color: white;
   --dc-radio-background-color-checked: var(--dc-blue-500);
   --dc-radio-border-color: var(--dc-gray-300);
   --dc-radio-border-color-checked: var(--dc-blue-500);
   --dc-radio-icon-color: white;
   --dc-radio-focus-ring-color: var(--dc-focus-ring-color);
-  --dc-radio-focus-ring-offset: 0.125rem;
-  --dc-radio-focus-ring-width: 0.1875rem;
+  --dc-radio-focus-ring-offset: 2px;
+  --dc-radio-focus-ring-width: 3px;
 }
 
 .dc-radio__input {
@@ -16,7 +16,7 @@
 }
 
 .dc-radio__check {
-  font-size: 1rem;
+  font-size: 16px;
   position: relative;
   display: inline-flex;
   cursor: pointer;
