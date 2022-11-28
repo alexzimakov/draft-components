@@ -1,13 +1,13 @@
 .dc-button {
   --dc-button-text-color: var(--dc-primary-text-color);
-  --dc-button-size: 2.25rem;
-  --dc-button-padding-x: 1rem;
-  --dc-button-border-radius: 0.5625rem;
+  --dc-button-size: 36px;
+  --dc-button-padding-x: 16px;
+  --dc-button-border-radius: 9px;
   --dc-button-border-color: rgb(17 24 39 / 10%);
   --dc-button-background: var(--dc-gray-50);
   --dc-button-background-hover: var(--dc-gray-100);
-  --dc-button-focus-ring-offset: 0.1875rem;
-  --dc-button-focus-ring-width: 0.1875rem;
+  --dc-button-focus-ring-offset: 3px;
+  --dc-button-focus-ring-width: 3px;
   --dc-button-focus-ring-color: var(--dc-focus-ring-color);
   --dc-button-shadow: 0 1px 1px rgb(17 24 39 / 5%);
 
@@ -93,33 +93,33 @@
 }
 
 .dc-button_xs {
-  --dc-button-size: 1.75rem;
-  --dc-button-padding-x: 0.5rem;
-  --dc-button-border-radius: 0.4375rem;
+  --dc-button-size: 28px;
+  --dc-button-padding-x: 8px;
+  --dc-button-border-radius: 7px;
 
   font-size: var(--dc-text-xs);
 }
 
 .dc-button_sm {
-  --dc-button-size: 2rem;
-  --dc-button-padding-x: 0.75rem;
-  --dc-button-border-radius: 0.5rem;
+  --dc-button-size: 32px;
+  --dc-button-padding-x: 12px;
+  --dc-button-border-radius: 8px;
 
   font-size: var(--dc-text-sm);
 }
 
 .dc-button_lg {
-  --dc-button-size: 2.5rem;
-  --dc-button-padding-x: 1.125rem;
-  --dc-button-border-radius: 0.625rem;
+  --dc-button-size: 40px;
+  --dc-button-padding-x: 18px;
+  --dc-button-border-radius: 10px;
 
   font-size: var(--dc-text-lg);
 }
 
 .dc-button_xl {
-  --dc-button-size: 2.75rem;
-  --dc-button-padding-x: 1.25rem;
-  --dc-button-border-radius: 0.6875rem;
+  --dc-button-size: 44px;
+  --dc-button-padding-x: 20px;
+  --dc-button-border-radius: 11px;
 
   font-size: var(--dc-text-lg);
 }

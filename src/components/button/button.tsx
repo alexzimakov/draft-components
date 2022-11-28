@@ -37,23 +37,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const shouldRenderIcon = Boolean(icon);
     const shouldRenderLabel = Boolean(children);
     const shouldRenderCaption = Boolean(caption);
-    const CSSClass = classNames('dc-button', className, {
-      'dc-button_xs': size === 'xs',
-      'dc-button_sm': size === 'sm',
-      'dc-button_md': size === 'md',
-      'dc-button_lg': size === 'lg',
-      'dc-button_xl': size === 'xl',
-      'dc-button_loading': loading,
-      'dc-button_has_icon': shouldRenderIcon,
-      'dc-button_has_caption': shouldRenderCaption,
-      'dc-button_appearance_default': appearance === 'default',
-      'dc-button_appearance_primary': appearance === 'primary',
-      'dc-button_appearance_danger': appearance === 'danger',
-      'dc-button_appearance_success': appearance === 'success',
-      'dc-button_variant_filled': variant === 'filled',
-      'dc-button_variant_tinted': variant === 'tinted',
-      'dc-button_variant_plain': variant === 'plain',
-    });
 
     let leadingAddOn: ReactNode = null;
     if (loading) {
@@ -84,9 +67,18 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       </>
     );
 
+    className = classNames('dc-button', className, {
+      [`dc-button_${size}`]: size !== undefined,
+      [`dc-button_appearance_${appearance}`]: appearance !== undefined,
+      [`dc-button_variant_${variant}`]: variant !== undefined,
+      'dc-button_loading': loading,
+      'dc-button_has_icon': shouldRenderIcon,
+      'dc-button_has_caption': shouldRenderCaption,
+    });
+
     if (typeof renderAs === 'function') {
       return renderAs({
-        className: CSSClass,
+        className,
         children: content,
       });
     }
@@ -96,7 +88,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type={type}
         disabled={disabled || loading}
-        className={CSSClass}
+        className={className}
         {...props}
       >
         {content}
