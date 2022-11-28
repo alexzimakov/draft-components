@@ -62,11 +62,11 @@ function renderPopover(placement, alignment) {
 Nested popovers
 
 ```jsx
-import {Popover} from '../popover';
-import {Button} from '../button';
-import {Checkbox} from '../checkbox';
-import {TextInput} from '../text-input';
-import {Textarea} from '../textarea';
+import { Popover } from '../popover';
+import { Button } from '../button';
+import { Checkbox } from '../checkbox';
+import { TextInput } from '../text-input';
+import { Textarea } from '../textarea';
 
 const Styles = {
   headline: {
@@ -134,7 +134,7 @@ const Styles = {
           minHeight: 92
         }}
         placeholder="Write a description"
-        fullWidth={true}
+        isBlock={true}
       />
       <Button
         style={Styles.field}

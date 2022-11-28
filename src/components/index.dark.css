@@ -1,6 +1,7 @@
 @import url("variables.dark.css");
 @import url("button/button.dark.css");
 @import url("text-input/text-input.dark.css");
+@import url("textarea/textarea.dark.css");
 @import url("switch/switch.dark.css");
 @import url("checkbox/checkbox.dark.css");
 @import url("radio/radio.dark.css");

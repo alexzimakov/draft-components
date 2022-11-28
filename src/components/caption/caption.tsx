@@ -7,7 +7,7 @@ export type CaptionAppearance =
   | 'success'
   | 'error'
   | 'warning';
-export type CaptionProps = ComponentPropsWithRef<'p'> & {
+export type CaptionProps = ComponentPropsWithRef<'div'> & {
   appearance?: CaptionAppearance;
   showIcon?: boolean;
 };
@@ -18,6 +18,7 @@ export const Caption = forwardRef<HTMLParagraphElement, CaptionProps>(
     showIcon = false,
     className = '',
     children,
+    ...props
   }, ref) {
     let icon: JSX.Element | null = null;
     if (showIcon) {
@@ -33,12 +34,12 @@ export const Caption = forwardRef<HTMLParagraphElement, CaptionProps>(
     }
 
     return (
-      <p ref={ref} className={classNames(className, 'dc-caption', {
+      <div {...props} ref={ref} className={classNames(className, 'dc-caption', {
         [`dc-caption_appearance_${appearance}`]: appearance !== undefined,
       })}>
         {icon}
         {children}
-      </p>
+      </div>
     );
   }
 );

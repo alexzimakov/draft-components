@@ -1,0 +1,100 @@
+.dc-textarea__container {
+  --dc-textarea-font-size: 14px;
+  --dc-textarea-text-color: var(--dc-primary-text-color);
+  --dc-textarea-line-height: 20px;
+  --dc-textarea-padding-y: 8px;
+  --dc-textarea-padding-x: 12px;
+  --dc-textarea-border-radius: 6px;
+  --dc-textarea-border-color: var(--dc-gray-300);
+  --dc-textarea-border-color-error: var(--dc-red-400);
+  --dc-textarea-background: white;
+  --dc-textarea-focus-ring-color: var(--dc-blue-500);
+
+  font-family: var(--dc-primary-font);
+  display: inline-flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  border: 1px solid var(--dc-textarea-border-color);
+  border-radius: var(--dc-textarea-border-radius);
+  background: var(--dc-textarea-background);
+}
+
+.dc-textarea__container:focus-within {
+  border-color: var(--dc-textarea-focus-ring-color);
+  outline: none;
+  box-shadow: 0 0 0 1px var(--dc-textarea-focus-ring-color);
+}
+
+.dc-textarea__container_disabled {
+  opacity: var(--dc-disabled-opacity);
+}
+
+.dc-textarea__container_has_error {
+  border-color: var(--dc-textarea-border-color-error);
+}
+
+.dc-textarea__container_block {
+  width: 100%;
+}
+
+.dc-textarea__container_size_sm {
+  --dc-textarea-font-size: 13px;
+  --dc-textarea-line-height: 16px;
+  --dc-textarea-padding-y: 8px;
+  --dc-textarea-padding-x: 8px;
+  --dc-textarea-border-radius: 5px;
+}
+
+.dc-textarea__container_size_lg {
+  --dc-textarea-font-size: 15px;
+  --dc-textarea-line-height: 24px;
+  --dc-textarea-padding-y: 12px;
+  --dc-textarea-padding-x: 16px;
+  --dc-textarea-border-radius: 7px;
+}
+
+.dc-textarea {
+  appearance: none;
+  font-family: inherit;
+  font-size: var(--dc-textarea-font-size);
+  line-height: var(--dc-textarea-line-height);
+  color: var(--dc-textarea-text-color);
+  min-height: var(--dc-textarea-line-height);
+  padding: var(--dc-textarea-padding-y) var(--dc-textarea-padding-x);
+  border: none;
+  background: none;
+}
+
+.dc-textarea::placeholder {
+  color: inherit;
+  opacity: 0.4;
+}
+
+.dc-textarea:focus {
+  outline: none;
+}
+
+.dc-textarea_width_30ch {
+  width: 30.5ch;
+}
+
+.dc-textarea_width_40ch {
+  width: 40.5ch;
+}
+
+.dc-textarea_width_60ch {
+  width: 60.5ch;
+}
+
+.dc-textarea_width_80ch {
+  width: 80.5ch;
+}
+
+.dc-textarea__character-count {
+  display: block;
+  padding: 8px var(--dc-textarea-padding-x);
+  border-top: 1px dashed var(--dc-textarea-border-color);
+}

@@ -7,8 +7,6 @@
   color: var(--dc-caption-text-color);
   display: block;
   align-items: center;
-  margin: 0;
-  padding: 0;
 }
 
 .dc-caption_appearance_info {
