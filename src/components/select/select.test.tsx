@@ -1,53 +1,92 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { render, screen } from '@testing-library/react';
 import { Select } from './select';
 
-const options = (
-  <>
-    <option>Chrome</option>
-    <option>Firefox</option>
-    <option>Internet Explorer</option>
-    <option>Opera</option>
-    <option>Safari</option>
-    <option>Microsoft Edge</option>
-  </>
-);
-
 it('renders without errors', () => {
-  render(<Select>{options}</Select>);
-});
+  render(
+    <Select>
+      <option>Chrome</option>
+      <option>Firefox</option>
+      <option>Safari</option>
+      <option>Opera</option>
+    </Select>
+  );
 
-it('invokes `onChange` callback', () => {
-  const onChange = jest.fn();
-  const eventMock = {
-    target: { value: 'Firefox' },
-  };
-  render(<Select onChange={onChange}>{options}</Select>);
-
-  fireEvent.change(screen.getByRole('combobox'), eventMock);
-  expect(onChange).toHaveBeenCalledTimes(1);
-});
-
-it('invokes `onChangeValue` with selected value', () => {
-  const onChangeValue = jest.fn();
-  const eventMock = {
-    target: { value: 'Firefox' },
-  };
-  render(<Select onChangeValue={onChangeValue}>{options}</Select>);
-
-  fireEvent.change(screen.getByRole('combobox'), eventMock);
-  expect(onChangeValue).toHaveBeenCalledTimes(1);
-  expect(onChangeValue).toHaveBeenNthCalledWith(1, eventMock.target.value);
+  screen.getByRole('combobox');
+  expect(screen.getAllByRole('option')).toHaveLength(4);
 });
 
 it('should forward extra attrs to underlying <select />', () => {
   const attrs = {
-    title: 'Browser',
-    multiple: true,
+    'aria-label': 'Browser',
+    name: 'browser',
     required: true,
   };
-  render(<Select {...attrs}>{options}</Select>);
-  const selectEl = screen.getByTitle(attrs.title);
+  render(
+    <Select {...attrs}>
+      <option>Chrome</option>
+      <option>Firefox</option>
+      <option>Safari</option>
+      <option>Opera</option>
+    </Select>
+  );
 
-  expect(selectEl).toHaveAttribute('multiple', '');
+  const selectEl = screen.getByRole('combobox');
+  expect(selectEl).toHaveAttribute('aria-label', attrs['aria-label']);
+  expect(selectEl).toHaveAttribute('name', attrs.name);
   expect(selectEl).toHaveAttribute('required', '');
+});
+
+it('invokes `onChange` callback', async () => {
+  const user = userEvent.setup();
+  const onChangeMock = jest.fn();
+  render(
+    <Select onChange={onChangeMock}>
+      <option value="1">A</option>
+      <option value="2">B</option>
+      <option value="3">C</option>
+    </Select>
+  );
+
+  await user.selectOptions(screen.getByRole('combobox'), ['A']);
+
+  expect(onChangeMock).toHaveBeenCalledTimes(1);
+  expect(onChangeMock).toHaveBeenNthCalledWith(1, expect.objectContaining({
+    target: expect.any(window.HTMLSelectElement),
+  }));
+});
+
+it('invokes `onChangeValue` callback with selected value', async () => {
+  const user = userEvent.setup();
+  const onChangeValueMock = jest.fn();
+  render(
+    <Select onChangeValue={onChangeValueMock}>
+      <option value="1">A</option>
+      <option value="2">B</option>
+      <option value="3">C</option>
+    </Select>
+  );
+
+  await user.selectOptions(screen.getByRole('combobox'), ['A']);
+
+  expect(onChangeValueMock).toHaveBeenCalledTimes(1);
+  expect(onChangeValueMock).toHaveBeenNthCalledWith(1, '1');
+});
+
+it('invokes `onChangeValue` callback with selected values list', async () => {
+  const user = userEvent.setup();
+  const onChangeValueMock = jest.fn();
+  render(
+    <Select multiple={true} onChangeValue={onChangeValueMock}>
+      <option value="1">A</option>
+      <option value="2">B</option>
+      <option value="3">C</option>
+    </Select>
+  );
+
+  await user.selectOptions(screen.getByRole('listbox'), ['A', 'C']);
+
+  expect(onChangeValueMock).toHaveBeenCalledTimes(2);
+  expect(onChangeValueMock).toHaveBeenNthCalledWith(1, ['1']);
+  expect(onChangeValueMock).toHaveBeenNthCalledWith(2, ['1', '3']);
 });
