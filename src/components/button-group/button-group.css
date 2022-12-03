@@ -1,0 +1,21 @@
+.dc-button-group {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dc-button-group > .dc-button:focus::after {
+  z-index: 1;
+}
+
+.dc-button-group > .dc-button + .dc-button,
+.dc-button-group > .dc-button + .dc-button:focus::after {
+  border-left-width: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.dc-button-group > .dc-button:first-child:not(:last-child),
+.dc-button-group > .dc-button:first-child:not(:last-child):focus::after {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}

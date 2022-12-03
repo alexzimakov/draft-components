@@ -4,7 +4,7 @@ export * from './avatar';
 export * from './box';
 export * from './breadcrumb';
 export * from './button';
-export * from './buttons-group';
+export * from './button-group';
 export * from './checkbox';
 export * from './date-picker';
 export * from './date-picker-popover';
