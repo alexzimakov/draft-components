@@ -4,7 +4,11 @@
  */
 
 module.exports = {
-  collectCoverageFrom: ['**/*.{ts,tsx}', '!**/index.*'],
+  collectCoverageFrom: [
+    '**/*.{ts,tsx}',
+    '!**/index.*',
+    '!**/*.stories.{ts,tsx}',
+  ],
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: [
     '/node_modules/',
