@@ -9,7 +9,6 @@ export * from './checkbox';
 export * from './date-picker';
 export * from './date-picker-popover';
 export * from './date-preset-picker-popover';
-export * from './datetime-input';
 export * from './dialog';
 export * from './file-input';
 export * from './form-field';
