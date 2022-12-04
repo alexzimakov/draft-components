@@ -16,8 +16,8 @@ type SelectBaseProps = Omit<SelectHTMLProps,
 export type SelectSize = 'sm' | 'md' | 'lg';
 export type SelectProps = SelectBaseProps & ({
   multiple?: false;
-  value?: string;
-  defaultValue?: string;
+  value?: string | number;
+  defaultValue?: string | number;
   onChangeValue?: (value: string) => void;
 } | {
   multiple: true;

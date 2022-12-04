@@ -7,7 +7,6 @@
   --dc-select-border-color: var(--dc-gray-300);
   --dc-select-border-color-error: var(--dc-red-400);
   --dc-select-background: white;
-  --dc-select-shadow-color: rgb(0 0 0 / 5%);
   --dc-select-icon-size: 12px;
   --dc-select-focus-ring-color: var(--dc-blue-500);
 
@@ -26,7 +25,6 @@
   border: 1px solid var(--dc-select-border-color);
   border-radius: var(--dc-select-border-radius);
   background: var(--dc-select-background);
-  box-shadow: 0 1px 1px 0 var(--dc-select-shadow-color);
 }
 
 .dc-select__container:focus-within {
@@ -80,14 +78,18 @@
   background: none;
 }
 
-.dc-select:focus {
-  outline: none;
-}
-
 .dc-select__container_multiple .dc-select {
   margin-top: var(--dc-select-border-radius);
   margin-bottom: var(--dc-select-border-radius);
   padding: 0;
+}
+
+.dc-select:focus {
+  outline: none;
+}
+
+.dc-select:not(:disabled):hover {
+  cursor: pointer;
 }
 
 .dc-select__icon {
