@@ -19,7 +19,6 @@
   color: var(--dc-button-text-color);
   position: relative;
   display: inline-flex;
-  cursor: pointer;
   user-select: none;
   align-items: center;
   justify-content: center;
@@ -54,14 +53,14 @@
   content: none;
 }
 
-.dc-button:not(.dc-button_loading):hover {
-  background: var(--dc-button-background-hover);
-}
-
 .dc-button:not(.dc-button_loading):disabled {
   opacity: 0.5;
-  cursor: default;
   background: var(--dc-button-background);
+}
+
+.dc-button:not(.dc-button_loading, :disabled):hover {
+  cursor: pointer;
+  background: var(--dc-button-background-hover);
 }
 
 .dc-button_variant_plain:focus::after {
