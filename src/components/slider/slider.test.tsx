@@ -7,38 +7,48 @@ it('renders without errors', () => {
 });
 
 it('renders without errors with tick marks', () => {
-  render(<Slider value={50} onChangeValue={jest.fn()} numberOfTickMarks={5} />);
+  const tickMarksCount = 5;
+  render(
+    <Slider
+      tickMarksCount={tickMarksCount}
+      value={50}
+      onChangeValue={jest.fn()}
+    />
+  );
+
   screen.getByRole('slider');
+  expect(screen.getAllByTestId('tick-mark')).toHaveLength(tickMarksCount);
 });
 
 it('renders tick mark lables', () => {
-  const tickLabel1 = 'Small';
-  const tickLabel2 = 'Large';
+  const firstTickLabel = 'Small';
+  const lastTickLabel = 'Large';
   render(
     <Slider
+      tickMarksCount={2}
       value={50}
       onChangeValue={jest.fn()}
-      numberOfTickMarks={2}
       renderTickMarkLabel={(index) => {
         if (index === 0) {
-          return tickLabel1;
-        } else if (index === 1) {
-          return tickLabel2;
+          return firstTickLabel;
+        } else {
+          return lastTickLabel;
         }
       }}
     />
   );
+
   screen.getByRole('slider');
-  screen.getByText(tickLabel1);
-  screen.getByText(tickLabel2);
+  screen.getByText(firstTickLabel);
+  screen.getByText(lastTickLabel);
 });
 
 it('invokes `onChangeValue` when value changes', () => {
-  const onChangeValue = jest.fn();
-  render(<Slider value={50} onChangeValue={onChangeValue} />);
+  const onChangeValueMock = jest.fn();
+  render(<Slider value={50} onChangeValue={onChangeValueMock} />);
 
   fireEvent.change(screen.getByRole('slider'), { target: { value: '51' } });
 
-  expect(onChangeValue).toHaveBeenCalledTimes(1);
-  expect(onChangeValue).toHaveBeenNthCalledWith(1, 51);
+  expect(onChangeValueMock).toHaveBeenCalledTimes(1);
+  expect(onChangeValueMock).toHaveBeenNthCalledWith(1, 51);
 });
