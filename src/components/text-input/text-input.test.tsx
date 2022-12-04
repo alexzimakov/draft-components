@@ -53,8 +53,7 @@ it('invokes `onChange` event handler', async () => {
   const onChangeMock = jest.fn();
   render(<TextInput placeholder={placeholder} onChange={onChangeMock} />);
 
-  await user.click(screen.getByPlaceholderText(placeholder));
-  await user.keyboard(name);
+  await user.type(screen.getByPlaceholderText(placeholder), name);
 
   expect(onChangeMock).toHaveBeenCalledTimes(name.length);
 });
@@ -69,8 +68,7 @@ it('invokes `onChangeValue` callback with changed value', async () => {
     onChangeValue={onChangeValueMock}
   />);
 
-  await user.click(screen.getByPlaceholderText(placeholder));
-  await user.keyboard(name);
+  await user.type(screen.getByPlaceholderText(placeholder), name);
 
   expect(onChangeValueMock).toHaveBeenCalledTimes(name.length);
   for (let n = 1; n <= name.length; n += 1) {

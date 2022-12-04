@@ -70,8 +70,7 @@ it('invokes `onChange` event handler', async () => {
   const onChangeMock = jest.fn();
   render(<Textarea onChange={onChangeMock} />);
 
-  await user.click(screen.getByRole('textbox'));
-  await user.keyboard(message);
+  await user.type(screen.getByRole('textbox'), message);
 
   expect(onChangeMock).toHaveBeenCalledTimes(message.length);
 });
@@ -82,8 +81,7 @@ it('invokes `onChangeValue` with changed value', async () => {
   const onChangeValue = jest.fn();
   render(<Textarea onChangeValue={onChangeValue} />);
 
-  await user.click(screen.getByRole('textbox'));
-  await user.keyboard(message);
+  await user.type(screen.getByRole('textbox'), message);
 
   expect(onChangeValue).toHaveBeenCalledTimes(message.length);
   for (let n = 1; n <= message.length; n += 1) {
