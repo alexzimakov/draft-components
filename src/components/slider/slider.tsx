@@ -1,4 +1,4 @@
-import { type ComponentPropsWithRef } from 'react';
+import { forwardRef, type ComponentPropsWithRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { SliderTickMarks, type SliderTickMarksProps } from './slider-tick-marks';
 
@@ -26,7 +26,10 @@ export type SliderProps = {
   & SliderBaseProps
   & Partial<SliderTickMarksProps>;
 
-export function Slider({
+export const Slider = forwardRef<
+  HTMLInputElement,
+  SliderProps
+>(function Slider({
   thumbStyle = 'round',
   tickMarksCount = 0,
   renderTickMarkLabel,
@@ -41,7 +44,7 @@ export function Slider({
   onChange,
   onChangeValue,
   ...props
-}: SliderProps) {
+}, ref) {
   defaultValue = value == null ? defaultValue || 0 : undefined;
   return (
     <div
@@ -53,6 +56,7 @@ export function Slider({
     >
       <input
         {...props}
+        ref={ref}
         style={{
           background: getTrackBackground({
             min,
@@ -82,7 +86,7 @@ export function Slider({
       />
     </div>
   );
-}
+});
 
 function getTrackBackground(params: {
   min?: number,
