@@ -10,7 +10,7 @@ export * from './date-picker';
 export * from './date-picker-popover';
 export * from './date-preset-picker-popover';
 export * from './dialog';
-export * from './file-input';
+export * from './file-picker';
 export * from './form-field';
 export * from './caption';
 export * from './label';
