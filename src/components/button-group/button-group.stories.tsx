@@ -1,10 +1,14 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react';
 import { ButtonGroup } from './button-group';
-import { IconButton } from '../button';
+import { Button, IconButton } from '../button';
 
 export default {
   title: 'ButtonGroup',
-  default: ButtonGroup,
+  component: ButtonGroup,
+  subcomponents: {
+    Button,
+    IconButton,
+  },
 } as ComponentMeta<typeof ButtonGroup>;
 
 export const Basic: ComponentStory<typeof ButtonGroup> = (args) => (

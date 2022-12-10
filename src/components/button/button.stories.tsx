@@ -19,6 +19,7 @@ const icons = {
       fill="none"
       stroke="currentColor"
       strokeWidth={1.5}
+      aria-hidden={true}
     >
       <path
         strokeLinecap="round"
@@ -36,6 +37,7 @@ const icons = {
       fill="none"
       stroke="currentColor"
       strokeWidth={1.5}
+      aria-hidden={true}
     >
       <path
         strokeLinecap="round"
@@ -51,6 +53,7 @@ const icons = {
       width="1.25em"
       height="1.25em"
       fill="currentColor"
+      aria-hidden={true}
     >
       <path
         fillRule="evenodd"
@@ -68,6 +71,7 @@ const icons = {
       fill="none"
       stroke="currentColor"
       strokeWidth={1.5}
+      aria-hidden={true}
     >
       <path
         strokeLinecap="round"
@@ -85,6 +89,7 @@ const icons = {
       fill="none"
       stroke="currentColor"
       strokeWidth={1.5}
+      aria-hidden={true}
     >
       <path
         strokeLinecap="round"
@@ -98,6 +103,14 @@ const icons = {
 export default {
   title: 'Button',
   component: Button,
+  subcomponents: { IconButton },
+  args: {
+    appearance: 'default',
+    variant: 'filled',
+    size: 'sm',
+    loading: false,
+    disabled: false,
+  },
   argTypes: {
     icon: {
       options: ['No icon', ...Object.keys(icons)],
@@ -130,11 +143,6 @@ Basic.argTypes = {
 };
 Basic.args = {
   children: 'Create account',
-  size: 'sm',
-  appearance: 'default',
-  variant: 'filled',
-  loading: false,
-  disabled: false,
 };
 
 export const Loading = Basic.bind({});
@@ -178,10 +186,6 @@ Sizes.parameters = {
 Sizes.args = {
   children: 'Read the docs',
   icon: 'BookOpen',
-  variant: 'filled',
-  appearance: 'default',
-  loading: false,
-  disabled: false,
 };
 
 export const Styles = (args: ButtonProps) => {
@@ -221,8 +225,6 @@ Styles.parameters = {
 Styles.args = {
   children: 'Do not disturb',
   icon: 'Moon',
-  loading: false,
-  disabled: false,
 };
 
 export const IconOnlyButton: ComponentStory<typeof IconButton> = (args) => (
