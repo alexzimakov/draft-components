@@ -1,13 +1,11 @@
 .dc-radio {
   --dc-radio-size: 20px;
-  --dc-radio-background-color: white;
-  --dc-radio-background-color-checked: var(--dc-blue-500);
-  --dc-radio-border-color: var(--dc-gray-300);
-  --dc-radio-border-color-checked: var(--dc-blue-500);
-  --dc-radio-icon-color: white;
-  --dc-radio-focus-ring-color: var(--dc-focus-ring-color);
-  --dc-radio-focus-ring-offset: 2px;
-  --dc-radio-focus-ring-width: 3px;
+  --dc-radio-color-bg: var(--dc-control-bg);
+  --dc-radio-color-bg-checked: var(--dc-control-primary-color);
+  --dc-radio-color-border: var(--dc-control-border-color);
+  --dc-radio-color-border-checked: var(--dc-control-primary-color);
+  --dc-radio-color-icon: var(--dc-control-on-primary-color);
+  --dc-radio-color-focus-ring: var(--dc-focus-ring-color);
 }
 
 .dc-radio__input {
@@ -28,19 +26,19 @@
   height: var(--dc-radio-size);
   transition: opacity 0.2s;
   vertical-align: middle;
-  border: 1px solid var(--dc-radio-border-color);
+  border: 1px solid var(--dc-radio-color-border);
   border-radius: 50%;
-  background: var(--dc-radio-background-color);
+  background: var(--dc-radio-color-bg);
 }
 
 .dc-radio__icon {
-  color: var(--dc-radio-icon-color);
+  color: var(--dc-radio-color-icon);
   display: none;
 }
 
 .dc-radio__input:checked + .dc-radio__check {
-  border-color: var(--dc-radio-border-color-checked);
-  background: var(--dc-radio-background-color-checked);
+  border-color: var(--dc-radio-color-border-checked);
+  background: var(--dc-radio-color-bg-checked);
 }
 
 .dc-radio__input:checked + .dc-radio__check .dc-radio__icon {
@@ -48,7 +46,7 @@
 }
 
 .dc-radio__input:disabled + .dc-radio__check {
-  opacity: var(--dc-disabled-opacity);
+  opacity: var(--dc-disabled-state-opacity);
   cursor: default;
 }
 
@@ -60,12 +58,9 @@
   content: "";
   position: absolute;
   z-index: -1;
-  top: calc(-1px - var(--dc-radio-focus-ring-offset));
-  right: calc(-1px - var(--dc-radio-focus-ring-offset));
-  bottom: calc(-1px - var(--dc-radio-focus-ring-offset));
-  left: calc(-1px - var(--dc-radio-focus-ring-offset));
+  inset: -3px;
   border-radius: 50%;
-  box-shadow: 0 0 0 var(--dc-radio-focus-ring-width) var(--dc-radio-focus-ring-color);
+  box-shadow: 0 0 0 3px var(--dc-radio-color-focus-ring);
 }
 
 .dc-radio__input:focus:not(:focus-visible) + .dc-radio__check::after {

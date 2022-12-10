@@ -1,15 +1,15 @@
 .dc-text-input__container {
   --dc-input-font-size: 14px;
-  --dc-input-text-color: var(--dc-primary-text-color);
   --dc-input-height: 36px;
   --dc-input-padding-x: 12px;
   --dc-input-border-radius: 6px;
-  --dc-input-border-color: var(--dc-gray-300);
-  --dc-input-border-color-invalid: var(--dc-red-400);
-  --dc-input-background: white;
-  --dc-input-prefix-text-color: var(--dc-secondary-text-color);
-  --dc-input-suffix-text-color: var(--dc-secondary-text-color);
-  --dc-input-focus-ring-color: var(--dc-blue-500);
+  --dc-input-text-color: var(--dc-control-primary-text-color);
+  --dc-input-border-color: var(--dc-control-border-color);
+  --dc-input-border-color-error: var(--dc-control-error-color);
+  --dc-input-bg: var(--dc-control-bg);
+  --dc-input-prefix-color: var(--dc-control-secondary-text-color);
+  --dc-input-suffix-color: var(--dc-control-secondary-text-color);
+  --dc-input-focus-ring-color: var(--dc-control-primary-color);
 
   font-family: var(--dc-primary-font);
   font-size: var(--dc-input-font-size);
@@ -24,7 +24,7 @@
   vertical-align: middle;
   border: 1px solid var(--dc-input-border-color);
   border-radius: var(--dc-input-border-radius);
-  background: var(--dc-input-background);
+  background: var(--dc-input-bg);
 }
 
 .dc-text-input__container:focus-within {
@@ -33,11 +33,11 @@
 }
 
 .dc-text-input__container_disabled {
-  opacity: var(--dc-disabled-opacity);
+  opacity: var(--dc-disabled-state-opacity);
 }
 
 .dc-text-input__container_has_error {
-  border-color: var(--dc-input-border-color-invalid);
+  border-color: var(--dc-input-border-color-error);
 }
 
 .dc-text-input__container_block {
@@ -117,7 +117,7 @@
 }
 
 .dc-text-input__prefix {
-  color: var(--dc-input-prefix-text-color);
+  color: var(--dc-input-prefix-color);
   padding-left: var(--dc-input-padding-x);
 }
 
@@ -126,7 +126,7 @@
 }
 
 .dc-text-input__suffix {
-  color: var(--dc-input-suffix-text-color);
+  color: var(--dc-input-suffix-color);
   padding-right: var(--dc-input-padding-x);
 }
 

@@ -99,9 +99,9 @@ function getTrackBackground(params: {
   const valuePct = ((value - min) / (max - min) * 100).toFixed(2);
   return `linear-gradient(
     to right,
-    var(--dc-slider-track-background-fill) 0%,
-    var(--dc-slider-track-background-fill) ${valuePct}%,
-    var(--dc-slider-track-background) ${valuePct}%,
-    var(--dc-slider-track-background) ${valuePct}%
+    var(--dc-slider-track-bg-fill) 0%,
+    var(--dc-slider-track-bg-fill) ${valuePct}%,
+    var(--dc-slider-track-bg) ${valuePct}%,
+    var(--dc-slider-track-bg) ${valuePct}%
   )`;
 }

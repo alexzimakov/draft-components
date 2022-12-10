@@ -1,11 +1,9 @@
 .dc-label {
   --dc-label-text-color: var(--dc-primary-text-color);
-  --dc-label-required-mark-color: var(--dc-red-500);
+  --dc-label-required-mark-color: #dc2626;
 
-  font-family: var(--dc-primary-font);
-  font-size: 14px;
+  font: var(--dc-text-sm);
   font-weight: 500;
-  line-height: 20px;
   color: var(--dc-label-text-color);
   display: inline-block;
 }

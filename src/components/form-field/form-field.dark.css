@@ -1,0 +1,13 @@
+.dc-form-field {
+  display: block;
+}
+
+.dc-form-field__label {
+  margin-bottom: 4px;
+}
+
+.dc-form-field__error,
+.dc-form-field__caption {
+  display: block;
+  margin-top: 4px;
+}

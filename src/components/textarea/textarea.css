@@ -1,14 +1,14 @@
 .dc-textarea__container {
   --dc-textarea-font-size: 14px;
-  --dc-textarea-text-color: var(--dc-primary-text-color);
-  --dc-textarea-line-height: 20px;
+  --dc-textarea-leading: 20px;
   --dc-textarea-padding-y: 8px;
   --dc-textarea-padding-x: 12px;
-  --dc-textarea-border-radius: 6px;
-  --dc-textarea-border-color: var(--dc-gray-300);
-  --dc-textarea-border-color-error: var(--dc-red-400);
-  --dc-textarea-background: white;
-  --dc-textarea-focus-ring-color: var(--dc-blue-500);
+  --dc-textarea-radius: 6px;
+  --dc-textarea-text-color: var(--dc-primary-text-color);
+  --dc-textarea-border-color: var(--dc-control-border-color);
+  --dc-textarea-border-color-error: var(--dc-control-error-color);
+  --dc-textarea-bg: var(--dc-control-bg);
+  --dc-textarea-focus-ring-color: var(--dc-control-primary-color);
 
   font-family: var(--dc-primary-font);
   display: inline-flex;
@@ -18,8 +18,8 @@
   min-width: 0;
   max-width: 100%;
   border: 1px solid var(--dc-textarea-border-color);
-  border-radius: var(--dc-textarea-border-radius);
-  background: var(--dc-textarea-background);
+  border-radius: var(--dc-textarea-radius);
+  background: var(--dc-textarea-bg);
 }
 
 .dc-textarea__container:focus-within {
@@ -29,7 +29,7 @@
 }
 
 .dc-textarea__container_disabled {
-  opacity: var(--dc-disabled-opacity);
+  opacity: var(--dc-disabled-state-opacity);
 }
 
 .dc-textarea__container_has_error {
@@ -42,27 +42,28 @@
 
 .dc-textarea__container_size_sm {
   --dc-textarea-font-size: 13px;
-  --dc-textarea-line-height: 16px;
+  --dc-textarea-leading: 16px;
   --dc-textarea-padding-y: 8px;
   --dc-textarea-padding-x: 8px;
-  --dc-textarea-border-radius: 5px;
+  --dc-textarea-radius: 5px;
 }
 
 .dc-textarea__container_size_lg {
   --dc-textarea-font-size: 15px;
-  --dc-textarea-line-height: 24px;
+  --dc-textarea-leading: 24px;
   --dc-textarea-padding-y: 12px;
   --dc-textarea-padding-x: 16px;
-  --dc-textarea-border-radius: 7px;
+  --dc-textarea-radius: 7px;
 }
 
 .dc-textarea {
   appearance: none;
   font-family: inherit;
   font-size: var(--dc-textarea-font-size);
-  line-height: var(--dc-textarea-line-height);
+  line-height: var(--dc-textarea-leading);
   color: var(--dc-textarea-text-color);
-  min-height: var(--dc-textarea-line-height);
+  min-width: 192px;
+  min-height: var(--dc-textarea-leading);
   padding: var(--dc-textarea-padding-y) var(--dc-textarea-padding-x);
   border: none;
   background: none;

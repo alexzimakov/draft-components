@@ -1,14 +1,12 @@
 .dc-checkbox {
   --dc-checkbox-size: 20px;
-  --dc-checkbox-border-radius: 6px;
-  --dc-checkbox-background-color: white;
-  --dc-checkbox-background-color-checked: var(--dc-blue-500);
-  --dc-checkbox-border-color: var(--dc-gray-300);
-  --dc-checkbox-border-color-checked: var(--dc-blue-500);
-  --dc-checkbox-icon-color: white;
+  --dc-checkbox-radius: 6px;
+  --dc-checkbox-bg: var(--dc-control-bg);
+  --dc-checkbox-bg-checked: var(--dc-control-primary-color);
+  --dc-checkbox-border-color: var(--dc-control-border-color);
+  --dc-checkbox-border-color-checked: var(--dc-control-primary-color);
+  --dc-checkbox-icon-color: var(--dc-control-on-primary-color);
   --dc-checkbox-focus-ring-color: var(--dc-focus-ring-color);
-  --dc-checkbox-focus-ring-offset: 2px;
-  --dc-checkbox-focus-ring-width: 3px;
 }
 
 .dc-checkbox__input {
@@ -30,8 +28,8 @@
   transition: opacity 0.2s;
   vertical-align: middle;
   border: 1px solid var(--dc-checkbox-border-color);
-  border-radius: var(--dc-checkbox-border-radius);
-  background: var(--dc-checkbox-background-color);
+  border-radius: var(--dc-checkbox-radius);
+  background: var(--dc-checkbox-bg);
 }
 
 .dc-checkbox__icon {
@@ -41,7 +39,7 @@
 
 .dc-checkbox__input:checked + .dc-checkbox__check {
   border-color: var(--dc-checkbox-border-color-checked);
-  background: var(--dc-checkbox-background-color-checked);
+  background: var(--dc-checkbox-bg-checked);
 }
 
 .dc-checkbox__input:checked + .dc-checkbox__check .dc-checkbox__icon {
@@ -49,7 +47,7 @@
 }
 
 .dc-checkbox__input:disabled + .dc-checkbox__check {
-  opacity: var(--dc-disabled-opacity);
+  opacity: var(--dc-disabled-state-opacity);
   cursor: default;
 }
 
@@ -61,12 +59,9 @@
   content: "";
   position: absolute;
   z-index: -1;
-  top: calc(-1px - var(--dc-checkbox-focus-ring-offset));
-  right: calc(-1px - var(--dc-checkbox-focus-ring-offset));
-  bottom: calc(-1px - var(--dc-checkbox-focus-ring-offset));
-  left: calc(-1px - var(--dc-checkbox-focus-ring-offset));
-  border-radius: calc(var(--dc-checkbox-border-radius) + var(--dc-checkbox-focus-ring-offset));
-  box-shadow: 0 0 0 var(--dc-checkbox-focus-ring-width) var(--dc-checkbox-focus-ring-color);
+  inset: -3px;
+  border-radius: calc(3px + var(--dc-checkbox-radius));
+  box-shadow: 0 0 0 3px var(--dc-checkbox-focus-ring-color);
 }
 
 .dc-checkbox__input:focus:not(:focus-visible) + .dc-checkbox__check::after {

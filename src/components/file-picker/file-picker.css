@@ -1,10 +1,10 @@
 .dc-file-picker {
-  --dc-file-picker-icon-color: var(--dc-secondary-text-color);
-  --dc-file-picker-label-color: var(--dc-primary-text-color);
-  --dc-file-picker-caption-color: var(--dc-secondary-text-color);
-  --dc-file-picker-border-color: var(--dc-gray-400);
-  --dc-file-picker-border-color-drag-over: var(--dc-blue-500);
-  --dc-file-picker-background-drag-over: rgb(59 130 246 / 5%);
+  --dc-file-picker-label-color: var(--dc-control-primary-text-color);
+  --dc-file-picker-icon-color: var(--dc-control-secondary-text-color);
+  --dc-file-picker-caption-color: var(--dc-control-secondary-text-color);
+  --dc-file-picker-border-color: var(--dc-control-border-color);
+  --dc-file-picker-border-color-drag-over: var(--dc-control-primary-color);
+  --dc-file-picker-bg-drag-over: var(--dc-control-secondary-color);
 
   position: relative;
   display: inline-flex;
@@ -55,7 +55,7 @@
 }
 
 .dc-file-picker_disabled {
-  opacity: var(--dc-disabled-opacity);
+  opacity: var(--dc-disabled-state-opacity);
 }
 
 .dc-file-picker_disabled .dc-file-picker__button {
@@ -64,5 +64,5 @@
 
 .dc-file-picker_dragging-over {
   border-color: var(--dc-file-picker-border-color-drag-over);
-  background: var(--dc-file-picker-background-drag-over);
+  background: var(--dc-file-picker-bg-drag-over);
 }

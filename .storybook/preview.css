@@ -1,3 +1,7 @@
 body {
   font-family: var(--dc-primary-font);
+  color: var(--dc-primary-text-color);
+  transition-duration: 0.3s;
+  transition-property: color, background-color;
+  background: var(--dc-bg);
 }

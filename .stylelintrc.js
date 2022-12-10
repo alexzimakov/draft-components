@@ -2,9 +2,15 @@ module.exports = {
   extends: 'stylelint-config-standard',
   plugins: ['stylelint-order'],
   rules: {
+    'alpha-value-notation': 'number',
+    'color-function-notation': 'legacy',
     'comment-empty-line-before': ['always', {
       except: ['first-nested'],
       ignore: ['after-comment', 'stylelint-commands'],
+    }],
+    'hue-degree-notation': 'number',
+    'length-zero-no-unit': [true, {
+      ignore: ['custom-properties'],
     }],
     'selector-class-pattern': false,
     'value-list-comma-newline-after': false,

@@ -1,31 +1,28 @@
 .dc-caption {
-  --dc-caption-text-color: var(--dc-secondary-text-color);
-
-  font-family: var(--dc-primary-font);
-  font-size: 14px;
-  line-height: 20px;
-  color: var(--dc-caption-text-color);
+  font: var(--dc-text-sm);
+  color: var(--dc-secondary-text-color);
   display: block;
   align-items: center;
 }
 
 .dc-caption_appearance_info {
-  --dc-caption-text-color: var(--dc-blue-500);
+  color: var(--dc-info-text-color);
 }
 
 .dc-caption_appearance_success {
-  --dc-caption-text-color: var(--dc-green-500);
+  color: var(--dc-success-text-color);
 }
 
 .dc-caption_appearance_error {
-  --dc-caption-text-color: var(--dc-red-500);
+  color: var(--dc-error-text-color);
 }
 
 .dc-caption_appearance_warning {
-  --dc-caption-text-color: var(--dc-amber-500);
+  color: var(--dc-warning-text-color);
 }
 
 .dc-caption__icon {
+  color: inherit;
   float: left;
   width: 20px;
   height: 20px;

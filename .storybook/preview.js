@@ -36,26 +36,13 @@ export const globalTypes = {
   },
 };
 
-const lightThemeStyle = { color: '#111827', backgroundColor: '#fff' };
-const darkThemeStyle = { color: '#fff', backgroundColor: '#111827' };
 const withTheme = (storyFn, context) => {
   const theme = context.globals.theme || 'light';
 
   useLayoutEffect(() => {
-    const body = document.body;
-    const style = theme === 'light' ? lightThemeStyle : darkThemeStyle;
-    body.classList.add(theme);
-    body.dataset.theme = theme;
-    body.style.transition = 'color .3s, background-color .3s';
-    body.style.color = style.color;
-    body.style.backgroundColor = style.backgroundColor;
-
+    document.body.classList.add(theme);
     return () => {
-      body.classList.remove(theme);
-      delete body.dataset.theme;
-      delete body.style.transition;
-      delete body.style.color;
-      delete body.style.backgroundColor;
+      document.body.classList.remove(theme);
     };
   }, [theme]);
 

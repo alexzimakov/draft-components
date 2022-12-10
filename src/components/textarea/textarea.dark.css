@@ -1,8 +1,0 @@
-.dark .dc-textarea__container,
-.dark.dc-textarea__container {
-  --dc-textarea-text-color: var(--dc-primary-text-color-dark);
-  --dc-textarea-border-color: var(--dc-gray-700);
-  --dc-textarea-border-color-error: var(--dc-red-500);
-  --dc-textarea-background: var(--dc-gray-800);
-  --dc-textarea-focus-ring-color: var(--dc-blue-500);
-}

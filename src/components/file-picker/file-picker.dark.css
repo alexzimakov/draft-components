@@ -1,9 +1,0 @@
-.dark .dc-file-picker,
-.dark.dc-file-picker {
-  --dc-file-picker-icon-color: var(--dc-secondary-text-color-dark);
-  --dc-file-picker-label-color: var(--dc-primary-text-color-dark);
-  --dc-file-picker-caption-color: var(--dc-secondary-text-color-dark);
-  --dc-file-picker-border-color: var(--dc-gray-500);
-  --dc-file-picker-border-color-drag-over: var(--dc-blue-600);
-  --dc-file-picker-background-drag-over: rgb(96 165 250 / 15%);
-}

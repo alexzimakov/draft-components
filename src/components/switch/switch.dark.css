@@ -1,6 +1,0 @@
-.dark .dc-switch,
-.dark.dc-switch {
-  --dc-switch-track-color: var(--dc-gray-500);
-  --dc-switch-track-color-checked: var(--dc-blue-500);
-  --dc-switch-focus-ring-color: var(--dc-focus-ring-color-dark);
-}

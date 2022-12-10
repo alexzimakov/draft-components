@@ -1,9 +1,0 @@
-.dark .dc-radio,
-.dark.dc-radio {
-  --dc-radio-background-color: var(--dc-gray-700);
-  --dc-radio-background-color-checked: var(--dc-blue-500);
-  --dc-radio-border-color: var(--dc-gray-500);
-  --dc-radio-border-color-checked: var(--dc-blue-500);
-  --dc-radio-icon-color: white;
-  --dc-radio-focus-ring-color: var(--dc-focus-ring-color-dark);
-}

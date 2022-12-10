@@ -1,6 +1,5 @@
 :root {
   /* Typography */
-
   /* https://tailwindcss.com/docs/font-family */
   --dc-font-serif: ui-serif, georgia, cambria, "Times New Roman", times, serif;
   --dc-font-sans:
@@ -13,98 +12,179 @@
   --dc-primary-font: var(--dc-font-sans);
 
   /* https://tailwindcss.com/docs/font-size */
-  --dc-text-2xs: 0.625rem;
-  --dc-text-xs: 0.75rem;
-  --dc-text-sm: 0.875rem;
-  --dc-text-md: 1rem;
-  --dc-text-lg: 1.125rem;
-  --dc-text-xl: 1.25rem;
-  --dc-text-2xl: 1.5rem;
-  --dc-text-3xl: 1.875rem;
-  --dc-text-4xl: 2.25rem;
-  --dc-text-5xl: 3rem;
-  --dc-text-6xl: 3.75rem;
-  --dc-text-7xl: 4.5rem;
-  --dc-text-8xl: 6rem;
-  --dc-text-9xl: 8rem;
+  --dc-text-2xs: 10px/14px var(--dc-primary-font);
+  --dc-text-xs: 12px/16px var(--dc-primary-font);
+  --dc-text-sm: 14px/20px var(--dc-primary-font);
+  --dc-text-md: 16px/24px var(--dc-primary-font);
+  --dc-text-lg: 18px/28px var(--dc-primary-font);
+  --dc-text-xl: 20px/28px var(--dc-primary-font);
+  --dc-text-2xl: 24px/32px var(--dc-primary-font);
+  --dc-text-3xl: 30px/36px var(--dc-primary-font);
+  --dc-text-4xl: 36px/40px var(--dc-primary-font);
+  --dc-text-5xl: 48px/1 var(--dc-primary-font);
 
   /* https://tailwindcss.com/docs/line-height */
-  --leading-none: 1;
-  --leading-tight: 1.25;
-  --leading-snug: 1.375;
-  --leading-normal: 1.5;
-  --leading-relaxed: 1.625;
-  --leading-loose: 2;
+  --dc-leading-none: 1;
+  --dc-leading-tight: 1.25;
+  --dc-leading-snug: 1.375;
+  --dc-leading-normal: 1.5;
+  --dc-leading-relaxed: 1.625;
+  --dc-leading-loose: 2;
 
   /* Colors  */
-
   /* https://tailwindcss.com/docs/customizing-colors */
-  /* Gray */
-  --dc-gray-50: rgb(249 250 251);
-  --dc-gray-100: rgb(243 244 246);
-  --dc-gray-200: rgb(225 231 239);
-  --dc-gray-300: rgb(209 213 219);
-  --dc-gray-400: rgb(156 163 176);
-  --dc-gray-500: rgb(107 114 128);
-  --dc-gray-600: rgb(75 85 99);
-  --dc-gray-700: rgb(56 66 82);
-  --dc-gray-800: rgb(31 41 55);
-  --dc-gray-900: rgb(17 24 39);
 
-  /* Red */
-  --dc-red-50: rgb(254 242 242);
-  --dc-red-100: rgb(254 226 226);
-  --dc-red-200: rgb(254 202 202);
-  --dc-red-300: rgb(252 165 165);
-  --dc-red-400: rgb(248 113 113);
-  --dc-red-500: rgb(239 68 68);
-  --dc-red-600: rgb(220 38 38);
-  --dc-red-700: rgb(185 28 28);
-  --dc-red-800: rgb(153 27 27);
-  --dc-red-900: rgb(127 29 29);
+  /* Gray scale */
+  --dc-gray-50: #f9fafb;
+  --dc-gray-100: #f3f4f6;
+  --dc-gray-200: #e5e7eb;
+  --dc-gray-300: #d1d5db;
+  --dc-gray-400: #9ca3af;
+  --dc-gray-500: #6b7280;
+  --dc-gray-600: #4b5563;
+  --dc-gray-700: #374151;
+  --dc-gray-800: #1f2937;
+  --dc-gray-900: #111827;
 
-  /* Amber */
-  --dc-amber-50: rgb(255 251 235);
-  --dc-amber-100: rgb(254 243 199);
-  --dc-amber-200: rgb(253 230 138);
-  --dc-amber-300: rgb(252 211 77);
-  --dc-amber-400: rgb(251 191 36);
-  --dc-amber-500: rgb(245 158 11);
-  --dc-amber-600: rgb(217 119 6);
-  --dc-amber-700: rgb(180 83 9);
-  --dc-amber-800: rgb(146 64 14);
-  --dc-amber-900: rgb(120 53 15);
+  /* Red scale */
+  --dc-red-50: #fef2f2;
+  --dc-red-100: #fee2e2;
+  --dc-red-200: #fecaca;
+  --dc-red-300: #fca5a5;
+  --dc-red-400: #f87171;
+  --dc-red-500: #ef4444;
+  --dc-red-600: #dc2626;
+  --dc-red-700: #b91c1c;
+  --dc-red-800: #991b1b;
+  --dc-red-900: #7f1d1d;
 
-  /* Green */
-  --dc-green-50: rgb(240 253 244);
-  --dc-green-100: rgb(220 252 231);
-  --dc-green-200: rgb(187 247 208);
-  --dc-green-300: rgb(134 239 172);
-  --dc-green-400: rgb(74 222 128);
-  --dc-green-500: rgb(34 197 94);
-  --dc-green-600: rgb(22 163 74);
-  --dc-green-700: rgb(21 128 61);
-  --dc-green-800: rgb(22 101 52);
-  --dc-green-900: rgb(20 83 45);
+  /* Orange scale */
+  --dc-orange-50: #fff7ed;
+  --dc-orange-100: #ffedd5;
+  --dc-orange-200: #fed7aa;
+  --dc-orange-300: #fdba74;
+  --dc-orange-400: #fb923c;
+  --dc-orange-500: #f97316;
+  --dc-orange-600: #ea580c;
+  --dc-orange-700: #c2410c;
+  --dc-orange-800: #9a3412;
+  --dc-orange-900: #7c2d12;
 
-  /* Blue */
-  --dc-blue-50: rgb(239 246 255);
-  --dc-blue-100: rgb(219 234 254);
-  --dc-blue-200: rgb(191 219 254);
-  --dc-blue-300: rgb(147 197 253);
-  --dc-blue-400: rgb(96 165 250);
-  --dc-blue-500: rgb(59 130 246);
-  --dc-blue-600: rgb(37 99 235);
-  --dc-blue-700: rgb(29 78 216);
-  --dc-blue-800: rgb(30 64 175);
-  --dc-blue-900: rgb(30 58 138);
+  /* Green scale */
+  --dc-green-50: #f0fdf4;
+  --dc-green-100: #dcfce7;
+  --dc-green-200: #bbf7d0;
+  --dc-green-300: #86efac;
+  --dc-green-400: #4ade80;
+  --dc-green-500: #22c55e;
+  --dc-green-600: #16a34a;
+  --dc-green-700: #15803d;
+  --dc-green-800: #166534;
+  --dc-green-900: #14532d;
 
-  /* Text colors */
+  /* Sky scale */
+  --dc-sky-50: #f0f9ff;
+  --dc-sky-100: #e0f2fe;
+  --dc-sky-200: #bae6fd;
+  --dc-sky-300: #7dd3fc;
+  --dc-sky-400: #38bdf8;
+  --dc-sky-500: #0ea5e9;
+  --dc-sky-600: #0284c7;
+  --dc-sky-700: #0369a1;
+  --dc-sky-800: #075985;
+  --dc-sky-900: #0c4a6e;
+
+  /* Blue scale */
+  --dc-blue-50: #eff6ff;
+  --dc-blue-100: #dbeafe;
+  --dc-blue-200: #bfdbfe;
+  --dc-blue-300: #93c5fd;
+  --dc-blue-400: #60a5fa;
+  --dc-blue-500: #3b82f6;
+  --dc-blue-600: #2563eb;
+  --dc-blue-700: #1d4ed8;
+  --dc-blue-800: #1e40af;
+  --dc-blue-900: #1e3a8a;
+
+  /* Background */
+  --dc-bg: #fff;
+
+  /* Text */
   --dc-primary-text-color: var(--dc-gray-800);
   --dc-secondary-text-color: var(--dc-gray-500);
   --dc-tertiary-text-color: var(--dc-gray-300);
 
-  /* Component states */
-  --dc-focus-ring-color: rgb(59 130 246 / 65%);
-  --dc-disabled-opacity: 0.5;
+  /* Primary */
+  --dc-primary-color: var(--dc-blue-500);
+  --dc-primary-color-hover: var(--dc-blue-600);
+  --dc-on-primary-color: #fff;
+
+  /* Secondary */
+  --dc-secondary-color: rgba(59, 130, 246, 0.18); /* blue-500 */
+  --dc-secondary-color-hover: rgba(59, 130, 246, 0.28); /* blue-500 */
+  --dc-on-secondary-color: var(--dc-blue-600);
+
+  /* Accents */
+  --dc-info-text-color: var(--dc-blue-600);
+  --dc-success-text-color: var(--dc-green-700);
+  --dc-error-text-color: var(--dc-red-600);
+  --dc-warning-text-color: var(--dc-orange-600);
+
+  /* Default button */
+  --dc-button-default-text-color: var(--dc-gray-800);
+  --dc-button-default-border-color: rgba(17, 24, 39, 0.1); /* gray-900 */
+  --dc-button-default-bg: var(--dc-gray-50);
+  --dc-button-default-bg-hover: var(--dc-gray-100);
+  --dc-button-default-tinted-text-color: var(--dc-gray-800);
+  --dc-button-default-tinted-bg: rgba(17, 24, 39, 0.1); /* gray-900 */
+  --dc-button-default-tinted-bg-hover: rgba(17, 24, 39, 0.2); /* gray-900 */
+  --dc-button-default-plain-text-color: var(--dc-gray-800);
+  --dc-button-default-plain-bg-hover: rgba(17, 24, 39, 0.1); /* gray-900 */
+
+  /* Primary button */
+  --dc-button-primary-text-color: #fff;
+  --dc-button-primary-border-color: transparent;
+  --dc-button-primary-bg: var(--dc-blue-500);
+  --dc-button-primary-bg-hover: var(--dc-blue-600);
+  --dc-button-primary-tinted-text-color: var(--dc-blue-600);
+  --dc-button-primary-tinted-bg: rgba(59, 130, 246, 0.15); /* blue-500 */
+  --dc-button-primary-tinted-bg-hover: rgba(59, 130, 246, 0.3); /* blue-500 */
+  --dc-button-primary-plain-text-color: var(--dc-blue-600);
+  --dc-button-primary-plain-bg-hover: rgba(59, 130, 246, 0.15); /* blue-500 */
+
+  /* Danger button */
+  --dc-button-danger-text-color: #fff;
+  --dc-button-danger-border-color: transparent;
+  --dc-button-danger-bg: var(--dc-red-500);
+  --dc-button-danger-bg-hover: var(--dc-red-600);
+  --dc-button-danger-tinted-text-color: var(--dc-red-600);
+  --dc-button-danger-tinted-bg: rgba(220, 38, 38, 0.15); /* red-500 */
+  --dc-button-danger-tinted-bg-hover: rgba(220, 38, 38, 0.3); /* red-500 */
+  --dc-button-danger-plain-text-color: var(--dc-red-600);
+  --dc-button-danger-plain-bg-hover: rgba(220, 38, 38, 0.15); /* red-500 */
+
+  /* Success button */
+  --dc-button-success-text-color: #fff;
+  --dc-button-success-border-color: transparent;
+  --dc-button-success-bg: var(--dc-green-500);
+  --dc-button-success-bg-hover: var(--dc-green-600);
+  --dc-button-success-tinted-text-color: var(--dc-green-600);
+  --dc-button-success-tinted-bg: rgba(34, 197, 94, 0.15); /* green-500 */
+  --dc-button-success-tinted-bg-hover: rgba(34, 197, 94, 0.3); /* green-500 */
+  --dc-button-success-plain-text-color: var(--dc-green-600);
+  --dc-button-success-plain-bg-hover: rgba(34, 197, 94, 0.15); /* green-500 */
+
+  /* Controls */
+  --dc-control-primary-text-color: var(--dc-gray-800);
+  --dc-control-secondary-text-color: var(--dc-gray-500);
+  --dc-control-primary-color: var(--dc-blue-500);
+  --dc-control-primary-color-hover: var(--dc-blue-600);
+  --dc-control-on-primary-color: #fff;
+  --dc-control-secondary-color: rgba(59, 130, 246, 0.15); /* blue-500 */
+  --dc-control-border-color: var(--dc-gray-300);
+  --dc-control-bg: rgba(249, 250, 251, 0.2); /* gray-50 */
+  --dc-control-bg-inset: rgba(17, 24, 39, 0.15); /* gray-900 */
+  --dc-control-error-color: var(--dc-red-500);
+  --dc-focus-ring-color: rgb(59, 130, 246, 0.7); /* blue-500 */
+  --dc-disabled-state-opacity: 0.5;
 }
