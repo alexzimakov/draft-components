@@ -49,8 +49,9 @@ const infoIcon = (
     data-testid="caption-icon"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
-    width="20"
-    height="20"
+    width={20}
+    height={20}
+    aria-hidden={true}
   >
     <path
       fill="currentColor"
@@ -65,8 +66,9 @@ const successIcon = (
     data-testid="caption-icon"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
-    width="20"
-    height="20"
+    width={20}
+    height={20}
+    aria-hidden={true}
   >
     <path
       fill="currentColor"
@@ -81,8 +83,9 @@ const errorIcon = (
     data-testid="caption-icon"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
-    width="20"
-    height="20"
+    width={20}
+    height={20}
+    aria-hidden={true}
   >
     <path
       fill="currentColor"
@@ -97,8 +100,9 @@ const warningIcon = (
     data-testid="caption-icon"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
-    width="20"
-    height="20"
+    width={20}
+    height={20}
+    aria-hidden={true}
   >
     <path
       fill="currentColor"
