@@ -1,98 +1,84 @@
-import { ComponentPropsWithoutRef, ReactNode } from 'react';
-import { classNames } from '../../lib/react-helpers';
-import { getAvatarSizeInPixels } from './get-avatar-size-in-pixels';
 import {
-  makeAvatarShapePath,
-  makeRoundShapePath,
-} from './make-avatar-shape-path';
-import { makeInitials } from './make-initials';
-import { AvatarShape, AvatarShapeProps } from './avatar-shape';
-import { AvatarGroup } from './avatar-group';
-import { AvatarSize, AvatarTint } from './types';
+  forwardRef,
+  type ComponentPropsWithRef,
+  type ReactNode,
+} from 'react';
+import { classNames } from '../../lib/react-helpers';
 
-export interface AvatarProps extends ComponentPropsWithoutRef<'div'> {
-  size?: AvatarSize | number;
-  tint?: AvatarTint;
-  iconTint?: AvatarTint;
-  square?: boolean;
+export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type AvatarFill =
+  | 'gray'
+  | 'pink'
+  | 'red'
+  | 'orange'
+  | 'yellow'
+  | 'green'
+  | 'blue'
+  | 'violet';
+export type AvatarProps = ComponentPropsWithRef<'div'> & {
+  isSquare?: boolean;
+  hasInnerShadow?: boolean;
+  size?: AvatarSize;
+  fill?: AvatarFill;
   src?: string;
   alt?: string;
-  initials?: ReactNode;
-  icon?: ReactNode;
-}
+  placeholder?: ReactNode;
+};
 
-export function Avatar({
+export const Avatar = forwardRef<
+  HTMLDivElement,
+  AvatarProps
+>(function Avatar({
+  isSquare = false,
+  hasInnerShadow = false,
   size = 'md',
-  tint = 'gray',
-  iconTint = 'gray',
-  square = false,
+  fill = 'gray',
   src,
   alt,
-  initials,
-  icon,
+  placeholder,
   className,
   ...props
-}: AvatarProps) {
-  const sizeInPixels = getAvatarSizeInPixels(size);
-  const path = makeAvatarShapePath({ size: sizeInPixels }, square);
-
-  let subtract: AvatarShapeProps['subtract'] = null;
-  let renderedIcon: ReactNode = null;
-  if (icon) {
-    const iconRatio = 0.38;
-    const iconSize = sizeInPixels * iconRatio;
-    const iconOffset = sizeInPixels - iconSize;
-    const iconGap = Math.max(sizeInPixels * 0.05, 2);
-    const subtractSize = iconSize + (2 * iconGap);
-    const subtractOffset = sizeInPixels - iconSize - iconGap;
-
-    subtract = (
-      <path
-        d={makeRoundShapePath({
-          size: subtractSize,
-          offsetX: subtractOffset,
-          offsetY: subtractOffset,
-        })}
-        fill="#000"
-      />
-    );
-    renderedIcon = (
-      <div
-        className="dc-avatar__icon"
-        style={{
-          top: iconOffset,
-          left: iconOffset,
-          width: iconSize,
-          height: iconSize,
-          fontSize: iconSize * 0.618,
-        }}
-      >
-        {icon}
+}, ref) {
+  let content;
+  if (!src && placeholder) {
+    content = (
+      <div className="dc-avatar__placeholder" aria-label={alt}>
+        {placeholder}
       </div>
+    );
+  } else {
+    const sizePx = avatarSizesPx[size];
+    content = (
+      <img
+        className="dc-avatar__image"
+        src={src}
+        alt={alt}
+        width={sizePx}
+        height={sizePx}
+      />
     );
   }
 
   return (
     <div
-      role="img"
-      aria-label={alt}
-      className={classNames(className, 'dc-avatar', {
-        [`dc-avatar_tint_${tint}`]: tint,
-        [`dc-avatar_icon-tint_${iconTint}`]: iconTint,
-      })}
       {...props}
+      ref={ref}
+      className={classNames(className, 'dc-avatar', {
+        [`dc-avatar_size_${size}`]: size,
+        [`dc-avatar_fill_${fill}`]: fill,
+        'dc-avatar_square': isSquare,
+        'dc-avatar_has_inner-shadow': hasInnerShadow,
+      })}
     >
-      <AvatarShape
-        path={path}
-        size={sizeInPixels}
-        imageUrl={src}
-        initials={initials}
-        subtract={subtract}
-      />
-      {renderedIcon}
+      {content}
     </div>
   );
-}
+});
 
-Avatar.Group = AvatarGroup;
-Avatar.makeInitials = makeInitials;
+const avatarSizesPx: Record<AvatarSize, number> = {
+  xs: 24,
+  sm: 32,
+  md: 40,
+  lg: 48,
+  xl: 56,
+};

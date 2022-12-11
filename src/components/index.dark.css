@@ -1,4 +1,5 @@
 @import url("variables.dark.css");
+@import url("avatar/avatar.dark.css");
 @import url("button/button.dark.css");
 @import url("button-group/button-group.dark.css");
 @import url("spinner/spinner.dark.css");

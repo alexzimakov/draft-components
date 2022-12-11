@@ -1,4 +1,5 @@
 @import url("variables.css");
+@import url("avatar/avatar.css");
 @import url("button/button.css");
 @import url("button-group/button-group.css");
 @import url("spinner/spinner.css");
