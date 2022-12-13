@@ -1,0 +1,15 @@
+.dc-avatar-group {
+  --dc-avatar-in-group-stroke: var(--dc-bg);
+
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.dc-avatar-group > .dc-avatar {
+  box-shadow: 0 0 0 2px var(--dc-avatar-in-group-stroke);
+}
+
+.dc-avatar-group > .dc-avatar:nth-child(n + 2) {
+  margin-left: -10px;
+}
