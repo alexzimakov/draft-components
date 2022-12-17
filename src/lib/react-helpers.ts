@@ -50,3 +50,9 @@ export function mergeRefs<T>(...refs: Ref<T>[]): RefCallback<T> {
     }
   };
 }
+
+export function focusElement(element: EventTarget): void {
+  if (element instanceof HTMLElement) {
+    element.focus();
+  }
+}

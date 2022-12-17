@@ -1,122 +1,117 @@
-import { ComponentPropsWithoutRef, KeyboardEvent, ReactNode } from 'react';
-import { isFunction } from '../../lib/guards';
-import { classNames } from '../../lib/react-helpers';
-import { KeyCode, similarToClick } from '../../lib/keyboard-helpers';
-import { Button } from '../button';
+import {
+  forwardRef,
+  useRef,
+  type ComponentPropsWithRef,
+  type ForwardRefExoticComponent,
+  type ForwardedRef,
+  type KeyboardEvent,
+  type ReactElement,
+  type ReactNode,
+  type RefAttributes,
+} from 'react';
+import { KeyboardKeys } from '../../lib/keyboard-keys';
+import { assertIfNullable } from '../../lib/assert-if-nullable';
+import { classNames, focusElement, mergeRefs } from '../../lib/react-helpers';
+import { SegmentedControlButton } from './segmented-control-button';
 
-type SegmentId = string | number;
-
-export interface Segment<T extends SegmentId> {
+export type SegmentedControlOption<T extends string | number> = {
   value: T;
-  label: ReactNode;
   icon?: ReactNode;
-}
+  label?: ReactNode;
+};
+export type SegmentedControlSize = 'sm' | 'md' | 'lg';
+export type SegmentedControlProps<T extends string | number> = {
+  size?: SegmentedControlSize;
+  disabled?: boolean;
+  options: SegmentedControlOption<T>[];
+  value: T;
+  onChangeValue: (value: T) => void;
+} & ComponentPropsWithRef<'ul'>;
 
-export interface SegmentedControlProps<T extends SegmentId>
-  extends ComponentPropsWithoutRef<'ul'> {
-  size?: 'sm' | 'md' | 'lg';
-  items: Segment<T>[];
-  selectedValue: Segment<T>['value'];
-  onChangeSelectedValue(value: Segment<T>['value']): void;
-}
-
-export function SegmentedControl<T extends SegmentId>({
+function SegmentedControlGeneric<T extends string | number>({
   size = 'md',
-  items,
-  selectedValue,
-  onChangeSelectedValue,
+  disabled = false,
   className,
-  onKeyDown,
+  value,
+  options,
+  onChangeValue,
   ...props
-}: SegmentedControlProps<T>) {
-  function selectSegment(segment: Segment<T>) {
-    if (segment.value !== selectedValue) {
-      onChangeSelectedValue(segment.value);
-    }
-  }
+}: SegmentedControlProps<T>, ref: ForwardedRef<HTMLUListElement>) {
+  const containerRef = useRef<HTMLUListElement>(null);
 
-  function handleKeyDown(event: KeyboardEvent<HTMLUListElement>) {
-    const code = event.code;
+  function handleKeyDown(event: KeyboardEvent<HTMLUListElement>): void {
+    const prevIndex = options.findIndex((option) => option.value === value);
+    const containerEl = containerRef.current;
+    assertIfNullable(containerEl, 'containerRef.current is null or undefined');
+
+    let index = prevIndex;
     if (
-      code === KeyCode.home ||
-      code === KeyCode.end ||
-      code === KeyCode.arrowLeft ||
-      code === KeyCode.arrowRight
+      event.key === KeyboardKeys.ArrowRight ||
+      event.key === KeyboardKeys.ArrowDown
     ) {
+      index += 1;
+    } else if (
+      event.key === KeyboardKeys.ArrowLeft ||
+      event.key === KeyboardKeys.ArrowUp
+    ) {
+      index -= 1;
+    }
+
+    if (index < 0) {
+      index = options.length - 1;
+    } else if (index >= options.length) {
+      index = 0;
+    }
+
+    if (index !== prevIndex) {
+      event.stopPropagation();
       event.preventDefault();
 
-      const segments = event.currentTarget.getElementsByTagName('li');
-      const segmentsCount = segments.length;
+      const option = options[index];
+      assertIfNullable(option, `Unable to get option at index ${index}`);
+      onChangeValue(option.value);
 
-      let nextSegment: number;
-      if (code === KeyCode.home) {
-        nextSegment = 0;
-      } else if (code === KeyCode.end) {
-        nextSegment = segmentsCount - 1;
-      } else {
-        nextSegment = Array.prototype.indexOf.call(
-          event.currentTarget.children,
-          document.activeElement
-        );
-        if (code === KeyCode.arrowLeft) {
-          nextSegment -= 1;
-          if (nextSegment < 0) {
-            nextSegment = segmentsCount - 1;
-          }
-        } else {
-          nextSegment += 1;
-          if (nextSegment >= segmentsCount) {
-            nextSegment = 0;
-          }
-        }
-      }
-
-      segments[nextSegment].focus();
+      const radioEl = containerEl.children[index];
+      assertIfNullable(radioEl, `Unable to get radio at index ${index}`);
+      focusElement(radioEl);
     }
-
-    isFunction(onKeyDown) && onKeyDown(event);
   }
 
   return (
     <ul
       {...props}
-      className={classNames(
-        className,
-        'dc-segmented-control',
-        `dc-segmented-control_size_${size}`
-      )}
+      ref={mergeRefs(ref, containerRef)}
       role="radiogroup"
+      className={classNames(className, 'dc-segmented', {
+        [`dc-segmented_${size}`]: size,
+        'dc-segmented_disabled': disabled,
+      })}
       onKeyDown={handleKeyDown}
     >
-      {items.map((segment) => {
-        const isSelected = segment.value === selectedValue;
-        return (
-          <Button
-            key={segment.value}
-            size={size}
-            className="dc-segmented-control__radio-btn"
-            appearance={isSelected ? 'default' : 'minimal'}
-            leadingIcon={segment.icon}
-            renderAs={(props) => (
-              <li
-                {...props}
-                role="radio"
-                aria-checked={isSelected}
-                tabIndex={isSelected ? 0 : -1}
-                onClick={() => selectSegment(segment)}
-                onKeyDown={(event) => {
-                  if (similarToClick(event)) {
-                    event.preventDefault();
-                    selectSegment(segment);
-                  }
-                }}
-              />
-            )}
-          >
-            {segment.label}
-          </Button>
-        );
-      })}
+      {options.map((option) => (
+        <SegmentedControlButton
+          key={option.value}
+          icon={option.icon}
+          value={option.value}
+          checked={value === option.value}
+          onChangeValue={onChangeValue}
+        >
+          {option.label}
+        </SegmentedControlButton>
+      ))}
     </ul>
   );
 }
+
+export interface ForwardRefSegmentedControl extends ForwardRefExoticComponent<
+  & SegmentedControlProps<string | number>
+  & RefAttributes<HTMLUListElement>
+> {
+  <T extends string | number>(props:
+    & SegmentedControlProps<T>
+    & RefAttributes<HTMLUListElement>
+  ): (ReactElement | null);
+}
+export const SegmentedControl: ForwardRefSegmentedControl = forwardRef(
+  SegmentedControlGeneric
+);

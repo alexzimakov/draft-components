@@ -1,0 +1,92 @@
+.dc-segmented {
+  --dc-segmented-bg: rgba(17, 24, 39, 0.05);
+  --dc-segmented-border-color: var(--dc-control-border-color);
+  --dc-segmented-delimiter-color: rgba(17, 24, 39, 0.3);
+  --dc-segmented-btn-padding-x: 16px;
+  --dc-segmented-btn-bg-checked: white;
+  --dc-segmented-btn-border-color: transparent;
+  --dc-segmented-btn-border-color-focus: var(--dc-blue-600);
+  --dc-segmented-btn-border-color-checked: var(--dc-gray-500);
+  --dc-segmented-btn-focus-ring-color: var(--dc-focus-ring-color);
+
+  font: 14px/1 var(--dc-primary-font);
+  display: inline-flex;
+  align-items: stretch;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-radius: 9px;
+  background: var(--dc-segmented-bg);
+  box-shadow: inset 0 0 0 1px var(--dc-segmented-border-color);
+}
+
+.dc-segmented_disabled {
+  opacity: var(--dc-disabled-state-opacity);
+  pointer-events: none;
+}
+
+.dc-segmented_sm {
+  --dc-segmented-btn-padding-x: 12px;
+
+  font-size: 13px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+.dc-segmented_lg {
+  --dc-segmented-btn-padding-x: 18px;
+
+  font-size: 15px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.dc-segmented__button {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  user-select: none;
+  flex: auto;
+  gap: calc(var(--dc-segmented-btn-padding-x) / 2);
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 var(--dc-segmented-btn-padding-x);
+  border: 1px solid var(--dc-segmented-btn-border-color);
+  border-radius: inherit;
+}
+
+.dc-segmented__button[aria-checked="true"] {
+  --dc-segmented-btn-border-color: var(--dc-segmented-btn-border-color-checked);
+
+  cursor: default;
+  background: var(--dc-segmented-btn-bg-checked);
+}
+
+.dc-segmented__button:focus {
+  border-color: var(--dc-segmented-btn-border-color-focus);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--dc-segmented-btn-focus-ring-color);
+}
+
+.dc-segmented__button:focus:not(:focus-visible) {
+  border-color: var(--dc-segmented-btn-border-color);
+  box-shadow: none;
+}
+
+.dc-segmented__button + .dc-segmented__button::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: -2px;
+  width: 1px;
+  height: 50%;
+  transform: translateY(-50%);
+  background: var(--dc-segmented-delimiter-color);
+}
+
+.dc-segmented__button[aria-checked="true"]::before {
+  opacity: 0;
+}

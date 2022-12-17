@@ -1,111 +1,117 @@
 import userEvent from '@testing-library/user-event';
+import { useState } from 'react';
 import { render, screen, within } from '@testing-library/react';
 import { SegmentedControl } from './segmented-control';
 
 it('renders without errors', () => {
-  const icon = <svg data-testid="item-icon" />;
-  const items = [
-    { value: 1, label: 'Popular', icon },
-    { value: 2, label: 'Newest' },
-    { value: 3, label: 'Top rated' },
+  const options = [
+    { value: 'popular', label: 'Popular' },
+    { value: 'newest', label: 'Newest' },
+    { value: 'topRated', label: 'Top-Rated' },
   ];
-  render(
-    <SegmentedControl
-      items={items}
-      selectedValue={items[0].value}
-      onChangeSelectedValue={jest.fn()}
-    />
-  );
+  const checkedOption = options[0];
+  render(<SegmentedControl
+    options={options}
+    value={checkedOption.value}
+    onChangeValue={jest.fn()}
+  />);
 
-  const radioGroup = screen.getByRole('radiogroup');
-  const radioButtons = within(radioGroup).getAllByRole('radio');
-  expect(radioButtons).toHaveLength(3);
+  const radioButtons = screen.getAllByRole('radio');
+  expect(radioButtons).toHaveLength(options.length);
 
-  const [popular, newest, topRated] = radioButtons;
+  for (let i = 0; i < options.length; i += 1) {
+    const option = options[i];
+    const radioButton = radioButtons[i];
+    expect(radioButton).toHaveTextContent(option.label);
+  }
 
-  expect(popular).toHaveTextContent(items[0].label);
-  within(popular).getByTestId(icon.props['data-testid']);
-
-  expect(newest).toHaveTextContent(items[1].label);
-
-  expect(topRated).toHaveTextContent(items[2].label);
+  expect(screen.getByText(checkedOption.label)).toBeChecked();
 });
 
-it('should change focus using keyboard', async () => {
-  const user = userEvent.setup();
-  const items = [
-    { value: 1, label: 'Popular' },
-    { value: 2, label: 'Newest' },
-    { value: 3, label: 'Top-Rated' },
+it('renders with icons', () => {
+  const options = [
+    {
+      value: 'popular',
+      label: 'Popular',
+      icon: <svg role="img" />,
+    },
+    {
+      value: 'newest',
+      label: 'Newest',
+      icon: <svg role="img" />,
+    },
   ];
-  render(
-    <SegmentedControl
-      items={items}
-      selectedValue={items[0].value}
-      onChangeSelectedValue={jest.fn()}
-    />
-  );
+  render(<SegmentedControl
+    options={options}
+    value={options[0].value}
+    onChangeValue={jest.fn()}
+  />);
 
-  const [popular, newest, topRated] = screen.getAllByRole('radio');
+  const radioButtons = screen.getAllByRole('radio');
+  expect(radioButtons).toHaveLength(options.length);
 
-  expect(document.body).toHaveFocus();
+  for (const radioButton of radioButtons) {
+    within(radioButton).getByRole('img');
+  }
+});
+
+it('can select a segment using the mouse', async () => {
+  const user = userEvent.setup();
+  const options = [
+    { value: 'popular', label: 'Popular' },
+    { value: 'newest', label: 'Newest' },
+    { value: 'topRated', label: 'Top-Rated' },
+  ];
+  const checkedOption = options[0];
+  const onChangeValueMock = jest.fn();
+  render(<SegmentedControl
+    options={options}
+    value={checkedOption.value}
+    onChangeValue={onChangeValueMock}
+  />);
+
+  await user.click(screen.getByText(checkedOption.label));
+  await user.click(screen.getByText(options[1].label));
+
+  expect(onChangeValueMock).toHaveBeenCalledTimes(1);
+  expect(onChangeValueMock).toHaveBeenCalledWith(options[1].value);
+});
+
+it('can select a segment using the keyboard', async () => {
+  const user = userEvent.setup();
+  const options = [
+    { value: 'popular', label: 'Popular' },
+    { value: 'newest', label: 'Newest' },
+    { value: 'topRated', label: 'Top-Rated' },
+  ];
+  const checkedOption = options[1];
+  const onChangeValueMock = jest.fn();
+  const SegmentedControlTest = () => {
+    const [value, setValue] = useState(checkedOption.value);
+    return (
+      <SegmentedControl
+        value={value}
+        options={options}
+        onChangeValue={(value) => {
+          setValue(value);
+          onChangeValueMock(value);
+        }}
+      />
+    );
+  };
+  render(<SegmentedControlTest />);
 
   await user.tab();
-  expect(popular).toHaveFocus();
-
-  // Move focus to the "Newest" item.
-  await user.type(popular, '{ArrowRight}', { skipClick: true });
-  expect(newest).toHaveFocus();
-
-  // Move focus to the "Popular" item.
-  await user.type(newest, '{ArrowLeft}', { skipClick: true });
-  expect(popular).toHaveFocus();
-
-  // Move focus to the "Top-Rated" item.
-  await user.type(popular, '{ArrowLeft}', { skipClick: true });
-  expect(topRated).toHaveFocus();
-
-  // Move focus to the "Popular" item.
-  await user.type(topRated, '{ArrowRight}', { skipClick: true });
-  expect(popular).toHaveFocus();
-
-  // Move focus to the "Top-Rated" item.
-  await user.type(popular, '{End}', { skipClick: true });
-  expect(topRated).toHaveFocus();
-
-  // Move focus to the "Popular" item.
-  await user.type(topRated, '{Home}', { skipClick: true });
-  expect(popular).toHaveFocus();
-});
-
-it('should call `onItemSelect` callback when select item', async () => {
-  const user = userEvent.setup();
-  const segments = [
-    { value: 1, label: 'Popular' },
-    { value: 2, label: 'Newest' },
-    { value: 3, label: 'Top rated' },
-  ];
-  const onItemSelect = jest.fn();
-  render(
-    <SegmentedControl
-      items={segments}
-      selectedValue={segments[0].value}
-      onChangeSelectedValue={onItemSelect}
-    />
-  );
-
-  const [popular] = screen.getAllByRole('radio');
-
-  // Select first radio via click.
-  await user.click(popular);
-  // Move focus to second radio and select it via `Enter` press.
   await user.keyboard('{ArrowRight}');
-  await user.keyboard('{Enter}');
-  // Move focus to third radio and select it via `Space` press.
-  await user.keyboard('{ArrowRight}');
-  await user.keyboard(' ');
+  await user.keyboard('{ArrowDown}');
+  await user.keyboard('{ArrowLeft}');
+  await user.keyboard('{ArrowUp}');
+  await user.keyboard('<');
+  await user.keyboard('>');
 
-  expect(onItemSelect).toHaveBeenCalledTimes(2);
-  expect(onItemSelect).toHaveBeenNthCalledWith(1, segments[1].value);
-  expect(onItemSelect).toHaveBeenNthCalledWith(2, segments[2].value);
+  expect(onChangeValueMock).toHaveBeenCalledTimes(4);
+  expect(onChangeValueMock).toHaveBeenNthCalledWith(1, options[2].value);
+  expect(onChangeValueMock).toHaveBeenNthCalledWith(2, options[0].value);
+  expect(onChangeValueMock).toHaveBeenNthCalledWith(3, options[2].value);
+  expect(onChangeValueMock).toHaveBeenNthCalledWith(4, options[1].value);
 });

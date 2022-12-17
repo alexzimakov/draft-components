@@ -1,0 +1,8 @@
+.dark .dc-segmented,
+.dark.dc-segmented {
+  --dc-segmented-bg: rgba(249, 250, 251, 0.1);
+  --dc-segmented-delimiter-color: rgba(249, 250, 251, 0.3);
+  --dc-segmented-btn-bg-checked: var(--dc-gray-600);
+  --dc-segmented-btn-border-color-focus: var(--dc-blue-400);
+  --dc-segmented-btn-border-color-checked: var(--dc-gray-400);
+}
