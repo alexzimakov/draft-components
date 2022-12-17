@@ -1,0 +1,70 @@
+.dc-color-picker {
+  --dc-color-picker-btn-size: 24px;
+  --dc-color-picker-btn-color: var(--dc-control-on-primary-color);
+  --dc-color-picker-btn-check-color: white;
+  --dc-color-picker-btn-inner-border-color: rgba(0, 0, 0, 0.05);
+  --dc-color-picker-btn-focus-ring-color: var(--dc-focus-ring-color);
+
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.dc-color-picker_disabled {
+  opacity: var(--dc-disabled-state-opacity);
+}
+
+.dc-color-picker__btn {
+  font-size: 0;
+  color: transparent;
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--dc-color-picker-btn-size);
+  height: var(--dc-color-picker-btn-size);
+  border-radius: 50%;
+  background: var(--dc-color-picker-btn-color);
+  box-shadow: inset 0 0 0 1px var(--dc-color-picker-btn-inner-border-color);
+}
+
+.dc-color-picker_disabled .dc-color-picker__btn {
+  cursor: default;
+}
+
+.dc-color-picker__btn > input {
+  position: absolute;
+  overflow: hidden;
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  white-space: nowrap;
+  clip: rect(0 0 0 0);
+}
+
+.dc-color-picker__btn_checked::after {
+  content: "";
+  display: inline-block;
+  width: 38%;
+  height: 38%;
+  border-radius: 50%;
+  background: var(--dc-color-picker-btn-check-color);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.dc-color-picker__btn:focus-within::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -2px;
+  display: inline-block;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--dc-color-picker-btn-focus-ring-color);
+}
