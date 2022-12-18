@@ -1,17 +1,12 @@
 import {
-  forwardRef,
   useRef,
   type ComponentPropsWithRef,
-  type ForwardRefExoticComponent,
-  type ForwardedRef,
   type KeyboardEvent,
-  type ReactElement,
   type ReactNode,
-  type RefAttributes,
 } from 'react';
 import { KeyboardKeys } from '../../lib/keyboard-keys';
 import { assertIfNullable } from '../../lib/assert-if-nullable';
-import { classNames, focusElement, mergeRefs } from '../../lib/react-helpers';
+import { classNames, focusElement } from '../../lib/react-helpers';
 import { SegmentedControlButton } from './segmented-control-button';
 
 export type SegmentedControlOption<T extends string | number> = {
@@ -28,7 +23,7 @@ export type SegmentedControlProps<T extends string | number> = {
   onChangeValue: (value: T) => void;
 } & ComponentPropsWithRef<'ul'>;
 
-function SegmentedControlGeneric<T extends string | number>({
+export function SegmentedControl<T extends string | number>({
   size = 'md',
   disabled = false,
   className,
@@ -36,12 +31,12 @@ function SegmentedControlGeneric<T extends string | number>({
   options,
   onChangeValue,
   ...props
-}: SegmentedControlProps<T>, ref: ForwardedRef<HTMLUListElement>) {
-  const containerRef = useRef<HTMLUListElement>(null);
+}: SegmentedControlProps<T>) {
+  const ref = useRef<HTMLUListElement>(null);
 
   function handleKeyDown(event: KeyboardEvent<HTMLUListElement>): void {
     const prevIndex = options.findIndex((option) => option.value === value);
-    const containerEl = containerRef.current;
+    const containerEl = ref.current;
     assertIfNullable(containerEl, 'containerRef.current is null or undefined');
 
     let index = prevIndex;
@@ -80,7 +75,7 @@ function SegmentedControlGeneric<T extends string | number>({
   return (
     <ul
       {...props}
-      ref={mergeRefs(ref, containerRef)}
+      ref={ref}
       role="radiogroup"
       className={classNames(className, 'dc-segmented', {
         [`dc-segmented_${size}`]: size,
@@ -102,16 +97,3 @@ function SegmentedControlGeneric<T extends string | number>({
     </ul>
   );
 }
-
-export interface ForwardRefSegmentedControl extends ForwardRefExoticComponent<
-  & SegmentedControlProps<string | number>
-  & RefAttributes<HTMLUListElement>
-> {
-  <T extends string | number>(props:
-    & SegmentedControlProps<T>
-    & RefAttributes<HTMLUListElement>
-  ): (ReactElement | null);
-}
-export const SegmentedControl: ForwardRefSegmentedControl = forwardRef(
-  SegmentedControlGeneric
-);
