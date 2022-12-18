@@ -1,0 +1,116 @@
+.dark .dc-tag,
+.dark.dc-tag {
+  --dc-tag-text-color: var(--dc-gray-50);
+  --dc-tag-bg: rgba(156, 163, 175, 0.4); /* gray-400 */
+}
+
+.dark .dc-tag_plain,
+.dark.dc-tag_plain {
+  --dc-tag-text-color: var(--dc-gray-300);
+  --dc-tag-border-color: rgba(229, 231, 235, 0.2); /* gray-200 */
+  --dc-tag-bg: rgba(156, 163, 175, 0.1); /* gray-400 */
+}
+
+.dark .dc-tag_green,
+.dark.dc-tag_green {
+  --dc-tag-text-color: var(--dc-green-50);
+  --dc-tag-bg: rgba(74, 222, 128, 0.5); /* green-400 */
+}
+
+.dark .dc-tag_green.dc-tag_plain,
+.dark.dc-tag_green.dc-tag_plain {
+  --dc-tag-text-color: var(--dc-green-400);
+  --dc-tag-border-color: rgba(187, 247, 208, 0.2); /* green-200 */
+  --dc-tag-bg: rgba(74, 222, 128, 0.1); /* green-400 */
+}
+
+.dark .dc-tag_cyan,
+.dark.dc-tag_cyan {
+  --dc-tag-text-color: var(--dc-sky-50);
+  --dc-tag-bg: rgba(56, 189, 248, 0.5); /* sky-400 */
+}
+
+.dark .dc-tag_cyan.dc-tag_plain,
+.dark.dc-tag_cyan.dc-tag_plain {
+  --dc-tag-text-color: var(--dc-sky-400);
+  --dc-tag-border-color: rgba(165, 243, 252, 0.2); /* sky-700 */
+  --dc-tag-bg: rgba(56, 189, 248, 0.1); /* sky-400 */
+}
+
+.dark .dc-tag_blue,
+.dark.dc-tag_blue {
+  --dc-tag-text-color: var(--dc-blue-50);
+  --dc-tag-bg: rgba(96, 165, 250, 0.5); /* blue-400 */
+}
+
+.dark .dc-tag_blue.dc-tag_plain,
+.dark.dc-tag_blue.dc-tag_plain {
+  --dc-tag-text-color: var(--dc-blue-400);
+  --dc-tag-border-color: rgba(191, 219, 254, 0.2); /* blue-200 */
+  --dc-tag-bg: rgba(96, 165, 250, 0.1); /* blue-400 */
+}
+
+.dark .dc-tag_purple,
+.dark.dc-tag_purple {
+  --dc-tag-text-color: var(--dc-violet-50);
+  --dc-tag-bg: rgba(167, 139, 250, 0.5); /* violet-400 */
+}
+
+.dark .dc-tag_purple.dc-tag_plain,
+.dark.dc-tag_purple.dc-tag_plain {
+  --dc-tag-text-color: var(--dc-violet-400);
+  --dc-tag-border-color: rgba(221, 214, 254, 0.2); /* violet-200 */
+  --dc-tag-bg: rgba(167, 139, 250, 0.1); /* violet-400 */
+}
+
+.dark.dc-tag_pink,
+.dark .dc-tag_pink {
+  --dc-tag-text-color: var(--dc-pink-50);
+  --dc-tag-bg: rgba(244, 114, 182, 0.5); /* pink-400 */
+}
+
+.dark .dc-tag_pink.dc-tag_plain,
+.dark.dc-tag_pink.dc-tag_plain {
+  --dc-tag-text-color: var(--dc-pink-400);
+  --dc-tag-border-color: rgba(251, 207, 232, 0.2); /* pink-200 */
+  --dc-tag-bg: rgba(244, 114, 182, 0.1); /* pink-400 */
+}
+
+.dark .dc-tag_red,
+.dark.dc-tag_red {
+  --dc-tag-text-color: var(--dc-red-50);
+  --dc-tag-bg: rgba(248, 113, 113, 0.5); /* red-400 */
+}
+
+.dark .dc-tag_red.dc-tag_plain,
+.dark.dc-tag_red.dc-tag_plain {
+  --dc-tag-text-color: var(--dc-red-400);
+  --dc-tag-border-color: rgba(254, 202, 202, 0.2); /* red-200 */
+  --dc-tag-bg: rgba(248, 113, 113, 0.1); /* red-400 */
+}
+
+.dark .dc-tag_orange,
+.dark.dc-tag_orange {
+  --dc-tag-text-color: var(--dc-orange-50);
+  --dc-tag-bg: rgba(251, 146, 60, 0.5); /* orange-400 */
+}
+
+.dark .dc-tag_orange.dc-tag_plain,
+.dark.dc-tag_orange.dc-tag_plain {
+  --dc-tag-text-color: var(--dc-orange-500);
+  --dc-tag-border-color: rgba(254, 215, 170, 0.2); /* orange-200 */
+  --dc-tag-bg: rgba(251, 146, 60, 0.1); /* orange-400 */
+}
+
+.dark .dc-tag_yellow,
+.dark.dc-tag_yellow {
+  --dc-tag-text-color: var(--dc-yellow-50);
+  --dc-tag-bg: rgba(250, 204, 21, 0.5); /* yellow-400 */
+}
+
+.dark .dc-tag_yellow.dc-tag_plain,
+.dark.dc-tag_yellow.dc-tag_plain {
+  --dc-tag-text-color: var(--dc-yellow-500);
+  --dc-tag-border-color: rgba(254, 240, 138, 0.2); /* yellow-200 */
+  --dc-tag-bg: rgba(250, 204, 21, 0.1); /* yellow-400 */
+}

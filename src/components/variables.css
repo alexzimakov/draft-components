@@ -70,6 +70,18 @@
   --dc-orange-800: #9a3412;
   --dc-orange-900: #7c2d12;
 
+  /* Yellow scale */
+  --dc-yellow-50: #fefce8;
+  --dc-yellow-100: #fef9c3;
+  --dc-yellow-200: #fef08a;
+  --dc-yellow-300: #fde047;
+  --dc-yellow-400: #facc15;
+  --dc-yellow-500: #eab308;
+  --dc-yellow-600: #ca8a04;
+  --dc-yellow-700: #a16207;
+  --dc-yellow-800: #854d0e;
+  --dc-yellow-900: #713f12;
+
   /* Green scale */
   --dc-green-50: #f0fdf4;
   --dc-green-100: #dcfce7;
@@ -105,6 +117,30 @@
   --dc-blue-700: #1d4ed8;
   --dc-blue-800: #1e40af;
   --dc-blue-900: #1e3a8a;
+
+  /* Violet scale */
+  --dc-violet-50: #f5f3ff;
+  --dc-violet-100: #ede9fe;
+  --dc-violet-200: #ddd6fe;
+  --dc-violet-300: #c4b5fd;
+  --dc-violet-400: #a78bfa;
+  --dc-violet-500: #8b5cf6;
+  --dc-violet-600: #7c3aed;
+  --dc-violet-700: #6d28d9;
+  --dc-violet-800: #5b21b6;
+  --dc-violet-900: #4c1d95;
+
+  /* Pink scale */
+  --dc-pink-50: #fdf2f8;
+  --dc-pink-100: #fce7f3;
+  --dc-pink-200: #fbcfe8;
+  --dc-pink-300: #f9a8d4;
+  --dc-pink-400: #f472b6;
+  --dc-pink-500: #ec4899;
+  --dc-pink-600: #db2777;
+  --dc-pink-700: #be185d;
+  --dc-pink-800: #9d174d;
+  --dc-pink-900: #831843;
 
   /* Background */
   --dc-bg: #fff;

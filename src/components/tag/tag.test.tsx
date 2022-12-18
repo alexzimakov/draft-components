@@ -1,62 +1,15 @@
-import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import { Tag } from './tag';
 
 it('renders without errors', () => {
-  const badgeText = 'Badge';
-  render(<Tag>{badgeText}</Tag>);
+  const text = 'Tag text';
+  render(
+    <Tag>
+      <svg role="img" />
+      {text}
+    </Tag>
+  );
 
-  screen.getByText(badgeText);
+  screen.getByText(text);
+  screen.getByRole('img');
 });
-
-it('renders with leading icon', () => {
-  const iconTestId = 'badge-icon';
-  render(<Tag leadingIcon={<svg data-testid={iconTestId} />}>Badge</Tag>);
-
-  screen.getByTestId(iconTestId);
-});
-
-it(
-  'should invoke `onRemove` callback when clicking on the remove button',
-  async () => {
-    const user = userEvent.setup();
-    const onRemove = jest.fn();
-    const ariaLabel = 'Remove tag';
-    render(
-      <Tag
-        isRemovable={true}
-        removeButtonAriaLabel={ariaLabel}
-        onRemove={onRemove}
-      >
-        Badge
-      </Tag>
-    );
-
-    await user.click(screen.getByLabelText(ariaLabel));
-
-    expect(onRemove).toHaveBeenCalledTimes(1);
-  }
-);
-
-it(
-  'should not invoke `onRemove` callback when remove button is disabled',
-  async () => {
-    const user = userEvent.setup();
-    const onRemove = jest.fn();
-    const ariaLabel = 'Remove tag';
-    render(
-      <Tag
-        isRemovable={true}
-        isRemoveButtonDisabled={true}
-        removeButtonAriaLabel={ariaLabel}
-        onRemove={onRemove}
-      >
-        Badge
-      </Tag>
-    );
-
-    await user.click(screen.getByLabelText(ariaLabel));
-
-    expect(onRemove).toHaveBeenCalledTimes(0);
-  }
-);
