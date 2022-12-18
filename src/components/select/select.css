@@ -54,7 +54,7 @@
   --dc-select-height: 32px;
   --dc-select-padding-x: 8px;
   --dc-select-radius: 5px;
-  --dc-select-arrow-size: 12px;
+  --dc-select-arrow-size: 16px;
 }
 
 .dc-select__container_lg {
@@ -62,7 +62,7 @@
   --dc-select-height: 40px;
   --dc-select-padding-x: 16px;
   --dc-select-radius: 7px;
-  --dc-select-arrow-size: 14px;
+  --dc-select-arrow-size: 20px;
 }
 
 .dc-select {
