@@ -4,6 +4,8 @@
 @import url("button/button.dark.css");
 @import url("button-group/button-group.dark.css");
 @import url("tag/tag.dark.css");
+@import url("counter/counter.dark.css");
+@import url("tabs/tabs.dark.css");
 @import url("spinner/spinner.dark.css");
 @import url("text-input/text-input.dark.css");
 @import url("textarea/textarea.dark.css");

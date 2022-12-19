@@ -1,0 +1,85 @@
+.dc-tabs {
+  --dc-tablist-border-color: var(--dc-border-color-transparent-1);
+  --dc-tab-text-color: var(--dc-primary-text-color);
+  --dc-tab-accent-color: var(--dc-primary-color);
+  --dc-tab-bg: none;
+  --dc-tab-bg-hover: var(--dc-bg-transparent-1);
+  --dc-tab-focus-ring-color: var(--dc-focus-ring-color);
+}
+
+.dc-tab {
+  appearance: none;
+  font: var(--dc-text-sm);
+  color: var(--dc-tab-text-color);
+  position: relative;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.dc-tab:focus {
+  outline: none;
+}
+
+.dc-tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--dc-blue-500);
+}
+
+.dc-tab__layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  margin-bottom: 8px;
+  padding-right: 8px;
+  padding-left: 8px;
+  border-radius: 8px;
+  background: var(--dc-tab-bg);
+}
+
+.dc-tab:hover .dc-tab__layout {
+  background: var(--dc-tab-bg-hover);
+}
+
+.dc-tab:focus .dc-tab__layout {
+  box-shadow: inset 0 0 0 3px var(--dc-tab-focus-ring-color);
+}
+
+.dc-tab:focus:not(:focus-visible) .dc-tab__layout {
+  box-shadow: none;
+}
+
+.dc-tab__icon {
+  display: inline-flex;
+  margin-right: 8px;
+}
+
+.dc-tab__label {
+  white-space: nowrap;
+}
+
+.dc-tab__counter {
+  margin-left: 12px;
+}
+
+.dc-tab-list {
+  display: flex;
+  overflow-x: auto;
+  align-items: center;
+  box-sizing: border-box;
+  max-width: 100%;
+  box-shadow: inset 0 -1px 0 var(--dc-tablist-border-color);
+}
+
+.dc-tab-list > * + * {
+  margin-left: 16px;
+}

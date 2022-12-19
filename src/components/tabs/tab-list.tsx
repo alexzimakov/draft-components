@@ -1,8 +1,13 @@
-import { ComponentPropsWithoutRef, useRef } from 'react';
-import { isFunction } from '../../lib/guards';
-import { classNames } from '../../lib/react-helpers';
-import { useTabsState } from './tabs-state';
-import { KeyCode } from '../../lib/keyboard-helpers';
+import {
+  useRef,
+  type ComponentPropsWithoutRef,
+  type FocusEvent,
+  type KeyboardEvent,
+} from 'react';
+import { KeyboardKeys } from '../../lib/keyboard-keys';
+import { classNames, focusElement } from '../../lib/react-helpers';
+import { useTabsContext } from './tabs-context';
+import { assertIfNullable } from '../../lib/assert-if-nullable';
 
 export type TabListProps = ComponentPropsWithoutRef<'div'>;
 
@@ -14,51 +19,74 @@ export function TabList({
   onKeyDown,
   ...props
 }: TabListProps) {
-  const focused = useRef(false);
-  const { tabsOrder, focusedTabKey, focusTab } = useTabsState();
+  const ref = useRef<HTMLDivElement>(null);
+  const { selectedTab, setTabListHasFocus } = useTabsContext();
+
+  function handleFocus(event: FocusEvent<HTMLDivElement>): void {
+    setTabListHasFocus(true);
+    onFocus?.(event);
+  }
+
+  function handleBlur(event: FocusEvent<HTMLDivElement>): void {
+    setTabListHasFocus(false);
+    onBlur?.(event);
+  }
+
+  function handleKeyDown(event: KeyboardEvent<HTMLDivElement>): void {
+    const tabList = ref.current;
+    assertIfNullable(tabList, 'ref.current is null or undefined');
+
+    let focusTabIndex = 0;
+    const tabs = tabList.querySelectorAll<HTMLButtonElement>('[role="tab"]');
+    for (let index = 0; index < tabs.length; index += 1) {
+      const tab = tabs[index];
+      if (document.activeElement === tab) {
+        focusTabIndex = index;
+        break;
+      }
+      if (tab.name === selectedTab) {
+        focusTabIndex = index;
+      }
+    }
+
+    let index = focusTabIndex;
+    if (event.key === KeyboardKeys.ArrowRight) {
+      index += 1;
+    } else if (event.key === KeyboardKeys.ArrowLeft) {
+      index -= 1;
+    } else if (event.key === KeyboardKeys.End) {
+      index = tabs.length - 1;
+    } else if (event.key === KeyboardKeys.Home) {
+      index = 0;
+    }
+
+    if (index < 0) {
+      index = tabs.length - 1;
+    } else if (index >= tabs.length) {
+      index = 0;
+    }
+
+    if (index !== focusTabIndex) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const newFocusTab = tabs[index];
+      assertIfNullable(newFocusTab, `Unable to get tab at index ${index}`);
+      focusElement(newFocusTab);
+    }
+
+    onKeyDown?.(event);
+  }
 
   return (
     <div
       {...props}
-      className={classNames(className, 'dc-tabs__list')}
+      ref={ref}
       role="tablist"
-      onFocus={(event) => {
-        focused.current = true;
-        isFunction(onFocus) && onFocus(event);
-      }}
-      onBlur={(event) => {
-        focused.current = false;
-        isFunction(onBlur) && onBlur(event);
-      }}
-      onKeyDown={(event) => {
-        const focusedTabIndex = tabsOrder.indexOf(focusedTabKey);
-        const firstTabIndex = 0;
-        const lastTabIndex = tabsOrder.length - 1;
-        let newFocusedTabIndex = focusedTabIndex;
-        if (event.key === KeyCode.arrowRight) {
-          newFocusedTabIndex += 1;
-        } else if (event.key === KeyCode.arrowLeft) {
-          newFocusedTabIndex -= 1;
-        } else if (event.key === KeyCode.end) {
-          newFocusedTabIndex = lastTabIndex;
-        } else if (event.key === KeyCode.home) {
-          newFocusedTabIndex = firstTabIndex;
-        }
-
-        if (newFocusedTabIndex < firstTabIndex) {
-          newFocusedTabIndex = lastTabIndex;
-        } else if (newFocusedTabIndex > lastTabIndex) {
-          newFocusedTabIndex = firstTabIndex;
-        }
-
-        const newFocusableTabKey = tabsOrder[newFocusedTabIndex];
-        if (newFocusableTabKey !== focusedTabKey) {
-          event.preventDefault();
-          focusTab(newFocusableTabKey);
-        }
-
-        isFunction(onKeyDown) && onKeyDown(event);
-      }}
+      className={classNames('dc-tab-list', className)}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      onKeyDown={handleKeyDown}
     >
       {children}
     </div>

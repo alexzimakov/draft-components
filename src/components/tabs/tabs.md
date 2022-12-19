@@ -1,6 +1,6 @@
 ```jsx
-import { useState } from 'react';
-import { Tabs } from '../tabs';
+import {useState} from 'react';
+import {Tabs} from '../tabs';
 
 const TabKeys = {
   NILS: 'nils',
@@ -9,7 +9,7 @@ const TabKeys = {
 };
 const [selectedTabKey, setSelectedTabKey] = useState(TabKeys.NILS);
 
-<Tabs selectedTabKey={selectedTabKey} onSelectTab={setSelectedTabKey}>
+<Tabs selectedTab={selectedTabKey} onSelectTab={setSelectedTabKey}>
   <Tabs.List>
     <Tabs.Tab tabKey={TabKeys.NILS}>Nils Frahm</Tabs.Tab>
     <Tabs.Tab tabKey={TabKeys.AGNES}>Agnes Obel</Tabs.Tab>
@@ -45,12 +45,12 @@ const [selectedTabKey, setSelectedTabKey] = useState(TabKeys.NILS);
 With icons
 
 ```jsx
-import { useState } from 'react';
-import { Tabs } from '../tabs';
-import { SvgIcon } from '../svg-icon';
-import { musicNoteBeamed } from '../../bootstrap-icons/music-note-beamed';
-import { hammer } from '../../bootstrap-icons/hammer';
-import { joystick } from '../../bootstrap-icons/joystick';
+import {useState} from 'react';
+import {Tabs} from '../tabs';
+import {SvgIcon} from '../svg-icon';
+import {musicNoteBeamed} from '../../bootstrap-icons/music-note-beamed';
+import {hammer} from '../../bootstrap-icons/hammer';
+import {joystick} from '../../bootstrap-icons/joystick';
 
 const TabKeys = {
   ENTERTAINMENT: 'entertainment',
@@ -59,7 +59,7 @@ const TabKeys = {
 };
 const [selectedTabKey, setSelectedTabKey] = useState(TabKeys.ENTERTAINMENT);
 
-<Tabs selectedTabKey={selectedTabKey} onSelectTab={setSelectedTabKey}>
+<Tabs selectedTab={selectedTabKey} onSelectTab={setSelectedTabKey}>
   <Tabs.List>
     <Tabs.Tab
       tabKey={TabKeys.ENTERTAINMENT}
@@ -112,8 +112,8 @@ const [selectedTabKey, setSelectedTabKey] = useState(TabKeys.ENTERTAINMENT);
 With badges
 
 ```jsx
-import { useState } from 'react';
-import { Tabs } from '../tabs';
+import {useState} from 'react';
+import {Tabs} from '../tabs';
 
 const TabKeys = {
   ENTERTAINMENT: 'entertainment',
@@ -122,7 +122,7 @@ const TabKeys = {
 };
 const [selectedTabKey, setSelectedTabKey] = useState(TabKeys.ENTERTAINMENT);
 
-<Tabs selectedTabKey={selectedTabKey} onSelectTab={setSelectedTabKey}>
+<Tabs selectedTab={selectedTabKey} onSelectTab={setSelectedTabKey}>
   <Tabs.List>
     <Tabs.Tab tabKey={TabKeys.ENTERTAINMENT} badge={3}>
       Entertainment

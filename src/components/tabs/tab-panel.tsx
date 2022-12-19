@@ -1,32 +1,34 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { type ComponentPropsWithoutRef } from 'react';
+import { type TabName } from './types';
 import { classNames } from '../../lib/react-helpers';
-import { TabKey, useTabsState } from './tabs-state';
+import { useTabsContext } from './tabs-context';
 
-export interface TabPanelProps extends ComponentPropsWithoutRef<'div'> {
-  associatedTabKey: TabKey;
-}
+export type TabPanelProps = {
+  tab: TabName;
+} & ComponentPropsWithoutRef<'div'>;
 
 export function TabPanel({
-  associatedTabKey,
+  tab,
   id,
   className,
   children,
   'aria-labelledby': ariaLabelledBy,
   ...props
 }: TabPanelProps) {
-  const { selectedTabKey, getTabPanelId, getTabId } = useTabsState();
+  const { selectedTab, getTabProps } = useTabsContext();
 
-  if (selectedTabKey !== associatedTabKey) {
+  if (selectedTab !== tab) {
     return null;
   }
 
+  const tabProps = getTabProps(tab);
   return (
     <div
       {...props}
-      id={getTabPanelId(associatedTabKey, id)}
-      className={classNames(className, 'dc-tabs__panel')}
+      className={classNames('dc-tab-panel', className)}
       role="tabpanel"
-      aria-labelledby={getTabId(associatedTabKey, ariaLabelledBy)}
+      id={id || tabProps.ariaControls}
+      aria-labelledby={ariaLabelledBy || tabProps.id}
     >
       {children}
     </div>

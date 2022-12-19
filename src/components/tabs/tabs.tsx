@@ -1,34 +1,28 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { type ComponentPropsWithoutRef } from 'react';
+import { type TabName, type TabSetter } from './types';
 import { classNames } from '../../lib/react-helpers';
-import { TabsStateProvider, TabsStateProviderProps } from './tabs-state';
-import { TabList } from './tab-list';
-import { Tab } from './tab';
-import { TabPanel } from './tab-panel';
+import { TabsContextProvider } from './tabs-context';
 
 export interface TabsProps extends ComponentPropsWithoutRef<'div'> {
-  selectedTabKey: TabsStateProviderProps['selectedTabKey'];
-  onSelectTab: TabsStateProviderProps['onSelectTab'];
+  selectedTab: TabName;
+  onSelectTab: TabSetter;
 }
 
 export function Tabs({
   className,
   children,
-  selectedTabKey,
+  selectedTab,
   onSelectTab,
   ...props
 }: TabsProps) {
   return (
-    <TabsStateProvider
-      selectedTabKey={selectedTabKey}
-      onSelectTab={onSelectTab}
+    <TabsContextProvider
+      selectedTab={selectedTab}
+      setSelectedTab={onSelectTab}
     >
-      <div {...props} className={classNames(className, 'dc-tabs')}>
+      <div {...props} className={classNames('dc-tabs', className)}>
         {children}
       </div>
-    </TabsStateProvider>
+    </TabsContextProvider>
   );
 }
-
-Tabs.List = TabList;
-Tabs.Tab = Tab;
-Tabs.Panel = TabPanel;

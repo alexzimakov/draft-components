@@ -1,121 +1,240 @@
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { Tabs } from './tabs';
-import { SvgIcon } from '../svg-icon';
-import { hammer } from '../../bootstrap-icons/hammer';
+import { TabList } from './tab-list';
+import { Tab } from './tab';
+import { TabPanel } from './tab-panel';
 
 it('renders without errors', () => {
-  const TabKeys = {
-    WORK: 'work',
-    DEVELOP: 'develop',
-    GAMES: 'games',
-  };
+  const label = 'Todos';
+  const tabs = [
+    {
+      name: 'all',
+      label: 'All',
+      content: 'All tab panel',
+    },
+    {
+      name: 'completed',
+      label: 'Completed',
+      content: 'Completed tab panel',
+    },
+    {
+      name: 'drafts',
+      label: 'Drafts',
+      content: 'Drafts tab panel',
+    },
+  ];
+  const selectedTab = tabs[0];
   render(
-    <Tabs selectedTabKey={TabKeys.DEVELOP} onSelectTab={jest.fn()}>
-      <Tabs.List>
-        <Tabs.Tab tabKey={TabKeys.WORK}>Work</Tabs.Tab>
-        <Tabs.Tab tabKey={TabKeys.DEVELOP} icon={<SvgIcon icon={hammer} />}>
-          Develop
-        </Tabs.Tab>
-        <Tabs.Tab tabKey={TabKeys.GAMES} badge={7}>
-          Games
-        </Tabs.Tab>
-      </Tabs.List>
+    <Tabs selectedTab={selectedTab.name} onSelectTab={jest.fn()}>
+      <TabList aria-label={label}>
+        {tabs.map((tab) => (
+          <Tab key={tab.name} name={tab.name}>
+            {tab.label}
+          </Tab>
+        ))}
+      </TabList>
 
-      <Tabs.Panel associatedTabKey={TabKeys.WORK}>Work tab content</Tabs.Panel>
-      <Tabs.Panel associatedTabKey={TabKeys.DEVELOP}>
-        Develop tab content
-      </Tabs.Panel>
-      <Tabs.Panel associatedTabKey={TabKeys.GAMES}>
-        Games tab content
-      </Tabs.Panel>
+      {tabs.map((tab) => (
+        <TabPanel key={tab.name} tab={tab.name}>
+          {tab.content}
+        </TabPanel>
+      ))}
     </Tabs>
   );
 
-  screen.getByRole('tablist');
-  expect(screen.getAllByRole('tab')).toHaveLength(3);
-  expect(screen.getAllByRole('tabpanel')).toHaveLength(1);
+  const tabList = screen.getByRole('tablist');
+  expect(tabList).toHaveAttribute('aria-label', label);
 
-  expect(screen.getByText('Develop')).toHaveAttribute('aria-selected', 'true');
-  screen.getByText('Develop tab content');
+  const tabElements = screen.getAllByRole('tab');
+  expect(tabElements).toHaveLength(tabs.length);
+  tabElements.forEach((tabEl, index) => {
+    const tab = tabs[index];
+    const tabIndexValue = String(tab === selectedTab ? 0 : -1);
+    const ariaSelectedValue = String(tab === selectedTab);
+    expect(tabEl).toHaveTextContent(tab.label);
+    expect(tabEl).toHaveAttribute('name', tab.name);
+    expect(tabEl).toHaveAttribute('tabindex', tabIndexValue);
+    expect(tabEl).toHaveAttribute('aria-selected', ariaSelectedValue);
+  });
+
+  expect(screen.getAllByRole('tabpanel')).toHaveLength(1);
+  expect(screen.getByRole('tabpanel')).toHaveTextContent(selectedTab.content);
+});
+
+it('renders with icon and counter', () => {
+  const label = 'Todos';
+  const tabs = [
+    {
+      name: 'all',
+      label: 'All',
+      content: 'All tab panel',
+    },
+    {
+      name: 'completed',
+      label: 'Completed',
+      content: 'Completed tab panel',
+      icon: <svg role="img" />,
+      counter: 3,
+    },
+  ];
+  render(
+    <Tabs selectedTab={tabs[0].name} onSelectTab={jest.fn()}>
+      <TabList aria-label={label}>
+        {tabs.map((tab) => (
+          <Tab
+            key={tab.name}
+            name={tab.name}
+            icon={tab.icon}
+            counter={tab.counter}
+          >
+            {tab.label}
+          </Tab>
+        ))}
+      </TabList>
+
+      {tabs.map((tab) => (
+        <TabPanel key={tab.name} tab={tab.name}>
+          {tab.content}
+        </TabPanel>
+      ))}
+    </Tabs>
+  );
+
+  const tabElements = screen.getAllByRole('tab');
+  const completedTabEl = tabElements[1];
+  const completedTab = tabs[1];
+  within(completedTabEl).getByRole('img');
+  expect(completedTabEl).toHaveTextContent(
+    `${completedTab.label} ${completedTab.counter}`
+  );
 });
 
 it('can select tab using mouse', async () => {
   const user = userEvent.setup();
-  const TabKeys = {
-    WORK: 'work',
-    DEVELOP: 'develop',
-    GAMES: 'games',
-  };
+  const tabs = [
+    {
+      name: 'all',
+      label: 'All',
+      content: 'All tab panel',
+    },
+    {
+      name: 'completed',
+      label: 'Completed',
+      content: 'Completed tab panel',
+    },
+    {
+      name: 'drafts',
+      label: 'Drafts',
+      content: 'Drafts tab panel',
+    },
+  ];
+  const selectedTab = tabs[0];
+  const expectedTab = tabs[1];
   const onSelectTabMock = jest.fn();
   render(
-    <Tabs selectedTabKey={TabKeys.DEVELOP} onSelectTab={onSelectTabMock}>
-      <Tabs.List>
-        <Tabs.Tab tabKey={TabKeys.WORK}>Work</Tabs.Tab>
-        <Tabs.Tab tabKey={TabKeys.DEVELOP}>Develop</Tabs.Tab>
-        <Tabs.Tab tabKey={TabKeys.GAMES}>Games</Tabs.Tab>
-      </Tabs.List>
+    <Tabs selectedTab={selectedTab.name} onSelectTab={onSelectTabMock}>
+      <TabList>
+        {tabs.map((tab) => (
+          <Tab key={tab.name} name={tab.name}>
+            {tab.label}
+          </Tab>
+        ))}
+      </TabList>
 
-      <Tabs.Panel associatedTabKey={TabKeys.WORK}>Work tab content</Tabs.Panel>
-      <Tabs.Panel associatedTabKey={TabKeys.DEVELOP}>
-        Develop tab content
-      </Tabs.Panel>
-      <Tabs.Panel associatedTabKey={TabKeys.GAMES}>
-        Games tab content
-      </Tabs.Panel>
+      {tabs.map((tab) => (
+        <TabPanel key={tab.name} tab={tab.name}>
+          {tab.content}
+        </TabPanel>
+      ))}
     </Tabs>
   );
 
-  await user.click(screen.getByText('Games'));
+  await user.click(screen.getByText(expectedTab.label));
 
   expect(onSelectTabMock).toHaveBeenCalledTimes(1);
-  expect(onSelectTabMock).toHaveBeenCalledWith(TabKeys.GAMES);
+  expect(onSelectTabMock).toHaveBeenCalledWith(expectedTab.name);
 });
 
-it('can move focus between tabs using keyboard', async () => {
+it('can focus tab using keyboard', async () => {
   const user = userEvent.setup();
-  const TabKeys = {
-    WORK: 'work',
-    DEVELOP: 'develop',
-    GAMES: 'games',
-  };
-  const onSelectTabMock = jest.fn();
+  const tabs = [
+    {
+      name: 'all',
+      label: 'All',
+      content: 'All tab panel',
+    },
+    {
+      name: 'completed',
+      label: 'Completed',
+      content: 'Completed tab panel',
+    },
+    {
+      name: 'drafts',
+      label: 'Drafts',
+      content: 'Drafts tab panel',
+    },
+  ];
   render(
-    <Tabs selectedTabKey={TabKeys.DEVELOP} onSelectTab={onSelectTabMock}>
-      <Tabs.List>
-        <Tabs.Tab tabKey={TabKeys.WORK}>{TabKeys.WORK}</Tabs.Tab>
-        <Tabs.Tab tabKey={TabKeys.DEVELOP}>{TabKeys.DEVELOP}</Tabs.Tab>
-        <Tabs.Tab tabKey={TabKeys.GAMES}>{TabKeys.GAMES}</Tabs.Tab>
-      </Tabs.List>
+    <Tabs selectedTab={tabs[0].name} onSelectTab={jest.fn()}>
+      <TabList>
+        {tabs.map((tab) => (
+          <Tab key={tab.name} name={tab.name}>
+            {tab.label}
+          </Tab>
+        ))}
+      </TabList>
 
-      <Tabs.Panel associatedTabKey={TabKeys.WORK}>Work tab content</Tabs.Panel>
-      <Tabs.Panel associatedTabKey={TabKeys.DEVELOP}>
-        Develop tab content
-      </Tabs.Panel>
-      <Tabs.Panel associatedTabKey={TabKeys.GAMES}>
-        Games tab content
-      </Tabs.Panel>
+      {tabs.map((tab) => (
+        <TabPanel key={tab.name} tab={tab.name}>
+          {tab.content}
+        </TabPanel>
+      ))}
     </Tabs>
   );
 
-  await user.tab();
-  expect(screen.getByText(TabKeys.DEVELOP)).toHaveFocus();
+  const [all, completed, drafts] = screen.getAllByRole('tab');
 
-  await user.keyboard('{ArrowLeft}');
-  expect(screen.getByText(TabKeys.WORK)).toHaveFocus();
+  await user.tab(); // move focus to the selected tab
+  expect(all).toHaveFocus();
 
-  await user.keyboard('{ArrowLeft}');
-  expect(screen.getByText(TabKeys.GAMES)).toHaveFocus();
+  await user.keyboard('{ArrowLeft}'); // move focus to the "Drafts" tab
+  expect(drafts).toHaveFocus();
 
-  await user.keyboard('{ArrowRight}');
-  expect(screen.getByText(TabKeys.WORK)).toHaveFocus();
+  await user.keyboard('{ArrowLeft}'); // move focus to the "Completed" tab
+  expect(completed).toHaveFocus();
 
-  await user.keyboard('{ArrowRight}');
-  expect(screen.getByText(TabKeys.DEVELOP)).toHaveFocus();
+  await user.keyboard('{ArrowRight}'); // move focus to the "Drafts" tab
+  expect(drafts).toHaveFocus();
 
-  await user.keyboard('{Home}');
-  expect(screen.getByText(TabKeys.WORK)).toHaveFocus();
+  await user.keyboard('{ArrowRight}'); // move focus to the "All" tab
+  expect(all).toHaveFocus();
 
-  await user.keyboard('{End}');
-  expect(screen.getByText(TabKeys.GAMES)).toHaveFocus();
+  await user.keyboard('{End}'); // move focus to the last tab
+  expect(drafts).toHaveFocus();
+
+  await user.keyboard('{Home}'); // move focus to the first tab
+  expect(all).toHaveFocus();
+
+  // do not move focus if any other key was pressed
+  await user.keyboard('>');
+  await user.keyboard('<');
+  expect(all).toHaveFocus();
 });
+
+it(
+  'should throw an error when `TabList`, `Tab`, or `TabPanel` ' +
+  'are using outside the `Tabs` component',
+  () => {
+    // Suppress logging of render error.
+    const consoleErrorMock = jest
+      .spyOn(console, 'error')
+      .mockImplementation(jest.fn());
+
+    expect(() => render(<TabList />)).toThrow();
+    expect(() => render(<Tab name="drafts">Drafts</Tab>)).toThrow();
+    expect(() => render(<TabPanel tab="drafts">Drafts</TabPanel>)).toThrow();
+
+    consoleErrorMock.mockRestore();
+  }
+);

@@ -1,0 +1,22 @@
+.dc-counter {
+  --dc-counter-height: 20px;
+  --dc-counter-text-color: var(--dc-primary-text-color);
+  --dc-counter-bg: var(--dc-bg-transparent-2);
+
+  font: 12px/1 var(--dc-primary-font);
+  color: var(--dc-counter-text-color);
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  height: var(--dc-counter-height);
+  min-width: var(--dc-counter-height);
+  padding: 0 4px;
+  border-radius: calc(var(--dc-counter-height) / 2);
+  background: var(--dc-counter-bg);
+}
+
+.dc-counter_circle {
+  padding-right: 0;
+  padding-left: 0;
+}

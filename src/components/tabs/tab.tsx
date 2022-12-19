@@ -1,19 +1,23 @@
-import { ComponentPropsWithoutRef, ReactNode, useEffect } from 'react';
-import { isFunction } from '../../lib/guards';
+import {
+  type ComponentPropsWithoutRef,
+  type MouseEvent,
+  type ReactNode,
+} from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { useTabsState } from './tabs-state';
+import { useTabsContext } from './tabs-context';
+import { Counter } from '../counter';
 
-export interface TabProps extends ComponentPropsWithoutRef<'button'> {
-  tabKey: string;
+export type TabProps = {
   icon?: ReactNode;
-  badge?: ReactNode;
-}
+  counter?: number;
+  name: string;
+} & ComponentPropsWithoutRef<'button'>;
 
 export function Tab({
-  tabKey,
-  icon,
-  badge,
   id,
+  name,
+  icon,
+  counter,
   className,
   children,
   onClick,
@@ -21,41 +25,43 @@ export function Tab({
   ...props
 }: TabProps) {
   const {
-    selectedTabKey,
-    focusedTabKey,
-    getTabId,
-    getTabPanelId,
-    selectTab,
-    registerTab,
-  } = useTabsState();
-  const selected = tabKey === selectedTabKey;
-  const focused = tabKey === focusedTabKey;
+    getTabProps,
+    selectedTab,
+    setSelectedTab,
+    tabListHasFocus,
+  } = useTabsContext();
+  const tabProps = getTabProps(name);
+  const selected = name === selectedTab;
 
-  useEffect(() => registerTab(tabKey), [tabKey, registerTab]);
+  function handleClick(event: MouseEvent<HTMLButtonElement>): void {
+    setSelectedTab(name);
+    onClick?.(event);
+  }
 
   return (
     <button
       {...props}
-      id={getTabId(tabKey, id)}
-      name={tabKey}
-      className={classNames(
-        className,
-        'dc-tabs__tab',
-        'dc-tab',
-        selected && 'dc-tab_selected'
-      )}
+      className={classNames('dc-tab', className)}
+      type="button"
       role="tab"
+      name={name}
+      id={id || tabProps.id}
+      aria-controls={ariaControls || tabProps.ariaControls}
       aria-selected={selected}
-      aria-controls={getTabPanelId(tabKey, ariaControls)}
-      tabIndex={focused ? 0 : -1}
-      onClick={(event) => {
-        selectTab(tabKey);
-        isFunction(onClick) && onClick(event);
-      }}
+      tabIndex={selected && !tabListHasFocus ? 0 : -1}
+      onClick={handleClick}
     >
-      {icon != null && <div className="dc-tab__icon">{icon}</div>}
-      {children}
-      {badge != null && <div className="dc-tab__badge">{badge}</div>}
+      <span className="dc-tab__layout">
+        {icon != null && (
+          <span className="dc-tab__icon">{icon}</span>
+        )}
+        {children != null && (
+          <span className="dc-tab__label">{children} </span>
+        )}
+        {counter != null && counter !== 0 && (
+          <Counter className="dc-tab__counter">{counter}</Counter>
+        )}
+      </span>
     </button>
   );
 }

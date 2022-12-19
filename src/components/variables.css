@@ -144,6 +144,13 @@
 
   /* Background */
   --dc-bg: #fff;
+  --dc-bg-transparent-1: rgba(17, 24, 39, 0.05);
+  --dc-bg-transparent-2: rgba(17, 24, 39, 0.1);
+  --dc-bg-transparent-3: rgba(17, 24, 39, 0.2);
+
+  /* Borders */
+  --dc-border-color-transparent-1: rgba(17, 24, 39, 0.15);
+  --dc-border-color-transparent-2: rgba(17, 24, 39, 0.25);
 
   /* Text */
   --dc-primary-text-color: var(--dc-gray-800);
@@ -156,8 +163,8 @@
   --dc-on-primary-color: #fff;
 
   /* Secondary */
-  --dc-secondary-color: rgba(59, 130, 246, 0.18); /* blue-500 */
-  --dc-secondary-color-hover: rgba(59, 130, 246, 0.28); /* blue-500 */
+  --dc-secondary-color: rgba(59, 130, 246, 0.15); /* blue-500 */
+  --dc-secondary-color-hover: rgba(59, 130, 246, 0.3); /* blue-500 */
   --dc-on-secondary-color: var(--dc-blue-600);
 
   /* Accents */
