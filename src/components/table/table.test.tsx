@@ -1,12 +1,12 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen, within } from '@testing-library/react';
-import { TableContainer } from './table-container';
 import { Table } from './table';
 import { TableHead } from './table-head';
 import { TableBody } from './table-body';
 import { TableRow } from './table-row';
-import { TableHeaderCell } from './table-header-cell';
+import { TableHeadCell } from './table-head-cell';
 import { TableCell } from './table-cell';
+import { TableContainer } from './table-container';
 
 it('renders without errors', () => {
   const headers = ['Person', 'Age'];
@@ -18,12 +18,12 @@ it('renders without errors', () => {
   const expectedHeaderCellCount = headers.length;
   const expectedDataCellCount = rows.length * headers.length;
   render(
-    <TableContainer>
+    <TableContainer border={{ top: true, bottom: true }}>
       <Table>
         <TableHead>
           <TableRow>
-            <TableHeaderCell>{headers[0]}</TableHeaderCell>
-            <TableHeaderCell>{headers[1]}</TableHeaderCell>
+            <TableHeadCell>{headers[0]}</TableHeadCell>
+            <TableHeadCell>{headers[1]}</TableHeadCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -40,8 +40,7 @@ it('renders without errors', () => {
     </TableContainer>
   );
 
-  const tableContainer = screen.getByRole('group');
-  const table = within(tableContainer).getByRole('table');
+  const table = screen.getByRole('table');
   expect(within(table).getAllByRole('rowgroup')).toHaveLength(2);
   expect(within(table).getAllByRole('row')).toHaveLength(expectedRowCount);
   expect(within(table).getAllByRole('columnheader')).toHaveLength(
@@ -64,63 +63,65 @@ it('renders without errors', () => {
 
 it('renders with sortable header cells', async () => {
   const user = userEvent.setup();
-  const onChangeIdOrder = jest.fn();
-  const onChangePersonOrder = jest.fn();
-  const onChangeAgeOrder = jest.fn();
+  const onChangeSort = jest.fn();
   render(
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableHeaderCell isSortable={true} onChangeOrder={onChangeIdOrder}>
-            ID
-          </TableHeaderCell>
-          <TableHeaderCell
-            isSortable={true}
-            order="asc"
-            onChangeOrder={onChangePersonOrder}
-          >
-            Person
-          </TableHeaderCell>
-          <TableHeaderCell
-            isSortable={true}
-            order="desc"
-            onChangeOrder={onChangeAgeOrder}
-          >
-            Age
-          </TableHeaderCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        <TableRow>
-          <TableCell>1</TableCell>
-          <TableCell>Chris</TableCell>
-          <TableCell>38</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>1</TableCell>
-          <TableCell>Dennis</TableCell>
-          <TableCell>45</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
+    <TableContainer border="all">
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableHeadCell
+              isSortable={true}
+              sort="none"
+              onChangeSort={onChangeSort}
+            >
+              ID
+            </TableHeadCell>
+            <TableHeadCell
+              isSortable={true}
+              sort="ascending"
+              onChangeSort={onChangeSort}
+            >
+              Person
+            </TableHeadCell>
+            <TableHeadCell
+              isSortable={true}
+              sort="descending"
+              onChangeSort={onChangeSort}
+            >
+              Age
+            </TableHeadCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>1</TableCell>
+            <TableCell>Chris</TableCell>
+            <TableCell>38</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>1</TableCell>
+            <TableCell>John</TableCell>
+            <TableCell>45</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 
-  const [idHeaderCell, personHeaderCell, ageHeaderCell] = (
-    screen.getAllByRole('columnheader')
-  );
-  expect(idHeaderCell).toHaveAttribute('aria-sort', 'none');
-  expect(personHeaderCell).toHaveAttribute('aria-sort', 'ascending');
-  expect(ageHeaderCell).toHaveAttribute('aria-sort', 'descending');
+  const [
+    idColumn,
+    personColumn,
+    ageColumn,
+  ] = screen.getAllByRole('columnheader');
+  expect(idColumn).toHaveAttribute('aria-sort', 'none');
+  expect(personColumn).toHaveAttribute('aria-sort', 'ascending');
+  expect(ageColumn).toHaveAttribute('aria-sort', 'descending');
 
-  await user.click(within(idHeaderCell).getByRole('button'));
-  expect(onChangeIdOrder).toHaveBeenCalledTimes(1);
-  expect(onChangeIdOrder).toHaveBeenCalledWith('asc');
-
-  await user.click(within(personHeaderCell).getByRole('button'));
-  expect(onChangePersonOrder).toHaveBeenCalledTimes(1);
-  expect(onChangePersonOrder).toHaveBeenCalledWith('desc');
-
-  await user.click(within(ageHeaderCell).getByRole('button'));
-  expect(onChangeAgeOrder).toHaveBeenCalledTimes(1);
-  expect(onChangeAgeOrder).toHaveBeenCalledWith('none');
+  await user.click(within(idColumn).getByRole('button'));
+  await user.click(within(personColumn).getByRole('button'));
+  await user.click(within(ageColumn).getByRole('button'));
+  expect(onChangeSort).toHaveBeenCalledTimes(3);
+  expect(onChangeSort).toHaveBeenNthCalledWith(1, 'ascending');
+  expect(onChangeSort).toHaveBeenNthCalledWith(2, 'descending');
+  expect(onChangeSort).toHaveBeenNthCalledWith(3, 'none');
 });

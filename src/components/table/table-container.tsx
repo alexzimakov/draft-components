@@ -1,46 +1,45 @@
-import {
-  ComponentPropsWithRef,
-  forwardRef,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-import { classNames, mergeRefs } from '../../lib/react-helpers';
+import { forwardRef, type ComponentPropsWithRef } from 'react';
+import { classNames } from '../../lib/react-helpers';
 
-export type TableContainerProps = ComponentPropsWithRef<'div'>;
+type TableContainerBaseProps = ComponentPropsWithRef<'div'>;
+export type TableContainerBorder = {
+  top?: boolean;
+  right?: boolean;
+  bottom?: boolean;
+  left?: boolean;
+};
+export type TableContainerProps = {
+  border?: 'none' | 'all' | TableContainerBorder;
+} & TableContainerBaseProps;
 
-export const TableContainer = forwardRef<HTMLDivElement, TableContainerProps>(
-  function TableContainer({ className, children, ...props }, ref) {
-    const [isScrollable, setIsScrollable] = useState(false);
-    const containerRef = useRef<HTMLDivElement | null>(null);
-
-    useEffect(() => {
-      const containerEl = containerRef.current;
-      if (!containerEl) {
-        return;
-      }
-
-      const updateTabIndex = () => {
-        setIsScrollable(containerEl.scrollWidth > containerEl.clientWidth);
-      };
-      updateTabIndex();
-
-      window.addEventListener('resize', updateTabIndex);
-      return () => {
-        window.removeEventListener('resize', updateTabIndex);
-      };
-    }, []);
-
-    return (
-      <div
-        tabIndex={isScrollable ? 0 : undefined}
-        role="group"
-        {...props}
-        ref={mergeRefs(containerRef, ref)}
-        className={classNames(className, 'dc-table-container')}
-      >
-        {children}
-      </div>
-    );
+export const TableContainer = forwardRef<
+  HTMLDivElement,
+  TableContainerProps
+>(function TableContainer({
+  border,
+  className,
+  children,
+  ...props
+}, ref) {
+  let modifier = '';
+  if (typeof border === 'object' && border != null) {
+    modifier = classNames({
+      'dc-table-container_border_top': border.top,
+      'dc-table-container_border_right': border.right,
+      'dc-table-container_border_bottom': border.bottom,
+      'dc-table-container_border_left': border.left,
+    });
+  } else if (border === 'all') {
+    modifier = 'dc-table-container_border_all';
   }
-);
+
+  return (
+    <div
+      {...props}
+      ref={ref}
+      className={classNames(className, modifier, 'dc-table-container')}
+    >
+      {children}
+    </div>
+  );
+});

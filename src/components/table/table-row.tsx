@@ -1,22 +1,23 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { forwardRef, type ComponentPropsWithRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
-export interface TableRowProps extends ComponentPropsWithRef<'tr'> {
+type TableRowBaseProps = ComponentPropsWithRef<'tr'>;
+export type TableRowProps = {
   isSelected?: boolean;
-}
+} & TableRowBaseProps;
 
-export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
-  function TableRow({ isSelected, className, ...props }, ref) {
-    return (
-      <tr
-        {...props}
-        ref={ref}
-        className={classNames(
-          'dc-table-row',
-          isSelected && 'dc-table-row_selected',
-          className
-        )}
-      />
-    );
-  }
-);
+export const TableRow = forwardRef<
+  HTMLTableRowElement,
+  TableRowProps
+>(function TableRow({ isSelected, className, ...props }, ref) {
+  return (
+    <tr
+      {...props}
+      ref={ref}
+      className={classNames(className, {
+        'dc-table-row': true,
+        'dc-table-row_selected': isSelected,
+      })}
+    />
+  );
+});

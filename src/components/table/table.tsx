@@ -1,42 +1,37 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { forwardRef, type ComponentPropsWithRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
-export interface TableProps extends ComponentPropsWithRef<'table'> {
-  isLoading?: boolean;
-  isBordered?: boolean;
+type TableBaseProps = ComponentPropsWithRef<'table'>;
+export type TableCellSize = 'sm' | 'md' | 'lg';
+export type TableProps = {
+  cellSize?: TableCellSize;
   isStriped?: boolean;
-  cellPadding?: 'sm' | 'md' | 'lg';
-  hasStickyHeader?: boolean;
-  shouldHighlightActiveRow?: boolean;
-}
+  isBordered?: boolean;
+  highlightRowOnHover?: boolean;
+} & TableBaseProps;
 
-export const Table = forwardRef<HTMLTableElement, TableProps>(function Table(
-  {
-    isLoading,
-    isBordered,
-    isStriped,
-    cellPadding,
-    hasStickyHeader,
-    shouldHighlightActiveRow,
-    className,
-    children,
-    ...props
-  },
-  ref
-) {
+export const Table = forwardRef<
+  HTMLTableElement,
+  TableProps
+>(function Table({
+  cellSize = 'md',
+  isStriped = false,
+  isBordered = false,
+  highlightRowOnHover = false,
+  className,
+  children,
+  ...props
+}, ref) {
   return (
     <table
       {...props}
       ref={ref}
       className={classNames(className, 'dc-table', {
-        'dc-table_loading': isLoading,
-        'dc-table_bordered': isBordered,
+        [`dc-table_cell_${cellSize}`]: cellSize,
         'dc-table_striped': isStriped,
-        'dc-table_sticky-header': hasStickyHeader,
-        'dc-table_row_highlighted': shouldHighlightActiveRow,
-        [`dc-table_padding_${cellPadding}`]: cellPadding,
+        'dc-table_bordered': isBordered,
+        'dc-table_highlight_row': highlightRowOnHover,
       })}
-      cellSpacing={0}
     >
       {children}
     </table>
