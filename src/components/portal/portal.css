@@ -1,0 +1,3 @@
+.dc-portals-container {
+  z-index: var(--dc-portal-z-index);
+}

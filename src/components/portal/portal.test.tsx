@@ -1,23 +1,39 @@
 import { render, screen, within } from '@testing-library/react';
 import { Portal } from './portal';
+import { PortalContainerProvider } from './portal-context';
 
-it('<Portal /> should create root node and mounts portals to it.', () => {
-  const testId = 'portal';
-  const firstPortalContent = 'First Portal';
-  const secondPortalContent = 'Second Portal';
+it('creates HTML element and mounts portals to it.', () => {
+  const content1 = 'First Portal';
+  const content2 = 'Second Portal';
 
   render(
-    <Portal data-testid={testId}>
-      <div>{firstPortalContent}</div>
-    </Portal>
-  );
-  render(
-    <Portal data-testid={testId}>
-      <div>{secondPortalContent}</div>
-    </Portal>
+    <>
+      <Portal>
+        <div>{content1}</div>
+      </Portal>
+      <Portal>
+        <div>{content2}</div>
+      </Portal>
+    </>
   );
 
-  const portalContainer = screen.getByTestId('dc-portal-container');
-  within(portalContainer).getByText(firstPortalContent);
-  within(portalContainer).getByText(secondPortalContent);
+  const container = screen.getByTestId('portals-container');
+  within(container).getByText(content1);
+  within(container).getByText(content2);
+});
+
+it('mounts portals to the provided container', () => {
+  const container = document.createElement('div');
+  document.body.append(container);
+
+  const content = 'Portal content';
+  render(
+    <PortalContainerProvider value={container}>
+      <Portal>
+        <div>{content}</div>
+      </Portal>
+    </PortalContainerProvider>
+  );
+
+  within(container).getByText(content);
 });
