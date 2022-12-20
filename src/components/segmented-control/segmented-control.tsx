@@ -37,7 +37,7 @@ export function SegmentedControl<T extends string | number>({
   function handleKeyDown(event: KeyboardEvent<HTMLUListElement>): void {
     const prevIndex = options.findIndex((option) => option.value === value);
     const containerEl = ref.current;
-    assertIfNullable(containerEl, 'containerRef.current is null or undefined');
+    assertIfNullable(containerEl, 'ref.current is null or undefined');
 
     let index = prevIndex;
     if (
