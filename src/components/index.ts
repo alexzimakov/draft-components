@@ -19,7 +19,6 @@ export * from './label';
 export * from './loading-view';
 export * from './menu';
 export * from './non-ideal-state-view';
-export * from './number-input';
 export * from './password-input';
 export * from './popover';
 export * from './portal';
