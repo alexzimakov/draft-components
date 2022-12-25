@@ -33,8 +33,8 @@
   /* Default button */
   --dc-button-default-text-color: var(--dc-gray-100);
   --dc-button-default-border-color: rgba(249, 250, 251, 0.1); /* gray-50 */
-  --dc-button-default-bg: var(--dc-gray-800);
-  --dc-button-default-bg-hover: var(--dc-gray-700);
+  --dc-button-default-bg: var(--dc-gray-700);
+  --dc-button-default-bg-hover: var(--dc-gray-600);
   --dc-button-default-tinted-text-color: var(--dc-gray-100);
   --dc-button-default-tinted-bg: rgba(249, 250, 251, 0.1); /* gray-50 */
   --dc-button-default-tinted-bg-hover: rgba(249, 250, 251, 0.2); /* gray-50 */

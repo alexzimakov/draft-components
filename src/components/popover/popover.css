@@ -1,0 +1,84 @@
+.dc-popover {
+  --dc-popover-text-color: var(--dc-primary-text-color);
+  --dc-popover-transition-duration: 100ms;
+  --dc-popover-bg: white;
+  --dc-popover-shadow:
+    0 2px 0 -1px rgba(0, 0, 0, 0.075),
+    0 0 0 1px var(--dc-gray-200),
+    var(--dc-shadow-lg);
+
+  font: var(--dc-text-sm);
+  color: var(--dc-popover-text-color);
+  box-sizing: border-box;
+  max-width: 448px;
+  max-height: 448px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: var(--dc-popover-bg);
+  box-shadow: var(--dc-popover-shadow);
+}
+
+.dc-popover__container {
+  box-sizing: border-box;
+  padding: 1px;
+}
+
+.dc-popover_closed {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: var(--dc-popover-transition-duration) ease;
+  transition-property: opacity, transform;
+}
+
+.dc-popover_opened {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.dc-popover__container[data-position="top-start"] .dc-popover {
+  transform-origin: bottom left;
+}
+
+.dc-popover__container[data-position="top-center"] .dc-popover {
+  transform-origin: bottom center;
+}
+
+.dc-popover__container[data-position="top-right"] .dc-popover {
+  transform-origin: bottom left;
+}
+
+.dc-popover__container[data-position="right-start"] .dc-popover {
+  transform-origin: left top;
+}
+
+.dc-popover__container[data-position="right-center"] .dc-popover {
+  transform-origin: left center;
+}
+
+.dc-popover__container[data-position="right-right"] .dc-popover {
+  transform-origin: left bottom;
+}
+
+.dc-popover__container[data-position="bottom-start"] .dc-popover {
+  transform-origin: top left;
+}
+
+.dc-popover__container[data-position="bottom-center"] .dc-popover {
+  transform-origin: top center;
+}
+
+.dc-popover__container[data-position="bottom-right"] .dc-popover {
+  transform-origin: top left;
+}
+
+.dc-popover__container[data-position="left-start"] .dc-popover {
+  transform-origin: right top;
+}
+
+.dc-popover__container[data-position="left-center"] .dc-popover {
+  transform-origin: right center;
+}
+
+.dc-popover__container[data-position="left-right"] .dc-popover {
+  transform-origin: right bottom;
+}

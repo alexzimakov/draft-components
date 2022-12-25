@@ -1,0 +1,8 @@
+.dark .dc-popover,
+.dark.dc-popover {
+  --dc-popover-border-color: var(--dc-gray-700);
+  --dc-popover-bg: var(--dc-gray-800);
+  --dc-popover-shadow:
+    0 0 0 1px var(--dc-gray-700),
+    var(--dc-shadow-lg);
+}

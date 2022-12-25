@@ -1,11 +1,16 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '@testing-library/react';
+import { mockMatchMedia } from '../../lib/test-utils';
 import { Popover } from './popover';
 
 const anchorLabel = 'Show Popover';
 const popoverContent = 'Popover Content';
 
-it('<Popover /> renders without errors', () => {
+beforeEach(() => {
+  mockMatchMedia();
+});
+
+it('renders without errors', () => {
   const popoverTestId = 'popover';
   render(
     <Popover
@@ -22,7 +27,7 @@ it('<Popover /> renders without errors', () => {
 });
 
 it(
-  '<Popover /> renders without errors when anchor property is function',
+  'renders without errors when anchor property is function',
   () => {
     const popoverTestId = 'popover';
     render(
@@ -42,14 +47,14 @@ it(
 
 it('should open popover when click on anchor element', async () => {
   const user = userEvent.setup();
-  const onOpenMock = jest.fn();
   const anchorTestId = 'anchor';
   const popoverTestId = 'popover';
+  const openMock = jest.fn();
   render(
     <Popover
       anchor={<button data-testid={anchorTestId}>{anchorLabel}</button>}
       data-testid={popoverTestId}
-      onOpen={onOpenMock}
+      onOpen={openMock}
     >
       {popoverContent}
     </Popover>
@@ -59,16 +64,16 @@ it('should open popover when click on anchor element', async () => {
 
   await user.click(screen.getByTestId(anchorTestId));
   screen.getByTestId(popoverTestId);
-  expect(onOpenMock).toHaveBeenCalledTimes(1);
+  expect(openMock).toHaveBeenCalledTimes(1);
 });
 
 it(
   'should close popover when click on element outside of popover',
   async () => {
     const user = userEvent.setup();
-    const onCloseMock = jest.fn();
     const popoverTestId = 'popover';
     const externalElementTestId = 'close-popover';
+    const closeMock = jest.fn();
     render(
       <div>
         <button data-testid={externalElementTestId}>Close popover</button>
@@ -76,7 +81,7 @@ it(
           anchor={<button>{anchorLabel}</button>}
           defaultIsOpen={true}
           data-testid={popoverTestId}
-          onClose={onCloseMock}
+          onClose={closeMock}
         >
           {popoverContent}
         </Popover>
@@ -87,20 +92,20 @@ it(
 
     await user.click(screen.getByTestId(externalElementTestId));
     await waitFor(() => expect(screen.queryByTestId(popoverTestId)).toBeNull());
-    expect(onCloseMock).toHaveBeenCalledTimes(1);
+    expect(closeMock).toHaveBeenCalledTimes(1);
   }
 );
 
 it('should close popover when press Esc button', async () => {
   const user = userEvent.setup();
-  const onCloseMock = jest.fn();
   const popoverTestId = 'popover';
+  const closeMock = jest.fn();
   render(
     <Popover
       anchor={<button>{anchorLabel}</button>}
       defaultIsOpen={true}
       data-testid={popoverTestId}
-      onClose={onCloseMock}
+      onClose={closeMock}
     >
       {popoverContent}
     </Popover>
@@ -110,21 +115,21 @@ it('should close popover when press Esc button', async () => {
 
   await user.keyboard('{Escape}');
   await waitFor(() => expect(screen.queryByTestId(popoverTestId)).toBeNull());
-  expect(onCloseMock).toHaveBeenCalledTimes(1);
+  expect(closeMock).toHaveBeenCalledTimes(1);
 });
 
-it('should capture focus within popover', async () => {
+it('should trap focus within the popover', async () => {
   const user = userEvent.setup();
-  const onCloseMock = jest.fn();
   const popoverTestId = 'popover';
   const inputTestId = 'input';
   const buttonTestId = 'button';
+  const closeMock = jest.fn();
   render(
     <Popover
       anchor={<button>{anchorLabel}</button>}
       defaultIsOpen={true}
       data-testid={popoverTestId}
-      onClose={onCloseMock}
+      onClose={closeMock}
     >
       <input data-testid={inputTestId} />
       <button data-testid={buttonTestId}>Add</button>

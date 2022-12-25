@@ -1,85 +1,100 @@
-import { RefObject, useEffect } from 'react';
-import { KeyCode } from '../lib/keyboard-helpers';
+import { useEffect, type RefObject } from 'react';
+import { focusElement } from '../lib/react-helpers';
+import { KeyboardKeys } from '../lib/keyboard-keys';
 
-const modalList: RefObject<HTMLElement>[] = [];
+type ModalRef = RefObject<HTMLElement>;
+type Options = { isEnabled: boolean };
 
+const modals: ModalRef[] = [];
+const focusableElementsSelector = [
+  'a[href]',
+  'area[href]',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  'button:not([disabled])',
+  'iframe',
+  '[tabindex]',
+  '[contentEditable=true]',
+]
+  .map((selector) => `${selector}:not([tabindex='-1'])`)
+  .join(', ');
+
+/**
+ * Prevents focus move outside a modal element.
+ *
+ * @param {ModalRef} modalRef - The modal element ref object.
+ * @param {Object} options - An object with hook options.
+ * @param {boolean} options.isEnabled - A flag that determines whether
+ * to trap focus or not.
+ */
 export function useFocusTrap(
-  modalRef: RefObject<HTMLElement>,
-  isEnabled: boolean
+  modalRef: ModalRef,
+  options: Options
 ): void {
+  const isEnabled = options.isEnabled;
+
   useEffect(() => {
     if (!isEnabled) {
       return;
     }
 
+    modals.push(modalRef);
+
     const handleBodyKeyDown = (event: KeyboardEvent): void => {
-      if (event.key !== KeyCode.tab) {
+      if (event.key !== KeyboardKeys.Tab) {
         return;
       }
 
-      const currentModal = modalList[modalList.length - 1]?.current;
-      if (currentModal == null) {
+      const activeModalRef = modals[modals.length - 1];
+      if (activeModalRef == null) {
         return;
       }
 
-      const focusableEls = getFocusableElements(currentModal);
+      const activeModal = activeModalRef.current;
+      if (activeModal == null) {
+        return;
+      }
+
+      const focusableEls = Array.from(
+        activeModal.querySelectorAll(focusableElementsSelector)
+      );
       if (focusableEls.length === 0) {
         return;
       }
 
       const firstFocusableEl = focusableEls[0];
       const lastFocusableEl = focusableEls[focusableEls.length - 1];
-      if (!currentModal.contains(document.activeElement)) {
+      if (!activeModal.contains(document.activeElement)) {
         event.preventDefault();
-        firstFocusableEl.focus();
+        focusElement(firstFocusableEl);
       } else if (event.shiftKey) {
         if (document.activeElement === firstFocusableEl) {
           event.preventDefault();
-          lastFocusableEl.focus();
+          focusElement(lastFocusableEl);
         }
       } else if (document.activeElement === lastFocusableEl) {
         event.preventDefault();
-        firstFocusableEl.focus();
+        focusElement(firstFocusableEl);
       }
     };
 
-    modalList.push(modalRef);
-
-    if (modalList.length === 1) {
+    // Add only one global `body` key down handler.
+    if (modals.length === 1) {
       document.body.addEventListener('keydown', handleBodyKeyDown);
     }
 
     return () => {
-      const index = modalList.indexOf(modalRef);
-      if (~index) {
-        modalList.splice(index, 1);
+      const index = modals.indexOf(modalRef);
+      if (index >= 0) {
+        modals.splice(index, 1);
       }
 
-      if (modalList.length === 0) {
+      // Remove the global `body` key down handler
+      // if there are no active modals.
+      if (modals.length === 0) {
         document.body.removeEventListener('keydown', handleBodyKeyDown);
       }
     };
   }, [isEnabled, modalRef]);
-}
-
-function getFocusableElements(container: HTMLElement | null): HTMLElement[] {
-  if (container == null) {
-    return [];
-  }
-  const focusableElementsSelector = [
-    'a[href]',
-    'area[href]',
-    'input:not([disabled])',
-    'select:not([disabled])',
-    'textarea:not([disabled])',
-    'button:not([disabled])',
-    'iframe',
-    '[tabindex]',
-    '[contentEditable=true]',
-  ]
-    .map((selector) => `${selector}:not([tabindex='-1'])`)
-    .join(', ');
-  return Array.from(
-    container.querySelectorAll<HTMLElement>(focusableElementsSelector)
-  );
 }

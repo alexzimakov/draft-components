@@ -188,8 +188,8 @@
   /* Default button */
   --dc-button-default-text-color: var(--dc-gray-800);
   --dc-button-default-border-color: rgba(17, 24, 39, 0.1); /* gray-900 */
-  --dc-button-default-bg: var(--dc-gray-50);
-  --dc-button-default-bg-hover: var(--dc-gray-100);
+  --dc-button-default-bg: var(--dc-gray-100);
+  --dc-button-default-bg-hover: var(--dc-gray-200);
   --dc-button-default-tinted-text-color: var(--dc-gray-800);
   --dc-button-default-tinted-bg: rgba(17, 24, 39, 0.1); /* gray-900 */
   --dc-button-default-tinted-bg-hover: rgba(17, 24, 39, 0.2); /* gray-900 */

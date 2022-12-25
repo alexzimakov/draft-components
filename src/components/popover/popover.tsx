@@ -1,29 +1,37 @@
 import {
   cloneElement,
   forwardRef,
-  ReactNode,
-  RefCallback,
   useCallback,
   useImperativeHandle,
   useRef,
   useState,
+  type CSSProperties,
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+  type RefCallback,
 } from 'react';
-import { isFunction, isReactElement } from '../../lib/guards';
-import { classNames, mergeRefs } from '../../lib/react-helpers';
-import { useIsFirstRender } from '../../hooks/use-is-first-render';
-import { useCloseAnimation } from '../../hooks/use-close-animation';
+import {
+  classNames,
+  focusElement,
+  isReactElementWithRef,
+  mergeRefs,
+} from '../../lib/react-helpers';
+import { useMountTransition } from '../../hooks/use-mount-transition';
 import { useEscKeyDown } from '../../hooks/use-esc-key-down';
 import { useFocusTrap } from '../../hooks/use-focus-trap';
-import { useBodyClick } from './use-body-click';
-import { Box, BoxProps } from '../box';
-import { Positioner } from '../positioner';
-import { Alignment, Placement } from '../positioner/types';
+import { usePageClick } from './use-page-click';
+import {
+  Positioner,
+  type PositionerProps,
+  type RenderAnchorFn,
+  type RenderContentFn,
+} from '../positioner';
 
-type RenderFn = (props: {
+type PopoverAnchorRenderFn = (props: {
   setRef: RefCallback<HTMLElement>;
-  openPopover(): void;
-  closePopover(): void;
-  togglePopover(): void;
+  openPopover: () => void;
+  closePopover: () => void;
+  togglePopover: () => void;
 }) => ReactNode;
 
 export type PopoverRef = {
@@ -32,164 +40,163 @@ export type PopoverRef = {
   toggle(): void;
 };
 
+export type PopoverPlacement = PositionerProps['placement'];
+export type PopoverAlignment = PositionerProps['alignment'];
+export type OpenCallback = () => void;
+export type CloseCallback = () => void;
 export type PopoverProps = {
   defaultIsOpen?: boolean;
   isOpen?: boolean;
   shouldTrapFocus?: boolean;
   shouldFocusAnchorAfterClose?: boolean;
-  placement?: Placement;
-  alignment?: Alignment;
   anchorGap?: number;
   viewportGap?: number;
-  anchor: ReactNode | RenderFn;
+  placement?: PopoverPlacement;
+  alignment?: PopoverAlignment;
+  anchor: ReactNode | PopoverAnchorRenderFn;
   children: ReactNode;
-  onOpen?(): void;
-  onClose?(): void;
-} & BoxProps;
+  onOpen?: OpenCallback;
+  onClose?: CloseCallback;
+} & ComponentPropsWithoutRef<'div'>;
 
-export const Popover = forwardRef<PopoverRef, PopoverProps>(function Popover(
-  {
-    className,
-    shouldTrapFocus = true,
-    shouldFocusAnchorAfterClose = true,
-    placement = 'bottom',
-    alignment = 'start',
-    anchorGap,
-    viewportGap,
-    borderRadius = 'lg',
-    elevation = 'md',
-    anchor,
-    children,
-    onOpen,
-    onClose,
-    ...props
-  },
-  ref
-) {
+export const Popover = forwardRef<
+  PopoverRef,
+  PopoverProps
+>(function Popover({
+  shouldTrapFocus = true,
+  shouldFocusAnchorAfterClose = true,
+  placement = 'bottom',
+  alignment = 'start',
+  anchorGap,
+  viewportGap,
+  defaultIsOpen,
+  isOpen,
+  anchor,
+  style,
+  className,
+  children,
+  onOpen,
+  onClose,
+  ...props
+}, ref) {
+  const [defaultShow, setDefaultShow] = useState(defaultIsOpen ?? false);
   const anchorRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const isFirstRender = useIsFirstRender();
-  const [defaultIsOpen, setDefaultIsOpen] = useState(props.defaultIsOpen);
-  const isOpen = props.isOpen ?? defaultIsOpen ?? false;
-  const { shouldRender, animationClassName } = useCloseAnimation({
-    isOpen,
-    closeDurationMs: 150,
-    className: !isFirstRender && 'dc-popover_bubble-transition',
-    openClassName: 'dc-popover_open',
-    closingClassName: 'dc-popover_closing',
+  const show = isOpen ?? defaultShow;
+  const durationMs = 100;
+  const { isMounted, className: transitionClass } = useMountTransition({
+    show,
+    durationMs,
+    enterFrom: 'dc-popover_closed',
+    enterTo: 'dc-popover_opened',
   });
 
   const openPopover = useCallback(() => {
-    setDefaultIsOpen(true);
-    isFunction(onOpen) && onOpen();
+    setDefaultShow(true);
+    onOpen?.();
   }, [onOpen]);
 
   const closePopover = useCallback(() => {
-    setDefaultIsOpen(false);
-    isFunction(onClose) && onClose();
+    setDefaultShow(false);
+    onClose?.();
   }, [onClose]);
 
   const togglePopover = useCallback(() => {
-    if (isOpen) {
+    if (show) {
       closePopover();
     } else {
       openPopover();
     }
-  }, [isOpen, openPopover, closePopover]);
+  }, [show, closePopover, openPopover]);
 
-  useImperativeHandle(
-    ref,
-    () => ({
-      open: openPopover,
-      close: closePopover,
-      toggle: togglePopover,
-    }),
-    [openPopover, closePopover, togglePopover]
-  );
+  useImperativeHandle(ref, () => ({
+    open: openPopover,
+    close: closePopover,
+    toggle: togglePopover,
+  }), [openPopover, closePopover, togglePopover]);
 
-  useBodyClick((event) => {
-    const target = event.target as Element;
+  usePageClick((event) => {
+    const target = event.target;
     const anchor = anchorRef.current;
     const content = contentRef.current;
     if (
-      (anchor && anchor.contains(target)) ||
-      (content && content.contains(target))
+      target instanceof Node &&
+      !anchor?.contains(target) &&
+      !content?.contains(target)
     ) {
-      return false;
-    } else {
       closePopover();
     }
-  }, isOpen);
+  }, { isEnabled: show });
 
   useEscKeyDown(() => {
     closePopover();
     if (shouldFocusAnchorAfterClose && anchorRef.current) {
-      anchorRef.current.focus();
+      focusElement(anchorRef.current);
     }
-  }, isOpen);
+  }, { isEnabled: show });
 
-  useFocusTrap(contentRef, shouldTrapFocus ? isOpen : false);
+  useFocusTrap(contentRef, { isEnabled: shouldTrapFocus && show });
+
+  const renderAnchor: RenderAnchorFn = ({ setRef }) => {
+    if (typeof anchor === 'function') {
+      return anchor({
+        openPopover,
+        closePopover,
+        togglePopover,
+        setRef: mergeRefs(setRef, anchorRef),
+      });
+    }
+
+    if (isReactElementWithRef(anchor)) {
+      return cloneElement(anchor, {
+        ref: mergeRefs(setRef, anchorRef, anchor.ref),
+        onClick: (event: MouseEvent): void => {
+          togglePopover();
+          anchor.props.onClick?.(event);
+        },
+      });
+    }
+
+    return anchor;
+  };
+
+  const renderContent: RenderContentFn = ({
+    setRef: portalRef,
+    style: portalStyle,
+    className: portalClass,
+  }) => {
+    if (show || isMounted) {
+      return (
+        <div
+          ref={portalRef}
+          style={portalStyle}
+          className={classNames('dc-popover__container', portalClass)}
+        >
+          <div
+            {...props}
+            ref={contentRef}
+            style={{
+              '--dc-popover-transition-duration': `${durationMs}ms`,
+              ...style,
+            } as CSSProperties}
+            className={classNames('dc-popover', transitionClass, className)}
+          >
+            {children}
+          </div>
+        </div>
+      );
+    }
+  };
 
   return (
     <Positioner
+      position="absolute"
       placement={placement}
       alignment={alignment}
       anchorGap={anchorGap}
       viewportGap={viewportGap}
-      renderAnchor={({ setRef }) => {
-        if (isFunction(anchor)) {
-          return anchor({
-            openPopover,
-            closePopover,
-            togglePopover,
-            setRef: mergeRefs(setRef, anchorRef),
-          });
-        }
-
-        if (isReactElement(anchor)) {
-          return cloneElement(anchor, {
-            ref: mergeRefs(setRef, anchorRef, anchor.ref),
-            onClick: (event: MouseEvent): void => {
-              const onClick = anchor.props.onClick;
-              if (isFunction(onClick)) {
-                onClick(event);
-              }
-
-              togglePopover();
-            },
-          });
-        }
-
-        return (
-          <span ref={setRef} onClick={togglePopover}>
-            {anchor}
-          </span>
-        );
-      }}
-      renderContent={({ style, setRef }) => {
-        if (shouldRender) {
-          delete props.defaultIsOpen;
-          delete props.isOpen;
-
-          return (
-            <div ref={setRef} style={style} className="dc-popover-container">
-              <Box
-                ref={contentRef}
-                className={classNames(
-                  'dc-popover',
-                  animationClassName,
-                  className
-                )}
-                borderRadius={borderRadius}
-                elevation={elevation}
-                {...props}
-              >
-                {children}
-              </Box>
-            </div>
-          );
-        }
-      }}
+      renderAnchor={renderAnchor}
+      renderContent={renderContent}
     />
   );
 });

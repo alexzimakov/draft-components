@@ -1,12 +1,25 @@
 import { useEffect, useRef } from 'react';
-import { KeyCode } from '../lib/keyboard-helpers';
+import { KeyboardKeys } from '../lib/keyboard-keys';
 
 type Handler = () => void;
+type Options = { isEnabled: boolean };
 
-const handlerList: Handler[] = [];
+const handlers: Handler[] = [];
 
-export function useEscKeyDown(handler: Handler, isEnabled: boolean): void {
+/**
+ * Invokes a given handler when the `Esc` key was pressed.
+ * When multiple handlers are registered, only the last one will be invoked.
+ * For example, this behavior can be used to close only top-level popover
+ * or dialog.
+ *
+ * @param handler The key down handler.
+ * @param options An object with hook options.
+ * @param options.isEnabled A flag that determines whether to run
+ * the passed handler or not.
+ */
+export function useEscKeyDown(handler: Handler, options: Options): void {
   const handlerRef = useRef(handler);
+  const isEnabled = options.isEnabled;
 
   useEffect(() => {
     handlerRef.current = handler;
@@ -18,26 +31,29 @@ export function useEscKeyDown(handler: Handler, isEnabled: boolean): void {
     }
 
     const handler = handlerRef.current;
-    const handleBodyKeyDown = (event: KeyboardEvent) => {
-      const currentHandler = handlerList[handlerList.length - 1];
-      if (event.key === KeyCode.escape && currentHandler) {
-        currentHandler();
+    handlers.push(handler);
+
+    const handleBodyKeyDown = (event: KeyboardEvent): void => {
+      const eventHandler = handlers[handlers.length - 1];
+      if (eventHandler && event.key === KeyboardKeys.Escape) {
+        eventHandler();
       }
     };
 
-    handlerList.push(handler);
-
-    if (handlerList.length === 1) {
+    // Add only one global `body` key down handler.
+    if (handlers.length === 1) {
       document.body.addEventListener('keydown', handleBodyKeyDown);
     }
 
     return () => {
-      const index = handlerList.indexOf(handler);
-      if (~index) {
-        handlerList.splice(index, 1);
+      const index = handlers.indexOf(handler);
+      if (index >= 0) {
+        handlers.splice(index, 1);
       }
 
-      if (handlerList.length === 0) {
+      // Remove the global `body` key down handler
+      // if there are no active handlers.
+      if (handlers.length === 0) {
         document.body.removeEventListener('keydown', handleBodyKeyDown);
       }
     };
