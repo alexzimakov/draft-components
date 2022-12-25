@@ -1,49 +1,62 @@
-import { useState } from 'react';
+import {
+  forwardRef,
+  useState,
+  type ComponentPropsWithoutRef,
+  type ElementType,
+} from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { TextInput, TextInputProps } from '../text-input';
-import { Button } from '../button';
-import { SvgIcon, SvgIconProps } from '../svg-icon';
-import { eye } from '../../bootstrap-icons/eye';
-import { eyeSlash } from '../../bootstrap-icons/eye-slash';
+import { TextInput, type TextInputProps } from '../text-input';
+import { Tooltip } from '../tooltip';
+import { Eye, EyeSlash } from './icons';
 
-type BaseProps = Omit<TextInputProps, 'type' | 'trailingAddOn'>;
+type PasswordInputBaseProps = Omit<TextInputProps, 'type' | 'suffix'>
+export type PasswordInputProps = {
+  isDefaultVisible?: boolean;
+  showPasswordTitle?: string;
+  hidePasswordTitle?: string;
+} & PasswordInputBaseProps;
 
-export interface PasswordInputProps extends BaseProps {
-  showPasswordAriaTitle?: string;
-  hidePasswordAriaTitle?: string;
-}
-
-export function PasswordInput({
-  showPasswordAriaTitle = 'Show password',
-  hidePasswordAriaTitle = 'Hide password',
+export const PasswordInput = forwardRef<
+  HTMLInputElement,
+  PasswordInputProps
+>(function PasswordInput({
+  isDefaultVisible = false,
+  showPasswordTitle = 'Show password',
+  hidePasswordTitle = 'Hide password',
   className,
   ...props
-}: PasswordInputProps) {
-  const [type, setType] = useState<'password' | 'text'>('password');
+}, ref) {
+  const [visible, setVisible] = useState(isDefaultVisible);
 
-  let icon: SvgIconProps['icon'] = eyeSlash;
-  let title: string = showPasswordAriaTitle;
-  if (type === 'text') {
-    icon = eye;
-    title = hidePasswordAriaTitle;
+  let type: TextInputProps['type'];
+  let content: string;
+  let Icon: ElementType<ComponentPropsWithoutRef<'svg'>>;
+  if (visible) {
+    type = 'text';
+    content = hidePasswordTitle;
+    Icon = EyeSlash;
+  } else {
+    type = 'password';
+    content = showPasswordTitle;
+    Icon = Eye;
   }
+
+  const handleButtonClick = () => setVisible(!visible);
+  const button = (
+    <Tooltip content={content}>
+      <button className="dc-password-input__btn" onClick={handleButtonClick}>
+        <Icon className="dc-password-input__icon" aria-hidden={true} />
+      </button>
+    </Tooltip>
+  );
 
   return (
     <TextInput
       {...props}
-      className={classNames(className, 'dc-password-input')}
+      className={classNames('dc-password-input', className)}
+      ref={ref}
       type={type}
-      trailingAddOn={
-        <Button
-          className="dc-password-input__button"
-          appearance="minimal"
-          noPadding={true}
-          leadingIcon={<SvgIcon size="xl" icon={icon} />}
-          title={title}
-          size="sm"
-          onClick={() => setType(type === 'password' ? 'text' : 'password')}
-        />
-      }
+      suffix={button}
     />
   );
-}
+});

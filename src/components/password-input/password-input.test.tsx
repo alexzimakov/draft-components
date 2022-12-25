@@ -1,32 +1,29 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
+import { mockMatchMedia } from '../../lib/test-utils';
 import { PasswordInput } from './password-input';
 
-it('renders without errors', () => {
-  const placeholder = 'Search';
-  render(<PasswordInput placeholder={placeholder} />);
+beforeEach(() => {
+  mockMatchMedia();
+});
 
+it('renders without errors', () => {
+  const placeholder = 'Enter your password';
+  render(<PasswordInput placeholder={placeholder} />);
   screen.getByPlaceholderText(placeholder);
 });
 
 it('should toggle password visibility', async () => {
   const user = userEvent.setup();
-  const placeholder = 'Search';
-  const showPasswordA11yTitle = 'Show password';
-  const hidePasswordA11yTitle = 'Hide password';
-  render(
-    <PasswordInput
-      placeholder={placeholder}
-      showPasswordAriaTitle={showPasswordA11yTitle}
-      hidePasswordAriaTitle={hidePasswordA11yTitle}
-    />
-  );
+  const placeholder = 'Enter your password';
+  render(<PasswordInput placeholder={placeholder} />);
 
   const inputEl = screen.getByPlaceholderText(placeholder);
+  const buttonEl = screen.getByRole('button');
 
-  await user.click(screen.getByTitle(showPasswordA11yTitle));
+  await user.click(buttonEl);
   expect(inputEl).toHaveAttribute('type', 'text');
 
-  await user.click(screen.getByTitle(hidePasswordA11yTitle));
+  await user.click(buttonEl);
   expect(inputEl).toHaveAttribute('type', 'password');
 });

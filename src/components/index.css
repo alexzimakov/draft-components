@@ -12,6 +12,7 @@
 @import url("tabs/tabs.css");
 @import url("table/table.css");
 @import url("text-input/text-input.css");
+@import url("password-input/password-input.css");
 @import url("textarea/textarea.css");
 @import url("select/select.css");
 @import url("switch/switch.css");

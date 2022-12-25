@@ -41,63 +41,65 @@ export type TextInputProps = TextInputBaseProps & {
   onChangeValue?: TextInputChangeValueHandler;
 };
 
-export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
-  function TextInput({
-    disabled = false,
-    hasError = false,
-    isBlock = false,
-    type = 'text',
-    width,
-    size = 'md',
-    style = {},
-    className = '',
-    prefix = null,
-    suffix = null,
-    htmlSize,
-    onChange,
-    onChangeValue,
-    ...props
-  }, ref) {
-    const shouldRenderPrefix = Boolean(prefix);
-    const shouldRenderSuffix = Boolean(suffix);
+export const TextInput = forwardRef<
+  HTMLInputElement,
+  TextInputProps
+>(function TextInput({
+  hasError = false,
+  isBlock = false,
+  type = 'text',
+  size = 'md',
+  prefix,
+  suffix,
+  style,
+  className,
+  disabled,
+  width,
+  htmlSize,
+  onChange,
+  onChangeValue,
+  ...props
+}, ref) {
+  const shouldRenderPrefix = Boolean(prefix);
+  const shouldRenderSuffix = Boolean(suffix);
 
-    return (
-      <div
-        style={style}
-        className={classNames(className, 'dc-text-input__container', {
-          [`dc-text-input__container_${size}`]: size !== undefined,
-          'dc-text-input__container_disabled': disabled,
-          'dc-text-input__container_has_error': hasError,
-          'dc-text-input__container_block': isBlock,
+  return (
+    <div
+      style={style}
+      className={classNames(className, 'dc-text-input__container', {
+        [`dc-text-input__container_${size}`]: size,
+        'dc-text-input__container_disabled': disabled,
+        'dc-text-input__container_has_error': hasError,
+        'dc-text-input__container_block': isBlock,
+        'dc-text-input__container_has_prefix': shouldRenderPrefix,
+        'dc-text-input__container_has_suffix': shouldRenderSuffix,
+      })}
+    >
+      {shouldRenderPrefix && (
+        <div className="dc-text-input__prefix">
+          {prefix}
+        </div>
+      )}
+      <input
+        {...props}
+        className={classNames({
+          'dc-text-input': true,
+          [`dc-text-input_width_${width}`]: width,
         })}
-      >
-        {shouldRenderPrefix && (
-          <div className="dc-text-input__prefix" aria-hidden={true}>
-            {prefix}
-          </div>
-        )}
-        <input
-          {...props}
-          className={classNames('dc-text-input', {
-            [`dc-text-input_width_${width}`]: width !== undefined,
-            'dc-text-input_has_prefix': shouldRenderPrefix,
-            'dc-text-input_has_suffix': shouldRenderSuffix,
-          })}
-          ref={ref}
-          type={type}
-          size={htmlSize}
-          disabled={disabled}
-          onChange={(event) => {
-            onChange?.(event);
-            onChangeValue?.(event.target.value);
-          }}
-        />
-        {shouldRenderSuffix && (
-          <div className="dc-text-input__suffix" aria-hidden={true}>
-            {suffix}
-          </div>
-        )}
-      </div>
-    );
-  }
-);
+        ref={ref}
+        type={type}
+        size={htmlSize}
+        disabled={disabled}
+        onChange={(event) => {
+          onChange?.(event);
+          onChangeValue?.(event.target.value);
+        }}
+      />
+      {shouldRenderSuffix && (
+        <div className="dc-text-input__suffix">
+          {suffix}
+        </div>
+      )}
+    </div>
+  );
+});

@@ -118,18 +118,24 @@
 
 .dc-text-input__prefix {
   color: var(--dc-input-prefix-color);
-  padding-left: var(--dc-input-padding-x);
-}
-
-.dc-text-input_has_prefix {
-  padding-left: calc(var(--dc-input-padding-x) * 0.5);
 }
 
 .dc-text-input__suffix {
   color: var(--dc-input-suffix-color);
+}
+
+.dc-text-input__container_has_prefix {
+  padding-left: var(--dc-input-padding-x);
+}
+
+.dc-text-input__container_has_prefix .dc-text-input {
+  padding-left: calc(var(--dc-input-padding-x) * 0.5);
+}
+
+.dc-text-input__container_has_suffix {
   padding-right: var(--dc-input-padding-x);
 }
 
-.dc-text-input_has_suffix {
+.dc-text-input__container_has_suffix .dc-text-input {
   padding-right: calc(var(--dc-input-padding-x) * 0.5);
 }
