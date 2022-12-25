@@ -1,4 +1,3 @@
-export * from './actions-group';
 export * from './alert';
 export * from './avatar';
 export * from './avatar-group';
