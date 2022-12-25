@@ -1,0 +1,22 @@
+.dc-tooltip {
+  --dc-tooltip-text-color: var(--dc-gray-50);
+  --dc-tooltip-bg: var(--dc-gray-700);
+  --dc-tooltip-transition-duration: 100ms;
+
+  font: var(--dc-text-xs);
+  color: var(--dc-tooltip-text-color);
+  box-sizing: border-box;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--dc-tooltip-bg);
+  box-shadow: var(--dc-shadow-md);
+}
+
+.dc-tooltip_hidden {
+  opacity: 0;
+  transition: opacity var(--dc-tooltip-transition-duration) ease;
+}
+
+.dc-tooltip_visible {
+  opacity: 1;
+}

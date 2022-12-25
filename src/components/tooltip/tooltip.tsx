@@ -1,126 +1,153 @@
 import {
   cloneElement,
-  ComponentPropsWithoutRef,
-  MouseEvent,
-  ReactNode,
-  RefCallback,
-  useCallback,
-  useRef,
+  useId,
+  useMemo,
   useState,
+  type CSSProperties,
+  type ComponentPropsWithoutRef,
+  type FocusEvent,
+  type MouseEvent,
+  type ReactNode,
+  type RefCallback,
 } from 'react';
-import { uniqueId } from '../../lib/util';
-import { isFunction, isReactElement } from '../../lib/guards';
-import { classNames, mergeRefs } from '../../lib/react-helpers';
-import { useCloseAnimation } from '../../hooks/use-close-animation';
-import { Positioner } from '../positioner';
-import { Alignment, Placement } from '../positioner/types';
+import {
+  classNames,
+  isReactElementWithRef,
+  mergeRefs,
+} from '../../lib/react-helpers';
+import { useMountTransition } from '../../hooks';
+import {
+  Positioner,
+  type PositionerProps,
+  type RenderAnchorFn,
+  type RenderContentFn,
+} from '../positioner';
 
-type RenderFn = (props: {
+type TooltipBaseProps = Omit<ComponentPropsWithoutRef<'div'>, 'children'>;
+
+type TooltipChildrenRenderFn = (props: {
   setRef: RefCallback<HTMLElement>;
   tooltipId: string;
-  hideTooltip(): void;
-  showTooltip(): void;
+  hideTooltip: () => void;
+  showTooltip: () => void;
 }) => ReactNode;
 
+export type TooltipPlacement = PositionerProps['placement'];
+export type TooltipAlignment = PositionerProps['alignment'];
 export type TooltipProps = {
-  placement?: Placement;
-  alignment?: Alignment;
   anchorGap?: number;
-  label: ReactNode;
-  children: RenderFn | ReactNode;
-} & ComponentPropsWithoutRef<'div'>;
+  placement?: TooltipPlacement;
+  alignment?: TooltipAlignment;
+  isDefaultShown?: boolean;
+  isShown?: boolean;
+  content: ReactNode;
+  children: ReactNode | TooltipChildrenRenderFn;
+} & TooltipBaseProps;
 
 export function Tooltip({
-  id = uniqueId('dc_tooltip_'),
-  className,
+  isDefaultShown,
+  isShown,
+  anchorGap = 8,
   placement = 'top',
   alignment = 'center',
-  anchorGap = 8,
-  label,
+  id,
+  style,
+  className,
+  content,
   children,
   ...props
 }: TooltipProps) {
-  const tooltipId = useRef(id);
-  const tooltipRef = useRef<HTMLDivElement>(null);
-  const [isShown, setIsShown] = useState(false);
-  const { shouldRender, animationClassName } = useCloseAnimation({
-    isOpen: isShown,
-    closeDurationMs: 150,
-    className: 'dc-tooltip_fade-transition',
-    openClassName: 'dc-tooltip_show',
+  const [defaultShow, setDefaultShow] = useState(isDefaultShown ?? false);
+  const defaultId = useId();
+  const tooltipId = id || defaultId;
+  const show = isShown ?? defaultShow;
+  const durationMs = 100;
+  const { isMounted, className: transitionClass } = useMountTransition({
+    show,
+    durationMs,
+    enterFrom: 'dc-tooltip_hidden',
+    enterTo: 'dc-tooltip_visible',
   });
 
-  const showTooltip = useCallback(() => {
-    setIsShown(true);
-  }, []);
+  const { showTooltip, hideTooltip } = useMemo(() => ({
+    showTooltip: () => setDefaultShow(true),
+    hideTooltip: () => setDefaultShow(false),
+  }), []);
 
-  const hideTooltip = useCallback(() => {
-    setIsShown(false);
-  }, []);
+  const renderAnchor: RenderAnchorFn = ({ setRef }) => {
+    if (typeof children === 'function') {
+      return children({
+        setRef,
+        tooltipId,
+        showTooltip,
+        hideTooltip,
+      });
+    }
+
+    if (isReactElementWithRef(children)) {
+      const props = children.props;
+      return cloneElement(children, {
+        ref: mergeRefs(setRef, children.ref),
+        onFocus: (event: FocusEvent) => {
+          showTooltip();
+          props.onFocus?.(event);
+        },
+        onBlur: (event: FocusEvent) => {
+          hideTooltip();
+          props.onBlur?.(event);
+        },
+        onMouseEnter: (event: MouseEvent) => {
+          showTooltip();
+          props.onMouseEnter?.(event);
+        },
+        onMouseLeave: (event: MouseEvent) => {
+          hideTooltip();
+          props.onMouseLeave?.(event);
+        },
+        'aria-describedby': props['aria-describedby'] || tooltipId,
+      });
+    }
+
+    return children;
+  };
+
+  const renderContent: RenderContentFn = ({
+    setRef: portalRef,
+    style: portalStyle,
+    className: portalClass,
+  }) => {
+    if (show || isMounted) {
+      return (
+        <div
+          {...props}
+          ref={portalRef}
+          id={tooltipId}
+          style={{
+            '--dc-tooltip-transition-duration': `${durationMs}ms`,
+            ...portalStyle,
+            ...style,
+          } as CSSProperties}
+          className={classNames(
+            'dc-tooltip',
+            transitionClass,
+            portalClass,
+            className
+          )}
+          role="tooltip"
+        >
+          {content}
+        </div>
+      );
+    }
+  };
 
   return (
     <Positioner
       placement={placement}
       alignment={alignment}
       anchorGap={anchorGap}
-      renderAnchor={({ setRef }) => {
-        if (isFunction(children)) {
-          return children({
-            setRef,
-            showTooltip,
-            hideTooltip,
-            tooltipId: tooltipId.current,
-          });
-        }
-
-        if (isReactElement(children)) {
-          return cloneElement(children, {
-            ref: mergeRefs(setRef, children.ref),
-            onMouseEnter: (event: MouseEvent): void => {
-              const onMouseEnter = children.props.onMouseEnter;
-              isFunction(onMouseEnter) && onMouseEnter(event);
-              showTooltip();
-            },
-            onMouseLeave: (event: MouseEvent): void => {
-              const onMouseLeave = children.props.onMouseLeave;
-              isFunction(onMouseLeave) && onMouseLeave(event);
-              hideTooltip();
-            },
-            'aria-labelledby': tooltipId.current,
-          });
-        }
-
-        return (
-          <span
-            ref={setRef}
-            onMouseEnter={showTooltip}
-            onMouseLeave={hideTooltip}
-          >
-            {children}
-          </span>
-        );
-      }}
-      renderContent={({ style, setRef }) => {
-        if (shouldRender) {
-          return (
-            <div ref={setRef} style={style} className="dc-tooltip-container">
-              <div
-                {...props}
-                ref={tooltipRef}
-                id={tooltipId.current}
-                className={classNames(
-                  'dc-tooltip',
-                  animationClassName,
-                  className
-                )}
-                role="tooltip"
-              >
-                {label}
-              </div>
-            </div>
-          );
-        }
-      }}
+      renderAnchor={renderAnchor}
+      renderContent={renderContent}
     />
   );
 }

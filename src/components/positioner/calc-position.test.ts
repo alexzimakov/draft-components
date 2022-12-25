@@ -1,5 +1,5 @@
-import { getPosition } from './get-position';
-import { Alignment, Rect } from './types';
+import { calcPosition } from './calc-position';
+import { type Alignment, type Rect } from './types';
 
 describe("calculates position for the 'top' placement", () => {
   const anchorRect: Rect = {
@@ -65,7 +65,7 @@ describe("calculates position for the 'top' placement", () => {
     const alignment = testCase.alignment as Alignment;
     it(`- '${alignment}' alignment`, () => {
       expect(
-        getPosition({
+        calcPosition({
           ...params,
           placement,
           alignment,
@@ -140,7 +140,7 @@ describe("calculates position for the 'bottom' placement", () => {
     const alignment = testCase.alignment as Alignment;
     it(`- '${alignment}' alignment`, () => {
       expect(
-        getPosition({
+        calcPosition({
           ...params,
           placement,
           alignment,
@@ -205,10 +205,8 @@ describe("calculates position for the 'left' placement", () => {
       alignment: 'center',
       coordinates: {
         x,
-        y: params.scrollY +
-          anchorRect.top +
-          (anchorRect.height / 2) -
-          (contentRect.height / 2),
+        y: params.scrollY + anchorRect.top +
+          (anchorRect.height / 2) - (contentRect.height / 2),
       },
     },
   ];
@@ -218,7 +216,7 @@ describe("calculates position for the 'left' placement", () => {
     const alignment = testCase.alignment as Alignment;
     it(`- '${alignment}' alignment`, () => {
       expect(
-        getPosition({
+        calcPosition({
           ...params,
           placement,
           alignment,
@@ -280,10 +278,8 @@ describe("calculates position for the 'right' placement", () => {
       alignment: 'center',
       coordinates: {
         x,
-        y: params.scrollY +
-          anchorRect.top +
-          (anchorRect.height / 2) -
-          (contentRect.height / 2),
+        y: params.scrollY + anchorRect.top +
+          (anchorRect.height / 2) - (contentRect.height / 2),
       },
     },
   ];
@@ -293,7 +289,7 @@ describe("calculates position for the 'right' placement", () => {
     const alignment = testCase.alignment as Alignment;
     it(`- '${alignment}' alignment`, () => {
       expect(
-        getPosition({
+        calcPosition({
           ...params,
           placement,
           alignment,
@@ -339,7 +335,7 @@ describe(
       };
 
       expect(
-        getPosition({
+        calcPosition({
           ...params,
           placement: 'bottom',
           alignment: 'end',
@@ -381,7 +377,7 @@ describe(
       };
 
       expect(
-        getPosition({
+        calcPosition({
           ...params,
           placement: 'bottom',
           alignment: 'start',
@@ -430,7 +426,7 @@ describe('should flip placement when content out of viewport bounds', () => {
     };
 
     expect(
-      getPosition({
+      calcPosition({
         ...params,
         placement: 'top',
         alignment: 'start',
@@ -472,7 +468,7 @@ describe('should flip placement when content out of viewport bounds', () => {
     };
 
     expect(
-      getPosition({
+      calcPosition({
         ...params,
         placement: 'bottom',
         alignment: 'start',
@@ -480,7 +476,8 @@ describe('should flip placement when content out of viewport bounds', () => {
     ).toEqual({
       x: params.scrollX + anchorRect.left,
       y:
-        params.scrollY + anchorRect.top - contentRect.height - params.anchorGap,
+        params.scrollY + anchorRect.top -
+        contentRect.height - params.anchorGap,
       placement: 'top',
       alignment: 'start',
     });
@@ -516,7 +513,7 @@ it('should place content at the start of left edge if not enough width', () => {
   };
 
   expect(
-    getPosition({
+    calcPosition({
       ...params,
       placement: 'bottom',
       alignment: 'start',
@@ -560,7 +557,7 @@ it(
     };
 
     expect(
-      getPosition({
+      calcPosition({
         ...params,
         placement: 'left',
         alignment: 'start',
@@ -573,7 +570,7 @@ it(
     });
 
     expect(
-      getPosition({
+      calcPosition({
         ...params,
         placement: 'right',
         alignment: 'start',

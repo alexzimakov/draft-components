@@ -1,0 +1,5 @@
+.dark .dc-tooltip,
+.dark.dc-tooltip {
+  --dc-tooltip-text-color: var(--dc-gray-800);
+  --dc-tooltip-bg: var(--dc-gray-100);
+}

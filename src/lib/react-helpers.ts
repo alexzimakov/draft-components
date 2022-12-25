@@ -1,4 +1,10 @@
-import { MutableRefObject, RefCallback, RefObject } from 'react';
+import {
+  isValidElement,
+  type MutableRefObject,
+  type ReactElement,
+  type Ref,
+  type RefCallback,
+} from 'react';
 
 export type ClassNamesObject = { [className: string]: unknown };
 export type ClassName =
@@ -30,14 +36,12 @@ export function classNames(...classes: ClassName[]): string {
   return resultString.trimEnd();
 }
 
-export type Ref<T> =
-  | RefObject<T>
+export type RefParameter<T> =
   | MutableRefObject<T>
-  | RefCallback<T>
-  | null
+  | Ref<T>
   | undefined;
 
-export function mergeRefs<T>(...refs: Ref<T>[]): RefCallback<T> {
+export function mergeRefs<T>(...refs: RefParameter<T>[]): RefCallback<T> {
   return (instance) => {
     for (const ref of refs) {
       if (ref != null) {
@@ -49,6 +53,14 @@ export function mergeRefs<T>(...refs: Ref<T>[]): RefCallback<T> {
       }
     }
   };
+}
+
+export type ReactElementWithRef = ReactElement & { ref: Ref<unknown> };
+
+export function isReactElementWithRef(
+  element: unknown
+): element is ReactElementWithRef {
+  return isValidElement(element) && 'ref' in element;
 }
 
 export function focusElement(element: EventTarget): void {

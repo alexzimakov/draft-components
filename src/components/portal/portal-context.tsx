@@ -1,31 +1,31 @@
 import { createContext, type ReactNode, useContext } from 'react';
 
-let defaultContainer: HTMLElement | null = null;
-
-const PortalContext = createContext<HTMLElement | null>(null);
-
-export function usePortalContainer(): HTMLElement {
-  const className = 'dc-portals-container';
-  const container = useContext(PortalContext);
-  if (container) {
-    if (!container.classList.contains(className)) {
-      container.classList.add(className);
-    }
-    return container;
+let root: HTMLElement | null = null;
+const getPortalRoot = (): HTMLElement => {
+  if (root == null) {
+    root = document.createElement('div');
+    root.id = 'portal-root';
+    root.dataset.testid = 'portal-root';
+    document.body.append(root);
   }
+  return root;
+};
 
-  if (!defaultContainer) {
-    defaultContainer = document.createElement('div');
-    defaultContainer.dataset.testid = 'portals-container';
-    defaultContainer.className = className;
-    document.body.append(defaultContainer);
-  }
-  return defaultContainer;
+const PortalContext = createContext(getPortalRoot);
+
+export function usePortalRoot(): HTMLElement {
+  const getRoot = useContext(PortalContext);
+  return getRoot();
 }
 
-export function PortalContainerProvider(props: {
+export function PortalRootProvider(props: {
   children?: ReactNode;
-  value: HTMLElement;
+  getPortalRoot: () => HTMLElement;
 }) {
-  return <PortalContext.Provider {...props} />;
+  const { getPortalRoot, children } = props;
+  return (
+    <PortalContext.Provider value={getPortalRoot}>
+      {children}
+    </PortalContext.Provider>
+  );
 }

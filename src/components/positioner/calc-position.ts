@@ -1,6 +1,11 @@
-import { Alignment, Coordinates, Placement, Rect } from './types';
+import {
+  type Alignment,
+  type Coordinates,
+  type Placement,
+  type Rect,
+} from './types';
 
-export type GetPositionParams = {
+export type CalcPositionParams = {
   placement: Placement;
   alignment: Alignment;
   anchorRect: Rect;
@@ -13,12 +18,12 @@ export type GetPositionParams = {
   viewportGap: number;
 };
 
-export type GetPositionResult = Coordinates & {
+export type CalcPositionResult = Coordinates & {
   placement: Placement;
   alignment: Alignment;
 };
 
-export function getPosition({
+export function calcPosition({
   placement,
   alignment,
   anchorRect,
@@ -29,7 +34,7 @@ export function getPosition({
   scrollY,
   anchorGap,
   viewportGap,
-}: GetPositionParams): GetPositionResult {
+}: CalcPositionParams): CalcPositionResult {
   const maxWidth = viewportWidth - (2 * viewportGap);
   const maxSideWidth = Math.max(
     anchorRect.left - anchorGap - viewportGap,

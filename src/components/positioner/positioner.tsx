@@ -1,31 +1,39 @@
 import {
-  CSSProperties,
-  ReactNode,
-  RefCallback,
   useLayoutEffect,
   useState,
+  type CSSProperties,
+  type ReactNode,
+  type RefCallback,
 } from 'react';
-import { Alignment, Placement, Rect } from './types';
-import { getPosition } from './get-position';
+import { type Alignment, type Placement, type Rect } from './types';
+import { calcPosition } from './calc-position';
 import { Portal } from '../portal';
 
+export type RenderAnchorFn = (params: {
+  setRef: RefCallback<HTMLElement>,
+}) => ReactNode;
+export type RenderContentFn = (params: {
+  style: CSSProperties;
+  className: string;
+  setRef: RefCallback<HTMLElement>;
+}) => ReactNode;
+export type Position = 'fixed' | 'absolute';
 export type PositionerProps = {
-  placement?: Placement;
-  alignment?: Alignment;
   anchorGap?: number;
   viewportGap?: number;
-  renderAnchor(params: { setRef: RefCallback<HTMLElement> }): ReactNode;
-  renderContent(params: {
-    style: CSSProperties;
-    setRef: RefCallback<HTMLElement>;
-  }): ReactNode;
+  position?: Position;
+  placement?: Placement;
+  alignment?: Alignment;
+  renderAnchor: RenderAnchorFn;
+  renderContent: RenderContentFn;
 };
 
 export function Positioner({
-  placement = 'bottom',
-  alignment = 'start',
   anchorGap = 4,
   viewportGap = 8,
+  position = 'fixed',
+  placement = 'bottom',
+  alignment = 'start',
   renderAnchor,
   renderContent,
 }: PositionerProps) {
@@ -37,9 +45,9 @@ export function Positioner({
       return;
     }
 
-    const update = () => {
-      const isContentPositionedFixed = content.style.position === 'fixed';
-      const result = getPosition({
+    const calcContentPosition = () => {
+      const isPositionedFixed = position === 'fixed';
+      const result = calcPosition({
         placement,
         alignment,
         anchorGap,
@@ -48,22 +56,22 @@ export function Positioner({
         contentRect: getRect(content),
         viewportWidth: document.documentElement.clientWidth,
         viewportHeight: document.documentElement.clientHeight,
-        scrollX: isContentPositionedFixed ? 0 : Math.round(window.scrollX),
-        scrollY: isContentPositionedFixed ? 0 : Math.round(window.scrollY),
+        scrollX: isPositionedFixed ? 0 : Math.round(window.scrollX),
+        scrollY: isPositionedFixed ? 0 : Math.round(window.scrollY),
       });
       content.style.transform = `translate(${result.x}px, ${result.y}px)`;
       content.dataset.position = `${result.placement}-${result.alignment}`;
     };
 
-    update();
-    window.addEventListener('resize', update);
-    window.addEventListener('scroll', update);
+    calcContentPosition();
+    window.addEventListener('resize', calcContentPosition);
+    window.addEventListener('scroll', calcContentPosition);
 
     return () => {
-      window.removeEventListener('resize', update);
-      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', calcContentPosition);
+      window.removeEventListener('scroll', calcContentPosition);
     };
-  }, [anchor, content, placement, alignment, anchorGap, viewportGap]);
+  }, [anchor, content, position, placement, alignment, anchorGap, viewportGap]);
 
   return (
     <>
@@ -71,10 +79,9 @@ export function Positioner({
       <Portal>
         {renderContent({
           setRef: setContent,
+          className: 'dc-portal',
           style: {
-            position: 'absolute',
-            top: 0,
-            left: 0,
+            position,
             maxWidth: `calc(100% - ${viewportGap * 2}px)`,
           },
         })}

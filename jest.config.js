@@ -7,6 +7,7 @@ module.exports = {
   collectCoverageFrom: [
     '**/*.{ts,tsx}',
     '!**/index.*',
+    '!**/test-utils.ts',
     '!**/*.stories.{ts,tsx}',
   ],
   coverageDirectory: 'coverage',

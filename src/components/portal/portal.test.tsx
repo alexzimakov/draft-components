@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
 import { Portal } from './portal';
-import { PortalContainerProvider } from './portal-context';
+import { PortalRootProvider } from './portal-context';
 
 it('creates HTML element and mounts portals to it.', () => {
   const content1 = 'First Portal';
@@ -17,7 +17,7 @@ it('creates HTML element and mounts portals to it.', () => {
     </>
   );
 
-  const container = screen.getByTestId('portals-container');
+  const container = screen.getByTestId('portal-root');
   within(container).getByText(content1);
   within(container).getByText(content2);
 });
@@ -28,11 +28,11 @@ it('mounts portals to the provided container', () => {
 
   const content = 'Portal content';
   render(
-    <PortalContainerProvider value={container}>
+    <PortalRootProvider getPortalRoot={() => container}>
       <Portal>
         <div>{content}</div>
       </Portal>
-    </PortalContainerProvider>
+    </PortalRootProvider>
   );
 
   within(container).getByText(content);
