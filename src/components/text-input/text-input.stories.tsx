@@ -1,4 +1,5 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { StorySection } from '../../storybook/story-section';
 import { TextInput, type TextInputWidth } from './text-input';
 
 export default {
@@ -94,24 +95,17 @@ export const Widths: ComponentStory<typeof TextInput> = (args) => {
     '3ch': '3 character width',
     '2ch': '2 character width',
   };
-  const labelStyle = {
-    fontFamily: 'var(--dc-font-sans)',
-    marginBottom: '0.25rem',
-  };
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '1rem',
-    }}>
-      {widths.map((width) => (
-        <div key={width}>
-          <label style={labelStyle} htmlFor={width}>{labels[width]}</label>
-          <br />
-          <TextInput {...args} id={width} width={width} />
-        </div>
-      ))}
-    </div>
+    <>
+      {widths.map((width) => {
+        const label = labels[width];
+        return (
+          <StorySection key={width} heading={label}>
+            <TextInput {...args} width={width} aria-label={label} />
+          </StorySection>
+        );
+      })}
+    </>
   );
 };
 Widths.parameters = {

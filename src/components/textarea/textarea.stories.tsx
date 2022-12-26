@@ -1,4 +1,5 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { StorySection } from '../../storybook/story-section';
 import { Textarea, type TextareaWidth } from './textarea';
 
 export default {
@@ -59,25 +60,17 @@ export const Widths: ComponentStory<typeof Textarea> = (args) => {
     '40ch': '40 character width',
     '30ch': '30 character width',
   };
-  const labelStyle = {
-    fontFamily: 'var(--dc-font-sans)',
-    display: 'inline-block',
-    marginBottom: 4,
-  };
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '1rem',
-    }}>
-      {widths.map((width) => (
-        <div key={width}>
-          <label style={labelStyle} htmlFor={width}>{labels[width]}</label>
-          <br />
-          <Textarea {...args} id={width} width={width} />
-        </div>
-      ))}
-    </div>
+    <>
+      {widths.map((width) => {
+        const label = labels[width];
+        return (
+          <StorySection key={width} heading={label}>
+            <Textarea {...args} width={width} aria-label={label} />
+          </StorySection>
+        );
+      })}
+    </>
   );
 };
 Widths.parameters = {

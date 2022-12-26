@@ -1,63 +1,50 @@
-import { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { Subheadline } from '../formatted-content';
-import { Icon, SvgIcon } from '../svg-icon';
-import { exclamationTriangle } from '../../bootstrap-icons/exclamation-triangle';
-import { exclamationCircle } from '../../bootstrap-icons/exclamation-circle';
-import { checkCircle } from '../../bootstrap-icons/check-circle';
-import { infoCircle } from '../../bootstrap-icons/info-circle';
 
-export interface AlertProps extends ComponentPropsWithoutRef<'div'> {
+export type AlertAppearance =
+  | 'default'
+  | 'info'
+  | 'success'
+  | 'warning'
+  | 'error';
+export type AlertVariant =
+  | 'default'
+  | 'full-width'
+  | 'accent-border'
+export type AlertProps = {
+  icon?: JSX.Element | null;
   heading?: ReactNode;
-  appearance?: 'default' | 'warning' | 'error' | 'info' | 'success';
-  shouldShowIcon?: boolean;
-}
-
-const alertIcons: Record<NonNullable<AlertProps['appearance']>, Icon> = {
-  error: exclamationCircle,
-  warning: exclamationTriangle,
-  success: checkCircle,
-  info: infoCircle,
-  default: infoCircle,
-};
+  variant?: AlertVariant;
+  appearance?: AlertAppearance;
+} & ComponentPropsWithoutRef<'section'>;
 
 export function Alert({
+  icon = null,
+  heading = null,
+  variant = 'default',
   appearance = 'default',
-  shouldShowIcon,
-  heading,
-  children,
   className,
+  children,
   ...props
 }: AlertProps) {
+  const shouldShowIcon = Boolean(icon);
+  const shouldRenderHeading = Boolean(heading);
+
   return (
-    <div
+    <section
       {...props}
-      className={classNames(className, 'dc-alert', {
+      className={classNames(className, {
+        'dc-alert': true,
+        'dc-alert_has_icon': shouldShowIcon,
+        [`dc-alert_variant_${variant}`]: variant,
         [`dc-alert_appearance_${appearance}`]: appearance,
       })}
-      role="alert"
     >
-      {shouldShowIcon && (
-        <SvgIcon
-          data-testid="alert-icon"
-          className="dc-alert__icon"
-          icon={alertIcons[appearance] || alertIcons.default}
-          width={18}
-          height={18}
-        />
-      )}
+      {shouldShowIcon && <div className="dc-alert__icon">{icon}</div>}
       <div className="dc-alert__body">
-        {heading && (
-          <Subheadline as="h3" className="dc-alert__heading">
-            {heading}
-          </Subheadline>
-        )}
-        {children && (
-          <Subheadline as="div" className="dc-alert__description">
-            {children}
-          </Subheadline>
-        )}
+        {shouldRenderHeading && <h1 className="dc-alert__title">{heading}</h1>}
+        {children}
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,0 +1,16 @@
+.story-section {
+  font: inherit;
+  display: block;
+}
+
+.story-section + .story-section {
+  margin-top: 20px;
+}
+
+.story-section__heading {
+  font-family: var(--dc-font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dc-secondary-text-color);
+  margin: 0 0 8px;
+}

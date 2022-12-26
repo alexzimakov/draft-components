@@ -15,6 +15,7 @@ module.exports = {
     '/node_modules/',
     '/src/styleguide/',
     '/src/bootstrap-icons/',
+    '/src/storybook/',
   ],
   coverageProvider: 'babel',
   roots: ['src'],
