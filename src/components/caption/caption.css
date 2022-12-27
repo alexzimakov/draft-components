@@ -3,6 +3,7 @@
   color: var(--dc-secondary-text-color);
   display: block;
   align-items: center;
+  text-align: left;
 }
 
 .dc-caption_appearance_info {
