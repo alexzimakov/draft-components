@@ -14,7 +14,7 @@
   display: inline-flex;
   min-width: 256px;
   text-align: left;
-  border-radius: 12px;
+  border-radius: 10px;
   background: var(--dc-toast-bg);
   box-shadow: var(--dc-shadow-lg);
 }
@@ -29,7 +29,7 @@
   transition: 100ms ease;
   transition-property: background-color, box-shadow;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   background: var(--dc-toast-btn-bg);
 }
 
@@ -43,9 +43,12 @@
   box-shadow: 0 0 0 1px var(--dc-toast-btn-focus-ring-color);
 }
 
+.dc-toast__btn:focus:not(:focus-visible) {
+  box-shadow: none;
+}
+
 .dc-toast__btn:focus:not(:focus-visible, :hover) {
   background: var(--dc-toast-btn-bg);
-  box-shadow: none;
 }
 
 .dc-toast__body {
