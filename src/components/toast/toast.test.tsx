@@ -1,37 +1,37 @@
 import { render, screen } from '@testing-library/react';
 import { Toast } from './toast';
-import { SvgIcon } from '../svg-icon';
-import { handThumbsUp } from '../../bootstrap-icons/hand-thumbs-up';
+import { ToastButton } from './toast-button';
 
-const message = 'Campaign saved!';
-const informativeText = (
-  'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
-);
-const cancelButtonText = 'Cancel';
-const confirmButtonText = 'Confirm';
+const title = 'Focus is on';
+const message = 'All notifications and alerts will be silent.';
+const cancelButtonLabel = 'Cancel';
+const confirmButtonLabel = 'Confirm';
 
 it('renders without error', () => {
   render(
     <Toast
-      appearance="success"
       message={message}
-      informativeText={informativeText}
+      actions={<>
+        <ToastButton>{cancelButtonLabel}</ToastButton>
+        <ToastButton>{confirmButtonLabel}</ToastButton>
+      </>}
     >
-      <Toast.Button>{cancelButtonText}</Toast.Button>
-      <Toast.Button>{confirmButtonText}</Toast.Button>
+      {title}
     </Toast>
   );
 
+  screen.getByText(title);
   screen.getByText(message);
-  screen.getByText(informativeText);
   const buttons = screen.getAllByRole('button');
-  expect(buttons[0]).toHaveTextContent(cancelButtonText);
-  expect(buttons[1]).toHaveTextContent(confirmButtonText);
+  expect(buttons[0]).toHaveTextContent(cancelButtonLabel);
+  expect(buttons[1]).toHaveTextContent(confirmButtonLabel);
 });
 
 it('renders with custom icon', () => {
-  const icon = <SvgIcon data-testid="custom-icon" icon={handThumbsUp} />;
-  render(<Toast icon={icon} appearance="success" message={message} />);
+  const icon = <svg role="img" />;
 
-  screen.getByTestId(icon.props['data-testid']);
+  render(<Toast icon={icon}>{title}</Toast>);
+
+  screen.getByText(title);
+  screen.getByRole('img');
 });

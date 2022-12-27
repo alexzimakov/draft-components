@@ -1,65 +1,34 @@
-import { ComponentPropsWithRef, ReactNode } from 'react';
+import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { SvgIcon } from '../svg-icon';
-import { ToastButton } from './toast-button';
-import { exclamationCircleFill } from '../../bootstrap-icons/exclamation-circle-fill';
-import { exclamationTriangleFill } from '../../bootstrap-icons/exclamation-triangle-fill';
-import { checkCircleFill } from '../../bootstrap-icons/check-circle-fill';
-import { infoCircleFill } from '../../bootstrap-icons/info-circle-fill';
 
-interface BaseToastProps extends ComponentPropsWithRef<'div'> {
-  appearance?: 'warning' | 'error' | 'info' | 'success';
-  fullWidth?: boolean;
+type ToastBaseProps = ComponentPropsWithoutRef<'section'>;
+export type ToastProps = {
   icon?: ReactNode;
-}
-
-export interface ToastProps extends BaseToastProps {
-  message: ReactNode;
-  informativeText?: ReactNode;
-}
-
-const defaultIcons = {
-  info: infoCircleFill,
-  success: checkCircleFill,
-  warning: exclamationTriangleFill,
-  error: exclamationCircleFill,
-};
+  message?: ReactNode;
+  actions?: ReactNode;
+} & ToastBaseProps;
 
 export function Toast({
-  appearance,
-  fullWidth,
   icon,
   message,
-  informativeText,
+  actions,
+  children,
   className,
-  children: buttons,
   ...props
 }: ToastProps) {
-  if (!icon && appearance) {
-    icon = <SvgIcon icon={defaultIcons[appearance]} size="1.15em" />;
-  }
-
   return (
-    <div
+    <section
       {...props}
-      className={classNames(className, 'dc-toast', {
-        'dc-toast_full-width': fullWidth,
-        [`dc-toast_appearance_${appearance}`]: appearance,
-      })}
+      className={classNames('dc-toast', className)}
     >
       <div className="dc-toast__body">
         {icon && <div className="dc-toast__icon">{icon}</div>}
         <div className="dc-toast__content">
-          {message && <h3 className="dc-toast__message">{message}</h3>}
-          {informativeText && (
-            <p className="dc-toast__informative-text">{informativeText}</p>
-          )}
+          <h1 className="dc-toast__title">{children}</h1>
+          {message && <div className="dc-toast__message">{message}</div>}
         </div>
       </div>
-
-      {buttons && <div className="dc-toast__btns">{buttons}</div>}
-    </div>
+      {actions && <div className="dc-toast__actions">{actions}</div>}
+    </section>
   );
 }
-
-Toast.Button = ToastButton;
