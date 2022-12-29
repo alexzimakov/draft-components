@@ -23,22 +23,22 @@ import { usePageClick } from './use-page-click';
 import {
   Positioner,
   type PositionerProps,
-  type RenderAnchorFn,
-  type RenderContentFn,
+  type PositionerAnchorRenderFn,
+  type PositionerContentRenderFn,
 } from '../positioner';
-
-type PopoverAnchorRenderFn = (props: {
-  setRef: RefCallback<HTMLElement>;
-  openPopover: () => void;
-  closePopover: () => void;
-  togglePopover: () => void;
-}) => ReactNode;
 
 export type PopoverRef = {
   open(): void;
   close(): void;
   toggle(): void;
 };
+
+export type PopoverAnchorRenderFn = (props: {
+  setRef: RefCallback<HTMLElement>;
+  openPopover: () => void;
+  closePopover: () => void;
+  togglePopover: () => void;
+}) => ReactNode;
 
 export type PopoverPlacement = PositionerProps['placement'];
 export type PopoverAlignment = PositionerProps['alignment'];
@@ -48,7 +48,7 @@ export type PopoverProps = {
   defaultIsOpen?: boolean;
   isOpen?: boolean;
   shouldTrapFocus?: boolean;
-  shouldFocusAnchorAfterClose?: boolean;
+  shouldFocusAnchorAfterEscPress?: boolean;
   anchorGap?: number;
   viewportGap?: number;
   placement?: PopoverPlacement;
@@ -64,7 +64,7 @@ export const Popover = forwardRef<
   PopoverProps
 >(function Popover({
   shouldTrapFocus = true,
-  shouldFocusAnchorAfterClose = true,
+  shouldFocusAnchorAfterEscPress = true,
   placement = 'bottom',
   alignment = 'start',
   anchorGap,
@@ -130,14 +130,14 @@ export const Popover = forwardRef<
 
   useEscKeyDown(() => {
     closePopover();
-    if (shouldFocusAnchorAfterClose && anchorRef.current) {
+    if (shouldFocusAnchorAfterEscPress && anchorRef.current) {
       focusElement(anchorRef.current);
     }
   }, { isEnabled: show });
 
   useFocusTrap(contentRef, { isEnabled: shouldTrapFocus && show });
 
-  const renderAnchor: RenderAnchorFn = ({ setRef }) => {
+  const renderAnchor: PositionerAnchorRenderFn = ({ setRef }) => {
     if (typeof anchor === 'function') {
       return anchor({
         openPopover,
@@ -160,7 +160,7 @@ export const Popover = forwardRef<
     return anchor;
   };
 
-  const renderContent: RenderContentFn = ({
+  const renderContent: PositionerContentRenderFn = ({
     setRef: portalRef,
     style: portalStyle,
     className: portalClass,

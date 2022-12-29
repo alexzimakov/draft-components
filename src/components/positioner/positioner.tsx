@@ -9,10 +9,10 @@ import { type Alignment, type Placement, type Rect } from './types';
 import { calcPosition } from './calc-position';
 import { Portal } from '../portal';
 
-export type RenderAnchorFn = (params: {
+export type PositionerAnchorRenderFn = (params: {
   setRef: RefCallback<HTMLElement>,
 }) => ReactNode;
-export type RenderContentFn = (params: {
+export type PositionerContentRenderFn = (params: {
   style: CSSProperties;
   className: string;
   setRef: RefCallback<HTMLElement>;
@@ -24,8 +24,8 @@ export type PositionerProps = {
   position?: Position;
   placement?: Placement;
   alignment?: Alignment;
-  renderAnchor: RenderAnchorFn;
-  renderContent: RenderContentFn;
+  renderAnchor: PositionerAnchorRenderFn;
+  renderContent: PositionerContentRenderFn;
 };
 
 export function Positioner({

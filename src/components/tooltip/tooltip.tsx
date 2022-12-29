@@ -19,8 +19,8 @@ import { useMountTransition } from '../../hooks';
 import {
   Positioner,
   type PositionerProps,
-  type RenderAnchorFn,
-  type RenderContentFn,
+  type PositionerAnchorRenderFn,
+  type PositionerContentRenderFn,
 } from '../positioner';
 
 type TooltipBaseProps = Omit<ComponentPropsWithoutRef<'div'>, 'children'>;
@@ -74,7 +74,7 @@ export function Tooltip({
     hideTooltip: () => setDefaultShow(false),
   }), []);
 
-  const renderAnchor: RenderAnchorFn = ({ setRef }) => {
+  const renderAnchor: PositionerAnchorRenderFn = ({ setRef }) => {
     if (typeof children === 'function') {
       return children({
         setRef,
@@ -111,7 +111,7 @@ export function Tooltip({
     return children;
   };
 
-  const renderContent: RenderContentFn = ({
+  const renderContent: PositionerContentRenderFn = ({
     setRef: portalRef,
     style: portalStyle,
     className: portalClass,
