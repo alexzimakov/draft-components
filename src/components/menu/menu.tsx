@@ -1,207 +1,301 @@
+import { KeyboardKeys } from '../../lib/keyboard-keys';
 import {
   Children,
   cloneElement,
   isValidElement,
-  KeyboardEvent,
-  KeyboardEventHandler,
-  MouseEvent,
-  MouseEventHandler,
-  ReactNode,
-  useCallback,
-  useRef,
+  useId,
   useState,
+  type ComponentPropsWithoutRef,
+  type KeyboardEventHandler,
+  type MouseEventHandler,
+  type ReactElement,
+  type ReactNode,
+  type RefCallback,
 } from 'react';
-import { KeyCode } from '../../lib/keyboard-helpers';
-import { uniqueId } from '../../lib/util';
-import { isFunction } from '../../lib/guards';
-import { BoxElevation } from '../box';
-import { Alignment, Placement } from '../positioner/types';
-import { Popover } from '../popover';
+import { classNames, focusElement } from '../../lib/react-helpers';
+import { assertIfNullable } from '../../lib/assert-if-nullable';
 import { Button } from '../button';
-import { MenuButton } from './menu-button';
-import { classNames } from '../../lib/react-helpers';
+import {
+  Popover,
+  type PopoverAlignment,
+  type PopoverAnchorRenderFn,
+  type PopoverPlacement,
+} from '../popover';
+import { MenuItem, type MenuItemProps } from './menu-item';
 
-type RenderLabel = (props: {
-  id: string;
+export type MenuAnchorRenderFn = (props: {
+  setRef: RefCallback<HTMLElement>;
   isOpen: boolean;
-  'aria-controls': string;
-  'aria-haspopup': boolean;
+  openMenu: () => void,
+  closeMenu: () => void,
+  id: string;
+  'aria-haspopup': true;
   'aria-expanded': boolean;
-  onClick: MouseEventHandler;
-  onKeyDown: KeyboardEventHandler;
+  'aria-controls': string;
+  onClick: MouseEventHandler,
+  onKeyDown: KeyboardEventHandler,
 }) => JSX.Element;
 
+
+type MenuHTMLProps = ComponentPropsWithoutRef<'ul'>;
+export type MenuPlacement = PopoverPlacement;
+export type MenuAlignment = PopoverAlignment;
 export type MenuProps = {
-  className?: string;
-  elevation?: BoxElevation;
-  placement?: Placement;
-  alignment?: Alignment;
-  anchorGap?: number;
-  viewportGap?: number;
   defaultIsOpen?: boolean;
-  label: ReactNode | RenderLabel;
-  children: ReactNode;
-};
+  placement?: MenuPlacement;
+  alignment?: MenuAlignment;
+  onOpen?: () => void;
+  onClose?: () => void;
+  anchor: ReactNode | MenuAnchorRenderFn;
+} & MenuHTMLProps;
 
 export function Menu({
-  className,
-  elevation,
-  placement,
-  alignment,
-  anchorGap,
-  viewportGap,
   defaultIsOpen = false,
-  label,
+  placement = 'bottom',
+  alignment = 'start',
+  className,
+  anchor,
   children,
+  onOpen,
+  onClose,
+  onKeyDown,
+  ...props
 }: MenuProps) {
-  const menuId = useRef(uniqueId('dc_menu_'));
-  const menuButtonId = useRef(uniqueId('dc_menu_button_'));
+  const id = useId();
+  const menuId = props.id || id;
+  const buttonId = `menu-button-${menuId}`;
   const [isOpen, setIsOpen] = useState(defaultIsOpen);
-  const openMenu = useCallback(() => setIsOpen(true), []);
-  const closeMenu = useCallback(() => setIsOpen(false), []);
 
-  function handleClick(): void {
-    if (isOpen) {
-      closeMenu();
-    } else {
-      openMenu();
+  const openMenu = () => {
+    setIsOpen(true);
+    onOpen?.();
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+    onClose?.();
+  };
+
+  const focusMenuButton = () => {
+    const menuButton = document.getElementById(buttonId);
+    assertIfNullable(menuButton, `Unable to get DOM element #${buttonId}`);
+    focusElement(menuButton);
+  };
+
+  const focusNextMenuItem = () => {
+    const menuItems = getMenuItems(menuId);
+    let index = menuItems.findIndex((el) => el === document.activeElement);
+    index += 1;
+    if (index >= menuItems.length) {
+      index = 0;
     }
-  }
+    focusElement(menuItems[index]);
+  };
 
-  function handleKeyDown(event: KeyboardEvent): void {
-    const isArrowUpPressed = event.key === KeyCode.arrowUp;
-    const isArrowDownPressed = event.key === KeyCode.arrowDown;
-    if (isArrowUpPressed || isArrowDownPressed) {
-      event.preventDefault();
-      openMenu();
-      window.setTimeout(() => {
-        const menuItems = getMenuItems(menuId.current);
-        const menuItem = isArrowDownPressed
-          ? menuItems[0]
-          : menuItems[menuItems.length - 1];
-        if (menuItem) {
-          menuItem.focus();
-        }
-      }, 0);
+  const focusPrevMenuItem = () => {
+    const menuItems = getMenuItems(menuId);
+    let index = menuItems.findIndex((el) => el === document.activeElement);
+    index -= 1;
+    if (index < 0) {
+      index = menuItems.length - 1;
     }
-  }
+    focusElement(menuItems[index]);
+  };
 
-  function menuNavigate(event: KeyboardEvent): void {
-    const menuItems = getMenuItems(menuId.current);
+  const focusFirstMenuItem = () => {
+    const menuItems = getMenuItems(menuId);
+    focusElement(menuItems[0]);
+  };
+
+  const focusLastMenuItem = () => {
+    const menuItems = getMenuItems(menuId);
+    focusElement(menuItems[menuItems.length - 1]);
+  };
+
+  const focusMenuItemByFirstChar = (char: string) => {
+    if (char.length > 1) {
+      return;
+    }
+    char = char.toLowerCase();
+
+    const menuItems = getMenuItems(menuId);
     if (menuItems.length === 0) {
       return;
     }
 
-    let activeItemIndex = menuItems.findIndex(
-      (item) => item === document.activeElement
+    const firstChars = menuItems.map((el) => {
+      if (el.textContent) {
+        return el.textContent[0].toLowerCase();
+      } else {
+        return '';
+      }
+    });
+
+    const activeMenuItemIndex = menuItems.findIndex(
+      (el) => el === document.activeElement
     );
-    if (event.key === KeyCode.arrowDown) {
-      activeItemIndex += 1;
-      if (activeItemIndex === menuItems.length) {
-        activeItemIndex = 0;
-      }
-    } else if (event.key === KeyCode.arrowUp) {
-      activeItemIndex -= 1;
-      if (activeItemIndex < 0) {
-        activeItemIndex = menuItems.length - 1;
-      }
-    } else if (event.key === KeyCode.end) {
-      activeItemIndex = menuItems.length - 1;
-    } else if (event.key === KeyCode.home) {
-      activeItemIndex = 0;
-    } else if (event.key.match(/^[A-Za-z]$/)) {
-      const searchString = event.key.toLowerCase();
-      const index = menuItems.findIndex((item) => {
-        const label = item.textContent || '';
-        return label.toLowerCase().startsWith(searchString);
-      });
-      if (index > -1) {
-        activeItemIndex = index;
-      }
+    let fromIndex = activeMenuItemIndex + 1;
+    if (fromIndex >= firstChars.length) {
+      fromIndex = 0;
     }
 
-    const activeMenuItem = menuItems[activeItemIndex];
-    if (activeMenuItem && activeMenuItem !== document.activeElement) {
-      event.preventDefault();
-      activeMenuItem.focus();
+    let index = firstChars.indexOf(char, fromIndex);
+    if (index === -1 && fromIndex !== 0) {
+      index = firstChars.indexOf(char);
     }
-  }
+
+    focusElement(menuItems[index]);
+  };
+
+  const handleButtonClick: MouseEventHandler<HTMLElement> = (event) => {
+    if (isOpen) {
+      closeMenu();
+      focusMenuButton();
+    } else {
+      openMenu();
+      window.setTimeout(focusFirstMenuItem);
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+  };
+
+  const handleButtonKeyDown: KeyboardEventHandler<HTMLElement> = (event) => {
+    if (
+      event.key === KeyboardKeys.ArrowUp ||
+      event.key === KeyboardKeys.ArrowDown ||
+      event.key === KeyboardKeys.Enter ||
+      event.key === KeyboardKeys.Space
+    ) {
+      openMenu();
+      window.setTimeout(event.key === KeyboardKeys.ArrowUp
+        ? focusLastMenuItem
+        : focusFirstMenuItem);
+
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  };
+
+  const handleMenuKeyDown: KeyboardEventHandler<HTMLUListElement> = (event) => {
+    if (event.ctrlKey || event.altKey || event.metaKey) {
+      return;
+    }
+
+    let handled = false;
+    if (event.key === KeyboardKeys.ArrowUp) {
+      focusPrevMenuItem();
+      handled = true;
+    } else if (event.key === KeyboardKeys.ArrowDown) {
+      focusNextMenuItem();
+      handled = true;
+    } else if (event.key === KeyboardKeys.Home) {
+      focusFirstMenuItem();
+      handled = true;
+    } else if (event.key === KeyboardKeys.End) {
+      focusLastMenuItem();
+      handled = true;
+    } else if (event.key === KeyboardKeys.Tab) {
+      closeMenu();
+      if (event.shiftKey) {
+        focusMenuButton();
+        handled = true;
+      }
+    } else if (event.key.match(/^\S$/)) {
+      focusMenuItemByFirstChar(event.key);
+      handled = true;
+    }
+
+    if (handled) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    onKeyDown?.(event);
+  };
+
+  const renderAnchor: PopoverAnchorRenderFn = ({ setRef }) => {
+    if (typeof anchor === 'function') {
+      return anchor({
+        setRef,
+        isOpen,
+        openMenu,
+        closeMenu,
+        id: buttonId,
+        'aria-haspopup': true,
+        'aria-expanded': isOpen,
+        'aria-controls': menuId,
+        onClick: handleButtonClick,
+        onKeyDown: handleButtonKeyDown,
+      });
+    }
+
+    return (
+      <Button
+        ref={setRef}
+        id={buttonId}
+        aria-haspopup={true}
+        aria-expanded={isOpen}
+        aria-controls={menuId}
+        onClick={handleButtonClick}
+        onKeyDown={handleButtonKeyDown}
+      >
+        {anchor}
+      </Button>
+    );
+  };
 
   return (
     <Popover
-      className={classNames('dc-menu', className)}
-      elevation={elevation}
+      className="dc-menu__container"
       placement={placement}
       alignment={alignment}
-      anchorGap={anchorGap}
-      viewportGap={viewportGap}
+      anchor={renderAnchor}
       isOpen={isOpen}
       onClose={closeMenu}
-      anchor={
-        isFunction(label) ? (
-          label({
-            isOpen,
-            id: menuButtonId.current,
-            'aria-haspopup': true,
-            'aria-expanded': isOpen,
-            'aria-controls': menuId.current,
-            onClick: handleClick,
-            onKeyDown: handleKeyDown,
-          })
-        ) : (
-          <Button
-            id={menuButtonId.current}
-            aria-haspopup={true}
-            aria-expanded={isOpen}
-            aria-controls={menuId.current}
-            data-testid="dc-menu-anchor"
-            onClick={handleClick}
-            onKeyDown={handleKeyDown}
-          >
-            {label}
-          </Button>
-        )
-      }
     >
-      <div
-        className="dc-menu__content"
-        id={menuId.current}
+      <ul
+        {...props}
+        className={classNames('dc-menu', className)}
         role="menu"
-        aria-labelledby={menuButtonId.current}
-        onKeyDown={menuNavigate}
+        id={menuId}
+        aria-labelledby={buttonId}
+        onKeyDown={handleMenuKeyDown}
       >
         {Children.map(children, (child) => {
-          if (isValidElement(child) && child.type === MenuButton) {
-            return cloneElement(child, {
-              onClick: (event: MouseEvent<HTMLButtonElement>): void => {
-                closeMenu();
-                const onClick = child.props.onClick;
-                if (isFunction(onClick)) {
-                  onClick(event);
-                }
-              },
-              onMouseEnter: (event: MouseEvent<HTMLButtonElement>): void => {
-                event.currentTarget.focus();
-                const onMouseEnter = child.props.onMouseEnter;
-                if (isFunction(onMouseEnter)) {
-                  onMouseEnter(event);
-                }
-              },
-            });
+          if (isMenuItem(child)) {
+            const props = child.props;
+            const onClick: typeof props['onClick'] = (event) => {
+              props.onClick?.(event);
+              closeMenu();
+            };
+            const onMouseEnter: typeof props['onMouseEnter'] = (event) => {
+              focusElement(event.currentTarget);
+              props.onMouseEnter?.(event);
+            };
+
+            return cloneElement(child, { onClick, onMouseEnter });
           }
 
           return child;
         })}
-      </div>
+      </ul>
     </Popover>
   );
 }
 
-function getMenuItems(menuId: string): HTMLElement[] {
-  const menu = document.getElementById(menuId);
-  if (!menu) {
+function isMenuItem(el: ReactNode): el is ReactElement<MenuItemProps> {
+  return isValidElement(el) && el.type === MenuItem;
+}
+
+function getMenuItems(menuId: string): HTMLButtonElement[] {
+  const menuEl = window.document.getElementById(menuId);
+  if (!menuEl) {
     return [];
-  } else {
-    return Array.from(menu.querySelectorAll('button[role="menuitem"]'));
   }
+
+  const nodes = menuEl.querySelectorAll<HTMLButtonElement>(
+    'button[role="menuitem"]'
+  );
+  return Array.from(nodes);
 }

@@ -1,25 +1,24 @@
+import '../../tests/match-media.mock';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import { Menu } from './menu';
-import { MenuButton } from './menu-button';
-import { MenuDivider } from './menu-divider';
-
-const label = 'Actions';
-const actions = ['Duplicate', 'Rename', 'Delete'];
+import { MenuItem } from './menu-item';
+import { MenuSeparator } from './menu-separator';
 
 it('renders without errors', () => {
+  const label = 'Actions';
+  const actions = ['Duplicate', 'Rename', 'Delete'];
   render(
-    <Menu defaultIsOpen={true} label={label}>
-      <MenuButton>{actions[0]}</MenuButton>
-      <MenuButton>{actions[1]}</MenuButton>
-      <MenuDivider />
-      <MenuButton>{actions[2]}</MenuButton>
+    <Menu defaultIsOpen={true} anchor={label}>
+      <MenuItem>{actions[0]}</MenuItem>
+      <MenuItem>{actions[1]}</MenuItem>
+      <MenuSeparator />
+      <MenuItem>{actions[2]}</MenuItem>
     </Menu>
   );
 
-  const anchor = screen.getByTestId('dc-menu-anchor');
+  const anchor = screen.getByRole('button');
   const menu = screen.getByRole('menu');
-
   expect(menu).toHaveAttribute('aria-labelledby', anchor.getAttribute('id'));
   expect(anchor).toHaveTextContent(label);
   expect(anchor).toHaveAttribute('aria-haspopup', 'true');
@@ -31,34 +30,40 @@ it('renders without errors', () => {
   expect(menuItems[0]).toHaveTextContent(actions[0]);
   expect(menuItems[1]).toHaveTextContent(actions[1]);
   expect(menuItems[2]).toHaveTextContent(actions[2]);
-  within(menu).getByTestId('dc-menu-divider');
+
+  within(menu).getByRole('separator');
 });
 
-it('renders without errors when label property is function', () => {
-  const anchorTestId = 'menu-anchor';
+it('renders without errors when the anchor property is a function', () => {
+  const label = 'Actions';
+  const actions = ['Duplicate', 'Rename', 'Delete'];
   render(
     <Menu
       defaultIsOpen={true}
-      label={({ isOpen, ...props }) => (
+      anchor={(props) => (
         <button
-          {...props}
-          className={isOpen ? 'open' : 'close'}
-          data-testid={anchorTestId}
+          ref={props.setRef}
+          id={props.id}
+          className={props.isOpen ? 'open' : 'close'}
+          aria-haspopup={props['aria-haspopup']}
+          aria-expanded={props['aria-expanded']}
+          aria-controls={props['aria-controls']}
+          onClick={props.onClick}
+          onKeyDown={props.onKeyDown}
         >
           {label}
         </button>
       )}
     >
-      <MenuButton>{actions[0]}</MenuButton>
-      <MenuButton>{actions[1]}</MenuButton>
-      <MenuDivider />
-      <MenuButton>{actions[2]}</MenuButton>
+      <MenuItem>{actions[0]}</MenuItem>
+      <MenuItem>{actions[1]}</MenuItem>
+      <MenuSeparator />
+      <MenuItem>{actions[2]}</MenuItem>
     </Menu>
   );
 
-  const anchor = screen.getByTestId(anchorTestId);
+  const anchor = screen.getByRole('button');
   const menu = screen.getByRole('menu');
-
   expect(menu).toHaveAttribute('aria-labelledby', anchor.getAttribute('id'));
   expect(anchor).toHaveTextContent(label);
   expect(anchor).toHaveAttribute('aria-haspopup', 'true');
@@ -70,17 +75,20 @@ it('renders without errors when label property is function', () => {
   expect(menuItems[0]).toHaveTextContent(actions[0]);
   expect(menuItems[1]).toHaveTextContent(actions[1]);
   expect(menuItems[2]).toHaveTextContent(actions[2]);
-  within(menu).getByTestId('dc-menu-divider');
+
+  within(menu).getByRole('separator');
 });
 
-it('should open the menu by click on the label', async () => {
+it('should toggle the menu by click on the menu button', async () => {
   const user = userEvent.setup();
+  const label = 'Actions';
+  const actions = ['Duplicate', 'Rename', 'Delete'];
   render(
-    <Menu label={label}>
-      <MenuButton>{actions[0]}</MenuButton>
-      <MenuButton>{actions[1]}</MenuButton>
-      <MenuDivider />
-      <MenuButton>{actions[2]}</MenuButton>
+    <Menu anchor={label}>
+      <MenuItem>{actions[0]}</MenuItem>
+      <MenuItem>{actions[1]}</MenuItem>
+      <MenuSeparator />
+      <MenuItem>{actions[2]}</MenuItem>
     </Menu>
   );
 
@@ -93,15 +101,16 @@ it('should open the menu by click on the label', async () => {
   await waitFor(() => expect(screen.queryByRole('menu')).toBeNull());
 });
 
-it('should close the menu when Esc key pressed', async () => {
+it('should close the menu when the Esc key pressed', async () => {
   const user = userEvent.setup();
-
+  const label = 'Actions';
+  const actions = ['Duplicate', 'Rename', 'Delete'];
   render(
-    <Menu defaultIsOpen={true} label={label}>
-      <MenuButton>{actions[0]}</MenuButton>
-      <MenuButton>{actions[1]}</MenuButton>
-      <MenuDivider />
-      <MenuButton>{actions[2]}</MenuButton>
+    <Menu defaultIsOpen={true} anchor={label}>
+      <MenuItem>{actions[0]}</MenuItem>
+      <MenuItem>{actions[1]}</MenuItem>
+      <MenuSeparator />
+      <MenuItem>{actions[2]}</MenuItem>
     </Menu>
   );
 
@@ -113,16 +122,17 @@ it('should close the menu when Esc key pressed', async () => {
 
 it('should close the menu when click on outside the menu', async () => {
   const user = userEvent.setup();
-
+  const label = 'Actions';
+  const actions = ['Duplicate', 'Rename', 'Delete'];
   const externalButtonTestId = 'external-button';
   render(
     <div>
       <button data-testid={externalButtonTestId}>Close menu</button>
-      <Menu defaultIsOpen={true} label={label}>
-        <MenuButton>{actions[0]}</MenuButton>
-        <MenuButton>{actions[1]}</MenuButton>
-        <MenuDivider />
-        <MenuButton>{actions[2]}</MenuButton>
+      <Menu defaultIsOpen={true} anchor={label}>
+        <MenuItem>{actions[0]}</MenuItem>
+        <MenuItem>{actions[1]}</MenuItem>
+        <MenuSeparator />
+        <MenuItem>{actions[2]}</MenuItem>
       </Menu>
     </div>
   );
@@ -133,67 +143,100 @@ it('should close the menu when click on outside the menu', async () => {
   await waitFor(() => expect(screen.queryByRole('menu')).toBeNull());
 });
 
-it(
-  'should open the menu and moves focus to the first item ' +
-  'when Arrow Down key pressed',
-  async () => {
+describe('should open the menu and focus the first menu item', () => {
+  const renderMenu = () => {
     const user = userEvent.setup();
-
+    const label = 'Actions';
+    const actions = ['Duplicate', 'Rename', 'Delete'];
     render(
-      <Menu label={label}>
-        <MenuButton>{actions[0]}</MenuButton>
-        <MenuButton>{actions[1]}</MenuButton>
-        <MenuDivider />
-        <MenuButton>{actions[2]}</MenuButton>
+      <Menu anchor={label}>
+        <MenuItem>{actions[0]}</MenuItem>
+        <MenuItem>{actions[1]}</MenuItem>
+        <MenuSeparator />
+        <MenuItem>{actions[2]}</MenuItem>
       </Menu>
     );
 
-    expect(screen.queryByRole('menu')).toBeNull();
+    return { user, label, actions };
+  };
 
+  it('when click on the menu button', async () => {
+    const { user, label } = renderMenu();
+
+    expect(screen.queryByRole('menu')).toBeNull();
+    await user.click(screen.getByText(label));
+    await screen.findByRole('menu');
+    const [firstMenuItem] = screen.getAllByRole('menuitem');
+    expect(firstMenuItem).toHaveFocus();
+  });
+
+  it('when the menu button is focused and ArrowDown key pressed', async () => {
+    const { user } = renderMenu();
+
+    expect(screen.queryByRole('menu')).toBeNull();
     await user.tab();
     await user.keyboard('{ArrowDown}');
+    await screen.findByRole('menu');
+    const [firstMenuItem] = screen.getAllByRole('menuitem');
+    expect(firstMenuItem).toHaveFocus();
+  });
 
-    screen.getByRole('menu');
-    const [first] = screen.getAllByRole('menuitem');
-    expect(first).toHaveFocus();
-  }
-);
-
-it(
-  'should open the menu and moves focus to the last item ' +
-  'when Arrow Up key pressed',
-  async () => {
-    const user = userEvent.setup();
-
-    render(
-      <Menu label={label}>
-        <MenuButton>{actions[0]}</MenuButton>
-        <MenuButton>{actions[1]}</MenuButton>
-        <MenuDivider />
-        <MenuButton>{actions[2]}</MenuButton>
-      </Menu>
-    );
+  it('when the menu button is focused and Enter key pressed', async () => {
+    const { user } = renderMenu();
 
     expect(screen.queryByRole('menu')).toBeNull();
-
     await user.tab();
-    await user.keyboard('{ArrowUp}');
+    await user.keyboard('{Enter}');
+    await screen.findByRole('menu');
+    const [firstMenuItem] = screen.getAllByRole('menuitem');
+    expect(firstMenuItem).toHaveFocus();
+  });
 
-    screen.getByRole('menu');
-    const menuItems = screen.getAllByRole('menuitem');
-    expect(menuItems[menuItems.length - 1]).toHaveFocus();
-  }
-);
+  it('when the menu button is focused and Space key pressed', async () => {
+    const { user } = renderMenu();
 
-it('should navigate through menu items using keyboard', async () => {
+    expect(screen.queryByRole('menu')).toBeNull();
+    await user.tab();
+    await user.keyboard(' ');
+    await screen.findByRole('menu');
+    const [firstMenuItem] = screen.getAllByRole('menuitem');
+    expect(firstMenuItem).toHaveFocus();
+  });
+});
+
+it('should open the menu and focus the last menu item', async () => {
   const user = userEvent.setup();
-
+  const label = 'Actions';
+  const actions = ['Duplicate', 'Rename', 'Delete'];
   render(
-    <Menu label={label}>
-      <MenuButton>{actions[0]}</MenuButton>
-      <MenuButton>{actions[1]}</MenuButton>
-      <MenuDivider />
-      <MenuButton>{actions[2]}</MenuButton>
+    <Menu anchor={label}>
+      <MenuItem>{actions[0]}</MenuItem>
+      <MenuItem>{actions[1]}</MenuItem>
+      <MenuSeparator />
+      <MenuItem>{actions[2]}</MenuItem>
+    </Menu>
+  );
+
+  expect(screen.queryByRole('menu')).toBeNull();
+
+  await user.tab();
+  await user.keyboard('{ArrowUp}');
+
+  screen.getByRole('menu');
+  const menuItems = screen.getAllByRole('menuitem');
+  expect(menuItems[menuItems.length - 1]).toHaveFocus();
+});
+
+it('should navigate through the menu items using the keyboard', async () => {
+  const user = userEvent.setup();
+  const label = 'Actions';
+  const actions = ['Duplicate', 'Rename', 'Delete'];
+  render(
+    <Menu anchor={label}>
+      <MenuItem>{actions[0]}</MenuItem>
+      <MenuItem>{actions[1]}</MenuItem>
+      <MenuSeparator />
+      <MenuItem>{actions[2]}</MenuItem>
     </Menu>
   );
 
@@ -228,15 +271,17 @@ it('should navigate through menu items using keyboard', async () => {
   expect(first).toHaveFocus();
 });
 
-it('should focus menu item on mouse hover', async () => {
+it('should focus on the menu item when hovering over the mouse', async () => {
   const user = userEvent.setup();
+  const label = 'Actions';
+  const actions = ['Duplicate', 'Rename', 'Delete'];
   const onMouseEnterMock = jest.fn();
   render(
-    <Menu defaultIsOpen={true} label={label}>
-      <MenuButton onMouseEnter={onMouseEnterMock}>{actions[0]}</MenuButton>
-      <MenuButton onMouseEnter={onMouseEnterMock}>{actions[1]}</MenuButton>
-      <MenuDivider />
-      <MenuButton onMouseEnter={onMouseEnterMock}>{actions[2]}</MenuButton>
+    <Menu defaultIsOpen={true} anchor={label}>
+      <MenuItem onMouseEnter={onMouseEnterMock}>{actions[0]}</MenuItem>
+      <MenuItem onMouseEnter={onMouseEnterMock}>{actions[1]}</MenuItem>
+      <MenuSeparator />
+      <MenuItem onMouseEnter={onMouseEnterMock}>{actions[2]}</MenuItem>
     </Menu>
   );
 
@@ -253,13 +298,15 @@ it('should focus menu item on mouse hover', async () => {
 
 it('should close the menu when click on any menu item', async () => {
   const user = userEvent.setup();
+  const label = 'Actions';
+  const actions = ['Duplicate', 'Rename', 'Delete'];
   const onClickMock = jest.fn();
   render(
-    <Menu defaultIsOpen={true} label={label}>
-      <MenuButton onClick={onClickMock}>{actions[0]}</MenuButton>
-      <MenuButton onClick={onClickMock}>{actions[1]}</MenuButton>
-      <MenuDivider />
-      <MenuButton onClick={onClickMock}>{actions[2]}</MenuButton>
+    <Menu defaultIsOpen={true} anchor={label}>
+      <MenuItem onClick={onClickMock}>{actions[0]}</MenuItem>
+      <MenuItem onClick={onClickMock}>{actions[1]}</MenuItem>
+      <MenuSeparator />
+      <MenuItem onClick={onClickMock}>{actions[2]}</MenuItem>
     </Menu>
   );
 

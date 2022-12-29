@@ -63,8 +63,8 @@ export function isReactElementWithRef(
   return isValidElement(element) && 'ref' in element;
 }
 
-export function focusElement(element: EventTarget): void {
-  if (element instanceof HTMLElement) {
+export function focusElement(element: EventTarget | null | undefined): void {
+  if (element != null && element instanceof HTMLElement) {
     element.focus();
   }
 }

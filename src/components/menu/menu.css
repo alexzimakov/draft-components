@@ -1,0 +1,63 @@
+.dc-menu {
+  --dc-menu-item-color: var(--dc-button-default-plain-text-color);
+  --dc-menu-item-bg: var(--dc-button-default-bg-hover);
+  --dc-menu-item-color-destructive: var(--dc-button-danger-plain-text-color);
+  --dc-menu-item-bg-destructive: var(--dc-button-danger-plain-bg-hover);
+  --dc-menu-separator-color: var(--dc-bg-transparent-2);
+
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dc-menu__container {
+  min-width: 160px;
+  padding: 4px;
+}
+
+.dc-menu__separator {
+  box-sizing: border-box;
+  height: 1px;
+  margin: 4px 8px;
+  background: var(--dc-menu-separator-color);
+}
+
+.dc-menu-btn {
+  appearance: none;
+  font: var(--dc-text-sm);
+  color: var(--dc-menu-item-color);
+  display: flex;
+  user-select: none;
+  align-items: center;
+  width: 100%;
+  height: 32px;
+  padding: 0 12px;
+  white-space: nowrap;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+}
+
+.dc-menu-btn:hover {
+  cursor: pointer;
+}
+
+.dc-menu-btn:focus {
+  outline: none;
+  background: var(--dc-menu-item-bg);
+}
+
+.dc-menu-btn__icon {
+  display: inline-flex;
+  margin-right: 8px;
+}
+
+.dc-menu-btn_destructive {
+  color: var(--dc-menu-item-color-destructive);
+}
+
+.dc-menu-btn_destructive:focus {
+  background: var(--dc-menu-item-bg-destructive);
+}

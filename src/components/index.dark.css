@@ -2,6 +2,8 @@
 @import url("positioner/positioner.dark.css");
 @import url("tooltip/tooltip.dark.css");
 @import url("popover/popover.dark.css");
+@import url("menu/menu.dark.css");
+@import url("dialog/dialog.dark.css");
 @import url("toast/toast.dark.css");
 @import url("alert/alert.dark.css");
 @import url("avatar/avatar.dark.css");
