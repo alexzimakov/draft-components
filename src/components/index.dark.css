@@ -14,6 +14,7 @@
 @import url("tabs/tabs.dark.css");
 @import url("table/table.dark.css");
 @import url("text-input/text-input.dark.css");
+@import url("password-input/password-input.dark.css");
 @import url("textarea/textarea.dark.css");
 @import url("select/select.dark.css");
 @import url("switch/switch.dark.css");

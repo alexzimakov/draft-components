@@ -7,7 +7,7 @@ import {
 import { classNames } from '../../lib/react-helpers';
 import { TextInput, type TextInputProps } from '../text-input';
 import { Tooltip } from '../tooltip';
-import { Eye, EyeSlash } from './icons';
+import { EyeIcon, EyeSlashIcon } from './icons';
 
 type PasswordInputBaseProps = Omit<TextInputProps, 'type' | 'suffix'>
 export type PasswordInputProps = {
@@ -34,17 +34,21 @@ export const PasswordInput = forwardRef<
   if (visible) {
     type = 'text';
     content = hidePasswordTitle;
-    Icon = EyeSlash;
+    Icon = EyeIcon;
   } else {
     type = 'password';
     content = showPasswordTitle;
-    Icon = Eye;
+    Icon = EyeSlashIcon;
   }
 
   const handleButtonClick = () => setVisible(!visible);
   const button = (
     <Tooltip content={content}>
-      <button className="dc-password-input__btn" onClick={handleButtonClick}>
+      <button
+        className="dc-password-input__btn"
+        type="button"
+        onClick={handleButtonClick}
+      >
         <Icon className="dc-password-input__icon" aria-hidden={true} />
       </button>
     </Tooltip>

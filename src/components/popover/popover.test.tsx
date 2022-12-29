@@ -1,14 +1,10 @@
+import '../../tests/match-media.mock';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '@testing-library/react';
-import { mockMatchMedia } from '../../lib/test-utils';
 import { Popover } from './popover';
 
 const anchorLabel = 'Show Popover';
 const popoverContent = 'Popover Content';
-
-beforeEach(() => {
-  mockMatchMedia();
-});
 
 it('renders without errors', () => {
   const popoverTestId = 'popover';

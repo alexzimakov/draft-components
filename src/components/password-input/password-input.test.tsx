@@ -1,11 +1,7 @@
+import '../../tests/match-media.mock';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
-import { mockMatchMedia } from '../../lib/test-utils';
 import { PasswordInput } from './password-input';
-
-beforeEach(() => {
-  mockMatchMedia();
-});
 
 it('renders without errors', () => {
   const placeholder = 'Enter your password';

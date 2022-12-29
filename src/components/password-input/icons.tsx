@@ -1,6 +1,6 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { type ComponentPropsWithoutRef } from 'react';
 
-export function Eye(props: ComponentPropsWithoutRef<'svg'>) {
+export function EyeIcon(props: ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +26,7 @@ export function Eye(props: ComponentPropsWithoutRef<'svg'>) {
   );
 }
 
-export function EyeSlash(props: ComponentPropsWithoutRef<'svg'>) {
+export function EyeSlashIcon(props: ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

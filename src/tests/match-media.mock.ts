@@ -1,9 +1,8 @@
-export function mockMatchMedia(matches = false): void {
+function mockMatchMedia(params: { matches: boolean }): void {
   // https://jestjs.io/docs/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
   Object.defineProperty(window, 'matchMedia', {
-    writable: true,
     value: jest.fn().mockImplementation((query) => ({
-      matches,
+      matches: params.matches,
       media: query,
       onchange: null,
       addListener: jest.fn(), // deprecated
@@ -12,5 +11,10 @@ export function mockMatchMedia(matches = false): void {
       removeEventListener: jest.fn(),
       dispatchEvent: jest.fn(),
     })),
+    writable: true,
   });
 }
+
+mockMatchMedia({ matches: false });
+
+export { mockMatchMedia as updateMock };
