@@ -35,9 +35,9 @@ it('renders without errors when children is a function', async () => {
   const anchorTestId = 'anchor';
   render(
     <Tooltip content={tooltipContent}>
-      {({ setRef, tooltipId, showTooltip, hideTooltip }) => (
+      {({ ref }, { tooltipId, showTooltip, hideTooltip }) => (
         <span
-          ref={setRef}
+          ref={ref}
           data-testid={anchorTestId}
           aria-describedby={tooltipId}
           onMouseEnter={showTooltip}

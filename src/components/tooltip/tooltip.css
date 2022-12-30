@@ -5,6 +5,9 @@
 
   font: var(--dc-text-xs);
   color: var(--dc-tooltip-text-color);
+  z-index: var(--dc-modal-z-index);
+  top: 0;
+  left: 0;
   box-sizing: border-box;
   padding: 4px 8px;
   border-radius: 6px;

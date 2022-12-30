@@ -23,47 +23,48 @@ import {
   type PositionerContentRenderFn,
 } from '../positioner';
 
-type TooltipBaseProps = Omit<ComponentPropsWithoutRef<'div'>, 'children'>;
-
 type TooltipChildrenRenderFn = (props: {
-  setRef: RefCallback<HTMLElement>;
+  ref: RefCallback<HTMLElement>;
+}, context: {
+  isShown: boolean;
   tooltipId: string;
   hideTooltip: () => void;
   showTooltip: () => void;
 }) => ReactNode;
 
+type TooltipHTMLProps = ComponentPropsWithoutRef<'div'>;
+type TooltipBaseProps = Omit<TooltipHTMLProps, 'children'>;
 export type TooltipPlacement = PositionerProps['placement'];
 export type TooltipAlignment = PositionerProps['alignment'];
 export type TooltipProps = {
   anchorGap?: number;
   placement?: TooltipPlacement;
   alignment?: TooltipAlignment;
-  isDefaultShown?: boolean;
+  defaultIsShown?: boolean;
   isShown?: boolean;
   content: ReactNode;
   children: ReactNode | TooltipChildrenRenderFn;
 } & TooltipBaseProps;
 
 export function Tooltip({
-  isDefaultShown,
-  isShown,
   anchorGap = 8,
   placement = 'top',
   alignment = 'center',
-  id,
   style,
   className,
   content,
   children,
   ...props
 }: TooltipProps) {
-  const [defaultShow, setDefaultShow] = useState(isDefaultShown ?? false);
+  const [defaultShow, setDefaultShow] = useState(
+    props.defaultIsShown ?? false
+  );
   const defaultId = useId();
-  const tooltipId = id || defaultId;
-  const show = isShown ?? defaultShow;
+  const tooltipId = props.id || defaultId;
+  const isShown = props.isShown ?? defaultShow;
   const durationMs = 100;
   const { isMounted, className: transitionClass } = useMountTransition({
-    show,
+    isShown,
     durationMs,
     enterFrom: 'dc-tooltip_hidden',
     enterTo: 'dc-tooltip_visible',
@@ -77,10 +78,12 @@ export function Tooltip({
   const renderAnchor: PositionerAnchorRenderFn = ({ setRef }) => {
     if (typeof children === 'function') {
       return children({
-        setRef,
+        ref: setRef,
+      }, {
         tooltipId,
         showTooltip,
         hideTooltip,
+        isShown: isShown || isMounted,
       });
     }
 
@@ -114,9 +117,10 @@ export function Tooltip({
   const renderContent: PositionerContentRenderFn = ({
     setRef: portalRef,
     style: portalStyle,
-    className: portalClass,
   }) => {
-    if (show || isMounted) {
+    if (isShown || isMounted) {
+      delete props.defaultIsShown;
+      delete props.isShown;
       return (
         <div
           {...props}
@@ -127,12 +131,7 @@ export function Tooltip({
             ...portalStyle,
             ...style,
           } as CSSProperties}
-          className={classNames(
-            'dc-tooltip',
-            transitionClass,
-            portalClass,
-            className
-          )}
+          className={classNames('dc-tooltip', transitionClass, className)}
           role="tooltip"
         >
           {content}
