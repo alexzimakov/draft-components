@@ -1,5 +1,4 @@
-import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
-import { useUniqueId } from '../../hooks';
+import { useId, type ComponentPropsWithoutRef, type ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { Label } from '../label';
 import { Caption } from '../caption';
@@ -28,7 +27,8 @@ export function FormField({
   children,
   ...props
 }: FormFieldProps) {
-  const id = useUniqueId({ default: labelFor, prefix: 'form-field-input-' });
+  const defaultId = useId();
+  const id = labelFor || defaultId;
   const hasError = Boolean(error);
   const shouldRenderLabel = Boolean(label);
 

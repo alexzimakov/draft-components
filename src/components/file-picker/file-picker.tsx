@@ -1,11 +1,14 @@
 import {
   forwardRef,
+  useId,
   useRef,
+  useState,
+  type ChangeEventHandler,
   type ComponentPropsWithRef,
-  type ReactNode, useState, ChangeEventHandler, DragEventHandler,
+  type DragEventHandler,
+  type ReactNode,
 } from 'react';
 import { classNames, mergeRefs } from '../../lib/react-helpers';
-import { useUniqueId } from '../../hooks';
 import { Button } from '../button';
 
 type FilePickerHTMLProps = ComponentPropsWithRef<'input'>;
@@ -34,7 +37,8 @@ export const FilePicker = forwardRef<
   onSelectFiles,
   ...props
 }, ref) {
-  const inputId = useUniqueId({ prefix: 'file-input-', default: id });
+  const defaultId = useId();
+  const inputId = id || defaultId;
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [draggingOver, setDraggingOver] = useState(false);
 
