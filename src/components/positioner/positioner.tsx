@@ -13,9 +13,8 @@ export type PositionerAnchorRenderFn = (params: {
   setRef: RefCallback<HTMLElement>,
 }) => ReactNode;
 export type PositionerContentRenderFn = (params: {
-  style: CSSProperties;
-  className: string;
   setRef: RefCallback<HTMLElement>;
+  style: CSSProperties;
 }) => ReactNode;
 export type Position = 'fixed' | 'absolute';
 export type PositionerProps = {
@@ -79,7 +78,6 @@ export function Positioner({
       <Portal>
         {renderContent({
           setRef: setContent,
-          className: 'dc-portal',
           style: {
             position,
             maxWidth: `calc(100% - ${viewportGap * 2}px)`,
