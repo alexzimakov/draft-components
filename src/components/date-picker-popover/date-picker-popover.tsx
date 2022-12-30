@@ -1,17 +1,18 @@
-import { ReactNode, useRef } from 'react';
-import { ISODate } from '../../lib/plain-date';
+import { type DateISO } from '../date-picker/date-helpers';
+import { useRef, type ReactNode } from 'react';
+import { Popover, type PopoverRef } from '../popover';
 import { DatePicker } from '../date-picker';
-import { Popover, PopoverRef } from '../popover';
 
+export type DatePickerChangeValueFn = (value: DateISO) => void;
 export type DatePickerPopoverProps = {
   defaultIsOpen?: boolean;
   locale?: string;
   footer?: ReactNode;
-  min?: ISODate;
-  max?: ISODate;
-  value: ISODate | null;
+  min?: DateISO;
+  max?: DateISO;
   children: JSX.Element;
-  onChangeValue(value: ISODate): void;
+  value: DateISO | null;
+  onChangeValue: DatePickerChangeValueFn;
 };
 
 export function DatePickerPopover({
@@ -24,23 +25,22 @@ export function DatePickerPopover({
   children,
   onChangeValue,
 }: DatePickerPopoverProps) {
-  const popover = useRef<PopoverRef>(null);
-
-  function handleChangeValue(value: ISODate): void {
+  const popoverRef = useRef<PopoverRef>(null);
+  const handleChangeValue: DatePickerChangeValueFn = (value) => {
     onChangeValue(value);
-    popover.current?.close();
-  }
+    popoverRef.current?.close();
+  };
 
   return (
-    <Popover ref={popover} defaultIsOpen={defaultIsOpen} anchor={children}>
+    <Popover ref={popoverRef} defaultIsOpen={defaultIsOpen} anchor={children}>
       <DatePicker
         locale={locale}
-        footer={footer}
         min={min}
         max={max}
         value={value}
         onChangeValue={handleChangeValue}
       />
+      {footer}
     </Popover>
   );
 }

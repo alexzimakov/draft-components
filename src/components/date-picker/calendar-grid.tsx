@@ -1,4 +1,4 @@
-import { type KeyboardEventHandler, type MouseEventHandler } from 'react';
+import { type KeyboardEvent } from 'react';
 import { KeyboardKeys } from '../../lib/keyboard-keys';
 import {
   DAYS_IN_WEEK,
@@ -11,7 +11,6 @@ import {
   getStartOfWeek,
   isSameDay,
   isWeekend,
-  parseDateISO,
   toDateISO,
   type Weekday,
 } from './date-helpers';
@@ -84,6 +83,8 @@ export function CalendarGrid({
             (minDate != null && date < minDate) ||
             (maxDate != null && date > maxDate)
           }
+          onClick={handleSelectDay(date)}
+          onMouseEnter={handleHoverDay(date)}
         />;
       }
       columns.push(<td key={dateISO} role="gridcell">{calendarDay}</td>);
@@ -94,24 +95,20 @@ export function CalendarGrid({
     week += 1;
   }
 
-  const handleClick: MouseEventHandler = (event) => {
-    const target = event.target;
-    if (target instanceof HTMLButtonElement && target.dataset.date) {
-      const date = parseDateISO(target.dataset.date);
+  function handleSelectDay(date: Date) {
+    return () => {
       onChangeFocusDay(date);
       onSelectDay(date);
-    }
-  };
+    };
+  }
 
-  const handleMouseOver: MouseEventHandler = (event) => {
-    const target = event.target;
-    if (target instanceof HTMLButtonElement && target.dataset.date) {
-      const date = parseDateISO(target.dataset.date);
+  function handleHoverDay(date: Date) {
+    return () => {
       onHoverDay?.(date);
-    }
-  };
+    };
+  }
 
-  const handleKeydown: KeyboardEventHandler = (event) => {
+  function handleKeydown(event: KeyboardEvent<HTMLTableSectionElement>) {
     let newFocusDay: Date | null = null;
     if (event.code === KeyboardKeys.ArrowRight) {
       newFocusDay = addDays(focusDay, 1);
@@ -160,18 +157,12 @@ export function CalendarGrid({
         }
       }, 0);
     }
-  };
+  }
 
   return (
     <table className="dc-calendar__grid" role="grid" aria-label={ariaLabel}>
       <CalendarGridHead locale={locale} weekStartsOn={weekStartsOn} />
-      <tbody
-        onClick={handleClick}
-        onMouseOver={handleMouseOver}
-        onKeyDown={handleKeydown}
-      >
-        {rows}
-      </tbody>
+      <tbody onKeyDown={handleKeydown}>{rows}</tbody>
     </table>
   );
 }

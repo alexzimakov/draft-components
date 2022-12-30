@@ -161,7 +161,7 @@ it('selects a day by click', async () => {
     />
   );
 
-  await user.click(screen.getByLabelText('December 14, 2022'));
+  await user.click(screen.getByText('14'));
 
   expect(onChangeValueMock).toHaveBeenCalledTimes(1);
   expect(onChangeValueMock).toHaveBeenNthCalledWith(1, '2022-12-14');
@@ -413,8 +413,8 @@ it('can select date range using mouse', async () => {
     />
   );
 
-  await user.click(screen.getByLabelText('December 11, 2022'));
-  await user.click(screen.getByLabelText('December 6, 2022'));
+  await user.click(screen.getByText('11'));
+  await user.click(screen.getByText('6'));
 
   expect(onChangeValueMock).toHaveBeenCalledTimes(1);
   expect(onChangeValueMock).toHaveBeenNthCalledWith(1, {

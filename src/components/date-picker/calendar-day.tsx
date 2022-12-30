@@ -1,5 +1,7 @@
+import { type ComponentPropsWithoutRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
+type CalendarDayHTMLProps = ComponentPropsWithoutRef<'button'>;
 export type CalendarDayProps = {
   date: Date;
   dateISO: string;
@@ -12,7 +14,7 @@ export type CalendarDayProps = {
   inRange?: boolean;
   isRangeStart?: boolean;
   isRangeEnd?: boolean;
-};
+} & CalendarDayHTMLProps;
 
 export function CalendarDay({
   date,
@@ -26,9 +28,11 @@ export function CalendarDay({
   inRange,
   isRangeStart,
   isRangeEnd,
+  ...props
 }: CalendarDayProps) {
   return (
     <button
+      {...props}
       className={classNames('dc-calendar-day', {
         'dc-calendar-day_selected': isSelected,
         'dc-calendar-day_today': isToday,
@@ -42,10 +46,7 @@ export function CalendarDay({
       data-date={dateISO}
       aria-label={date.toLocaleString(locale, { dateStyle: 'long' })}
     >
-      <span
-        style={{ pointerEvents: 'none' }}
-        className="dc-calendar-day__body"
-      >
+      <span className="dc-calendar-day__body">
         {date.getDate()}
       </span>
     </button>
