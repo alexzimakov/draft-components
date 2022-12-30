@@ -31,7 +31,7 @@ export const Basic: ComponentStory<typeof Menu> = (args) => (
   </Menu>
 );
 Basic.argTypes = {
-  anchor: {
+  button: {
     control: 'text',
   },
   children: {
@@ -39,7 +39,7 @@ Basic.argTypes = {
   },
 };
 Basic.args = {
-  anchor: 'Open menu',
+  button: 'Open menu',
 };
 
 export const WithIcon: ComponentStory<typeof Menu> = (args) => (
@@ -63,7 +63,7 @@ export const WithIcon: ComponentStory<typeof Menu> = (args) => (
   </Menu>
 );
 WithIcon.argTypes = {
-  anchor: {
+  button: {
     control: 'text',
   },
   children: {
@@ -71,5 +71,5 @@ WithIcon.argTypes = {
   },
 };
 WithIcon.args = {
-  anchor: 'Open menu',
+  button: 'Open menu',
 };

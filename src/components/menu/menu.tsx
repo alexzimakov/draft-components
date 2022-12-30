@@ -14,7 +14,11 @@ import {
 } from 'react';
 import { classNames, focusElement } from '../../lib/react-helpers';
 import { assertIfNullable } from '../../lib/assert-if-nullable';
-import { Button } from '../button';
+import {
+  Button,
+  type ButtonAppearance,
+  type ButtonVariant,
+} from '../button';
 import {
   Popover,
   type PopoverAlignment,
@@ -24,16 +28,17 @@ import {
 import { MenuItem, type MenuItemProps } from './menu-item';
 
 export type MenuAnchorRenderFn = (props: {
-  setRef: RefCallback<HTMLElement>;
-  isOpen: boolean;
-  openMenu: () => void,
-  closeMenu: () => void,
+  ref: RefCallback<HTMLElement>;
   id: string;
   'aria-haspopup': true;
   'aria-expanded': boolean;
   'aria-controls': string;
   onClick: MouseEventHandler,
   onKeyDown: KeyboardEventHandler,
+}, context: {
+  isOpen: boolean;
+  openMenu: () => void,
+  closeMenu: () => void,
 }) => JSX.Element;
 
 
@@ -46,15 +51,19 @@ export type MenuProps = {
   alignment?: MenuAlignment;
   onOpen?: () => void;
   onClose?: () => void;
-  anchor: ReactNode | MenuAnchorRenderFn;
+  button: ReactNode | MenuAnchorRenderFn;
+  buttonAppearance?: ButtonAppearance;
+  buttonVariant?: ButtonVariant;
 } & MenuHTMLProps;
 
 export function Menu({
   defaultIsOpen = false,
   placement = 'bottom',
   alignment = 'start',
+  buttonAppearance = 'default',
+  buttonVariant = 'filled',
+  button,
   className,
-  anchor,
   children,
   onOpen,
   onClose,
@@ -214,33 +223,36 @@ export function Menu({
     onKeyDown?.(event);
   };
 
-  const renderAnchor: PopoverAnchorRenderFn = ({ setRef }) => {
-    if (typeof anchor === 'function') {
-      return anchor({
-        setRef,
-        isOpen,
-        openMenu,
-        closeMenu,
+  const renderAnchor: PopoverAnchorRenderFn = ({ ref }) => {
+    if (typeof button === 'function') {
+      return button({
+        ref,
         id: buttonId,
         'aria-haspopup': true,
         'aria-expanded': isOpen,
         'aria-controls': menuId,
         onClick: handleButtonClick,
         onKeyDown: handleButtonKeyDown,
+      }, {
+        isOpen,
+        openMenu,
+        closeMenu,
       });
     }
 
     return (
       <Button
-        ref={setRef}
+        ref={ref}
         id={buttonId}
         aria-haspopup={true}
         aria-expanded={isOpen}
         aria-controls={menuId}
         onClick={handleButtonClick}
         onKeyDown={handleButtonKeyDown}
+        appearance={buttonAppearance}
+        variant={buttonVariant}
       >
-        {anchor}
+        {button}
       </Button>
     );
   };

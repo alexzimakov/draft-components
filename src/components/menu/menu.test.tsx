@@ -9,7 +9,7 @@ it('renders without errors', () => {
   const label = 'Actions';
   const actions = ['Duplicate', 'Rename', 'Delete'];
   render(
-    <Menu defaultIsOpen={true} anchor={label}>
+    <Menu defaultIsOpen={true} button={label}>
       <MenuItem>{actions[0]}</MenuItem>
       <MenuItem>{actions[1]}</MenuItem>
       <MenuSeparator />
@@ -40,11 +40,11 @@ it('renders without errors when the anchor property is a function', () => {
   render(
     <Menu
       defaultIsOpen={true}
-      anchor={(props) => (
+      button={(props, context) => (
         <button
-          ref={props.setRef}
+          ref={props.ref}
           id={props.id}
-          className={props.isOpen ? 'open' : 'close'}
+          className={context.isOpen ? 'open' : 'close'}
           aria-haspopup={props['aria-haspopup']}
           aria-expanded={props['aria-expanded']}
           aria-controls={props['aria-controls']}
@@ -84,7 +84,7 @@ it('should toggle the menu by click on the menu button', async () => {
   const label = 'Actions';
   const actions = ['Duplicate', 'Rename', 'Delete'];
   render(
-    <Menu anchor={label}>
+    <Menu button={label}>
       <MenuItem>{actions[0]}</MenuItem>
       <MenuItem>{actions[1]}</MenuItem>
       <MenuSeparator />
@@ -106,7 +106,7 @@ it('should close the menu when the Esc key pressed', async () => {
   const label = 'Actions';
   const actions = ['Duplicate', 'Rename', 'Delete'];
   render(
-    <Menu defaultIsOpen={true} anchor={label}>
+    <Menu defaultIsOpen={true} button={label}>
       <MenuItem>{actions[0]}</MenuItem>
       <MenuItem>{actions[1]}</MenuItem>
       <MenuSeparator />
@@ -128,7 +128,7 @@ it('should close the menu when click on outside the menu', async () => {
   render(
     <div>
       <button data-testid={externalButtonTestId}>Close menu</button>
-      <Menu defaultIsOpen={true} anchor={label}>
+      <Menu defaultIsOpen={true} button={label}>
         <MenuItem>{actions[0]}</MenuItem>
         <MenuItem>{actions[1]}</MenuItem>
         <MenuSeparator />
@@ -149,7 +149,7 @@ describe('should open the menu and focus the first menu item', () => {
     const label = 'Actions';
     const actions = ['Duplicate', 'Rename', 'Delete'];
     render(
-      <Menu anchor={label}>
+      <Menu button={label}>
         <MenuItem>{actions[0]}</MenuItem>
         <MenuItem>{actions[1]}</MenuItem>
         <MenuSeparator />
@@ -209,7 +209,7 @@ it('should open the menu and focus the last menu item', async () => {
   const label = 'Actions';
   const actions = ['Duplicate', 'Rename', 'Delete'];
   render(
-    <Menu anchor={label}>
+    <Menu button={label}>
       <MenuItem>{actions[0]}</MenuItem>
       <MenuItem>{actions[1]}</MenuItem>
       <MenuSeparator />
@@ -232,7 +232,7 @@ it('should navigate through the menu items using the keyboard', async () => {
   const label = 'Actions';
   const actions = ['Duplicate', 'Rename', 'Delete'];
   render(
-    <Menu anchor={label}>
+    <Menu button={label}>
       <MenuItem>{actions[0]}</MenuItem>
       <MenuItem>{actions[1]}</MenuItem>
       <MenuSeparator />
@@ -277,7 +277,7 @@ it('should focus on the menu item when hovering over the mouse', async () => {
   const actions = ['Duplicate', 'Rename', 'Delete'];
   const onMouseEnterMock = jest.fn();
   render(
-    <Menu defaultIsOpen={true} anchor={label}>
+    <Menu defaultIsOpen={true} button={label}>
       <MenuItem onMouseEnter={onMouseEnterMock}>{actions[0]}</MenuItem>
       <MenuItem onMouseEnter={onMouseEnterMock}>{actions[1]}</MenuItem>
       <MenuSeparator />
@@ -302,7 +302,7 @@ it('should close the menu when click on any menu item', async () => {
   const actions = ['Duplicate', 'Rename', 'Delete'];
   const onClickMock = jest.fn();
   render(
-    <Menu defaultIsOpen={true} anchor={label}>
+    <Menu defaultIsOpen={true} button={label}>
       <MenuItem onClick={onClickMock}>{actions[0]}</MenuItem>
       <MenuItem onClick={onClickMock}>{actions[1]}</MenuItem>
       <MenuSeparator />
