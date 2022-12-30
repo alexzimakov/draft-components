@@ -4,7 +4,7 @@ import { ToastButton } from './toast-button';
 import { MoonIcon } from '@heroicons/react/24/solid';
 
 export default {
-  title: 'Toast',
+  title: 'Feedback/Toast',
   component: Toast,
   subcomponents: {
     ToastButton,

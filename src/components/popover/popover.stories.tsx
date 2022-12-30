@@ -13,7 +13,7 @@ import { Checkbox } from '../checkbox';
 import { SelectionControl } from '../selection-control';
 
 export default {
-  title: 'Popover',
+  title: 'Feedback/Popover',
   component: Popover,
 } as ComponentMeta<typeof Popover>;
 

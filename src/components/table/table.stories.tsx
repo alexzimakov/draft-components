@@ -10,7 +10,7 @@ import { useState } from 'react';
 
 
 export default {
-  title: 'Table',
+  title: 'Data Display/Table',
   component: Table,
   subcomponents: {
     TableContainer,

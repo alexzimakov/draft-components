@@ -10,7 +10,7 @@ import {
 } from '@heroicons/react/24/outline';
 
 export default {
-  title: 'Menu',
+  title: 'Navigation/Menu',
   component: Menu,
   subcomponents: {
     MenuItem,

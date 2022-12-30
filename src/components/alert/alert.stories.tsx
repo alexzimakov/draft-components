@@ -10,7 +10,7 @@ import {
 } from '@heroicons/react/24/solid';
 
 export default {
-  title: 'Alert',
+  title: 'Feedback/Alert',
   component: Alert,
   argTypes: {
     icon: {

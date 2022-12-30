@@ -12,7 +12,7 @@ import {
 } from '@heroicons/react/24/outline';
 
 export default {
-  title: 'Tabs',
+  title: 'Navigation/Tabs',
   component: Tabs,
   subcomponents: {
     TabList,
