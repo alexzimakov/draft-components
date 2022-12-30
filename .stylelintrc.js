@@ -21,6 +21,7 @@ module.exports = {
     'order/properties-order': [
       'all',
       'appearance',
+      'color-scheme',
 
       'font',
       'font-family',

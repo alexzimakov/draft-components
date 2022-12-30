@@ -1,19 +1,27 @@
 @import url("variables.css");
-@import url("tooltip/tooltip.css");
-@import url("popover/popover.css");
-@import url("menu/menu.css");
-@import url("dialog/dialog.css");
-@import url("toast/toast.css");
-@import url("alert/alert.css");
+@import url("counter/counter.css");
+@import url("tag/tag.css");
 @import url("avatar/avatar.css");
 @import url("avatar-group/avatar-group.css");
 @import url("button/button.css");
 @import url("button-group/button-group.css");
-@import url("counter/counter.css");
 @import url("spinner/spinner.css");
-@import url("tag/tag.css");
-@import url("tabs/tabs.css");
+
+/* Data display */
 @import url("table/table.css");
+
+/* Feedback */
+@import url("tooltip/tooltip.css");
+@import url("popover/popover.css");
+@import url("dialog/dialog.css");
+@import url("toast/toast.css");
+@import url("alert/alert.css");
+
+/* Navigation */
+@import url("tabs/tabs.css");
+@import url("menu/menu.css");
+
+/* Forms */
 @import url("text-input/text-input.css");
 @import url("password-input/password-input.css");
 @import url("textarea/textarea.css");

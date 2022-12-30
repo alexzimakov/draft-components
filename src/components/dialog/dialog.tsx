@@ -1,152 +1,107 @@
 import {
-  ComponentPropsWithoutRef,
-  ReactNode,
-  RefObject,
   useEffect,
+  useId,
   useRef,
+  type ComponentPropsWithoutRef,
+  type CSSProperties,
+  type RefObject,
 } from 'react';
-import { isFunction } from '../../lib/guards';
-import { classNames } from '../../lib/react-helpers';
-import { useDisableBodyScroll } from '../../hooks/use-disable-body-scroll';
-import { useEscKeyDown } from '../../hooks/use-esc-key-down';
-import { useFocusTrap } from '../../hooks/use-focus-trap';
+import { classNames, focusElement } from '../../lib/react-helpers';
+import {
+  useDisableBodyScroll,
+  useEscKeyDown,
+  useFocusTrap,
+  useMountTransition,
+} from '../../hooks';
 import { Portal } from '../portal';
-import { Box } from '../box';
-import { Button } from '../button';
-import { Headline, Subheadline } from '../formatted-content';
-import { SvgIcon } from '../svg-icon';
-import { x as close } from '../../bootstrap-icons/x';
-import { useCloseAnimation } from '../../hooks';
+import { DialogContextProvider } from './dialog-context';
 
+type DialogHTMLProps = ComponentPropsWithoutRef<'section'>;
+export type DialogWidth = 'sm' | 'md' | 'lg';
 export type DialogProps = {
-  /**
-   * A ref to an element that should receive focus after open.
-   */
-  focusAfterOpen?: RefObject<HTMLElement>;
-  /**
-   * A ref to an element that should receive focus after close.
-   */
-  focusAfterClose?: RefObject<HTMLElement>;
-  isOpen?: boolean;
-  showCloseButton?: boolean;
-  width?: 'sm' | 'md' | 'lg' | number;
-  heading?: ReactNode;
-  description?: ReactNode;
-  footerButtons?: ReactNode;
-  onClose?(): void;
-} & ComponentPropsWithoutRef<'div'>;
-
-const DIALOG_WIDTH = {
-  sm: 320,
-  md: 640,
-  lg: 960,
-};
+  width?: DialogWidth;
+  openFocusRef?: RefObject<HTMLElement>;
+  closeFocusRef?: RefObject<HTMLElement>;
+  isOpen: boolean;
+  onClose: () => void;
+} & DialogHTMLProps;
 
 export function Dialog({
-  style,
-  className,
-  isOpen = false,
-  showCloseButton = true,
-  focusAfterOpen,
-  focusAfterClose,
   width = 'md',
-  heading,
-  description,
-  footerButtons,
-  children,
+  isOpen = false,
+  openFocusRef,
+  closeFocusRef,
   onClose,
+  className,
+  children,
   ...props
 }: DialogProps) {
+  const defaultId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
-  const { shouldRender, animationClassName } = useCloseAnimation({
-    isOpen,
-    closeDurationMs: 200,
-    className: 'dc-dialog-container_with-animation',
-    openClassName: 'dc-dialog-container_open',
-    closingClassName: 'dc-dialog-container_closing',
+  const durationMs = 200;
+  const { isMounted, className: transitionClass } = useMountTransition({
+    durationMs,
+    isShown: isOpen,
+    enterFrom: 'dc-dialog_closed',
+    enterTo: 'dc-dialog_opened',
   });
 
-  useDisableBodyScroll(isOpen);
-
-  useEscKeyDown(() => isFunction(onClose) && onClose(), isOpen);
-
-  useFocusTrap(dialogRef, isOpen);
-
   useEffect(() => {
-    if (!shouldRender) {
-      return;
-    }
+    if (isOpen) {
+      const openFocus = openFocusRef?.current;
+      const closeFocus = closeFocusRef?.current;
 
-    const focusAfterOpenEl = focusAfterOpen?.current;
-    const focusAfterCloseEl = focusAfterClose?.current;
-    if (focusAfterOpenEl) {
-      focusAfterOpenEl.focus();
+      focusElement(openFocus);
+      return () => focusElement(closeFocus);
     }
-    return () => {
-      if (focusAfterCloseEl) {
-        focusAfterCloseEl.focus();
-      }
-    };
-  }, [shouldRender, focusAfterOpen, focusAfterClose]);
+  }, [isOpen, openFocusRef, closeFocusRef]);
 
-  if (!shouldRender) {
+  useEscKeyDown(() => {
+    onClose();
+  }, { isEnabled: isOpen });
+
+  useFocusTrap(dialogRef, { isEnabled: isOpen });
+
+  useDisableBodyScroll({ isEnabled: isOpen });
+
+  if (!isOpen && !isMounted) {
     return null;
   }
 
-  let widthPx: number;
-  if (typeof width === 'string') {
-    widthPx = DIALOG_WIDTH[width] || DIALOG_WIDTH.md;
-  } else {
-    widthPx = width || DIALOG_WIDTH.md;
-  }
+  const id = props.id || defaultId;
+  const titleId = `dialog-title-${id}`;
+  const descriptionId = `dialog-description-${id}`;
   return (
     <Portal>
       <div
-        data-testid="dialog-container"
-        className={classNames('dc-dialog-container', animationClassName)}
+        style={{
+          '--dc-dialog-transition-duration': `${durationMs}ms`,
+        } as CSSProperties}
+        className={classNames('dc-dialog', transitionClass)}
       >
-        <Box
+        <div className="dc-dialog-backdrop" />
+        <div
           {...props}
           ref={dialogRef}
-          style={{ ...style, width: widthPx }}
-          className={classNames(className, 'dc-dialog')}
-          aria-modal={true}
+          className={classNames(className, {
+            'dc-dialog-modal': true,
+            [`dc-dialog-modal_${width}`]: width,
+          })}
           role="dialog"
-          padding="none"
-          elevation="lg"
-          borderRadius="lg"
+          id={id}
+          aria-labelledby={titleId}
+          aria-describedby={descriptionId}
+          aria-modal={true}
         >
-          <div className="dc-dialog__header">
-            {Boolean(heading || description) && (
-              <div className="dc-dialog__header-content">
-                {heading && <Headline as="h2">{heading}</Headline>}
-                {description && (
-                  <Subheadline as="div" className="dc-dialog__description">
-                    {description}
-                  </Subheadline>
-                )}
-              </div>
-            )}
-
-            {showCloseButton && (
-              <Button
-                className="dc-dialog__close-btn"
-                size="sm"
-                noPadding={true}
-                appearance="minimal"
-                data-testid="dialog-close-button"
-                leadingIcon={<SvgIcon size="2x" icon={close} />}
-                onClick={onClose}
-              />
-            )}
-          </div>
-
-          <div className="dc-dialog__content">{children}</div>
-
-          {footerButtons && (
-            <div className="dc-dialog__actions">{footerButtons}</div>
-          )}
-        </Box>
+          <DialogContextProvider
+            titleId={titleId}
+            descriptionId={descriptionId}
+            isOpen={isOpen}
+            onClose={onClose}
+          >
+            {children}
+          </DialogContextProvider>
+        </div>
       </div>
     </Portal>
   );

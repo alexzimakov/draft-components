@@ -7,7 +7,6 @@ module.exports = {
   collectCoverageFrom: [
     '**/*.{ts,tsx}',
     '!**/index.*',
-    '!**/test-utils.ts',
     '!**/*.stories.{ts,tsx}',
   ],
   coverageDirectory: 'coverage',
@@ -16,6 +15,7 @@ module.exports = {
     '/src/styleguide/',
     '/src/bootstrap-icons/',
     '/src/storybook/',
+    '/src/tests/',
   ],
   coverageProvider: 'babel',
   roots: ['src'],

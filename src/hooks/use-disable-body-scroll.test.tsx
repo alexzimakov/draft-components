@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 
 it('should disable body scroll', () => {
   const HookTest = () => {
-    useDisableBodyScroll();
+    useDisableBodyScroll({ isEnabled: true });
 
     return <div />;
   };

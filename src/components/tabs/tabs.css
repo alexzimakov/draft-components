@@ -1,5 +1,5 @@
 .dc-tabs {
-  --dc-tablist-border-color: var(--dc-border-color-transparent-1);
+  --dc-tablist-border-color: var(--dc-border-color-transparent-2);
   --dc-tab-text-color: var(--dc-primary-text-color);
   --dc-tab-accent-color: var(--dc-primary-color);
   --dc-tab-bg: none;

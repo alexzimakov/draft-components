@@ -1,6 +1,6 @@
 .dc-table-container,
 .dc-table {
-  --dc-table-border-color: var(--dc-border-color-transparent-1);
+  --dc-table-border-color: var(--dc-border-color-transparent-2);
   --dc-table-bg: none;
   --dc-table-head-bg: var(--dc-bg-transparent-1);
   --dc-table-row-bg-stripped: var(--dc-bg-transparent-1);

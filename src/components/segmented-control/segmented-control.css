@@ -1,7 +1,7 @@
 .dc-segmented {
   --dc-segmented-bg: var(--dc-bg-transparent-1);
   --dc-segmented-border-color: var(--dc-control-border-color);
-  --dc-segmented-delimiter-color: var(--dc-border-color-transparent-2);
+  --dc-segmented-delimiter-color: var(--dc-border-color-transparent-3);
   --dc-segmented-btn-padding-x: 16px;
   --dc-segmented-btn-bg-checked: white;
   --dc-segmented-btn-border-color: transparent;

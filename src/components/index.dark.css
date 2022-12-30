@@ -1,19 +1,27 @@
 @import url("variables.dark.css");
-@import url("tooltip/tooltip.dark.css");
-@import url("popover/popover.dark.css");
-@import url("menu/menu.dark.css");
-@import url("dialog/dialog.dark.css");
-@import url("toast/toast.dark.css");
-@import url("alert/alert.dark.css");
+@import url("counter/counter.dark.css");
+@import url("tag/tag.dark.css");
 @import url("avatar/avatar.dark.css");
 @import url("avatar-group/avatar-group.dark.css");
 @import url("button/button.dark.css");
 @import url("button-group/button-group.dark.css");
-@import url("counter/counter.dark.css");
 @import url("spinner/spinner.dark.css");
-@import url("tag/tag.dark.css");
-@import url("tabs/tabs.dark.css");
+
+/* Data display */
 @import url("table/table.dark.css");
+
+/* Feedback */
+@import url("tooltip/tooltip.dark.css");
+@import url("popover/popover.dark.css");
+@import url("dialog/dialog.dark.css");
+@import url("toast/toast.dark.css");
+@import url("alert/alert.dark.css");
+
+/* Navigation */
+@import url("tabs/tabs.dark.css");
+@import url("menu/menu.dark.css");
+
+/* Forms */
 @import url("text-input/text-input.dark.css");
 @import url("password-input/password-input.dark.css");
 @import url("textarea/textarea.dark.css");

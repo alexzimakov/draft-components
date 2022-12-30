@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import { once } from '../lib/util';
 
-export function useDisableBodyScroll(isEnabled = true) {
+type Options = { isEnabled: boolean };
+
+export function useDisableBodyScroll(options: Options) {
   useEffect(() => {
-    if (isEnabled) {
+    if (options.isEnabled) {
       return disableBodyScroll();
     }
-  }, [isEnabled]);
+  }, [options.isEnabled]);
 }
 
 let disableAttempts = 0;

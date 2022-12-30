@@ -1,5 +1,5 @@
 .dc-avatar-group {
-  --dc-avatar-in-group-stroke: var(--dc-bg);
+  --dc-avatar-in-group-stroke: var(--dc-primary-bg);
 
   display: inline-flex;
   align-items: center;

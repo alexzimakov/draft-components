@@ -3,7 +3,7 @@ import { classNames } from '../lib/react-helpers';
 
 export type TransitionParams = {
   animateFirstMount?: boolean;
-  show: boolean;
+  isShown: boolean;
   durationMs: number;
   /**
    * CSS class for the initial state of element.
@@ -36,12 +36,12 @@ export type TransitionState = {
 
 export function useMountTransition({
   animateFirstMount = false,
-  show,
+  isShown,
   durationMs,
   enterFrom,
   enterTo,
 }: TransitionParams): TransitionState {
-  const [isMounted, setIsMounted] = useState(show);
+  const [isMounted, setIsMounted] = useState(isShown);
   const [hasEnterToClass, setHasEnterToClass] = useState(false);
   const firstMount = useRef(true);
   const prefersReducedMotion = useMemo(
@@ -58,15 +58,15 @@ export function useMountTransition({
   }
 
   useEffect(() => {
-    if (!show) {
+    if (!isShown) {
       firstMount.current = false;
     }
-  }, [show]);
+  }, [isShown]);
 
   useEffect(() => {
     let timeout: number | undefined;
 
-    if (show) {
+    if (isShown) {
       setIsMounted(true);
       timeout = window.setTimeout(() => setHasEnterToClass(true));
     } else {
@@ -75,7 +75,7 @@ export function useMountTransition({
     }
 
     return () => window.clearTimeout(timeout);
-  }, [show, durationMs]);
+  }, [isShown, durationMs]);
 
   return {
     isMounted,
