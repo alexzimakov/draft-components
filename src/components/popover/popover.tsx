@@ -34,16 +34,19 @@ export type PopoverRef = {
 };
 
 export type PopoverAnchorRenderFn = (props: {
-  setRef: RefCallback<HTMLElement>;
+  ref: RefCallback<HTMLElement>;
+}, context: {
+  isOpen: boolean;
   openPopover: () => void;
   closePopover: () => void;
   togglePopover: () => void;
 }) => ReactNode;
 
+type PopoverHTMLProps = ComponentPropsWithoutRef<'div'>;
 export type PopoverPlacement = PositionerProps['placement'];
 export type PopoverAlignment = PositionerProps['alignment'];
-export type OpenCallback = () => void;
-export type CloseCallback = () => void;
+export type PopoverOpenCallback = () => void;
+export type PopoverCloseCallback = () => void;
 export type PopoverProps = {
   defaultIsOpen?: boolean;
   isOpen?: boolean;
@@ -55,9 +58,9 @@ export type PopoverProps = {
   alignment?: PopoverAlignment;
   anchor: ReactNode | PopoverAnchorRenderFn;
   children: ReactNode;
-  onOpen?: OpenCallback;
-  onClose?: CloseCallback;
-} & ComponentPropsWithoutRef<'div'>;
+  onOpen?: PopoverOpenCallback;
+  onClose?: PopoverCloseCallback;
+} & PopoverHTMLProps;
 
 export const Popover = forwardRef<
   PopoverRef,
@@ -69,45 +72,44 @@ export const Popover = forwardRef<
   alignment = 'start',
   anchorGap,
   viewportGap,
-  defaultIsOpen,
-  isOpen,
   anchor,
-  style,
   className,
   children,
   onOpen,
   onClose,
   ...props
 }, ref) {
-  const [defaultShow, setDefaultShow] = useState(defaultIsOpen ?? false);
+  const [defaultIsOpen, setDefaultIsOpen] = useState(
+    props.defaultIsOpen ?? false
+  );
   const anchorRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const show = isOpen ?? defaultShow;
+  const isOpen = props.isOpen ?? defaultIsOpen;
   const durationMs = 100;
   const { isMounted, className: transitionClass } = useMountTransition({
-    show,
     durationMs,
+    isShown: isOpen,
     enterFrom: 'dc-popover_closed',
     enterTo: 'dc-popover_opened',
   });
 
   const openPopover = useCallback(() => {
-    setDefaultShow(true);
+    setDefaultIsOpen(true);
     onOpen?.();
   }, [onOpen]);
 
   const closePopover = useCallback(() => {
-    setDefaultShow(false);
+    setDefaultIsOpen(false);
     onClose?.();
   }, [onClose]);
 
   const togglePopover = useCallback(() => {
-    if (show) {
+    if (isOpen) {
       closePopover();
     } else {
       openPopover();
     }
-  }, [show, closePopover, openPopover]);
+  }, [isOpen, closePopover, openPopover]);
 
   useImperativeHandle(ref, () => ({
     open: openPopover,
@@ -126,24 +128,26 @@ export const Popover = forwardRef<
     ) {
       closePopover();
     }
-  }, { isEnabled: show });
+  }, { isEnabled: isOpen });
 
   useEscKeyDown(() => {
     closePopover();
     if (shouldFocusAnchorAfterEscPress && anchorRef.current) {
       focusElement(anchorRef.current);
     }
-  }, { isEnabled: show });
+  }, { isEnabled: isOpen });
 
-  useFocusTrap(contentRef, { isEnabled: shouldTrapFocus && show });
+  useFocusTrap(contentRef, { isEnabled: shouldTrapFocus && isOpen });
 
   const renderAnchor: PositionerAnchorRenderFn = ({ setRef }) => {
     if (typeof anchor === 'function') {
       return anchor({
+        ref: mergeRefs(setRef, anchorRef),
+      }, {
+        isOpen: isOpen || isMounted,
         openPopover,
         closePopover,
         togglePopover,
-        setRef: mergeRefs(setRef, anchorRef),
       });
     }
 
@@ -163,23 +167,23 @@ export const Popover = forwardRef<
   const renderContent: PositionerContentRenderFn = ({
     setRef: portalRef,
     style: portalStyle,
-    className: portalClass,
   }) => {
-    if (show || isMounted) {
+    if (isOpen || isMounted) {
+      delete props.defaultIsOpen;
+      delete props.isOpen;
       return (
         <div
           ref={portalRef}
-          style={portalStyle}
-          className={classNames('dc-popover__container', portalClass)}
+          style={{
+            '--dc-popover-transition-duration': `${durationMs}ms`,
+            ...portalStyle,
+          } as CSSProperties}
+          className={classNames('dc-popover', transitionClass)}
         >
           <div
             {...props}
             ref={contentRef}
-            style={{
-              '--dc-popover-transition-duration': `${durationMs}ms`,
-              ...style,
-            } as CSSProperties}
-            className={classNames('dc-popover', transitionClass, className)}
+            className={classNames('dc-popover-modal', className)}
           >
             {children}
           </div>

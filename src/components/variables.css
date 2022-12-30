@@ -1,5 +1,5 @@
 :root {
-  --dc-portal-z-index: 99;
+  --dc-modal-z-index: 99;
 
   /* Typography */
   /* https://tailwindcss.com/docs/font-family */

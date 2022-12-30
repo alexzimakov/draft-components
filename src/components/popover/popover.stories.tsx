@@ -49,9 +49,9 @@ export const Controlled = () => {
 };
 
 export const WithTooltip = () => (
-  <Popover anchor={({ setRef, togglePopover }) => (
+  <Popover anchor={({ ref }, { togglePopover }) => (
     <Tooltip content="Click on me!">
-      <Button ref={setRef} onClick={togglePopover}>Hover on me</Button>
+      <Button ref={ref} onClick={togglePopover}>Hover on me</Button>
     </Tooltip>
   )}>
     <div style={{ padding: 16 }}>Popover Content</div>

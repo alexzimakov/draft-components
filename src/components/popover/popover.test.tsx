@@ -22,24 +22,21 @@ it('renders without errors', () => {
   expect(screen.getByTestId(popoverTestId)).toHaveTextContent(popoverContent);
 });
 
-it(
-  'renders without errors when anchor property is function',
-  () => {
-    const popoverTestId = 'popover';
-    render(
-      <Popover
-        anchor={({ setRef }) => <button ref={setRef}>{anchorLabel}</button>}
-        defaultIsOpen={true}
-        data-testid={popoverTestId}
-      >
-        {popoverContent}
-      </Popover>
-    );
+it('renders without errors when anchor property is function', () => {
+  const popoverTestId = 'popover';
+  render(
+    <Popover
+      anchor={({ ref }) => <button ref={ref}>{anchorLabel}</button>}
+      defaultIsOpen={true}
+      data-testid={popoverTestId}
+    >
+      {popoverContent}
+    </Popover>
+  );
 
-    screen.getByRole('button');
-    expect(screen.getByTestId(popoverTestId)).toHaveTextContent(popoverContent);
-  }
-);
+  screen.getByRole('button');
+  expect(screen.getByTestId(popoverTestId)).toHaveTextContent(popoverContent);
+});
 
 it('should open popover when click on anchor element', async () => {
   const user = userEvent.setup();
