@@ -32,10 +32,14 @@
 .dc-button:focus::after {
   content: "";
   position: absolute;
-  z-index: -1;
   inset: -3px;
   border-radius: calc(3px + var(--dc-button-radius));
   box-shadow: 0 0 0 3px var(--dc-button-focus-ring-color);
+}
+
+.dc-button_block {
+  display: flex;
+  width: 100%;
 }
 
 .dc-button_variant_plain:focus::after {
