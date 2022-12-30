@@ -1,7 +1,6 @@
 export * from './alert';
 export * from './avatar';
 export * from './avatar-group';
-export * from './box';
 export * from './breadcrumb';
 export * from './button';
 export * from './button-group';
