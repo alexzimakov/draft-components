@@ -87,14 +87,14 @@ export const Nested = () => {
     <Popover anchor={<Button>Add to List +</Button>}>
       <h2 style={styles.headline}>My Lists</h2>
       <div style={styles.list}>
-        <SelectionControl label="Upcoming" htmlFor="upcoming">
-          <Checkbox id="upcoming" />
+        <SelectionControl label="Upcoming">
+          {({ id }) => <Checkbox id={id} />}
         </SelectionControl>
-        <SelectionControl label="Work" htmlFor="work">
-          <Checkbox id="work" />
+        <SelectionControl label="Work">
+          {({ id }) => <Checkbox id={id} />}
         </SelectionControl>
-        <SelectionControl label="Family" htmlFor="family">
-          <Checkbox id="family" />
+        <SelectionControl label="Family">
+          {({ id }) => <Checkbox id={id} />}
         </SelectionControl>
       </div>
 

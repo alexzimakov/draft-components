@@ -6,12 +6,27 @@ it('renders without errors', () => {
   const label = 'Enable location services';
   const caption = 'Allow selected apps to determine your location';
   render(
-    <SelectionControl htmlFor={id} label={label} caption={caption}>
+    <SelectionControl labelFor={id} label={label} caption={caption}>
       <input id={id} type="checkbox" />
     </SelectionControl>
   );
 
   screen.getByRole('checkbox');
-  expect(screen.getByText(label)).toHaveAttribute('for', id);
+  screen.getByText(label);
   screen.getByText(caption);
+  expect(screen.getByRole('checkbox')).toBe(screen.getByLabelText(label));
+});
+
+it('renders without errors when children property is a function', () => {
+  const label = 'Enable location services';
+  const caption = 'Allow selected apps to determine your location';
+  render(
+    <SelectionControl label={label} caption={caption}>
+      {({ id }) => <input id={id} type="checkbox" />}
+    </SelectionControl>
+  );
+
+  screen.getByText(label);
+  screen.getByText(caption);
+  expect(screen.getByRole('checkbox')).toBe(screen.getByLabelText(label));
 });

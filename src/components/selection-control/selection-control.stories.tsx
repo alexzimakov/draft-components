@@ -18,43 +18,43 @@ export default {
 } as ComponentMeta<typeof SelectionControl>;
 
 export const Switch: ComponentStory<typeof SelectionControl> = (args) => {
-  const id = args.htmlFor;
+  const id = args.labelFor;
   return (
-    <SelectionControl htmlFor={id} label={args.label} caption={args.caption}>
+    <SelectionControl labelFor={id} label={args.label} caption={args.caption}>
       <SwitchComponent id={id} />
     </SelectionControl>
   );
 };
 Switch.args = {
-  htmlFor: 'switch',
+  labelFor: 'switch',
   label: 'Enable location services',
   caption: 'Allow selected apps to determine your location',
 };
 
 export const Checkbox: ComponentStory<typeof SelectionControl> = (args) => {
-  const id = args.htmlFor;
+  const id = args.labelFor;
   return (
-    <SelectionControl htmlFor={id} label={args.label} caption={args.caption}>
+    <SelectionControl labelFor={id} label={args.label} caption={args.caption}>
       <CheckboxComponent id={id} />
     </SelectionControl>
   );
 };
 Checkbox.args = {
-  htmlFor: 'checkbox',
+  labelFor: 'checkbox',
   label: 'Normalize volume',
   caption: 'Set the same volume level for all songs',
 };
 
 export const Radio: ComponentStory<typeof SelectionControl> = (args) => {
-  const id = args.htmlFor;
+  const id = args.labelFor;
   return (
-    <SelectionControl htmlFor={id} label={args.label} caption={args.caption}>
+    <SelectionControl labelFor={id} label={args.label} caption={args.caption}>
       <RadioComponent id={id} />
     </SelectionControl>
   );
 };
 Radio.args = {
-  htmlFor: 'radio',
+  labelFor: 'radio',
   label: 'Public access',
   caption: 'The repository would be available to anyone',
 };
