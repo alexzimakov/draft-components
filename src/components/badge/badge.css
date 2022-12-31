@@ -1,0 +1,23 @@
+.dc-badge {
+  --dc-badge-height: 20px;
+  --dc-badge-text-color: var(--dc-primary-text-color);
+  --dc-badge-bg: var(--dc-bg-transparent-2);
+
+  color-scheme: light;
+  font: 12px/1 var(--dc-primary-font);
+  color: var(--dc-badge-text-color);
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  height: var(--dc-badge-height);
+  min-width: var(--dc-badge-height);
+  padding: 0 4px;
+  border-radius: calc(var(--dc-badge-height) / 2);
+  background: var(--dc-badge-bg);
+}
+
+.dc-badge_circle {
+  padding-right: 0;
+  padding-left: 0;
+}

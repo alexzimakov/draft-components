@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import { Counter } from './counter';
+import { Badge } from './badge';
 
 it('renders without errors', () => {
   const count = 10;
-  render(<Counter>{count}</Counter>);
+  render(<Badge>{count}</Badge>);
   screen.getByText(count);
 });

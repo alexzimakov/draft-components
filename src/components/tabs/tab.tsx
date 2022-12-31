@@ -5,7 +5,7 @@ import {
 } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { useTabsContext } from './tabs-context';
-import { Counter } from '../counter';
+import { Badge } from '../badge';
 
 export type TabProps = {
   icon?: ReactNode;
@@ -59,7 +59,7 @@ export function Tab({
           <span className="dc-tab__label">{children} </span>
         )}
         {counter != null && counter !== 0 && (
-          <Counter className="dc-tab__counter">{counter}</Counter>
+          <Badge className="dc-tab__counter">{counter}</Badge>
         )}
       </span>
     </button>

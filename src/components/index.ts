@@ -6,7 +6,7 @@ export * from './button';
 export * from './button-group';
 export * from './caption';
 export * from './checkbox';
-export * from './counter';
+export * from './badge';
 export * from './date-picker';
 export * from './date-picker-popover';
 export * from './date-range-picker-popover';
