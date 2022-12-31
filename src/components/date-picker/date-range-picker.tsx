@@ -1,3 +1,4 @@
+import { DateRange, type DateISORange } from './date-range';
 import {
   isSameDay,
   isValidDateISO,
@@ -5,11 +6,12 @@ import {
   type DateISO,
   type Weekday,
 } from './date-helpers';
-import { useState } from 'react';
+import { useState, type ComponentPropsWithoutRef } from 'react';
 import { Calendar, type CalendarProps } from './calendar';
 import { parseMinMaxProps } from './parse-min-max-props';
-import { DateISORange, DateRange } from './date-range';
+import { classNames } from '../../lib/react-helpers';
 
+type DateRangePickerHTMLProps = ComponentPropsWithoutRef<'div'>;
 export type DateRangePickerProps = {
   value: DateISORange | null;
   onChangeValue: (value: DateISORange) => void;
@@ -22,7 +24,7 @@ export type DateRangePickerProps = {
   | 'nextMonthButtonLabel'
   | 'monthSelectLabel'
   | 'yearInputLabel'
->;
+> & DateRangePickerHTMLProps;
 
 export function DateRangePicker({
   value,
@@ -35,6 +37,8 @@ export function DateRangePicker({
   nextMonthButtonLabel,
   monthSelectLabel,
   yearInputLabel,
+  className,
+  ...props
 }: DateRangePickerProps) {
   const { minDate, maxDate } = parseMinMaxProps({ min, max });
 
@@ -72,7 +76,7 @@ export function DateRangePicker({
   };
 
   return (
-    <div className="dc-datepicker">
+    <div {...props} className={classNames('dc-datepicker', className)}>
       <Calendar
         defaultFocusDay={selectedRange?.start}
         minDate={minDate}

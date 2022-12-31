@@ -8,7 +8,7 @@
   --dc-day-text-color-weekend: var(--dc-control-secondary-text-color);
   --dc-day-text-color-selected: var(--dc-control-on-primary-color);
   --dc-day-size: 32px;
-  --dc-day-gap-x: 4px;
+  --dc-day-max-width: 40px;
   --dc-day-radius: 16px;
   --dc-day-border-color: transparent;
   --dc-day-border-color-hover: var(--dc-control-primary-color);
@@ -41,6 +41,7 @@
   font-size: 14px;
   font-weight: 500;
   color: var(--dc-day-text-color);
+  width: 100%;
   margin: 0;
   padding: 0;
   border: none;
@@ -54,7 +55,6 @@
   box-sizing: border-box;
   width: var(--dc-day-size);
   height: var(--dc-day-size);
-  margin: 0 var(--dc-day-gap-x);
   border-radius: var(--dc-day-radius);
 }
 
@@ -62,36 +62,25 @@
   position: relative;
 }
 
-.dc-calendar-day_in-range::before,
-.dc-calendar-day_in-range::after {
+.dc-calendar-day_in-range::before {
   content: "";
   position: absolute;
   z-index: -1;
   top: 0;
+  right: 0;
   bottom: 0;
+  left: 0;
   background: var(--dc-day-bg-range);
 }
 
-.dc-calendar-day_in-range::before {
-  right: 50%;
-  left: 0;
-}
-
-.dc-calendar-day_in-range::after {
-  right: 0;
-  left: 50%;
-}
-
 .dc-calendar-day_range-start::before {
-  right: 50%;
-  left: var(--dc-day-gap-x);
+  left: calc(50% - var(--dc-day-size) / 2);
   border-top-left-radius: var(--dc-day-radius);
   border-bottom-left-radius: var(--dc-day-radius);
 }
 
-.dc-calendar-day_range-end::after {
-  right: var(--dc-day-gap-x);
-  left: 50%;
+.dc-calendar-day_range-end::before {
+  right: calc(50% - var(--dc-day-size) / 2);
   border-top-right-radius: var(--dc-day-radius);
   border-bottom-right-radius: var(--dc-day-radius);
 }
@@ -157,14 +146,15 @@
 .dc-calendar {
   display: inline-flex;
   flex-direction: column;
+  width: calc(7 * var(--dc-day-max-width));
+  min-width: calc(7 * var(--dc-day-size));
+  max-width: 100%;
 }
 
 .dc-calendar__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-right: var(--dc-day-gap-x);
-  padding-left: var(--dc-day-gap-x);
 }
 
 .dc-calendar__header > * {

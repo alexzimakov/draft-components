@@ -9,7 +9,7 @@ export * from './checkbox';
 export * from './counter';
 export * from './date-picker';
 export * from './date-picker-popover';
-export * from './date-preset-picker-popover';
+export * from './date-range-picker-popover';
 export * from './dialog';
 export * from './file-picker';
 export * from './form-field';

@@ -19,7 +19,6 @@
   color: var(--dc-popover-text-color);
   box-sizing: border-box;
   max-width: 448px;
-  max-height: 448px;
   padding: 12px 16px;
   border-radius: 8px;
   background: var(--dc-popover-bg);

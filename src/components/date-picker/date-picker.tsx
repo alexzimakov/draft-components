@@ -6,9 +6,12 @@ import {
   type DateISO,
   type Weekday,
 } from './date-helpers';
-import { Calendar, type CalendarProps } from './calendar';
+import { type ComponentPropsWithoutRef } from 'react';
+import { classNames } from '../../lib/react-helpers';
 import { parseMinMaxProps } from './parse-min-max-props';
+import { Calendar, type CalendarProps } from './calendar';
 
+type DatePickerHTMLProps = ComponentPropsWithoutRef<'div'>;
 export type DatePickerProps = {
   value: DateISO | null;
   onChangeValue: (value: DateISO) => void;
@@ -21,7 +24,7 @@ export type DatePickerProps = {
   | 'nextMonthButtonLabel'
   | 'monthSelectLabel'
   | 'yearInputLabel'
->;
+> & DatePickerHTMLProps;
 
 export function DatePicker({
   value,
@@ -34,6 +37,8 @@ export function DatePicker({
   nextMonthButtonLabel,
   monthSelectLabel,
   yearInputLabel,
+  className,
+  ...props
 }: DatePickerProps) {
   const { minDate, maxDate } = parseMinMaxProps({ min, max });
 
@@ -45,7 +50,7 @@ export function DatePicker({
   });
 
   return (
-    <div className="dc-datepicker">
+    <div {...props} className={classNames('dc-datepicker', className)}>
       <Calendar
         defaultFocusDay={selectedDay}
         minDate={minDate}

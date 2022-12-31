@@ -33,8 +33,9 @@
 @import url("file-picker/file-picker.css");
 @import url("date-picker/date-picker.css");
 @import url("segmented-control/segmented-control.css");
-@import url("color-picker/color-picker.css");
 @import url("label/label.css");
 @import url("caption/caption.css");
 @import url("selection-control/selection-control.css");
 @import url("form-field/form-field.css");
+@import url("color-picker/color-picker.css");
+@import url("date-range-picker-popover/date-range-picker-popover.css");
