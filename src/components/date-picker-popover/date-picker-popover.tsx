@@ -1,29 +1,44 @@
 import { type DateISO } from '../date-picker/date-helpers';
+import { classNames } from '../../lib/react-helpers';
 import { useRef, type ReactNode } from 'react';
 import { Popover, type PopoverRef } from '../popover';
-import { DatePicker } from '../date-picker';
+import { DatePicker, type DatePickerProps } from '../date-picker';
 
 export type DatePickerChangeValueFn = (value: DateISO) => void;
 export type DatePickerPopoverProps = {
+  className?: string;
   defaultIsOpen?: boolean;
-  locale?: string;
   footer?: ReactNode;
-  min?: DateISO;
-  max?: DateISO;
   children: JSX.Element;
   value: DateISO | null;
   onChangeValue: DatePickerChangeValueFn;
-};
+} & Pick<DatePickerProps,
+  | 'min'
+  | 'max'
+  | 'locale'
+  | 'weekStartsOn'
+  | 'prevMonthButtonLabel'
+  | 'nextMonthButtonLabel'
+  | 'monthSelectLabel'
+  | 'yearInputLabel'
+>;
 
 export function DatePickerPopover({
   defaultIsOpen = false,
-  locale,
   footer,
+  className,
+  children,
+  value,
+  onChangeValue,
+  // DatePickerProps
   min,
   max,
-  value,
-  children,
-  onChangeValue,
+  locale,
+  weekStartsOn,
+  prevMonthButtonLabel,
+  nextMonthButtonLabel,
+  monthSelectLabel,
+  yearInputLabel,
 }: DatePickerPopoverProps) {
   const popoverRef = useRef<PopoverRef>(null);
   const handleChangeValue: DatePickerChangeValueFn = (value) => {
@@ -32,11 +47,21 @@ export function DatePickerPopover({
   };
 
   return (
-    <Popover ref={popoverRef} defaultIsOpen={defaultIsOpen} anchor={children}>
+    <Popover
+      ref={popoverRef}
+      className={classNames('dc-date-picker-popover', className)}
+      defaultIsOpen={defaultIsOpen}
+      anchor={children}
+    >
       <DatePicker
-        locale={locale}
         min={min}
         max={max}
+        locale={locale}
+        weekStartsOn={weekStartsOn}
+        prevMonthButtonLabel={prevMonthButtonLabel}
+        nextMonthButtonLabel={nextMonthButtonLabel}
+        monthSelectLabel={monthSelectLabel}
+        yearInputLabel={yearInputLabel}
         value={value}
         onChangeValue={handleChangeValue}
       />

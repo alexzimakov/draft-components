@@ -38,4 +38,5 @@
 @import url("selection-control/selection-control.dark.css");
 @import url("form-field/form-field.dark.css");
 @import url("color-picker/color-picker.dark.css");
+@import url("date-picker-popover/date-picker-popover.css");
 @import url("date-range-picker-popover/date-range-picker-popover.dark.css");

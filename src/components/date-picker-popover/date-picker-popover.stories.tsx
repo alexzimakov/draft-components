@@ -10,12 +10,18 @@ export default {
   component: DatePickerPopover,
 } as ComponentMeta<typeof DatePickerPopover>;
 
-export const Basic: ComponentStory<typeof DatePickerPopover> = () => {
-  const [dateISO, setDateISO] = useState<DateISO | null>(null);
+export const Basic: ComponentStory<typeof DatePickerPopover> = (args) => {
+  const [dateISO, setDateISO] = useState<DateISO | null>(args.value);
   const intl = new Intl.DateTimeFormat('en', { dateStyle: 'long' });
 
   return (
-    <DatePickerPopover value={dateISO} onChangeValue={setDateISO}>
+    <DatePickerPopover
+      value={dateISO}
+      onChangeValue={(value) => {
+        setDateISO(value);
+        args.onChangeValue?.(value);
+      }}
+    >
       <Button icon={<CalendarIcon width={18} height={18} />}>
         {dateISO
           ? intl.format(new Date(dateISO))
@@ -23,4 +29,15 @@ export const Basic: ComponentStory<typeof DatePickerPopover> = () => {
       </Button>
     </DatePickerPopover>
   );
+};
+Basic.argTypes = {
+  children: {
+    control: { disable: true },
+  },
+  value: {
+    control: { disable: true },
+  },
+};
+Basic.args = {
+  value: null,
 };
