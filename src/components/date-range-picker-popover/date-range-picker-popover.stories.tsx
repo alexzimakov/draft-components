@@ -16,7 +16,7 @@ import { Button } from '../button';
 import { CalendarIcon } from '@heroicons/react/24/outline';
 
 export default {
-  title: 'Forms/DateRangePickerPopover',
+  title: 'Overlays/DateRangePickerPopover',
   component: DateRangePickerPopover,
   argTypes: {
     cancelButtonLabel: {

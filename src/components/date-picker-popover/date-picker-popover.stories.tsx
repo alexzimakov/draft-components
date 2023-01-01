@@ -6,7 +6,7 @@ import { Button } from '../button';
 import { CalendarIcon } from '@heroicons/react/24/outline';
 
 export default {
-  title: 'Forms/DatePickerPopover',
+  title: 'Overlays/DatePickerPopover',
   component: DatePickerPopover,
 } as ComponentMeta<typeof DatePickerPopover>;
 

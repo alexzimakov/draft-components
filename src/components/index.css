@@ -1,4 +1,6 @@
 @import url("variables.css");
+
+/* Elements */
 @import url("badge/badge.css");
 @import url("tag/tag.css");
 @import url("avatar/avatar.css");
@@ -6,20 +8,6 @@
 @import url("button/button.css");
 @import url("button-group/button-group.css");
 @import url("spinner/spinner.css");
-
-/* Data display */
-@import url("table/table.css");
-
-/* Feedback */
-@import url("tooltip/tooltip.css");
-@import url("popover/popover.css");
-@import url("dialog/dialog.css");
-@import url("toast/toast.css");
-@import url("alert/alert.css");
-
-/* Navigation */
-@import url("tabs/tabs.css");
-@import url("menu/menu.css");
 
 /* Forms */
 @import url("text-input/text-input.css");
@@ -38,5 +26,21 @@
 @import url("selection-control/selection-control.css");
 @import url("form-field/form-field.css");
 @import url("color-picker/color-picker.css");
+
+/* Data display */
+@import url("table/table.css");
+
+/* Feedback */
+@import url("alert/alert.css");
+@import url("toast/toast.css");
+
+/* Navigation */
+@import url("tabs/tabs.css");
+@import url("menu/menu.css");
+
+/* Overlays */
+@import url("tooltip/tooltip.css");
+@import url("popover/popover.css");
+@import url("dialog/dialog.css");
 @import url("date-picker-popover/date-picker-popover.css");
 @import url("date-range-picker-popover/date-range-picker-popover.css");

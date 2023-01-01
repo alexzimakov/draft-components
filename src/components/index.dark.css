@@ -1,4 +1,6 @@
 @import url("variables.dark.css");
+
+/* Elements */
 @import url("badge/badge.dark.css");
 @import url("tag/tag.dark.css");
 @import url("avatar/avatar.dark.css");
@@ -6,20 +8,6 @@
 @import url("button/button.dark.css");
 @import url("button-group/button-group.dark.css");
 @import url("spinner/spinner.dark.css");
-
-/* Data display */
-@import url("table/table.dark.css");
-
-/* Feedback */
-@import url("tooltip/tooltip.dark.css");
-@import url("popover/popover.dark.css");
-@import url("dialog/dialog.dark.css");
-@import url("toast/toast.dark.css");
-@import url("alert/alert.dark.css");
-
-/* Navigation */
-@import url("tabs/tabs.dark.css");
-@import url("menu/menu.dark.css");
 
 /* Forms */
 @import url("text-input/text-input.dark.css");
@@ -38,5 +26,21 @@
 @import url("selection-control/selection-control.dark.css");
 @import url("form-field/form-field.dark.css");
 @import url("color-picker/color-picker.dark.css");
-@import url("date-picker-popover/date-picker-popover.css");
+
+/* Data display */
+@import url("table/table.dark.css");
+
+/* Feedback */
+@import url("alert/alert.dark.css");
+@import url("toast/toast.dark.css");
+
+/* Navigation */
+@import url("tabs/tabs.dark.css");
+@import url("menu/menu.dark.css");
+
+/* Overlays */
+@import url("tooltip/tooltip.dark.css");
+@import url("popover/popover.dark.css");
+@import url("dialog/dialog.dark.css");
+@import url("date-picker-popover/date-picker-popover.dark.css");
 @import url("date-range-picker-popover/date-range-picker-popover.dark.css");

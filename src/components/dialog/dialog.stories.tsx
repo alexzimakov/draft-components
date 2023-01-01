@@ -13,7 +13,7 @@ import { Menu, MenuItem } from '../menu';
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/solid';
 
 export default {
-  title: 'Feedback/Dialog',
+  title: 'Overlays/Dialog',
   component: Dialog,
   subcomponents: {
     DialogHeader,

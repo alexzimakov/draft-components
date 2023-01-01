@@ -5,7 +5,7 @@ import { BookmarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 
 export default {
-  title: 'Feedback/Tooltip',
+  title: 'Overlays/Tooltip',
   component: Tooltip,
   parameters: {
     layout: 'centered',
