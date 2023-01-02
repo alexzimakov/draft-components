@@ -1,0 +1,84 @@
+.dc-nav-list {
+  --dc-nav-list-title-color: var(--dc-secondary-text-color);
+  --dc-nav-link-text-color: var(--dc-primary-text-color);
+  --dc-nav-link-bg: transparent;
+  --dc-nav-link-bg-hover: var(--dc-bg-transparent-2);
+  --dc-nav-link-bg-active: var(--dc-bg-transparent-2);
+  --dc-nav-link-focus-ring-color: var(--dc-focus-ring-color);
+
+  color-scheme: light;
+}
+
+.dc-nav-list__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dc-nav-list__title,
+.dc-nav-link {
+  box-sizing: border-box;
+  padding: 0 12px;
+}
+
+.dc-nav-list__title {
+  font: 500 var(--dc-text-xs);
+  color: var(--dc-nav-list-title-color);
+}
+
+* + .dc-nav-list__title {
+  margin-top: 20px;
+}
+
+* + .dc-nav-list__item {
+  margin-top: 2px;
+}
+
+.dc-nav-link {
+  font: var(--dc-text-sm);
+  color: var(--dc-nav-link-text-color);
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  height: 36px;
+  white-space: nowrap;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.dc-nav-link:hover {
+  background: var(--dc-nav-link-bg-hover);
+}
+
+.dc-nav-link:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--dc-nav-link-focus-ring-color);
+}
+
+.dc-nav-link:focus:not(:focus-visible) {
+  box-shadow: none;
+}
+
+.dc-nav-link_current,
+.dc-nav-link[aria-current="page"],
+.dc-nav-link[aria-current="step"],
+.dc-nav-link[aria-current="true"] {
+  background: var(--dc-nav-link-bg-active);
+}
+
+.dc-nav-link__icon {
+  display: inline-flex;
+  margin-right: 8px;
+}
+
+.dc-nav-link__text {
+  overflow: hidden;
+  flex-grow: 1;
+  grid-area: text;
+  min-width: 0;
+  text-overflow: ellipsis;
+}
+
+.dc-nav-link__badge {
+  margin-left: 8px;
+}

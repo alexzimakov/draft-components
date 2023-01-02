@@ -3,7 +3,7 @@ import { classNames } from '../../lib/react-helpers';
 
 type BadgeHTMLProps = ComponentPropsWithoutRef<'span'>;
 type BadgeBaseProps = Omit<BadgeHTMLProps, 'children'>;
-export type CounterProps = {
+export type BadgeProps = {
   children: number | string;
 } & BadgeBaseProps;
 
@@ -11,7 +11,7 @@ export function Badge({
   className,
   children,
   ...props
-}: CounterProps) {
+}: BadgeProps) {
   let isCircle;
   if (typeof children === 'number' && children > 0 && children < 10) {
     isCircle = true;

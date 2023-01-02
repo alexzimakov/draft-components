@@ -12,7 +12,7 @@
   justify-content: center;
   height: var(--dc-badge-height);
   min-width: var(--dc-badge-height);
-  padding: 0 4px;
+  padding: 0 6px;
   border-radius: calc(var(--dc-badge-height) / 2);
   background: var(--dc-badge-bg);
 }

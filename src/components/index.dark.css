@@ -38,6 +38,7 @@
 /* Navigation */
 @import url("tabs/tabs.dark.css");
 @import url("menu/menu.dark.css");
+@import url("nav-list/nav-list.dark.css");
 
 /* Overlays */
 @import url("tooltip/tooltip.dark.css");
