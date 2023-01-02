@@ -15,7 +15,6 @@ export * from './empty-state';
 export * from './file-picker';
 export * from './form-field';
 export * from './label';
-export * from './loading-view';
 export * from './menu';
 export * from './password-input';
 export * from './popover';
