@@ -23,7 +23,6 @@ export * from './portal';
 export * from './radio';
 export * from './radio-group';
 export * from './scope-buttons';
-export * from './search-input';
 export * from './segmented-control';
 export * from './select';
 export * from './slider';
