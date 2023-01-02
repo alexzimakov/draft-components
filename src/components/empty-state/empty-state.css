@@ -1,0 +1,54 @@
+.dc-empty-state {
+  --dc-empty-state-inner-width: 640px;
+  --dc-empty-state-primary-color: var(--dc-primary-text-color);
+  --dc-empty-state-secondary-color: var(--dc-secondary-text-color);
+
+  color-scheme: light;
+  font: var(--dc-text-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 16px;
+  text-align: center;
+}
+
+.dc-empty-state__image {
+  color: var(--dc-empty-state-secondary-color);
+}
+
+.dc-empty-state__heading,
+.dc-empty-state__description {
+  max-width: var(--dc-empty-state-inner-width);
+  margin: 0;
+}
+
+.dc-empty-state__heading {
+  font: 600 var(--dc-text-lg);
+}
+
+.dc-empty-state__description {
+  color: var(--dc-empty-state-secondary-color);
+}
+
+* + .dc-empty-state__heading,
+* + .dc-empty-state__description {
+  margin-top: 8px;
+}
+
+.dc-empty-state__heading + .dc-empty-state__description {
+  margin-top: 4px;
+}
+
+* + .dc-empty-state__primary-action,
+* + .dc-empty-state__secondary-action {
+  margin-top: 24px;
+}
+
+.dc-empty-state__primary-action + .dc-empty-state__secondary-action {
+  margin-top: 12px;
+}
+
+.dc-empty-state__content {
+}
