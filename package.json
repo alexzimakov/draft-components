@@ -8,7 +8,6 @@
     "scss/**/*",
     "components/**/*",
     "hooks/**/*",
-    "bootstrap-icons/**/*",
     "lib/**/*"
   ],
   "scripts": {
@@ -17,7 +16,6 @@
     "lint": "eslint '**/*.{js,ts,tsx}'",
     "lint-fix": "npm run lint -- --fix",
     "type-check": "tsc --noEmit",
-    "bootstrap-icons": "node scripts/bootstrap-icons.js",
     "build": "gulp",
     "preversion": "npm test && npm run build",
     "storybook": "start-storybook --port 6060 --no-open",
@@ -66,7 +64,6 @@
     "@typescript-eslint/eslint-plugin": "5.42.1",
     "@typescript-eslint/parser": "5.42.1",
     "autoprefixer": "10.4.13",
-    "bootstrap-icons": "1.10.1",
     "cssnano": "5.1.14",
     "eslint": "8.27.0",
     "eslint-plugin-jsx-a11y": "6.6.1",
@@ -90,8 +87,7 @@
     "stylelint-config-standard": "29.0.0",
     "stylelint-order": "5.0.0",
     "typescript": "4.9.4",
-    "vite": "4.0.1",
-    "xml2js": "0.4.23"
+    "vite": "4.0.1"
   },
   "husky": {
     "hooks": {
