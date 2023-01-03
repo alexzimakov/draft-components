@@ -1,0 +1,53 @@
+.dc-filter-buttons {
+  --dc-filter-button-text-color: var(--dc-button-default-tinted-text-color);
+  --dc-filter-button-bg: var(--dc-button-default-tinted-bg);
+  --dc-filter-button-bg-hover: var(--dc-button-default-tinted-bg-hover);
+  --dc-filter-button-text-color-active: var(--dc-button-primary-text-color);
+  --dc-filter-button-bg-active: var(--dc-button-primary-bg);
+  --dc-filter-button-bg-active-hover: var(--dc-button-primary-bg-hover);
+
+  color-scheme: light;
+  position: relative;
+  display: flex;
+  overflow: auto;
+  align-items: center;
+  max-width: 100%;
+  padding-bottom: 4px;
+}
+
+.dc-filter-buttons > * + * {
+  margin-left: 8px;
+}
+
+.dc-filter-button {
+  font: var(--dc-text-sm);
+  color: var(--dc-filter-button-text-color);
+  display: inline-flex;
+  cursor: pointer;
+  user-select: none;
+  align-items: center;
+  box-sizing: border-box;
+  height: 28px;
+  padding: 0 8px;
+  transition-duration: 0.2s;
+  transition-property: color, background-color;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: var(--dc-filter-button-bg);
+}
+
+.dc-filter-button:hover {
+  background: var(--dc-filter-button-bg-hover);
+}
+
+.dc-filter-button.active,
+.dc-filter-button[aria-pressed="true"] {
+  color: var(--dc-filter-button-text-color-active);
+  background: var(--dc-filter-button-bg-active);
+}
+
+.dc-filter-button.active:hover,
+.dc-filter-button[aria-pressed="true"]:hover {
+  background: var(--dc-filter-button-bg-active-hover);
+}

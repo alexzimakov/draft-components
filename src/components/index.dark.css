@@ -40,6 +40,7 @@
 @import url("menu/menu.dark.css");
 @import url("nav-list/nav-list.dark.css");
 @import url("breadcrumbs/breadcrumbs.dark.css");
+@import url("filter-buttons/filter-buttons.dark.css");
 
 /* Overlays */
 @import url("tooltip/tooltip.dark.css");

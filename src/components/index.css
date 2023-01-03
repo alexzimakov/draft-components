@@ -40,6 +40,7 @@
 @import url("menu/menu.css");
 @import url("nav-list/nav-list.css");
 @import url("breadcrumbs/breadcrumbs.css");
+@import url("filter-buttons/filter-buttons.css");
 
 /* Overlays */
 @import url("tooltip/tooltip.css");
