@@ -59,7 +59,7 @@
   box-shadow: none;
 }
 
-.dc-nav-link_current,
+.dc-nav-link.active,
 .dc-nav-link[aria-current="page"],
 .dc-nav-link[aria-current="step"],
 .dc-nav-link[aria-current="true"] {

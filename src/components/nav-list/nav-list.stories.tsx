@@ -15,6 +15,7 @@ export default {
   component: NavList,
   subcomponents: {
     NavListItem,
+    NavListTitle,
   },
   argTypes: {
     children: {
