@@ -1,0 +1,4 @@
+.dark .dc-breadcrumbs,
+.dark.dc-breadcrumbs {
+  --dc-breadcrumbs-separator-color: rgb(156, 163, 175, 0.5); /* gray-400 */
+}

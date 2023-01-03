@@ -2,7 +2,7 @@ export * from './alert';
 export * from './avatar';
 export * from './avatar-group';
 export * from './badge';
-export * from './breadcrumb';
+export * from './breadcrumbs';
 export * from './button';
 export * from './button-group';
 export * from './caption';

@@ -39,6 +39,7 @@
 @import url("tabs/tabs.css");
 @import url("menu/menu.css");
 @import url("nav-list/nav-list.css");
+@import url("breadcrumbs/breadcrumbs.css");
 
 /* Overlays */
 @import url("tooltip/tooltip.css");
