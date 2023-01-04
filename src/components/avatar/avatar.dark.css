@@ -1,4 +1,6 @@
 .dark .dc-avatar,
 .dark.dc-avatar {
   --dc-avatar-inner-border-color: rgba(249, 250, 251, 0.15);
+
+  color-scheme: dark;
 }

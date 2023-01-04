@@ -10,6 +10,8 @@
   --dc-toast-btn-bg: rgba(17, 24, 39, 0.1); /* gray-900 */
   --dc-toast-btn-bg-hover: rgba(17, 24, 39, 0.2); /* gray-900 */
   --dc-toast-btn-focus-ring-color: var(--dc-gray-700);
+
+  color-scheme: dark;
 }
 
 .dark .dc-toast .dc-toast__close-btn,

@@ -9,6 +9,7 @@
   --dc-segmented-btn-border-color-checked: var(--dc-gray-500);
   --dc-segmented-btn-focus-ring-color: var(--dc-focus-ring-color);
 
+  color-scheme: light;
   font: 14px/1 var(--dc-primary-font);
   display: inline-flex;
   align-items: stretch;

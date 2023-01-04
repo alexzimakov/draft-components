@@ -17,6 +17,7 @@
   --dc-day-bg-range: var(--dc-control-secondary-color);
   --dc-day-focus-ring-color: var(--dc-control-primary-color);
 
+  color-scheme: light;
   display: inline-block;
 }
 

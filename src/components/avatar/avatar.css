@@ -6,6 +6,7 @@
   --dc-avatar-bg: none;
   --dc-avatar-inner-border-color: rgba(55, 65, 81, 0.15);
 
+  color-scheme: light;
   position: relative;
   display: inline-flex;
   user-select: none;

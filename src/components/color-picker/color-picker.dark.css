@@ -1,4 +1,6 @@
 .dark .dc-color-picker,
 .dark.dc-color-picker {
   --dc-color-picker-btn-inner-border-color: rgba(255, 255, 255, 0.1);
+
+  color-scheme: dark;
 }

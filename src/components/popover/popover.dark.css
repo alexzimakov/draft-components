@@ -5,4 +5,6 @@
   --dc-popover-shadow:
     0 0 0 1px var(--dc-gray-700),
     var(--dc-shadow-lg);
+
+  color-scheme: dark;
 }

@@ -1,6 +1,7 @@
 .dc-avatar-group {
   --dc-avatar-in-group-stroke: var(--dc-primary-bg);
 
+  color-scheme: light;
   display: inline-flex;
   align-items: center;
   box-sizing: border-box;

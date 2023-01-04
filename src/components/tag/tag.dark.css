@@ -2,6 +2,8 @@
 .dark.dc-tag {
   --dc-tag-text-color: var(--dc-gray-50);
   --dc-tag-bg: rgba(156, 163, 175, 0.4); /* gray-400 */
+
+  color-scheme: dark;
 }
 
 .dark .dc-tag_plain,

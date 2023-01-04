@@ -5,6 +5,7 @@
   --dc-color-picker-btn-inner-border-color: rgba(0, 0, 0, 0.05);
   --dc-color-picker-btn-focus-ring-color: var(--dc-focus-ring-color);
 
+  color-scheme: light;
   display: inline-flex;
   flex-wrap: wrap;
   gap: 12px;

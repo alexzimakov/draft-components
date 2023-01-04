@@ -9,6 +9,8 @@
   --dc-switch-thumb-bg: var(--dc-control-on-primary-color);
   --dc-switch-icon-color: var(--dc-control-primary-color);
   --dc-switch-focus-ring-color: var(--dc-focus-ring-color);
+
+  color-scheme: light;
 }
 
 .dc-switch__input {

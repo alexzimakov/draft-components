@@ -3,6 +3,7 @@
   --dc-tooltip-bg: var(--dc-gray-700);
   --dc-tooltip-transition-duration: 100ms;
 
+  color-scheme: light;
   font: var(--dc-text-xs);
   color: var(--dc-tooltip-text-color);
   z-index: var(--dc-overlay-z-index);

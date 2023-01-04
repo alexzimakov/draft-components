@@ -1,4 +1,5 @@
 .dc-caption {
+  color-scheme: light;
   font: var(--dc-text-sm);
   color: var(--dc-secondary-text-color);
   display: block;

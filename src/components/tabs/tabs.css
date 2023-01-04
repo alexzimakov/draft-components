@@ -5,6 +5,8 @@
   --dc-tab-bg: none;
   --dc-tab-bg-hover: var(--dc-bg-transparent-1);
   --dc-tab-focus-ring-color: var(--dc-focus-ring-color);
+
+  color-scheme: light;
 }
 
 .dc-tab {

@@ -8,6 +8,7 @@
   --dc-button-focus-ring-color: var(--dc-focus-ring-color);
 
   appearance: none;
+  color-scheme: light;
   font: var(--dc-text-md);
   color: var(--dc-button-text-color);
   position: relative;

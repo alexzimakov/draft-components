@@ -7,6 +7,7 @@
     0 0 0 1px var(--dc-gray-200),
     var(--dc-shadow-lg);
 
+  color-scheme: light;
   z-index: var(--dc-overlay-z-index);
   top: 0;
   left: 0;

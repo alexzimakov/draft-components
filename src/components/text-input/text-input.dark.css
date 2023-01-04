@@ -1,0 +1,4 @@
+.dark .dc-text-input__container,
+.dark.dc-text-input__container {
+  color-scheme: dark;
+}

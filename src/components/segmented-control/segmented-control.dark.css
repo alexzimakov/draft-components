@@ -3,4 +3,6 @@
   --dc-segmented-btn-bg-checked: var(--dc-gray-600);
   --dc-segmented-btn-border-color-focus: var(--dc-blue-400);
   --dc-segmented-btn-border-color-checked: var(--dc-gray-400);
+
+  color-scheme: dark;
 }

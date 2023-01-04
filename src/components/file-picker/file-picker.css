@@ -6,6 +6,7 @@
   --dc-file-picker-border-color-drag-over: var(--dc-control-primary-color);
   --dc-file-picker-bg-drag-over: var(--dc-control-secondary-color);
 
+  color-scheme: light;
   position: relative;
   display: inline-flex;
   flex-wrap: wrap;

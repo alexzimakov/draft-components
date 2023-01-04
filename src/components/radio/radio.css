@@ -6,6 +6,8 @@
   --dc-radio-color-border-checked: var(--dc-control-primary-color);
   --dc-radio-color-icon: var(--dc-control-on-primary-color);
   --dc-radio-color-focus-ring: var(--dc-focus-ring-color);
+
+  color-scheme: light;
 }
 
 .dc-radio__input {

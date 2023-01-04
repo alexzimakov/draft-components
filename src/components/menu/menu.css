@@ -5,6 +5,7 @@
   --dc-menu-item-bg-destructive: var(--dc-button-danger-plain-bg-hover);
   --dc-menu-separator-color: var(--dc-bg-transparent-2);
 
+  color-scheme: light;
   box-sizing: border-box;
   width: 100%;
   margin: 0;

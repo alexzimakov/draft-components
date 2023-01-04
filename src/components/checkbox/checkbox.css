@@ -7,6 +7,8 @@
   --dc-checkbox-border-color-checked: var(--dc-control-primary-color);
   --dc-checkbox-icon-color: var(--dc-control-on-primary-color);
   --dc-checkbox-focus-ring-color: var(--dc-focus-ring-color);
+
+  color-scheme: light;
 }
 
 .dc-checkbox__input {

@@ -26,6 +26,7 @@
 }
 
 .dc-spinner {
+  color-scheme: light;
   animation: dc-spinner-rotate 2s linear infinite;
 }
 

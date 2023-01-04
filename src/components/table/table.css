@@ -11,6 +11,8 @@
   --dc-table-cell-padding-x: 12px;
   --dc-table-cell-padding-y: 8px;
   --dc-table-sort-icon-size: 16px;
+
+  color-scheme: light;
 }
 
 .dc-table-container {

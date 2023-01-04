@@ -6,6 +6,7 @@
   --dc-alert-accent-border-color: var(--dc-gray-500);
   --dc-alert-icon-size: 20px;
 
+  color-scheme: light;
   font: var(--dc-text-sm);
   color: var(--dc-alert-text-color);
   display: grid;

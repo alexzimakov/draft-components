@@ -10,6 +10,7 @@
   --dc-textarea-bg: var(--dc-control-bg);
   --dc-textarea-focus-ring-color: var(--dc-control-primary-color);
 
+  color-scheme: light;
   font-family: var(--dc-primary-font);
   display: inline-flex;
   flex-direction: column;

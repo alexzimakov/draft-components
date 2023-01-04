@@ -10,6 +10,7 @@
   --dc-select-bg: var(--dc-control-bg);
   --dc-select-focus-ring-color: var(--dc-control-primary-color);
 
+  color-scheme: light;
   font-family: var(--dc-primary-font);
   font-size: var(--dc-select-font-size);
   font-weight: 400;

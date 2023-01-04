@@ -3,6 +3,7 @@
   --dc-tag-border-color: transparent; /* gray-300 */
   --dc-tag-bg: rgba(209, 213, 219, 0.4); /* gray-300 */
 
+  color-scheme: light;
   font: 400 14px/16px var(--dc-primary-font);
   color: var(--dc-tag-text-color);
   display: inline-flex;

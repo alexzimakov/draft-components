@@ -2,6 +2,7 @@
   --dc-label-text-color: var(--dc-primary-text-color);
   --dc-label-required-mark-color: #dc2626;
 
+  color-scheme: light;
   font: var(--dc-text-sm);
   font-weight: 500;
   color: var(--dc-label-text-color);

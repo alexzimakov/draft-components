@@ -1,4 +1,5 @@
 .dc-date-range-picker-popover {
+  color-scheme: light;
   display: inline-grid;
   grid-template-areas:
     "presets calendar"

@@ -1,0 +1,4 @@
+.dark .dc-textarea__container,
+.dark.dc-textarea__container {
+  color-scheme: dark;
+}
