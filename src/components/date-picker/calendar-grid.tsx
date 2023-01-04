@@ -1,5 +1,5 @@
 import { type KeyboardEvent } from 'react';
-import { KeyboardKeys } from '../../lib/keyboard-keys';
+import { KeyboardKeys } from '../../shared/keyboard-keys';
 import {
   DAYS_IN_WEEK,
   addDays,

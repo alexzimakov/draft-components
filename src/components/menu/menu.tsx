@@ -1,4 +1,4 @@
-import { KeyboardKeys } from '../../lib/keyboard-keys';
+import { KeyboardKeys } from '../../shared/keyboard-keys';
 import {
   Children,
   cloneElement,
@@ -12,8 +12,8 @@ import {
   type ReactNode,
   type RefCallback,
 } from 'react';
-import { classNames, focusElement } from '../../lib/react-helpers';
-import { assertIfNullable } from '../../lib/util';
+import { classNames, focusElement } from '../../shared/react-helpers';
+import { assertIfNullable } from '../../shared/util';
 import {
   Button,
   type ButtonAppearance,

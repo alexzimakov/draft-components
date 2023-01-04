@@ -1,5 +1,5 @@
 import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../shared/react-helpers';
 import { useDialogContext } from './dialog-context';
 import { IconButton } from '../button';
 import { XMarkIcon } from './x-mark-icon';

@@ -1,5 +1,5 @@
 import { type ComponentPropsWithoutRef, ReactNode } from 'react';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../shared/react-helpers';
 import { ColorPickerButton } from './color-picker-button';
 
 export type ColorPickerOption<T extends string | number> = {

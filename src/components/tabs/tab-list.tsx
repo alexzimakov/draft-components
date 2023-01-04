@@ -4,9 +4,9 @@ import {
   type FocusEvent,
   type KeyboardEvent,
 } from 'react';
-import { KeyboardKeys } from '../../lib/keyboard-keys';
-import { assertIfNullable } from '../../lib/util';
-import { classNames, focusElement } from '../../lib/react-helpers';
+import { KeyboardKeys } from '../../shared/keyboard-keys';
+import { assertIfNullable } from '../../shared/util';
+import { classNames, focusElement } from '../../shared/react-helpers';
 import { useTabsContext } from './tabs-context';
 
 export type TabListProps = ComponentPropsWithoutRef<'div'>;

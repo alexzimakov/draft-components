@@ -1,5 +1,5 @@
 import { type DateISO } from '../date-picker/date-helpers';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../shared/react-helpers';
 import { useRef, type ReactNode } from 'react';
 import { Popover, type PopoverRef } from '../popover';
 import { DatePicker, type DatePickerProps } from '../date-picker';

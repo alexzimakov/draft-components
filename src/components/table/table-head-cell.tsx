@@ -4,7 +4,7 @@ import {
   type ComponentPropsWithoutRef,
   type ElementType,
 } from 'react';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../shared/react-helpers';
 import { ArrowSmallDown, ArrowSmallUp, ArrowsUpDown } from './icons';
 
 type TableHeadCellBaseProps = ComponentPropsWithRef<'th'>;

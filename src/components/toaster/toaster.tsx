@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, type ReactNode } from 'react';
-import { assertIfNullable } from '../../lib/util';
-import { classNames } from '../../lib/react-helpers';
+import { assertIfNullable } from '../../shared/util';
+import { classNames } from '../../shared/react-helpers';
 import { Portal } from '../portal';
 import { Toast, ToastButton } from '../toast';
 

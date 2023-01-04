@@ -4,7 +4,7 @@ import { Dialog } from './dialog';
 import { DialogHeader } from './dialog-header';
 import { DialogBody } from './dialog-body';
 import { DialogFooter } from './dialog-footer';
-import { mergeRefs } from '../../lib/react-helpers';
+import { mergeRefs } from '../../shared/react-helpers';
 import { Button } from '../button';
 import { FormField } from '../form-field';
 import { TextInput } from '../text-input';

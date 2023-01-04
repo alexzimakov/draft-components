@@ -1,5 +1,5 @@
 import { forwardRef, type ComponentPropsWithRef } from 'react';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../shared/react-helpers';
 
 export type TableBodyProps = ComponentPropsWithRef<'tbody'>;
 

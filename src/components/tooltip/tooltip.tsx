@@ -14,7 +14,7 @@ import {
   classNames,
   isReactElementWithRef,
   mergeRefs,
-} from '../../lib/react-helpers';
+} from '../../shared/react-helpers';
 import { useMountTransition } from '../../hooks';
 import {
   Positioner,

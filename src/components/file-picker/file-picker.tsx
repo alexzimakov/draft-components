@@ -8,7 +8,7 @@ import {
   type DragEventHandler,
   type ReactNode,
 } from 'react';
-import { classNames, mergeRefs } from '../../lib/react-helpers';
+import { classNames, mergeRefs } from '../../shared/react-helpers';
 import { Button } from '../button';
 
 type FilePickerHTMLProps = ComponentPropsWithRef<'input'>;

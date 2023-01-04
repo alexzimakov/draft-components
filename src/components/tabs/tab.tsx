@@ -3,7 +3,7 @@ import {
   type MouseEvent,
   type ReactNode,
 } from 'react';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../shared/react-helpers';
 import { useTabsContext } from './tabs-context';
 import { Badge } from '../badge';
 

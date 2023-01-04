@@ -1,6 +1,6 @@
 import { useEffect, useRef, type ComponentPropsWithoutRef } from 'react';
-import { assertIfNullable } from '../../lib/util';
-import { classNames } from '../../lib/react-helpers';
+import { assertIfNullable } from '../../shared/util';
+import { classNames } from '../../shared/react-helpers';
 
 type DialogBodyHTMLProps = ComponentPropsWithoutRef<'div'>;
 export type DialogBodyProps = {

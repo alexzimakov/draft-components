@@ -9,7 +9,7 @@ import {
 import { useState, type ComponentPropsWithoutRef } from 'react';
 import { Calendar, type CalendarProps } from './calendar';
 import { parseMinMaxProps } from './parse-min-max-props';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../shared/react-helpers';
 
 type DateRangePickerHTMLProps = ComponentPropsWithoutRef<'div'>;
 export type DateRangePickerProps = {

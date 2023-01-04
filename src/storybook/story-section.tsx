@@ -1,5 +1,5 @@
 import { type ComponentPropsWithoutRef, ReactNode } from 'react';
-import { classNames } from '../lib/react-helpers';
+import { classNames } from '../shared/react-helpers';
 import './story-section.css';
 
 type StorySectionBaseProps = Omit<ComponentPropsWithoutRef<'div'>, 'children'>;

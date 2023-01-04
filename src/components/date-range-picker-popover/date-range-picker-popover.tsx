@@ -3,8 +3,8 @@ import {
   type DateRangePickerPopoverOption,
   type DateRangePickerPopoverSelection,
 } from './types';
-import { classNames } from '../../lib/react-helpers';
-import { assertIfNullable } from '../../lib/util';
+import { classNames } from '../../shared/react-helpers';
+import { assertIfNullable } from '../../shared/util';
 import { findSelectedOption } from './helpers';
 import { useRef, useState, type ReactNode } from 'react';
 import { useIsCompactView } from './use-is-compact-view';

@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../shared/react-helpers';
 
 export type SegmentedControlButtonProps<T extends string | number> = {
   icon?: ReactNode;

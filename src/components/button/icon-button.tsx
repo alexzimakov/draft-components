@@ -1,5 +1,5 @@
 import { forwardRef, type ReactNode } from 'react';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../shared/react-helpers';
 import { Button, type ButtonProps } from './button';
 
 export type IconButtonProps = Omit<ButtonProps, 'children' | 'caption'> & {
