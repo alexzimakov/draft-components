@@ -1,5 +1,5 @@
 import { useEffect, useRef, type ComponentPropsWithoutRef } from 'react';
-import { assertIfNullable } from '../../lib/assert-if-nullable';
+import { assertIfNullable } from '../../lib/util';
 import { classNames } from '../../lib/react-helpers';
 
 type DialogBodyHTMLProps = ComponentPropsWithoutRef<'div'>;

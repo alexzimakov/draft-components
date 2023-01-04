@@ -4,7 +4,7 @@ import {
   type DateRangePickerPopoverSelection,
 } from './types';
 import { classNames } from '../../lib/react-helpers';
-import { assertIfNullable } from '../../lib/assert-if-nullable';
+import { assertIfNullable } from '../../lib/util';
 import { findSelectedOption } from './helpers';
 import { useRef, useState, type ReactNode } from 'react';
 import { useIsCompactView } from './use-is-compact-view';

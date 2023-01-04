@@ -1,7 +1,3 @@
-export function noop(): void {
-  return;
-}
-
 export function once<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   T extends (...args: any[]) => any
@@ -17,26 +13,11 @@ export function once<
   };
 }
 
-export function randomInt(min: number, max: number): number {
-  if (min >= max) {
-    throw new Error('randomInt: `min` parameter must be less than `max`.');
+export function assertIfNullable<T>(
+  value: T,
+  message = 'value is null or undefined'
+): asserts value is NonNullable<T> {
+  if (value == null) {
+    throw Error(message);
   }
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
-export function randomString(size: number): string {
-  if (size < 1) {
-    throw new Error('randomString: `size` parameter must be greater than 0.');
-  }
-
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
-    'abcdefghijklmnopqrstuvwxyz' +
-    '0123456789';
-  return Array.from({ length: size })
-    .map(() => chars[randomInt(0, chars.length - 1)])
-    .join('');
-}
-
-export function uniqueId(prefix?: string): string {
-  return (prefix || '') + randomString(5);
 }

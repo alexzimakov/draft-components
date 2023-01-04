@@ -5,7 +5,7 @@ import {
   type ReactNode,
 } from 'react';
 import { KeyboardKeys } from '../../lib/keyboard-keys';
-import { assertIfNullable } from '../../lib/assert-if-nullable';
+import { assertIfNullable } from '../../lib/util';
 import { classNames, focusElement } from '../../lib/react-helpers';
 import { SegmentedControlButton } from './segmented-control-button';
 

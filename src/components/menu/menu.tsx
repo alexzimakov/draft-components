@@ -13,7 +13,7 @@ import {
   type RefCallback,
 } from 'react';
 import { classNames, focusElement } from '../../lib/react-helpers';
-import { assertIfNullable } from '../../lib/assert-if-nullable';
+import { assertIfNullable } from '../../lib/util';
 import {
   Button,
   type ButtonAppearance,

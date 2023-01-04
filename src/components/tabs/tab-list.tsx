@@ -5,9 +5,9 @@ import {
   type KeyboardEvent,
 } from 'react';
 import { KeyboardKeys } from '../../lib/keyboard-keys';
+import { assertIfNullable } from '../../lib/util';
 import { classNames, focusElement } from '../../lib/react-helpers';
 import { useTabsContext } from './tabs-context';
-import { assertIfNullable } from '../../lib/assert-if-nullable';
 
 export type TabListProps = ComponentPropsWithoutRef<'div'>;
 
