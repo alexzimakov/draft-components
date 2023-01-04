@@ -4,6 +4,8 @@
   --dc-toast-icon-color: var(--dc-gray-200);
   --dc-toast-bg: var(--dc-gray-700);
   --dc-toast-padding: 16px;
+  --dc-toast-close-btn-color: var(--dc-gray-50);
+  --dc-toast-close-btn-bg: var(--dc-gray-500);
   --dc-toast-btn-text-color: var(--dc-gray-100);
   --dc-toast-btn-bg: rgba(249, 250, 251, 0.15); /* gray-50 */
   --dc-toast-btn-bg-hover: rgba(249, 250, 251, 0.3); /* gray-50 */
@@ -11,12 +13,42 @@
 
   font: var(--dc-text-sm);
   color: var(--dc-toast-text-color);
+  position: relative;
   display: inline-flex;
   min-width: 256px;
   text-align: left;
   border-radius: 10px;
   background: var(--dc-toast-bg);
   box-shadow: var(--dc-shadow-lg);
+}
+
+.dc-toast__close-btn {
+  color: var(--dc-toast-close-btn-color);
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  display: inline-flex;
+  opacity: 0;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease;
+  border: none;
+  border-radius: 50%;
+  background: var(--dc-toast-close-btn-bg);
+  box-shadow:
+    var(--dc-shadow-sm),
+    var(--dc-shadow-md);
+}
+
+.dc-toast:hover .dc-toast__close-btn {
+  opacity: 1;
+  pointer-events: all;
 }
 
 .dc-toast__btn {
@@ -59,8 +91,14 @@
 }
 
 .dc-toast__actions {
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   padding: 4px;
+}
+
+.dc-toast__actions > * + * {
+  margin-top: 2px;
 }
 
 .dc-toast__content {

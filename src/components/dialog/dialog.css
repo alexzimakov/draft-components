@@ -11,7 +11,7 @@
 
   color-scheme: light;
   position: relative;
-  z-index: var(--dc-modal-z-index);
+  z-index: var(--dc-overlay-z-index);
 }
 
 .dc-dialog-backdrop {

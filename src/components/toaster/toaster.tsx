@@ -1,127 +1,218 @@
-import { ComponentPropsWithoutRef, useEffect, useRef } from 'react';
-import {
-  createToast,
-  dispatch,
-  ToastId,
-  ToastRenderFn,
-  useToasts,
-} from './use-toasts';
+import { useEffect, useState, useRef, type ReactNode } from 'react';
+import { assertIfNullable } from '../../lib/assert-if-nullable';
 import { classNames } from '../../lib/react-helpers';
+import { Portal } from '../portal';
+import { Toast, ToastButton } from '../toast';
 
-type ToasterVerticalPosition = 'top' | 'bottom';
-type ToasterHorizontalPosition = 'left' | 'center' | 'right';
-type ToasterPosition =
-  `${ToasterVerticalPosition}-${ToasterHorizontalPosition}`;
+type YPosition = 'top' | 'bottom';
+type XPosition = 'left' | 'center' | 'right';
+export type ToastPosition = `${YPosition}-${XPosition}`;
 
-export interface ToasterProps extends ComponentPropsWithoutRef<'ul'> {
-  position?: ToasterPosition;
-  toastGap?: number;
+export type ToastID = number;
+export type ToastAction = {
+  content: ReactNode;
+  onClick?: () => void;
+  shouldHideAfterClick?: boolean;
+};
+export type ToastParams = {
+  title: ReactNode;
+  icon?: ReactNode;
+  message?: ReactNode;
+  actions?: ToastAction[];
+  timeoutMs?: number;
+};
+export type ToastParamsWithID = { id: ToastID } & ToastParams;
+export type ToastShowCallback = (toast: ToastParamsWithID) => void;
+export type ToastHideCallback = (id: ToastID) => void;
+
+type ToastShowEvent = CustomEvent<{
+  toaster: Toaster;
+  toast: ToastParamsWithID;
+}>;
+const TOAST_SHOW_EVENT = 'toast_show';
+const isToastShowEvent = (event: Event): event is ToastShowEvent => (
+  event instanceof CustomEvent && event.type === TOAST_SHOW_EVENT
+);
+
+type ToastHideEvent = CustomEvent<{
+  toaster: Toaster;
+  toastId: ToastID;
+}>;
+const TOAST_HIDE_EVENT = 'toast_hide';
+const isToastHideEvent = (event: Event): event is ToastHideEvent => (
+  event instanceof CustomEvent && event.type === TOAST_HIDE_EVENT
+);
+
+export class Toaster {
+  #id: ToastID;
+  readonly #timeoutMs: number;
+  readonly #onShow?: ToastShowCallback;
+  readonly #onHide?: ToastHideCallback;
+
+  constructor(params?: {
+    timeoutMs?: number;
+    onShowToast?: ToastShowCallback;
+    onHideToast?: ToastHideCallback;
+  }) {
+    this.#id = 0;
+    this.#timeoutMs = params?.timeoutMs || 10_000;
+    this.#onShow = params?.onShowToast;
+    this.#onHide = params?.onHideToast;
+  }
+
+  #getNextID() {
+    this.#id += 1;
+    return this.#id;
+  }
+
+  showToast(toast: ToastParams, params?: { timeoutMs?: number }): ToastID {
+    const id = this.#getNextID();
+    const event: ToastShowEvent = new CustomEvent(TOAST_SHOW_EVENT, {
+      detail: {
+        toaster: this,
+        toast: { ...toast, id },
+      },
+    });
+    const timeoutMs = toast.timeoutMs || params?.timeoutMs || this.#timeoutMs;
+
+    this.#onShow?.(event.detail.toast);
+    window.dispatchEvent(event);
+    window.setTimeout(() => this.hideToast(id), timeoutMs);
+
+    return id;
+  }
+
+  hideToast(id: ToastID) {
+    const event: ToastHideEvent = new CustomEvent(TOAST_HIDE_EVENT, {
+      detail: {
+        toaster: this,
+        toastId: id,
+      },
+    });
+
+    this.#onHide?.(id);
+    window.dispatchEvent(event);
+  }
+
+  render(options?: {
+    toastGap?: number;
+    toastPosition?: ToastPosition;
+    toastCloseButtonAriaLabel?: string;
+  }) {
+    return (
+      <ToastsList
+        toaster={this}
+        toastGap={options?.toastGap}
+        toastPosition={options?.toastPosition}
+        toastCloseButtonAriaLabel={options?.toastCloseButtonAriaLabel}
+      />
+    );
+  }
 }
 
-let isToasterRendered = false;
-const toastTimeouts = new Map<ToastId, number>();
+type ToastsListProps = {
+  toaster: Toaster,
+  toastGap?: number;
+  toastPosition?: ToastPosition;
+  toastCloseButtonAriaLabel?: string;
+};
 
-export function Toaster({
-  className,
-  position = 'top-center',
-  toastGap = 16,
-  ...props
-}: ToasterProps) {
+function ToastsList({
+  toaster,
+  toastGap = 12,
+  toastPosition = 'top-center',
+  toastCloseButtonAriaLabel = 'Close',
+}: ToastsListProps) {
   const ref = useRef<HTMLUListElement>(null);
-  const toasts = useToasts();
+  const [toasts, setToasts] = useState<ToastParamsWithID[]>([]);
 
   useEffect(() => {
-    const listElement = ref.current;
-    if (!listElement) {
-      return;
-    }
-
-    const toastAppearsOnBottom = position?.startsWith('bottom');
-    const items = listElement.children;
-    let offset = 0;
-    for (let i = 0; i < items.length; i += 1) {
-      const item = items[i];
-
-      if (item instanceof HTMLElement) {
-        item.style.transform = `translateY(${offset}px)`;
-
-        const d = item.clientHeight + toastGap;
-        if (toastAppearsOnBottom) {
-          offset -= d;
-        } else {
-          offset += d;
+    function handleShowToast(event: Event) {
+      if (isToastShowEvent(event)) {
+        const detail = event.detail;
+        if (detail.toaster === toaster) {
+          setToasts((prevToasts) => [detail.toast, ...prevToasts]);
         }
       }
     }
-  }, [toasts, toastGap, position]);
+
+    function handleCloseToast(event: Event) {
+      if (isToastHideEvent(event)) {
+        const detail = event.detail;
+        if (detail.toaster === toaster) {
+          setToasts((prevToasts) => prevToasts.filter(
+            (toast) => toast.id !== detail.toastId
+          ));
+        }
+      }
+    }
+
+    window.addEventListener(TOAST_SHOW_EVENT, handleShowToast);
+    window.addEventListener(TOAST_HIDE_EVENT, handleCloseToast);
+    return () => {
+      window.removeEventListener(TOAST_SHOW_EVENT, handleShowToast);
+      window.removeEventListener(TOAST_HIDE_EVENT, handleCloseToast);
+    };
+  }, [toaster]);
 
   useEffect(() => {
-    isToasterRendered = true;
+    const listEl = ref.current;
+    assertIfNullable(listEl, 'ToastsList ref was not set');
 
-    return () => {
-      isToasterRendered = false;
-      for (const toastId of toastTimeouts.keys()) {
-        dismissToast(toastId);
+    let offset = 0;
+    for (const item of listEl.children) {
+      if (item instanceof HTMLLIElement) {
+        item.style.transform = `translateY(${offset}px)`;
+
+        const d = item.offsetHeight + toastGap;
+        if (
+          toastPosition === 'top-right' ||
+          toastPosition === 'top-center' ||
+          toastPosition === 'top-left'
+        ) {
+          offset += d;
+        } else {
+          offset -= d;
+        }
       }
-    };
-  }, []);
+    }
+  }, [toasts, toastGap, toastPosition]);
 
   return (
-    <ul
-      {...props}
-      ref={ref}
-      className={classNames(
-        className,
-        'toaster',
-        `toaster_position_${position}`
-      )}
-    >
-      {toasts.map((toast) => (
-        <li key={toast.id}>
-          {toast.render({
-            toastId: toast.id,
-            className: 'toaster__item',
-            dismiss: () => dismissToast(toast.id),
-          })}
-        </li>
-      ))}
-    </ul>
+    <Portal>
+      <ul ref={ref} className={classNames({
+        'dc-toasts-list': true,
+        [`dc-toasts-list_${toastPosition}`]: toastPosition,
+      })}>
+        {toasts.map((toast) => {
+          const hideToast = () => toaster.hideToast(toast.id);
+          const actions = toast.actions?.map((action, index) => (
+            <ToastButton key={index} onClick={() => {
+              action.onClick?.();
+              if (action.shouldHideAfterClick ?? true) {
+                hideToast();
+              }
+            }}>
+              {action.content}
+            </ToastButton>
+          ));
+          return (
+            <li key={toast.id}>
+              <Toast
+                className="dc-toasts-list__toast"
+                role="alert"
+                icon={toast.icon}
+                message={toast.message}
+                actions={actions}
+                closeButtonAriaLabel={toastCloseButtonAriaLabel}
+                onClickCloseButton={hideToast}
+              >
+                {toast.title}
+              </Toast>
+            </li>
+          );
+        })}
+      </ul>
+    </Portal>
   );
 }
-
-export function dismissToast(toastId: ToastId): void {
-  const timeoutId = toastTimeouts.get(toastId);
-  if (timeoutId) {
-    window.clearTimeout(timeoutId);
-  }
-  toastTimeouts.delete(toastId);
-  dispatch({ type: 'DELETE_TOAST', toastId });
-}
-
-export function showToast(
-  renderToast: ToastRenderFn,
-  durationMs = 1e4
-): ToastId {
-  if (!isToasterRendered) {
-    throw new Error(
-      'To show toast put <Toatser /> component somewhere on the page.'
-    );
-  }
-
-  const toast = createToast(renderToast);
-  const toastId = toast.id;
-
-  if (durationMs) {
-    const timeoutId = window.setTimeout(() => {
-      dismissToast(toastId);
-    }, durationMs);
-    toastTimeouts.set(toastId, timeoutId);
-  }
-
-  dispatch({ type: 'CREATE_TOAST', toast });
-
-  return toastId;
-}
-
-Toaster.dismiss = dismissToast;
-Toaster.show = showToast;

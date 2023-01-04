@@ -1,3 +1,4 @@
+import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import { Toast } from './toast';
 import { ToastButton } from './toast-button';
@@ -23,8 +24,8 @@ it('renders without error', () => {
   screen.getByText(title);
   screen.getByText(message);
   const buttons = screen.getAllByRole('button');
-  expect(buttons[0]).toHaveTextContent(cancelButtonLabel);
-  expect(buttons[1]).toHaveTextContent(confirmButtonLabel);
+  expect(buttons[1]).toHaveTextContent(cancelButtonLabel);
+  expect(buttons[2]).toHaveTextContent(confirmButtonLabel);
 });
 
 it('renders with custom icon', () => {
@@ -34,4 +35,22 @@ it('renders with custom icon', () => {
 
   screen.getByText(title);
   screen.getByRole('img');
+});
+
+it('invokes `onClickCloseButton` callback', async () => {
+  const user = userEvent.setup();
+  const closeButtonLabel = 'hide toast';
+  const onClickCloseButtonMock = jest.fn();
+  render(
+    <Toast
+      closeButtonAriaLabel={closeButtonLabel}
+      onClickCloseButton={onClickCloseButtonMock}
+    >
+      {title}
+    </Toast>
+  );
+
+  await user.click(screen.getByLabelText(closeButtonLabel));
+
+  expect(onClickCloseButtonMock).toHaveBeenCalledTimes(1);
 });

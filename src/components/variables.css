@@ -1,5 +1,6 @@
 :root {
-  --dc-modal-z-index: 99;
+  --dc-overlay-z-index: 1000;
+  --dc-toaster-z-index: 1010;
 
   /* Typography */
   /* https://tailwindcss.com/docs/font-family */

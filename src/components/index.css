@@ -33,6 +33,7 @@
 /* Feedback */
 @import url("alert/alert.css");
 @import url("toast/toast.css");
+@import url("toaster/toaster.css");
 @import url("empty-state/empty-state.css");
 
 /* Navigation */
