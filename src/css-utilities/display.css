@@ -1,0 +1,39 @@
+/* Box sizing */
+
+.box-content {
+  box-sizing: content-box !important;
+}
+
+.box-border {
+  box-sizing: border-box !important;
+}
+
+/* Display */
+
+.d-inline {
+  display: inline !important;
+}
+
+.d-inline-block {
+  display: inline-block !important;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.d-grid {
+  display: grid !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.d-inline-flex {
+  display: inline-flex !important;
+}
+
+.d-none {
+  display: none !important;
+}

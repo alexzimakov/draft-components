@@ -1,0 +1,31 @@
+.color-inherit {
+  color: inherit !important;
+}
+
+.color-primary {
+  color: var(--dc-primary-text-color) !important;
+}
+
+.color-secondary {
+  color: var(--dc-secondary-text-color) !important;
+}
+
+.color-tertiary {
+  color: var(--dc-tertiary-text-color) !important;
+}
+
+.color-info {
+  color: var(--dc-info-text-color) !important;
+}
+
+.color-success {
+  color: var(--dc-success-text-color) !important;
+}
+
+.color-error {
+  color: var(--dc-error-text-color) !important;
+}
+
+.color-warning {
+  color: var(--dc-warning-text-color) !important;
+}

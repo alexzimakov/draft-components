@@ -1,0 +1,15 @@
+.bg-primary {
+  background: var(--dc-primary-bg) !important;
+}
+
+.bg-transparent-1 {
+  background: var(--dc-bg-transparent-1) !important;
+}
+
+.bg-transparent-2 {
+  background: var(--dc-bg-transparent-2) !important;
+}
+
+.bg-transparent-3 {
+  background: var(--dc-bg-transparent-3) !important;
+}
