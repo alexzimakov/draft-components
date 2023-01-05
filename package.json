@@ -1,23 +1,29 @@
 {
   "name": "draft-components",
   "version": "0.75.3",
-  "description": "The set of React.js components for rapid prototyping.",
-  "main": "components/index.js",
+  "description": "The React based UI components library.",
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "main": "dist/index.js",
+  "module": "esm/index.js",
   "files": [
-    "css/**/*",
-    "scss/**/*",
-    "components/**/*",
-    "hooks/**/*",
-    "lib/**/*"
+    "css",
+    "dist",
+    "esm"
   ],
   "scripts": {
     "test": "jest",
     "test-coverage": "npm run test -- --coverage --no-cache",
     "lint": "eslint '**/*.{js,ts,tsx}'",
-    "lint-fix": "npm run lint -- --fix",
+    "stylelint": "stylelint 'src/**/*.css'",
     "type-check": "tsc --noEmit",
     "build": "gulp",
-    "preversion": "npm test && npm run build",
+    "prebuild": "npm run test && npm run lint && npm run stylelint",
+    "preversion": "npm run build",
     "storybook": "start-storybook --port 6060 --no-open",
     "build-storybook": "build-storybook"
   },
@@ -60,7 +66,6 @@
     "@types/node": "18.11.9",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
-    "@types/resize-observer-browser": "0.1.7",
     "@typescript-eslint/eslint-plugin": "5.42.1",
     "@typescript-eslint/parser": "5.42.1",
     "autoprefixer": "10.4.13",
@@ -71,17 +76,16 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-storybook": "0.6.8",
     "eslint-plugin-testing-library": "5.9.1",
-    "fs-extra": "10.1.0",
     "gulp": "4.0.2",
     "gulp-postcss": "9.0.1",
-    "gulp-sass": "5.1.0",
+    "gulp-rename": "2.0.0",
     "husky": "4.3.8",
     "jest": "29.3.1",
     "jest-environment-jsdom": "29.3.1",
     "lint-staged": "13.0.3",
+    "postcss-import": "15.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sass": "1.56.1",
     "storybook": "6.5.14",
     "stylelint": "14.16.0",
     "stylelint-config-standard": "29.0.0",
@@ -96,10 +100,5 @@
   },
   "lint-staged": {
     "src/**/*.ts?(x)": "npm run lint"
-  },
-  "browserslist": [
-    "> 0.2%",
-    "not dead",
-    "not op_mini all"
-  ]
+  }
 }

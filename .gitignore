@@ -11,10 +11,9 @@ coverage
 !.eslintignore
 !.stylelintrc.js
 !.storybook
+!.browserslistrc
 
 # Artifacts
 /css
-/scss
-/components
-/hooks
-/lib
+/dist
+/esm

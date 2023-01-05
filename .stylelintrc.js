@@ -3,7 +3,7 @@ module.exports = {
   plugins: ['stylelint-order'],
   rules: {
     'alpha-value-notation': 'number',
-    'block-no-empty': false,
+    'block-no-empty': null,
     'color-function-notation': 'legacy',
     'comment-empty-line-before': ['always', {
       except: ['first-nested'],
@@ -11,8 +11,8 @@ module.exports = {
     }],
     'hue-degree-notation': 'number',
     'length-zero-no-unit': [true, { ignore: ['custom-properties'] }],
-    'selector-class-pattern': false,
-    'value-list-comma-newline-after': false,
+    'selector-class-pattern': null,
+    'value-list-comma-newline-after': null,
 
     'order/order': [
       'custom-properties',

@@ -1,79 +1,53 @@
-const { exec } = require('child_process');
-const { copy, removeSync } = require('fs-extra');
-const packageJson = require('./package.json');
-const path = require('path');
+const fs = require('node:fs/promises');
+const childProcess = require('node:child_process');
 const gulp = require('gulp');
-const sass = require('gulp-sass')(require('sass'));
+const rename = require('gulp-rename');
 const postcss = require('gulp-postcss');
+const postcssImport = require('postcss-import');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 
-const SOURCE_PATH = path.join(__dirname, 'src');
-const DIST_PATH = __dirname;
-const ANSI_CODES = {
-  reset: '\x1b[0m',
-  boldOn: '\x1b[1m',
-  boldOff: '\x1b[22m',
-  red: '\x1b[31m',
-  green: '\x1b[32m',
-  yellow: '\x1b[33m',
-  blue: '\x1b[34m',
-  magenta: '\x1b[35m',
-  cyan: '\x1b[36m',
-  white: '\x1b[367m',
+const PATHS = {
+  css: 'css',
+  commonjs: 'dist',
+  esm: 'esm',
 };
 
-async function clean(done) {
-  for (const file of packageJson.files) {
-    const dir = file.split(path.sep)[0];
-    if (dir) {
-      removeSync(dir, { recursive: true });
-    }
+async function clean() {
+  for (const path of Object.values(PATHS)) {
+    await fs.rm(path, { force: true, recursive: true });
   }
-  done();
 }
 
-function buildTs(done) {
-  tsc('commonjs', DIST_PATH)
-    .then(() => done())
-    .catch((err) => {
-      console.error(
-        `${ANSI_CODES.red}${ANSI_CODES.boldOn}TypeScript compilation error:${ANSI_CODES.reset}`,
-        err.message
-      );
-      done(err);
-    });
+async function css() {
+  const handleFile = (src, filename) => new Promise((resolve, reject) => {
+    gulp.src(src)
+      .pipe(postcss([postcssImport(), autoprefixer()], null))
+      .pipe(rename(filename))
+      .pipe(gulp.dest(PATHS.css))
+      .pipe(postcss([cssnano()], null))
+      .pipe(rename({ extname: '.min.css' }))
+      .pipe(gulp.dest(PATHS.css))
+      .on('error', reject)
+      .on('end', resolve);
+  });
+
+  const filesMap = {
+    'draft-components.css': 'src/components/index.css',
+    'draft-components.dark.css': 'src/components/index.dark.css',
+    'draft-components-utilities.css': 'src/css-utilities/index.css',
+  };
+  const promises = Object
+    .entries(filesMap)
+    .map(([file, src]) => handleFile(src, file));
+
+  return Promise.all(promises);
 }
 
-function buildScss() {
-  return gulp
-    .src(path.join(SOURCE_PATH, 'styles/**/*.scss'))
-    .pipe(sass().on('error', sass.logError))
-    .pipe(postcss([autoprefixer(), cssnano()]))
-    .pipe(gulp.dest(path.join(DIST_PATH, 'css')));
-}
-
-function copyScss(done) {
-  copy(path.join(SOURCE_PATH, 'styles'), path.join(DIST_PATH, 'scss'), done);
-}
-
-exports.default = gulp.series(
-  clean,
-  gulp.parallel(buildTs, buildScss),
-  copyScss
-);
-
-/**
- * Performs `tsc` command within shell.
- * @param {string} module - Specify module code generation:
- *   "None", "CommonJS", "AMD", "System", "UMD", "ES6", "ES2015" or "ESNext".
- * @param {string} outDir - Redirect output structure to the directory.
- * @returns {Promise<string>}
- */
-async function tsc(module, outDir) {
-  return new Promise((resolve, reject) => {
-    exec(
-      `tsc --module ${module} --outDir "${outDir}" --project tsconfig.build.json`,
+async function ts() {
+  const compileTs = async (module, outDir) => new Promise((resolve, reject) => {
+    childProcess.exec(
+      `tsc --project tsconfig.json --module ${module} --outDir "${outDir}"`,
       (err, stdout) => {
         if (err) {
           reject(new Error(stdout));
@@ -83,4 +57,9 @@ async function tsc(module, outDir) {
       }
     );
   });
+
+  await compileTs('commonjs', PATHS.commonjs);
+  await compileTs('es2020', PATHS.esm);
 }
+
+exports.default = gulp.series(clean, css, ts);
