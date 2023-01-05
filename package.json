@@ -7,6 +7,14 @@
       "import": "./esm/index.js",
       "require": "./dist/index.js"
     },
+    "./hooks/*": {
+      "import": "./esm/hooks/*",
+      "require": "./dist/hooks/*"
+    },
+    "./shared/*": {
+      "import": "./esm/shared/*",
+      "require": "./dist/shared/*"
+    },
     "./css/*": {
       "import": "./css/*",
       "require": "./css/*"
