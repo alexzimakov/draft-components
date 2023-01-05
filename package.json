@@ -6,6 +6,10 @@
     ".": {
       "import": "./esm/index.js",
       "require": "./dist/index.js"
+    },
+    "./css/*": {
+      "import": "./css/*",
+      "require": "./css/*"
     }
   },
   "main": "dist/index.js",
