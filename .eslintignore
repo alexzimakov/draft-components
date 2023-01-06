@@ -2,7 +2,6 @@ node_modules
 /dist
 /esm
 /css
-/docs
 /coverage
 
 !.storybook
