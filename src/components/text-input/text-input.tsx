@@ -1,5 +1,5 @@
 import { forwardRef, type ComponentPropsWithRef, type ReactNode } from 'react';
-import { classNames } from '../../shared/react-helpers';
+import { classNames } from '../../lib/react-helpers';
 
 type TextInputHTMLProps = ComponentPropsWithRef<'input'>;
 type TextInputBaseProps = Omit<TextInputHTMLProps,

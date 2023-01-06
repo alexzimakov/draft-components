@@ -1,5 +1,5 @@
 import { forwardRef, type ComponentPropsWithRef } from 'react';
-import { classNames } from '../../shared/react-helpers';
+import { classNames } from '../../lib/react-helpers';
 
 type SwitchHTMLProps = ComponentPropsWithRef<'input'>;
 type SwitchBaseProps = Omit<SwitchHTMLProps, 'type'>;

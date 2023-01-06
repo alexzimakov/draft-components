@@ -1,5 +1,5 @@
-import { ComponentPropsWithoutRef } from 'react';
-import { classNames } from '../../shared/react-helpers';
+import { type ComponentPropsWithoutRef } from 'react';
+import { classNames } from '../../lib/react-helpers';
 
 type MenuSeparatorHTMLProps = ComponentPropsWithoutRef<'li'>;
 type MenuSeparatorBaseProps = Omit<MenuSeparatorHTMLProps, 'children'>;

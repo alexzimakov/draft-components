@@ -4,7 +4,7 @@ import {
   setDateYear,
   setDateMonth,
 } from './date-helpers';
-import { classNames } from '../../shared/react-helpers';
+import { classNames } from '../../lib/react-helpers';
 import { useEffect, useState } from 'react';
 import { IconButton } from '../button';
 import { Select } from '../select';

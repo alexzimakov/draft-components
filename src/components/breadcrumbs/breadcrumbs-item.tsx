@@ -1,5 +1,5 @@
 import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
-import { classNames } from '../../shared/react-helpers';
+import { classNames } from '../../lib/react-helpers';
 import { useBreadcrumbsContext } from './breadcrumbs-context';
 
 type BreadcrumbsItemHTMLProps = ComponentPropsWithoutRef<'a'>;

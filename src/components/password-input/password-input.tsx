@@ -4,7 +4,7 @@ import {
   type ComponentPropsWithoutRef,
   type ElementType,
 } from 'react';
-import { classNames } from '../../shared/react-helpers';
+import { classNames } from '../../lib/react-helpers';
 import { TextInput, type TextInputProps } from '../text-input';
 import { Tooltip } from '../tooltip';
 import { EyeIcon, EyeSlashIcon } from './icons';

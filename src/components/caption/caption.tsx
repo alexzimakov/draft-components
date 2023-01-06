@@ -4,7 +4,7 @@ import {
   type ComponentPropsWithoutRef,
   type ElementType,
 } from 'react';
-import { classNames } from '../../shared/react-helpers';
+import { classNames } from '../../lib/react-helpers';
 import { ErrorIcon, InfoIcon, SuccessIcon, WarningIcon } from './icons';
 
 export type CaptionAppearance =

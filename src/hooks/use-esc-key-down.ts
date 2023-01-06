@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { KeyboardKeys } from '../shared/keyboard-keys';
+import { KeyboardKeys } from '../lib/keyboard-keys';
 
 type Handler = () => void;
 type Options = { isEnabled: boolean };

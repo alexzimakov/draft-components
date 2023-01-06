@@ -6,7 +6,7 @@ import {
   type CSSProperties,
   type RefObject,
 } from 'react';
-import { classNames, focusElement } from '../../shared/react-helpers';
+import { classNames, focusElement } from '../../lib/react-helpers';
 import {
   useDisableBodyScroll,
   useEscKeyDown,

@@ -3,8 +3,8 @@ import {
   useLayoutEffect,
   type ComponentPropsWithoutRef,
 } from 'react';
-import { assertIfNullable } from '../../shared/util';
-import { classNames } from '../../shared/react-helpers';
+import { assertIfNullable } from '../../lib/helpers';
+import { classNames } from '../../lib/react-helpers';
 
 type FilterButtonsHTMLProps = ComponentPropsWithoutRef<'div'>;
 export type FilterButtonsProps = FilterButtonsHTMLProps;

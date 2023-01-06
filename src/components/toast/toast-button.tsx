@@ -1,5 +1,5 @@
 import { forwardRef, type ComponentPropsWithRef } from 'react';
-import { classNames } from '../../shared/react-helpers';
+import { classNames } from '../../lib/react-helpers';
 
 export type ToastButtonProps = ComponentPropsWithRef<'button'>;
 

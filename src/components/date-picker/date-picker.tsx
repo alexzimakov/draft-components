@@ -7,7 +7,7 @@ import {
   type Weekday,
 } from './date-helpers';
 import { type ComponentPropsWithoutRef } from 'react';
-import { classNames } from '../../shared/react-helpers';
+import { classNames } from '../../lib/react-helpers';
 import { parseMinMaxProps } from './parse-min-max-props';
 import { Calendar, type CalendarProps } from './calendar';
 

@@ -1,6 +1,6 @@
 import { type ComponentPropsWithoutRef } from 'react';
 import { type TabName } from './types';
-import { classNames } from '../../shared/react-helpers';
+import { classNames } from '../../lib/react-helpers';
 import { useTabsContext } from './tabs-context';
 
 export type TabPanelProps = {

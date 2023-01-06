@@ -15,7 +15,7 @@ import {
   focusElement,
   isReactElementWithRef,
   mergeRefs,
-} from '../../shared/react-helpers';
+} from '../../lib/react-helpers';
 import { useMountTransition } from '../../hooks/use-mount-transition';
 import { useEscKeyDown } from '../../hooks/use-esc-key-down';
 import { useFocusTrap } from '../../hooks/use-focus-trap';

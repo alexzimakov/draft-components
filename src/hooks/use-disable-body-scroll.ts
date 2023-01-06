@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { once } from '../shared/util';
+import { once } from '../lib/helpers';
 
 type Options = { isEnabled: boolean };
 

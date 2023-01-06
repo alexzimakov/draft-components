@@ -1,4 +1,4 @@
-import { once, assertIfNullable } from './util';
+import { once, assertIfNullable } from './helpers';
 
 describe('#once()', () => {
   it('creates function that invokes only once', () => {
