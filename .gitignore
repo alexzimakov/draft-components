@@ -14,7 +14,8 @@ coverage
 !.storybook
 !.browserslistrc
 
-# Artifacts
+# Build artifacts
 /css
-/dist
+/cjs
 /esm
+/*.tgz

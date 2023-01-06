@@ -7,14 +7,17 @@ const postcssImport = require('postcss-import');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 
-const PATHS = {
-  css: 'css',
-  commonjs: 'dist',
-  esm: 'esm',
-};
+const CJS_DESTINATION = 'cjs';
+const ESM_DESTINATION = 'esm';
+const CSS_DESTINATION = 'css';
 
 async function clean() {
-  for (const path of Object.values(PATHS)) {
+  const paths = [
+    CJS_DESTINATION,
+    ESM_DESTINATION,
+    CSS_DESTINATION,
+  ];
+  for (const path of paths) {
     await fs.rm(path, { force: true, recursive: true });
   }
 }
@@ -24,10 +27,10 @@ async function css() {
     gulp.src(src)
       .pipe(postcss([postcssImport(), autoprefixer()], null))
       .pipe(rename(filename))
-      .pipe(gulp.dest(PATHS.css))
+      .pipe(gulp.dest(CSS_DESTINATION))
       .pipe(postcss([cssnano()], null))
       .pipe(rename({ extname: '.min.css' }))
-      .pipe(gulp.dest(PATHS.css))
+      .pipe(gulp.dest(CSS_DESTINATION))
       .on('error', reject)
       .on('end', resolve);
   });
@@ -58,8 +61,8 @@ async function ts() {
     );
   });
 
-  await compileTs('commonjs', PATHS.commonjs);
-  await compileTs('es2020', PATHS.esm);
+  await compileTs('commonjs', CJS_DESTINATION);
+  await compileTs('esnext', ESM_DESTINATION);
 }
 
 exports.default = gulp.series(clean, css, ts);

@@ -4,20 +4,26 @@
   "description": "The React based UI components library.",
   "exports": {
     ".": {
-      "import": "./esm/index.js",
-      "require": "./dist/index.js"
+      "import": [
+        "./esm/index.js",
+        "./esm/*.js"
+      ],
+      "require": [
+        "./cjs/index.js",
+        "./cjs/*.js"
+      ]
     },
     "./css/*": {
       "import": "./css/*",
       "require": "./css/*"
     }
   },
-  "main": "dist/index.js",
-  "module": "esm/index.js",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
   "files": [
-    "css",
-    "dist",
-    "esm"
+    "cjs",
+    "esm",
+    "css"
   ],
   "scripts": {
     "prepare": "husky install",
@@ -26,11 +32,11 @@
     "lint": "eslint '**/*.{js,ts,tsx}'",
     "stylelint": "stylelint 'src/**/*.css'",
     "type-check": "tsc --noEmit",
-    "build": "gulp",
     "prebuild": "npm run test && npm run lint && npm run stylelint",
+    "build": "gulp",
+    "build-storybook": "build-storybook",
     "preversion": "npm run build",
-    "storybook": "start-storybook --port 6060 --no-open",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook --port 6060 --no-open"
   },
   "repository": {
     "type": "git",
