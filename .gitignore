@@ -6,6 +6,7 @@ coverage
 !.github
 !.nvmrc
 !.npmrc
+!.husky
 !.editorconfig
 !.eslintrc.js
 !.eslintignore
