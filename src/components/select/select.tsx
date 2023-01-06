@@ -1,5 +1,5 @@
 import { forwardRef, type ComponentPropsWithRef } from 'react';
-import { classNames } from '../../shared/react-helpers';
+import { classNames } from '../../lib/react-helpers';
 
 type SelectHTMLProps = ComponentPropsWithRef<'select'>;
 type SelectBaseProps = Omit<SelectHTMLProps,
@@ -61,7 +61,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           disabled={disabled}
           onChange={(event) => {
             onChange?.(event);
-            if (multiple) {
+            if (multiple === true) {
               onChangeValue?.(
                 Array.from(event.target.options)
                   .filter((option) => option.selected)
