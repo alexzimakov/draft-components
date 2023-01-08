@@ -21,6 +21,8 @@
   padding: 0 16px;
   transition-duration: 0.2s;
   transition-property: color, background-color;
+  text-decoration: none;
+  text-transform: none;
   border: 1px solid var(--dc-button-border-color);
   border-radius: var(--dc-button-radius);
   background: var(--dc-button-bg);
