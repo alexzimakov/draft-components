@@ -73,6 +73,7 @@
   width: 100%;
   padding-right: calc(var(--dc-select-arrow-size) + var(--dc-select-padding-x));
   padding-left: var(--dc-select-padding-x);
+  text-transform: none;
   border: none;
   background: none;
 }
