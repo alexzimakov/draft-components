@@ -106,6 +106,10 @@
   font-weight: 800 !important;
 }
 
+.text-no-wrap {
+  white-space: nowrap;
+}
+
 /* Text truncation */
 
 .text-truncate {
