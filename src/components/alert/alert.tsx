@@ -29,6 +29,7 @@ export function Alert({
 }: AlertProps) {
   const shouldShowIcon = Boolean(icon);
   const shouldRenderHeading = Boolean(heading);
+  const shouldRenderContent = Boolean(children);
 
   return (
     <section
@@ -42,8 +43,12 @@ export function Alert({
     >
       {shouldShowIcon && <div className="dc-alert__icon">{icon}</div>}
       <div className="dc-alert__body">
-        {shouldRenderHeading && <h1 className="dc-alert__title">{heading}</h1>}
-        {children}
+        {shouldRenderHeading && (
+          <h1 className="dc-alert__title">{heading}</h1>
+        )}
+        {shouldRenderContent && (
+          <div className="dc-alert__content">{children}</div>
+        )}
       </div>
     </section>
   );

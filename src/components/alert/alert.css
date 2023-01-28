@@ -27,17 +27,27 @@
 
 .dc-alert__icon {
   color: var(--dc-alert-icon-color);
+  display: inline-flex;
   grid-area: icon;
 }
 
 .dc-alert__body {
+  display: flex;
+  flex-direction: column;
   grid-area: content;
 }
 
 .dc-alert__title {
   font: inherit;
   font-weight: 600;
-  margin: 0 0 0.5em;
+  margin: 0;
+}
+
+.dc-alert__content {
+}
+
+.dc-alert__body > * + * {
+  margin-top: 8px;
 }
 
 .dc-alert_variant_full-width {
