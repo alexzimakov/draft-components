@@ -1,8 +1,12 @@
 module.exports = {
   root: true,
+  parserOptions: {
+    sourceType: 'module',
+  },
   env: {
     es2021: true,
     node: true,
+    browser: true,
   },
   extends: ['@alexzimakov/eslint-config'],
 
@@ -11,10 +15,8 @@ module.exports = {
       files: ['src/**/*.[jt]s?(x)'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
-        sourceType: 'module',
         ecmaFeatures: { jsx: true },
       },
-      env: { browser: true },
       plugins: [
         '@typescript-eslint',
         'react',
@@ -81,10 +83,15 @@ module.exports = {
 
     {
       files: ['.storybook/preview.js?(x)'],
-      env: { browser: true },
       parserOptions: {
-        sourceType: 'module',
         ecmaFeatures: { jsx: true },
+      },
+    },
+
+    {
+      files: ['**/*.cjs'],
+      parserOptions: {
+        sourceType: 'script',
       },
     },
   ],

@@ -2,6 +2,7 @@
   "name": "draft-components",
   "version": "1.0.0-beta.3.1",
   "description": "The React based UI components library.",
+  "type": "module",
   "exports": {
     ".": {
       "import": [
@@ -107,5 +108,8 @@
   "lint-staged": {
     "src/**/*.ts?(x)": "npm run lint",
     "src/**/*.css": "npm run stylelint"
+  },
+  "engines": {
+    "node": ">= 14.16"
   }
 }
