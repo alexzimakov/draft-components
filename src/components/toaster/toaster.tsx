@@ -44,38 +44,38 @@ const isToastHideEvent = (event: Event): event is ToastHideEvent => (
 );
 
 export class Toaster {
-  #id: ToastID;
-  readonly #timeoutMs: number;
-  readonly #onShow?: ToastShowCallback;
-  readonly #onHide?: ToastHideCallback;
+  protected _id: ToastID;
+  readonly timeoutMs: number;
+  readonly onShow?: ToastShowCallback;
+  readonly onHide?: ToastHideCallback;
 
   constructor(params?: {
     timeoutMs?: number;
     onShowToast?: ToastShowCallback;
     onHideToast?: ToastHideCallback;
   }) {
-    this.#id = 0;
-    this.#timeoutMs = params?.timeoutMs || 10_000;
-    this.#onShow = params?.onShowToast;
-    this.#onHide = params?.onHideToast;
+    this._id = 0;
+    this.timeoutMs = params?.timeoutMs || 10_000;
+    this.onShow = params?.onShowToast;
+    this.onHide = params?.onHideToast;
   }
 
-  #getNextID() {
-    this.#id += 1;
-    return this.#id;
+  private _getNextId() {
+    this._id += 1;
+    return this._id;
   }
 
   showToast(toast: ToastParams, params?: { timeoutMs?: number }): ToastID {
-    const id = this.#getNextID();
+    const id = this._getNextId();
     const event: ToastShowEvent = new CustomEvent(TOAST_SHOW_EVENT, {
       detail: {
         toaster: this,
         toast: { ...toast, id },
       },
     });
-    const timeoutMs = toast.timeoutMs || params?.timeoutMs || this.#timeoutMs;
+    const timeoutMs = toast.timeoutMs || params?.timeoutMs || this.timeoutMs;
 
-    this.#onShow?.(event.detail.toast);
+    this.onShow?.(event.detail.toast);
     window.dispatchEvent(event);
     window.setTimeout(() => this.hideToast(id), timeoutMs);
 
@@ -90,7 +90,7 @@ export class Toaster {
       },
     });
 
-    this.#onHide?.(id);
+    this.onHide?.(id);
     window.dispatchEvent(event);
   }
 
