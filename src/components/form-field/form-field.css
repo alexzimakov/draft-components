@@ -1,6 +1,7 @@
 .dc-form-field {
   color-scheme: light;
   display: block;
+  text-align: left;
 }
 
 .dc-form-field__label {
