@@ -5,26 +5,23 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": [
-        "./esm/index.js",
-        "./esm/*.js"
-      ],
-      "require": [
-        "./cjs/index.js",
-        "./cjs/*.js"
-      ]
+      "types": "./types/index.d.ts",
+      "import": "./esm/*.js",
+      "require": "./cjs/*.cjs"
     },
     "./css/*": {
       "import": "./css/*",
       "require": "./css/*"
     }
   },
-  "main": "./cjs/index.js",
   "module": "./esm/index.js",
+  "main": "./cjs/index.cjs",
+  "types": "./types/index.d.ts",
   "files": [
     "cjs",
     "esm",
-    "css"
+    "css",
+    "types"
   ],
   "scripts": {
     "prepare": "husky install",
@@ -33,8 +30,8 @@
     "lint": "eslint '**/*.{js,ts,tsx}'",
     "lint-styles": "stylelint 'src/**/*.css'",
     "check-types": "tsc --noEmit",
-    "prebuild": "npm run test && npm run lint && npm run stylelint",
-    "build": "gulp",
+    "prebuild": "npm run test && npm run lint && npm run lint-styles",
+    "build": "node scripts/build.js",
     "build-storybook": "build-storybook",
     "preversion": "npm run build",
     "storybook": "start-storybook --port 6060 --no-open"
@@ -65,6 +62,7 @@
     "@babel/preset-react": "7.18.6",
     "@babel/preset-typescript": "7.18.6",
     "@heroicons/react": "2.0.13",
+    "@rollup/plugin-typescript": "11.0.0",
     "@storybook/addon-actions": "6.5.15",
     "@storybook/addon-essentials": "6.5.15",
     "@storybook/addon-links": "6.5.15",
@@ -81,23 +79,21 @@
     "@typescript-eslint/eslint-plugin": "5.48.0",
     "@typescript-eslint/parser": "5.48.0",
     "autoprefixer": "10.4.13",
-    "cssnano": "5.1.14",
     "eslint": "8.31.0",
     "eslint-plugin-jsx-a11y": "6.6.1",
     "eslint-plugin-react": "7.31.11",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-storybook": "0.6.8",
     "eslint-plugin-testing-library": "5.9.1",
-    "gulp": "4.0.2",
-    "gulp-postcss": "9.0.1",
-    "gulp-rename": "2.0.0",
     "husky": "8.0.3",
     "jest": "29.3.1",
     "jest-environment-jsdom": "29.3.1",
     "lint-staged": "13.1.0",
+    "postcss": "8.4.21",
     "postcss-import": "15.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "rollup": "3.12.0",
     "storybook": "6.5.15",
     "stylelint": "14.16.1",
     "stylelint-config-standard": "29.0.0",

@@ -18,4 +18,5 @@ coverage
 /css
 /cjs
 /esm
+/types
 /*.tgz

@@ -1,8 +1,11 @@
 node_modules
-/cjs
-/esm
-/css
 /coverage
 
 !.storybook
 !.stylelintrc.cjs
+
+# Build artifacts
+/css
+/cjs
+/esm
+/types
