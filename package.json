@@ -102,8 +102,8 @@
     "vite": "4.0.4"
   },
   "lint-staged": {
-    "src/**/*.ts?(x)": "npm run lint",
-    "src/**/*.css": "npm run stylelint"
+    "*.ts?(x)": "npm run lint",
+    "*.css": "npm run lint-styles"
   },
   "engines": {
     "node": ">= 14.16"
