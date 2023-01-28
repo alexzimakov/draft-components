@@ -1,4 +1,4 @@
-import { Toaster, type ToastParams, type ToastPosition } from './toaster';
+import { type ToastParams, type ToastPosition, Toaster } from './toaster';
 import { Button } from '../button';
 import {
   BellAlertIcon,

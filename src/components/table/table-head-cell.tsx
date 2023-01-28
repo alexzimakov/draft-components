@@ -1,8 +1,8 @@
 import {
-  forwardRef,
   type ComponentPropsWithRef,
   type ComponentPropsWithoutRef,
   type ElementType,
+  forwardRef,
 } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { ArrowSmallDown, ArrowSmallUp, ArrowsUpDown } from './icons';
@@ -14,6 +14,24 @@ export type TableHeadCellProps = {
   sort?: TableHeadCellSort;
   onChangeSort?: (sort: TableHeadCellSort) => void;
 } & TableHeadCellBaseProps;
+
+const iconMapping: Record<
+  TableHeadCellSort,
+  ElementType<ComponentPropsWithoutRef<'svg'>>
+> = {
+  none: ArrowsUpDown,
+  ascending: ArrowSmallUp,
+  descending: ArrowSmallDown,
+};
+
+const stateMapping: Record<
+  TableHeadCellSort,
+  TableHeadCellSort
+> = {
+  none: 'ascending',
+  ascending: 'descending',
+  descending: 'none',
+};
 
 export const TableHeadCell = forwardRef<
   HTMLTableHeaderCellElement,
@@ -58,21 +76,3 @@ export const TableHeadCell = forwardRef<
     </th>
   );
 });
-
-const iconMapping: Record<
-  TableHeadCellSort,
-  ElementType<ComponentPropsWithoutRef<'svg'>>
-> = {
-  none: ArrowsUpDown,
-  ascending: ArrowSmallUp,
-  descending: ArrowSmallDown,
-};
-
-const stateMapping: Record<
-  TableHeadCellSort,
-  TableHeadCellSort
-> = {
-  none: 'ascending',
-  ascending: 'descending',
-  descending: 'none',
-};

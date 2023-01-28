@@ -18,6 +18,7 @@ async function clean() {
     CSS_DESTINATION,
   ];
   for (const path of paths) {
+    // eslint-disable-next-line no-await-in-loop
     await fs.rm(path, { force: true, recursive: true });
   }
 }

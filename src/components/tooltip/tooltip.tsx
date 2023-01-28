@@ -1,14 +1,14 @@
 import {
-  cloneElement,
-  useId,
-  useMemo,
-  useState,
   type CSSProperties,
   type ComponentPropsWithoutRef,
   type FocusEvent,
   type MouseEvent,
   type ReactNode,
   type RefCallback,
+  cloneElement,
+  useId,
+  useMemo,
+  useState,
 } from 'react';
 import {
   classNames,
@@ -18,9 +18,9 @@ import {
 import { useMountTransition } from '../../hooks';
 import {
   Positioner,
-  type PositionerProps,
   type PositionerAnchorRenderFn,
   type PositionerContentRenderFn,
+  type PositionerProps,
 } from '../positioner';
 
 type TooltipChildrenRenderFn = (props: {
@@ -90,20 +90,20 @@ export function Tooltip({
     if (isReactElementWithRef(children)) {
       const props = children.props;
       return cloneElement(children, {
-        ref: mergeRefs(setRef, children.ref),
-        onFocus: (event: FocusEvent) => {
+        'ref': mergeRefs(setRef, children.ref),
+        'onFocus': (event: FocusEvent) => {
           showTooltip();
           props.onFocus?.(event);
         },
-        onBlur: (event: FocusEvent) => {
+        'onBlur': (event: FocusEvent) => {
           hideTooltip();
           props.onBlur?.(event);
         },
-        onMouseEnter: (event: MouseEvent) => {
+        'onMouseEnter': (event: MouseEvent) => {
           showTooltip();
           props.onMouseEnter?.(event);
         },
-        onMouseLeave: (event: MouseEvent) => {
+        'onMouseLeave': (event: MouseEvent) => {
           hideTooltip();
           props.onMouseLeave?.(event);
         },

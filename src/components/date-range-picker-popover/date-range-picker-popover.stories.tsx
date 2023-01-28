@@ -1,7 +1,7 @@
 import { type ComponentMeta, ComponentStory } from '@storybook/react';
 import {
-  type DateRangePickerPopoverSelection,
   type DateRangePickerPopoverOption,
+  type DateRangePickerPopoverSelection,
 } from './types';
 import {
   addDays,
@@ -10,7 +10,7 @@ import {
   isSameDay,
   toDateISO,
 } from '../date-picker/date-helpers';
-import { useState, type ReactNode } from 'react';
+import { type ReactNode, useState } from 'react';
 import { DateRangePickerPopover } from './date-range-picker-popover';
 import { Button } from '../button';
 import { CalendarIcon } from '@heroicons/react/24/outline';

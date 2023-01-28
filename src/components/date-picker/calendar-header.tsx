@@ -1,8 +1,8 @@
 import {
   MONTHS_IN_YEAR,
   addMonths,
-  setDateYear,
   setDateMonth,
+  setDateYear,
 } from './date-helpers';
 import { classNames } from '../../lib/react-helpers';
 import { useEffect, useState } from 'react';
@@ -37,9 +37,9 @@ export function CalendarHeader({
   const [year, setYear] = useState(formatYear(selectedYear));
 
   useEffect(() => {
-    setYear((prevYear) => (parseYear(prevYear) !== selectedYear
-      ? formatYear(selectedYear)
-      : prevYear));
+    setYear((prevYear) => (parseYear(prevYear) === selectedYear
+      ? prevYear
+      : formatYear(selectedYear)));
   }, [selectedYear]);
 
   return (

@@ -182,9 +182,8 @@ export const Sortable: ComponentStory<typeof Table> = (args) => {
       return sorting.sort === 'ascending'
         ? a - b
         : b - a;
-    } else {
-      return 0;
     }
+    return 0;
   });
 
   return (

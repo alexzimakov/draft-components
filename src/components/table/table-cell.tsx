@@ -1,4 +1,4 @@
-import { forwardRef, type ComponentPropsWithRef } from 'react';
+import { type ComponentPropsWithRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 export type TableCellProps = ComponentPropsWithRef<'td'>;

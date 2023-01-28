@@ -1,5 +1,5 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react';
-import { useState, type ComponentPropsWithoutRef } from 'react';
+import { type ComponentPropsWithoutRef, useState } from 'react';
 import { FilePicker } from './file-picker';
 
 export default {

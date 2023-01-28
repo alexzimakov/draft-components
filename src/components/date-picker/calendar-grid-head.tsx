@@ -1,8 +1,8 @@
 import {
   DAYS_IN_WEEK,
+  type Weekday,
   addDays,
   getStartOfWeek,
-  type Weekday,
 } from './date-helpers';
 
 export type CalendarGridHeadProps = {

@@ -5,10 +5,10 @@ import { TabList } from './tab-list';
 import { Tab } from './tab';
 import { TabPanel } from './tab-panel';
 import {
-  InboxIcon,
-  DocumentIcon,
-  PaperAirplaneIcon,
   ArchiveBoxIcon,
+  DocumentIcon,
+  InboxIcon,
+  PaperAirplaneIcon,
 } from '@heroicons/react/24/outline';
 
 export default {

@@ -1,5 +1,5 @@
 import { type ComponentMeta } from '@storybook/react';
-import { useRef, useState, type RefObject } from 'react';
+import { type RefObject, useRef, useState } from 'react';
 import { Dialog } from './dialog';
 import { DialogHeader } from './dialog-header';
 import { DialogBody } from './dialog-body';

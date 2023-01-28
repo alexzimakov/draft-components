@@ -31,9 +31,8 @@ it('renders tick mark lables', () => {
       renderTickMarkLabel={(index) => {
         if (index === 0) {
           return firstTickLabel;
-        } else {
-          return lastTickLabel;
         }
+        return lastTickLabel;
       }}
     />
   );

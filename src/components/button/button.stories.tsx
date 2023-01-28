@@ -143,7 +143,7 @@ export const Styles = (args: ButtonProps) => {
     <StorySection
       key={variant}
       heading={variant}
-      style={{ paddingTop: index !== 0 ? 16 : 0 }}
+      style={{ paddingTop: index === 0 ? 0 : 16 }}
     >
       <div style={{
         display: 'flex',

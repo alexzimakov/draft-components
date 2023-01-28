@@ -1,6 +1,7 @@
-import { forwardRef, type ComponentPropsWithRef } from 'react';
+import { type ComponentPropsWithRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
+export type SelectSize = 'sm' | 'md' | 'lg';
 type SelectHTMLProps = ComponentPropsWithRef<'select'>;
 type SelectBaseProps = Omit<SelectHTMLProps,
   | 'size'
@@ -13,7 +14,7 @@ type SelectBaseProps = Omit<SelectHTMLProps,
   size?: SelectSize;
   htmlSize?: SelectHTMLProps['size'];
 };
-export type SelectSize = 'sm' | 'md' | 'lg';
+
 export type SelectProps = SelectBaseProps & ({
   multiple?: false;
   value?: string | number;

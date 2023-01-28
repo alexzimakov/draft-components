@@ -11,13 +11,6 @@ export default {
   },
 } as ComponentMeta<typeof ButtonGroup>;
 
-export const Basic: ComponentStory<typeof ButtonGroup> = (args) => (
-  <ButtonGroup {...args}>
-    <IconButton icon={minusIcon} />
-    <IconButton icon={plusIcon} />
-  </ButtonGroup>
-);
-
 const minusIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -52,4 +45,11 @@ const plusIcon = (
       d="M12 4.5v15m7.5-7.5h-15"
     />
   </svg>
+);
+
+export const Basic: ComponentStory<typeof ButtonGroup> = (args) => (
+  <ButtonGroup {...args}>
+    <IconButton icon={minusIcon} />
+    <IconButton icon={plusIcon} />
+  </ButtonGroup>
 );

@@ -1,16 +1,16 @@
 import { KeyboardKeys } from '../../lib/keyboard-keys';
 import {
   Children,
-  cloneElement,
-  isValidElement,
-  useId,
-  useState,
   type ComponentPropsWithoutRef,
   type KeyboardEventHandler,
   type MouseEventHandler,
   type ReactElement,
   type ReactNode,
   type RefCallback,
+  cloneElement,
+  isValidElement,
+  useId,
+  useState,
 } from 'react';
 import { classNames, focusElement } from '../../lib/react-helpers';
 import { assertIfNullable } from '../../lib/helpers';
@@ -135,9 +135,8 @@ export function Menu({
     const firstChars = menuItems.map((el) => {
       if (el.textContent) {
         return el.textContent[0].toLowerCase();
-      } else {
-        return '';
       }
+      return '';
     });
 
     const activeMenuItemIndex = menuItems.findIndex(
@@ -227,12 +226,12 @@ export function Menu({
     if (typeof button === 'function') {
       return button({
         ref,
-        id: buttonId,
+        'id': buttonId,
         'aria-haspopup': true,
         'aria-expanded': isOpen,
         'aria-controls': menuId,
-        onClick: handleButtonClick,
-        onKeyDown: handleButtonKeyDown,
+        'onClick': handleButtonClick,
+        'onKeyDown': handleButtonKeyDown,
       }, {
         isOpen,
         openMenu,

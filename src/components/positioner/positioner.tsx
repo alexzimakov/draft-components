@@ -1,9 +1,9 @@
 import {
-  useLayoutEffect,
-  useState,
   type CSSProperties,
   type ReactNode,
   type RefCallback,
+  useLayoutEffect,
+  useState,
 } from 'react';
 import { type Alignment, type Placement, type Rect } from './types';
 import { calcPosition } from './calc-position';

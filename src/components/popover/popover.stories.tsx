@@ -1,8 +1,8 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react';
 import {
   Popover,
-  type PopoverPlacement,
   type PopoverAlignment,
+  type PopoverPlacement,
 } from './popover';
 import { useState } from 'react';
 import { Button } from '../button';

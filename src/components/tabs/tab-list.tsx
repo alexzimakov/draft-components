@@ -1,8 +1,8 @@
 import {
-  useRef,
   type ComponentPropsWithoutRef,
   type FocusEvent,
   type KeyboardEvent,
+  useRef,
 } from 'react';
 import { KeyboardKeys } from '../../lib/keyboard-keys';
 import { assertIfNullable } from '../../lib/helpers';

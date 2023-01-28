@@ -1,9 +1,9 @@
 import {
-  isValidElement,
   type MutableRefObject,
   type ReactElement,
   type Ref,
   type RefCallback,
+  isValidElement,
 } from 'react';
 
 export type ClassNamesObject = { [className: string]: unknown };

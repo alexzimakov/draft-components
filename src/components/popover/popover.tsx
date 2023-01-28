@@ -1,14 +1,14 @@
 import {
+  type CSSProperties,
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+  type RefCallback,
   cloneElement,
   forwardRef,
   useCallback,
   useImperativeHandle,
   useRef,
   useState,
-  type CSSProperties,
-  type ComponentPropsWithoutRef,
-  type ReactNode,
-  type RefCallback,
 } from 'react';
 import {
   classNames,
@@ -22,9 +22,9 @@ import { useFocusTrap } from '../../hooks/use-focus-trap';
 import { usePageClick } from './use-page-click';
 import {
   Positioner,
-  type PositionerProps,
   type PositionerAnchorRenderFn,
   type PositionerContentRenderFn,
+  type PositionerProps,
 } from '../positioner';
 
 export type PopoverRef = {

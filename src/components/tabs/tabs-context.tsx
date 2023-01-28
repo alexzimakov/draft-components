@@ -1,10 +1,10 @@
 import {
+  type ReactNode,
   createContext,
   useCallback,
   useContext,
   useId,
   useState,
-  type ReactNode,
 } from 'react';
 import { type TabName, type TabSetter } from './types';
 

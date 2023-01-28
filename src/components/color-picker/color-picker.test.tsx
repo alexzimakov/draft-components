@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import { screen, render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { ColorPicker } from './color-picker';
 
 it('renders without errors', () => {

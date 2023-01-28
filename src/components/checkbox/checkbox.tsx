@@ -1,4 +1,4 @@
-import { forwardRef, type ComponentPropsWithRef } from 'react';
+import { type ComponentPropsWithRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 type CheckboxHTMLProps = ComponentPropsWithRef<'input'>;
@@ -8,39 +8,6 @@ export type CheckboxProps = CheckboxBaseProps & {
   hasMixedState?: boolean;
   onToggle?: CheckboxToggleHandler;
 };
-
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  function Checkbox({
-    hasMixedState = false,
-    style = {},
-    className = '',
-    onChange,
-    onToggle,
-    ...props
-  }, ref) {
-    return (
-      <label style={style} className={classNames('dc-checkbox', className)}>
-        <input
-          {...props}
-          ref={ref}
-          type="checkbox"
-          className="dc-checkbox__input"
-          onChange={(event) => {
-            onChange?.(event);
-            onToggle?.(event.target.checked);
-          }}
-        />
-        <span
-          className="dc-checkbox__check"
-          data-testid="checkbox-check"
-          aria-hidden={true}
-        >
-          {hasMixedState ? dashIcon : checkIcon}
-        </span>
-      </label>
-    );
-  }
-);
 
 const checkIcon = (
   <svg
@@ -79,4 +46,37 @@ const dashIcon = (
       strokeLinecap="round"
     />
   </svg>
+);
+
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
+  function Checkbox({
+    hasMixedState = false,
+    style = {},
+    className = '',
+    onChange,
+    onToggle,
+    ...props
+  }, ref) {
+    return (
+      <label style={style} className={classNames('dc-checkbox', className)}>
+        <input
+          {...props}
+          ref={ref}
+          type="checkbox"
+          className="dc-checkbox__input"
+          onChange={(event) => {
+            onChange?.(event);
+            onToggle?.(event.target.checked);
+          }}
+        />
+        <span
+          className="dc-checkbox__check"
+          data-testid="checkbox-check"
+          aria-hidden={true}
+        >
+          {hasMixedState ? dashIcon : checkIcon}
+        </span>
+      </label>
+    );
+  }
 );

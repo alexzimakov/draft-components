@@ -1,14 +1,14 @@
-import { DateRange, type DateISORange } from './date-range';
+import { type DateISORange, DateRange } from './date-range';
 import {
+  type DateISO,
+  type Weekday,
   isSameDay,
   isValidDateISO,
   parseDateISO,
-  type DateISO,
-  type Weekday,
 } from './date-helpers';
 import { classNames } from '../../lib/react-helpers';
 import { parseMinMaxProps } from './parse-min-max-props';
-import { useState, type ComponentPropsWithoutRef } from 'react';
+import { type ComponentPropsWithoutRef, useState } from 'react';
 import { Calendar, type CalendarProps } from './calendar';
 
 type DateRangePickerHTMLProps = ComponentPropsWithoutRef<'div'>;
@@ -91,12 +91,12 @@ export function DateRangePicker({
         onHoverDay={updateRange}
         onFocusDay={updateRange}
         onSelectDay={(date) => {
-          if (!start) {
-            setStart(date);
-          } else {
+          if (start) {
             setStart(null);
             setEnd(null);
             onChangeValue(DateRange.create(start, date).toDateISORange());
+          } else {
+            setStart(date);
           }
         }}
       />

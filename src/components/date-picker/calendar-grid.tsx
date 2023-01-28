@@ -2,6 +2,7 @@ import { type KeyboardEvent } from 'react';
 import { KeyboardKeys } from '../../lib/keyboard-keys';
 import {
   DAYS_IN_WEEK,
+  type Weekday,
   addDays,
   addMonths,
   addYears,
@@ -12,7 +13,6 @@ import {
   isSameDay,
   isWeekend,
   toDateISO,
-  type Weekday,
 } from './date-helpers';
 import { CalendarGridHead } from './calendar-grid-head';
 import { CalendarDay, type CalendarDayProps } from './calendar-day';

@@ -19,8 +19,8 @@ it('renders without errors', () => {
 it('should forward extra attrs to underlying <select />', () => {
   const attrs = {
     'aria-label': 'Browser',
-    name: 'browser',
-    required: true,
+    'name': 'browser',
+    'required': true,
   };
   render(
     <Select {...attrs}>

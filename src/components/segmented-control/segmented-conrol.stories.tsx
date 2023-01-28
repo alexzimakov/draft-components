@@ -32,9 +32,9 @@ export const Basic: ComponentStory<typeof SegmentedControl> = (args) => {
 };
 Basic.args = {
   'aria-label': 'Category',
-  disabled: false,
-  size: 'md',
-  options: [
+  'disabled': false,
+  'size': 'md',
+  'options': [
     { value: 'newest', label: 'Newest' },
     { value: 'popular', label: 'Popular' },
     { value: 'topRated', label: 'Top rated' },

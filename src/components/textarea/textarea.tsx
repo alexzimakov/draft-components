@@ -1,8 +1,8 @@
 import {
-  forwardRef,
-  useState,
   type ComponentPropsWithRef,
   type ReactNode,
+  forwardRef,
+  useState,
 } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { Caption } from '../caption';
@@ -27,7 +27,22 @@ export type TextareaProps = TextareaHTMLProps & {
   size?: TextareaSize;
   width?: TextareaWidth;
   onChangeValue?: TextAreaChangeValueHandler;
-}
+};
+
+const getCharactersCountMessage: CharacterCountRenderFn = ({
+  maxCharacters,
+  characterCount,
+}) => {
+  const charsRemaining = maxCharacters - characterCount;
+  const characters = (
+    <span style={{ fontVariant: 'tabular-nums' }}>
+      {charsRemaining === 1
+        ? `${charsRemaining} character`
+        : `${charsRemaining} characters`}
+    </span>
+  );
+  return <>You have {characters} remaining</>;
+};
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   function Textarea({
@@ -96,18 +111,3 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     );
   }
 );
-
-const getCharactersCountMessage: CharacterCountRenderFn = ({
-  maxCharacters,
-  characterCount,
-}) => {
-  const charsRemaining = maxCharacters - characterCount;
-  const characters = (
-    <span style={{ fontVariant: 'tabular-nums' }}>
-      {charsRemaining === 1
-        ? `${charsRemaining} character`
-        : `${charsRemaining} characters`}
-    </span>
-  );
-  return <>You have {characters} remaining</>;
-};

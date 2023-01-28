@@ -1,10 +1,10 @@
 import {
+  type CSSProperties,
+  type ComponentPropsWithoutRef,
+  type RefObject,
   useEffect,
   useId,
   useRef,
-  type ComponentPropsWithoutRef,
-  type CSSProperties,
-  type RefObject,
 } from 'react';
 import { classNames, focusElement } from '../../lib/react-helpers';
 import {

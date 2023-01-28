@@ -1,7 +1,7 @@
 import {
-  useRef,
-  useLayoutEffect,
   type ComponentPropsWithoutRef,
+  useLayoutEffect,
+  useRef,
 } from 'react';
 import { assertIfNullable } from '../../lib/helpers';
 import { classNames } from '../../lib/react-helpers';

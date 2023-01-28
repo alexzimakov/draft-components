@@ -1,4 +1,4 @@
-import { forwardRef, type ComponentPropsWithRef, type ReactNode } from 'react';
+import { type ComponentPropsWithRef, type ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 type TextInputHTMLProps = ComponentPropsWithRef<'input'>;

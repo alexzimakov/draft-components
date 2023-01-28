@@ -1,8 +1,8 @@
 import {
-  forwardRef,
-  useState,
   type ComponentPropsWithoutRef,
   type ElementType,
+  forwardRef,
+  useState,
 } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { TextInput, type TextInputProps } from '../text-input';

@@ -1,4 +1,4 @@
-import { forwardRef, type ComponentPropsWithRef } from 'react';
+import { type ComponentPropsWithRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 type RadioHTMLProps = ComponentPropsWithRef<'input'>;
@@ -9,6 +9,39 @@ export type RadioProps = RadioBaseProps & {
   icon?: RadioIcon;
   onToggle?: RadioToggleHandler;
 };
+
+const checkIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="24"
+    height="24"
+    className="dc-radio__icon"
+    data-testid="radio-check-icon"
+  >
+    <path
+      d="M7 12.7222L11 16.5L17 8"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+const dotIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="24"
+    height="24"
+    className="dc-radio__icon"
+    data-testid="radio-dot-icon"
+  >
+    <circle cx="12" cy="12" r="5" fill="currentColor" />
+  </svg>
+);
 
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio({
   icon = 'dot',
@@ -49,36 +82,3 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio({
     </label>
   );
 });
-
-const checkIcon = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    width="24"
-    height="24"
-    className="dc-radio__icon"
-    data-testid="radio-check-icon"
-  >
-    <path
-      d="M7 12.7222L11 16.5L17 8"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-const dotIcon = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    width="24"
-    height="24"
-    className="dc-radio__icon"
-    data-testid="radio-dot-icon"
-  >
-    <circle cx="12" cy="12" r="5" fill="currentColor" />
-  </svg>
-);

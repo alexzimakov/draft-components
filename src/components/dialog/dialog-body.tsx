@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ComponentPropsWithoutRef } from 'react';
+import { type ComponentPropsWithoutRef, useEffect, useRef } from 'react';
 import { assertIfNullable } from '../../lib/helpers';
 import { classNames } from '../../lib/react-helpers';
 
@@ -48,9 +48,9 @@ export function DialogBody({
       }
     };
 
-    const resizeObserver = typeof ResizeObserver !== 'undefined'
-      ? new ResizeObserver(changeShadowsVisibility)
-      : null;
+    const resizeObserver = typeof ResizeObserver === 'undefined'
+      ? null
+      : new ResizeObserver(changeShadowsVisibility);
 
     resizeObserver?.observe(el);
     el.addEventListener('scroll', changeShadowsVisibility);

@@ -10,8 +10,8 @@ it('renders without errors', () => {
 it('should forward extra props', () => {
   const text = 'You can use letters, numbers & periods';
   const attrs = {
-    dir: 'ltr',
-    spellCheck: false,
+    'dir': 'ltr',
+    'spellCheck': false,
     'data-name': 'caption',
   };
   render(<Caption {...attrs}>{text}</Caption>);

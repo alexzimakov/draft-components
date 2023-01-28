@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { getStartOfDay, type Weekday } from './date-helpers';
+import { type Weekday, getStartOfDay } from './date-helpers';
 import { CalendarHeader, type CalendarHeaderProps } from './calendar-header';
 import { CalendarGrid, type CalendarGridProps } from './calendar-grid';
 

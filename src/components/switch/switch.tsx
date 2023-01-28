@@ -1,4 +1,4 @@
-import { forwardRef, type ComponentPropsWithRef } from 'react';
+import { type ComponentPropsWithRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 type SwitchHTMLProps = ComponentPropsWithRef<'input'>;
@@ -8,6 +8,26 @@ export type SwitchProps = SwitchBaseProps & {
   showCheckIcon?: boolean,
   onToggle?: SwitchToggleHandler;
 };
+
+const checkIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 20 20"
+    width="20"
+    height="20"
+    className="dc-switch__icon"
+    data-testid="switch-check-icon"
+  >
+    <path
+      d="M6 10.353L9 13L13.5 7"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
 
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   function Switch({
@@ -42,24 +62,4 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
       </label>
     );
   }
-);
-
-const checkIcon = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 20 20"
-    width="20"
-    height="20"
-    className="dc-switch__icon"
-    data-testid="switch-check-icon"
-  >
-    <path
-      d="M6 10.353L9 13L13.5 7"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
 );

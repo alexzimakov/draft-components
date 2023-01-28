@@ -1,7 +1,7 @@
 import {
-  forwardRef,
   type ComponentPropsWithRef,
   type ReactNode,
+  forwardRef,
 } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
@@ -23,6 +23,14 @@ export type AvatarProps = ComponentPropsWithRef<'div'> & {
   src?: string;
   alt?: string;
   placeholder?: ReactNode;
+};
+
+const avatarSizesPx: Record<AvatarSize, number> = {
+  xs: 24,
+  sm: 32,
+  md: 40,
+  lg: 48,
+  xl: 56,
 };
 
 export const Avatar = forwardRef<
@@ -74,11 +82,3 @@ export const Avatar = forwardRef<
     </div>
   );
 });
-
-const avatarSizesPx: Record<AvatarSize, number> = {
-  xs: 24,
-  sm: 32,
-  md: 40,
-  lg: 48,
-  xl: 56,
-};
