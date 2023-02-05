@@ -96,6 +96,7 @@ it('should toggle the menu by click on the menu button', async () => {
 
   await user.click(screen.getByText(label));
   screen.getByRole('menu');
+  expect(screen.getByTestId('menu-button')).toHaveFocus();
 
   await user.click(screen.getByText(label));
   await waitFor(() => expect(screen.queryByRole('menu')).toBeNull());
@@ -159,16 +160,6 @@ describe('should open the menu and focus the first menu item', () => {
 
     return { user, label, actions };
   };
-
-  it('when click on the menu button', async () => {
-    const { user, label } = renderMenu();
-
-    expect(screen.queryByRole('menu')).toBeNull();
-    await user.click(screen.getByText(label));
-    await screen.findByRole('menu');
-    const [firstMenuItem] = screen.getAllByRole('menuitem');
-    expect(firstMenuItem).toHaveFocus();
-  });
 
   it('when the menu button is focused and ArrowDown key pressed', async () => {
     const { user } = renderMenu();

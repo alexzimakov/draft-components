@@ -1,4 +1,5 @@
 .dc-menu {
+  --dc-menu-item-icon-gap: 8px;
   --dc-menu-item-color: var(--dc-button-default-plain-text-color);
   --dc-menu-item-bg: var(--dc-button-default-bg-hover);
   --dc-menu-item-color-destructive: var(--dc-button-danger-plain-text-color);
@@ -35,6 +36,7 @@
   width: 100%;
   height: 32px;
   padding: 0 12px;
+  text-align: left;
   white-space: nowrap;
   border: none;
   border-radius: 6px;
@@ -50,9 +52,16 @@
   background: var(--dc-menu-item-bg);
 }
 
-.dc-menu-btn__icon {
-  display: inline-flex;
-  margin-right: 8px;
+.dc-menu-btn__label {
+  flex-grow: 1;
+}
+
+.dc-menu-btn__label_gap_left {
+  padding-left: var(--dc-menu-item-icon-gap);
+}
+
+.dc-menu-btn__label_gap_right {
+  padding-right: var(--dc-menu-item-icon-gap);
 }
 
 .dc-menu-btn_destructive {

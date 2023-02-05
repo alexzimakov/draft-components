@@ -27,7 +27,7 @@ import {
 } from '../popover';
 import { MenuItem, type MenuItemProps } from './menu-item';
 
-export type MenuAnchorRenderFn = (props: {
+export type MenuButtonRenderFn = (props: {
   ref: RefCallback<HTMLElement>;
   id: string;
   'aria-haspopup': true;
@@ -51,7 +51,8 @@ export type MenuProps = {
   alignment?: MenuAlignment;
   onOpen?: () => void;
   onClose?: () => void;
-  button: ReactNode | MenuAnchorRenderFn;
+  button: ReactNode | MenuButtonRenderFn;
+  buttonClassName?: string;
   buttonAppearance?: ButtonAppearance;
   buttonVariant?: ButtonVariant;
 } & MenuHTMLProps;
@@ -60,6 +61,7 @@ export function Menu({
   defaultIsOpen = false,
   placement = 'bottom',
   alignment = 'start',
+  buttonClassName = '',
   buttonAppearance = 'default',
   buttonVariant = 'filled',
   button,
@@ -158,12 +160,11 @@ export function Menu({
   const handleButtonClick: MouseEventHandler<HTMLElement> = (event) => {
     if (isOpen) {
       closeMenu();
-      focusMenuButton();
     } else {
       openMenu();
-      window.setTimeout(focusFirstMenuItem);
     }
 
+    focusMenuButton();
     event.preventDefault();
     event.stopPropagation();
   };
@@ -241,6 +242,7 @@ export function Menu({
 
     return (
       <Button
+        data-testid="menu-button"
         ref={ref}
         id={buttonId}
         aria-haspopup={true}
@@ -248,6 +250,7 @@ export function Menu({
         aria-controls={menuId}
         onClick={handleButtonClick}
         onKeyDown={handleButtonKeyDown}
+        className={buttonClassName}
         appearance={buttonAppearance}
         variant={buttonVariant}
       >

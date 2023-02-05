@@ -44,18 +44,18 @@ Basic.args = {
 
 export const WithIcon: ComponentStory<typeof Menu> = (args) => (
   <Menu {...args}>
-    <MenuItem icon={<ArrowDownTrayIcon width={16} height={16} />}>
+    <MenuItem iconLeft={<ArrowDownTrayIcon width={16} height={16} />}>
       Save
     </MenuItem>
-    <MenuItem icon={<PencilIcon width={16} height={16} />}>
+    <MenuItem iconLeft={<PencilIcon width={16} height={16} />}>
       Rename
     </MenuItem>
-    <MenuItem icon={<DocumentDuplicateIcon width={16} height={16} />}>
+    <MenuItem iconLeft={<DocumentDuplicateIcon width={16} height={16} />}>
       Rename
     </MenuItem>
     <MenuSeparator />
     <MenuItem
-      icon={<TrashIcon width={16} height={16} />}
+      iconLeft={<TrashIcon width={16} height={16} />}
       appearance="destructive"
     >
       Delete
