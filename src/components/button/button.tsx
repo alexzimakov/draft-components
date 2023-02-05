@@ -9,16 +9,17 @@ export type ButtonRenderFn = (props: {
   className: string;
   children: JSX.Element;
 }) => JSX.Element;
-export type ButtonProps = ComponentPropsWithRef<'button'> & {
+export type ButtonProps = {
   isBlock?: boolean;
   loading?: boolean;
   size?: ButtonSize,
   variant?: ButtonVariant;
   appearance?: ButtonAppearance;
-  icon?: ReactNode;
+  iconLeft?: ReactNode;
+  iconRight?: ReactNode;
   caption?: ReactNode;
   renderAs?: ButtonRenderFn;
-};
+} & ComponentPropsWithRef<'button'>;
 
 export const Button = forwardRef<
   HTMLButtonElement,
@@ -31,35 +32,43 @@ export const Button = forwardRef<
   size = 'sm',
   variant = 'filled',
   appearance = 'default',
-  icon = null,
+  iconLeft = null,
+  iconRight = null,
   caption = null,
   renderAs,
   className,
   children,
   ...props
 }, ref) {
-  const shouldRenderIcon = Boolean(icon);
-  const shouldRenderLabel = Boolean(children);
-  const shouldRenderCaption = Boolean(caption);
-
-  let leadingAddOn: ReactNode = null;
+  let addOnLeft: ReactNode = null;
   if (loading) {
-    leadingAddOn = (
+    addOnLeft = (
       <span data-testid="button-spinner" className="dc-button__spinner">
         <Spinner size="1.15em" />
       </span>
     );
-  } else if (shouldRenderIcon) {
-    leadingAddOn = (
+  } else if (iconLeft) {
+    addOnLeft = (
       <span data-testid="button-icon" className="dc-button__icon">
-        {icon}
+        {iconLeft}
       </span>
     );
   }
 
+  let addOnRight = null;
+  if (iconRight) {
+    addOnRight = (
+      <span data-testid="button-icon" className="dc-button__icon">
+        {iconRight}
+      </span>
+    );
+  }
+
+  const shouldRenderLabel = Boolean(children);
+  const shouldRenderCaption = Boolean(caption);
   const content = (
     <>
-      {leadingAddOn}
+      {addOnLeft}
       {shouldRenderLabel && (
         <span className="dc-button__body">
           <span className="dc-button__label">{children}</span>
@@ -68,6 +77,7 @@ export const Button = forwardRef<
           )}
         </span>
       )}
+      {addOnRight}
     </>
   );
 
@@ -75,7 +85,6 @@ export const Button = forwardRef<
     'dc-button': true,
     'dc-button_block': isBlock,
     'dc-button_loading': loading,
-    'dc-button_has_icon': shouldRenderIcon,
     'dc-button_has_caption': shouldRenderCaption,
     [`dc-button_${size}`]: size,
     [`dc-button_appearance_${appearance}`]: appearance,

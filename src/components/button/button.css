@@ -185,10 +185,18 @@
   justify-content: center;
 }
 
-.dc-button__icon,
-.dc-button__spinner {
+.dc-button__spinner,
+.dc-button__icon {
   flex: none;
+}
+
+.dc-button__spinner,
+.dc-button__icon:first-child {
   margin-right: 0.5em;
+}
+
+.dc-button__icon:last-child {
+  margin-left: 0.5em;
 }
 
 .dc-button__body {
@@ -205,6 +213,7 @@
 .dc-button_icon-only .dc-button__icon,
 .dc-button_icon-only .dc-button__spinner {
   margin-right: 0;
+  margin-left: 0;
 }
 
 .dc-button_has_caption .dc-button__icon,

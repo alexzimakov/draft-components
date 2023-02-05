@@ -11,10 +11,18 @@ it('renders without errors', () => {
   expect(screen.getByRole('button')).toHaveTextContent(label);
 });
 
-it('renders with icon', () => {
+it('renders with left icon', () => {
   const iconTestId = 'leading-icon';
   const icon = <MoonIcon data-testid={iconTestId} />;
-  render(<Button icon={icon}>With icon</Button>);
+  render(<Button iconLeft={icon}>With icon</Button>);
+
+  within(screen.getByRole('button')).getByTestId(iconTestId);
+});
+
+it('renders with right icon', () => {
+  const iconTestId = 'leading-icon';
+  const icon = <MoonIcon data-testid={iconTestId} />;
+  render(<Button iconRight={icon}>With icon</Button>);
 
   within(screen.getByRole('button')).getByTestId(iconTestId);
 });

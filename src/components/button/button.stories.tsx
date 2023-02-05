@@ -3,6 +3,7 @@ import { StorySection } from '../../storybook/story-section';
 import { MoonIcon } from '@heroicons/react/24/solid';
 import {
   BookOpenIcon,
+  BuildingOffice2Icon,
   ChatBubbleLeftIcon,
   MagnifyingGlassIcon,
   ShoppingBagIcon,
@@ -16,7 +17,7 @@ import {
   type ButtonVariant,
 } from './button';
 
-const icons = {
+const Icons = {
   BookOpen: (
     <BookOpenIcon aria-hidden={true} width="1.25em" height="1.25em" />
   ),
@@ -32,6 +33,9 @@ const icons = {
   ShoppingBag: (
     <ShoppingBagIcon aria-hidden={true} width="1.25em" height="1.25em" />
   ),
+  BuildingOffice2: (
+    <BuildingOffice2Icon aria-hidden={true} width="1.25em" height="1.25em" />
+  ),
 };
 
 export default {
@@ -46,19 +50,11 @@ export default {
     disabled: false,
   },
   argTypes: {
-    icon: {
-      options: ['No icon', ...Object.keys(icons)],
-      mapping: { 'No icon': null, ...icons },
-      defaultValue: 'No icon',
-      control: {
-        type: 'select',
-        labels: {
-          BookOpen: 'Book open',
-          ChatBubbleOvalLeft: 'Chat bubble',
-          MagnifyingGlass: 'Magnifying glass',
-          ShoppingBag: 'Shopping bag',
-        },
-      },
+    iconLeft: {
+      control: { disable: true },
+    },
+    iconRight: {
+      control: { disable: true },
     },
     caption: {
       control: 'text',
@@ -91,15 +87,21 @@ Disabled.args = {
   disabled: true,
 };
 
-export const WithIcon = Basic.bind({});
-WithIcon.args = {
-  icon: 'ChatBubbleOvalLeft',
+export const WithLeftIcon = Basic.bind({});
+WithLeftIcon.args = {
+  iconLeft: Icons.ChatBubbleOvalLeft,
   children: 'Message',
+};
+
+export const WithRightIcon = Basic.bind({});
+WithRightIcon.args = {
+  iconRight: Icons.Moon,
+  children: 'Focus',
 };
 
 export const WithCaption = Basic.bind({});
 WithCaption.args = {
-  icon: 'ShoppingBag',
+  iconLeft: Icons.ShoppingBag,
   caption: 'Total $59.00',
   children: 'Buy now',
 };
@@ -123,8 +125,8 @@ Sizes.parameters = {
   },
 };
 Sizes.args = {
-  children: 'Read the docs',
-  icon: 'BookOpen',
+  children: 'New organization',
+  iconRight: Icons.BuildingOffice2,
 };
 
 export const Styles = (args: ButtonProps) => {
@@ -170,12 +172,12 @@ Styles.parameters = {
 };
 Styles.args = {
   children: 'Do not disturb',
-  icon: 'Moon',
+  iconLeft: Icons.Moon,
 };
 
 export const IconOnlyButton: ComponentStory<typeof IconButton> = (args) => (
   <IconButton {...args} />
 );
 IconOnlyButton.args = {
-  icon: 'MagnifyingGlass',
+  icon: Icons.MagnifyingGlass,
 };
