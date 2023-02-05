@@ -309,7 +309,7 @@ function getMenuItems(menuId: string): HTMLButtonElement[] {
   }
 
   const nodes = menuEl.querySelectorAll<HTMLButtonElement>(
-    'button[role="menuitem"]'
+    'button[role="menuitem"], button[role="menuitemradio"]'
   );
   return Array.from(nodes);
 }

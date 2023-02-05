@@ -218,49 +218,105 @@ it('should open the menu and focus the last menu item', async () => {
   expect(menuItems[menuItems.length - 1]).toHaveFocus();
 });
 
-it('should navigate through the menu items using the keyboard', async () => {
-  const user = userEvent.setup();
-  const label = 'Actions';
-  const actions = ['Duplicate', 'Rename', 'Delete'];
-  render(
-    <Menu button={label}>
-      <MenuItem>{actions[0]}</MenuItem>
-      <MenuItem>{actions[1]}</MenuItem>
-      <MenuSeparator />
-      <MenuItem>{actions[2]}</MenuItem>
-    </Menu>
-  );
+it(
+  'should navigate through the navigation menu using the keyboard',
+  async () => {
+    const user = userEvent.setup();
+    const label = 'Actions';
+    const actions = ['Duplicate', 'Rename', 'Delete'];
+    render(
+      <Menu button={label}>
+        <MenuItem>{actions[0]}</MenuItem>
+        <MenuItem>{actions[1]}</MenuItem>
+        <MenuSeparator />
+        <MenuItem>{actions[2]}</MenuItem>
+      </Menu>
+    );
 
-  await user.tab();
-  await user.keyboard('{ArrowUp}');
+    await user.tab();
+    await user.keyboard('{ArrowUp}');
 
-  const [first, second, third] = screen.getAllByRole('menuitem');
-  expect(third).toHaveFocus();
+    const [first, second, third] = screen.getAllByRole('menuitem');
+    expect(third).toHaveFocus();
 
-  await user.keyboard('{ArrowDown}');
-  expect(first).toHaveFocus();
+    await user.keyboard('{ArrowDown}');
+    expect(first).toHaveFocus();
 
-  await user.keyboard('{ArrowDown}');
-  expect(second).toHaveFocus();
+    await user.keyboard('{ArrowDown}');
+    expect(second).toHaveFocus();
 
-  await user.keyboard('{ArrowUp}');
-  expect(first).toHaveFocus();
+    await user.keyboard('{ArrowUp}');
+    expect(first).toHaveFocus();
 
-  await user.keyboard('{ArrowUp}');
-  expect(third).toHaveFocus();
+    await user.keyboard('{ArrowUp}');
+    expect(third).toHaveFocus();
 
-  await user.keyboard('{home}');
-  expect(first).toHaveFocus();
+    await user.keyboard('{home}');
+    expect(first).toHaveFocus();
 
-  await user.keyboard('{end}');
-  expect(third).toHaveFocus();
+    await user.keyboard('{end}');
+    expect(third).toHaveFocus();
 
-  await user.keyboard('d');
-  expect(first).toHaveFocus();
+    await user.keyboard('d');
+    expect(first).toHaveFocus();
 
-  await user.keyboard('i');
-  expect(first).toHaveFocus();
-});
+    await user.keyboard('i');
+    expect(first).toHaveFocus();
+  }
+);
+
+it(
+  'should navigate through the options picker using the keyboard',
+  async () => {
+    const user = userEvent.setup();
+    const label = 'Actions';
+    const colors = ['Red', 'Green'];
+    const actions = ['Reset'];
+    render(
+      <Menu button={label}>
+        <MenuItem role="menuitemradio" aria-checked={true}>
+          {colors[0]}
+        </MenuItem>
+        <MenuItem role="menuitemradio" aria-checked={true}>
+          {colors[1]}
+        </MenuItem>
+        <MenuSeparator />
+        <MenuItem>{actions[0]}</MenuItem>
+      </Menu>
+    );
+
+    await user.tab();
+    await user.keyboard('{ArrowUp}');
+
+    const [red, green] = screen.getAllByRole('menuitemradio');
+    const [reset] = screen.getAllByRole('menuitem');
+    expect(reset).toHaveFocus();
+
+    await user.keyboard('{ArrowDown}');
+    expect(red).toHaveFocus();
+
+    await user.keyboard('{ArrowDown}');
+    expect(green).toHaveFocus();
+
+    await user.keyboard('{ArrowUp}');
+    expect(red).toHaveFocus();
+
+    await user.keyboard('{ArrowUp}');
+    expect(reset).toHaveFocus();
+
+    await user.keyboard('{home}');
+    expect(red).toHaveFocus();
+
+    await user.keyboard('{end}');
+    expect(reset).toHaveFocus();
+
+    await user.keyboard('r');
+    expect(red).toHaveFocus();
+
+    await user.keyboard('r');
+    expect(reset).toHaveFocus();
+  }
+);
 
 it('should focus on the menu item when hovering over the mouse', async () => {
   const user = userEvent.setup();
