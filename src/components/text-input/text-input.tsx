@@ -5,8 +5,7 @@ type TextInputHTMLProps = ComponentPropsWithRef<'input'>;
 type TextInputBaseProps = Omit<TextInputHTMLProps,
   | 'type'
   | 'width'
-  | 'size'
-  | 'prefix'>;
+  | 'size'>;
 export type TextInputType =
   | 'date'
   | 'datetime-local'
@@ -35,8 +34,8 @@ export type TextInputProps = TextInputBaseProps & {
   width?: TextInputWidth;
   widthCh?: number;
   size?: TextInputSize;
-  prefix?: ReactNode;
-  suffix?: ReactNode;
+  leftAddOn?: ReactNode;
+  rightAddOn?: ReactNode;
   htmlSize?: TextInputHTMLProps['size'];
   onChangeValue?: TextInputChangeValueHandler;
 };
@@ -49,8 +48,8 @@ export const TextInput = forwardRef<
   isBlock = false,
   type = 'text',
   size = 'md',
-  prefix,
-  suffix,
+  leftAddOn,
+  rightAddOn,
   style,
   className,
   disabled,
@@ -60,24 +59,24 @@ export const TextInput = forwardRef<
   onChangeValue,
   ...props
 }, ref) {
-  const shouldRenderPrefix = Boolean(prefix);
-  const shouldRenderSuffix = Boolean(suffix);
+  const showLeftAddOn = Boolean(leftAddOn);
+  const showRightAddOn = Boolean(rightAddOn);
 
   return (
     <div
       style={style}
       className={classNames(className, 'dc-text-input__container', {
         [`dc-text-input__container_${size}`]: size,
+        'dc-text-input__container_block': isBlock,
         'dc-text-input__container_disabled': disabled,
         'dc-text-input__container_has_error': hasError,
-        'dc-text-input__container_block': isBlock,
-        'dc-text-input__container_has_prefix': shouldRenderPrefix,
-        'dc-text-input__container_has_suffix': shouldRenderSuffix,
+        'dc-text-input__container_has_left-addon': showLeftAddOn,
+        'dc-text-input__container_has_right-addon': showRightAddOn,
       })}
     >
-      {shouldRenderPrefix && (
-        <div className="dc-text-input__prefix">
-          {prefix}
+      {showLeftAddOn && (
+        <div className="dc-text-input__left-addon">
+          {leftAddOn}
         </div>
       )}
       <input
@@ -95,9 +94,9 @@ export const TextInput = forwardRef<
           onChangeValue?.(event.target.value);
         }}
       />
-      {shouldRenderSuffix && (
-        <div className="dc-text-input__suffix">
-          {suffix}
+      {showRightAddOn && (
+        <div className="dc-text-input__right-addon">
+          {rightAddOn}
         </div>
       )}
     </div>

@@ -99,7 +99,7 @@ function RegisterForm() {
           name="phone"
           type="tel"
           isBlock={true}
-          prefix={<PhoneIcon width={16} height={16} />}
+          leftAddOn={<PhoneIcon width={16} height={16} />}
         />
       </FormField>
       <FormField label="Email:" labelFor="email">
@@ -108,7 +108,7 @@ function RegisterForm() {
           name="email"
           type="email"
           isBlock={true}
-          prefix={<EnvelopeIcon width={16} height={16} />}
+          leftAddOn={<EnvelopeIcon width={16} height={16} />}
         />
       </FormField>
       <FormField

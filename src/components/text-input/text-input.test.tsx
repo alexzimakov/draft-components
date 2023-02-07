@@ -23,24 +23,24 @@ it('should forward extra props to underlying <input />', () => {
   expect(inputEl).toHaveAttribute('placeholder', attrs.placeholder);
 });
 
-it('renders with prefix', () => {
+it('renders with left add-on', () => {
   const prefix = 'USD';
-  render(<TextInput prefix={prefix} />);
+  render(<TextInput leftAddOn={prefix} />);
 
   screen.getByText(prefix);
 });
 
-it('renders with suffix', () => {
+it('renders with right add-on', () => {
   const suffix = 'kg';
-  render(<TextInput suffix={suffix} />);
+  render(<TextInput rightAddOn={suffix} />);
 
   screen.getByText(suffix);
 });
 
-it('renders with prefix and suffix', () => {
+it('renders with left and right add-on', () => {
   const prefix = '$';
   const suffix = 'per item';
-  render(<TextInput prefix={prefix} suffix={suffix} />);
+  render(<TextInput leftAddOn={prefix} rightAddOn={suffix} />);
 
   screen.getByText(prefix);
   screen.getByText(suffix);

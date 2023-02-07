@@ -11,14 +11,14 @@ export default {
     isBlock: false,
     type: 'text',
     size: 'md',
-    prefix: '',
-    suffix: '',
+    leftAddOn: '',
+    rightAddOn: '',
   },
   argTypes: {
-    prefix: {
+    leftAddOn: {
       control: { type: 'text' },
     },
-    suffix: {
+    rightAddOn: {
       control: { type: 'text' },
     },
     onChangeValue: {
@@ -54,26 +54,29 @@ FullWidth.args = {
   isBlock: true,
 };
 
-export const Prefix = Basic.bind({});
-Prefix.args = {
+export const LeftAddOn = Basic.bind({});
+LeftAddOn.storyName = 'Left Add-on';
+LeftAddOn.args = {
   placeholder: '0.00',
   width: '4ch',
-  prefix: '€',
+  leftAddOn: '€',
 };
 
-export const Suffix = Basic.bind({});
-Suffix.args = {
+export const RightAddOn = Basic.bind({});
+RightAddOn.storyName = 'Right Add-on';
+RightAddOn.args = {
   placeholder: '0.00',
   width: '4ch',
-  suffix: 'kg',
+  rightAddOn: 'kg',
 };
 
-export const PrefixAndSuffix = Basic.bind({});
-PrefixAndSuffix.args = {
+export const LeftAndRightAddOn = Basic.bind({});
+LeftAndRightAddOn.storyName = 'Left and Right Add-on';
+LeftAndRightAddOn.args = {
   placeholder: '0.00',
   width: '4ch',
-  prefix: '$',
-  suffix: 'per item',
+  leftAddOn: '$',
+  rightAddOn: 'per item',
 };
 
 export const Widths: ComponentStory<typeof TextInput> = (args) => {
@@ -140,8 +143,8 @@ export const WithIcon: ComponentStory<typeof TextInput> = (args) => {
       alignItems: 'center',
       gap: '1rem',
     }}>
-      <TextInput {...args} prefix={envelope} />
-      <TextInput {...args} suffix={envelope} />
+      <TextInput {...args} leftAddOn={envelope} />
+      <TextInput {...args} rightAddOn={envelope} />
     </div>
   );
 };

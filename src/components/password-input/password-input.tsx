@@ -9,7 +9,7 @@ import { TextInput, type TextInputProps } from '../text-input';
 import { Tooltip } from '../tooltip';
 import { EyeIcon, EyeSlashIcon } from './icons';
 
-type PasswordInputBaseProps = Omit<TextInputProps, 'type' | 'suffix'>
+type PasswordInputBaseProps = Omit<TextInputProps, 'type' | 'rightAddOn'>
 export type PasswordInputProps = {
   isDefaultVisible?: boolean;
   showPasswordTitle?: string;
@@ -60,7 +60,7 @@ export const PasswordInput = forwardRef<
       className={classNames('dc-password-input', className)}
       ref={ref}
       type={type}
-      suffix={button}
+      rightAddOn={button}
     />
   );
 });
