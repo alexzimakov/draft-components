@@ -8,14 +8,16 @@ export type FormFieldRenderFn = (props: {
   required: boolean;
   hasError: boolean;
 }) => ReactNode;
-export type FormFieldProps = ComponentPropsWithoutRef<'div'> & {
+type FormFieldHTMLProps = ComponentPropsWithoutRef<'div'>;
+type FormFieldBaseProps = Omit<FormFieldHTMLProps, 'children'>;
+export type FormFieldProps = {
   required?: boolean;
   labelFor?: string;
   label?: ReactNode;
   caption?: ReactNode;
   error?: ReactNode;
   children: ReactNode | FormFieldRenderFn;
-}
+} & FormFieldBaseProps;
 
 export function FormField({
   required = false,
