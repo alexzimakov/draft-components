@@ -8,6 +8,7 @@
   --dc-radio-color-focus-ring: var(--dc-focus-ring-color);
 
   color-scheme: light;
+  display: inline-flex;
 }
 
 .dc-radio__input {

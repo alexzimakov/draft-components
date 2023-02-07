@@ -10,6 +10,7 @@
 }
 
 .dc-selection-control__input {
+  display: inline-flex;
   grid-area: input;
 }
 

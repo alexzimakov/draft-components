@@ -9,6 +9,7 @@
   --dc-checkbox-focus-ring-color: var(--dc-focus-ring-color);
 
   color-scheme: light;
+  display: inline-flex;
 }
 
 .dc-checkbox__input {

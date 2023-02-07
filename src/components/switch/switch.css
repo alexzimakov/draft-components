@@ -11,6 +11,7 @@
   --dc-switch-focus-ring-color: var(--dc-focus-ring-color);
 
   color-scheme: light;
+  display: inline-flex;
 }
 
 .dc-switch__input {
