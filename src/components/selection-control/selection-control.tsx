@@ -1,11 +1,16 @@
-import { type ComponentPropsWithoutRef, type ReactNode, useId } from 'react';
+import {
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+  cloneElement,
+  useId,
+} from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { Label } from '../label';
 import { Caption } from '../caption';
 
 export type SelectionControlRenderFn = (props: {
   id: string;
-}) => ReactNode;
+}) => JSX.Element;
 
 type SelectionControlHTMLProps = ComponentPropsWithoutRef<'div'>;
 type SelectionControlBaseProps = Omit<SelectionControlHTMLProps, 'children'>;
@@ -13,7 +18,7 @@ export type SelectionControlProps = {
   labelFor?: string;
   caption?: ReactNode;
   label: ReactNode;
-  children: ReactNode | SelectionControlRenderFn
+  children: JSX.Element | SelectionControlRenderFn
 } & SelectionControlBaseProps;
 
 export function SelectionControl({
@@ -33,7 +38,7 @@ export function SelectionControl({
       <div className="dc-selection-control__input">
         {typeof children === 'function'
           ? children({ id: controlId })
-          : children}
+          : cloneElement(children, { id: children.props.id || controlId })}
       </div>
       <Label className="dc-selection-control__label" htmlFor={controlId}>
         {label}
