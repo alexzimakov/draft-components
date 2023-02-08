@@ -65,7 +65,7 @@ export class Toaster {
     return this._id;
   }
 
-  showToast(toast: ToastParams, params?: { timeoutMs?: number }): ToastID {
+  showToast(toast: ToastParams): ToastID {
     const id = this._getNextId();
     const event: ToastShowEvent = new CustomEvent(TOAST_SHOW_EVENT, {
       detail: {
@@ -73,7 +73,7 @@ export class Toaster {
         toast: { ...toast, id },
       },
     });
-    const timeoutMs = toast.timeoutMs || params?.timeoutMs || this.timeoutMs;
+    const timeoutMs = toast.timeoutMs || this.timeoutMs;
 
     this.onShow?.(event.detail.toast);
     window.dispatchEvent(event);
