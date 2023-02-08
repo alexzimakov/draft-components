@@ -27,7 +27,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert({
   className,
   children,
   ...props
-}) {
+}, ref) {
   const shouldShowIcon = Boolean(icon);
   const shouldRenderHeading = Boolean(heading);
   const shouldRenderContent = Boolean(children);
@@ -35,6 +35,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert({
   return (
     <section
       {...props}
+      ref={ref}
       className={classNames(className, {
         'dc-alert': true,
         'dc-alert_has_icon': shouldShowIcon,
