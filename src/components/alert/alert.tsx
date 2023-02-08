@@ -1,6 +1,7 @@
-import { type ComponentPropsWithoutRef, type ReactNode } from 'react';
+import { type ComponentPropsWithRef, type ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
+type AlertHTMLProps = ComponentPropsWithRef<'section'>;
 export type AlertAppearance =
   | 'default'
   | 'info'
@@ -16,9 +17,9 @@ export type AlertProps = {
   heading?: ReactNode;
   variant?: AlertVariant;
   appearance?: AlertAppearance;
-} & ComponentPropsWithoutRef<'section'>;
+} & AlertHTMLProps;
 
-export function Alert({
+export const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert({
   icon = null,
   heading = null,
   variant = 'default',
@@ -26,7 +27,7 @@ export function Alert({
   className,
   children,
   ...props
-}: AlertProps) {
+}) {
   const shouldShowIcon = Boolean(icon);
   const shouldRenderHeading = Boolean(heading);
   const shouldRenderContent = Boolean(children);
@@ -52,4 +53,4 @@ export function Alert({
       </div>
     </section>
   );
-}
+});
