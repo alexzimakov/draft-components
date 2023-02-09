@@ -1,7 +1,7 @@
 import { type ComponentPropsWithRef, type ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
-type AlertHTMLProps = ComponentPropsWithRef<'section'>;
+type AlertHTMLProps = ComponentPropsWithRef<'div'>;
 export type AlertAppearance =
   | 'default'
   | 'info'
@@ -33,7 +33,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert({
   const shouldRenderContent = Boolean(children);
 
   return (
-    <section
+    <div
       {...props}
       ref={ref}
       className={classNames(className, {
@@ -52,6 +52,6 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert({
           <div className="dc-alert__content">{children}</div>
         )}
       </div>
-    </section>
+    </div>
   );
 });
