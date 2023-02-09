@@ -27,6 +27,9 @@ export type TextInputWidth =
   | '40ch';
 export type TextInputSize = 'sm' | 'md' | 'lg';
 export type TextInputChangeValueHandler = (value: string) => void;
+export type TextInputRenderAddOn = (props: {
+  className: string;
+}) => ReactNode;
 export type TextInputProps = TextInputBaseProps & {
   hasError?: boolean;
   isBlock?: boolean;
@@ -34,8 +37,8 @@ export type TextInputProps = TextInputBaseProps & {
   width?: TextInputWidth;
   widthCh?: number;
   size?: TextInputSize;
-  leftAddOn?: ReactNode;
-  rightAddOn?: ReactNode;
+  leftAddOn?: ReactNode | TextInputRenderAddOn;
+  rightAddOn?: ReactNode | TextInputRenderAddOn;
   htmlSize?: TextInputHTMLProps['size'];
   onChangeValue?: TextInputChangeValueHandler;
 };
@@ -59,8 +62,23 @@ export const TextInput = forwardRef<
   onChangeValue,
   ...props
 }, ref) {
-  const showLeftAddOn = Boolean(leftAddOn);
-  const showRightAddOn = Boolean(rightAddOn);
+  if (leftAddOn) {
+    const className = 'dc-text-input__left-addon';
+    if (typeof leftAddOn === 'function') {
+      leftAddOn = leftAddOn({ className });
+    } else {
+      leftAddOn = <div className={className}>{leftAddOn}</div>;
+    }
+  }
+
+  if (rightAddOn) {
+    const className = 'dc-text-input__right-addon';
+    if (typeof rightAddOn === 'function') {
+      rightAddOn = rightAddOn({ className });
+    } else {
+      rightAddOn = <div className={className}>{rightAddOn}</div>;
+    }
+  }
 
   return (
     <div
@@ -69,16 +87,12 @@ export const TextInput = forwardRef<
         [`dc-text-input__container_${size}`]: size,
         'dc-text-input__container_block': isBlock,
         'dc-text-input__container_disabled': disabled,
-        'dc-text-input__container_has_error': hasError,
-        'dc-text-input__container_has_left-addon': showLeftAddOn,
-        'dc-text-input__container_has_right-addon': showRightAddOn,
+        'dc-text-input__container_invalid': hasError,
+        'dc-text-input__container_left-addon': leftAddOn,
+        'dc-text-input__container_right-addon': rightAddOn,
       })}
     >
-      {showLeftAddOn && (
-        <div className="dc-text-input__left-addon">
-          {leftAddOn}
-        </div>
-      )}
+      {leftAddOn}
       <input
         {...props}
         className={classNames({
@@ -94,11 +108,7 @@ export const TextInput = forwardRef<
           onChangeValue?.(event.target.value);
         }}
       />
-      {showRightAddOn && (
-        <div className="dc-text-input__right-addon">
-          {rightAddOn}
-        </div>
-      )}
+      {rightAddOn}
     </div>
   );
 });

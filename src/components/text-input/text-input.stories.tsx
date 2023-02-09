@@ -27,6 +27,10 @@ export default {
   },
 } as ComponentMeta<typeof TextInput>;
 
+export const Play: ComponentStory<typeof TextInput> = (args) => (
+  <TextInput {...args} name="email" type="email" />
+);
+
 export const Basic: ComponentStory<typeof TextInput> = (args) => (
   <TextInput {...args} />
 );
@@ -77,6 +81,25 @@ LeftAndRightAddOn.args = {
   width: '4ch',
   leftAddOn: '$',
   rightAddOn: 'per item',
+};
+
+export const CustomAddOn = Basic.bind({});
+CustomAddOn.storyName = 'Custom Add-on';
+CustomAddOn.args = {
+  placeholder: '0.00',
+  width: '4ch',
+  rightAddOn: ({ className }) => (
+    <div
+      className={className}
+      style={{
+        paddingLeft: 8,
+        borderLeft: '1px solid var(--dc-input-border-color)',
+        background: 'var(--dc-bg-transparent-1)',
+      }}
+    >
+      kg
+    </div>
+  ),
 };
 
 export const Widths: ComponentStory<typeof TextInput> = (args) => {
