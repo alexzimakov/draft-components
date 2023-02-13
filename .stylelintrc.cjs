@@ -12,7 +12,6 @@ module.exports = {
     'hue-degree-notation': 'number',
     'length-zero-no-unit': [true, { ignore: ['custom-properties'] }],
     'selector-class-pattern': null,
-    'value-list-comma-newline-after': null,
 
     'order/order': [
       'custom-properties',
