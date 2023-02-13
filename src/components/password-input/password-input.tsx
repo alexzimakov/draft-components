@@ -5,7 +5,11 @@ import {
   useState,
 } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { TextInput, type TextInputProps } from '../text-input';
+import {
+  TextInput,
+  type TextInputProps,
+  type TextInputRenderAddOn,
+} from '../text-input';
 import { Tooltip } from '../tooltip';
 import { EyeIcon, EyeSlashIcon } from './icons';
 
@@ -42,16 +46,18 @@ export const PasswordInput = forwardRef<
   }
 
   const handleButtonClick = () => setVisible(!visible);
-  const button = (
-    <Tooltip content={content}>
-      <button
-        className="dc-password-input__btn"
-        type="button"
-        onClick={handleButtonClick}
-      >
-        <Icon className="dc-password-input__icon" aria-hidden={true} />
-      </button>
-    </Tooltip>
+  const renderRightAddOn: TextInputRenderAddOn = ({ className }) => (
+    <div className={classNames('dc-password-input__right-addon', className)}>
+      <Tooltip content={content}>
+        <button
+          className="dc-password-input__btn"
+          type="button"
+          onClick={handleButtonClick}
+        >
+          <Icon className="dc-password-input__icon" aria-hidden={true} />
+        </button>
+      </Tooltip>
+    </div>
   );
 
   return (
@@ -60,7 +66,7 @@ export const PasswordInput = forwardRef<
       className={classNames('dc-password-input', className)}
       ref={ref}
       type={type}
-      rightAddOn={button}
+      rightAddOn={renderRightAddOn}
     />
   );
 });
