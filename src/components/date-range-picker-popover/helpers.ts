@@ -2,7 +2,7 @@ import { DateRangePickerPopoverOption, DateRangePickerPopoverSelection } from '.
 
 export function findSelectedOption(
   selection: DateRangePickerPopoverSelection | null,
-  options: DateRangePickerPopoverOption[]
+  options: DateRangePickerPopoverOption[],
 ): DateRangePickerPopoverOption | null {
   if (!selection) {
     return null;

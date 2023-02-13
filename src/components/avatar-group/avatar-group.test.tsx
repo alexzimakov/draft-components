@@ -11,7 +11,7 @@ it('renders without errors', () => {
   render(
     <AvatarGroup>
       {urls.map((url) => <Avatar key={url} src={url} />)}
-    </AvatarGroup>
+    </AvatarGroup>,
   );
 
   const images = screen.getAllByRole('img');

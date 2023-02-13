@@ -31,7 +31,7 @@ it('renders without errors', () => {
       caption={caption}
       buttonLabel={buttonLabel}
       onSelectFiles={jest.fn()}
-    />
+    />,
   );
 
   screen.getByRole('img');
@@ -55,7 +55,7 @@ it('should select files', () => {
       caption={caption}
       buttonLabel={buttonLabel}
       onSelectFiles={onSelectFilesMock}
-    />
+    />,
   );
   fireEvent.change(screen.getByLabelText(label), {
     target: { files: expectedFiles },
@@ -81,7 +81,7 @@ it('should select files using drag and drop', () => {
       caption={caption}
       buttonLabel={buttonLabel}
       onSelectFiles={onSelectFilesMock}
-    />
+    />,
   );
 
   const filePickerEl = screen.getByTestId('file-picker');
@@ -114,12 +114,12 @@ it(
         caption={caption}
         buttonLabel={buttonLabel}
         onSelectFiles={onSelectFilesMock}
-      />
+      />,
     );
     fireEvent.drop(screen.getByTestId('file-picker'), {
       dataTransfer: { files: expectedFiles },
     });
 
     expect(onSelectFilesMock).not.toHaveBeenCalled();
-  }
+  },
 );

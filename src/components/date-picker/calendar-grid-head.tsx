@@ -25,7 +25,7 @@ export function CalendarGridHead({
         abbr={date.toLocaleDateString(locale, { weekday: 'long' })}
       >
         {date.toLocaleDateString(locale, { weekday: 'short' })}
-      </th>
+      </th>,
     );
   }
 

@@ -12,7 +12,7 @@ it('renders without errors', async () => {
   render(
     <Tooltip content={tooltipContent}>
       <button>{anchorLabel}</button>
-    </Tooltip>
+    </Tooltip>,
   );
 
   expect(screen.queryByRole('tooltip')).toBeNull();
@@ -46,7 +46,7 @@ it('renders without errors when children is a function', async () => {
           {anchorLabel}
         </span>
       )}
-    </Tooltip>
+    </Tooltip>,
   );
 
   expect(screen.queryByRole('tooltip')).toBeNull();

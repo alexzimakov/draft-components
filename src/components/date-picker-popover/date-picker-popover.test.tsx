@@ -13,7 +13,7 @@ it('renders without errors', () => {
       onChangeValue={jest.fn()}
     >
       <button>{label}</button>
-    </DatePickerPopover>
+    </DatePickerPopover>,
   );
 
   screen.getByText(label);
@@ -26,7 +26,7 @@ it('can toggle popover visibility', async () => {
   render(
     <DatePickerPopover value={null} onChangeValue={jest.fn()}>
       <button>{label}</button>
-    </DatePickerPopover>
+    </DatePickerPopover>,
   );
 
   const button = screen.getByText(label);
@@ -45,7 +45,7 @@ it('can select date using calendar', async () => {
   render(
     <DatePickerPopover value="2022-02-06" onChangeValue={onChangeValueMock}>
       <button>{label}</button>
-    </DatePickerPopover>
+    </DatePickerPopover>,
   );
 
   await user.click(screen.getByText(label));

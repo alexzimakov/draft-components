@@ -57,7 +57,7 @@ export function Tooltip({
   ...props
 }: TooltipProps) {
   const [defaultShow, setDefaultShow] = useState(
-    props.defaultIsShown ?? false
+    props.defaultIsShown ?? false,
   );
   const defaultId = useId();
   const tooltipId = props.id || defaultId;

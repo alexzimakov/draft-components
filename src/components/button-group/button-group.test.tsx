@@ -7,7 +7,7 @@ it('renders without errors', () => {
     <ButtonGroup>
       <Button>Remove</Button>
       <Button>Add</Button>
-    </ButtonGroup>
+    </ButtonGroup>,
   );
 
   expect(screen.getAllByRole('button')).toHaveLength(2);

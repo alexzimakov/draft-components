@@ -7,7 +7,7 @@ it('renders without errors', () => {
     <Tag>
       <svg role="img" />
       {text}
-    </Tag>
+    </Tag>,
   );
 
   screen.getByText(text);

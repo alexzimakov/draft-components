@@ -58,7 +58,7 @@ export function mergeRefs<T>(...refs: RefParameter<T>[]): RefCallback<T> {
 export type ReactElementWithRef = ReactElement & { ref: Ref<unknown> };
 
 export function isReactElementWithRef(
-  element: unknown
+  element: unknown,
 ): element is ReactElementWithRef {
   return isValidElement(element) && 'ref' in element;
 }

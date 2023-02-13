@@ -9,7 +9,7 @@ it('renders without errors', () => {
       <option>Firefox</option>
       <option>Safari</option>
       <option>Opera</option>
-    </Select>
+    </Select>,
   );
 
   screen.getByRole('combobox');
@@ -28,7 +28,7 @@ it('should forward extra attrs to underlying <select />', () => {
       <option>Firefox</option>
       <option>Safari</option>
       <option>Opera</option>
-    </Select>
+    </Select>,
   );
 
   const selectEl = screen.getByRole('combobox');
@@ -45,7 +45,7 @@ it('invokes `onChange` callback', async () => {
       <option value="1">A</option>
       <option value="2">B</option>
       <option value="3">C</option>
-    </Select>
+    </Select>,
   );
 
   await user.selectOptions(screen.getByRole('combobox'), ['A']);
@@ -64,7 +64,7 @@ it('invokes `onChangeValue` callback with selected value', async () => {
       <option value="1">A</option>
       <option value="2">B</option>
       <option value="3">C</option>
-    </Select>
+    </Select>,
   );
 
   await user.selectOptions(screen.getByRole('combobox'), ['A']);
@@ -81,7 +81,7 @@ it('invokes `onChangeValue` callback with selected values list', async () => {
       <option value="1">A</option>
       <option value="2">B</option>
       <option value="3">C</option>
-    </Select>
+    </Select>,
   );
 
   await user.selectOptions(screen.getByRole('listbox'), ['A', 'C']);

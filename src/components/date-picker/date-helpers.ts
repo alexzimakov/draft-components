@@ -11,7 +11,7 @@ export function addYears(date: Date, amount: number): Date {
   return parseDateISO(formatDateISOComponents(
     date.getFullYear() + amount,
     date.getMonth(),
-    date.getDate()
+    date.getDate(),
   ));
 }
 
@@ -20,7 +20,7 @@ export function setDateYear(date: Date, year: number): Date {
   return parseDateISO(formatDateISOComponents(
     year,
     date.getMonth(),
-    date.getDate()
+    date.getDate(),
   ));
 }
 
@@ -101,7 +101,7 @@ export function isWeekend(date: Date): boolean {
 
 export function parseDateISO(
   date: DateISO,
-  error = 'The argument must be a date in the ISO format.'
+  error = 'The argument must be a date in the ISO format.',
 ): Date {
   if (!isValidDateISO(date)) {
     throw new RangeError(error);
@@ -113,14 +113,14 @@ export function toDateISO(date: Date): DateISO {
   return formatDateISOComponents(
     date.getFullYear(),
     date.getMonth(),
-    date.getDate()
+    date.getDate(),
   );
 }
 
 function formatDateISOComponents(
   year: number,
   month: number,
-  day: number
+  day: number,
 ): DateISO {
   return [
     String(year).padStart(4, '0'),

@@ -141,7 +141,7 @@ function ToastsList({
         const detail = event.detail;
         if (detail.toaster === toaster) {
           setToasts((prevToasts) => prevToasts.filter(
-            (toast) => toast.id !== detail.toastId
+            (toast) => toast.id !== detail.toastId,
           ));
         }
       }

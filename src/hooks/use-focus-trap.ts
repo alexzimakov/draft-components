@@ -30,7 +30,7 @@ const focusableElementsSelector = [
  */
 export function useFocusTrap(
   modalRef: ModalRef,
-  options: Options
+  options: Options,
 ): void {
   const isEnabled = options.isEnabled;
 
@@ -57,7 +57,7 @@ export function useFocusTrap(
       }
 
       const focusableEls = Array.from(
-        activeModal.querySelectorAll(focusableElementsSelector)
+        activeModal.querySelectorAll(focusableElementsSelector),
       );
       if (focusableEls.length === 0) {
         return;

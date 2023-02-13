@@ -17,7 +17,7 @@ it('renders without errors', () => {
       secondaryAction={<button>{secondaryAction}</button>}
     >
       {content}
-    </EmptyState>
+    </EmptyState>,
   );
 
   screen.getByRole('img');

@@ -14,7 +14,7 @@ it('creates HTML element and mounts portals to it.', () => {
       <Portal>
         <div>{content2}</div>
       </Portal>
-    </>
+    </>,
   );
 
   const container = screen.getByTestId('portal-root');
@@ -32,7 +32,7 @@ it('mounts portals to the provided container', () => {
       <Portal>
         <div>{content}</div>
       </Portal>
-    </PortalRootProvider>
+    </PortalRootProvider>,
   );
 
   within(container).getByText(content);

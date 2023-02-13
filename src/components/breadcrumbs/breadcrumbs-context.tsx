@@ -8,7 +8,7 @@ export function useBreadcrumbsContext() {
   const context = useContext(BreadcrumbsContext);
   if (!context) {
     throw new Error(
-      'useBreadcrumbsContext must be used withing BreadcrumbsContextProvider'
+      'useBreadcrumbsContext must be used withing BreadcrumbsContextProvider',
     );
   }
   return context;

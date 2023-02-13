@@ -38,7 +38,7 @@ export function calcPosition({
   const maxWidth = viewportWidth - (2 * viewportGap);
   const maxSideWidth = Math.max(
     anchorRect.left - anchorGap - viewportGap,
-    viewportWidth - anchorRect.right - anchorGap - viewportGap
+    viewportWidth - anchorRect.right - anchorGap - viewportGap,
   );
 
   if (

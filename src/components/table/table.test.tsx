@@ -37,17 +37,17 @@ it('renders without errors', () => {
           </TableRow>
         </TableBody>
       </Table>
-    </TableContainer>
+    </TableContainer>,
   );
 
   const table = screen.getByRole('table');
   expect(within(table).getAllByRole('rowgroup')).toHaveLength(2);
   expect(within(table).getAllByRole('row')).toHaveLength(expectedRowCount);
   expect(within(table).getAllByRole('columnheader')).toHaveLength(
-    expectedHeaderCellCount
+    expectedHeaderCellCount,
   );
   expect(within(table).getAllByRole('cell')).toHaveLength(
-    expectedDataCellCount
+    expectedDataCellCount,
   );
 
   for (const header of headers) {
@@ -105,7 +105,7 @@ it('renders with sortable header cells', async () => {
           </TableRow>
         </TableBody>
       </Table>
-    </TableContainer>
+    </TableContainer>,
   );
 
   const [

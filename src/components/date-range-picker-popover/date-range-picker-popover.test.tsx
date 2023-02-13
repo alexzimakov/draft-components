@@ -46,7 +46,7 @@ it('renders without errors', () => {
       onChangeValue={jest.fn()}
     >
       <button>{anchorButtonLabel}</button>
-    </DateRangePickerPopover>
+    </DateRangePickerPopover>,
   );
 
   screen.getByText(anchorButtonLabel);
@@ -67,7 +67,7 @@ it('renders with footer', () => {
       footer={() => footer}
     >
       <button>{anchorButtonLabel}</button>
-    </DateRangePickerPopover>
+    </DateRangePickerPopover>,
   );
 
   screen.getByText(footer);
@@ -91,7 +91,7 @@ it('renders `Select` element instead of `RadioGroup` on phones', () => {
       onChangeValue={jest.fn()}
     >
       <button>{anchorButtonLabel}</button>
-    </DateRangePickerPopover>
+    </DateRangePickerPopover>,
   );
 
   screen.getByText(anchorButtonLabel);
@@ -111,7 +111,7 @@ it('can toggle popover visibility', async () => {
       onChangeValue={jest.fn()}
     >
       <button>{anchorButtonLabel}</button>
-    </DateRangePickerPopover>
+    </DateRangePickerPopover>,
   );
 
   const anchorButton = screen.getByText(anchorButtonLabel);
@@ -134,7 +134,7 @@ it('should close popover when click on the confirm button', async () => {
       onChangeValue={jest.fn()}
     >
       <button>{anchorButtonLabel}</button>
-    </DateRangePickerPopover>
+    </DateRangePickerPopover>,
   );
 
   screen.getByRole('grid');
@@ -153,7 +153,7 @@ it('should close popover when click on the cancel button', async () => {
       onChangeValue={jest.fn()}
     >
       <button>{anchorButtonLabel}</button>
-    </DateRangePickerPopover>
+    </DateRangePickerPopover>,
   );
 
   screen.getByRole('grid');
@@ -180,7 +180,7 @@ it('can select date range using calendar', async () => {
       onChangeValue={onChangeValueMock}
     >
       <button>{anchorButtonLabel}</button>
-    </DateRangePickerPopover>
+    </DateRangePickerPopover>,
   );
 
   await user.click(screen.getByText(anchorButtonLabel));
@@ -213,7 +213,7 @@ it('can select date range using date preset select', async () => {
       onChangeValue={onChangeValueMock}
     >
       <button>{anchorButtonLabel}</button>
-    </DateRangePickerPopover>
+    </DateRangePickerPopover>,
   );
 
   await user.click(screen.getByText(anchorButtonLabel));
@@ -244,7 +244,7 @@ it('can select date range with date preset using calendar', async () => {
       onChangeValue={onChangeValueMock}
     >
       <button>{anchorButtonLabel}</button>
-    </DateRangePickerPopover>
+    </DateRangePickerPopover>,
   );
 
   await user.click(screen.getByText(anchorButtonLabel));

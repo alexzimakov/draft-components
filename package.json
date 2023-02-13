@@ -56,7 +56,7 @@
     "react-dom": ">= 18"
   },
   "devDependencies": {
-    "@alexzimakov/eslint-config": "1.3.0",
+    "@alexzimakov/eslint-config": "1.5.0",
     "@babel/core": "7.20.12",
     "@babel/preset-env": "7.20.2",
     "@babel/preset-react": "7.18.6",

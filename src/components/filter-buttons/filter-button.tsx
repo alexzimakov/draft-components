@@ -23,7 +23,7 @@ export const FilterButton = forwardRef<
       className={classNames(
         'dc-filter-button',
         isActive && 'active',
-        className
+        className,
       )}
       data-active={isActive}
       aria-pressed={ariaPressed}

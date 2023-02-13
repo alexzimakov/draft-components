@@ -80,7 +80,7 @@ export const Popover = forwardRef<
   ...props
 }, ref) {
   const [defaultIsOpen, setDefaultIsOpen] = useState(
-    props.defaultIsOpen ?? false
+    props.defaultIsOpen ?? false,
   );
   const anchorRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);

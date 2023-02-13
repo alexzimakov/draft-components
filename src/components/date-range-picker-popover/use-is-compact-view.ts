@@ -8,7 +8,7 @@ export function useIsCompactView(breakpoint: string): boolean {
     return null;
   }, [breakpoint]);
   const [isCompactView, setIsCompactView] = useState(
-    () => compactViewMediaQuery?.matches || false
+    () => compactViewMediaQuery?.matches || false,
   );
 
   useEffect(() => {

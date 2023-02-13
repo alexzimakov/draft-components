@@ -14,7 +14,7 @@ it('renders without errors', () => {
       <MenuItem>{actions[1]}</MenuItem>
       <MenuSeparator />
       <MenuItem>{actions[2]}</MenuItem>
-    </Menu>
+    </Menu>,
   );
 
   const anchor = screen.getByRole('button');
@@ -59,7 +59,7 @@ it('renders without errors when the anchor property is a function', () => {
       <MenuItem>{actions[1]}</MenuItem>
       <MenuSeparator />
       <MenuItem>{actions[2]}</MenuItem>
-    </Menu>
+    </Menu>,
   );
 
   const anchor = screen.getByRole('button');
@@ -89,7 +89,7 @@ it('should toggle the menu by click on the menu button', async () => {
       <MenuItem>{actions[1]}</MenuItem>
       <MenuSeparator />
       <MenuItem>{actions[2]}</MenuItem>
-    </Menu>
+    </Menu>,
   );
 
   expect(screen.queryByRole('menu')).toBeNull();
@@ -112,7 +112,7 @@ it('should close the menu when the Esc key pressed', async () => {
       <MenuItem>{actions[1]}</MenuItem>
       <MenuSeparator />
       <MenuItem>{actions[2]}</MenuItem>
-    </Menu>
+    </Menu>,
   );
 
   screen.getByRole('menu');
@@ -135,7 +135,7 @@ it('should close the menu when click on outside the menu', async () => {
         <MenuSeparator />
         <MenuItem>{actions[2]}</MenuItem>
       </Menu>
-    </div>
+    </div>,
   );
 
   screen.getByRole('menu');
@@ -155,7 +155,7 @@ describe('should open the menu and focus the first menu item', () => {
         <MenuItem>{actions[1]}</MenuItem>
         <MenuSeparator />
         <MenuItem>{actions[2]}</MenuItem>
-      </Menu>
+      </Menu>,
     );
 
     return { user, label, actions };
@@ -205,7 +205,7 @@ it('should open the menu and focus the last menu item', async () => {
       <MenuItem>{actions[1]}</MenuItem>
       <MenuSeparator />
       <MenuItem>{actions[2]}</MenuItem>
-    </Menu>
+    </Menu>,
   );
 
   expect(screen.queryByRole('menu')).toBeNull();
@@ -230,7 +230,7 @@ it(
         <MenuItem>{actions[1]}</MenuItem>
         <MenuSeparator />
         <MenuItem>{actions[2]}</MenuItem>
-      </Menu>
+      </Menu>,
     );
 
     await user.tab();
@@ -262,7 +262,7 @@ it(
 
     await user.keyboard('i');
     expect(first).toHaveFocus();
-  }
+  },
 );
 
 it(
@@ -282,7 +282,7 @@ it(
         </MenuItem>
         <MenuSeparator />
         <MenuItem>{actions[0]}</MenuItem>
-      </Menu>
+      </Menu>,
     );
 
     await user.tab();
@@ -315,7 +315,7 @@ it(
 
     await user.keyboard('r');
     expect(reset).toHaveFocus();
-  }
+  },
 );
 
 it('should focus on the menu item when hovering over the mouse', async () => {
@@ -329,7 +329,7 @@ it('should focus on the menu item when hovering over the mouse', async () => {
       <MenuItem onMouseEnter={onMouseEnterMock}>{actions[1]}</MenuItem>
       <MenuSeparator />
       <MenuItem onMouseEnter={onMouseEnterMock}>{actions[2]}</MenuItem>
-    </Menu>
+    </Menu>,
   );
 
   const [first, second] = screen.getAllByRole('menuitem');
@@ -354,7 +354,7 @@ it('should close the menu when click on any menu item', async () => {
       <MenuItem onClick={onClickMock}>{actions[1]}</MenuItem>
       <MenuSeparator />
       <MenuItem onClick={onClickMock}>{actions[2]}</MenuItem>
-    </Menu>
+    </Menu>,
   );
 
   const [first] = screen.getAllByRole('menuitem');

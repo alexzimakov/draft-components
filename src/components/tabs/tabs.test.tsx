@@ -40,7 +40,7 @@ it('renders without errors', () => {
           {tab.content}
         </TabPanel>
       ))}
-    </Tabs>
+    </Tabs>,
   );
 
   const tabList = screen.getByRole('tablist');
@@ -98,7 +98,7 @@ it('renders with icon and counter', () => {
           {tab.content}
         </TabPanel>
       ))}
-    </Tabs>
+    </Tabs>,
   );
 
   const tabElements = screen.getAllByRole('tab');
@@ -106,7 +106,7 @@ it('renders with icon and counter', () => {
   const completedTab = tabs[1];
   within(completedTabEl).getByRole('img');
   expect(completedTabEl).toHaveTextContent(
-    `${completedTab.label} ${completedTab.counter}`
+    `${completedTab.label} ${completedTab.counter}`,
   );
 });
 
@@ -147,7 +147,7 @@ it('can select tab using mouse', async () => {
           {tab.content}
         </TabPanel>
       ))}
-    </Tabs>
+    </Tabs>,
   );
 
   await user.click(screen.getByText(expectedTab.label));
@@ -190,7 +190,7 @@ it('can focus tab using keyboard', async () => {
           {tab.content}
         </TabPanel>
       ))}
-    </Tabs>
+    </Tabs>,
   );
 
   const [all, completed, drafts] = screen.getAllByRole('tab');
@@ -236,5 +236,5 @@ it(
     expect(() => render(<TabPanel tab="drafts">Drafts</TabPanel>)).toThrow();
 
     consoleErrorMock.mockRestore();
-  }
+  },
 );

@@ -8,7 +8,7 @@ it('renders without errors', () => {
   render(
     <FormField labelFor={id} label={label} caption={caption}>
       <input id={id} name="name" />
-    </FormField>
+    </FormField>,
   );
 
   expect(screen.getByLabelText(label)).toBe(screen.getByRole('textbox'));
@@ -28,7 +28,7 @@ it('should show an error', () => {
   render(
     <FormField caption={caption} error={error}>
       <input name="username" />
-    </FormField>
+    </FormField>,
   );
 
   screen.getByText(error);

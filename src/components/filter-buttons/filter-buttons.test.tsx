@@ -9,7 +9,7 @@ it('renders without errors', () => {
       <FilterButton isActive={true}>#health</FilterButton>
       <FilterButton>#travel</FilterButton>
       <FilterButton>#shopping</FilterButton>
-    </FilterButtons>
+    </FilterButtons>,
   );
 
   const container = screen.getByRole('group');

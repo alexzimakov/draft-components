@@ -110,7 +110,7 @@ it(
       <div>
         {toaster1.render({ toastPosition: 'top-right' })}
         {toaster2.render({ toastPosition: 'bottom-left' })}
-      </div>
+      </div>,
     );
 
     await act(() => toaster1.showToast(toast1));
@@ -120,5 +120,5 @@ it(
     await user.click(screen.getByText(toast1.actions[0].content));
     await waitFor(() => expect(screen.queryByText(toast1.title)).toBeNull());
     await screen.findAllByText(toast2.title);
-  }
+  },
 );

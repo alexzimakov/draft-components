@@ -69,7 +69,7 @@ describe("calculates position for the 'top' placement", () => {
           ...params,
           placement,
           alignment,
-        })
+        }),
       ).toEqual({
         ...testCase.coordinates,
         placement,
@@ -144,7 +144,7 @@ describe("calculates position for the 'bottom' placement", () => {
           ...params,
           placement,
           alignment,
-        })
+        }),
       ).toEqual({
         ...testCase.coordinates,
         placement,
@@ -220,7 +220,7 @@ describe("calculates position for the 'left' placement", () => {
           ...params,
           placement,
           alignment,
-        })
+        }),
       ).toEqual({
         ...testCase.coordinates,
         placement,
@@ -293,7 +293,7 @@ describe("calculates position for the 'right' placement", () => {
           ...params,
           placement,
           alignment,
-        })
+        }),
       ).toEqual({
         ...testCase.coordinates,
         placement,
@@ -339,7 +339,7 @@ describe(
           ...params,
           placement: 'bottom',
           alignment: 'end',
-        })
+        }),
       ).toEqual({
         y: params.scrollY + anchorRect.bottom + params.anchorGap,
         x: params.scrollX + params.viewportGap,
@@ -381,7 +381,7 @@ describe(
           ...params,
           placement: 'bottom',
           alignment: 'start',
-        })
+        }),
       ).toEqual({
         y: params.scrollY + anchorRect.bottom + params.anchorGap,
         x:
@@ -393,7 +393,7 @@ describe(
         alignment: 'start',
       });
     });
-  }
+  },
 );
 
 describe('should flip placement when content out of viewport bounds', () => {
@@ -430,7 +430,7 @@ describe('should flip placement when content out of viewport bounds', () => {
         ...params,
         placement: 'top',
         alignment: 'start',
-      })
+      }),
     ).toEqual({
       x: params.scrollX + anchorRect.left,
       y: params.scrollY + anchorRect.bottom + params.anchorGap,
@@ -472,7 +472,7 @@ describe('should flip placement when content out of viewport bounds', () => {
         ...params,
         placement: 'bottom',
         alignment: 'start',
-      })
+      }),
     ).toEqual({
       x: params.scrollX + anchorRect.left,
       y:
@@ -517,7 +517,7 @@ it('should place content at the start of left edge if not enough width', () => {
       ...params,
       placement: 'bottom',
       alignment: 'start',
-    })
+    }),
   ).toEqual({
     y: params.scrollY + anchorRect.bottom + params.anchorGap,
     x: params.scrollX + params.viewportGap,
@@ -561,7 +561,7 @@ it(
         ...params,
         placement: 'left',
         alignment: 'start',
-      })
+      }),
     ).toEqual({
       y: params.scrollY + anchorRect.bottom + params.anchorGap,
       x: params.scrollX + anchorRect.left,
@@ -574,12 +574,12 @@ it(
         ...params,
         placement: 'right',
         alignment: 'start',
-      })
+      }),
     ).toEqual({
       y: params.scrollY + anchorRect.bottom + params.anchorGap,
       x: params.scrollX + anchorRect.left,
       placement: 'bottom',
       alignment: 'start',
     });
-  }
+  },
 );

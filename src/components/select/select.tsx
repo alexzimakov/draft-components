@@ -66,7 +66,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
               onChangeValue?.(
                 Array.from(event.target.options)
                   .filter((option) => option.selected)
-                  .map((option) => option.value)
+                  .map((option) => option.value),
               );
             } else {
               onChangeValue?.(event.target.value);
@@ -90,5 +90,5 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         </svg>
       </div>
     );
-  }
+  },
 );

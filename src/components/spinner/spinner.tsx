@@ -31,5 +31,5 @@ export const Spinner = forwardRef<SVGSVGElement, SpinnerProps>(
         strokeWidth={5}
       />
     </svg>;
-  }
+  },
 );

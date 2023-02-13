@@ -19,5 +19,5 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       iconLeft={icon}
       className={classNames('dc-button_icon-only', className)}
     />;
-  }
+  },
 );

@@ -15,7 +15,7 @@ it('renders without errors', () => {
       data-testid={popoverTestId}
     >
       {popoverContent}
-    </Popover>
+    </Popover>,
   );
 
   screen.getByRole('button');
@@ -31,7 +31,7 @@ it('renders without errors when anchor property is function', () => {
       data-testid={popoverTestId}
     >
       {popoverContent}
-    </Popover>
+    </Popover>,
   );
 
   screen.getByRole('button');
@@ -50,7 +50,7 @@ it('should open popover when click on anchor element', async () => {
       onOpen={openMock}
     >
       {popoverContent}
-    </Popover>
+    </Popover>,
   );
 
   expect(screen.queryByTestId(popoverTestId)).toBeNull();
@@ -78,7 +78,7 @@ it(
         >
           {popoverContent}
         </Popover>
-      </div>
+      </div>,
     );
 
     screen.getByTestId(popoverTestId);
@@ -86,7 +86,7 @@ it(
     await user.click(screen.getByTestId(externalElementTestId));
     await waitFor(() => expect(screen.queryByTestId(popoverTestId)).toBeNull());
     expect(closeMock).toHaveBeenCalledTimes(1);
-  }
+  },
 );
 
 it('should close popover when press Esc button', async () => {
@@ -101,7 +101,7 @@ it('should close popover when press Esc button', async () => {
       onClose={closeMock}
     >
       {popoverContent}
-    </Popover>
+    </Popover>,
   );
 
   screen.getByTestId(popoverTestId);
@@ -126,7 +126,7 @@ it('should trap focus within the popover', async () => {
     >
       <input data-testid={inputTestId} />
       <button data-testid={buttonTestId}>Add</button>
-    </Popover>
+    </Popover>,
   );
 
   const input = screen.getByTestId(inputTestId);

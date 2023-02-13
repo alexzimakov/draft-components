@@ -8,7 +8,7 @@ it('renders without errors', () => {
   render(
     <SelectionControl labelFor={id} label={label} caption={caption}>
       <input id={id} type="checkbox" />
-    </SelectionControl>
+    </SelectionControl>,
   );
 
   screen.getByRole('checkbox');
@@ -23,7 +23,7 @@ it('renders without errors when children property is a function', () => {
   render(
     <SelectionControl label={label} caption={caption}>
       {({ id }) => <input id={id} type="checkbox" />}
-    </SelectionControl>
+    </SelectionControl>,
   );
 
   screen.getByText(label);

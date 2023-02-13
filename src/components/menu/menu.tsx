@@ -142,7 +142,7 @@ export function Menu({
     });
 
     const activeMenuItemIndex = menuItems.findIndex(
-      (el) => el === document.activeElement
+      (el) => el === document.activeElement,
     );
     let fromIndex = activeMenuItemIndex + 1;
     if (fromIndex >= firstChars.length) {
@@ -309,7 +309,7 @@ function getMenuItems(menuId: string): HTMLButtonElement[] {
   }
 
   const nodes = menuEl.querySelectorAll<HTMLButtonElement>(
-    'button[role="menuitem"], button[role="menuitemradio"]'
+    'button[role="menuitem"], button[role="menuitemradio"]',
   );
   return Array.from(nodes);
 }

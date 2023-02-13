@@ -46,7 +46,7 @@ export function useMountTransition({
   const firstMount = useRef(true);
   const prefersReducedMotion = useMemo(
     () => window.matchMedia('(prefers-reduced-motion: reduce)'),
-    []
+    [],
   );
 
   const disableTransition = (

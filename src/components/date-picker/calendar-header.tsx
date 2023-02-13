@@ -100,7 +100,7 @@ function generateMonthOptions(locale = 'en'): JSX.Element[] {
     options.push(
       <option key={month} value={month}>
         {date.toLocaleDateString(locale, { month: 'long' })}
-      </option>
+      </option>,
     );
   }
   return options;

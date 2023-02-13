@@ -18,7 +18,7 @@ it('renders without error', () => {
       </>}
     >
       {title}
-    </Toast>
+    </Toast>,
   );
 
   screen.getByText(title);
@@ -47,7 +47,7 @@ it('invokes `onClickCloseButton` callback', async () => {
       onClickCloseButton={onClickCloseButtonMock}
     >
       {title}
-    </Toast>
+    </Toast>,
   );
 
   await user.click(screen.getByLabelText(closeButtonLabel));

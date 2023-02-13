@@ -29,7 +29,7 @@ export function DateRangePickerPopoverPresets({
   const selectedPreset = selectedOption ? selectedOption.preset : '';
 
   function handleChange(
-    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) {
     const value = event.target.value;
     const option = options.find((option) => option.preset === value);

@@ -19,7 +19,7 @@ it('renders without errors', () => {
       yearInputLabel={yearInputLabel}
       value="2022-12-02"
       onChangeValue={jest.fn()}
-    />
+    />,
   );
 
   screen.getByLabelText(prevMonthButtonLabel);
@@ -44,7 +44,7 @@ it('can select a month using arrow buttons', async () => {
       nextMonthButtonLabel={nextMonthButtonLabel}
       value="2022-12-02"
       onChangeValue={jest.fn()}
-    />
+    />,
   );
 
   const gridEl = screen.getByRole('grid');
@@ -67,7 +67,7 @@ it('can select a month using the month selector', async () => {
       monthSelectLabel={monthSelectLabel}
       value="2022-12-02"
       onChangeValue={jest.fn()}
-    />
+    />,
   );
 
   const gridEl = screen.getByRole('grid');
@@ -75,7 +75,7 @@ it('can select a month using the month selector', async () => {
 
   await user.selectOptions(
     screen.getByLabelText(monthSelectLabel),
-    ['October']
+    ['October'],
   );
   expect(gridEl).toHaveAccessibleName('October 2022');
 });
@@ -89,7 +89,7 @@ it('can enter a year using the year field', async () => {
       yearInputLabel={yearInputLabel}
       value="2022-12-02"
       onChangeValue={jest.fn()}
-    />
+    />,
   );
 
   const gridEl = screen.getByRole('grid');
@@ -108,7 +108,7 @@ it('can move focus between days using keyboard', async () => {
       weekStartsOn={1}
       value="2022-12-02"
       onChangeValue={jest.fn()}
-    />
+    />,
   );
 
   await user.tab(); // Move focus to the previous month button.
@@ -158,7 +158,7 @@ it('selects a day by click', async () => {
       weekStartsOn={1}
       value="2022-12-02"
       onChangeValue={onChangeValueMock}
-    />
+    />,
   );
 
   await user.click(screen.getByText('14'));
@@ -176,7 +176,7 @@ it('selects a focused day when pressing Enter key', async () => {
       weekStartsOn={1}
       value="2022-12-10"
       onChangeValue={onChangeValueMock}
-    />
+    />,
   );
 
   await user.tab(); // Move focus to the previous month button.
@@ -200,7 +200,7 @@ it('selects a focused day when pressing Space key', async () => {
       weekStartsOn={1}
       value="2022-12-02"
       onChangeValue={onChangeValueMock}
-    />
+    />,
   );
 
   await user.tab(); // Move focus to the previous month button.
@@ -225,7 +225,7 @@ it("can't move focus to disabled dates", async () => {
       max="2022-12-17"
       value="2022-12-15"
       onChangeValue={handleChangeValue}
-    />
+    />,
   );
 
   await user.tab(); // Move focus to the previous month button.
@@ -252,7 +252,7 @@ it('throws error when min is invalid ISO date string', () => {
       value="2022-12-15"
       min="12/1/2022"
       onChangeValue={jest.fn()}
-    />
+    />,
   )).toThrow(RangeError);
 
   consoleErrorMock.mockRestore();
@@ -267,7 +267,7 @@ it('throws error when max is invalid ISO date string', () => {
       value="2022-12-15"
       max="12/1/2022"
       onChangeValue={jest.fn()}
-    />
+    />,
   )).toThrow(RangeError);
 
   consoleErrorMock.mockRestore();
@@ -283,7 +283,7 @@ it('throws error when min greater or equal than max', () => {
       min="2022-12-31"
       max="2022-12-01"
       onChangeValue={jest.fn()}
-    />
+    />,
   )).toThrow(RangeError);
 
   consoleErrorMock.mockRestore();
@@ -300,7 +300,7 @@ it(
         value="2022-12-02"
         min="2022-12-15"
         onChangeValue={jest.fn()}
-      />
+      />,
     );
 
     await user.tab(); // Move focus to the previous month button.
@@ -310,7 +310,7 @@ it(
     await user.tab(); // Move focus to the focusable day.
     expect(screen.getByLabelText('December 2, 2022')).not.toHaveFocus();
     expect(screen.getByLabelText('December 15, 2022')).toHaveFocus();
-  }
+  },
 );
 
 it(
@@ -324,7 +324,7 @@ it(
         value="2022-12-20"
         max="2022-12-10"
         onChangeValue={jest.fn()}
-      />
+      />,
     );
 
     await user.tab(); // Move focus to the previous month button.
@@ -334,7 +334,7 @@ it(
     await user.tab(); // Move focus to the focusable day.
     expect(screen.getByLabelText('December 20, 2022')).not.toHaveFocus();
     expect(screen.getByLabelText('December 10, 2022')).toHaveFocus();
-  }
+  },
 );
 
 it('<DateRangePicker /> renders without errors', () => {
@@ -352,7 +352,7 @@ it('<DateRangePicker /> renders without errors', () => {
       yearInputLabel={yearInputLabel}
       value={{ start: '2022-12-05', end: '2022-12-20' }}
       onChangeValue={jest.fn()}
-    />
+    />,
   );
 
   screen.getByLabelText(prevMonthButtonLabel);
@@ -376,7 +376,7 @@ it('can select date range using keyboard', async () => {
       locale="en"
       value={null}
       onChangeValue={onChangeValueMock}
-    />
+    />,
   );
 
   await user.tab(); // Move focus to the previous month button.
@@ -410,7 +410,7 @@ it('can select date range using mouse', async () => {
       locale="en"
       value={value}
       onChangeValue={onChangeValueMock}
-    />
+    />,
   );
 
   await user.click(screen.getByText('11'));

@@ -26,7 +26,7 @@ it('renders with necessary elements', () => {
         <button>Cancel</button>
         <button>Save</button>
       </DialogFooter>
-    </Dialog>
+    </Dialog>,
   );
 
   const dialogEl = screen.getByRole('dialog');
@@ -43,7 +43,7 @@ it('renders nothing when `isOpen` prop is false', () => {
   render(
     <Dialog isOpen={false} onClose={jest.fn()}>
       {content}
-    </Dialog>
+    </Dialog>,
   );
   expect(screen.queryByRole('dialog')).toBeNull();
   expect(screen.queryByText(content)).toBeNull();
@@ -56,7 +56,7 @@ it('should invoke `onClose` callback when click on close button', async () => {
     <Dialog isOpen={true} onClose={onCloseMock}>
       <DialogHeader heading="Dialog title" />
       <DialogBody>Dialog content</DialogBody>
-    </Dialog>
+    </Dialog>,
   );
 
   await user.click(screen.getByRole('button'));
@@ -71,7 +71,7 @@ it('should invoke `onClose` callback when press Esc button', async () => {
     <Dialog isOpen={true} onClose={onCloseMock}>
       <DialogHeader heading="Dialog title" />
       <DialogBody>Dialog content</DialogBody>
-    </Dialog>
+    </Dialog>,
   );
 
   await user.keyboard('{Escape}');
@@ -95,7 +95,7 @@ it('should capture focus within the dialog', async () => {
           <button>Save</button>
         </DialogFooter>
       </Dialog>
-    </>
+    </>,
   );
 
   const dialogEl = screen.getByRole('dialog');
@@ -133,14 +133,14 @@ it(
         <Dialog isOpen={true} onClose={closeSecondDialogMock}>
           Second dialog content
         </Dialog>
-      </>
+      </>,
     );
 
     await user.keyboard('{Escape}');
 
     expect(closeFirstDialogMock).toHaveBeenCalledTimes(0);
     expect(closeSecondDialogMock).toHaveBeenCalledTimes(1);
-  }
+  },
 );
 
 it(
@@ -158,7 +158,7 @@ it(
           <button>Cancel</button>
           <button>Save</button>
         </Dialog>
-      </>
+      </>,
     );
 
     const [, secondDialog] = screen.getAllByRole('dialog');
@@ -178,7 +178,7 @@ it(
 
     await user.tab({ shift: true });
     expect(secondDialogSaveButton).toHaveFocus();
-  }
+  },
 );
 
 it('should focus a given element after the dialog is opened', async () => {

@@ -61,5 +61,5 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
         </span>
       </label>
     );
-  }
+  },
 );

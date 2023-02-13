@@ -38,7 +38,7 @@ it('renders without errors', () => {
       <NavListItem href={teamProjects.href}>
         {teamProjects.label}
       </NavListItem>
-    </NavList>
+    </NavList>,
   );
 
   screen.getByText(title);
@@ -70,7 +70,7 @@ it('should render `NavItem` using custom render function', () => {
       <NavListItem renderAs={renderItem}>Home</NavListItem>
       <NavListItem renderAs={renderItem}>Projects</NavListItem>
       <NavListItem renderAs={renderItem}>Reports</NavListItem>
-    </NavList>
+    </NavList>,
   );
 
   const buttons = screen.getAllByRole('button');

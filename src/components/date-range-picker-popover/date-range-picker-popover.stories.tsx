@@ -103,7 +103,7 @@ const options: DateRangePickerPopoverOption[] = [
 
 export const Basic: ComponentStory<typeof DateRangePickerPopover> = (args) => {
   const [value, setValue] = useState<DateRangePickerPopoverSelection | null>(
-    args.value
+    args.value,
   );
 
   return (
@@ -150,7 +150,7 @@ Basic.args = {
 };
 
 function formatSelection(
-  selection: DateRangePickerPopoverSelection | null
+  selection: DateRangePickerPopoverSelection | null,
 ): string {
   if (!selection) {
     return 'Choose date range';

@@ -108,7 +108,7 @@ function parseValue(value: DateRangePickerProps['value']): DateRange | null {
   if (value && isValidDateISO(value.start) && isValidDateISO(value.end)) {
     return DateRange.create(
       parseDateISO(value.start),
-      parseDateISO(value.end)
+      parseDateISO(value.end),
     );
   }
   return null;

@@ -14,7 +14,7 @@ it('renders without errors', () => {
       options={options}
       value={options[1].value}
       onChangeValue={jest.fn()}
-    />
+    />,
   );
 
   const radios = screen.getAllByRole('radio');
@@ -39,7 +39,7 @@ it('invokes `onChangeValue` callback with checked value', async () => {
       name="accentColor"
       options={options}
       onChangeValue={onChangeValueMock}
-    />
+    />,
   );
 
   await user.click(screen.getByText(options[1].label));

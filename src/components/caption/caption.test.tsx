@@ -36,7 +36,7 @@ describe('renders with different icons', () => {
       render(
         <Caption showIcon={true} appearance={appearance}>
           {text}
-        </Caption>
+        </Caption>,
       );
       screen.getByText(text);
       screen.getByTestId('caption-icon');

@@ -13,7 +13,7 @@ it('renders without errors with tick marks', () => {
       tickMarksCount={tickMarksCount}
       value={50}
       onChangeValue={jest.fn()}
-    />
+    />,
   );
 
   screen.getByRole('slider');
@@ -34,7 +34,7 @@ it('renders tick mark lables', () => {
         }
         return lastTickLabel;
       }}
-    />
+    />,
   );
 
   screen.getByRole('slider');

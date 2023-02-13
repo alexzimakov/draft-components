@@ -17,7 +17,7 @@ it('renders without errors', () => {
       <BreadcrumbsItem href="/navigation/breadcrumbs" aria-current="page">
         Breadcrumbs
       </BreadcrumbsItem>
-    </Breadcrumbs>
+    </Breadcrumbs>,
   );
 
   const links = screen.getAllByRole('link');
@@ -44,7 +44,7 @@ it('should render breadcrumbs item using custom render fn', () => {
       <BreadcrumbsItem href="/navigation/breadcrumbs" renderAs={renderLink}>
         Breadcrumbs
       </BreadcrumbsItem>
-    </Breadcrumbs>
+    </Breadcrumbs>,
   );
 
   const buttons = screen.getAllByRole('button');
@@ -65,7 +65,7 @@ it('renders with custom delimiter', () => {
       <BreadcrumbsItem href="/navigation/breadcrumbs">
         Breadcrumbs
       </BreadcrumbsItem>
-    </Breadcrumbs>
+    </Breadcrumbs>,
   );
 
   const delimiters = screen.getAllByTestId(separatorTestId);
@@ -83,5 +83,5 @@ it(
     expect(() => render(<BreadcrumbsItem />)).toThrow();
 
     consoleErrorMock.mockRestore();
-  }
+  },
 );
