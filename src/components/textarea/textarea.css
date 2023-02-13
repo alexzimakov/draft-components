@@ -79,6 +79,10 @@
   outline: none;
 }
 
+.dc-textarea__container_block .dc-textarea {
+  resize: vertical;
+}
+
 .dc-textarea_width_30ch {
   width: 30.5ch;
 }
