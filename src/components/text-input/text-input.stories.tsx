@@ -27,10 +27,6 @@ export default {
   },
 } as ComponentMeta<typeof TextInput>;
 
-export const Play: ComponentStory<typeof TextInput> = (args) => (
-  <TextInput {...args} name="email" type="email" />
-);
-
 export const Basic: ComponentStory<typeof TextInput> = (args) => (
   <TextInput {...args} />
 );
