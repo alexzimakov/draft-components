@@ -50,9 +50,12 @@
   clip: rect(0 0 0 0);
 }
 
-.dc-color-picker__btn_checked::after {
-  content: "";
-  display: inline-block;
+.dc-color-picker__btn > input + .dc-color-picker__btn-check {
+  display: none;
+}
+
+.dc-color-picker__btn > input:checked + .dc-color-picker__btn-check {
+  display: inline-flex;
   width: 38%;
   height: 38%;
   border-radius: 50%;

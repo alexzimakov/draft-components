@@ -12,7 +12,7 @@ it('renders without errors', () => {
     <ColorPicker
       name="accentColor"
       options={options}
-      value={options[1].value}
+      defaultValue={options[1].value}
       onChangeValue={jest.fn()}
     />,
   );
@@ -38,6 +38,7 @@ it('invokes `onChangeValue` callback with checked value', async () => {
     <ColorPicker
       name="accentColor"
       options={options}
+      value={options[0].value}
       onChangeValue={onChangeValueMock}
     />,
   );

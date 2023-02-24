@@ -1,4 +1,8 @@
-import { type CSSProperties, ReactNode } from 'react';
+import {
+  type CSSProperties,
+  type ChangeEventHandler,
+  type ReactNode,
+} from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 export type ColorPickerButtonProps<T extends string | number> = {
@@ -8,8 +12,10 @@ export type ColorPickerButtonProps<T extends string | number> = {
   name: string;
   color: string;
   value: T;
-  checked: boolean;
-  onChangeValue: (value: T) => void;
+  checked?: boolean;
+  defaultChecked?: boolean;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onChangeValue?: (value: T) => void;
 };
 
 export function ColorPickerButton<T extends string | number>({
@@ -20,6 +26,8 @@ export function ColorPickerButton<T extends string | number>({
   color,
   value,
   checked,
+  defaultChecked,
+  onChange,
   onChangeValue,
 }: ColorPickerButtonProps<T>) {
   const customProperties = {
@@ -28,17 +36,22 @@ export function ColorPickerButton<T extends string | number>({
   return (
     <label
       style={{ ...customProperties, ...style }}
-      className={classNames(className, {
-        'dc-color-picker__btn': true,
-        'dc-color-picker__btn_checked': checked,
-      })}
+      className={classNames('dc-color-picker__btn', className)}
     >
       <input
         type="radio"
         name={name}
         value={value}
         checked={checked}
-        onChange={() => onChangeValue(value)}
+        defaultChecked={defaultChecked}
+        onChange={(event) => {
+          onChange?.(event);
+          onChangeValue?.(value);
+        }}
+      />
+      <span
+        className="dc-color-picker__btn-check"
+        aria-hidden={true}
       />
       {label}
     </label>

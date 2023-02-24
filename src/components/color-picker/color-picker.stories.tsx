@@ -1,6 +1,5 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react';
 import { ColorPicker } from './color-picker';
-import { useState } from 'react';
 
 export default {
   title: 'Forms/ColorPicker',
@@ -20,20 +19,13 @@ const backgrounds = [
   { value: 'pink', color: '#ec4899' },
 ];
 
-export const Basic: ComponentStory<typeof ColorPicker> = (args) => {
-  const [value, setValue] = useState(args.options[0].value);
-  return (
-    <ColorPicker
-      {...args}
-      name="accent"
-      value={value}
-      onChangeValue={(value) => {
-        setValue(value);
-        args.onChangeValue(value);
-      }}
-    />
-  );
-};
+export const Basic: ComponentStory<typeof ColorPicker> = (args) => (
+  <ColorPicker
+    {...args}
+    name="accent"
+    defaultValue={args.options[0].value}
+  />
+);
 Basic.args = {
   options: [
     {
