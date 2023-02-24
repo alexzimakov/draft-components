@@ -65,6 +65,8 @@
   color: var(--dc-textarea-text-color);
   min-width: 192px;
   min-height: var(--dc-textarea-leading);
+  margin-top: 0;
+  margin-bottom: 0;
   padding: var(--dc-textarea-padding-y) var(--dc-textarea-padding-x);
   border: none;
   background: none;
