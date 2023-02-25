@@ -14,7 +14,7 @@
   font-family: var(--dc-primary-font);
   font-size: var(--dc-select-font-size);
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.25;
   color: var(--dc-select-text-color);
   position: relative;
   display: inline-flex;
