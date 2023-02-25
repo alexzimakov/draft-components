@@ -50,7 +50,7 @@
   "bugs": {
     "url": "https://github.com/alexzimakov/draft-components/issues"
   },
-  "homepage": "https://alexzimakov.github.io/draft-components",
+  "homepage": "https://draft-components.netlify.app",
   "peerDependencies": {
     "react": ">= 18",
     "react-dom": ">= 18"
