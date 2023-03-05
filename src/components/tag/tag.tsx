@@ -1,4 +1,4 @@
-import { type ComponentPropsWithoutRef } from 'react';
+import { type ComponentPropsWithoutRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 type TagBaseProps = ComponentPropsWithoutRef<'strong'>;
@@ -21,7 +21,7 @@ export type TagProps = {
   size?: TagSize;
 } & TagBaseProps;
 
-export function Tag({
+export const Tag = forwardRef<HTMLElement, TagProps>(function Tag({
   isRounded = false,
   variant = 'tinted',
   fill = 'gray',
@@ -29,10 +29,11 @@ export function Tag({
   className,
   children,
   ...props
-}: TagProps) {
+}, ref) {
   return (
     <strong
       {...props}
+      ref={ref}
       className={classNames(className, 'dc-tag', {
         [`dc-tag_${variant}`]: variant,
         [`dc-tag_${fill}`]: fill,
@@ -43,4 +44,4 @@ export function Tag({
       {children}
     </strong>
   );
-}
+});
