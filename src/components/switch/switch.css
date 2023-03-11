@@ -94,8 +94,8 @@
 .dc-switch__input:focus + .dc-switch__track::after {
   content: "";
   position: absolute;
-  z-index: -1;
   inset: -3px;
+  pointer-events: none;
   border-radius: calc(3px + var(--dc-switch-radius));
   box-shadow: 0 0 0 3px var(--dc-switch-focus-ring-color);
 }
