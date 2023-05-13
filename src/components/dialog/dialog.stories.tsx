@@ -58,13 +58,13 @@ export const Basic = () => {
         isOpen={isOpen}
         onClose={closeDialog}
       >
-        <DialogHeader heading="Create your account">
+        <DialogHeader heading="Create your account" hasBorder={true}>
           Already have an account? <a href="/">Sign in</a>
         </DialogHeader>
-        <DialogBody scrollShadowTop={true} scrollShadowBottom={true}>
+        <DialogBody>
           <RegisterForm />
         </DialogBody>
-        <DialogFooter>
+        <DialogFooter hasBorder={true}>
           {verifyPhoneMenu}
           <Button
             ref={cancelButtonRef}
@@ -73,10 +73,7 @@ export const Basic = () => {
           >
             Cancel
           </Button>
-          <Button
-            appearance="primary"
-            onClick={closeDialog}
-          >
+          <Button appearance="primary" onClick={closeDialog}>
             Create
           </Button>
         </DialogFooter>

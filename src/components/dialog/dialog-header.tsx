@@ -6,11 +6,13 @@ import { XMarkIcon } from './x-mark-icon';
 
 type DialogHeaderHTMLProps = ComponentPropsWithoutRef<'div'>;
 export type DialogHeaderProps = {
+  hasBorder?: boolean;
   heading?: ReactNode;
   subheading?: ReactNode;
 } & DialogHeaderHTMLProps;
 
 export function DialogHeader({
+  hasBorder,
   heading,
   subheading,
   className,
@@ -26,7 +28,10 @@ export function DialogHeader({
   const shouldRenderChildren = Boolean(children);
 
   return (
-    <div className={classNames(className, 'dc-dialog-header')}>
+    <div className={classNames(className, {
+      'dc-dialog-header': true,
+      'dc-dialog-header_has_border': hasBorder,
+    })}>
       <div className="dc-dialog-header__title-bar">
         {shouldRenderHeading && (
           <h2 id={titleId} className="dc-dialog-header__heading">
