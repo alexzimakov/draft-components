@@ -3,7 +3,7 @@
   --dc-textarea-leading: 20px;
   --dc-textarea-padding-y: 8px;
   --dc-textarea-padding-x: 12px;
-  --dc-textarea-radius: 6px;
+  --dc-textarea-radius: 7px;
   --dc-textarea-text-color: var(--dc-primary-text-color);
   --dc-textarea-border-color: var(--dc-control-border-color);
   --dc-textarea-border-color-error: var(--dc-control-error-color);
@@ -46,7 +46,7 @@
   --dc-textarea-leading: 16px;
   --dc-textarea-padding-y: 8px;
   --dc-textarea-padding-x: 8px;
-  --dc-textarea-radius: 5px;
+  --dc-textarea-radius: 6px;
 }
 
 .dc-textarea__container_size_lg {
@@ -54,7 +54,7 @@
   --dc-textarea-leading: 24px;
   --dc-textarea-padding-y: 12px;
   --dc-textarea-padding-x: 16px;
-  --dc-textarea-radius: 7px;
+  --dc-textarea-radius: 8px;
 }
 
 .dc-textarea {
