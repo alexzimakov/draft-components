@@ -1,4 +1,4 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { StorySection } from '../../storybook/story-section';
 import { MoonIcon } from '@heroicons/react/24/solid';
 import {
@@ -9,13 +9,7 @@ import {
   ShoppingBagIcon,
 } from '@heroicons/react/24/outline';
 import { IconButton } from './icon-button';
-import {
-  Button,
-  type ButtonAppearance,
-  type ButtonProps,
-  type ButtonSize,
-  type ButtonVariant,
-} from './button';
+import { Button, type ButtonAppearance, type ButtonProps, type ButtonSize, type ButtonVariant } from './button';
 
 const Icons = {
   BookOpen: (
@@ -38,10 +32,9 @@ const Icons = {
   ),
 };
 
-export default {
+const meta: Meta<typeof Button> = {
   title: 'Button',
   component: Button,
-  subcomponents: { IconButton },
   args: {
     appearance: 'default',
     variant: 'filled',
@@ -50,10 +43,10 @@ export default {
     disabled: false,
   },
   argTypes: {
-    iconLeft: {
+    leftIcon: {
       control: { disable: true },
     },
-    iconRight: {
+    rightIcon: {
       control: { disable: true },
     },
     caption: {
@@ -61,9 +54,10 @@ export default {
       defaultValue: '',
     },
   },
-} as ComponentMeta<typeof Button>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof Button> = (args) => (
+export const Basic: StoryFn<typeof Button> = (args) => (
   <Button {...args} />
 );
 Basic.argTypes = {
@@ -89,19 +83,19 @@ Disabled.args = {
 
 export const WithLeftIcon = Basic.bind({});
 WithLeftIcon.args = {
-  iconLeft: Icons.ChatBubbleOvalLeft,
+  leftIcon: Icons.ChatBubbleOvalLeft,
   children: 'Message',
 };
 
 export const WithRightIcon = Basic.bind({});
 WithRightIcon.args = {
-  iconRight: Icons.Moon,
+  rightIcon: Icons.Moon,
   children: 'Focus',
 };
 
 export const WithCaption = Basic.bind({});
 WithCaption.args = {
-  iconLeft: Icons.ShoppingBag,
+  leftIcon: Icons.ShoppingBag,
   caption: 'Total $59.00',
   children: 'Buy now',
 };
@@ -126,7 +120,7 @@ Sizes.parameters = {
 };
 Sizes.args = {
   children: 'New organization',
-  iconRight: Icons.BuildingOffice2,
+  rightIcon: Icons.BuildingOffice2,
 };
 
 export const Styles = (args: ButtonProps) => {
@@ -172,10 +166,10 @@ Styles.parameters = {
 };
 Styles.args = {
   children: 'Do not disturb',
-  iconLeft: Icons.Moon,
+  leftIcon: Icons.Moon,
 };
 
-export const IconOnlyButton: ComponentStory<typeof IconButton> = (args) => (
+export const IconOnlyButton: StoryFn<typeof IconButton> = (args) => (
   <IconButton {...args} />
 );
 IconOnlyButton.args = {

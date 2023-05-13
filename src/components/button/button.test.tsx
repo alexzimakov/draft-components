@@ -14,7 +14,7 @@ it('renders without errors', () => {
 it('renders with left icon', () => {
   const iconTestId = 'leading-icon';
   const icon = <MoonIcon data-testid={iconTestId} />;
-  render(<Button iconLeft={icon}>With icon</Button>);
+  render(<Button leftIcon={icon}>With icon</Button>);
 
   within(screen.getByRole('button')).getByTestId(iconTestId);
 });
@@ -22,7 +22,7 @@ it('renders with left icon', () => {
 it('renders with right icon', () => {
   const iconTestId = 'leading-icon';
   const icon = <MoonIcon data-testid={iconTestId} />;
-  render(<Button iconRight={icon}>With icon</Button>);
+  render(<Button rightIcon={icon}>With icon</Button>);
 
   within(screen.getByRole('button')).getByTestId(iconTestId);
 });

@@ -117,7 +117,7 @@ export const Basic: ComponentStory<typeof DateRangePickerPopover> = (args) => {
         args.onChangeValue?.(value);
       }}
     >
-      <Button iconLeft={<CalendarIcon width={18} height={18} />}>
+      <Button leftIcon={<CalendarIcon width={18} height={18} />}>
         {formatSelection(value)}
       </Button>
     </DateRangePickerPopover>

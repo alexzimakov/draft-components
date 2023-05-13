@@ -5,8 +5,8 @@ import { Button, type ButtonProps } from './button';
 export type IconButtonBaseProps = Omit<ButtonProps,
   | 'children'
   | 'caption'
-  | 'iconLeft'
-  | 'iconRight'>;
+  | 'leftIcon'
+  | 'rightIcon'>;
 export type IconButtonProps = {
   icon: ReactNode;
 } & IconButtonBaseProps;
@@ -16,7 +16,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     return <Button
       {...props}
       ref={ref}
-      iconLeft={icon}
+      leftIcon={icon}
       className={classNames('dc-button_icon-only', className)}
     />;
   },

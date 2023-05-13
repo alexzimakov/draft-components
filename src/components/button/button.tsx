@@ -15,8 +15,8 @@ export type ButtonProps = {
   size?: ButtonSize,
   variant?: ButtonVariant;
   appearance?: ButtonAppearance;
-  iconLeft?: ReactNode;
-  iconRight?: ReactNode;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
   caption?: ReactNode;
   renderAs?: ButtonRenderFn;
 } & ComponentPropsWithRef<'button'>;
@@ -32,8 +32,8 @@ export const Button = forwardRef<
   size = 'sm',
   variant = 'filled',
   appearance = 'default',
-  iconLeft = null,
-  iconRight = null,
+  leftIcon = null,
+  rightIcon = null,
   caption = null,
   renderAs,
   className,
@@ -47,19 +47,19 @@ export const Button = forwardRef<
         <Spinner size="1.15em" />
       </span>
     );
-  } else if (iconLeft) {
+  } else if (leftIcon) {
     addOnLeft = (
       <span data-testid="button-icon" className="dc-button__icon">
-        {iconLeft}
+        {leftIcon}
       </span>
     );
   }
 
   let addOnRight = null;
-  if (iconRight) {
+  if (rightIcon) {
     addOnRight = (
       <span data-testid="button-icon" className="dc-button__icon">
-        {iconRight}
+        {rightIcon}
       </span>
     );
   }
