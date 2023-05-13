@@ -2,9 +2,8 @@
   --dc-select-font-size: 14px;
   --dc-select-text-color: var(--dc-control-primary-text-color);
   --dc-select-height: 36px;
-  --dc-select-arrow-size: 20px;
   --dc-select-padding-x: 12px;
-  --dc-select-radius: 6px;
+  --dc-select-radius: 7px;
   --dc-select-border-color: var(--dc-control-border-color);
   --dc-select-border-color-error: var(--dc-control-error-color);
   --dc-select-bg: var(--dc-control-bg);
@@ -54,16 +53,14 @@
   --dc-select-font-size: 13px;
   --dc-select-height: 32px;
   --dc-select-padding-x: 8px;
-  --dc-select-radius: 5px;
-  --dc-select-arrow-size: 16px;
+  --dc-select-radius: 6px;
 }
 
 .dc-select__container_lg {
   --dc-select-font-size: 15px;
   --dc-select-height: 40px;
   --dc-select-padding-x: 16px;
-  --dc-select-radius: 7px;
-  --dc-select-arrow-size: 20px;
+  --dc-select-radius: 8px;
 }
 
 .dc-select {
@@ -71,7 +68,7 @@
   font: inherit;
   color: inherit;
   width: 100%;
-  padding-right: calc(var(--dc-select-arrow-size) + var(--dc-select-padding-x));
+  padding-right: calc(var(--dc-select-height) + 0.5em);
   padding-left: var(--dc-select-padding-x);
   text-transform: none;
   border: none;
@@ -88,19 +85,43 @@
   outline: none;
 }
 
+.dc-select:disabled {
+  opacity: 1;
+}
+
+.dc-select:disabled > option {
+  color: inherit;
+}
+
 .dc-select:not(:disabled):hover {
   cursor: pointer;
 }
 
-.dc-select__icon {
+.dc-select__add-on {
   position: absolute;
-  top: calc((var(--dc-select-height) - var(--dc-select-arrow-size)) / 2);
-  right: calc(var(--dc-select-padding-x) / 2);
-  width: var(--dc-select-arrow-size);
-  height: var(--dc-select-arrow-size);
+  top: -1px;
+  right: -1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--dc-select-height);
+  height: var(--dc-select-height);
   pointer-events: none;
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
 }
 
-.dc-select__container_multiple .dc-select__icon {
+.dc-select__arrow {
+  width: auto;
+  height: 55%;
+}
+
+.dc-select__spinner {
+  width: auto;
+  height: 45%;
+}
+
+.dc-select__container_multiple .dc-select__arrow,
+.dc-select__container_multiple .dc-select__spinner {
   display: none;
 }

@@ -37,6 +37,19 @@ it('should forward extra attrs to underlying <select />', () => {
   expect(selectEl).toHaveAttribute('required', '');
 });
 
+it('should disable select when `loading` property is true', () => {
+  render(
+    <Select loading={true}>
+      <option>Chrome</option>
+      <option>Firefox</option>
+      <option>Safari</option>
+      <option>Opera</option>
+    </Select>,
+  );
+
+  expect(screen.getByRole('combobox')).toBeDisabled();
+});
+
 it('invokes `onChange` callback', async () => {
   const user = userEvent.setup();
   const onChangeMock = jest.fn();

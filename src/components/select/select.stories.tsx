@@ -1,11 +1,12 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { Select } from './select';
 
-export default {
+const meta: Meta<typeof Select> = {
   title: 'Forms/Select',
   component: Select,
   args: {
     size: 'md',
+    loading: false,
     disabled: false,
     hasError: false,
     isBlock: false,
@@ -13,9 +14,10 @@ export default {
   argTypes: {
     children: { control: false },
   },
-} as ComponentMeta<typeof Select>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof Select> = (args) => (
+export const Basic: StoryFn<typeof Select> = (args) => (
   <Select {...args}>
     <option>Choose a browser</option>
     <option>Chrome</option>
@@ -26,6 +28,11 @@ export const Basic: ComponentStory<typeof Select> = (args) => (
   </Select>
 );
 Basic.args = {};
+
+export const Loading = Basic.bind({});
+Loading.args = {
+  loading: true,
+};
 
 export const Disabled = Basic.bind({});
 Disabled.args = {
@@ -42,7 +49,7 @@ FullWidth.args = {
   isBlock: true,
 };
 
-export const Multiple: ComponentStory<typeof Select> = (args) => (
+export const Multiple: StoryFn<typeof Select> = (args) => (
   <Select {...args}>
     <option>Chrome</option>
     <option>Firefox</option>
