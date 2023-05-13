@@ -2,7 +2,7 @@
   --dc-input-font-size: 14px;
   --dc-input-height: 36px;
   --dc-input-padding-x: 12px;
-  --dc-input-border-radius: 6px;
+  --dc-input-border-radius: 7px;
   --dc-input-text-color: var(--dc-control-primary-text-color);
   --dc-input-border-color: var(--dc-control-border-color);
   --dc-input-border-color-error: var(--dc-control-error-color);
@@ -21,6 +21,7 @@
   align-items: stretch;
   box-sizing: border-box;
   height: var(--dc-input-height);
+  min-width: 0;
   max-width: 100%;
   vertical-align: middle;
   border: 1px solid var(--dc-input-border-color);
@@ -59,14 +60,14 @@
   --dc-input-font-size: 13px;
   --dc-input-height: 32px;
   --dc-input-padding-x: 8px;
-  --dc-input-border-radius: 5px;
+  --dc-input-border-radius: 6px;
 }
 
 .dc-text-input__container_lg {
   --dc-input-font-size: 15px;
   --dc-input-height: 40px;
   --dc-input-padding-x: 16px;
-  --dc-input-border-radius: 7px;
+  --dc-input-border-radius: 8px;
 }
 
 .dc-text-input {
