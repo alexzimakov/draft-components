@@ -1,7 +1,12 @@
-body {
+body,
+.dc-story-doc {
   font-family: var(--dc-primary-font);
   color: var(--dc-primary-text-color);
   transition-duration: 0.3s;
   transition-property: color, background-color;
-  background: var(--dc-primary-bg);
+  background-color: var(--dc-primary-bg);
+}
+
+.docs-story > div:first-child {
+  background: none;
 }
