@@ -36,18 +36,18 @@ Basic.args = {
 
 export const WithIcon: StoryFn<typeof Menu> = (args) => (
   <Menu {...args}>
-    <MenuItem iconLeft={<ArrowDownTrayIcon width={16} height={16} />}>
+    <MenuItem leftIcon={<ArrowDownTrayIcon width={16} height={16} />}>
       Save
     </MenuItem>
-    <MenuItem iconLeft={<PencilIcon width={16} height={16} />}>
+    <MenuItem leftIcon={<PencilIcon width={16} height={16} />}>
       Rename
     </MenuItem>
-    <MenuItem iconLeft={<DocumentDuplicateIcon width={16} height={16} />}>
+    <MenuItem leftIcon={<DocumentDuplicateIcon width={16} height={16} />}>
       Rename
     </MenuItem>
     <MenuSeparator />
     <MenuItem
-      iconLeft={<TrashIcon width={16} height={16} />}
+      leftIcon={<TrashIcon width={16} height={16} />}
       appearance="destructive"
     >
       Delete
