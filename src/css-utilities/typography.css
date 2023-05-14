@@ -42,20 +42,20 @@
 
 /* Text style */
 
+.text-no-decoration {
+  text-decoration: none !important;
+}
+
+.text-no-style {
+  font-style: normal !important;
+}
+
 .text-italic {
   font-style: italic !important;
 }
 
-.text-not-italic {
-  font-style: normal !important;
-}
-
 .text-underline {
   text-decoration: underline !important;
-}
-
-.text-not-underline {
-  text-decoration: none !important;
 }
 
 .text-uppercase {
