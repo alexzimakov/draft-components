@@ -2,7 +2,7 @@
   --dc-color-picker-btn-size: 24px;
   --dc-color-picker-btn-color: var(--dc-control-on-primary-color);
   --dc-color-picker-btn-check-color: white;
-  --dc-color-picker-btn-inner-border-color: rgba(0, 0, 0, 0.05);
+  --dc-color-picker-btn-inner-border-color: rgb(0 0 0 / 0.05);
   --dc-color-picker-btn-focus-ring-color: var(--dc-focus-ring-color);
 
   color-scheme: light;
@@ -64,7 +64,7 @@
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background: var(--dc-color-picker-btn-check-color);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
 .dc-color-picker__btn:focus-within::before {

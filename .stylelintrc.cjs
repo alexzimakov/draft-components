@@ -4,7 +4,6 @@ module.exports = {
   rules: {
     'alpha-value-notation': 'number',
     'block-no-empty': null,
-    'color-function-notation': 'legacy',
     'comment-empty-line-before': ['always', {
       except: ['first-nested'],
       ignore: ['after-comment', 'stylelint-commands'],
