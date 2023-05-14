@@ -1,22 +1,20 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { Breadcrumbs } from './breadcrumbs';
 import { BreadcrumbsItem } from './breadcrumbs-item';
 import { ChevronRightIcon, HomeIcon } from '@heroicons/react/24/outline';
 
-export default {
+const meta: Meta<typeof Breadcrumbs> = {
   title: 'Navigation/Breadcrumbs',
   component: Breadcrumbs,
-  subcomponents: {
-    BreadcrumbsItem,
-  },
   argTypes: {
     children: {
       control: { disable: true },
     },
   },
-} as ComponentMeta<typeof Breadcrumbs>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof Breadcrumbs> = (args) => (
+export const Basic: StoryFn<typeof Breadcrumbs> = (args) => (
   <Breadcrumbs {...args}>
     <BreadcrumbsItem href="/" icon={<HomeIcon width={18} height={18} />}>
       Home

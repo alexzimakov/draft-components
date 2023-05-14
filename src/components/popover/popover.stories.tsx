@@ -1,9 +1,5 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
-import {
-  Popover,
-  type PopoverAlignment,
-  type PopoverPlacement,
-} from './popover';
+import { type Meta, type StoryFn } from '@storybook/react';
+import { Popover, type PopoverAlignment, type PopoverPlacement } from './popover';
 import { useState } from 'react';
 import { Button } from '../button';
 import { Tooltip } from '../tooltip';
@@ -12,12 +8,13 @@ import { Textarea } from '../textarea';
 import { Checkbox } from '../checkbox';
 import { SelectionControl } from '../selection-control';
 
-export default {
+const meta: Meta<typeof Popover> = {
   title: 'Overlays/Popover',
   component: Popover,
-} as ComponentMeta<typeof Popover>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof Popover> = (args) => (
+export const Basic: StoryFn<typeof Popover> = (args) => (
   <Popover {...args} anchor={<Button>Open popover</Button>}>
     <div style={{ padding: 16 }}>Popover content</div>
   </Popover>

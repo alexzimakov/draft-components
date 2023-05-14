@@ -1,8 +1,8 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { StorySection } from '../../storybook/story-section';
 import { TextInput, type TextInputWidth } from './text-input';
 
-export default {
+const meta: Meta<typeof TextInput> = {
   title: 'Forms/TextInput',
   component: TextInput,
   args: {
@@ -25,9 +25,10 @@ export default {
       action: 'value changed',
     },
   },
-} as ComponentMeta<typeof TextInput>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof TextInput> = (args) => (
+export const Basic: StoryFn<typeof TextInput> = (args) => (
   <TextInput {...args} />
 );
 Basic.args = {
@@ -98,7 +99,7 @@ CustomAddOn.args = {
   ),
 };
 
-export const Widths: ComponentStory<typeof TextInput> = (args) => {
+export const Widths: StoryFn<typeof TextInput> = (args) => {
   const widths: TextInputWidth[] = [
     '40ch',
     '20ch',
@@ -137,7 +138,7 @@ Widths.parameters = {
 };
 Widths.args = {};
 
-export const WithIcon: ComponentStory<typeof TextInput> = (args) => {
+export const WithIcon: StoryFn<typeof TextInput> = (args) => {
   const envelope = (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,7 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { Slider } from './slider';
 
-export default {
+const meta: Meta<typeof Slider> = {
   title: 'Forms/Slider',
   component: Slider,
   args: {
@@ -10,9 +10,10 @@ export default {
     min: 0,
     max: 100,
   },
-} as ComponentMeta<typeof Slider>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof Slider> = (args) => (
+export const Basic: StoryFn<typeof Slider> = (args) => (
   <Slider {...args} />
 );
 Basic.args = {

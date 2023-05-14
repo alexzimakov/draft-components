@@ -1,22 +1,23 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { Switch } from './switch';
 import { Radio } from '../radio';
 
-export default {
+const meta: Meta<typeof Switch> = {
   title: 'Forms/Switch',
   component: Switch,
   args: {
     disabled: false,
     showCheckIcon: true,
   },
-} as ComponentMeta<typeof Switch>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof Switch> = (args) => (
+export const Basic: StoryFn<typeof Switch> = (args) => (
   <Switch {...args} />
 );
 Basic.args = {};
 
-export const States: ComponentStory<typeof Radio> = (args) => (
+export const States: StoryFn<typeof Radio> = (args) => (
   <div style={{
     display: 'flex',
     flexWrap: 'wrap',

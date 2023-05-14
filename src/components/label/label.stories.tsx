@@ -1,15 +1,16 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { Label } from './label';
 
-export default {
+const meta: Meta<typeof Label> = {
   title: 'Label',
   component: Label,
   args: {
     required: false,
   },
-} as ComponentMeta<typeof Label>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof Label> = (args) => (
+export const Basic: StoryFn<typeof Label> = (args) => (
   <Label {...args} />
 );
 Basic.args = {

@@ -1,23 +1,20 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { useState } from 'react';
 import { SegmentedControl } from './segmented-control';
-import { SegmentedControlButton } from './segmented-control-button';
 import { ClockIcon, StarIcon } from '@heroicons/react/24/outline';
 
-export default {
+const meta: Meta<typeof SegmentedControl> = {
   title: 'Forms/SegmentedControl',
   component: SegmentedControl,
-  subcomponents: {
-    SegmentedControlButton,
-  },
   argTypes: {
     value: {
       control: { disable: true },
     },
   },
-} as ComponentMeta<typeof SegmentedControl>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof SegmentedControl> = (args) => {
+export const Basic: StoryFn<typeof SegmentedControl> = (args) => {
   const [value, setValue] = useState(args.options[0].value);
   return (
     <SegmentedControl

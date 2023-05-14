@@ -1,8 +1,8 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { type ComponentPropsWithoutRef, useState } from 'react';
 import { FilePicker } from './file-picker';
 
-export default {
+const meta: Meta<typeof FilePicker> = {
   title: 'Forms/FilePicker',
   component: FilePicker,
   argTypes: {
@@ -10,9 +10,10 @@ export default {
       disable: true,
     },
   },
-} as ComponentMeta<typeof FilePicker>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof FilePicker> = (args) => {
+export const Basic: StoryFn<typeof FilePicker> = (args) => {
   const [files, setFiles] = useState<File[]>([]);
 
   let label = args.label;

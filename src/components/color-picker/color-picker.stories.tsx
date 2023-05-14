@@ -1,10 +1,11 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { ColorPicker } from './color-picker';
 
-export default {
+const meta: Meta<typeof ColorPicker> = {
   title: 'Forms/ColorPicker',
   component: ColorPicker,
-} as ComponentMeta<typeof ColorPicker>;
+};
+export default meta;
 
 const backgrounds = [
   { value: 'red', color: '#ef4444' },
@@ -19,7 +20,7 @@ const backgrounds = [
   { value: 'pink', color: '#ec4899' },
 ];
 
-export const Basic: ComponentStory<typeof ColorPicker> = (args) => (
+export const Basic: StoryFn<typeof ColorPicker> = (args) => (
   <ColorPicker
     {...args}
     name="accent"

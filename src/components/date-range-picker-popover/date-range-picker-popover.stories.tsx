@@ -1,21 +1,12 @@
-import { type ComponentMeta, ComponentStory } from '@storybook/react';
-import {
-  type DateRangePickerPopoverOption,
-  type DateRangePickerPopoverSelection,
-} from './types';
-import {
-  addDays,
-  getStartOfMonth,
-  getStartOfWeek,
-  isSameDay,
-  toDateISO,
-} from '../date-picker/date-helpers';
+import { type Meta, type StoryFn } from '@storybook/react';
+import { type DateRangePickerPopoverOption, type DateRangePickerPopoverSelection } from './types';
 import { type ReactNode, useState } from 'react';
+import { addDays, getStartOfMonth, getStartOfWeek, isSameDay, toDateISO } from '../date-picker/date-helpers';
 import { DateRangePickerPopover } from './date-range-picker-popover';
 import { Button } from '../button';
 import { CalendarIcon } from '@heroicons/react/24/outline';
 
-export default {
+const meta: Meta<typeof DateRangePickerPopover> = {
   title: 'Overlays/DateRangePickerPopover',
   component: DateRangePickerPopover,
   argTypes: {
@@ -26,7 +17,8 @@ export default {
       control: 'text',
     },
   },
-} as ComponentMeta<typeof DateRangePickerPopover>;
+};
+export default meta;
 
 const options: DateRangePickerPopoverOption[] = [
   {
@@ -101,7 +93,7 @@ const options: DateRangePickerPopoverOption[] = [
   },
 ];
 
-export const Basic: ComponentStory<typeof DateRangePickerPopover> = (args) => {
+export const Basic: StoryFn<typeof DateRangePickerPopover> = (args) => {
   const [value, setValue] = useState<DateRangePickerPopoverSelection | null>(
     args.value,
   );

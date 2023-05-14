@@ -1,8 +1,8 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { StorySection } from '../../storybook/story-section';
 import { Textarea, type TextareaWidth } from './textarea';
 
-export default {
+const meta: Meta<typeof Textarea> = {
   title: 'Forms/Textarea',
   component: Textarea,
   args: {
@@ -12,9 +12,10 @@ export default {
     rows: 3,
     size: 'md',
   },
-} as ComponentMeta<typeof Textarea>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof Textarea> = (args) => (
+export const Basic: StoryFn<typeof Textarea> = (args) => (
   <Textarea {...args} />
 );
 Basic.args = {
@@ -47,7 +48,7 @@ CharacterCount.args = {
   width: '60ch',
 };
 
-export const Widths: ComponentStory<typeof Textarea> = (args) => {
+export const Widths: StoryFn<typeof Textarea> = (args) => {
   const widths: TextareaWidth[] = [
     '80ch',
     '60ch',

@@ -1,25 +1,16 @@
-import { type ComponentMeta } from '@storybook/react';
+import { type Meta } from '@storybook/react';
 import { useState } from 'react';
 import { Tabs } from './tabs';
 import { TabList } from './tab-list';
 import { Tab } from './tab';
 import { TabPanel } from './tab-panel';
-import {
-  ArchiveBoxIcon,
-  DocumentIcon,
-  InboxIcon,
-  PaperAirplaneIcon,
-} from '@heroicons/react/24/outline';
+import { ArchiveBoxIcon, DocumentIcon, InboxIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline';
 
-export default {
+const meta: Meta<typeof Tabs> = {
   title: 'Navigation/Tabs',
   component: Tabs,
-  subcomponents: {
-    TabList,
-    Tab,
-    TabPanel,
-  },
-} as ComponentMeta<typeof Tabs>;
+};
+export default meta;
 
 export const Basic = () => {
   const tabs = {

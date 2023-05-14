@@ -1,4 +1,4 @@
-import { type ComponentMeta } from '@storybook/react';
+import { type Meta } from '@storybook/react';
 import { type RefObject, useRef, useState } from 'react';
 import { Dialog } from './dialog';
 import { DialogHeader } from './dialog-header';
@@ -12,15 +12,11 @@ import { PasswordInput } from '../password-input';
 import { Menu, MenuItem } from '../menu';
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/solid';
 
-export default {
+const meta: Meta<typeof Dialog> = {
   title: 'Overlays/Dialog',
   component: Dialog,
-  subcomponents: {
-    DialogHeader,
-    DialogBody,
-    DialogFooter,
-  },
-} as ComponentMeta<typeof Dialog>;
+};
+export default meta;
 
 export const Basic = () => {
   const openButtonRef = useRef<HTMLButtonElement>(null);

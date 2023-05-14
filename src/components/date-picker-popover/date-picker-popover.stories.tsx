@@ -1,16 +1,17 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { type DateISO } from '../date-picker/date-helpers';
 import { useState } from 'react';
 import { DatePickerPopover } from './date-picker-popover';
 import { Button } from '../button';
 import { CalendarIcon } from '@heroicons/react/24/outline';
 
-export default {
+const meta: Meta<typeof DatePickerPopover> = {
   title: 'Overlays/DatePickerPopover',
   component: DatePickerPopover,
-} as ComponentMeta<typeof DatePickerPopover>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof DatePickerPopover> = (args) => {
+export const Basic: StoryFn<typeof DatePickerPopover> = (args) => {
   const [dateISO, setDateISO] = useState<DateISO | null>(args.value);
   const intl = new Intl.DateTimeFormat('en', { dateStyle: 'long' });
 

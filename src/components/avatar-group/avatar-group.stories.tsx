@@ -1,14 +1,12 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { AvatarGroup } from './avatar-group';
 import { Avatar } from '../avatar';
 
-export default {
+const meta: Meta<typeof AvatarGroup> = {
   title: 'AvatarGroup',
   component: AvatarGroup,
-  subcomponents: {
-    Avatar,
-  },
-} as ComponentMeta<typeof AvatarGroup>;
+};
+export default meta;
 
 const urls = [
   'https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?ixlib=rb-1.2.1&fit=facearea&facepad=2.5&w=160&h=160',
@@ -17,7 +15,7 @@ const urls = [
   'https://images.unsplash.com/photo-1610431205421-739e027cc0ce?ixlib=rb-1.2.1&fit=facearea&facepad=2&w=160&h=160',
 ];
 
-export const Basic: ComponentStory<typeof AvatarGroup> = (args) => (
+export const Basic: StoryFn<typeof AvatarGroup> = (args) => (
   <AvatarGroup {...args}>
     {urls.map((url, index) => (
       <Avatar key={`avatar-${index}`} src={url} />
@@ -25,7 +23,7 @@ export const Basic: ComponentStory<typeof AvatarGroup> = (args) => (
   </AvatarGroup>
 );
 
-export const Square: ComponentStory<typeof AvatarGroup> = (args) => (
+export const Square: StoryFn<typeof AvatarGroup> = (args) => (
   <AvatarGroup {...args}>
     {urls.map((url, index) => (
       <Avatar key={`avatar-${index}`} src={url} isSquare={true} />

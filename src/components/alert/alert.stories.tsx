@@ -1,15 +1,9 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { StorySection } from '../../storybook/story-section';
 import { Alert } from './alert';
-import {
-  BoltIcon,
-  CogIcon,
-  HandThumbUpIcon,
-  ScaleIcon,
-  SignalSlashIcon,
-} from '@heroicons/react/24/solid';
+import { BoltIcon, CogIcon, HandThumbUpIcon, ScaleIcon, SignalSlashIcon } from '@heroicons/react/24/solid';
 
-export default {
+const meta: Meta<typeof Alert> = {
   title: 'Feedback/Alert',
   component: Alert,
   argTypes: {
@@ -23,11 +17,12 @@ export default {
       control: 'text',
     },
   },
-} as ComponentMeta<typeof Alert>;
+};
+export default meta;
 
 const LAYOUT_MAX_WIDTH = '720px';
 
-export const Basic: ComponentStory<typeof Alert> = (args) => (
+export const Basic: StoryFn<typeof Alert> = (args) => (
   <Alert style={{ maxWidth: LAYOUT_MAX_WIDTH }} {...args} />
 );
 Basic.argTypes = {
@@ -51,7 +46,7 @@ WithIcon.args = {
   icon: <ScaleIcon width={18} height={18} />,
 };
 
-export const Variant: ComponentStory<typeof Alert> = (args) => (
+export const Variant: StoryFn<typeof Alert> = (args) => (
   <section style={{ maxWidth: LAYOUT_MAX_WIDTH }}>
     <StorySection heading="default">
       <Alert {...args} variant="default" />
@@ -75,7 +70,7 @@ Variant.args = {
   ...WithIcon.args,
 };
 
-export const Appearance: ComponentStory<typeof Alert> = (args) => (
+export const Appearance: StoryFn<typeof Alert> = (args) => (
   <section style={{ maxWidth: LAYOUT_MAX_WIDTH }}>
     <StorySection heading="default">
       <Alert

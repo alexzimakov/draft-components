@@ -1,13 +1,14 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { Tag } from './tag';
 import { LockClosedIcon } from '@heroicons/react/24/outline';
 
-export default {
+const meta: Meta<typeof Tag> = {
   title: 'Tag',
   component: Tag,
-} as ComponentMeta<typeof Tag>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof Tag> = (args) => (
+export const Basic: StoryFn<typeof Tag> = (args) => (
   <Tag {...args} />
 );
 Basic.args = {
@@ -17,7 +18,7 @@ Basic.args = {
   size: 'md',
 };
 
-export const Sizes: ComponentStory<typeof Tag> = (args) => (
+export const Sizes: StoryFn<typeof Tag> = (args) => (
   <div style={{ display: 'flex', alignItems: 'flex-end', gap: 16 }}>
     <Tag {...args} size="sm" />
     <Tag {...args} size="md" />
@@ -43,7 +44,7 @@ WithIcon.args = {
   ),
 };
 
-export const FillColors: ComponentStory<typeof Tag> = (args) => (
+export const FillColors: StoryFn<typeof Tag> = (args) => (
   <div style={{
     display: 'flex',
     flexWrap: 'wrap',

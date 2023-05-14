@@ -1,4 +1,4 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { TableContainer } from './table-container';
 import { Table } from './table';
 import { TableHead } from './table-head';
@@ -8,19 +8,11 @@ import { TableHeadCell, TableHeadCellSort } from './table-head-cell';
 import { TableCell } from './table-cell';
 import { useState } from 'react';
 
-
-export default {
+const meta: Meta<typeof Table> = {
   title: 'Data Display/Table',
   component: Table,
-  subcomponents: {
-    TableContainer,
-    TableHead,
-    TableBody,
-    TableRow,
-    TableHeadCell,
-    TableCell,
-  },
-} as ComponentMeta<typeof Table>;
+};
+export default meta;
 
 const headers = [
   {
@@ -113,7 +105,7 @@ const rows = [
   },
 ];
 
-export const Basic: ComponentStory<typeof Table> = (args) => (
+export const Basic: StoryFn<typeof Table> = (args) => (
   <TableContainer border={{ top: true, bottom: true }}>
     <Table {...args}>
       <TableHead>
@@ -155,7 +147,7 @@ Bordered.args = {
   isBordered: true,
 };
 
-export const Sortable: ComponentStory<typeof Table> = (args) => {
+export const Sortable: StoryFn<typeof Table> = (args) => {
   type Column = typeof headers[number]['column'];
   type SortingState = {
     column: Column,

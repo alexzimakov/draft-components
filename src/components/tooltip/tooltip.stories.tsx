@@ -1,10 +1,10 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
+import { useState } from 'react';
 import { Tooltip } from './tooltip';
 import { IconButton } from '../button';
 import { BookmarkIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
 
-export default {
+const meta: Meta<typeof Tooltip> = {
   title: 'Overlays/Tooltip',
   component: Tooltip,
   parameters: {
@@ -18,9 +18,10 @@ export default {
       control: { disable: true },
     },
   },
-} as ComponentMeta<typeof Tooltip>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof Tooltip> = (args) => (
+export const Basic: StoryFn<typeof Tooltip> = (args) => (
   <Tooltip {...args}>
     <IconButton icon={<BookmarkIcon width={18} height={18} />} />
   </Tooltip>
@@ -29,7 +30,7 @@ Basic.args = {
   content: 'Add bookmark',
 };
 
-export const Controlled: ComponentStory<typeof Tooltip> = (args) => {
+export const Controlled: StoryFn<typeof Tooltip> = (args) => {
   const [isShown, setIsShown] = useState(false);
   return (
     <Tooltip {...args} isShown={isShown}>

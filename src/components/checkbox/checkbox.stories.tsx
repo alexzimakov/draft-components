@@ -1,21 +1,22 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { Checkbox } from './checkbox';
 
-export default {
+const meta: Meta<typeof Checkbox> = {
   title: 'Forms/Checkbox',
   component: Checkbox,
   args: {
     disabled: false,
     hasMixedState: false,
   },
-} as ComponentMeta<typeof Checkbox>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof Checkbox> = (args) => (
+export const Basic: StoryFn<typeof Checkbox> = (args) => (
   <Checkbox {...args} />
 );
 Basic.args = {};
 
-export const States: ComponentStory<typeof Checkbox> = (args) => (
+export const States: StoryFn<typeof Checkbox> = (args) => (
   <div style={{
     display: 'flex',
     flexWrap: 'wrap',

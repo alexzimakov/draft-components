@@ -1,12 +1,13 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { PasswordInput } from './password-input';
 
-export default {
+const meta: Meta<typeof PasswordInput> = {
   title: 'Forms/PasswordInput',
   component: PasswordInput,
-} as ComponentMeta<typeof PasswordInput>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof PasswordInput> = (args) => (
+export const Basic: StoryFn<typeof PasswordInput> = (args) => (
   <PasswordInput {...args} />
 );
 Basic.args = {

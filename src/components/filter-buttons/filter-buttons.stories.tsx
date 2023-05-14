@@ -1,22 +1,20 @@
-import { type ComponentMeta, ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { FilterButtons } from './filter-buttons';
 import { FilterButton } from './filter-button';
 import { useState } from 'react';
 
-export default {
+const meta: Meta<typeof FilterButtons> = {
   title: 'Navigation/FilterButtons',
   component: FilterButtons,
-  subcomponents: {
-    FilterButton,
-  },
   argTypes: {
     children: {
       control: { disable: true },
     },
   },
-} as ComponentMeta<typeof FilterButtons>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof FilterButtons> = (args) => {
+export const Basic: StoryFn<typeof FilterButtons> = (args) => {
   const tags = [
     'All tags',
     '#travel',

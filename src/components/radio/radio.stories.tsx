@@ -1,7 +1,7 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { Radio } from './radio';
 
-export default {
+const meta: Meta<typeof Radio> = {
   title: 'Forms/Radio',
   component: Radio,
   args: {
@@ -9,14 +9,15 @@ export default {
     checked: false,
     icon: 'dot',
   },
-} as ComponentMeta<typeof Radio>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof Radio> = (args) => (
+export const Basic: StoryFn<typeof Radio> = (args) => (
   <Radio {...args} />
 );
 Basic.args = {};
 
-export const States: ComponentStory<typeof Radio> = (args) => (
+export const States: StoryFn<typeof Radio> = (args) => (
   <div style={{
     display: 'flex',
     flexWrap: 'wrap',

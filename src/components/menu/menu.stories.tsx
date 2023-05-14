@@ -1,27 +1,19 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { Menu } from './menu';
 import { MenuItem } from './menu-item';
 import { MenuSeparator } from './menu-separator';
-import {
-  ArrowDownTrayIcon,
-  DocumentDuplicateIcon,
-  PencilIcon,
-  TrashIcon,
-} from '@heroicons/react/24/outline';
+import { ArrowDownTrayIcon, DocumentDuplicateIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 
-export default {
+const meta: Meta<typeof Menu> = {
   title: 'Navigation/Menu',
   component: Menu,
-  subcomponents: {
-    MenuItem,
-    MenuSeparator,
-  },
   parameters: {
     layout: 'centered',
   },
-} as ComponentMeta<typeof Menu>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof Menu> = (args) => (
+export const Basic: StoryFn<typeof Menu> = (args) => (
   <Menu {...args}>
     <MenuItem>Save</MenuItem>
     <MenuItem>Rename</MenuItem>
@@ -42,7 +34,7 @@ Basic.args = {
   button: 'Open menu',
 };
 
-export const WithIcon: ComponentStory<typeof Menu> = (args) => (
+export const WithIcon: StoryFn<typeof Menu> = (args) => (
   <Menu {...args}>
     <MenuItem iconLeft={<ArrowDownTrayIcon width={16} height={16} />}>
       Save

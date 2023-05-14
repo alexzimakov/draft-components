@@ -1,15 +1,16 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { Caption, type CaptionAppearance } from './caption';
 
-export default {
+const meta: Meta<typeof Caption> = {
   title: 'Caption',
   component: Caption,
   args: {
     showIcon: false,
   },
-} as ComponentMeta<typeof Caption>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof Caption> = (args) => {
+export const Basic: StoryFn<typeof Caption> = (args) => {
   const appearances: CaptionAppearance[] = [
     'default',
     'info',

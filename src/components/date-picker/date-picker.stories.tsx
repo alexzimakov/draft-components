@@ -1,9 +1,9 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { useState } from 'react';
 import { DatePicker } from './date-picker';
 import { DateRangePicker } from './date-range-picker';
 
-export default {
+const meta: Meta<typeof DatePicker> = {
   title: 'Forms/DatePicker',
   component: DatePicker,
   args: {
@@ -34,9 +34,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof DatePicker>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof DatePicker> = (args) => {
+export const Basic: StoryFn<typeof DatePicker> = (args) => {
   const [value, setValue] = useState(args.value);
   return (
     <DatePicker
@@ -53,7 +54,7 @@ Basic.args = {
   value: '2022-12-01',
 };
 
-export const Range: ComponentStory<typeof DateRangePicker> = (args) => {
+export const Range: StoryFn<typeof DateRangePicker> = (args) => {
   const [value, setValue] = useState(args.value);
   return (
     <DateRangePicker

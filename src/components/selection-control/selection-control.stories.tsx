@@ -1,10 +1,10 @@
-import { type ComponentMeta, ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { SelectionControl } from './selection-control';
 import { Switch as SwitchComponent } from '../switch';
 import { Checkbox as CheckboxComponent } from '../checkbox';
 import { Radio as RadioComponent } from '../radio';
 
-export default {
+const meta: Meta<typeof SelectionControl> = {
   title: 'Forms/SelectionControl',
   component: SelectionControl,
   argTypes: {
@@ -15,9 +15,10 @@ export default {
       control: { type: 'text' },
     },
   },
-} as ComponentMeta<typeof SelectionControl>;
+};
+export default meta;
 
-export const Switch: ComponentStory<typeof SelectionControl> = (args) => (
+export const Switch: StoryFn<typeof SelectionControl> = (args) => (
   <SelectionControl label={args.label} caption={args.caption}>
     <SwitchComponent />
   </SelectionControl>
@@ -27,7 +28,7 @@ Switch.args = {
   caption: 'Allow selected apps to determine your location',
 };
 
-export const Checkbox: ComponentStory<typeof SelectionControl> = (args) => (
+export const Checkbox: StoryFn<typeof SelectionControl> = (args) => (
   <SelectionControl label={args.label} caption={args.caption}>
     <CheckboxComponent />
   </SelectionControl>
@@ -37,7 +38,7 @@ Checkbox.args = {
   caption: 'Set the same volume level for all songs',
 };
 
-export const Radio: ComponentStory<typeof SelectionControl> = (args) => (
+export const Radio: StoryFn<typeof SelectionControl> = (args) => (
   <SelectionControl label={args.label} caption={args.caption}>
     <RadioComponent />
   </SelectionControl>

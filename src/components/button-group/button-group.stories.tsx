@@ -1,15 +1,12 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { ButtonGroup } from './button-group';
-import { Button, IconButton } from '../button';
+import { IconButton } from '../button';
 
-export default {
+const meta: Meta<typeof ButtonGroup> = {
   title: 'ButtonGroup',
   component: ButtonGroup,
-  subcomponents: {
-    Button,
-    IconButton,
-  },
-} as ComponentMeta<typeof ButtonGroup>;
+};
+export default meta;
 
 const minusIcon = (
   <svg
@@ -47,7 +44,7 @@ const plusIcon = (
   </svg>
 );
 
-export const Basic: ComponentStory<typeof ButtonGroup> = (args) => (
+export const Basic: StoryFn<typeof ButtonGroup> = (args) => (
   <ButtonGroup {...args}>
     <IconButton icon={minusIcon} />
     <IconButton icon={plusIcon} />

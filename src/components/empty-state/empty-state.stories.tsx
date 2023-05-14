@@ -1,14 +1,15 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { EmptyState } from './empty-state';
 import { DocumentPlusIcon } from '@heroicons/react/24/outline';
 import { Button } from '../button';
 
-export default {
+const meta: Meta<typeof EmptyState> = {
   title: 'Feedback/EmptyState',
   component: EmptyState,
-} as ComponentMeta<typeof EmptyState>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof EmptyState> = (args) => (
+export const Basic: StoryFn<typeof EmptyState> = (args) => (
   <EmptyState {...args} />
 );
 Basic.argTypes = {

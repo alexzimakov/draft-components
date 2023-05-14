@@ -1,4 +1,4 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { NavList } from './nav-list';
 import { NavListItem } from './nav-list-item';
 import { NavListTitle } from './nav-list-title';
@@ -10,21 +10,18 @@ import {
   UsersIcon,
 } from '@heroicons/react/24/outline';
 
-export default {
+const meta: Meta<typeof NavList> = {
   title: 'Navigation/NavList',
   component: NavList,
-  subcomponents: {
-    NavListItem,
-    NavListTitle,
-  },
   argTypes: {
     children: {
       control: { disable: true },
     },
   },
-} as ComponentMeta<typeof NavList>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof NavList> = (args) => (
+export const Basic: StoryFn<typeof NavList> = (args) => (
   <NavList {...args}>
     <NavListItem href="/home" aria-current="page">Home</NavListItem>
     <NavListItem href="/users">Users</NavListItem>
@@ -39,7 +36,7 @@ Basic.args = {
   },
 };
 
-export const WithIcons: ComponentStory<typeof NavList> = (args) => (
+export const WithIcons: StoryFn<typeof NavList> = (args) => (
   <NavList {...args}>
     <NavListItem
       icon={<HomeIcon width={18} height={18} />}
@@ -78,7 +75,7 @@ WithIcons.args = {
   ...Basic.args,
 };
 
-export const WithBadges: ComponentStory<typeof NavList> = (args) => (
+export const WithBadges: StoryFn<typeof NavList> = (args) => (
   <NavList {...args}>
     <NavListItem href="/home" aria-current="page">Home</NavListItem>
     <NavListItem href="/users">Users</NavListItem>
@@ -91,7 +88,7 @@ WithBadges.args = {
   ...Basic.args,
 };
 
-export const WithTitle: ComponentStory<typeof NavList> = (args) => (
+export const WithTitle: StoryFn<typeof NavList> = (args) => (
   <NavList {...args}>
     <NavListItem href="/home" aria-current="page">Home</NavListItem>
     <NavListItem href="/users">Users</NavListItem>

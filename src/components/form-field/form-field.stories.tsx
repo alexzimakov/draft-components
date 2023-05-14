@@ -1,8 +1,8 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { FormField } from './form-field';
 import { TextInput } from '../text-input';
 
-export default {
+const meta: Meta<typeof FormField> = {
   title: 'Forms/FormField',
   component: FormField,
   argTypes: {
@@ -13,9 +13,10 @@ export default {
       control: { type: 'text' },
     },
   },
-} as ComponentMeta<typeof FormField>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof FormField> = (args) => (
+export const Basic: StoryFn<typeof FormField> = (args) => (
   <FormField {...args}>
     <TextInput id={args.labelFor} width="40ch" />
   </FormField>
@@ -26,7 +27,7 @@ Basic.args = {
   labelFor: 'name',
 };
 
-export const WithError: ComponentStory<typeof FormField> = (args) => (
+export const WithError: StoryFn<typeof FormField> = (args) => (
   <FormField {...args}>
     <TextInput
       id={args.labelFor}

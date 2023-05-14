@@ -1,7 +1,7 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { Avatar } from './avatar';
 
-export default {
+const meta: Meta<typeof Avatar> = {
   title: 'Avatar',
   component: Avatar,
   argTypes: {
@@ -18,7 +18,8 @@ export default {
     alt: '',
     placeholder: '',
   },
-} as ComponentMeta<typeof Avatar>;
+};
+export default meta;
 
 const images = {
   portraitOfMan: {
@@ -33,7 +34,7 @@ const images = {
   },
 };
 
-export const Basic: ComponentStory<typeof Avatar> = (args, context) => {
+export const Basic: StoryFn<typeof Avatar> = (args, context) => {
   let src = args.src;
   let alt = args.alt;
   if (!src) {
@@ -54,7 +55,7 @@ Square.args = {
   isSquare: true,
 };
 
-export const Sizes: ComponentStory<typeof Avatar> = (args) => (
+export const Sizes: StoryFn<typeof Avatar> = (args) => (
   <div style={{ display: 'flex', alignItems: 'flex-end', gap: 24 }}>
     <Avatar {...args} size="xs" />
     <Avatar {...args} size="sm" />
@@ -73,7 +74,7 @@ Sizes.args = {
   alt: images.portraitOfOscarWilde.alt,
 };
 
-export const WithPlaceholder: ComponentStory<typeof Avatar> = (args) => (
+export const WithPlaceholder: StoryFn<typeof Avatar> = (args) => (
   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20 }}>
     <Avatar {...args} fill="gray" />
     <Avatar {...args} fill="pink" />

@@ -1,14 +1,11 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { Toast } from './toast';
 import { ToastButton } from './toast-button';
 import { MoonIcon } from '@heroicons/react/24/solid';
 
-export default {
+const meta: Meta<typeof Toast> = {
   title: 'Feedback/Toast',
   component: Toast,
-  subcomponents: {
-    ToastButton,
-  },
   argTypes: {
     children: {
       control: 'text',
@@ -23,9 +20,10 @@ export default {
       control: { disable: true },
     },
   },
-} as ComponentMeta<typeof Toast>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof Toast> = (args) => (
+export const Basic: StoryFn<typeof Toast> = (args) => (
   <Toast {...args} />
 );
 Basic.args = {

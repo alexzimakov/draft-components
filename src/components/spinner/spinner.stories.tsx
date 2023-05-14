@@ -1,16 +1,17 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { Spinner } from './spinner';
 
-export default {
+const meta: Meta<typeof Spinner> = {
   title: 'Spinner',
   component: Spinner,
   argTypes: {
     color: { control: 'color' },
     size: { control: 'number', defaultValue: 24 },
   },
-} as ComponentMeta<typeof Spinner>;
+};
+export default meta;
 
-export const Basic: ComponentStory<typeof Spinner> = (args) => (
+export const Basic: StoryFn<typeof Spinner> = (args) => (
   <Spinner {...args} />
 );
 Basic.args = {};
