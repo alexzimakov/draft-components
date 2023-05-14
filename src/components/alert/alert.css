@@ -1,8 +1,8 @@
 .dc-alert {
   --dc-alert-text-color: var(--dc-gray-700);
   --dc-alert-icon-color: var(--dc-gray-500);
-  --dc-alert-bg: rgb(229 231 235 / 0.25); /* gray-200 */
-  --dc-alert-border-color: rgb(156 163 175 / 0.25); /* gray-400 */
+  --dc-alert-bg: rgb(var(--dc-gray-200-rgb) / 0.25);
+  --dc-alert-border-color: rgb(var(--dc-gray-400-rgb) / 0.25);
   --dc-alert-accent-border-color: var(--dc-gray-500);
   --dc-alert-icon-size: 20px;
 
@@ -65,31 +65,31 @@
 .dc-alert_appearance_warning {
   --dc-alert-text-color: var(--dc-orange-700);
   --dc-alert-icon-color: var(--dc-orange-600);
-  --dc-alert-bg: rgb(254 215 170 / 0.2); /* orange-200 */
-  --dc-alert-border-color: rgb(249 115 22 / 0.25); /* orange-500 */
+  --dc-alert-bg: rgb(var(--dc-orange-200-rgb) / 0.2);
+  --dc-alert-border-color: rgb(var(--dc-orange-500-rgb) / 0.25);
   --dc-alert-accent-border-color: var(--dc-orange-500);
 }
 
 .dc-alert_appearance_error {
   --dc-alert-text-color: var(--dc-red-700);
   --dc-alert-icon-color: var(--dc-red-600);
-  --dc-alert-bg: rgb(254 202 202 / 0.2); /* red-200 */
-  --dc-alert-border-color: rgb(239 68 68 / 0.25); /* red-500 */
+  --dc-alert-bg: rgb(var(--dc-red-200-rgb) / 0.2);
+  --dc-alert-border-color: rgb(var(--dc-red-500-rgb) / 0.25);
   --dc-alert-accent-border-color: var(--dc-red-500);
 }
 
 .dc-alert_appearance_info {
   --dc-alert-text-color: var(--dc-blue-700);
   --dc-alert-icon-color: var(--dc-blue-600);
-  --dc-alert-bg: rgb(191 219 254 / 0.2); /* blue-200 */
-  --dc-alert-border-color: rgb(59 130 246 / 0.25); /* blue-500 */
+  --dc-alert-bg: rgb(var(--dc-blue-200-rgb) / 0.2);
+  --dc-alert-border-color: rgb(var(--dc-blue-500-rgb) / 0.25);
   --dc-alert-accent-border-color: var(--dc-blue-500);
 }
 
 .dc-alert_appearance_success {
   --dc-alert-text-color: var(--dc-green-700);
   --dc-alert-icon-color: var(--dc-green-600);
-  --dc-alert-bg: rgb(187 247 208 / 0.2); /* green-200 */
-  --dc-alert-border-color: rgb(22 163 74 / 0.25); /* green-500 */
+  --dc-alert-bg: rgb(var(--dc-green-200-rgb) / 0.2);
+  --dc-alert-border-color: rgb(var(--dc-green-600-rgb) / 0.25);
   --dc-alert-accent-border-color: var(--dc-green-500);
 }

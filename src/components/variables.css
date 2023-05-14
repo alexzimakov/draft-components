@@ -26,145 +26,222 @@
   --dc-text-4xl: 36px/40px var(--dc-primary-font);
   --dc-text-5xl: 48px/1 var(--dc-primary-font);
 
-  /* Shadows */
-  /* https://tailwindcss.com/docs/box-shadow */
-  --dc-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --dc-shadow:
-    0 1px 3px 0 rgb(0 0 0 / 0.1),
-    0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --dc-shadow-md:
-    0 4px 6px -1px rgb(0 0 0 / 0.1),
-    0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --dc-shadow-lg:
-    0 10px 15px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --dc-shadow-xl:
-    0 20px 25px -5px rgb(0 0 0 / 0.1),
-    0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --dc-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-  --dc-shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
-
   /* Colors  */
+  --dc-white: #fff;
+  --dc-white-rgb: 255, 255, 255;
+  --dc-black: #000;
+  --dc-black-rgb: 0 0 0;
+
   /* https://tailwindcss.com/docs/customizing-colors */
 
   /* Gray scale */
   --dc-gray-50: #f9fafb;
+  --dc-gray-50-rgb: 249 250 251;
   --dc-gray-100: #f3f4f6;
+  --dc-gray-100-rgb: 243 244 246;
   --dc-gray-200: #e5e7eb;
+  --dc-gray-200-rgb: 229 231 235;
   --dc-gray-300: #d1d5db;
+  --dc-gray-300-rgb: 209 213 219;
   --dc-gray-400: #9ca3af;
+  --dc-gray-400-rgb: 156 163 175;
   --dc-gray-500: #6b7280;
+  --dc-gray-500-rgb: 107 114 128;
   --dc-gray-600: #4b5563;
+  --dc-gray-600-rgb: 75 85 99;
   --dc-gray-700: #374151;
+  --dc-gray-700-rgb: 55 65 81;
   --dc-gray-800: #1f2937;
+  --dc-gray-800-rgb: 31 41 55;
   --dc-gray-900: #111827;
+  --dc-gray-900-rgb: 17 24 39;
 
   /* Red scale */
   --dc-red-50: #fef2f2;
+  --dc-red-50-rgb: 254 242 242;
   --dc-red-100: #fee2e2;
+  --dc-red-100-rgb: 254 226 226;
   --dc-red-200: #fecaca;
+  --dc-red-200-rgb: 254 202 202;
   --dc-red-300: #fca5a5;
+  --dc-red-300-rgb: 252 165 165;
   --dc-red-400: #f87171;
+  --dc-red-400-rgb: 248 113 113;
   --dc-red-500: #ef4444;
+  --dc-red-500-rgb: 239 68 68;
   --dc-red-600: #dc2626;
+  --dc-red-600-rgb: 220 38 38;
   --dc-red-700: #b91c1c;
+  --dc-red-700-rgb: 185 28 28;
   --dc-red-800: #991b1b;
+  --dc-red-800-rgb: 153 27 27;
   --dc-red-900: #7f1d1d;
+  --dc-red-900-rgb: 127 29 29;
 
   /* Orange scale */
   --dc-orange-50: #fff7ed;
+  --dc-orange-50-rgb: 255 247 237;
   --dc-orange-100: #ffedd5;
+  --dc-orange-100-rgb: 255 237 213;
   --dc-orange-200: #fed7aa;
+  --dc-orange-200-rgb: 254 215 170;
   --dc-orange-300: #fdba74;
+  --dc-orange-300-rgb: 253 186 116;
   --dc-orange-400: #fb923c;
+  --dc-orange-400-rgb: 251 146 60;
   --dc-orange-500: #f97316;
+  --dc-orange-500-rgb: 249 115 22;
   --dc-orange-600: #ea580c;
+  --dc-orange-600-rgb: 234 88 12;
   --dc-orange-700: #c2410c;
+  --dc-orange-700-rgb: 194 65 12;
   --dc-orange-800: #9a3412;
+  --dc-orange-800-rgb: 154 52 18;
   --dc-orange-900: #7c2d12;
+  --dc-orange-900-rgb: 124 45 18;
 
   /* Yellow scale */
   --dc-yellow-50: #fefce8;
+  --dc-yellow-50-rgb: 254 252 232;
   --dc-yellow-100: #fef9c3;
+  --dc-yellow-100-rgb: 254 249 195;
   --dc-yellow-200: #fef08a;
+  --dc-yellow-200-rgb: 254 240 138;
   --dc-yellow-300: #fde047;
+  --dc-yellow-300-rgb: 253 224 71;
   --dc-yellow-400: #facc15;
+  --dc-yellow-400-rgb: 250 204 21;
   --dc-yellow-500: #eab308;
+  --dc-yellow-500-rgb: 234 179 8;
   --dc-yellow-600: #ca8a04;
+  --dc-yellow-600-rgb: 202 138 4;
   --dc-yellow-700: #a16207;
+  --dc-yellow-700-rgb: 161 98 7;
   --dc-yellow-800: #854d0e;
+  --dc-yellow-800-rgb: 133 77 14;
   --dc-yellow-900: #713f12;
+  --dc-yellow-900-rgb: 113 63 18;
 
   /* Green scale */
   --dc-green-50: #f0fdf4;
+  --dc-green-50-rgb: 240 253 244;
   --dc-green-100: #dcfce7;
+  --dc-green-100-rgb: 220 252 231;
   --dc-green-200: #bbf7d0;
+  --dc-green-200-rgb: 187 247 208;
   --dc-green-300: #86efac;
+  --dc-green-300-rgb: 134 239 172;
   --dc-green-400: #4ade80;
+  --dc-green-400-rgb: 74 222 128;
   --dc-green-500: #22c55e;
+  --dc-green-500-rgb: 34 197 94;
   --dc-green-600: #16a34a;
+  --dc-green-600-rgb: 22 163 74;
   --dc-green-700: #15803d;
+  --dc-green-700-rgb: 21 128 61;
   --dc-green-800: #166534;
+  --dc-green-800-rgb: 22 101 52;
   --dc-green-900: #14532d;
+  --dc-green-900-rgb: 20 83 45;
 
   /* Sky scale */
   --dc-sky-50: #f0f9ff;
+  --dc-sky-50-rgb: 240 249 255;
   --dc-sky-100: #e0f2fe;
+  --dc-sky-100-rgb: 224 242 254;
   --dc-sky-200: #bae6fd;
+  --dc-sky-200-rgb: 186 230 253;
   --dc-sky-300: #7dd3fc;
+  --dc-sky-300-rgb: 125 211 252;
   --dc-sky-400: #38bdf8;
+  --dc-sky-400-rgb: 56 189 248;
   --dc-sky-500: #0ea5e9;
+  --dc-sky-500-rgb: 14 165 233;
   --dc-sky-600: #0284c7;
+  --dc-sky-600-rgb: 2 132 199;
   --dc-sky-700: #0369a1;
+  --dc-sky-700-rgb: 3 105 161;
   --dc-sky-800: #075985;
+  --dc-sky-800-rgb: 7 89 133;
   --dc-sky-900: #0c4a6e;
+  --dc-sky-900-rgb: 12 74 110;
 
   /* Blue scale */
   --dc-blue-50: #eff6ff;
+  --dc-blue-50-rgb: 239 246 255;
   --dc-blue-100: #dbeafe;
+  --dc-blue-100-rgb: 219 234 254;
   --dc-blue-200: #bfdbfe;
+  --dc-blue-200-rgb: 191 219 254;
   --dc-blue-300: #93c5fd;
+  --dc-blue-300-rgb: 147 197 253;
   --dc-blue-400: #60a5fa;
+  --dc-blue-400-rgb: 96 165 250;
   --dc-blue-500: #3b82f6;
+  --dc-blue-500-rgb: 59 130 246;
   --dc-blue-600: #2563eb;
+  --dc-blue-600-rgb: 37 99 235;
   --dc-blue-700: #1d4ed8;
+  --dc-blue-700-rgb: 29 78 216;
   --dc-blue-800: #1e40af;
+  --dc-blue-800-rgb: 30 64 175;
   --dc-blue-900: #1e3a8a;
+  --dc-blue-900-rgb: 30 58 138;
 
   /* Violet scale */
   --dc-violet-50: #f5f3ff;
+  --dc-violet-50-rgb: 245 243 255;
   --dc-violet-100: #ede9fe;
+  --dc-violet-100-rgb: 237 233 254;
   --dc-violet-200: #ddd6fe;
+  --dc-violet-200-rgb: 221 214 254;
   --dc-violet-300: #c4b5fd;
+  --dc-violet-300-rgb: 196 181 253;
   --dc-violet-400: #a78bfa;
+  --dc-violet-400-rgb: 167 139 250;
   --dc-violet-500: #8b5cf6;
+  --dc-violet-500-rgb: 139 92 246;
   --dc-violet-600: #7c3aed;
+  --dc-violet-600-rgb: 124 58 237;
   --dc-violet-700: #6d28d9;
+  --dc-violet-700-rgb: 109 40 217;
   --dc-violet-800: #5b21b6;
+  --dc-violet-800-rgb: 91 33 182;
   --dc-violet-900: #4c1d95;
+  --dc-violet-900-rgb: 76 29 149;
 
   /* Pink scale */
   --dc-pink-50: #fdf2f8;
+  --dc-pink-50-rgb: 253 242 248;
   --dc-pink-100: #fce7f3;
+  --dc-pink-100-rgb: 252 231 243;
   --dc-pink-200: #fbcfe8;
+  --dc-pink-200-rgb: 251 207 232;
   --dc-pink-300: #f9a8d4;
+  --dc-pink-300-rgb: 249 168 212;
   --dc-pink-400: #f472b6;
+  --dc-pink-400-rgb: 244 114 182;
   --dc-pink-500: #ec4899;
+  --dc-pink-500-rgb: 236 72 153;
   --dc-pink-600: #db2777;
+  --dc-pink-600-rgb: 219 39 119;
   --dc-pink-700: #be185d;
+  --dc-pink-700-rgb: 190 24 93;
   --dc-pink-800: #9d174d;
+  --dc-pink-800-rgb: 157 23 77;
   --dc-pink-900: #831843;
+  --dc-pink-900-rgb: 131 24 67;
 
   /* Background */
-  --dc-primary-bg: #fff;
-  --dc-bg-transparent-1: rgb(17 24 39 / 0.05);
-  --dc-bg-transparent-2: rgb(17 24 39 / 0.1);
-  --dc-bg-transparent-3: rgb(17 24 39 / 0.2);
+  --dc-primary-bg: var(--dc-white);
+  --dc-bg-transparent-1: rgb(var(--dc-gray-900-rgb) / 0.05);
+  --dc-bg-transparent-2: rgb(var(--dc-gray-900-rgb) / 0.1);
+  --dc-bg-transparent-3: rgb(var(--dc-gray-900-rgb) / 0.2);
 
   /* Borders */
-  --dc-border-color-transparent-1: rgb(17 24 39 / 0.05);
-  --dc-border-color-transparent-2: rgb(17 24 39 / 0.15);
-  --dc-border-color-transparent-3: rgb(17 24 39 / 0.25);
+  --dc-border-color-transparent-1: rgb(var(--dc-gray-900-rgb) / 0.05);
+  --dc-border-color-transparent-2: rgb(var(--dc-gray-900-rgb) / 0.15);
+  --dc-border-color-transparent-3: rgb(var(--dc-gray-900-rgb) / 0.25);
 
   /* Text */
   --dc-primary-text-color: var(--dc-gray-800);
@@ -174,11 +251,11 @@
   /* Primary */
   --dc-primary-color: var(--dc-blue-500);
   --dc-primary-color-hover: var(--dc-blue-600);
-  --dc-on-primary-color: #fff;
+  --dc-on-primary-color: var(--dc-white);
 
   /* Secondary */
-  --dc-secondary-color: rgb(59 130 246 / 0.15); /* blue-500 */
-  --dc-secondary-color-hover: rgb(59 130 246 / 0.3); /* blue-500 */
+  --dc-secondary-color: rgb(var(--dc-blue-500-rgb) / 0.15);
+  --dc-secondary-color-hover: rgb(var(--dc-blue-500-rgb) / 0.3);
   --dc-on-secondary-color: var(--dc-blue-600);
 
   /* Accents */
@@ -189,59 +266,77 @@
 
   /* Default button */
   --dc-button-default-text-color: var(--dc-gray-800);
-  --dc-button-default-border-color: rgb(17 24 39 / 0.1); /* gray-900 */
+  --dc-button-default-border-color: rgb(var(--dc-gray-900-rgb) / 0.1);
   --dc-button-default-bg: var(--dc-gray-100);
   --dc-button-default-bg-hover: var(--dc-gray-200);
   --dc-button-default-tinted-text-color: var(--dc-gray-800);
-  --dc-button-default-tinted-bg: rgb(17 24 39 / 0.1); /* gray-900 */
-  --dc-button-default-tinted-bg-hover: rgb(17 24 39 / 0.2); /* gray-900 */
+  --dc-button-default-tinted-bg: rgb(var(--dc-gray-900-rgb) / 0.1);
+  --dc-button-default-tinted-bg-hover: rgb(var(--dc-gray-900-rgb) / 0.2);
   --dc-button-default-plain-text-color: var(--dc-gray-800);
-  --dc-button-default-plain-bg-hover: rgb(17 24 39 / 0.1); /* gray-900 */
+  --dc-button-default-plain-bg-hover: rgb(var(--dc-gray-900-rgb) / 0.1);
 
   /* Primary button */
-  --dc-button-primary-text-color: #fff;
+  --dc-button-primary-text-color: var(--dc-white);
   --dc-button-primary-border-color: transparent;
   --dc-button-primary-bg: var(--dc-blue-500);
   --dc-button-primary-bg-hover: var(--dc-blue-600);
   --dc-button-primary-tinted-text-color: var(--dc-blue-600);
-  --dc-button-primary-tinted-bg: rgb(59 130 246 / 0.15); /* blue-500 */
-  --dc-button-primary-tinted-bg-hover: rgb(59 130 246 / 0.3); /* blue-500 */
+  --dc-button-primary-tinted-bg: rgb(var(--dc-blue-500-rgb) / 0.15);
+  --dc-button-primary-tinted-bg-hover: rgb(var(--dc-blue-500-rgb) / 0.3);
   --dc-button-primary-plain-text-color: var(--dc-blue-600);
-  --dc-button-primary-plain-bg-hover: rgb(59 130 246 / 0.15); /* blue-500 */
+  --dc-button-primary-plain-bg-hover: rgb(var(--dc-blue-500-rgb) / 0.15);
 
   /* Danger button */
-  --dc-button-danger-text-color: #fff;
+  --dc-button-danger-text-color: var(--dc-white);
   --dc-button-danger-border-color: transparent;
   --dc-button-danger-bg: var(--dc-red-500);
   --dc-button-danger-bg-hover: var(--dc-red-600);
   --dc-button-danger-tinted-text-color: var(--dc-red-600);
-  --dc-button-danger-tinted-bg: rgb(220 38 38 / 0.15); /* red-500 */
-  --dc-button-danger-tinted-bg-hover: rgb(220 38 38 / 0.3); /* red-500 */
+  --dc-button-danger-tinted-bg: rgb(var(--dc-red-600-rgb) / 0.15);
+  --dc-button-danger-tinted-bg-hover: rgb(var(--dc-red-600-rgb) / 0.3);
   --dc-button-danger-plain-text-color: var(--dc-red-600);
-  --dc-button-danger-plain-bg-hover: rgb(220 38 38 / 0.15); /* red-500 */
+  --dc-button-danger-plain-bg-hover: rgb(var(--dc-red-600-rgb) / 0.15);
 
   /* Success button */
-  --dc-button-success-text-color: #fff;
+  --dc-button-success-text-color: var(--dc-white);
   --dc-button-success-border-color: transparent;
   --dc-button-success-bg: var(--dc-green-500);
   --dc-button-success-bg-hover: var(--dc-green-600);
   --dc-button-success-tinted-text-color: var(--dc-green-600);
-  --dc-button-success-tinted-bg: rgb(34 197 94 / 0.15); /* green-500 */
-  --dc-button-success-tinted-bg-hover: rgb(34 197 94 / 0.3); /* green-500 */
+  --dc-button-success-tinted-bg: rgb(var(--dc-green-500-rgb) / 0.15);
+  --dc-button-success-tinted-bg-hover: rgb(var(--dc-green-500-rgb) / 0.3);
   --dc-button-success-plain-text-color: var(--dc-green-600);
-  --dc-button-success-plain-bg-hover: rgb(34 197 94 / 0.15); /* green-500 */
+  --dc-button-success-plain-bg-hover: rgb(var(--dc-green-500-rgb) / 0.15);
 
   /* Controls */
   --dc-control-primary-text-color: var(--dc-gray-800);
   --dc-control-secondary-text-color: var(--dc-gray-500);
   --dc-control-primary-color: var(--dc-blue-500);
   --dc-control-primary-color-hover: var(--dc-blue-600);
-  --dc-control-on-primary-color: #fff;
-  --dc-control-secondary-color: rgb(59 130 246 / 0.15); /* blue-500 */
+  --dc-control-on-primary-color: var(--dc-white);
+  --dc-control-secondary-color: rgb(var(--dc-blue-500-rgb) / 0.15);
   --dc-control-border-color: var(--dc-gray-300);
-  --dc-control-bg: rgb(249 250 251 / 0.2); /* gray-50 */
-  --dc-control-bg-inset: rgb(17 24 39 / 0.15); /* gray-900 */
+  --dc-control-bg: rgb(var(--dc-gray-50-rgb) / 0.2);
+  --dc-control-bg-inset: rgb(var(--dc-gray-900-rgb) / 0.15);
   --dc-control-error-color: var(--dc-red-500);
-  --dc-focus-ring-color: rgb(59 130 246 / 0.7); /* blue-500 */
+  --dc-focus-ring-color: rgb(var(--dc-blue-500-rgb) / 0.7);
   --dc-disabled-state-opacity: 0.5;
+
+  /* Shadows */
+  /* https://tailwindcss.com/docs/box-shadow */
+  --dc-shadow-sm: 0 1px 2px 0 rgb(var(--dc-black-rgb) / 0.05);
+  --dc-shadow:
+    0 1px 3px 0 rgb(var(--dc-black-rgb) / 0.1),
+    0 1px 2px -1px rgb(var(--dc-black-rgb) / 0.1);
+  --dc-shadow-md:
+    0 4px 6px -1px rgb(var(--dc-black-rgb) / 0.1),
+    0 2px 4px -2px rgb(var(--dc-black-rgb) / 0.1);
+  --dc-shadow-lg:
+    0 10px 15px -3px rgb(var(--dc-black-rgb) / 0.1),
+    0 4px 6px -4px rgb(var(--dc-black-rgb) / 0.1);
+  --dc-shadow-xl:
+    0 20px 25px -5px rgb(var(--dc-black-rgb) / 0.1),
+    0 8px 10px -6px rgb(var(--dc-black-rgb) / 0.1);
+  --dc-shadow-2xl: 0 25px 50px -12px rgb(var(--dc-black-rgb) / 0.25);
+  --dc-shadow-inner: inset 0 2px 4px 0 rgb(var(--dc-black-rgb) / 0.05);
 }

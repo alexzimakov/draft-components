@@ -7,7 +7,7 @@
   --dc-dialog-border-color: transparent;
   --dc-dialog-bg: var(--dc-primary-bg);
   --dc-dialog-inset-shadow-color: var(--dc-border-color-transparent-2);
-  --dc-dialog-backdrop-color: rgb(17 24 39 / 0.4); /* gray-900 */
+  --dc-dialog-backdrop-color: rgb(var(--dc-gray-900-rgb) / 0.4);
 
   color-scheme: light;
   position: relative;

@@ -2,7 +2,7 @@
   --dc-breadcrumbs-text-color: var(--dc-secondary-text-color);
   --dc-breadcrumbs-text-color-hover: var(--dc-primary-text-color);
   --dc-breadcrumbs-text-color-active: var(--dc-primary-text-color);
-  --dc-breadcrumbs-separator-color: rgb(107 114 128 / 0.5); /* gray-500 */
+  --dc-breadcrumbs-separator-color: rgb(var(--dc-gray-500-rgb) / 0.5);
 
   color-scheme: light;
 }

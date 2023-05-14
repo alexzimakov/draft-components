@@ -4,7 +4,7 @@
   --dc-avatar-font-size: 16px;
   --dc-avatar-text-color: white;
   --dc-avatar-bg: none;
-  --dc-avatar-inner-border-color: rgb(55 65 81 / 0.15);
+  --dc-avatar-inner-border-color: rgb(var(--dc-gray-700-rgb) / 0.15);
 
   color-scheme: light;
   position: relative;

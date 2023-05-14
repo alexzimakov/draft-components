@@ -11,8 +11,8 @@
   --dc-slider-thumb-height: 20px;
   --dc-slider-thumb-bg: var(--dc-control-on-primary-color);
   --dc-slider-thumb-shadow:
-    0 0 0 1px rgb(0 0 0 / 0.1),
-    0 2px 3px rgb(0 0 0 / 0.2);
+    0 0 0 1px rgb(var(--dc-black-rgb) / 0.1),
+    0 2px 3px rgb(var(--dc-black-rgb) / 0.2);
   --dc-slider-thumb-shadow-focus:
     var(--dc-slider-thumb-shadow),
     0 0 0 3px var(--dc-slider-focus-ring-color);

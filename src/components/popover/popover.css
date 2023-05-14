@@ -3,7 +3,7 @@
   --dc-popover-transition-duration: 100ms;
   --dc-popover-bg: white;
   --dc-popover-shadow:
-    0 2px 0 -1px rgb(0 0 0 / 0.075),
+    0 2px 0 -1px rgb(var(--dc-black-rgb) / 0.075),
     0 0 0 1px var(--dc-gray-200),
     var(--dc-shadow-lg);
 
