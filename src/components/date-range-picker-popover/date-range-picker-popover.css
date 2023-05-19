@@ -4,8 +4,9 @@
   grid-template-areas:
     "presets calendar"
     "footer  footer";
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto 1fr;
   grid-gap: 20px 24px;
+  max-width: none;
 }
 
 .dc-date-range-picker-popover_compact {
