@@ -17,6 +17,8 @@
 
 .dc-table-container {
   overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
   box-sizing: border-box;
   width: 100%;
   border: 0 solid var(--dc-table-border-color);
@@ -61,6 +63,7 @@
 }
 
 .dc-table-cell {
+  scroll-snap-align: start;
   box-sizing: border-box;
   padding:
     var(--dc-table-cell-padding-y)
