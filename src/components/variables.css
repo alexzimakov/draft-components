@@ -316,7 +316,7 @@
   --dc-control-on-primary-color: var(--dc-white);
   --dc-control-secondary-color: rgb(var(--dc-blue-500-rgb) / 0.15);
   --dc-control-border-color: var(--dc-gray-300);
-  --dc-control-bg: rgb(var(--dc-gray-50-rgb) / 0.2);
+  --dc-control-bg: var(--dc-white);
   --dc-control-bg-inset: rgb(var(--dc-gray-900-rgb) / 0.15);
   --dc-control-error-color: var(--dc-red-500);
   --dc-focus-ring-color: rgb(var(--dc-blue-500-rgb) / 0.7);

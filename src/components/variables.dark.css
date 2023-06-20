@@ -83,7 +83,7 @@
   --dc-control-on-primary-color: var(--dc-white);
   --dc-control-secondary-color: rgb(var(--dc-blue-400-rgb) / 0.15);
   --dc-control-border-color: var(--dc-gray-600);
-  --dc-control-bg: rgb(var(--dc-gray-50-rgb) / 0.08);
+  --dc-control-bg: var(--dc-gray-800);
   --dc-control-bg-inset: rgb(var(--dc-gray-50-rgb) / 0.25);
   --dc-control-error-color: var(--dc-red-400);
   --dc-focus-ring-color: rgb(var(--dc-blue-400-rgb) / 0.7);
