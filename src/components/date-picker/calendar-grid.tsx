@@ -1,4 +1,4 @@
-import { type KeyboardEvent } from 'react';
+import { type JSX, type KeyboardEvent } from 'react';
 import { KeyboardKeys } from '../../lib/keyboard-keys';
 import {
   DAYS_IN_WEEK,

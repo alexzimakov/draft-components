@@ -1,3 +1,4 @@
+import { type JSX } from 'react';
 import {
   DAYS_IN_WEEK,
   type Weekday,

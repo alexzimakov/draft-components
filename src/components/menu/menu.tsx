@@ -2,6 +2,7 @@ import { KeyboardKeys } from '../../lib/keyboard-keys';
 import {
   Children,
   type ComponentPropsWithoutRef,
+  type JSX,
   type KeyboardEventHandler,
   type MouseEventHandler,
   type ReactElement,

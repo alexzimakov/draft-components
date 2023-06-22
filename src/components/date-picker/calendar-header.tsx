@@ -5,7 +5,7 @@ import {
   setDateYear,
 } from './date-helpers';
 import { classNames } from '../../lib/react-helpers';
-import { useEffect, useState } from 'react';
+import { type JSX, useEffect, useState } from 'react';
 import { IconButton } from '../button';
 import { Select } from '../select';
 import { TextInput } from '../text-input';

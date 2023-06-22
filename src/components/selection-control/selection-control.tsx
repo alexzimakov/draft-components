@@ -1,5 +1,6 @@
 import {
   type ComponentPropsWithoutRef,
+  type JSX,
   type ReactNode,
   cloneElement,
   useId,

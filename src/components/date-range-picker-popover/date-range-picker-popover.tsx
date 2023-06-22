@@ -6,7 +6,7 @@ import {
 import { classNames } from '../../lib/react-helpers';
 import { assertIfNullable } from '../../lib/helpers';
 import { findSelectedOption } from './helpers';
-import { type ReactNode, useRef, useState } from 'react';
+import { type JSX, type ReactNode, useRef, useState } from 'react';
 import { useIsCompactView } from './use-is-compact-view';
 import {
   Popover,

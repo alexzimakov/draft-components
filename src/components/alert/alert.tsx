@@ -1,4 +1,4 @@
-import { type ComponentPropsWithRef, type ReactNode, forwardRef } from 'react';
+import { type ComponentPropsWithRef, type JSX, type ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 type AlertHTMLProps = ComponentPropsWithRef<'div'>;
