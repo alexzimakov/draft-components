@@ -33,10 +33,11 @@ type TooltipChildrenRenderFn = (props: {
 }) => ReactNode;
 
 type TooltipHTMLProps = ComponentPropsWithoutRef<'div'>;
-type TooltipBaseProps = Omit<TooltipHTMLProps, 'children'>;
+type TooltipBaseProps = Omit<TooltipHTMLProps, 'children' | 'content'>;
 export type TooltipPlacement = PositionerProps['placement'];
 export type TooltipAlignment = PositionerProps['alignment'];
 export type TooltipProps = {
+  htmlContent?: TooltipHTMLProps['content'];
   anchorGap?: number;
   placement?: TooltipPlacement;
   alignment?: TooltipAlignment;
@@ -52,6 +53,7 @@ export function Tooltip({
   alignment = 'center',
   style,
   className,
+  htmlContent,
   content,
   children,
   ...props
@@ -132,6 +134,7 @@ export function Tooltip({
             ...style,
           } as CSSProperties}
           className={classNames('dc-tooltip', transitionClass, className)}
+          content={htmlContent}
           role="tooltip"
         >
           {content}
