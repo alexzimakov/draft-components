@@ -52,6 +52,7 @@ export type PopoverProps = {
   isOpen?: boolean;
   shouldTrapFocus?: boolean;
   shouldFocusAnchorAfterEscPress?: boolean;
+  transitionDurationMs?: number;
   anchorGap?: number;
   viewportGap?: number;
   placement?: PopoverPlacement;
@@ -68,6 +69,7 @@ export const Popover = forwardRef<
 >(function Popover({
   shouldTrapFocus = true,
   shouldFocusAnchorAfterEscPress = true,
+  transitionDurationMs = 100,
   placement = 'bottom',
   alignment = 'start',
   anchorGap,
@@ -85,9 +87,8 @@ export const Popover = forwardRef<
   const anchorRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const isOpen = props.isOpen ?? defaultIsOpen;
-  const durationMs = 100;
   const { isMounted, className: transitionClass } = useMountTransition({
-    durationMs,
+    durationMs: transitionDurationMs,
     isShown: isOpen,
     enterFrom: 'dc-popover_closed',
     enterTo: 'dc-popover_opened',
@@ -175,7 +176,7 @@ export const Popover = forwardRef<
         <div
           ref={portalRef}
           style={{
-            '--dc-popover-transition-duration': `${durationMs}ms`,
+            '--dc-popover-transition-duration': `${transitionDurationMs}ms`,
             ...portalStyle,
           } as CSSProperties}
           className={classNames('dc-popover', transitionClass)}
