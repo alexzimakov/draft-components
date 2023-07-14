@@ -49,3 +49,6 @@
 @import url("dialog/dialog.dark.css");
 @import url("date-picker-popover/date-picker-popover.dark.css");
 @import url("date-range-picker-popover/date-range-picker-popover.dark.css");
+
+/* Other */
+@import url("filtered-search/filtered-search.dark.css");

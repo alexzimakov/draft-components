@@ -1,0 +1,12 @@
+.dc-string-filter-input {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 4px 8px;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: 4px;
+}
+
+.dc-string-filter-input__error {
+  grid-column: 1/3;
+}

@@ -15,6 +15,7 @@ export * from './dialog';
 export * from './empty-state';
 export * from './file-picker';
 export * from './filter-buttons';
+export * from './filtered-search';
 export * from './form-field';
 export * from './label';
 export * from './menu';

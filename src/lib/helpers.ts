@@ -23,3 +23,7 @@ export function assertIfNullable<T>(
     throw Error(message);
   }
 }
+
+export function exhaustiveCheck(value: never, message?: string): never {
+  throw new Error(message);
+}

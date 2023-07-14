@@ -1,0 +1,6 @@
+.dc-filter-operator-select {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-column-gap: 8px;
+  align-items: center;
+}

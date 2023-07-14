@@ -1,0 +1,30 @@
+.dc-filter-popover {
+  font: var(--dc-text-sm);
+  width: 320px;
+  max-width: 100%;
+  padding: 16px;
+}
+
+.dc-filter-form {
+  display: block;
+  width: 100%;
+}
+
+.dc-filter-form__operator {
+  margin-bottom: 8px;
+}
+
+.dc-filter-form__value-list {
+  margin-right: -16px;
+  margin-left: -16px;
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.dc-filter-form__buttons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 16px;
+}

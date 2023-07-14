@@ -10,5 +10,6 @@ export const KeyboardKeys = {
   PageDown: 'PageDown',
   Enter: 'Enter',
   Escape: 'Escape',
+  Backspace: 'Backspace',
   Space: ' ',
 };
