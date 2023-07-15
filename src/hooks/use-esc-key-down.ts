@@ -17,7 +17,9 @@ const handlers: Handler[] = [];
  * @param options.isEnabled A flag that determines whether to run
  * the passed handler or not.
  */
-export function useEscKeyDown(handler: Handler, options: Options): void {
+export function useEscKeyDown(handler: Handler, options: Options = {
+  isEnabled: true,
+}): void {
   const handlerRef = useRef(handler);
   const isEnabled = options.isEnabled;
 

@@ -28,10 +28,9 @@ const focusableElementsSelector = [
  * @param {boolean} options.isEnabled - A flag that determines whether
  * to trap focus or not.
  */
-export function useFocusTrap(
-  modalRef: ModalRef,
-  options: Options,
-): void {
+export function useFocusTrap(modalRef: ModalRef, options: Options = {
+  isEnabled: true,
+}): void {
   const isEnabled = options.isEnabled;
 
   useEffect(() => {

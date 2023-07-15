@@ -1,0 +1,23 @@
+.dc-slide-over-header {
+  color: var(--dc-slide-over-text-color);
+  box-sizing: border-box;
+  padding: 16px;
+}
+
+.dc-slide-over-header__title {
+  display: flex;
+  align-items: center;
+}
+
+.dc-slide-over-header__title > h2 {
+  font: 700 var(--dc-text-md);
+  color: inherit;
+  flex-grow: 1;
+  margin: 0;
+}
+
+.dc-slide-over-header__description {
+  font: var(--dc-text-sm);
+  color: var(--dc-slide-over-secondary-text-color);
+  margin-top: 4px;
+}

@@ -3,6 +3,7 @@ import {
   type ReactElement,
   type Ref,
   type RefCallback,
+  RefObject,
   isValidElement,
 } from 'react';
 
@@ -67,4 +68,15 @@ export function focusElement(element: EventTarget | null | undefined): void {
   if (element != null && element instanceof HTMLElement) {
     element.focus();
   }
+}
+
+export function getRefElement<T extends HTMLElement>(
+  ref: RefObject<T>,
+  message = 'getElementFromRef: ref value is null.',
+): NonNullable<T> {
+  const value = ref.current;
+  if (value == null) {
+    throw new Error(message);
+  }
+  return value;
 }

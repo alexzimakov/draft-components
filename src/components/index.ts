@@ -28,6 +28,7 @@ export * from './radio';
 export * from './segmented-control';
 export * from './select';
 export * from './selection-control';
+export * from './slide-over';
 export * from './slider';
 export * from './spinner';
 export * from './switch';

@@ -1,0 +1,39 @@
+@import url("slide-over-header.css");
+@import url("slide-over-body.css");
+
+.dc-slide-over {
+  --dc-slide-over-text-color: var(--dc-primary-text-color);
+  --dc-slide-over-secondary-text-color: var(--dc-secondary-text-color);
+  --dc-slide-over-panel-max-width: 512px;
+  --dc-slide-over-panel-bg: var(--dc-primary-bg);
+  --dc-slide-over-backdrop-color: rgb(var(--dc-gray-900-rgb) / 0.4);
+
+  color-scheme: light;
+  position: relative;
+  z-index: var(--dc-overlay-z-index);
+}
+
+.dc-slide-over__backdrop,
+.dc-slide-over__panel {
+  position: fixed;
+  top: 0;
+  height: 100%;
+}
+
+.dc-slide-over__backdrop {
+  left: 0;
+  width: 100%;
+  background: var(--dc-slide-over-backdrop-color);
+}
+
+.dc-slide-over__panel {
+  color: var(--dc-primary-text-color);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--dc-slide-over-panel-max-width);
+  background: var(--dc-slide-over-panel-bg);
+  box-shadow: var(--dc-shadow-md);
+}

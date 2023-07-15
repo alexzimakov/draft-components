@@ -9,6 +9,12 @@
 @import url("button-group/button-group.dark.css");
 @import url("spinner/spinner.dark.css");
 
+/* Overlays */
+@import url("tooltip/tooltip.dark.css");
+@import url("popover/popover.dark.css");
+@import url("dialog/dialog.dark.css");
+@import url("slide-over/slide-over.dark.css");
+
 /* Forms */
 @import url("text-input/text-input.dark.css");
 @import url("password-input/password-input.dark.css");
@@ -26,6 +32,8 @@
 @import url("selection-control/selection-control.dark.css");
 @import url("form-field/form-field.dark.css");
 @import url("color-picker/color-picker.dark.css");
+@import url("date-picker-popover/date-picker-popover.dark.css");
+@import url("date-range-picker-popover/date-range-picker-popover.dark.css");
 
 /* Data display */
 @import url("table/table.dark.css");
@@ -42,13 +50,6 @@
 @import url("nav-list/nav-list.dark.css");
 @import url("breadcrumbs/breadcrumbs.dark.css");
 @import url("filter-buttons/filter-buttons.dark.css");
-
-/* Overlays */
-@import url("tooltip/tooltip.dark.css");
-@import url("popover/popover.dark.css");
-@import url("dialog/dialog.dark.css");
-@import url("date-picker-popover/date-picker-popover.dark.css");
-@import url("date-range-picker-popover/date-range-picker-popover.dark.css");
 
 /* Other */
 @import url("filtered-search/filtered-search.dark.css");

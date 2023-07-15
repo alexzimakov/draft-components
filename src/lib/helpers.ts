@@ -15,15 +15,15 @@ export function once<
   };
 }
 
+export function exhaustiveCheck(value: never, message?: string): never {
+  throw new Error(message);
+}
+
 export function assertIfNullable<T>(
   value: T,
-  message = 'value is null or undefined',
+  message = 'assertIfNullable: value is null or undefined.',
 ): asserts value is NonNullable<T> {
   if (value == null) {
     throw Error(message);
   }
-}
-
-export function exhaustiveCheck(value: never, message?: string): never {
-  throw new Error(message);
 }

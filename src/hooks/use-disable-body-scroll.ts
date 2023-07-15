@@ -3,7 +3,9 @@ import { once } from '../lib/helpers';
 
 type Options = { isEnabled: boolean };
 
-export function useDisableBodyScroll(options: Options) {
+export function useDisableBodyScroll(options: Options = {
+  isEnabled: true,
+}) {
   useEffect(() => {
     if (options.isEnabled) {
       return disableBodyScroll();
