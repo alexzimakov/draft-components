@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { useState } from 'react';
 import { DatePicker } from './date-picker';
 import { DateRangePicker } from './date-range-picker';

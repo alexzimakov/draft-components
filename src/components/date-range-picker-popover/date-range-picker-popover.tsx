@@ -1,20 +1,12 @@
-import { type DateISORange } from '../date-picker/date-range';
-import {
-  type DateRangePickerPopoverOption,
-  type DateRangePickerPopoverSelection,
-} from './types';
+import { DateISORange } from '../date-picker/date-range';
+import { DateRangePickerPopoverOption, DateRangePickerPopoverSelection } from './types';
 import { classNames } from '../../lib/react-helpers';
 import { assertIfNullable } from '../../lib/helpers';
 import { findSelectedOption } from './helpers';
-import { type JSX, type ReactNode, useRef, useState } from 'react';
+import { JSX, ReactNode, useRef, useState } from 'react';
 import { useIsCompactView } from './use-is-compact-view';
-import {
-  Popover,
-  type PopoverAlignment,
-  type PopoverPlacement,
-  type PopoverRef,
-} from '../popover';
-import { DateRangePicker, type DateRangePickerProps } from '../date-picker';
+import { Popover, PopoverAlignment, PopoverPlacement, PopoverRef } from '../popover';
+import { DateRangePicker, DateRangePickerProps } from '../date-picker';
 import { DateRangePickerPopoverFooter } from './date-range-picker-popover-footer';
 import { DateRangePickerPopoverPresets } from './date-range-picker-popover-presets';
 

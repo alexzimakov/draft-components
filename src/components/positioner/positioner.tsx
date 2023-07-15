@@ -1,11 +1,5 @@
-import {
-  type CSSProperties,
-  type ReactNode,
-  type RefCallback,
-  useLayoutEffect,
-  useState,
-} from 'react';
-import { type Alignment, type Placement, type Rect } from './types';
+import { CSSProperties, ReactNode, RefCallback, useLayoutEffect, useState } from 'react';
+import { Alignment, Placement, Rect } from './types';
 import { calcPosition } from './calc-position';
 import { Portal } from '../portal';
 

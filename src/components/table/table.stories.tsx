@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { TableContainer } from './table-container';
 import { Table } from './table';
 import { TableHead } from './table-head';

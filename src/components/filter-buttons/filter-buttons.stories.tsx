@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { FilterButtons } from './filter-buttons';
 import { FilterButton } from './filter-button';
 import { useState } from 'react';

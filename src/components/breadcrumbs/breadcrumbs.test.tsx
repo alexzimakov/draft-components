@@ -1,9 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
 import { Breadcrumbs } from './breadcrumbs';
-import {
-  BreadcrumbsItem,
-  type BreadcrumbsItemRenderFn,
-} from './breadcrumbs-item';
+import { BreadcrumbsItem, BreadcrumbsItemRenderFn } from './breadcrumbs-item';
 
 it('renders without errors', () => {
   render(

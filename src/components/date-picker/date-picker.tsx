@@ -1,15 +1,8 @@
-import {
-  type DateISO,
-  type Weekday,
-  isSameDay,
-  isValidDateISO,
-  parseDateISO,
-  toDateISO,
-} from './date-helpers';
-import { type ComponentPropsWithoutRef } from 'react';
+import { DateISO, Weekday, isSameDay, isValidDateISO, parseDateISO, toDateISO } from './date-helpers';
+import { ComponentPropsWithoutRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { parseMinMaxProps } from './parse-min-max-props';
-import { Calendar, type CalendarProps } from './calendar';
+import { Calendar, CalendarProps } from './calendar';
 
 type DatePickerHTMLProps = ComponentPropsWithoutRef<'div'>;
 export type DatePickerProps = {

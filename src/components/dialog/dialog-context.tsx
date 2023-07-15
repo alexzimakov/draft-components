@@ -1,4 +1,4 @@
-import { type ReactNode, createContext, useContext } from 'react';
+import { ReactNode, createContext, useContext } from 'react';
 
 export type DialogContextValue = {
   titleId: string;

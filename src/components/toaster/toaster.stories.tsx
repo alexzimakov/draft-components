@@ -1,4 +1,4 @@
-import { type ToastParams, type ToastPosition, Toaster } from './toaster';
+import { ToastParams, ToastPosition, Toaster } from './toaster';
 import { Button } from '../button';
 import { BellAlertIcon, ExclamationCircleIcon, WifiIcon } from '@heroicons/react/24/outline';
 

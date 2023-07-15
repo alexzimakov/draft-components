@@ -1,27 +1,18 @@
 import {
-  type CSSProperties,
-  type ComponentPropsWithoutRef,
-  type FocusEvent,
-  type MouseEvent,
-  type ReactNode,
-  type RefCallback,
+  CSSProperties,
+  ComponentPropsWithoutRef,
+  FocusEvent,
+  MouseEvent,
+  ReactNode,
+  RefCallback,
   cloneElement,
   useId,
   useMemo,
   useState,
 } from 'react';
-import {
-  classNames,
-  isReactElementWithRef,
-  mergeRefs,
-} from '../../lib/react-helpers';
+import { classNames, isReactElementWithRef, mergeRefs } from '../../lib/react-helpers';
 import { useMountTransition } from '../../hooks';
-import {
-  Positioner,
-  type PositionerAnchorRenderFn,
-  type PositionerContentRenderFn,
-  type PositionerProps,
-} from '../positioner';
+import { Positioner, PositionerAnchorRenderFn, PositionerContentRenderFn, PositionerProps } from '../positioner';
 
 type TooltipChildrenRenderFn = (props: {
   ref: RefCallback<HTMLElement>;

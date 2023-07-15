@@ -1,6 +1,6 @@
-import { type ReactNode, forwardRef } from 'react';
+import { ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { Button, type ButtonProps } from './button';
+import { Button, ButtonProps } from './button';
 
 export type IconButtonBaseProps = Omit<ButtonProps,
   | 'children'

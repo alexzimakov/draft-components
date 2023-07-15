@@ -1,8 +1,4 @@
-import {
-  type ChangeEventHandler,
-  type ComponentPropsWithoutRef,
-  type ReactNode,
-} from 'react';
+import { ChangeEventHandler, ComponentPropsWithoutRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { ColorPickerButton } from './color-picker-button';
 

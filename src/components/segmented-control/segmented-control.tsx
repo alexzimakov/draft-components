@@ -1,9 +1,4 @@
-import {
-  type ComponentPropsWithRef,
-  type KeyboardEvent,
-  type ReactNode,
-  useRef,
-} from 'react';
+import { ComponentPropsWithRef, KeyboardEvent, ReactNode, useRef } from 'react';
 import { KeyboardKeys } from '../../lib/keyboard-keys';
 import { assertIfNullable } from '../../lib/helpers';
 import { classNames, focusElement } from '../../lib/react-helpers';

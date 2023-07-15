@@ -1,4 +1,4 @@
-import { type ComponentPropsWithoutRef, type JSX, type ReactNode } from 'react';
+import { ComponentPropsWithoutRef, JSX, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { Badge } from '../badge';
 

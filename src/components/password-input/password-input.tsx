@@ -1,15 +1,6 @@
-import {
-  type ComponentPropsWithoutRef,
-  type ElementType,
-  forwardRef,
-  useState,
-} from 'react';
+import { ComponentPropsWithoutRef, ElementType, forwardRef, useState } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import {
-  TextInput,
-  type TextInputProps,
-  type TextInputRenderAddOn,
-} from '../text-input';
+import { TextInput, TextInputProps, TextInputRenderAddOn } from '../text-input';
 import { Tooltip } from '../tooltip';
 import { EyeIcon, EyeSlashIcon } from './icons';
 

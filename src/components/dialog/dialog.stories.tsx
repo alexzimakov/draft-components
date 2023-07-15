@@ -1,5 +1,5 @@
-import { type Meta } from '@storybook/react';
-import { type RefObject, useRef, useState } from 'react';
+import { Meta } from '@storybook/react';
+import { RefObject, useRef, useState } from 'react';
 import { Dialog } from './dialog';
 import { DialogHeader } from './dialog-header';
 import { DialogBody } from './dialog-body';

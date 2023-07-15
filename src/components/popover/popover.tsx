@@ -1,8 +1,8 @@
 import {
-  type CSSProperties,
-  type ComponentPropsWithoutRef,
-  type ReactNode,
-  type RefCallback,
+  CSSProperties,
+  ComponentPropsWithoutRef,
+  ReactNode,
+  RefCallback,
   cloneElement,
   forwardRef,
   useCallback,
@@ -10,12 +10,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import {
-  classNames,
-  focusElement,
-  isReactElementWithRef,
-  mergeRefs,
-} from '../../lib/react-helpers';
+import { classNames, focusElement, isReactElementWithRef, mergeRefs } from '../../lib/react-helpers';
 import { useMountTransition } from '../../hooks/use-mount-transition';
 import { useEscKeyDown } from '../../hooks/use-esc-key-down';
 import { useFocusTrap } from '../../hooks/use-focus-trap';

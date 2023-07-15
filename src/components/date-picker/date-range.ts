@@ -1,4 +1,4 @@
-import { type DateISO, isSameDay, toDateISO } from './date-helpers';
+import { DateISO, isSameDay, toDateISO } from './date-helpers';
 
 export type DateISORange = {
   start: DateISO;

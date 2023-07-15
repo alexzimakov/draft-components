@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { Toast } from './toast';
 import { ToastButton } from './toast-button';
 import { MoonIcon } from '@heroicons/react/24/solid';

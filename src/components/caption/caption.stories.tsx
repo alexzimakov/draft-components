@@ -1,5 +1,5 @@
-import { type Meta, type StoryFn } from '@storybook/react';
-import { Caption, type CaptionAppearance } from './caption';
+import { Meta, StoryFn } from '@storybook/react';
+import { Caption, CaptionAppearance } from './caption';
 
 const meta: Meta<typeof Caption> = {
   title: 'Caption',

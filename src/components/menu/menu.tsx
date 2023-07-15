@@ -1,13 +1,13 @@
 import { KeyboardKeys } from '../../lib/keyboard-keys';
 import {
   Children,
-  type ComponentPropsWithoutRef,
-  type JSX,
-  type KeyboardEventHandler,
-  type MouseEventHandler,
-  type ReactElement,
-  type ReactNode,
-  type RefCallback,
+  ComponentPropsWithoutRef,
+  JSX,
+  KeyboardEventHandler,
+  MouseEventHandler,
+  ReactElement,
+  ReactNode,
+  RefCallback,
   cloneElement,
   isValidElement,
   useId,
@@ -15,18 +15,9 @@ import {
 } from 'react';
 import { classNames, focusElement } from '../../lib/react-helpers';
 import { assertIfNullable } from '../../lib/helpers';
-import {
-  Button,
-  type ButtonAppearance,
-  type ButtonVariant,
-} from '../button';
-import {
-  Popover,
-  type PopoverAlignment,
-  type PopoverAnchorRenderFn,
-  type PopoverPlacement,
-} from '../popover';
-import { MenuItem, type MenuItemProps } from './menu-item';
+import { Button, ButtonAppearance, ButtonVariant } from '../button';
+import { Popover, PopoverAlignment, PopoverAnchorRenderFn, PopoverPlacement } from '../popover';
+import { MenuItem, MenuItemProps } from './menu-item';
 
 export type MenuButtonRenderFn = (props: {
   ref: RefCallback<HTMLElement>;

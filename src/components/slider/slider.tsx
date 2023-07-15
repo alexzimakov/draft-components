@@ -1,6 +1,6 @@
-import { type ComponentPropsWithRef, forwardRef } from 'react';
+import { ComponentPropsWithRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { SliderTickMarks, type SliderTickMarksProps } from './slider-tick-marks';
+import { SliderTickMarks, SliderTickMarksProps } from './slider-tick-marks';
 
 type SliderHTMLProps = ComponentPropsWithRef<'input'>;
 type SliderBaseProps = Omit<

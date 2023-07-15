@@ -1,6 +1,6 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { StorySection } from '../../storybook/story-section';
-import { Textarea, type TextareaWidth } from './textarea';
+import { Textarea, TextareaWidth } from './textarea';
 
 const meta: Meta<typeof Textarea> = {
   title: 'Forms/Textarea',

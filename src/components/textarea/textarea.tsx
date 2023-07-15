@@ -1,9 +1,4 @@
-import {
-  type ComponentPropsWithRef,
-  type ReactNode,
-  forwardRef,
-  useState,
-} from 'react';
+import { ComponentPropsWithRef, ReactNode, forwardRef, useState } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { Caption } from '../caption';
 

@@ -1,8 +1,8 @@
-import { type DateISO } from '../date-picker/date-helpers';
+import { DateISO } from '../date-picker/date-helpers';
 import { classNames } from '../../lib/react-helpers';
-import { type JSX, type ReactNode, useRef } from 'react';
-import { Popover, type PopoverRef } from '../popover';
-import { DatePicker, type DatePickerProps } from '../date-picker';
+import { JSX, ReactNode, useRef } from 'react';
+import { Popover, PopoverRef } from '../popover';
+import { DatePicker, DatePickerProps } from '../date-picker';
 
 export type DatePickerChangeValueFn = (value: DateISO) => void;
 export type DatePickerPopoverProps = {

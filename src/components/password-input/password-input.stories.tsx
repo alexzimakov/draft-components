@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { PasswordInput } from './password-input';
 
 const meta: Meta<typeof PasswordInput> = {

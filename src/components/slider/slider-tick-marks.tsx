@@ -1,4 +1,4 @@
-import { type JSX, type ReactNode } from 'react';
+import { JSX, ReactNode } from 'react';
 
 export type RenderTickMarkLabel = (index: number) => ReactNode;
 export type SliderTickMarksProps = {

@@ -1,8 +1,4 @@
-import {
-  type ComponentPropsWithoutRef,
-  type MouseEventHandler,
-  type ReactNode,
-} from 'react';
+import { ComponentPropsWithoutRef, MouseEventHandler, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { XMarkIcon } from './x-mark-icon';
 

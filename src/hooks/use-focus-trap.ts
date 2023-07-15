@@ -1,4 +1,4 @@
-import { type RefObject, useEffect } from 'react';
+import { RefObject, useEffect } from 'react';
 import { KeyboardKeys } from '../lib/keyboard-keys';
 import { focusElement } from '../lib/react-helpers';
 

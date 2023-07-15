@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
-import { type CharacterCountRenderFn, Textarea } from './textarea';
+import { CharacterCountRenderFn, Textarea } from './textarea';
 
 it('renders without errors', () => {
   const placeholder = 'Add your comment...';

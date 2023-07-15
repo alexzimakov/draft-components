@@ -1,4 +1,4 @@
-import { type MouseEventHandler, type ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 import { Button } from '../button';
 
 export type DateRangePickerPopoverFooterProps = {

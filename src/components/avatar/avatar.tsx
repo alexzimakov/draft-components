@@ -1,8 +1,4 @@
-import {
-  type ComponentPropsWithRef,
-  type ReactNode,
-  forwardRef,
-} from 'react';
+import { ComponentPropsWithRef, ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';

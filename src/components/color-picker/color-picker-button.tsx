@@ -1,8 +1,4 @@
-import {
-  type CSSProperties,
-  type ChangeEventHandler,
-  type ReactNode,
-} from 'react';
+import { CSSProperties, ChangeEventHandler, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 export type ColorPickerButtonProps<T extends string | number> = {

@@ -1,4 +1,4 @@
-import { type ComponentPropsWithoutRef, forwardRef } from 'react';
+import { ComponentPropsWithoutRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 export type SpinnerProps = ComponentPropsWithoutRef<'svg'> & {

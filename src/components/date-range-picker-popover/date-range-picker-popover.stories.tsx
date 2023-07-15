@@ -1,6 +1,6 @@
-import { type Meta, type StoryFn } from '@storybook/react';
-import { type DateRangePickerPopoverOption, type DateRangePickerPopoverSelection } from './types';
-import { type ReactNode, useState } from 'react';
+import { Meta, StoryFn } from '@storybook/react';
+import { DateRangePickerPopoverOption, DateRangePickerPopoverSelection } from './types';
+import { ReactNode, useState } from 'react';
 import { addDays, getStartOfMonth, getStartOfWeek, isSameDay, toDateISO } from '../date-picker/date-helpers';
 import { DateRangePickerPopover } from './date-range-picker-popover';
 import { Button } from '../button';

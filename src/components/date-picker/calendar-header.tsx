@@ -1,11 +1,6 @@
-import {
-  MONTHS_IN_YEAR,
-  addMonths,
-  setDateMonth,
-  setDateYear,
-} from './date-helpers';
+import { MONTHS_IN_YEAR, addMonths, setDateMonth, setDateYear } from './date-helpers';
 import { classNames } from '../../lib/react-helpers';
-import { type JSX, useEffect, useState } from 'react';
+import { JSX, useEffect, useState } from 'react';
 import { IconButton } from '../button';
 import { Select } from '../select';
 import { TextInput } from '../text-input';

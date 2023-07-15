@@ -1,8 +1,5 @@
-import {
-  type DateRangePickerPopoverOption,
-  type DateRangePickerPopoverSelection,
-} from './types';
-import { type ChangeEvent, useId } from 'react';
+import { DateRangePickerPopoverOption, DateRangePickerPopoverSelection } from './types';
+import { ChangeEvent, useId } from 'react';
 import { findSelectedOption } from './helpers';
 import { Select } from '../select';
 import { Radio } from '../radio';

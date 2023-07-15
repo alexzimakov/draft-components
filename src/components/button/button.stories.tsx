@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { StorySection } from '../../storybook/story-section';
 import { MoonIcon } from '@heroicons/react/24/solid';
 import {
@@ -9,7 +9,7 @@ import {
   ShoppingBagIcon,
 } from '@heroicons/react/24/outline';
 import { IconButton } from './icon-button';
-import { Button, type ButtonAppearance, type ButtonProps, type ButtonSize, type ButtonVariant } from './button';
+import { Button, ButtonAppearance, ButtonProps, ButtonSize, ButtonVariant } from './button';
 
 const Icons = {
   BookOpen: (

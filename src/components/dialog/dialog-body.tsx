@@ -1,4 +1,4 @@
-import { type ComponentPropsWithoutRef, useRef } from 'react';
+import { ComponentPropsWithoutRef, useRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 type DialogBodyHTMLProps = ComponentPropsWithoutRef<'div'>;

@@ -1,6 +1,6 @@
-import { type ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 import { render, screen, within } from '@testing-library/react';
-import { Button, type ButtonRenderFn } from './button';
+import { Button, ButtonRenderFn } from './button';
 import { IconButton } from './icon-button';
 import userEvent from '@testing-library/user-event';
 

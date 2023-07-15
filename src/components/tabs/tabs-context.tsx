@@ -1,12 +1,5 @@
-import {
-  type ReactNode,
-  createContext,
-  useCallback,
-  useContext,
-  useId,
-  useState,
-} from 'react';
-import { type TabName, type TabSetter } from './types';
+import { ReactNode, createContext, useCallback, useContext, useId, useState } from 'react';
+import { TabName, TabSetter } from './types';
 
 export type GetTabProps = (tab: TabName) => ({
   id: string;

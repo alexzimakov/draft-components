@@ -1,5 +1,5 @@
-import { type JSX } from 'react';
-import { type Meta, type StoryFn } from '@storybook/react';
+import { JSX } from 'react';
+import { Meta, StoryFn } from '@storybook/react';
 import { Switch } from './switch';
 import { Radio } from '../radio';
 

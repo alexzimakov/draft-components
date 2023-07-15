@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { SelectionControl } from './selection-control';
 import { Switch as SwitchComponent } from '../switch';
 import { Checkbox as CheckboxComponent } from '../checkbox';

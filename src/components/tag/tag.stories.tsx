@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { Tag } from './tag';
 import { LockClosedIcon } from '@heroicons/react/24/outline';
 

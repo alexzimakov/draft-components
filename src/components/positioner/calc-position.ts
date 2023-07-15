@@ -1,9 +1,4 @@
-import {
-  type Alignment,
-  type Coordinates,
-  type Placement,
-  type Rect,
-} from './types';
+import { Alignment, Coordinates, Placement, Rect } from './types';
 
 export type CalcPositionParams = {
   placement: Placement;

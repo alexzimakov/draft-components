@@ -1,8 +1,4 @@
-import {
-  type ComponentPropsWithoutRef,
-  type MouseEvent,
-  type ReactNode,
-} from 'react';
+import { ComponentPropsWithoutRef, MouseEvent, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { useTabsContext } from './tabs-context';
 import { Badge } from '../badge';

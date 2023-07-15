@@ -1,4 +1,4 @@
-import { type JSX, type KeyboardEvent } from 'react';
+import { JSX, KeyboardEvent } from 'react';
 import { KeyboardKeys } from '../../lib/keyboard-keys';
 import {
   DAYS_IN_WEEK,
@@ -15,7 +15,7 @@ import {
   toDateISO,
 } from './date-helpers';
 import { CalendarGridHead } from './calendar-grid-head';
-import { CalendarDay, type CalendarDayProps } from './calendar-day';
+import { CalendarDay, CalendarDayProps } from './calendar-day';
 
 export type GetCalendarDayProps = (date: Date) => Pick<CalendarDayProps,
   | 'isSelected'

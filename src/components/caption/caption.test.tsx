@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Caption, type CaptionAppearance } from './caption';
+import { Caption, CaptionAppearance } from './caption';
 
 it('renders without errors', () => {
   const text = 'You can use letters, numbers & periods';

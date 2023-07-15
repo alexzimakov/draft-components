@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 export type SegmentedControlButtonProps<T extends string | number> = {

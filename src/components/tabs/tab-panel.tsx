@@ -1,5 +1,5 @@
-import { type ComponentPropsWithoutRef } from 'react';
-import { type TabName } from './types';
+import { ComponentPropsWithoutRef } from 'react';
+import { TabName } from './types';
 import { classNames } from '../../lib/react-helpers';
 import { useTabsContext } from './tabs-context';
 

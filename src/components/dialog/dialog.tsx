@@ -1,18 +1,6 @@
-import {
-  type CSSProperties,
-  type ComponentPropsWithoutRef,
-  type RefObject,
-  useEffect,
-  useId,
-  useRef,
-} from 'react';
+import { CSSProperties, ComponentPropsWithoutRef, RefObject, useEffect, useId, useRef } from 'react';
 import { classNames, focusElement } from '../../lib/react-helpers';
-import {
-  useDisableBodyScroll,
-  useEscKeyDown,
-  useFocusTrap,
-  useMountTransition,
-} from '../../hooks';
+import { useDisableBodyScroll, useEscKeyDown, useFocusTrap, useMountTransition } from '../../hooks';
 import { Portal } from '../portal';
 import { DialogContextProvider } from './dialog-context';
 

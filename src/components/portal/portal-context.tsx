@@ -1,4 +1,4 @@
-import { type ReactNode, createContext, useContext } from 'react';
+import { ReactNode, createContext, useContext } from 'react';
 
 let root: HTMLElement | null = null;
 const getPortalRoot = (): HTMLElement => {

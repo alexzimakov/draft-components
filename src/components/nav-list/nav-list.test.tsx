@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
 import { NavList } from './nav-list';
-import { NavListItem, type NavListItemRenderFn } from './nav-list-item';
+import { NavListItem, NavListItemRenderFn } from './nav-list-item';
 import { NavListTitle } from './nav-list-title';
 
 it('renders without errors', () => {

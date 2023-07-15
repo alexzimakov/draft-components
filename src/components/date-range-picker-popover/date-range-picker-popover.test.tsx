@@ -2,7 +2,7 @@ import { updateMock } from '../../tests/match-media.mock';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '@testing-library/react';
 import { DateRangePickerPopover } from './date-range-picker-popover';
-import { type DateRangePickerPopoverOption } from './types';
+import { DateRangePickerPopoverOption } from './types';
 
 const anchorButtonLabel = 'Select date preset';
 const cancelButtonLabel = 'Cancel';

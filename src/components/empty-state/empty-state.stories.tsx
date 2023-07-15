@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { EmptyState } from './empty-state';
 import { DocumentPlusIcon } from '@heroicons/react/24/outline';
 import { Button } from '../button';

@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { Menu } from './menu';
 import { MenuItem } from './menu-item';
 import { MenuSeparator } from './menu-separator';

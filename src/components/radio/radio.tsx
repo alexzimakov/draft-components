@@ -1,4 +1,4 @@
-import { type ComponentPropsWithRef, type JSX, forwardRef } from 'react';
+import { ComponentPropsWithRef, JSX, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 type RadioHTMLProps = ComponentPropsWithRef<'input'>;
