@@ -9,6 +9,7 @@ export type SlideOverHeaderProps = {
   htmlTitle?: SlideOverHeaderHTMLProps['title'];
   title: ReactNode;
   description?: ReactNode;
+  closeButtonAccessibleName?: string;
   onClickCloseButton?: MouseEventHandler<HTMLButtonElement>;
 } & SlideOverHeaderBaseProps;
 
@@ -17,6 +18,7 @@ export function SlideOverHeader({
   htmlTitle,
   title,
   description,
+  closeButtonAccessibleName,
   onClickCloseButton,
   ...props
 }: SlideOverHeaderProps) {
@@ -37,6 +39,7 @@ export function SlideOverHeader({
         </h2>
         <IconButton
           icon={<XMarkIcon />}
+          aria-label={closeButtonAccessibleName}
           variant="tinted"
           size="xs"
           onClick={onCloseButtonClicked}

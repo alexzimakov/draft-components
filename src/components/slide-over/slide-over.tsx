@@ -131,6 +131,7 @@ export function SlideOver({
     <Portal>
       <div className="dc-slide-over">
         <div
+          data-testid="slide-over-backdrop"
           className="dc-slide-over__backdrop"
           ref={backdropRef}
           onClick={onClickBackdrop}
