@@ -1,5 +1,5 @@
 import { MutableRefObject } from 'react';
-import { classNames, mergeRefs } from './react-helpers';
+import { classNames, getRefElement, mergeRefs } from './react-helpers';
 
 describe('#classNames()', () => {
   it('should return class string without falsy values', () => {
@@ -39,5 +39,22 @@ describe('#mergeRefs()', () => {
 
     expect(ref1.current).toBe(instance);
     expect(ref2.current).toBe(instance);
+  });
+});
+
+describe('#getRefElement()', () => {
+  it('returns stored HTML element', () => {
+    const ref: MutableRefObject<HTMLElement | null> = {
+      current: document.createElement('div'),
+    };
+    expect(getRefElement(ref)).toBe(ref.current);
+  });
+
+  it('throws an error when ref is not set', () => {
+    const ref: MutableRefObject<HTMLElement | null> = {
+      current: null,
+    };
+    const message = 'ref is not set';
+    expect(() => getRefElement(ref, message)).toThrow(message);
   });
 });

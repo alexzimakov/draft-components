@@ -71,7 +71,7 @@ export function focusElement(element: EventTarget | null | undefined): void {
 }
 
 export function getRefElement<T extends HTMLElement>(
-  ref: RefObject<T>,
+  ref: RefObject<T> | MutableRefObject<T>,
   message = 'getElementFromRef: ref value is null.',
 ): NonNullable<T> {
   const value = ref.current;
