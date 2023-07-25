@@ -2,11 +2,10 @@ import '../../tests/match-media.mock';
 import userEvent from '@testing-library/user-event';
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { FilteredSearch } from './filtered-search';
-import { FilterConfig } from './types';
 import { StringFilter } from './model/string-filter';
 import { StringSetFilter } from './model/string-set-filter';
 
-const idFilterConfig: FilterConfig = {
+const idFilterConfig = {
   type: StringFilter.Type,
   field: 'id',
   label: 'Test ID',
@@ -18,7 +17,7 @@ const idFilterConfig: FilterConfig = {
   ],
 };
 
-const nameFilterConfig: FilterConfig = {
+const nameFilterConfig = {
   type: StringFilter.Type,
   field: 'name',
   label: 'Test name',
@@ -28,7 +27,7 @@ const nameFilterConfig: FilterConfig = {
   ],
 };
 
-const statusFilterConfig: FilterConfig = {
+const statusFilterConfig = {
   type: StringSetFilter.Type,
   field: 'status',
   label: 'Status',
@@ -57,17 +56,15 @@ it('renders without errors', async () => {
       placeholder={placeholder}
       filtersConfig={filtersConfig}
       filters={[]}
-      onChange={jest.fn}
+      onChangeFilters={jest.fn}
     />,
   );
 
-  const comboBox = screen.queryByRole('combobox');
-  expect(comboBox).not.toBeNull();
+  const comboBox = screen.getByRole('combobox');
   expect(comboBox).toHaveAttribute('placeholder', placeholder);
 
   fireEvent.focus(comboBox);
-  const listBox = screen.queryByRole('listbox');
-  expect(listBox).not.toBeNull();
+  const listBox = screen.getByRole('listbox');
   expect(listBox.id).toBe(comboBox.getAttribute('aria-controls'));
 
   const options = within(listBox).queryAllByRole('option');
@@ -86,7 +83,7 @@ it('close options list', async () => {
     <FilteredSearch
       filtersConfig={filtersConfig}
       filters={[]}
-      onChange={jest.fn}
+      onChangeFilters={jest.fn}
     />,
   );
 
@@ -107,7 +104,7 @@ it('focus textbox when click on container', async () => {
     <FilteredSearch
       filtersConfig={filtersConfig}
       filters={[]}
-      onChange={jest.fn}
+      onChangeFilters={jest.fn}
       onMouseDown={onMouseDownMock}
     />,
   );
@@ -127,7 +124,7 @@ it('select filter using keyboard', async () => {
     <FilteredSearch
       filtersConfig={[idFilterConfig, nameFilterConfig]}
       filters={[]}
-      onChange={jest.fn}
+      onChangeFilters={jest.fn}
     />,
   );
 
@@ -165,7 +162,7 @@ it('filter options based on the search text', async () => {
     <FilteredSearch
       filtersConfig={[idFilterConfig, nameFilterConfig]}
       filters={[]}
-      onChange={jest.fn}
+      onChangeFilters={jest.fn}
     />,
   );
 
@@ -191,7 +188,7 @@ it('filter options based on the search text', async () => {
 
 it('choose filter using keyboard', async () => {
   const user = userEvent.setup();
-  const onChangeMock = jest.fn();
+  const onChangeFiltersMock = jest.fn();
   const selectedFilter = new StringFilter(idFilterConfig, {
     value: '',
     operator: StringFilter.Operators.equal,
@@ -200,7 +197,7 @@ it('choose filter using keyboard', async () => {
     <FilteredSearch
       filtersConfig={filtersConfig}
       filters={[]}
-      onChange={onChangeMock}
+      onChangeFilters={onChangeFiltersMock}
     />,
   );
 
@@ -208,13 +205,13 @@ it('choose filter using keyboard', async () => {
   await user.click(comboBox);
   await user.type(comboBox, '{ArrowDown}');
   await user.type(comboBox, '{Enter}');
-  expect(onChangeMock).toHaveBeenCalledTimes(1);
-  expect(onChangeMock).toHaveBeenNthCalledWith(1, [selectedFilter]);
+  expect(onChangeFiltersMock).toHaveBeenCalledTimes(1);
+  expect(onChangeFiltersMock).toHaveBeenNthCalledWith(1, [selectedFilter]);
 });
 
 it('choose filter using mouse', async () => {
   const user = userEvent.setup();
-  const onChangeMock = jest.fn();
+  const onChangeFiltersMock = jest.fn();
   const selectedFilter = new StringSetFilter(statusFilterConfig, {
     value: [],
     operator: StringSetFilter.Operators.in,
@@ -223,20 +220,20 @@ it('choose filter using mouse', async () => {
     <FilteredSearch
       filtersConfig={filtersConfig}
       filters={[]}
-      onChange={onChangeMock}
+      onChangeFilters={onChangeFiltersMock}
     />,
   );
 
   const comboBox = screen.getByRole('combobox');
   await user.click(comboBox);
   await user.click(screen.getByText(statusFilterConfig.label));
-  expect(onChangeMock).toHaveBeenCalledTimes(1);
-  expect(onChangeMock).toHaveBeenNthCalledWith(1, [selectedFilter]);
+  expect(onChangeFiltersMock).toHaveBeenCalledTimes(1);
+  expect(onChangeFiltersMock).toHaveBeenNthCalledWith(1, [selectedFilter]);
 });
 
 it('remove filters using keyboard', async () => {
   const user = userEvent.setup();
-  const onChangeMock = jest.fn();
+  const onChangeFiltersMock = jest.fn();
   const filters = [
     new StringFilter(idFilterConfig, {
       value: '123',
@@ -251,21 +248,21 @@ it('remove filters using keyboard', async () => {
     <FilteredSearch
       filtersConfig={filtersConfig}
       filters={filters}
-      onChange={onChangeMock}
+      onChangeFilters={onChangeFiltersMock}
     />,
   );
 
   const comboBox = screen.getByRole('combobox');
   await user.click(comboBox);
   await user.type(comboBox, '{Backspace}');
-  expect(onChangeMock).toHaveBeenCalledTimes(1);
-  expect(onChangeMock).toHaveBeenNthCalledWith(1, filters.slice(0, -1));
+  expect(onChangeFiltersMock).toHaveBeenCalledTimes(1);
+  expect(onChangeFiltersMock).toHaveBeenNthCalledWith(1, filters.slice(0, -1));
 });
 
 it('remove filters using mouse', async () => {
   const user = userEvent.setup();
   const removeFilterButtonAccessibleName = 'Remove filter';
-  const onChangeMock = jest.fn();
+  const onChangeFiltersMock = jest.fn();
   const filters = [
     new StringFilter(idFilterConfig, {
       value: '123',
@@ -281,7 +278,7 @@ it('remove filters using mouse', async () => {
       removeFilterButtonAccessibleName={removeFilterButtonAccessibleName}
       filtersConfig={filtersConfig}
       filters={filters}
-      onChange={onChangeMock}
+      onChangeFilters={onChangeFiltersMock}
     />,
   );
 
@@ -295,14 +292,14 @@ it('remove filters using mouse', async () => {
     within(statusFilter).getByLabelText(removeFilterButtonAccessibleName),
   );
 
-  expect(onChangeMock).toHaveBeenCalledTimes(2);
-  expect(onChangeMock).toHaveBeenNthCalledWith(1, [filters[1]]);
-  expect(onChangeMock).toHaveBeenNthCalledWith(2, [filters[0]]);
+  expect(onChangeFiltersMock).toHaveBeenCalledTimes(2);
+  expect(onChangeFiltersMock).toHaveBeenNthCalledWith(1, [filters[1]]);
+  expect(onChangeFiltersMock).toHaveBeenNthCalledWith(2, [filters[0]]);
 });
 
 it('auto remove empty filters', async () => {
   const user = userEvent.setup();
-  const onChangeMock = jest.fn();
+  const onChangeFiltersMock = jest.fn();
   const filter = new StringFilter(idFilterConfig, {
     value: '',
     operator: StringFilter.Operators.equal,
@@ -313,7 +310,7 @@ it('auto remove empty filters', async () => {
       cancelButtonLabel={cancelButtonLabel}
       filtersConfig={filtersConfig}
       filters={[filter]}
-      onChange={onChangeMock}
+      onChangeFilters={onChangeFiltersMock}
     />,
   );
 
@@ -323,13 +320,13 @@ it('auto remove empty filters', async () => {
   const cancelButton = screen.getByText(cancelButtonLabel);
   await user.click(cancelButton);
 
-  expect(onChangeMock).toHaveBeenCalledTimes(1);
-  expect(onChangeMock).toHaveBeenCalledWith([]);
+  expect(onChangeFiltersMock).toHaveBeenCalledTimes(1);
+  expect(onChangeFiltersMock).toHaveBeenCalledWith([]);
 });
 
 it('edit filters', async () => {
   const user = userEvent.setup();
-  const onChangeMock = jest.fn();
+  const onChangeFiltersMock = jest.fn();
   const filter = new StringFilter(idFilterConfig, {
     value: '123',
     operator: StringFilter.Operators.equal,
@@ -341,7 +338,7 @@ it('edit filters', async () => {
       applyButtonLabel={applyButtonLabel}
       filtersConfig={filtersConfig}
       filters={[filter]}
-      onChange={onChangeMock}
+      onChangeFilters={onChangeFiltersMock}
     />,
   );
 
@@ -356,13 +353,13 @@ it('edit filters', async () => {
   await user.clear(valueInput);
   await user.type(valueInput, changedFilter.value);
   await user.click(applyButton);
-  expect(onChangeMock).toHaveBeenCalledTimes(1);
-  expect(onChangeMock).toHaveBeenNthCalledWith(1, [changedFilter]);
+  expect(onChangeFiltersMock).toHaveBeenCalledTimes(1);
+  expect(onChangeFiltersMock).toHaveBeenNthCalledWith(1, [changedFilter]);
 });
 
 it('clear all filters', async () => {
   const user = userEvent.setup();
-  const onChangeMock = jest.fn();
+  const onChangeFiltersMock = jest.fn();
   const filters = [
     new StringFilter(idFilterConfig, {
       value: '123',
@@ -379,13 +376,13 @@ it('clear all filters', async () => {
       clearButtonAccessibleName={clearButtonAccessibleName}
       filtersConfig={filtersConfig}
       filters={filters}
-      onChange={onChangeMock}
+      onChangeFilters={onChangeFiltersMock}
     />,
   );
 
   const clearButton = screen.getByLabelText(clearButtonAccessibleName);
   await user.click(clearButton);
 
-  expect(onChangeMock).toHaveBeenCalledTimes(1);
-  expect(onChangeMock).toHaveBeenCalledWith([]);
+  expect(onChangeFiltersMock).toHaveBeenCalledTimes(1);
+  expect(onChangeFiltersMock).toHaveBeenCalledWith([]);
 });

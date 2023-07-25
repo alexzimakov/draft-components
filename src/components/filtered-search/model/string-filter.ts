@@ -1,7 +1,7 @@
 import { AbstractFilter } from './abstract-filter';
 import { ValidationResult } from './validation-result';
 
-const TYPE = 'STRING';
+const TYPE = 'STRING' as const;
 const OPERATORS = {
   equal: 'EQUAL',
   notEqual: 'NOT_EQUAL',

@@ -3,12 +3,12 @@ import userEvent from '@testing-library/user-event';
 import { render, screen, within } from '@testing-library/react';
 import { TranslationsProvider } from './use-translations';
 import { StringSetFilterItem } from './string-set-filter-item';
-import { StringSetFilter, StringSetFilterConfig } from './model/string-set-filter';
+import { StringSetFilter } from './model/string-set-filter';
 
 const applyButtonLabel = 'Apply';
 const cancelButtonLabel = 'Cancel';
 const removeFilterButtonAccessibleName = 'Remove filter';
-const config: StringSetFilterConfig = {
+const config = {
   type: StringSetFilter.Type,
   field: 'status',
   label: 'Status',
@@ -181,7 +181,7 @@ describe('formatFilterValue()', () => {
   const formatFilterValue = StringSetFilterItem.formatFilterValue;
 
   it('empty array', () => {
-    const values = [];
+    const values: string[] = [];
     const expected = '';
     expect(formatFilterValue(values)).toBe(expected);
   });

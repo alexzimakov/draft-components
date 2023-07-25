@@ -1,5 +1,3 @@
-export { StringFilter } from './model/string-filter';
-export { StringSetFilter } from './model/string-set-filter';
 export {
   FilteredSearch,
   type FilteredSearchProps,
@@ -10,3 +8,13 @@ export {
   type Filter,
   type FilterConfig,
 } from './types';
+export {
+  StringFilter,
+  type StringFilterState,
+  type StringFilterConfig,
+} from './model/string-filter';
+export {
+  StringSetFilter,
+  type StringSetFilterState,
+  type StringSetFilterConfig,
+} from './model/string-set-filter';

@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { FilterConfig } from './types';
+import { Filter, FilterConfig } from './types';
 import { StringFilter } from './model/string-filter';
 import { StringSetFilter } from './model/string-set-filter';
 import { FilteredSearch } from './filtered-search';
@@ -9,7 +9,7 @@ const meta: Meta = {
   title: 'Other/FilteredSearch',
   component: FilteredSearch,
   argTypes: {
-    onChange: { action: 'filters changed' },
+    onChangeFilters: { action: 'filters changed' },
   },
 };
 export default meta;
@@ -46,17 +46,17 @@ const defaultFiltersConfig = [
 ];
 
 export const Basic: StoryFn<typeof FilteredSearch> = (args) => {
-  const { filters: defaultFilterMap, onChange } = args;
-  const [filterMap, setFilterMap] = useState(defaultFilterMap);
-  const onFilterMapChanged = useCallback((filterMap) => {
-    onChange(filterMap);
-    setFilterMap(filterMap);
-  }, [onChange]);
+  const [filters, setFilters] = useState(args.filters);
+  const onChangeFilters = args.onChangeFilters;
+  const onFiltersChanged = useCallback((filters: Filter[]) => {
+    setFilters(filters);
+    onChangeFilters(filters);
+  }, [onChangeFilters]);
   return (
     <FilteredSearch
       {...args}
-      filters={filterMap}
-      onChange={onFilterMapChanged}
+      filters={filters}
+      onChangeFilters={onFiltersChanged}
     />
   );
 };

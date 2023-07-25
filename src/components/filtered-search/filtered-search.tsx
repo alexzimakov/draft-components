@@ -31,7 +31,7 @@ export type FilteredSearchProps = FilteredSearchBaseProps & {
   removeFilterButtonAccessibleName?: string;
   filtersConfig: FilterConfig[];
   filters: Filter[];
-  onChange: (filters: Filter[]) => void;
+  onChangeFilters: (filters: Filter[]) => void;
 };
 
 export function FilteredSearch({
@@ -43,7 +43,7 @@ export function FilteredSearch({
   removeFilterButtonAccessibleName = 'Remove filter',
   filtersConfig,
   filters,
-  onChange,
+  onChangeFilters,
   onMouseDown,
   ...props
 }: FilteredSearchProps) {
@@ -74,7 +74,7 @@ export function FilteredSearch({
   const addFilter = (config: FilterConfig) => {
     const filter = createFilter(config);
     const textBoxElement = getTextBoxElement();
-    onChange([...filters, filter]);
+    onChangeFilters([...filters, filter]);
     textBoxElement.blur();
     setQuery('');
     setActiveField(filter.field);
@@ -84,14 +84,14 @@ export function FilteredSearch({
     const newFilters = filters.map((filter) => (
       filter.field === changedFilter.field ? changedFilter : filter
     ));
-    onChange(newFilters);
+    onChangeFilters(newFilters);
   };
 
   const removeFilter = (filterToRemove: Filter) => {
     const newFilters = filters.filter((filter) => (
       filter.field !== filterToRemove.field
     ));
-    onChange(newFilters);
+    onChangeFilters(newFilters);
   };
 
   const onFilterEditStarted = (filter: Filter) => {
@@ -204,7 +204,7 @@ export function FilteredSearch({
       }
     } else if (key === KeyboardKeys.Backspace) {
       if (query === '' && filters.length > 0) {
-        onChange(filters.slice(0, -1));
+        onChangeFilters(filters.slice(0, -1));
         isHandled = true;
       }
     } else if (key === KeyboardKeys.Escape) {
@@ -238,7 +238,7 @@ export function FilteredSearch({
     event,
   ) => {
     event.stopPropagation();
-    onChange([]);
+    onChangeFilters([]);
   };
 
   const onContainerPressed: MouseEventHandler<HTMLDivElement> = (event) => {

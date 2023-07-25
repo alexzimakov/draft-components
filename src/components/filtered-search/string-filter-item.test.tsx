@@ -3,12 +3,12 @@ import userEvent from '@testing-library/user-event';
 import { render, screen, within } from '@testing-library/react';
 import { TranslationsProvider } from './use-translations';
 import { StringFilterItem } from './string-filter-item';
-import { StringFilter, StringFilterConfig } from './model/string-filter';
+import { StringFilter } from './model/string-filter';
 
 const applyButtonLabel = 'Apply';
 const cancelButtonLabel = 'Cancel';
 const removeFilterButtonAccessibleName = 'Remove filter';
-const config: StringFilterConfig = {
+const config = {
   type: StringFilter.Type,
   field: 'id',
   label: 'Test ID',

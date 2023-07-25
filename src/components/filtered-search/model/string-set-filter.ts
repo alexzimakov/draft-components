@@ -1,6 +1,6 @@
 import { AbstractFilter } from './abstract-filter';
 
-const TYPE = 'STRING_SET';
+const TYPE = 'STRING_SET' as const;
 const OPERATORS = {
   in: 'IN',
   notIn: 'NOT_IN',
