@@ -60,10 +60,15 @@
 }
 
 .dc-filtered-search__clear-button {
+  flex-shrink: 0;
   margin-top: 1px;
   margin-right: 1px;
   white-space: nowrap;
   border-radius: calc(var(--dc-filtered-search-border-radius) - 1px);
+}
+
+.dc-filtered-search__clear-button:focus::after {
+  border-radius: inherit;
 }
 
 .dc-filtered-search__filters {
