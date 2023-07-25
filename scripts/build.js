@@ -19,9 +19,11 @@ const PATHS = {
 
 async function generateTypes() {
   await rm(PATHS.types);
-  await exec(`npx tsc --declaration --emitDeclarationOnly --outDir '${
-    PATHS.types
-  }'`);
+  await exec('npx tsc' +
+    " --project 'tsconfig.build.json'" +
+    ' --declaration' +
+    ' --emitDeclarationOnly' +
+    ` --outDir '${PATHS.types}'`);
 }
 
 async function buildTs() {

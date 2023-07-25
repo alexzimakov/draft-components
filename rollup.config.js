@@ -1,5 +1,6 @@
 import typescript from '@rollup/plugin-typescript';
 
+const tsconfig = './tsconfig.build.json';
 const external = [
   'react/jsx-runtime',
   'react',
@@ -20,7 +21,7 @@ const config = [
       format: 'es',
       preserveModules: true,
     },
-    plugins: [typescript()],
+    plugins: [typescript({ tsconfig })],
   },
   {
     external,
@@ -36,7 +37,7 @@ const config = [
         constBindings: true,
       },
     },
-    plugins: [typescript()],
+    plugins: [typescript({ tsconfig })],
   },
 ];
 
