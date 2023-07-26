@@ -35,6 +35,7 @@ export type FilteredSearchProps = FilteredSearchBaseProps & {
 };
 
 export function FilteredSearch({
+  filters: appliedFilters,
   className,
   placeholder = 'Search and filter',
   applyButtonLabel = 'Apply',
@@ -42,18 +43,25 @@ export function FilteredSearch({
   clearButtonAccessibleName = 'Clear',
   removeFilterButtonAccessibleName = 'Remove filter',
   filtersConfig,
-  filters,
   onChangeFilters,
   onMouseDown,
   ...props
 }: FilteredSearchProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [newFilter, setNewFilter] = useState<Filter | null>(null);
   const [query, setQuery] = useState('');
   const [hasFocus, setHasFocus] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [selectedId, setSelectedId] = useState('');
   const [activeField, setActiveField] = useState('');
   const { textBoxId, listBoxId, getOptionId } = useComboboxIds();
+
+  let filters: Filter[];
+  if (newFilter) {
+    filters = [...appliedFilters, newFilter];
+  } else {
+    filters = appliedFilters;
+  }
 
   const filtersConfigMap = useMemo(() => {
     const map = new Map<string, FilterConfig>();
@@ -71,25 +79,21 @@ export function FilteredSearch({
     return textBox;
   };
 
-  const addFilter = (config: FilterConfig) => {
-    const filter = createFilter(config);
-    const textBoxElement = getTextBoxElement();
-    onChangeFilters([...filters, filter]);
-    textBoxElement.blur();
-    setQuery('');
-    setActiveField(filter.field);
+  const addFilter = (filter: Filter) => {
+    const newFilters = [...appliedFilters, filter];
+    onChangeFilters(newFilters);
   };
 
-  const changeFilter = (changedFilter: Filter) => {
-    const newFilters = filters.map((filter) => (
-      filter.field === changedFilter.field ? changedFilter : filter
+  const updateFilter = (updatedFilter: Filter) => {
+    const newFilters = appliedFilters.map((filter) => (
+      filter.field === updatedFilter.field ? updatedFilter : filter
     ));
     onChangeFilters(newFilters);
   };
 
-  const removeFilter = (filterToRemove: Filter) => {
-    const newFilters = filters.filter((filter) => (
-      filter.field !== filterToRemove.field
+  const removeFilter = (removedFilter: Filter) => {
+    const newFilters = appliedFilters.filter((filter) => (
+      filter.field !== removedFilter.field
     ));
     onChangeFilters(newFilters);
   };
@@ -101,13 +105,22 @@ export function FilteredSearch({
   const onFilterEditCanceled = (filter: Filter) => {
     setActiveField('');
     if (filter.isEmpty()) {
-      removeFilter(filter);
+      if (newFilter && filter.field === newFilter.field) {
+        setNewFilter(null);
+      } else {
+        removeFilter(filter);
+      }
       getTextBoxElement().focus();
     }
   };
 
   const onFilterChanged = (filter: Filter) => {
-    changeFilter(filter);
+    if (newFilter && filter.field === newFilter.field) {
+      addFilter(filter);
+      setNewFilter(null);
+    } else {
+      updateFilter(filter);
+    }
     setActiveField('');
   };
 
@@ -129,6 +142,15 @@ export function FilteredSearch({
     );
   }
 
+  const onOptionSelected = (config: FilterConfig) => {
+    const filter = createFilter(config);
+    const textBoxElement = getTextBoxElement();
+    setQuery('');
+    setNewFilter(filter);
+    setActiveField(filter.field);
+    textBoxElement.blur();
+  };
+
   const onOptionHovered: MouseEventHandler<HTMLLIElement> = (event) => {
     const listItemElement = event.currentTarget;
     setSelectedId(listItemElement.id);
@@ -140,7 +162,7 @@ export function FilteredSearch({
     const listItemElement = event.currentTarget;
     const config = filtersConfigMap.get(listItemElement.id);
     if (config) {
-      addFilter(config);
+      onOptionSelected(config);
     }
   };
 
@@ -199,7 +221,7 @@ export function FilteredSearch({
     } else if (key === KeyboardKeys.Enter) {
       const config = filtersConfigMap.get(selectedId);
       if (config) {
-        addFilter(config);
+        onOptionSelected(config);
         isHandled = true;
       }
     } else if (key === KeyboardKeys.Backspace) {
