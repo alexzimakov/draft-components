@@ -12,9 +12,11 @@ export {
   StringFilter,
   type StringFilterState,
   type StringFilterConfig,
+  type StringFilterOperator,
 } from './model/string-filter';
 export {
   StringSetFilter,
   type StringSetFilterState,
   type StringSetFilterConfig,
+  type StringSetFilterOperator,
 } from './model/string-set-filter';

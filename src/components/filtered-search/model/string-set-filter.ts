@@ -15,6 +15,7 @@ export type StringSetFilterConfig = {
   label: string;
   values: string[];
   valueFormatter?: (value: string) => string;
+  valuesFormatter?: (values: string[]) => string;
   operatorSelectAccessibleName?: string;
   operators: StringSetFilterOperator[];
   operatorFormatter?: (operator: StringSetFilterOperator) => string;

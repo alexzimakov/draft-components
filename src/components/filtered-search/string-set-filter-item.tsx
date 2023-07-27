@@ -33,6 +33,7 @@ export function StringSetFilterItem({
     operators,
     operatorSelectAccessibleName,
     valueFormatter: formatValue = defaultValueFormatter,
+    valuesFormatter: formatValues = defaultValuesFormatter,
     operatorFormatter: formatOperator = defaultOperatorFormatter,
   } = filter.config;
 
@@ -77,7 +78,7 @@ export function StringSetFilterItem({
       {filter.value.length > 0 ? (
         <>
           &nbsp;<span>{formatOperator(filter.operator)}</span>
-          &nbsp;<b>{formatFilterValue(filter.value)}</b>
+          &nbsp;<b>{formatValues(filter.value)}</b>
         </>
       ) : null}
     </FilterToken>
@@ -129,22 +130,14 @@ export function StringSetFilterItem({
   );
 }
 StringSetFilterItem.defaultValueFormatter = defaultValueFormatter;
+StringSetFilterItem.defaultValuesFormatter = defaultValuesFormatter;
 StringSetFilterItem.defaultOperatorFormatter = defaultOperatorFormatter;
-StringSetFilterItem.formatFilterValue = formatFilterValue;
 
 function defaultValueFormatter(value: string) {
   return value[0].toUpperCase() + value.slice(1);
 }
 
-function defaultOperatorFormatter(operator: StringSetFilterOperator) {
-  const messages: Record<StringSetFilterOperator, string> = {
-    [StringSetFilter.Operators.in]: 'is',
-    [StringSetFilter.Operators.notIn]: 'is not',
-  };
-  return messages[operator];
-}
-
-function formatFilterValue(values: StringSetFilter['value']) {
+function defaultValuesFormatter(values: StringSetFilter['value']) {
   const list = values.map(defaultValueFormatter);
   if (list.length <= 1) {
     return list.toString();
@@ -156,4 +149,12 @@ function formatFilterValue(values: StringSetFilter['value']) {
     return list.slice(0, -1).join(', ') + ', or ' + list.slice(-1);
   }
   return list.slice(0, 2).join(', ') + `, and ${list.length - 2} more`;
+}
+
+function defaultOperatorFormatter(operator: StringSetFilterOperator) {
+  const messages: Record<StringSetFilterOperator, string> = {
+    [StringSetFilter.Operators.in]: 'is',
+    [StringSetFilter.Operators.notIn]: 'is not',
+  };
+  return messages[operator];
 }

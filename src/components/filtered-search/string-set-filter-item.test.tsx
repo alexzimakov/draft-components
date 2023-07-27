@@ -176,20 +176,20 @@ it('edit filter value', async () => {
   expect(onChangeMock).toHaveBeenCalledWith(changedFilter);
 });
 
-describe('formatFilterValue()', () => {
+describe('defaultValuesFormatter()', () => {
   const defaultValueFormatter = StringSetFilterItem.defaultValueFormatter;
-  const formatFilterValue = StringSetFilterItem.formatFilterValue;
+  const defaultValuesFormatter = StringSetFilterItem.defaultValuesFormatter;
 
   it('empty array', () => {
     const values: string[] = [];
     const expected = '';
-    expect(formatFilterValue(values)).toBe(expected);
+    expect(defaultValuesFormatter(values)).toBe(expected);
   });
 
   it('1 item', () => {
     const values = ['active'];
     const expected = defaultValueFormatter(values[0]);
-    expect(formatFilterValue(values)).toBe(expected);
+    expect(defaultValuesFormatter(values)).toBe(expected);
   });
 
   it('2 items', () => {
@@ -199,7 +199,7 @@ describe('formatFilterValue()', () => {
       ' or ' +
       defaultValueFormatter(values[1])
     );
-    expect(formatFilterValue(values)).toBe(expected);
+    expect(defaultValuesFormatter(values)).toBe(expected);
   });
 
   it('3 items', () => {
@@ -211,7 +211,7 @@ describe('formatFilterValue()', () => {
       ', or ' +
       defaultValueFormatter(values[2])
     );
-    expect(formatFilterValue(values)).toBe(expected);
+    expect(defaultValuesFormatter(values)).toBe(expected);
   });
 
   it('4 or more items', () => {
@@ -222,6 +222,6 @@ describe('formatFilterValue()', () => {
       defaultValueFormatter(values[1]) +
       ', and 2 more'
     );
-    expect(formatFilterValue(values)).toBe(expected);
+    expect(defaultValuesFormatter(values)).toBe(expected);
   });
 });
