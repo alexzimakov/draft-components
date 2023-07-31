@@ -72,7 +72,6 @@
 }
 
 .dc-filtered-search__filters {
-  z-index: var(--dc-overlay-z-index);
   display: flex;
   flex-grow: 1;
   flex-wrap: wrap;
@@ -112,6 +111,7 @@
 .dc-filtered-search__list-box {
   font-size: var(--dc-filtered-search-font-size);
   position: absolute;
+  z-index: var(--dc-overlay-z-index);
   top: calc(100% + 8px);
   left: 0;
   box-sizing: border-box;
