@@ -72,6 +72,7 @@
 }
 
 .dc-filtered-search__filters {
+  z-index: var(--dc-overlay-z-index);
   display: flex;
   flex-grow: 1;
   flex-wrap: wrap;
