@@ -8,22 +8,29 @@
   --dc-radio-color-focus-ring: var(--dc-focus-ring-color);
 
   color-scheme: light;
+  position: relative;
   display: inline-flex;
+  flex-shrink: 0;
+  width: var(--dc-radio-size);
+  height: var(--dc-radio-size);
+  text-align: left;
 }
 
 .dc-radio__input {
-  appearance: none;
   position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  white-space: nowrap;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
 }
 
 .dc-radio__check {
-  font-size: 16px;
-  position: relative;
-  display: inline-flex;
+  display: inline-block;
   cursor: pointer;
-  flex: none;
-  align-items: center;
-  justify-content: center;
   box-sizing: border-box;
   width: var(--dc-radio-size);
   height: var(--dc-radio-size);
@@ -37,6 +44,8 @@
 .dc-radio__icon {
   color: var(--dc-radio-color-icon);
   display: none;
+  width: 100%;
+  height: 100%;
 }
 
 .dc-radio__input:checked + .dc-radio__check {
