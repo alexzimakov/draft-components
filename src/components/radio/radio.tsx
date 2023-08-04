@@ -21,10 +21,10 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio({
   let iconElement: JSX.Element;
   switch (icon) {
     case 'check':
-      iconElement = <CheckIcon className="dc-radio__icon" data-testid="radio-dot-icon" />;
+      iconElement = <CheckIcon className="dc-radio__icon" data-testid="radio-check-icon" />;
       break;
     default:
-      iconElement = <DotIcon className="dc-radio__icon" data-testid="radio-check-icon" />;
+      iconElement = <DotIcon className="dc-radio__icon" data-testid="radio-dot-icon" />;
   }
 
   return (
