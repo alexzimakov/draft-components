@@ -1,0 +1,23 @@
+.v-align-baseline {
+  vertical-align: baseline;
+}
+
+.v-align-top {
+  vertical-align: top;
+}
+
+.v-align-middle {
+  vertical-align: middle;
+}
+
+.v-align-bottom {
+  vertical-align: bottom;
+}
+
+.v-align-text-top {
+  vertical-align: text-top;
+}
+
+.v-align-text-bottom {
+  vertical-align: text-bottom;
+}
