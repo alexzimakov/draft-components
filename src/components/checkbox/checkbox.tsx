@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { ComponentPropsWithRef, ComponentPropsWithoutRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 type CheckboxHTMLProps = ComponentPropsWithRef<'input'>;
@@ -9,50 +9,11 @@ export type CheckboxProps = CheckboxBaseProps & {
   onToggle?: CheckboxToggleHandler;
 };
 
-const checkIcon = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    width="24"
-    height="24"
-    className="dc-checkbox__icon"
-    data-testid="checkbox-check-icon"
-  >
-    <path
-      d="M6 12.5556L10.8 17L18 7"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-const dashIcon = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    width="24"
-    height="24"
-    className="dc-checkbox__icon"
-    data-testid="checkbox-dash-icon"
-  >
-    <path
-      d="M6 12H18"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-    />
-  </svg>
-);
-
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   function Checkbox({
     hasMixedState = false,
-    style = {},
-    className = '',
+    style,
+    className,
     onChange,
     onToggle,
     ...props
@@ -74,9 +35,60 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           data-testid="checkbox-check"
           aria-hidden={true}
         >
-          {hasMixedState ? dashIcon : checkIcon}
+          {hasMixedState ? (
+            <DashIcon
+              className="dc-checkbox__icon"
+              data-testid="checkbox-dash-icon"
+            />
+          ) : (
+            <CheckIcon
+              className="dc-checkbox__icon"
+              data-testid="checkbox-check-icon"
+            />
+          )}
         </span>
       </label>
     );
   },
 );
+
+function CheckIcon(props: ComponentPropsWithoutRef<'svg'>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      width={20}
+      height={20}
+      {...props}
+    >
+      <path
+        d="M5 10.4444L9 14L15 6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function DashIcon(props: ComponentPropsWithoutRef<'svg'>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      width={20}
+      height={20}
+      {...props}
+    >
+      <path
+        d="M5 10H15"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2.5}
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}

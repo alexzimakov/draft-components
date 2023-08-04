@@ -10,24 +10,28 @@
 
   color-scheme: light;
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  flex-shrink: 0;
   width: var(--dc-checkbox-size);
   height: var(--dc-checkbox-size);
+  text-align: left;
 }
 
 .dc-checkbox__input {
-  appearance: none;
   position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  white-space: nowrap;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
 }
 
 .dc-checkbox__check {
-  font-size: 16px;
-  position: absolute;
-  display: inline-flex;
+  display: inline-block;
   cursor: pointer;
-  flex: none;
-  align-items: center;
-  justify-content: center;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -41,6 +45,8 @@
 .dc-checkbox__icon {
   color: var(--dc-checkbox-icon-color);
   display: none;
+  width: 100%;
+  height: 100%;
 }
 
 .dc-checkbox__input:checked + .dc-checkbox__check {
