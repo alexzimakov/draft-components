@@ -11,23 +11,33 @@
   --dc-switch-focus-ring-color: var(--dc-focus-ring-color);
 
   color-scheme: light;
+  position: relative;
   display: inline-flex;
+  flex-shrink: 0;
+  width: var(--dc-switch-width);
+  height: var(--dc-switch-height);
+  text-align: left;
 }
 
 .dc-switch__input {
-  appearance: none;
   position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  white-space: nowrap;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
 }
 
 .dc-switch__track {
-  font-size: 16px;
-  position: relative;
-  display: inline-flex;
+  display: inline-block;
   cursor: pointer;
   flex: none;
   box-sizing: border-box;
-  width: var(--dc-switch-width);
-  height: var(--dc-switch-height);
+  width: 100%;
+  height: 100%;
   transition-duration: 0.2s;
   transition-property: opacity, background-color;
   vertical-align: middle;
@@ -39,7 +49,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  display: inline-flex;
+  display: inline-block;
   align-items: center;
   justify-content: center;
   width: var(--dc-switch-thumb-size);
@@ -59,6 +69,8 @@
 .dc-switch__icon {
   color: var(--dc-switch-icon-color);
   opacity: 0;
+  width: var(--dc-switch-thumb-size);
+  height: var(--dc-switch-thumb-size);
   transition: opacity 0.2s;
 }
 
