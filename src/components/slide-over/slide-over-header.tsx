@@ -17,6 +17,7 @@ export function SlideOverHeader({
   className,
   htmlTitle,
   title,
+  children,
   description,
   closeButtonAccessibleName,
   onClickCloseButton,
@@ -48,6 +49,11 @@ export function SlideOverHeader({
       {description ? (
         <div id={descriptionId} className="dc-slide-over-header__description">
           {description}
+        </div>
+      ) : null}
+      {children ? (
+        <div className="dc-slide-over-header__content">
+          {children}
         </div>
       ) : null}
     </div>

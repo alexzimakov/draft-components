@@ -21,3 +21,9 @@
   color: var(--dc-slide-over-secondary-text-color);
   margin-top: 4px;
 }
+
+.dc-slide-over-header__content {
+  font: var(--dc-text-md);
+  color: var(--dc-slide-over-text-color);
+  margin-top: 8px;
+}
