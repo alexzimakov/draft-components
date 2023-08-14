@@ -1,5 +1,14 @@
 import { SlideOverCloseCallback } from './types';
-import { ComponentPropsWithoutRef, useCallback, useEffect, useId, useMemo, useRef } from 'react';
+import {
+  ComponentPropsWithoutRef,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useId,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+} from 'react';
 import { SlideOverContextProvider } from './slide-over-context';
 import { classNames, getRefElement } from '../../lib';
 import { useDisableBodyScroll, useEscKeyDown, useFocusTrap } from '../../hooks';
@@ -11,7 +20,13 @@ export type SlideOverHTMLProps = ComponentPropsWithoutRef<'div'>;
 export type SlideOverProps = SlideOverHTMLProps & {
   animationDurationMs?: number;
   animationDisabled?: boolean;
+  shouldCloseOnEscKeyPress?: boolean;
+  shouldCloseOnBackdropClick?: boolean;
   onClose: SlideOverCloseCallback;
+};
+
+export type SlideOverRef = {
+  close: () => void;
 };
 
 const panelSlideIn: Keyframe[] = [
@@ -24,16 +39,18 @@ const backdropFade: Keyframe[] = [
   { opacity: 1 },
 ];
 
-export function SlideOver({
+const SlideOverWithRef = forwardRef<SlideOverRef, SlideOverProps>(function SlideOver({
   'aria-labelledby': ariaLabelledby,
   'aria-describedby': ariaDescribedby,
   animationDurationMs = 350,
   animationDisabled = false,
+  shouldCloseOnEscKeyPress = true,
+  shouldCloseOnBackdropClick = true,
   className,
   children,
   onClose,
   ...props
-}: SlideOverProps) {
+}, ref) {
   const id = useId();
   const titleId = ariaLabelledby || `${id}dialogTitle`;
   const descriptionId = ariaDescribedby || `${id}dialogDescription`;
@@ -95,6 +112,10 @@ export function SlideOver({
     };
   }, [animationDurationMs, onClose, shouldPlayAnimations]);
 
+  useImperativeHandle(ref, (): SlideOverRef => ({
+    close: closePanel,
+  }));
+
   useEffect(() => {
     isAnimationDisabled.current = animationDisabled;
   }, [animationDisabled]);
@@ -117,14 +138,16 @@ export function SlideOver({
     }
   }, [shouldPlayAnimations, animationDurationMs]);
 
-  useEscKeyDown(() => closePanel('escape'));
+  useEscKeyDown(() => closePanel('escape'), { isEnabled: shouldCloseOnEscKeyPress });
 
   useFocusTrap(panelRef);
 
   useDisableBodyScroll();
 
   const onClickBackdrop = () => {
-    closePanel('backdrop');
+    if (shouldCloseOnBackdropClick) {
+      closePanel('backdrop');
+    }
   };
 
   return (
@@ -156,6 +179,9 @@ export function SlideOver({
       </div>
     </Portal>
   );
-}
-SlideOver.Header = SlideOverHeader;
-SlideOver.Body = SlideOverBody;
+});
+
+export const SlideOver = Object.assign(SlideOverWithRef, {
+  Header: SlideOverHeader,
+  Body: SlideOverBody,
+});

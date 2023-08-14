@@ -1,7 +1,8 @@
 import '../../tests/match-media.mock';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
-import { SlideOver } from './slide-over';
+import { SlideOver, SlideOverRef } from './slide-over';
+import { useRef } from 'react';
 
 const title = 'Slide-over test';
 const description = 'Dummy description';
@@ -82,6 +83,31 @@ it('renders without errors', () => {
   expect(screen.getByRole('dialog')).toBe(screen.getByLabelText(title));
 });
 
+it('use SlideOver api through ref', async () => {
+  const user = userEvent.setup();
+  const closeButtonTestId = 'close-test-slide-over';
+  const onCloseMock = jest.fn();
+  const TestCase = () => {
+    const ref = useRef<SlideOverRef>(null);
+    return (
+      <SlideOver ref={ref} onClose={onCloseMock}>
+        <SlideOver.Header title={title} />
+        <SlideOver.Body>
+          <button
+            data-testid={closeButtonTestId}
+            onClick={() => ref.current?.close()}
+          >
+            Close test slide over
+          </button>
+        </SlideOver.Body>
+      </SlideOver>
+    );
+  };
+  render(<TestCase />);
+
+  await user.click(screen.getByTestId(closeButtonTestId));
+  expect(onCloseMock).toHaveBeenCalledTimes(1);
+});
 
 it('close slide-over when Escape key pressed', async () => {
   const user = userEvent.setup();

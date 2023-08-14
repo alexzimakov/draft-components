@@ -1,4 +1,4 @@
-export type SlideOverCloseCallback = (source:
+export type SlideOverCloseCallback = (source?:
   | 'close-button'
   | 'backdrop'
   | 'escape') => void;

@@ -1,5 +1,9 @@
 export { type SlideOverCloseCallback } from './types';
-export { SlideOver, type SlideOverProps } from './slide-over';
+export {
+  SlideOver,
+  type SlideOverProps,
+  type SlideOverRef,
+} from './slide-over';
 export {
   SlideOverHeader,
   type SlideOverHeaderProps,
