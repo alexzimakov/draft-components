@@ -11,7 +11,6 @@ type SelectBaseProps = Omit<SelectHTMLProps,
   | 'defaultValue'
 > & {
   loading?: boolean;
-  hasError?: boolean;
   isBlock?: boolean;
   size?: SelectSize;
   htmlSize?: SelectHTMLProps['size'];
@@ -31,7 +30,6 @@ export type SelectProps = SelectBaseProps & ({
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   function Select({
-    hasError,
     isBlock,
     size = 'md',
     style,
@@ -45,7 +43,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     onChangeValue,
     ...props
   }, ref) {
-    const onValueChanged: ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const handleChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
       if (typeof onChange === 'function') {
         onChange(event);
       }
@@ -98,7 +96,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           'dc-select__container_multiple': multiple,
           'dc-select__container_loading': loading,
           'dc-select__container_disabled': disabled,
-          'dc-select__container_has_error': hasError,
+          'dc-select__container_invalid': props['aria-invalid'],
           'dc-select__container_block': isBlock,
         })}
       >
@@ -109,7 +107,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           size={htmlSize}
           multiple={multiple}
           disabled={disabled || loading}
-          onChange={onValueChanged}
+          onChange={handleChange}
         >
           {children}
         </select>

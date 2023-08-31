@@ -41,7 +41,7 @@
   opacity: var(--dc-disabled-state-opacity);
 }
 
-.dc-select__container_has_error {
+.dc-select__container_invalid {
   border-color: var(--dc-select-border-color-error);
 }
 

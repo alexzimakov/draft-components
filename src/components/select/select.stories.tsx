@@ -8,7 +8,6 @@ const meta: Meta<typeof Select> = {
     size: 'md',
     loading: false,
     disabled: false,
-    hasError: false,
     isBlock: false,
   },
   argTypes: {
@@ -39,9 +38,9 @@ Disabled.args = {
   disabled: true,
 };
 
-export const HasError = Basic.bind({});
-HasError.args = {
-  hasError: true,
+export const Invalid = Basic.bind({});
+Invalid.args = {
+  'aria-invalid': true,
 };
 
 export const FullWidth = Basic.bind({});
