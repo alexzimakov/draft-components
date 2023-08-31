@@ -40,44 +40,18 @@ export const Button = forwardRef<
   children,
   ...props
 }, ref) {
-  let addOnLeft: ReactNode = null;
-  if (loading) {
-    addOnLeft = (
-      <span data-testid="button-spinner" className="dc-button__spinner">
-        <Spinner size="1.15em" />
-      </span>
-    );
-  } else if (leftIcon) {
-    addOnLeft = (
-      <span data-testid="button-icon" className="dc-button__icon">
-        {leftIcon}
-      </span>
-    );
-  }
-
-  let addOnRight = null;
-  if (rightIcon) {
-    addOnRight = (
-      <span data-testid="button-icon" className="dc-button__icon">
-        {rightIcon}
-      </span>
-    );
-  }
-
-  const shouldRenderLabel = Boolean(children);
-  const shouldRenderCaption = Boolean(caption);
-  const content = (
+  children = (
     <>
-      {addOnLeft}
-      {shouldRenderLabel && (
-        <span className="dc-button__body">
-          <span className="dc-button__label">{children}</span>
-          {shouldRenderCaption && (
-            <small className="dc-button__caption">{caption}</small>
-          )}
-        </span>
-      )}
-      {addOnRight}
+      {loading
+        ? <Spinner data-testid="button-spinner" size="1.15em" />
+        : leftIcon}
+      {caption ? (
+        <div className="dc-button__label">
+          {children}
+          <small className="dc-button__caption">{caption}</small>
+        </div>
+      ) : children}
+      {rightIcon}
     </>
   );
 
@@ -85,17 +59,15 @@ export const Button = forwardRef<
     'dc-button': true,
     'dc-button_block': isBlock,
     'dc-button_loading': loading,
-    'dc-button_has_caption': shouldRenderCaption,
+    'dc-button_with_left-icon': leftIcon,
+    'dc-button_with_right-icon': rightIcon,
     [`dc-button_${size}`]: size,
     [`dc-button_appearance_${appearance}`]: appearance,
     [`dc-button_variant_${variant}`]: variant,
   });
 
   if (typeof renderAs === 'function') {
-    return renderAs({
-      className,
-      children: content,
-    });
+    return renderAs({ className, children });
   }
 
   return (
@@ -106,7 +78,7 @@ export const Button = forwardRef<
       className={className}
       {...props}
     >
-      {content}
+      {children}
     </button>
   );
 });
