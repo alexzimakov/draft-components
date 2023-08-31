@@ -1,4 +1,4 @@
-import { CharacterCountRenderFn, Textarea } from './textarea';
+import { Textarea, TextareaCharacterCountRenderer } from './textarea';
 import { expect, it, vi } from 'vitest';
 import { render, screen, userEvent } from '../../test/test-utils';
 
@@ -35,7 +35,7 @@ it('should render character count', () => {
 it('should render character count using a custom render function', () => {
   const value = 'Test message';
   const maxLength = 100;
-  const getCharacterCountMessage: CharacterCountRenderFn = ({
+  const getCharacterCountMessage: TextareaCharacterCountRenderer = ({
     maxCharacters,
     characterCount,
   }) => `Characters ${characterCount}/${maxCharacters}`;

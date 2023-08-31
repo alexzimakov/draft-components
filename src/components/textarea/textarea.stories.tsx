@@ -6,7 +6,6 @@ const meta: Meta<typeof Textarea> = {
   title: 'Forms/Textarea',
   component: Textarea,
   args: {
-    hasError: false,
     isBlock: false,
     showCharacterCount: false,
     rows: 3,
@@ -28,10 +27,10 @@ Disabled.args = {
   placeholder: 'Add your comment...',
 };
 
-export const HasError = Basic.bind({});
-HasError.args = {
-  hasError: true,
-  placeholder: 'Add your comment...',
+export const Invalid = Basic.bind({});
+Invalid.args = {
+  'placeholder': 'Add your comment...',
+  'aria-invalid': true,
 };
 
 export const FullWidth = Basic.bind({});

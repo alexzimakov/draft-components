@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, ReactNode, forwardRef, useState } from 'react';
+import { ChangeEventHandler, ComponentPropsWithRef, ReactNode, forwardRef, useState } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { Caption } from '../caption';
 
@@ -9,22 +9,21 @@ export type TextareaWidth =
   | '40ch'
   | '60ch'
   | '80ch';
-export type TextAreaChangeValueHandler = (value: string) => void;
-export type CharacterCountRenderFn = (params: {
+export type TextareaChangeValueHandler = (value: string) => void;
+export type TextareaCharacterCountRenderer = (params: {
   maxCharacters: number;
   characterCount: number;
 }) => ReactNode;
 export type TextareaProps = TextareaHTMLProps & {
-  hasError?: boolean;
   isBlock?: boolean;
   showCharacterCount?: boolean;
-  renderCharacterCount?: CharacterCountRenderFn;
+  renderCharacterCount?: TextareaCharacterCountRenderer;
   size?: TextareaSize;
   width?: TextareaWidth;
-  onChangeValue?: TextAreaChangeValueHandler;
+  onChangeValue?: TextareaChangeValueHandler;
 };
 
-const getCharactersCountMessage: CharacterCountRenderFn = ({
+const defaultCharacterCountRenderer: TextareaCharacterCountRenderer = ({
   maxCharacters,
   characterCount,
 }) => {
@@ -42,7 +41,6 @@ const getCharactersCountMessage: CharacterCountRenderFn = ({
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   function Textarea({
     disabled = false,
-    hasError = false,
     isBlock = false,
     showCharacterCount = false,
     size = 'md',
@@ -53,7 +51,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     maxLength,
     onChange,
     onChangeValue,
-    renderCharacterCount = getCharactersCountMessage,
+    renderCharacterCount = defaultCharacterCountRenderer,
     ...props
   }, ref) {
     const shouldRenderCharacterCount = (
@@ -65,13 +63,20 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       return typeof value === 'string' ? value.length : 0;
     });
 
+    const handleChange: ChangeEventHandler<HTMLTextAreaElement> = (event) => {
+      const value = event.target.value;
+      onChange?.(event);
+      onChangeValue?.(value);
+      setCharacterCount(value.length);
+    };
+
     return (
       <div
         style={style}
         className={classNames(className, 'dc-textarea__container', {
-          [`dc-textarea__container_size_${size}`]: size !== undefined,
+          [`dc-textarea__container_size_${size}`]: size,
           'dc-textarea__container_disabled': disabled,
-          'dc-textarea__container_has_error': hasError,
+          'dc-textarea__container_invalid': props['aria-invalid'],
           'dc-textarea__container_block': isBlock,
         })}
       >
@@ -84,12 +89,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           rows={rows}
           maxLength={maxLength}
           disabled={disabled}
-          onChange={(event) => {
-            const value = event.target.value;
-            onChange?.(event);
-            onChangeValue?.(value);
-            setCharacterCount(value.length);
-          }}
+          onChange={handleChange}
         />
         {shouldRenderCharacterCount && (
           <Caption

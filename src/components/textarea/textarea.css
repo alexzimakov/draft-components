@@ -33,7 +33,7 @@
   opacity: var(--dc-disabled-state-opacity);
 }
 
-.dc-textarea__container_has_error {
+.dc-textarea__container_invalid {
   border-color: var(--dc-textarea-border-color-error);
 }
 
