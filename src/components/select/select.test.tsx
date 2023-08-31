@@ -1,6 +1,6 @@
-import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
 import { Select } from './select';
+import { expect, it, vi } from 'vitest';
+import { render, screen, userEvent } from '../../test/test-utils';
 
 it('renders without errors', () => {
   render(
@@ -52,7 +52,7 @@ it('should disable select when `loading` property is true', () => {
 
 it('invokes `onChange` callback', async () => {
   const user = userEvent.setup();
-  const onChangeMock = jest.fn();
+  const onChangeMock = vi.fn();
   render(
     <Select onChange={onChangeMock}>
       <option value="1">A</option>
@@ -71,7 +71,7 @@ it('invokes `onChange` callback', async () => {
 
 it('invokes `onChangeValue` callback with selected value', async () => {
   const user = userEvent.setup();
-  const onChangeValueMock = jest.fn();
+  const onChangeValueMock = vi.fn();
   render(
     <Select onChangeValue={onChangeValueMock}>
       <option value="1">A</option>
@@ -88,7 +88,7 @@ it('invokes `onChangeValue` callback with selected value', async () => {
 
 it('invokes `onChangeValue` callback with selected values list', async () => {
   const user = userEvent.setup();
-  const onChangeValueMock = jest.fn();
+  const onChangeValueMock = vi.fn();
   render(
     <Select multiple={true} onChangeValue={onChangeValueMock}>
       <option value="1">A</option>

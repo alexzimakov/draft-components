@@ -1,7 +1,11 @@
-import '../../tests/match-media.mock';
-import userEvent from '@testing-library/user-event';
-import { render, screen, waitFor } from '@testing-library/react';
 import { DatePickerPopover } from './date-picker-popover';
+import { beforeAll, expect, it, vi } from 'vitest';
+import { mockMatchMedia } from '../../test/mock-match-media';
+import { render, screen, userEvent, waitFor } from '../../test/test-utils';
+
+beforeAll(() => {
+  mockMatchMedia();
+});
 
 it('renders without errors', () => {
   const label = 'Select date';
@@ -10,7 +14,7 @@ it('renders without errors', () => {
       locale="en"
       defaultIsOpen={true}
       value={null}
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
     >
       <button>{label}</button>
     </DatePickerPopover>,
@@ -24,7 +28,7 @@ it('can toggle popover visibility', async () => {
   const user = userEvent.setup();
   const label = 'Select date';
   render(
-    <DatePickerPopover value={null} onChangeValue={jest.fn()}>
+    <DatePickerPopover value={null} onChangeValue={vi.fn()}>
       <button>{label}</button>
     </DatePickerPopover>,
   );
@@ -41,7 +45,7 @@ it('can toggle popover visibility', async () => {
 it('can select date using calendar', async () => {
   const user = userEvent.setup();
   const label = 'Select date';
-  const onChangeValueMock = jest.fn();
+  const onChangeValueMock = vi.fn();
   render(
     <DatePickerPopover value="2022-02-06" onChangeValue={onChangeValueMock}>
       <button>{label}</button>

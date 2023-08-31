@@ -1,7 +1,11 @@
-import '../../tests/match-media.mock';
-import userEvent from '@testing-library/user-event';
-import { render, screen, waitFor } from '@testing-library/react';
 import { Popover } from './popover';
+import { beforeAll, expect, it, vi } from 'vitest';
+import { render, screen, userEvent, waitFor } from '../../test/test-utils';
+import { mockMatchMedia } from '../../test/mock-match-media';
+
+beforeAll(() => {
+  mockMatchMedia();
+});
 
 const anchorLabel = 'Show Popover';
 const popoverContent = 'Popover Content';
@@ -42,7 +46,7 @@ it('should open popover when click on anchor element', async () => {
   const user = userEvent.setup();
   const anchorTestId = 'anchor';
   const popoverTestId = 'popover';
-  const openMock = jest.fn();
+  const openMock = vi.fn();
   render(
     <Popover
       anchor={<button data-testid={anchorTestId}>{anchorLabel}</button>}
@@ -66,7 +70,7 @@ it(
     const user = userEvent.setup();
     const popoverTestId = 'popover';
     const externalElementTestId = 'close-popover';
-    const closeMock = jest.fn();
+    const closeMock = vi.fn();
     render(
       <div>
         <button data-testid={externalElementTestId}>Close popover</button>
@@ -92,7 +96,7 @@ it(
 it('should close popover when press Esc button', async () => {
   const user = userEvent.setup();
   const popoverTestId = 'popover';
-  const closeMock = jest.fn();
+  const closeMock = vi.fn();
   render(
     <Popover
       anchor={<button>{anchorLabel}</button>}
@@ -116,7 +120,7 @@ it('should trap focus within the popover', async () => {
   const popoverTestId = 'popover';
   const inputTestId = 'input';
   const buttonTestId = 'button';
-  const closeMock = jest.fn();
+  const closeMock = vi.fn();
   render(
     <Popover
       anchor={<button>{anchorLabel}</button>}

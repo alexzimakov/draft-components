@@ -1,6 +1,6 @@
-import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
 import { Radio } from './radio';
+import { expect, it, vi } from 'vitest';
+import { render, screen, userEvent } from '../../test/test-utils';
 
 it('renders without errors', () => {
   const ariaLabel = 'Private access';
@@ -27,7 +27,7 @@ it('renders with check icon', () => {
 
 it('invokes `onChange` event handler', async () => {
   const user = userEvent.setup();
-  const onChangeMock = jest.fn();
+  const onChangeMock = vi.fn();
   render(<Radio onChange={onChangeMock} />);
 
   await user.click(screen.getByTestId('radio-check'));
@@ -37,7 +37,7 @@ it('invokes `onChange` event handler', async () => {
 
 it('invokes `onToggle` callback with checked flag', async () => {
   const user = userEvent.setup();
-  const onToggleMock = jest.fn();
+  const onToggleMock = vi.fn();
   render(<Radio onToggle={onToggleMock} />);
 
   const checkEl = screen.getByTestId('radio-check');

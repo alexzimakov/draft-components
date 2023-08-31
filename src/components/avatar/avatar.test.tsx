@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
 import { Avatar } from './avatar';
+import { expect, it } from 'vitest';
+import { render, screen } from '../../test/test-utils';
 
 it('renders without error', () => {
   const src = 'avatar-test.png';

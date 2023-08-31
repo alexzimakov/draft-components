@@ -1,9 +1,13 @@
-import '../../tests/match-media.mock';
-import userEvent from '@testing-library/user-event';
-import { fireEvent, render, screen, within } from '@testing-library/react';
-import { FilteredSearch } from './filtered-search';
 import { StringFilter } from './model/string-filter';
 import { StringSetFilter } from './model/string-set-filter';
+import { FilteredSearch } from './filtered-search';
+import { beforeAll, expect, it, vi } from 'vitest';
+import { mockMatchMedia } from '../../test/mock-match-media';
+import { fireEvent, render, screen, userEvent, within } from '../../test/test-utils';
+
+beforeAll(() => {
+  mockMatchMedia();
+});
 
 const idFilterConfig = {
   type: StringFilter.Type,
@@ -56,7 +60,7 @@ it('renders without errors', async () => {
       placeholder={placeholder}
       filtersConfig={filtersConfig}
       filters={[]}
-      onChangeFilters={jest.fn}
+      onChangeFilters={vi.fn}
     />,
   );
 
@@ -83,7 +87,7 @@ it('close options list', async () => {
     <FilteredSearch
       filtersConfig={filtersConfig}
       filters={[]}
-      onChangeFilters={jest.fn}
+      onChangeFilters={vi.fn}
     />,
   );
 
@@ -99,12 +103,12 @@ it('close options list', async () => {
 
 it('focus textbox when click on container', async () => {
   const user = userEvent.setup();
-  const onMouseDownMock = jest.fn();
+  const onMouseDownMock = vi.fn();
   render(
     <FilteredSearch
       filtersConfig={filtersConfig}
       filters={[]}
-      onChangeFilters={jest.fn}
+      onChangeFilters={vi.fn}
       onMouseDown={onMouseDownMock}
     />,
   );
@@ -124,7 +128,7 @@ it('select filter using keyboard', async () => {
     <FilteredSearch
       filtersConfig={[idFilterConfig, nameFilterConfig]}
       filters={[]}
-      onChangeFilters={jest.fn}
+      onChangeFilters={vi.fn}
     />,
   );
 
@@ -162,7 +166,7 @@ it('filter options based on the search text', async () => {
     <FilteredSearch
       filtersConfig={[idFilterConfig, nameFilterConfig]}
       filters={[]}
-      onChangeFilters={jest.fn}
+      onChangeFilters={vi.fn}
     />,
   );
 
@@ -188,7 +192,7 @@ it('filter options based on the search text', async () => {
 
 it('choose option using keyboard', async () => {
   const user = userEvent.setup();
-  const onChangeFiltersMock = jest.fn();
+  const onChangeFiltersMock = vi.fn();
   render(
     <FilteredSearch
       filtersConfig={filtersConfig}
@@ -209,7 +213,7 @@ it('choose option using keyboard', async () => {
 
 it('choose option using mouse', async () => {
   const user = userEvent.setup();
-  const onChangeFiltersMock = jest.fn();
+  const onChangeFiltersMock = vi.fn();
   render(
     <FilteredSearch
       filtersConfig={filtersConfig}
@@ -229,7 +233,7 @@ it('choose option using mouse', async () => {
 
 it('remove filters using keyboard', async () => {
   const user = userEvent.setup();
-  const onChangeFiltersMock = jest.fn();
+  const onChangeFiltersMock = vi.fn();
   const filters = [
     new StringFilter(idFilterConfig, {
       value: '123',
@@ -258,7 +262,7 @@ it('remove filters using keyboard', async () => {
 it('remove filters using mouse', async () => {
   const user = userEvent.setup();
   const removeFilterButtonAccessibleName = 'Remove filter';
-  const onChangeFiltersMock = jest.fn();
+  const onChangeFiltersMock = vi.fn();
   const filters = [
     new StringFilter(idFilterConfig, {
       value: '123',
@@ -295,7 +299,7 @@ it('remove filters using mouse', async () => {
 
 it('should remove new filter if it is empty', async () => {
   const user = userEvent.setup();
-  const onChangeFiltersMock = jest.fn();
+  const onChangeFiltersMock = vi.fn();
   render(
     <FilteredSearch
       filtersConfig={filtersConfig}
@@ -319,7 +323,7 @@ it('should remove new filter if it is empty', async () => {
 
 it('should remove empty filter', async () => {
   const user = userEvent.setup();
-  const onChangeFiltersMock = jest.fn();
+  const onChangeFiltersMock = vi.fn();
   const filter = new StringFilter(idFilterConfig, {
     value: '',
     operator: StringFilter.Operators.equal,
@@ -346,7 +350,7 @@ it('should remove empty filter', async () => {
 
 it('apply new filter', async () => {
   const user = userEvent.setup();
-  const onChangeFiltersMock = jest.fn();
+  const onChangeFiltersMock = vi.fn();
   const newFilter = new StringFilter(idFilterConfig, {
     value: '123',
     operator: StringFilter.Operators.equal,
@@ -377,7 +381,7 @@ it('apply new filter', async () => {
 
 it('edit filters', async () => {
   const user = userEvent.setup();
-  const onChangeFiltersMock = jest.fn();
+  const onChangeFiltersMock = vi.fn();
   const idFilter = new StringFilter(idFilterConfig, {
     value: '123',
     operator: StringFilter.Operators.equal,
@@ -412,7 +416,7 @@ it('edit filters', async () => {
 
 it('clear all filters', async () => {
   const user = userEvent.setup();
-  const onChangeFiltersMock = jest.fn();
+  const onChangeFiltersMock = vi.fn();
   const filters = [
     new StringFilter(idFilterConfig, {
       value: '123',

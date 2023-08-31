@@ -77,7 +77,7 @@ module.exports = {
         'src/**/__tests__/**/*.[jt]s?(x)',
         'src/**/?(*.)+(spec|test).[jt]s?(x)',
       ],
-      env: { jest: true },
+      env: {},
       extends: ['plugin:testing-library/react'],
     },
 

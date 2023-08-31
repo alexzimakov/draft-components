@@ -1,5 +1,6 @@
-import { fireEvent, render, screen } from '@testing-library/react';
 import { FilePicker } from './file-picker';
+import { expect, it, vi } from 'vitest';
+import { fireEvent, render, screen } from '../../test/test-utils';
 
 it('renders without errors', () => {
   const label = 'Upload a profile photo';
@@ -30,7 +31,7 @@ it('renders without errors', () => {
       label={label}
       caption={caption}
       buttonLabel={buttonLabel}
-      onSelectFiles={jest.fn()}
+      onSelectFiles={vi.fn()}
     />,
   );
 
@@ -47,7 +48,7 @@ it('should select files', () => {
   const expectedFiles = [
     new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' }),
   ];
-  const onSelectFilesMock = jest.fn();
+  const onSelectFilesMock = vi.fn();
 
   render(
     <FilePicker
@@ -73,7 +74,7 @@ it('should select files using drag and drop', () => {
     new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' }),
     new File(['(⌐□_□)'], 'chucknorris2.png', { type: 'image/png' }),
   ];
-  const onSelectFilesMock = jest.fn();
+  const onSelectFilesMock = vi.fn();
 
   render(
     <FilePicker
@@ -105,7 +106,7 @@ it(
     const expectedFiles = [
       new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' }),
     ];
-    const onSelectFilesMock = jest.fn();
+    const onSelectFilesMock = vi.fn();
 
     render(
       <FilePicker

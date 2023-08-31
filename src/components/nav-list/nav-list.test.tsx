@@ -1,7 +1,8 @@
-import { render, screen, within } from '@testing-library/react';
 import { NavList } from './nav-list';
-import { NavListItem, NavListItemRenderFn } from './nav-list-item';
 import { NavListTitle } from './nav-list-title';
+import { NavListItem, NavListItemRenderFn } from './nav-list-item';
+import { expect, it } from 'vitest';
+import { render, screen, within } from '../../test/test-utils';
 
 it('renders without errors', () => {
   const title = 'Shared';

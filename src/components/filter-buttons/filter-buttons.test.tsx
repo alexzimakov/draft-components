@@ -1,6 +1,7 @@
-import { render, screen, within } from '@testing-library/react';
-import { FilterButtons } from './filter-buttons';
 import { FilterButton } from './filter-button';
+import { FilterButtons } from './filter-buttons';
+import { expect, it } from 'vitest';
+import { render, screen, within } from '../../test/test-utils';
 
 it('renders without errors', () => {
   render(

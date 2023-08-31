@@ -1,9 +1,13 @@
-import '../../tests/match-media.mock';
-import userEvent from '@testing-library/user-event';
-import { render, screen, waitFor, within } from '@testing-library/react';
 import { Menu } from './menu';
 import { MenuItem } from './menu-item';
 import { MenuSeparator } from './menu-separator';
+import { beforeAll, describe, expect, it, vi } from 'vitest';
+import { mockMatchMedia } from '../../test/mock-match-media';
+import { render, screen, userEvent, waitFor, within } from '../../test/test-utils';
+
+beforeAll(() => {
+  mockMatchMedia();
+});
 
 it('renders without errors', () => {
   const label = 'Actions';
@@ -146,7 +150,6 @@ it('should close the menu when click on outside the menu', async () => {
 
 describe('should open the menu and focus the first menu item', () => {
   const renderMenu = () => {
-    const user = userEvent.setup();
     const label = 'Actions';
     const actions = ['Duplicate', 'Rename', 'Delete'];
     render(
@@ -158,11 +161,12 @@ describe('should open the menu and focus the first menu item', () => {
       </Menu>,
     );
 
-    return { user, label, actions };
+    return { label, actions };
   };
 
   it('when the menu button is focused and ArrowDown key pressed', async () => {
-    const { user } = renderMenu();
+    const user = userEvent.setup();
+    renderMenu();
 
     expect(screen.queryByRole('menu')).toBeNull();
     await user.tab();
@@ -173,7 +177,8 @@ describe('should open the menu and focus the first menu item', () => {
   });
 
   it('when the menu button is focused and Enter key pressed', async () => {
-    const { user } = renderMenu();
+    const user = userEvent.setup();
+    renderMenu();
 
     expect(screen.queryByRole('menu')).toBeNull();
     await user.tab();
@@ -184,12 +189,13 @@ describe('should open the menu and focus the first menu item', () => {
   });
 
   it('when the menu button is focused and Space key pressed', async () => {
-    const { user } = renderMenu();
+    const user = userEvent.setup();
+    renderMenu();
 
     expect(screen.queryByRole('menu')).toBeNull();
     await user.tab();
     await user.keyboard(' ');
-    await screen.findByRole('menu');
+    screen.getByRole('menu');
     const [firstMenuItem] = screen.getAllByRole('menuitem');
     expect(firstMenuItem).toHaveFocus();
   });
@@ -218,52 +224,49 @@ it('should open the menu and focus the last menu item', async () => {
   expect(menuItems[menuItems.length - 1]).toHaveFocus();
 });
 
-it(
-  'should navigate through the navigation menu using the keyboard',
-  async () => {
-    const user = userEvent.setup();
-    const label = 'Actions';
-    const actions = ['Duplicate', 'Rename', 'Delete'];
-    render(
-      <Menu button={label}>
-        <MenuItem>{actions[0]}</MenuItem>
-        <MenuItem>{actions[1]}</MenuItem>
-        <MenuSeparator />
-        <MenuItem>{actions[2]}</MenuItem>
-      </Menu>,
-    );
+it('should navigate through the navigation menu using the keyboard', async () => {
+  const user = userEvent.setup();
+  const label = 'Actions';
+  const actions = ['Duplicate', 'Rename', 'Delete'];
+  render(
+    <Menu button={label}>
+      <MenuItem>{actions[0]}</MenuItem>
+      <MenuItem>{actions[1]}</MenuItem>
+      <MenuSeparator />
+      <MenuItem>{actions[2]}</MenuItem>
+    </Menu>,
+  );
 
-    await user.tab();
-    await user.keyboard('{ArrowUp}');
+  await user.tab();
+  await user.keyboard('{ArrowUp}');
 
-    const [first, second, third] = screen.getAllByRole('menuitem');
-    expect(third).toHaveFocus();
+  const [first, second, third] = screen.getAllByRole('menuitem');
+  expect(third).toHaveFocus();
 
-    await user.keyboard('{ArrowDown}');
-    expect(first).toHaveFocus();
+  await user.keyboard('{ArrowDown}');
+  expect(first).toHaveFocus();
 
-    await user.keyboard('{ArrowDown}');
-    expect(second).toHaveFocus();
+  await user.keyboard('{ArrowDown}');
+  expect(second).toHaveFocus();
 
-    await user.keyboard('{ArrowUp}');
-    expect(first).toHaveFocus();
+  await user.keyboard('{ArrowUp}');
+  expect(first).toHaveFocus();
 
-    await user.keyboard('{ArrowUp}');
-    expect(third).toHaveFocus();
+  await user.keyboard('{ArrowUp}');
+  expect(third).toHaveFocus();
 
-    await user.keyboard('{home}');
-    expect(first).toHaveFocus();
+  await user.keyboard('{home}');
+  expect(first).toHaveFocus();
 
-    await user.keyboard('{end}');
-    expect(third).toHaveFocus();
+  await user.keyboard('{end}');
+  expect(third).toHaveFocus();
 
-    await user.keyboard('d');
-    expect(first).toHaveFocus();
+  await user.keyboard('d');
+  expect(first).toHaveFocus();
 
-    await user.keyboard('i');
-    expect(first).toHaveFocus();
-  },
-);
+  await user.keyboard('i');
+  expect(first).toHaveFocus();
+});
 
 it(
   'should navigate through the options picker using the keyboard',
@@ -322,7 +325,7 @@ it('should focus on the menu item when hovering over the mouse', async () => {
   const user = userEvent.setup();
   const label = 'Actions';
   const actions = ['Duplicate', 'Rename', 'Delete'];
-  const onMouseEnterMock = jest.fn();
+  const onMouseEnterMock = vi.fn();
   render(
     <Menu defaultIsOpen={true} button={label}>
       <MenuItem onMouseEnter={onMouseEnterMock}>{actions[0]}</MenuItem>
@@ -347,7 +350,7 @@ it('should close the menu when click on any menu item', async () => {
   const user = userEvent.setup();
   const label = 'Actions';
   const actions = ['Duplicate', 'Rename', 'Delete'];
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   render(
     <Menu defaultIsOpen={true} button={label}>
       <MenuItem onClick={onClickMock}>{actions[0]}</MenuItem>

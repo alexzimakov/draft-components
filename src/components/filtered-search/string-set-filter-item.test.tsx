@@ -1,9 +1,13 @@
-import '../../tests/match-media.mock';
-import userEvent from '@testing-library/user-event';
-import { render, screen, within } from '@testing-library/react';
+import { StringSetFilter } from './model/string-set-filter';
 import { TranslationsProvider } from './use-translations';
 import { StringSetFilterItem } from './string-set-filter-item';
-import { StringSetFilter } from './model/string-set-filter';
+import { beforeAll, describe, expect, it, vi } from 'vitest';
+import { mockMatchMedia } from '../../test/mock-match-media';
+import { render, screen, userEvent, within } from '../../test/test-utils';
+
+beforeAll(() => {
+  mockMatchMedia();
+});
 
 const applyButtonLabel = 'Apply';
 const cancelButtonLabel = 'Cancel';
@@ -38,10 +42,10 @@ it('renders without errors', () => {
       <StringSetFilterItem
         filter={filter}
         isEditing={true}
-        onEditStart={jest.fn()}
-        onEditCancel={jest.fn()}
-        onRemove={jest.fn()}
-        onChange={jest.fn()}
+        onEditStart={vi.fn()}
+        onEditCancel={vi.fn()}
+        onRemove={vi.fn()}
+        onChange={vi.fn()}
       />
     </TranslationsProvider>,
   );
@@ -49,8 +53,8 @@ it('renders without errors', () => {
 
 it('should open and close the editor when click on the filter', async () => {
   const user = userEvent.setup();
-  const onEditStartMock = jest.fn();
-  const onEditCancelMock = jest.fn();
+  const onEditStartMock = vi.fn();
+  const onEditCancelMock = vi.fn();
   const ui = (isEditing: boolean) => (
     <TranslationsProvider
       applyButton={applyButtonLabel}
@@ -62,8 +66,8 @@ it('should open and close the editor when click on the filter', async () => {
         isEditing={isEditing}
         onEditStart={onEditStartMock}
         onEditCancel={onEditCancelMock}
-        onRemove={jest.fn()}
-        onChange={jest.fn()}
+        onRemove={vi.fn()}
+        onChange={vi.fn()}
       />
     </TranslationsProvider>
   );
@@ -83,7 +87,7 @@ it('should open and close the editor when click on the filter', async () => {
 
 it('should remove filter after click on the close button', async () => {
   const user = userEvent.setup();
-  const onRemoveMock = jest.fn();
+  const onRemoveMock = vi.fn();
   render(
     <TranslationsProvider
       applyButton={applyButtonLabel}
@@ -93,10 +97,10 @@ it('should remove filter after click on the close button', async () => {
       <StringSetFilterItem
         filter={filter}
         isEditing={false}
-        onEditStart={jest.fn()}
-        onEditCancel={jest.fn()}
+        onEditStart={vi.fn()}
+        onEditCancel={vi.fn()}
         onRemove={onRemoveMock}
-        onChange={jest.fn()}
+        onChange={vi.fn()}
       />
     </TranslationsProvider>,
   );
@@ -110,7 +114,7 @@ it('should remove filter after click on the close button', async () => {
 
 it('edit filter operator', async () => {
   const user = userEvent.setup();
-  const onChangeMock = jest.fn();
+  const onChangeMock = vi.fn();
   const changedFilter = filter.setOperator(StringSetFilter.Operators.notIn);
   render(
     <TranslationsProvider
@@ -121,9 +125,9 @@ it('edit filter operator', async () => {
       <StringSetFilterItem
         filter={filter}
         isEditing={true}
-        onEditStart={jest.fn()}
-        onEditCancel={jest.fn()}
-        onRemove={jest.fn()}
+        onEditStart={vi.fn()}
+        onEditCancel={vi.fn()}
+        onRemove={vi.fn()}
         onChange={onChangeMock}
       />
     </TranslationsProvider>,
@@ -142,7 +146,7 @@ it('edit filter operator', async () => {
 
 it('edit filter value', async () => {
   const user = userEvent.setup();
-  const onChangeMock = jest.fn();
+  const onChangeMock = vi.fn();
   const [passed, failed, ignored] = config.values;
   const changedFilter = filter.setValue([failed, ignored]);
   render(
@@ -154,9 +158,9 @@ it('edit filter value', async () => {
       <StringSetFilterItem
         filter={filter}
         isEditing={true}
-        onEditStart={jest.fn()}
-        onEditCancel={jest.fn()}
-        onRemove={jest.fn()}
+        onEditStart={vi.fn()}
+        onEditCancel={vi.fn()}
+        onRemove={vi.fn()}
         onChange={onChangeMock}
       />
     </TranslationsProvider>,

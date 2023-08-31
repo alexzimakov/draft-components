@@ -1,8 +1,8 @@
 import { ComponentPropsWithoutRef } from 'react';
-import { render, screen, within } from '@testing-library/react';
 import { Button, ButtonRenderFn } from './button';
 import { IconButton } from './icon-button';
-import userEvent from '@testing-library/user-event';
+import { expect, it, vi } from 'vitest';
+import { render, screen, userEvent, within } from '../../test/test-utils';
 
 it('renders without errors', () => {
   const label = 'Button text';
@@ -50,15 +50,15 @@ it('renders using custom render function', () => {
   expect(linkEl).toHaveAttribute('href', url);
 });
 
-it('should show loader indicator and make button inactive', () => {
+it('should show loader indicator and make button inactive', async () => {
   const user = userEvent.setup();
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
 
   render(<Button loading={true} onClick={onClickMock}>Loading...</Button>);
   const button = screen.getByRole('button');
 
   within(button).getByTestId('button-spinner');
-  user.click(button);
+  await user.click(button);
   expect(onClickMock).not.toBeCalled();
 });
 

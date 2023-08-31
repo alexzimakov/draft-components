@@ -1,6 +1,6 @@
-import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
 import { Checkbox } from './checkbox';
+import { expect, it, vi } from 'vitest';
+import { render, screen, userEvent } from '../../test/test-utils';
 
 it('renders without errors', () => {
   const ariaLabel = 'Enable Location Services';
@@ -27,7 +27,7 @@ it('renders with dash icon', () => {
 
 it('invokes `onChange` event handler', async () => {
   const user = userEvent.setup();
-  const onChangeMock = jest.fn();
+  const onChangeMock = vi.fn();
   render(<Checkbox onChange={onChangeMock} />);
 
   await user.click(screen.getByTestId('checkbox-check'));
@@ -37,7 +37,7 @@ it('invokes `onChange` event handler', async () => {
 
 it('invokes `onToggle` callback with checked flag', async () => {
   const user = userEvent.setup();
-  const onToggleMock = jest.fn();
+  const onToggleMock = vi.fn();
   render(<Checkbox onToggle={onToggleMock} />);
 
   const checkEl = screen.getByTestId('checkbox-check');

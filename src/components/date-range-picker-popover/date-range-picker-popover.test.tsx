@@ -1,8 +1,12 @@
-import { updateMock } from '../../tests/match-media.mock';
-import userEvent from '@testing-library/user-event';
-import { render, screen, waitFor } from '@testing-library/react';
-import { DateRangePickerPopover } from './date-range-picker-popover';
 import { DateRangePickerPopoverOption } from './types';
+import { DateRangePickerPopover } from './date-range-picker-popover';
+import { beforeEach, expect, it, vi } from 'vitest';
+import { render, screen, userEvent, waitFor } from '../../test/test-utils';
+import { mockMatchMedia } from '../../test/mock-match-media';
+
+beforeEach(() => {
+  mockMatchMedia();
+});
 
 const anchorButtonLabel = 'Select date preset';
 const cancelButtonLabel = 'Cancel';
@@ -25,10 +29,6 @@ const options: DateRangePickerPopoverOption[] = [
   },
 ];
 
-afterEach(() => {
-  updateMock({ matches: false });
-});
-
 it('renders without errors', () => {
   const selectedOption = options[0];
   const value = {
@@ -43,7 +43,7 @@ it('renders without errors', () => {
       confirmButtonLabel={confirmButtonLabel}
       options={options}
       value={value}
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
     >
       <button>{anchorButtonLabel}</button>
     </DateRangePickerPopover>,
@@ -63,7 +63,7 @@ it('renders with footer', () => {
       defaultIsOpen={true}
       options={options}
       value={null}
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
       footer={() => footer}
     >
       <button>{anchorButtonLabel}</button>
@@ -74,7 +74,7 @@ it('renders with footer', () => {
 });
 
 it('renders `Select` element instead of `RadioGroup` on phones', () => {
-  updateMock({ matches: true });
+  mockMatchMedia({ matches: true });
   const selectedOption = options[0];
   const value = {
     preset: selectedOption.preset,
@@ -88,7 +88,7 @@ it('renders `Select` element instead of `RadioGroup` on phones', () => {
       confirmButtonLabel={confirmButtonLabel}
       options={options}
       value={value}
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
     >
       <button>{anchorButtonLabel}</button>
     </DateRangePickerPopover>,
@@ -108,7 +108,7 @@ it('can toggle popover visibility', async () => {
     <DateRangePickerPopover
       options={[]}
       value={null}
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
     >
       <button>{anchorButtonLabel}</button>
     </DateRangePickerPopover>,
@@ -131,7 +131,7 @@ it('should close popover when click on the confirm button', async () => {
       confirmButtonLabel={confirmButtonLabel}
       options={[]}
       value={null}
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
     >
       <button>{anchorButtonLabel}</button>
     </DateRangePickerPopover>,
@@ -150,7 +150,7 @@ it('should close popover when click on the cancel button', async () => {
       cancelButtonLabel={cancelButtonLabel}
       options={[]}
       value={null}
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
     >
       <button>{anchorButtonLabel}</button>
     </DateRangePickerPopover>,
@@ -169,7 +169,7 @@ it('can select date range using calendar', async () => {
     preset: selectedOption.preset,
     range: selectedOption.range,
   };
-  const onChangeValueMock = jest.fn();
+  const onChangeValueMock = vi.fn();
   render(
     <DateRangePickerPopover
       customPreset={customPreset}
@@ -203,7 +203,7 @@ it('can select date range using date preset select', async () => {
     preset: selectedOption.preset,
     range: selectedOption.range,
   };
-  const onChangeValueMock = jest.fn();
+  const onChangeValueMock = vi.fn();
   render(
     <DateRangePickerPopover
       cancelButtonLabel={cancelButtonLabel}
@@ -234,7 +234,7 @@ it('can select date range with date preset using calendar', async () => {
     preset: selectedOption.preset,
     range: selectedOption.range,
   };
-  const onChangeValueMock = jest.fn();
+  const onChangeValueMock = vi.fn();
   render(
     <DateRangePickerPopover
       cancelButtonLabel={cancelButtonLabel}

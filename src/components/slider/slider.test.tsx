@@ -1,8 +1,9 @@
-import { fireEvent, render, screen } from '@testing-library/react';
 import { Slider } from './slider';
+import { expect, it, vi } from 'vitest';
+import { fireEvent, render, screen } from '../../test/test-utils';
 
 it('renders without errors', () => {
-  render(<Slider value={50} onChangeValue={jest.fn()} />);
+  render(<Slider value={50} onChangeValue={vi.fn()} />);
   screen.getByRole('slider');
 });
 
@@ -12,7 +13,7 @@ it('renders without errors with tick marks', () => {
     <Slider
       tickMarksCount={tickMarksCount}
       value={50}
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
     />,
   );
 
@@ -27,7 +28,7 @@ it('renders tick mark lables', () => {
     <Slider
       tickMarksCount={2}
       value={50}
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
       renderTickMarkLabel={(index) => {
         if (index === 0) {
           return firstTickLabel;
@@ -43,7 +44,7 @@ it('renders tick mark lables', () => {
 });
 
 it('invokes `onChangeValue` when value changes', () => {
-  const onChangeValueMock = jest.fn();
+  const onChangeValueMock = vi.fn();
   render(<Slider value={50} onChangeValue={onChangeValueMock} />);
 
   fireEvent.change(screen.getByRole('slider'), { target: { value: '51' } });

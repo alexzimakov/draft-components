@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
 import { FormField } from './form-field';
+import { expect, it } from 'vitest';
+import { render, screen } from '../../test/test-utils';
 
 it('renders without errors', () => {
   const id = 'name';

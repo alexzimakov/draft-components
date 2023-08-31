@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
 import { Tag } from './tag';
+import { it } from 'vitest';
+import { render, screen } from '../../test/test-utils';
 
 it('renders without errors', () => {
   const text = 'Tag text';

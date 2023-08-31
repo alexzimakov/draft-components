@@ -1,6 +1,6 @@
-import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
 import { TextInput } from './text-input';
+import { expect, it, vi } from 'vitest';
+import { render, screen, userEvent } from '../../test/test-utils';
 
 it('renders without errors', () => {
   const placeholder = 'Your name';
@@ -50,7 +50,7 @@ it('invokes `onChange` event handler', async () => {
   const user = userEvent.setup();
   const placeholder = 'Your name';
   const name = 'John Doe';
-  const onChangeMock = jest.fn();
+  const onChangeMock = vi.fn();
   render(<TextInput placeholder={placeholder} onChange={onChangeMock} />);
 
   await user.type(screen.getByPlaceholderText(placeholder), name);
@@ -62,7 +62,7 @@ it('invokes `onChangeValue` callback with changed value', async () => {
   const user = userEvent.setup();
   const placeholder = 'Your name';
   const name = 'John Doe';
-  const onChangeValueMock = jest.fn();
+  const onChangeValueMock = vi.fn();
   render(<TextInput
     placeholder={placeholder}
     onChangeValue={onChangeValueMock}

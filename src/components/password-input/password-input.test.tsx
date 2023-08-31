@@ -1,7 +1,11 @@
-import '../../tests/match-media.mock';
-import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
 import { PasswordInput } from './password-input';
+import { beforeAll, expect, it } from 'vitest';
+import { mockMatchMedia } from '../../test/mock-match-media';
+import { render, screen, userEvent } from '../../test/test-utils';
+
+beforeAll(() => {
+  mockMatchMedia();
+});
 
 it('renders without errors', () => {
   const placeholder = 'Enter your password';

@@ -1,8 +1,8 @@
-import userEvent from '@testing-library/user-event';
-import { DAYS_IN_WEEK, toDateISO } from './date-helpers';
-import { render, screen } from '@testing-library/react';
 import { DatePicker } from './date-picker';
 import { DateRangePicker } from './date-range-picker';
+import { DAYS_IN_WEEK, toDateISO } from './date-helpers';
+import { expect, it, vi } from 'vitest';
+import { render, screen, userEvent } from '../../test/test-utils';
 
 it('renders without errors', () => {
   const prevMonthButtonLabel = 'prev month';
@@ -18,7 +18,7 @@ it('renders without errors', () => {
       monthSelectLabel={monthSelectLabel}
       yearInputLabel={yearInputLabel}
       value="2022-12-02"
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
     />,
   );
 
@@ -43,7 +43,7 @@ it('can select a month using arrow buttons', async () => {
       prevMonthButtonLabel={prevMonthButtonLabel}
       nextMonthButtonLabel={nextMonthButtonLabel}
       value="2022-12-02"
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
     />,
   );
 
@@ -66,7 +66,7 @@ it('can select a month using the month selector', async () => {
       locale="en"
       monthSelectLabel={monthSelectLabel}
       value="2022-12-02"
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
     />,
   );
 
@@ -88,7 +88,7 @@ it('can enter a year using the year field', async () => {
       locale="en"
       yearInputLabel={yearInputLabel}
       value="2022-12-02"
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
     />,
   );
 
@@ -107,7 +107,7 @@ it('can move focus between days using keyboard', async () => {
       locale="en"
       weekStartsOn={1}
       value="2022-12-02"
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
     />,
   );
 
@@ -151,7 +151,7 @@ it('can move focus between days using keyboard', async () => {
 
 it('selects a day by click', async () => {
   const user = userEvent.setup();
-  const onChangeValueMock = jest.fn();
+  const onChangeValueMock = vi.fn();
   render(
     <DatePicker
       locale="en"
@@ -169,7 +169,7 @@ it('selects a day by click', async () => {
 
 it('selects a focused day when pressing Enter key', async () => {
   const user = userEvent.setup();
-  const onChangeValueMock = jest.fn();
+  const onChangeValueMock = vi.fn();
   render(
     <DatePicker
       locale="en"
@@ -193,7 +193,7 @@ it('selects a focused day when pressing Enter key', async () => {
 
 it('selects a focused day when pressing Space key', async () => {
   const user = userEvent.setup();
-  const onChangeValueMock = jest.fn();
+  const onChangeValueMock = vi.fn();
   render(
     <DatePicker
       locale="en"
@@ -217,7 +217,7 @@ it('selects a focused day when pressing Space key', async () => {
 
 it("can't move focus to disabled dates", async () => {
   const user = userEvent.setup();
-  const handleChangeValue = jest.fn();
+  const handleChangeValue = vi.fn();
   render(
     <DatePicker
       locale="en"
@@ -244,14 +244,13 @@ it("can't move focus to disabled dates", async () => {
 });
 
 it('throws error when min is invalid ISO date string', () => {
-  const consoleErrorMock = jest
-    .spyOn(console, 'error')
-    .mockImplementation(jest.fn());
+  const consoleErrorMock = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+
   expect(() => render(
     <DatePicker
       value="2022-12-15"
       min="12/1/2022"
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
     />,
   )).toThrow(RangeError);
 
@@ -259,14 +258,13 @@ it('throws error when min is invalid ISO date string', () => {
 });
 
 it('throws error when max is invalid ISO date string', () => {
-  const consoleErrorMock = jest
-    .spyOn(console, 'error')
-    .mockImplementation(jest.fn());
+  const consoleErrorMock = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+
   expect(() => render(
     <DatePicker
       value="2022-12-15"
       max="12/1/2022"
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
     />,
   )).toThrow(RangeError);
 
@@ -274,15 +272,14 @@ it('throws error when max is invalid ISO date string', () => {
 });
 
 it('throws error when min greater or equal than max', () => {
-  const consoleErrorMock = jest
-    .spyOn(console, 'error')
-    .mockImplementation(jest.fn());
+  const consoleErrorMock = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+
   expect(() => render(
     <DatePicker
       value="2022-12-15"
       min="2022-12-31"
       max="2022-12-01"
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
     />,
   )).toThrow(RangeError);
 
@@ -299,7 +296,7 @@ it(
         locale="en"
         value="2022-12-02"
         min="2022-12-15"
-        onChangeValue={jest.fn()}
+        onChangeValue={vi.fn()}
       />,
     );
 
@@ -323,7 +320,7 @@ it(
         locale="en"
         value="2022-12-20"
         max="2022-12-10"
-        onChangeValue={jest.fn()}
+        onChangeValue={vi.fn()}
       />,
     );
 
@@ -351,7 +348,7 @@ it('<DateRangePicker /> renders without errors', () => {
       monthSelectLabel={monthSelectLabel}
       yearInputLabel={yearInputLabel}
       value={{ start: '2022-12-05', end: '2022-12-20' }}
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
     />,
   );
 
@@ -370,7 +367,7 @@ it('<DateRangePicker /> renders without errors', () => {
 
 it('can select date range using keyboard', async () => {
   const user = userEvent.setup();
-  const onChangeValueMock = jest.fn();
+  const onChangeValueMock = vi.fn();
   render(
     <DateRangePicker
       locale="en"
@@ -404,7 +401,7 @@ it('can select date range using keyboard', async () => {
 it('can select date range using mouse', async () => {
   const user = userEvent.setup();
   const value = { start: '2022-12-05', end: '2022-12-20' };
-  const onChangeValueMock = jest.fn();
+  const onChangeValueMock = vi.fn();
   render(
     <DateRangePicker
       locale="en"

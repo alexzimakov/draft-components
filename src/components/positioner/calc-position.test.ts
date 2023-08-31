@@ -1,5 +1,6 @@
-import { calcPosition } from './calc-position';
 import { Alignment, Rect } from './types';
+import { calcPosition } from './calc-position';
+import { describe, expect, it } from 'vitest';
 
 describe("calculates position for the 'top' placement", () => {
   const anchorRect: Rect = {

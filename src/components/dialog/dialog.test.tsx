@@ -1,11 +1,15 @@
-import '../../tests/match-media.mock';
-import userEvent from '@testing-library/user-event';
-import { render, screen, waitFor, within } from '@testing-library/react';
-import { useRef, useState } from 'react';
 import { Dialog } from './dialog';
 import { DialogHeader } from './dialog-header';
 import { DialogBody } from './dialog-body';
 import { DialogFooter } from './dialog-footer';
+import { useRef, useState } from 'react';
+import { beforeAll, expect, it, vi } from 'vitest';
+import { mockMatchMedia } from '../../test/mock-match-media';
+import { render, screen, userEvent, waitFor, within } from '../../test/test-utils';
+
+beforeAll(() => {
+  mockMatchMedia();
+});
 
 it('renders with necessary elements', () => {
   const heading = 'New user';
@@ -13,7 +17,7 @@ it('renders with necessary elements', () => {
   const namePlaceholder = 'Full name';
   const bioPlaceholder = 'Bio';
   render(
-    <Dialog isOpen={true} onClose={jest.fn()}>
+    <Dialog isOpen={true} onClose={vi.fn()}>
       <DialogHeader
         heading={heading}
         subheading={subheading}
@@ -41,7 +45,7 @@ it('renders with necessary elements', () => {
 it('renders nothing when `isOpen` prop is false', () => {
   const content = 'Closed dialog content';
   render(
-    <Dialog isOpen={false} onClose={jest.fn()}>
+    <Dialog isOpen={false} onClose={vi.fn()}>
       {content}
     </Dialog>,
   );
@@ -51,7 +55,7 @@ it('renders nothing when `isOpen` prop is false', () => {
 
 it('should invoke `onClose` callback when click on close button', async () => {
   const user = userEvent.setup();
-  const onCloseMock = jest.fn();
+  const onCloseMock = vi.fn();
   render(
     <Dialog isOpen={true} onClose={onCloseMock}>
       <DialogHeader heading="Dialog title" />
@@ -66,7 +70,7 @@ it('should invoke `onClose` callback when click on close button', async () => {
 
 it('should invoke `onClose` callback when press Esc button', async () => {
   const user = userEvent.setup();
-  const onCloseMock = jest.fn();
+  const onCloseMock = vi.fn();
   render(
     <Dialog isOpen={true} onClose={onCloseMock}>
       <DialogHeader heading="Dialog title" />
@@ -84,7 +88,7 @@ it('should capture focus within the dialog', async () => {
   render(
     <>
       <button data-testid="button-outside">Button outside dialog</button>
-      <Dialog isOpen={true} onClose={jest.fn()}>
+      <Dialog isOpen={true} onClose={vi.fn()}>
         <DialogHeader heading="New user">
           Enter information about a new user
         </DialogHeader>
@@ -123,8 +127,8 @@ it(
   'when opening one or more dialogs and press the Esc key',
   async () => {
     const user = userEvent.setup();
-    const closeFirstDialogMock = jest.fn();
-    const closeSecondDialogMock = jest.fn();
+    const closeFirstDialogMock = vi.fn();
+    const closeSecondDialogMock = vi.fn();
     render(
       <>
         <Dialog isOpen={true} onClose={closeFirstDialogMock}>
@@ -150,11 +154,11 @@ it(
     const user = userEvent.setup();
     render(
       <>
-        <Dialog isOpen={true} onClose={jest.fn()}>
+        <Dialog isOpen={true} onClose={vi.fn()}>
           <button>Cancel</button>
           <button>Save</button>
         </Dialog>
-        <Dialog isOpen={true} onClose={jest.fn()}>
+        <Dialog isOpen={true} onClose={vi.fn()}>
           <button>Cancel</button>
           <button>Save</button>
         </Dialog>

@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
 import { EmptyState } from './empty-state';
+import { it } from 'vitest';
+import { render, screen } from '../../test/test-utils';
 
 it('renders without errors', () => {
   const image = <img src="https://test.local/image.png" alt="" />;

@@ -1,8 +1,12 @@
-import '../../tests/match-media.mock';
-import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
 import { SlideOver, SlideOverRef } from './slide-over';
 import { useRef } from 'react';
+import { afterEach, beforeAll, beforeEach, expect, it, vi } from 'vitest';
+import { mockMatchMedia } from '../../test/mock-match-media';
+import { render, screen, userEvent } from '../../test/test-utils';
+
+beforeAll(() => {
+  mockMatchMedia();
+});
 
 const title = 'Slide-over test';
 const description = 'Dummy description';
@@ -36,19 +40,19 @@ beforeEach(() => {
     onfinish = null;
     oncancel = null;
     onremove = null;
-    dispatchEvent = jest.fn();
-    addEventListener = jest.fn();
-    removeEventListener = jest.fn();
+    dispatchEvent = vi.fn();
+    addEventListener = vi.fn();
+    removeEventListener = vi.fn();
 
     // Methods
-    cancel = jest.fn();
-    finish = jest.fn();
-    play = jest.fn();
-    pause = jest.fn();
-    updatePlaybackRate = jest.fn();
-    reverse = jest.fn();
-    persist = jest.fn();
-    commitStyles = jest.fn();
+    cancel = vi.fn();
+    finish = vi.fn();
+    play = vi.fn();
+    pause = vi.fn();
+    updatePlaybackRate = vi.fn();
+    reverse = vi.fn();
+    persist = vi.fn();
+    commitStyles = vi.fn();
   }
 
   HTMLElement.prototype.animate = function animate() {
@@ -66,7 +70,7 @@ afterEach(() => {
 
 it('renders without errors', () => {
   render(
-    <SlideOver onClose={jest.fn()}>
+    <SlideOver onClose={vi.fn()}>
       <SlideOver.Header
         title={title}
         description={description}
@@ -86,7 +90,7 @@ it('renders without errors', () => {
 it('use SlideOver api through ref', async () => {
   const user = userEvent.setup();
   const closeButtonTestId = 'close-test-slide-over';
-  const onCloseMock = jest.fn();
+  const onCloseMock = vi.fn();
   const TestCase = () => {
     const ref = useRef<SlideOverRef>(null);
     return (
@@ -111,7 +115,7 @@ it('use SlideOver api through ref', async () => {
 
 it('close slide-over when Escape key pressed', async () => {
   const user = userEvent.setup();
-  const onCloseMock = jest.fn();
+  const onCloseMock = vi.fn();
   render(
     <SlideOver onClose={onCloseMock}>
       <SlideOver.Header
@@ -131,7 +135,7 @@ it('close slide-over when Escape key pressed', async () => {
 
 it('close slide-over after click on backdrop', async () => {
   const user = userEvent.setup();
-  const onCloseMock = jest.fn();
+  const onCloseMock = vi.fn();
   render(
     <SlideOver onClose={onCloseMock}>
       <SlideOver.Header
@@ -152,8 +156,8 @@ it('close slide-over after click on backdrop', async () => {
 it('close slide-over after click on close button', async () => {
   const user = userEvent.setup();
   const closeButtonAccessibleName = 'close slide-over';
-  const onCloseMock = jest.fn();
-  const onClickCloseButtonMock = jest.fn();
+  const onCloseMock = vi.fn();
+  const onClickCloseButtonMock = vi.fn();
   render(
     <SlideOver onClose={onCloseMock}>
       <SlideOver.Header
@@ -178,7 +182,7 @@ it('should capture focus', async () => {
   const user = userEvent.setup();
   const closeButtonAccessibleName = 'close slide-over';
   render(
-    <SlideOver onClose={jest.fn()}>
+    <SlideOver onClose={vi.fn()}>
       <SlideOver.Header
         title={title}
         description={description}

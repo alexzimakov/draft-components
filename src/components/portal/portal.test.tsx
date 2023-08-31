@@ -1,6 +1,7 @@
-import { render, screen, within } from '@testing-library/react';
 import { Portal } from './portal';
 import { PortalRootProvider } from './portal-context';
+import { it } from 'vitest';
+import { render, screen, within } from '../../test/test-utils';
 
 it('creates HTML element and mounts portals to it.', () => {
   const content1 = 'First Portal';

@@ -1,7 +1,7 @@
-import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
 import { Toast } from './toast';
 import { ToastButton } from './toast-button';
+import { expect, it, vi } from 'vitest';
+import { render, screen, userEvent } from '../../test/test-utils';
 
 const title = 'Focus is on';
 const message = 'All notifications and alerts will be silent.';
@@ -40,7 +40,7 @@ it('renders with custom icon', () => {
 it('invokes `onClickCloseButton` callback', async () => {
   const user = userEvent.setup();
   const closeButtonLabel = 'hide toast';
-  const onClickCloseButtonMock = jest.fn();
+  const onClickCloseButtonMock = vi.fn();
   render(
     <Toast
       closeButtonAriaLabel={closeButtonLabel}

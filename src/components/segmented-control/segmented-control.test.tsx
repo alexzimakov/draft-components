@@ -1,7 +1,7 @@
-import userEvent from '@testing-library/user-event';
-import { useState } from 'react';
-import { render, screen, within } from '@testing-library/react';
 import { SegmentedControl } from './segmented-control';
+import { useState } from 'react';
+import { expect, it, vi } from 'vitest';
+import { render, screen, userEvent, within } from '../../test/test-utils';
 
 it('renders without errors', () => {
   const options = [
@@ -13,7 +13,7 @@ it('renders without errors', () => {
   render(<SegmentedControl
     options={options}
     value={checkedOption.value}
-    onChangeValue={jest.fn()}
+    onChangeValue={vi.fn()}
   />);
 
   const radioButtons = screen.getAllByRole('radio');
@@ -44,7 +44,7 @@ it('renders with icons', () => {
   render(<SegmentedControl
     options={options}
     value={options[0].value}
-    onChangeValue={jest.fn()}
+    onChangeValue={vi.fn()}
   />);
 
   const radioButtons = screen.getAllByRole('radio');
@@ -63,7 +63,7 @@ it('can select a segment using the mouse', async () => {
     { value: 'topRated', label: 'Top-Rated' },
   ];
   const checkedOption = options[0];
-  const onChangeValueMock = jest.fn();
+  const onChangeValueMock = vi.fn();
   render(<SegmentedControl
     options={options}
     value={checkedOption.value}
@@ -85,7 +85,7 @@ it('can select a segment using the keyboard', async () => {
     { value: 'topRated', label: 'Top-Rated' },
   ];
   const checkedOption = options[1];
-  const onChangeValueMock = jest.fn();
+  const onChangeValueMock = vi.fn();
   const SegmentedControlTest = () => {
     const [value, setValue] = useState(checkedOption.value);
     return (

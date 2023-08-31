@@ -1,6 +1,6 @@
-import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
 import { ColorPicker } from './color-picker';
+import { expect, it, vi } from 'vitest';
+import { render, screen, userEvent } from '../../test/test-utils';
 
 it('renders without errors', () => {
   const options = [
@@ -13,7 +13,7 @@ it('renders without errors', () => {
       name="accentColor"
       options={options}
       defaultValue={options[1].value}
-      onChangeValue={jest.fn()}
+      onChangeValue={vi.fn()}
     />,
   );
 
@@ -33,7 +33,7 @@ it('invokes `onChangeValue` callback with checked value', async () => {
     { value: 2, color: '#22c55e', label: 'Green' },
     { value: 3, color: '#3b82f6', label: 'Blue' },
   ];
-  const onChangeValueMock = jest.fn();
+  const onChangeValueMock = vi.fn();
   render(
     <ColorPicker
       name="accentColor"

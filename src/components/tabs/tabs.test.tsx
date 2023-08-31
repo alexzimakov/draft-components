@@ -1,9 +1,9 @@
-import userEvent from '@testing-library/user-event';
-import { render, screen, within } from '@testing-library/react';
 import { Tabs } from './tabs';
 import { TabList } from './tab-list';
 import { Tab } from './tab';
 import { TabPanel } from './tab-panel';
+import { expect, it, vi } from 'vitest';
+import { render, screen, userEvent, within } from '../../test/test-utils';
 
 it('renders without errors', () => {
   const label = 'Todos';
@@ -26,7 +26,7 @@ it('renders without errors', () => {
   ];
   const selectedTab = tabs[0];
   render(
-    <Tabs selectedTab={selectedTab.name} onSelectTab={jest.fn()}>
+    <Tabs selectedTab={selectedTab.name} onSelectTab={vi.fn()}>
       <TabList aria-label={label}>
         {tabs.map((tab) => (
           <Tab key={tab.name} name={tab.name}>
@@ -79,7 +79,7 @@ it('renders with icon and counter', () => {
     },
   ];
   render(
-    <Tabs selectedTab={tabs[0].name} onSelectTab={jest.fn()}>
+    <Tabs selectedTab={tabs[0].name} onSelectTab={vi.fn()}>
       <TabList aria-label={label}>
         {tabs.map((tab) => (
           <Tab
@@ -131,7 +131,7 @@ it('can select tab using mouse', async () => {
   ];
   const selectedTab = tabs[0];
   const expectedTab = tabs[1];
-  const onSelectTabMock = jest.fn();
+  const onSelectTabMock = vi.fn();
   render(
     <Tabs selectedTab={selectedTab.name} onSelectTab={onSelectTabMock}>
       <TabList>
@@ -176,7 +176,7 @@ it('can focus tab using keyboard', async () => {
     },
   ];
   render(
-    <Tabs selectedTab={tabs[0].name} onSelectTab={jest.fn()}>
+    <Tabs selectedTab={tabs[0].name} onSelectTab={vi.fn()}>
       <TabList>
         {tabs.map((tab) => (
           <Tab key={tab.name} name={tab.name}>
@@ -227,9 +227,7 @@ it(
   'are using outside the `Tabs` component',
   () => {
     // Suppress logging of render error.
-    const consoleErrorMock = jest
-      .spyOn(console, 'error')
-      .mockImplementation(jest.fn());
+    const consoleErrorMock = vi.spyOn(console, 'error').mockImplementation(() => undefined);
 
     expect(() => render(<TabList />)).toThrow();
     expect(() => render(<Tab name="drafts">Drafts</Tab>)).toThrow();

@@ -1,5 +1,6 @@
 import { useDisableBodyScroll } from './use-disable-body-scroll';
-import { render } from '@testing-library/react';
+import { expect, it } from 'vitest';
+import { render } from '../test/test-utils';
 
 it('should disable body scroll', () => {
   const HookTest = () => {

@@ -1,6 +1,7 @@
-import { render, screen, within } from '@testing-library/react';
 import { Breadcrumbs } from './breadcrumbs';
 import { BreadcrumbsItem, BreadcrumbsItemRenderFn } from './breadcrumbs-item';
+import { expect, it, vi } from 'vitest';
+import { render, screen, within } from '../../test/test-utils';
 
 it('renders without errors', () => {
   render(
@@ -69,16 +70,11 @@ it('renders with custom delimiter', () => {
   expect(delimiters).toHaveLength(3);
 });
 
-it(
-  'should throw an error when `BreadcrumbsItem` using outside `Breadcrumbs`',
-  () => {
-    // Suppress logging of render error.
-    const consoleErrorMock = jest
-      .spyOn(console, 'error')
-      .mockImplementation(jest.fn());
+it('should throw an error when `BreadcrumbsItem` using outside `Breadcrumbs`', () => {
+  // Suppress logging of render error.
+  const consoleErrorMock = vi.spyOn(console, 'error').mockImplementation(() => undefined);
 
-    expect(() => render(<BreadcrumbsItem />)).toThrow();
+  expect(() => render(<BreadcrumbsItem />)).toThrow();
 
-    consoleErrorMock.mockRestore();
-  },
-);
+  consoleErrorMock.mockRestore();
+});

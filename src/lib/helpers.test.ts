@@ -1,8 +1,9 @@
+import { describe, expect, it, vi } from 'vitest';
 import { assertIfNullable, exhaustiveCheck, once } from './helpers';
 
 describe('#once()', () => {
   it('creates function that invokes only once', () => {
-    const fn = jest.fn();
+    const fn = vi.fn();
     const fnOnce = once(fn);
 
     fnOnce();

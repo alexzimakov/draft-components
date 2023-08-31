@@ -1,6 +1,6 @@
-import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
 import { CharacterCountRenderFn, Textarea } from './textarea';
+import { expect, it, vi } from 'vitest';
+import { render, screen, userEvent } from '../../test/test-utils';
 
 it('renders without errors', () => {
   const placeholder = 'Add your comment...';
@@ -67,7 +67,7 @@ it('should not render character count when `maxLength` is less than 1', () => {
 it('invokes `onChange` event handler', async () => {
   const user = userEvent.setup();
   const message = 'Test message';
-  const onChangeMock = jest.fn();
+  const onChangeMock = vi.fn();
   render(<Textarea onChange={onChangeMock} />);
 
   await user.type(screen.getByRole('textbox'), message);
@@ -78,7 +78,7 @@ it('invokes `onChange` event handler', async () => {
 it('invokes `onChangeValue` with changed value', async () => {
   const user = userEvent.setup();
   const message = 'Test message';
-  const onChangeValue = jest.fn();
+  const onChangeValue = vi.fn();
   render(<Textarea onChangeValue={onChangeValue} />);
 
   await user.type(screen.getByRole('textbox'), message);

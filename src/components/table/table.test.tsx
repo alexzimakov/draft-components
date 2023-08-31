@@ -1,5 +1,3 @@
-import userEvent from '@testing-library/user-event';
-import { render, screen, within } from '@testing-library/react';
 import { Table } from './table';
 import { TableHead } from './table-head';
 import { TableBody } from './table-body';
@@ -7,6 +5,8 @@ import { TableRow } from './table-row';
 import { TableHeadCell } from './table-head-cell';
 import { TableCell } from './table-cell';
 import { TableContainer } from './table-container';
+import { expect, it, vi } from 'vitest';
+import { render, screen, userEvent, within } from '../../test/test-utils';
 
 it('renders without errors', () => {
   const headers = ['Person', 'Age'];
@@ -63,7 +63,7 @@ it('renders without errors', () => {
 
 it('renders with sortable header cells', async () => {
   const user = userEvent.setup();
-  const onChangeSort = jest.fn();
+  const onChangeSort = vi.fn();
   render(
     <TableContainer border="all">
       <Table>

@@ -1,7 +1,11 @@
-import '../../tests/match-media.mock';
-import userEvent from '@testing-library/user-event';
-import { render, screen, waitFor } from '@testing-library/react';
 import { Tooltip } from './tooltip';
+import { beforeAll, expect, it } from 'vitest';
+import { mockMatchMedia } from '../../test/mock-match-media';
+import { render, screen, userEvent, waitFor } from '../../test/test-utils';
+
+beforeAll(() => {
+  mockMatchMedia();
+});
 
 const anchorLabel = 'Show Tooltip';
 const tooltipContent = 'Tooltip Content';

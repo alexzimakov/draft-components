@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
 import { Alert } from './alert';
+import { it } from 'vitest';
+import { render, screen } from '../../test/test-utils';
 
 it('renders without errors', () => {
   const heading = 'MIT License';
