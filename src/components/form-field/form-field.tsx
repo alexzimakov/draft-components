@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, JSX, ReactNode, useId } from 'react';
+import { ComponentPropsWithoutRef, ReactNode, useId } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { Label } from '../label';
 import { Caption } from '../caption';
@@ -6,7 +6,8 @@ import { Caption } from '../caption';
 export type FormFieldRenderFn = (props: {
   id: string;
   required: boolean;
-  hasError: boolean;
+  'aria-invalid': boolean;
+  'aria-describedby': string;
 }) => ReactNode;
 type FormFieldHTMLProps = ComponentPropsWithoutRef<'div'>;
 type FormFieldBaseProps = Omit<FormFieldHTMLProps, 'children'>;
@@ -14,8 +15,8 @@ export type FormFieldProps = {
   required?: boolean;
   labelFor?: string;
   label?: ReactNode;
-  caption?: ReactNode;
   error?: ReactNode;
+  hint?: ReactNode;
   children: ReactNode | FormFieldRenderFn;
 } & FormFieldBaseProps;
 
@@ -23,21 +24,34 @@ export function FormField({
   required = false,
   labelFor = '',
   label,
-  caption,
   error,
+  hint,
   className = '',
   children,
   ...props
 }: FormFieldProps) {
-  const defaultId = useId();
-  const id = labelFor || defaultId;
-  const hasError = Boolean(error);
-  const shouldRenderLabel = Boolean(label);
+  const id = useId();
+  const inputId = labelFor || `${id}-input`;
+  const inputDescribedBy: string[] = [];
 
-  let captionEl: JSX.Element | null = null;
-  if (hasError) {
-    captionEl = (
+  let hintElement: ReactNode = null;
+  if (hint) {
+    const hintId = `${inputId}-hint`;
+    inputDescribedBy.push(hintId);
+    hintElement = (
+      <Caption id={hintId} className="dc-form-field__hint">
+        {hint}
+      </Caption>
+    );
+  }
+
+  let errorElement: ReactNode = null;
+  if (error) {
+    const errorId = `${inputId}-error`;
+    inputDescribedBy.push(errorId);
+    errorElement = (
       <Caption
+        id={errorId}
         className="dc-form-field__error"
         appearance="error"
         showIcon={true}
@@ -45,27 +59,36 @@ export function FormField({
         {error}
       </Caption>
     );
-  } else if (caption) {
-    captionEl = <Caption className="dc-form-field__caption">{caption}</Caption>;
+  }
+
+  let inputElement: ReactNode;
+  if (typeof children === 'function') {
+    inputElement = children({
+      'id': inputId,
+      'aria-invalid': Boolean(error),
+      'aria-describedby': inputDescribedBy.join(' '),
+      required,
+    });
+  } else {
+    inputElement = children;
   }
 
   return (
     <div {...props} className={classNames('dc-form-field', className)}>
-      {shouldRenderLabel && (
+      {label ? (
         <Label
           className="dc-form-field__label"
-          htmlFor={id}
           required={required}
+          htmlFor={inputId}
         >
           {label}
         </Label>
-      )}
+      ) : null}
       <div className="dc-form-field__input">
-        {typeof children === 'function'
-          ? children({ id, required, hasError })
-          : children}
+        {inputElement}
       </div>
-      {captionEl}
+      {errorElement}
+      {hintElement}
     </div>
   );
 }

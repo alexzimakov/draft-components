@@ -107,7 +107,7 @@ function RegisterForm() {
       <FormField
         label="Password:"
         labelFor="password"
-        caption="Must contain at least 10 characters."
+        hint="Must contain at least 10 characters."
       >
         <PasswordInput
           id="password"

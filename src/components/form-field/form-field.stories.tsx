@@ -9,7 +9,7 @@ const meta: Meta<typeof FormField> = {
     label: {
       control: { type: 'text' },
     },
-    caption: {
+    hint: {
       control: { type: 'text' },
     },
   },
@@ -23,8 +23,8 @@ export const Basic: StoryFn<typeof FormField> = (args) => (
 );
 Basic.args = {
   label: 'Your name',
-  caption: 'People will be able to find you by this name.',
   labelFor: 'name',
+  hint: 'People will be able to find you by this name.',
 };
 
 export const WithError: StoryFn<typeof FormField> = (args) => (
@@ -38,8 +38,8 @@ export const WithError: StoryFn<typeof FormField> = (args) => (
 );
 WithError.args = {
   required: true,
-  labelFor: 'username',
   label: 'Username',
-  caption: 'People will be able to find you this username.',
+  labelFor: 'username',
   error: 'Username must have at least 5 characters.',
+  hint: 'People will be able to find you this username.',
 };

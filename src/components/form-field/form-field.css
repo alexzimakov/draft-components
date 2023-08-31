@@ -9,7 +9,7 @@
 }
 
 .dc-form-field__error,
-.dc-form-field__caption {
+.dc-form-field__hint {
   display: block;
   margin-top: 4px;
 }

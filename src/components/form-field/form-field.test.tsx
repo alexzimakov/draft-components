@@ -3,35 +3,59 @@ import { expect, it } from 'vitest';
 import { render, screen } from '../../test/test-utils';
 
 it('renders without errors', () => {
-  const id = 'name';
-  const label = 'Your name';
-  const caption = 'People will be able to find you by this name.';
+  const label = 'Username';
+  const inputId = 'username';
   render(
-    <FormField labelFor={id} label={label} caption={caption}>
-      <input id={id} name="name" />
+    <FormField label={label} labelFor={inputId}>
+      <input id={inputId} name="username" />
     </FormField>,
   );
 
   expect(screen.getByLabelText(label)).toBe(screen.getByRole('textbox'));
   screen.getByText(label);
-  screen.getByText(caption);
 });
 
-it('renders without errors when `children` is a function', () => {
-  render(<FormField>{({ id }) => <input id={id} />}</FormField>);
-
-  expect(screen.getByRole('textbox')).toHaveAttribute('id');
-});
-
-it('should show an error', () => {
-  const caption = 'People will be able to find you this username.';
-  const error = 'Username must have at least 5 characters.';
+it('renders with hint', () => {
+  const hint = 'People will be able to find you this username.';
   render(
-    <FormField caption={caption} error={error}>
+    <FormField hint={hint}>
+      <input name="username" />
+    </FormField>,
+  );
+
+  screen.getByText(hint);
+});
+
+it('renders with validation error', () => {
+  const error = 'Username must only include letters a to z';
+  const hint = 'People will be able to find you this username.';
+  render(
+    <FormField hint={hint} error={error}>
       <input name="username" />
     </FormField>,
   );
 
   screen.getByText(error);
-  expect(screen.queryByText(caption)).toBeNull();
+  screen.getByText(hint);
+});
+
+it('renders without errors when `children` is a function', () => {
+  const inputId = 'username';
+  render(
+    <FormField
+      label="Username"
+      labelFor={inputId}
+      hint="People will be able to find you this username"
+      error="Username must only include letters a to z"
+      required={true}
+    >
+      {(props) => <input {...props} />}
+    </FormField>,
+  );
+
+  const inputElement = screen.getByRole('textbox');
+  expect(inputElement).toHaveAttribute('id');
+  expect(inputElement).toHaveAttribute('required');
+  expect(inputElement).toHaveAttribute('aria-invalid', 'true');
+  expect(inputElement).toHaveAttribute('aria-describedby', `${inputId}-hint ${inputId}-error`);
 });
