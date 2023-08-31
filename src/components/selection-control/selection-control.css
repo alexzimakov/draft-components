@@ -1,12 +1,16 @@
 .dc-selection-control {
   color-scheme: light;
   display: grid;
-  grid-template-areas:
-    "input label"
-    ".     caption";
+  grid-template-areas: "input label";
   grid-template-columns: auto 1fr;
   grid-gap: 2px 12px;
   justify-items: start;
+}
+
+.dc-selection-control__with_caption {
+  grid-template-areas:
+    "input label"
+    ".     caption";
 }
 
 .dc-selection-control__input {

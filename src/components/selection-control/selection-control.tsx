@@ -26,10 +26,12 @@ export function SelectionControl({
 }: SelectionControlProps) {
   const defaultId = useId();
   const controlId = labelFor || defaultId;
-  const shouldRenderCaption = Boolean(caption);
 
   return (
-    <div {...props} className={classNames('dc-selection-control', className)}>
+    <div {...props} className={classNames(className, {
+      'dc-selection-control': true,
+      'dc-selection-control__with_caption': caption,
+    })}>
       <div className="dc-selection-control__input">
         {typeof children === 'function'
           ? children({ id: controlId })
@@ -38,9 +40,11 @@ export function SelectionControl({
       <Label className="dc-selection-control__label" htmlFor={controlId}>
         {label}
       </Label>
-      {shouldRenderCaption && (
-        <Caption className="dc-selection-control__caption">{caption}</Caption>
-      )}
+      {caption ? (
+        <Caption className="dc-selection-control__caption">
+          {caption}
+        </Caption>
+      ) : null}
     </div>
   );
 }

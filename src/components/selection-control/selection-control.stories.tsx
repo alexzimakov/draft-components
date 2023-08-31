@@ -1,4 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
+import { ReactNode } from 'react';
 import { SelectionControl } from './selection-control';
 import { Switch as SwitchComponent } from '../switch';
 import { Checkbox as CheckboxComponent } from '../checkbox';
@@ -19,9 +20,14 @@ const meta: Meta<typeof SelectionControl> = {
 export default meta;
 
 export const Switch: StoryFn<typeof SelectionControl> = (args) => (
-  <SelectionControl label={args.label} caption={args.caption}>
-    <SwitchComponent />
-  </SelectionControl>
+  <Layout>
+    <SelectionControl label={args.label}>
+      <SwitchComponent />
+    </SelectionControl>
+    <SelectionControl label={args.label} caption={args.caption}>
+      <SwitchComponent />
+    </SelectionControl>
+  </Layout>
 );
 Switch.args = {
   label: 'Enable location services',
@@ -29,21 +35,43 @@ Switch.args = {
 };
 
 export const Checkbox: StoryFn<typeof SelectionControl> = (args) => (
-  <SelectionControl label={args.label} caption={args.caption}>
-    <CheckboxComponent />
-  </SelectionControl>
+  <Layout>
+    <SelectionControl label={args.label}>
+      <CheckboxComponent />
+    </SelectionControl>
+    <SelectionControl label={args.label} caption={args.caption}>
+      <CheckboxComponent />
+    </SelectionControl>
+  </Layout>
 );
 Checkbox.args = {
-  label: 'Normalize volume',
-  caption: 'Set the same volume level for all songs',
+  label: 'Replies',
+  caption: 'Get notified when someone replies on your question',
 };
 
 export const Radio: StoryFn<typeof SelectionControl> = (args) => (
-  <SelectionControl label={args.label} caption={args.caption}>
-    <RadioComponent />
-  </SelectionControl>
+  <Layout>
+    <SelectionControl label={args.label}>
+      <RadioComponent />
+    </SelectionControl>
+    <SelectionControl label={args.label} caption={args.caption}>
+      <RadioComponent />
+    </SelectionControl>
+  </Layout>
 );
 Radio.args = {
   label: 'Public access',
   caption: 'The repository would be available to anyone',
 };
+
+function Layout({ children }: { children: ReactNode }) {
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 24,
+    }}>
+      {children}
+    </div>
+  );
+}
