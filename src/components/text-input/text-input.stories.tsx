@@ -7,7 +7,6 @@ const meta: Meta<typeof TextInput> = {
   component: TextInput,
   args: {
     disabled: false,
-    hasError: false,
     isBlock: false,
     type: 'text',
     size: 'md',
@@ -41,12 +40,12 @@ Disabled.args = {
   disabled: true,
 };
 
-export const HasError = Basic.bind({});
-HasError.args = {
-  placeholder: 'Your email',
-  defaultValue: 'you@examplecom',
-  type: 'email',
-  hasError: true,
+export const Invalid = Basic.bind({});
+Invalid.args = {
+  'placeholder': 'Your email',
+  'defaultValue': 'you@examplecom',
+  'type': 'email',
+  'aria-invalid': true,
 };
 
 export const FullWidth = Basic.bind({});

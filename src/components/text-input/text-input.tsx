@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, ReactNode, forwardRef } from 'react';
+import { ChangeEventHandler, ComponentPropsWithRef, ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 type TextInputHTMLProps = ComponentPropsWithRef<'input'>;
@@ -26,12 +26,9 @@ export type TextInputWidth =
   | '20ch'
   | '40ch';
 export type TextInputSize = 'sm' | 'md' | 'lg';
+export type TextInputRenderAddOn = (props: { className: string }) => ReactNode;
 export type TextInputChangeValueHandler = (value: string) => void;
-export type TextInputRenderAddOn = (props: {
-  className: string;
-}) => ReactNode;
 export type TextInputProps = TextInputBaseProps & {
-  hasError?: boolean;
   isBlock?: boolean;
   type?: TextInputType;
   width?: TextInputWidth;
@@ -47,7 +44,6 @@ export const TextInput = forwardRef<
   HTMLInputElement,
   TextInputProps
 >(function TextInput({
-  hasError = false,
   isBlock = false,
   type = 'text',
   size = 'md',
@@ -80,6 +76,15 @@ export const TextInput = forwardRef<
     }
   }
 
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    if (typeof onChange === 'function') {
+      onChange(event);
+    }
+    if (typeof onChangeValue === 'function') {
+      onChangeValue(event.target.value);
+    }
+  };
+
   return (
     <div
       style={style}
@@ -87,7 +92,7 @@ export const TextInput = forwardRef<
         [`dc-text-input__container_${size}`]: size,
         'dc-text-input__container_block': isBlock,
         'dc-text-input__container_disabled': disabled,
-        'dc-text-input__container_invalid': hasError,
+        'dc-text-input__container_invalid': props['aria-invalid'],
         'dc-text-input__container_left-addon': leftAddOn,
         'dc-text-input__container_right-addon': rightAddOn,
       })}
@@ -103,10 +108,7 @@ export const TextInput = forwardRef<
         type={type}
         size={htmlSize}
         disabled={disabled}
-        onChange={(event) => {
-          onChange?.(event);
-          onChangeValue?.(event.target.value);
-        }}
+        onChange={handleChange}
       />
       {rightAddOn}
     </div>

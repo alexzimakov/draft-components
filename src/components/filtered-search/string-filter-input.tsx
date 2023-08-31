@@ -23,7 +23,7 @@ export function StringFilterInput({
 }: StringFilterInputProps) {
   const id = useId();
   const alertId = `${id}alert`;
-  const hasError = Boolean(error);
+  const invalid = Boolean(error);
   return (
     <div className={classNames('dc-string-filter-input', className)}>
       <ArrowReturnRight />
@@ -32,16 +32,16 @@ export function StringFilterInput({
         size="sm"
         isBlock={true}
         aria-label={accessibleName}
-        aria-describedby={hasError ? alertId : ''}
+        aria-describedby={invalid ? alertId : ''}
         placeholder={placeholder}
         type="text"
         required={true}
         autoFocus={true}
         value={value}
-        hasError={hasError}
+        aria-invalid={invalid}
         onChangeValue={onChangeValue}
       />
-      {hasError && (
+      {invalid && (
         <Caption
           id={alertId}
           className="dc-string-filter-input__error"

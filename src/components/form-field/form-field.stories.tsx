@@ -27,16 +27,16 @@ Basic.args = {
   hint: 'People will be able to find you by this name.',
 };
 
-export const WithError: StoryFn<typeof FormField> = (args) => (
+export const Invalid: StoryFn<typeof FormField> = (args) => (
   <FormField {...args}>
     <TextInput
       id={args.labelFor}
       width="40ch"
-      hasError={true}
+      aria-invalid={true}
     />
   </FormField>
 );
-WithError.args = {
+Invalid.args = {
   required: true,
   label: 'Username',
   labelFor: 'username',
