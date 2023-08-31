@@ -9,8 +9,9 @@
   --dc-checkbox-focus-ring-color: var(--dc-focus-ring-color);
 
   color-scheme: light;
+  line-height: 0;
   position: relative;
-  display: inline-flex;
+  display: inline-block;
   flex-shrink: 0;
   width: var(--dc-checkbox-size);
   height: var(--dc-checkbox-size);
@@ -30,6 +31,9 @@
 }
 
 .dc-checkbox__check {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: inline-block;
   cursor: pointer;
   box-sizing: border-box;

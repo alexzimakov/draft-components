@@ -11,8 +11,9 @@
   --dc-switch-focus-ring-color: var(--dc-focus-ring-color);
 
   color-scheme: light;
+  line-height: 0;
   position: relative;
-  display: inline-flex;
+  display: inline-block;
   flex-shrink: 0;
   width: var(--dc-switch-width);
   height: var(--dc-switch-height);
@@ -31,10 +32,16 @@
   clip: rect(0, 0, 0, 0);
 }
 
-.dc-switch__track {
+.dc-switch__track,
+.dc-switch__thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: inline-block;
+}
+
+.dc-switch__track {
   cursor: pointer;
-  flex: none;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -46,12 +53,6 @@
 }
 
 .dc-switch__thumb {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: inline-block;
-  align-items: center;
-  justify-content: center;
   width: var(--dc-switch-thumb-size);
   height: var(--dc-switch-thumb-size);
   transform:

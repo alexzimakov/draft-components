@@ -9,7 +9,7 @@
 
   color-scheme: light;
   position: relative;
-  display: inline-flex;
+  display: inline-block;
   flex-shrink: 0;
   width: var(--dc-radio-size);
   height: var(--dc-radio-size);
@@ -29,6 +29,9 @@
 }
 
 .dc-radio__check {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: inline-block;
   cursor: pointer;
   box-sizing: border-box;
