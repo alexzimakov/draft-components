@@ -13,7 +13,7 @@ export type TagFill =
   | 'orange'
   | 'yellow';
 export type TagSize = 'sm' | 'md' | 'lg';
-export type TagVariant = 'tinted' | 'plain';
+export type TagVariant = 'default' | 'filled' | 'tinted';
 export type TagProps = {
   isRounded?: boolean;
   variant?: TagVariant;
@@ -23,7 +23,7 @@ export type TagProps = {
 
 export const Tag = forwardRef<HTMLElement, TagProps>(function Tag({
   isRounded = false,
-  variant = 'tinted',
+  variant = 'default',
   fill = 'gray',
   size = 'md',
   className,
