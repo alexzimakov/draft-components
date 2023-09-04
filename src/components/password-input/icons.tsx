@@ -7,9 +7,9 @@ export function EyeIcon(props: ComponentPropsWithoutRef<'svg'>) {
       viewBox="0 0 24 24"
       width={24}
       height={24}
-      fill="none"
       strokeWidth={1.5}
       stroke="currentColor"
+      fill="none"
       {...props}
     >
       <path
@@ -33,9 +33,9 @@ export function EyeSlashIcon(props: ComponentPropsWithoutRef<'svg'>) {
       viewBox="0 0 24 24"
       width={24}
       height={24}
-      fill="none"
       strokeWidth={1.5}
       stroke="currentColor"
+      fill="none"
       {...props}
     >
       <path

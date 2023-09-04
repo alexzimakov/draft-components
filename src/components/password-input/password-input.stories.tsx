@@ -4,6 +4,10 @@ import { PasswordInput } from './password-input';
 const meta: Meta<typeof PasswordInput> = {
   title: 'Forms/PasswordInput',
   component: PasswordInput,
+  args: {
+    size: 'md',
+    slotStyle: 'plain',
+  },
 };
 export default meta;
 

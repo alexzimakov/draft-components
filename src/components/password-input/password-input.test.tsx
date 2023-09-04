@@ -13,6 +13,22 @@ it('renders without errors', () => {
   screen.getByPlaceholderText(placeholder);
 });
 
+it('renders with custom tooltip text', async () => {
+  const user = userEvent.setup();
+  const showText = 'Show';
+  const hideText = 'Hide';
+  const getTooltipText = (visible: boolean) => (visible ? hideText : showText);
+  render(<PasswordInput getTooltipText={getTooltipText} />);
+
+  const toggleButton = screen.getByRole('button');
+
+  await user.hover(toggleButton);
+  screen.getByText(showText);
+
+  await user.click(toggleButton);
+  screen.getByText(hideText);
+});
+
 it('should toggle password visibility', async () => {
   const user = userEvent.setup();
   const placeholder = 'Enter your password';
