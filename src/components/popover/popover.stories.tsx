@@ -105,7 +105,7 @@ export const Nested = () => {
         </h2>
         <div style={styles.form}>
           <TextInput fullWidth={true} placeholder="Name of List" />
-          <Textarea isBlock={true} placeholder="Write a description" />
+          <Textarea fullWidth={true} placeholder="Write a description" />
         </div>
         <Button style={styles.button} size="md" appearance="primary">
           Create

@@ -1,4 +1,4 @@
-.dark .dc-textarea__container,
-.dark.dc-textarea__container {
+.dark .dc-textarea,
+.dark.dc-textarea {
   color-scheme: dark;
 }

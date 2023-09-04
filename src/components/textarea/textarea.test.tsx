@@ -1,4 +1,4 @@
-import { Textarea, TextareaCharacterCountRenderer } from './textarea';
+import { Textarea } from './textarea';
 import { expect, it, vi } from 'vitest';
 import { render, screen, userEvent } from '../../test/test-utils';
 
@@ -19,49 +19,6 @@ it('should forward extra props underlying <textarea />', () => {
   const textareaEl = screen.getByPlaceholderText(attrs.placeholder);
   expect(textareaEl).toHaveAttribute('name', attrs.name);
   expect(textareaEl).toHaveAttribute('spellcheck', 'false');
-});
-
-it('should render character count', () => {
-  render(<Textarea
-    showCharacterCount={true}
-    maxLength={100}
-    value="Test message"
-  />);
-
-  screen.getByRole('textbox');
-  screen.getByTestId('textarea-character-count');
-});
-
-it('should render character count using a custom render function', () => {
-  const value = 'Test message';
-  const maxLength = 100;
-  const getCharacterCountMessage: TextareaCharacterCountRenderer = ({
-    maxCharacters,
-    characterCount,
-  }) => `Characters ${characterCount}/${maxCharacters}`;
-  render(<Textarea
-    showCharacterCount={true}
-    maxLength={maxLength}
-    value={value}
-    renderCharacterCount={getCharacterCountMessage}
-  />);
-
-  screen.getByRole('textbox');
-  screen.getByText(getCharacterCountMessage({
-    maxCharacters: maxLength,
-    characterCount: value.length,
-  }) as string);
-});
-
-it('should not render character count when `maxLength` is less than 1', () => {
-  render(<Textarea
-    showCharacterCount={true}
-    maxLength={0}
-    value="Test message"
-  />);
-
-  screen.getByRole('textbox');
-  expect(screen.queryByTestId('textarea-character-count')).toBeNull();
 });
 
 it('invokes `onChange` event handler', async () => {
