@@ -16,7 +16,7 @@ it('renders without errors', () => {
   expect(screen.getAllByRole('option')).toHaveLength(4);
 });
 
-it('should forward extra attrs to underlying <select />', () => {
+it('should forward extra attrs to the native select', () => {
   const attrs = {
     'aria-label': 'Browser',
     'name': 'browser',

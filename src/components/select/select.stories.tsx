@@ -6,12 +6,6 @@ const meta: Meta<typeof Select> = {
   component: Select,
   args: {
     size: 'md',
-    loading: false,
-    disabled: false,
-    isBlock: false,
-  },
-  argTypes: {
-    children: { control: false },
   },
 };
 export default meta;
@@ -40,12 +34,13 @@ Disabled.args = {
 
 export const Invalid = Basic.bind({});
 Invalid.args = {
-  'aria-invalid': true,
+  invalid: true,
 };
 
 export const FullWidth = Basic.bind({});
+FullWidth.storyName = 'Full width';
 FullWidth.args = {
-  isBlock: true,
+  fullWidth: true,
 };
 
 export const Multiple: StoryFn<typeof Select> = (args) => (

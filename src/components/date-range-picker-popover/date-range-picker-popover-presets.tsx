@@ -43,7 +43,7 @@ export function DateRangePickerPopoverPresets({
       <div className="dc-date-range-picker-popover__presets">
         <Select
           size="md"
-          isBlock={true}
+          fullWidth={true}
           value={selectedPreset}
           onChange={handleChange}
         >

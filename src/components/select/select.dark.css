@@ -1,4 +1,4 @@
-.dark .dc-select__container,
-.dark.dc-select__container {
+.dark .dc-select,
+.dark.dc-select {
   color-scheme: dark;
 }

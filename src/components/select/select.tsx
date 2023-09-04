@@ -4,16 +4,12 @@ import { Spinner } from '../spinner';
 
 export type SelectSize = 'sm' | 'md' | 'lg';
 type SelectHTMLProps = ComponentPropsWithRef<'select'>;
-type SelectBaseProps = Omit<SelectHTMLProps,
-  | 'size'
-  | 'multiple'
-  | 'value'
-  | 'defaultValue'
-> & {
+type SelectBaseProps = Omit<SelectHTMLProps, 'size' | 'multiple' | 'value' | 'defaultValue'> & {
+  fullWidth?: boolean;
+  invalid?: boolean;
   loading?: boolean;
-  isBlock?: boolean;
   size?: SelectSize;
-  htmlSize?: SelectHTMLProps['size'];
+  displayedOptionsCount?: number;
 };
 
 export type SelectProps = SelectBaseProps & ({
@@ -26,18 +22,19 @@ export type SelectProps = SelectBaseProps & ({
   value?: string[];
   defaultValue?: string[];
   onChangeValue?: (value: string[]) => void;
-})
+});
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   function Select({
-    isBlock,
+    fullWidth,
+    invalid,
+    loading,
     size = 'md',
     style,
     className,
-    loading,
     disabled,
     multiple,
-    htmlSize,
+    displayedOptionsCount,
     children,
     onChange,
     onChangeValue,
@@ -59,17 +56,15 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       }
     };
 
-    let addOn = (
+    let slotElement = (
       <svg
-        className="dc-select__arrow"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
-        width={24}
-        height={24}
-        fill="none"
+        width="auto"
+        height="55%"
         stroke="currentColor"
         strokeWidth={1.5}
-        aria-hidden={true}
+        fill="none"
       >
         <path
           strokeLinecap="round"
@@ -79,11 +74,11 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       </svg>
     );
     if (loading) {
-      addOn = (
+      slotElement = (
         <Spinner
-          className="dc-select__spinner"
           color="currentColor"
-          size={16}
+          width="auto"
+          height="45%"
         />
       );
     }
@@ -91,28 +86,29 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     return (
       <div
         style={style}
-        className={classNames(className, 'dc-select__container', {
-          [`dc-select__container_${size}`]: size !== undefined,
-          'dc-select__container_multiple': multiple,
-          'dc-select__container_loading': loading,
-          'dc-select__container_disabled': disabled,
-          'dc-select__container_invalid': props['aria-invalid'],
-          'dc-select__container_block': isBlock,
+        className={classNames(className, 'dc-select', {
+          [`dc-select_${size}`]: size,
+          'dc-select_full-width': fullWidth,
+          'dc-select_loading': loading,
+          'dc-select_invalid': invalid,
+          'dc-select_disabled': disabled,
+          'dc-select_multiple': multiple,
         })}
       >
         <select
           {...props}
           ref={ref}
-          className="dc-select"
-          size={htmlSize}
+          className="dc-select__native"
+          size={displayedOptionsCount}
           multiple={multiple}
           disabled={disabled || loading}
+          aria-invalid={props['aria-invalid'] ?? invalid}
           onChange={handleChange}
         >
           {children}
         </select>
-        <span className="dc-select__add-on" aria-hidden={true}>
-          {addOn}
+        <span className="dc-select__slot-left" aria-hidden={true}>
+          {slotElement}
         </span>
       </div>
     );
