@@ -30,7 +30,7 @@ export function StringFilterInput({
       <TextInput
         data-testid="string-filter-input"
         size="sm"
-        isBlock={true}
+        fullWidth={true}
         aria-label={accessibleName}
         aria-describedby={invalid ? alertId : ''}
         placeholder={placeholder}
@@ -38,7 +38,7 @@ export function StringFilterInput({
         required={true}
         autoFocus={true}
         value={value}
-        aria-invalid={invalid}
+        invalid={invalid}
         onChangeValue={onChangeValue}
       />
       {invalid && (

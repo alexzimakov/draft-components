@@ -64,8 +64,8 @@ export function CalendarHeader({
       <TextInput
         className="dc-calendar-year-input"
         aria-label={yearInputLabel}
-        width="4ch"
         size="sm"
+        sizeInChars={4}
         value={year}
         maxLength={4}
         onBlur={() => setYear(formatYear(year))}

@@ -104,7 +104,7 @@ export const Nested = () => {
           Create a list to organize your reminders
         </h2>
         <div style={styles.form}>
-          <TextInput isBlock={true} placeholder="Name of List" />
+          <TextInput fullWidth={true} placeholder="Name of List" />
           <Textarea isBlock={true} placeholder="Write a description" />
         </div>
         <Button style={styles.button} size="md" appearance="primary">

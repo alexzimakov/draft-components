@@ -9,11 +9,12 @@ it('renders without errors', () => {
   screen.getByPlaceholderText(placeholder);
 });
 
-it('should forward extra props to underlying <input />', () => {
+it('should forward extra props to the native input', () => {
   const attrs = {
-    type: 'email' as const,
-    placeholder: 'Your email',
-    required: true,
+    'type': 'email' as const,
+    'placeholder': 'Your email',
+    'required': true,
+    'data-test': 'foo',
   };
   render(<TextInput {...attrs} />);
   const inputEl = screen.getByPlaceholderText(attrs.placeholder);
@@ -21,29 +22,30 @@ it('should forward extra props to underlying <input />', () => {
   expect(inputEl).toHaveAttribute('type', attrs.type);
   expect(inputEl).toHaveAttribute('required', '');
   expect(inputEl).toHaveAttribute('placeholder', attrs.placeholder);
+  expect(inputEl).toHaveAttribute('data-test', attrs['data-test']);
 });
 
-it('renders with left add-on', () => {
-  const prefix = 'USD';
-  render(<TextInput leftAddOn={prefix} />);
+it('renders with slot left', () => {
+  const slot = 'USD';
+  render(<TextInput slotLeft={slot} />);
 
-  screen.getByText(prefix);
+  screen.getByText(slot);
 });
 
-it('renders with right add-on', () => {
-  const suffix = 'kg';
-  render(<TextInput rightAddOn={suffix} />);
+it('renders with slot right', () => {
+  const slot = 'kg';
+  render(<TextInput slotRight={slot} />);
 
-  screen.getByText(suffix);
+  screen.getByText(slot);
 });
 
-it('renders with left and right add-on', () => {
-  const prefix = '$';
-  const suffix = 'per item';
-  render(<TextInput leftAddOn={prefix} rightAddOn={suffix} />);
+it('renders with both slots', () => {
+  const slotLeft = '$';
+  const slotRight = 'per item';
+  render(<TextInput slotLeft={slotLeft} slotRight={slotRight} />);
 
-  screen.getByText(prefix);
-  screen.getByText(suffix);
+  screen.getByText(slotLeft);
+  screen.getByText(slotRight);
 });
 
 it('invokes `onChange` event handler', async () => {

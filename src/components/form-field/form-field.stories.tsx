@@ -31,8 +31,8 @@ export const Invalid: StoryFn<typeof FormField> = (args) => (
   <FormField {...args}>
     <TextInput
       id={args.labelFor}
-      width="40ch"
-      aria-invalid={true}
+      invalid={true}
+      sizeInChars={40}
     />
   </FormField>
 );

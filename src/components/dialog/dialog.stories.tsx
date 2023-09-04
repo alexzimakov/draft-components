@@ -91,8 +91,8 @@ function RegisterForm() {
           id="phone"
           name="phone"
           type="tel"
-          isBlock={true}
-          leftAddOn={<PhoneIcon width={16} height={16} />}
+          fullWidth={true}
+          slotLeft={<PhoneIcon width={16} height={16} />}
         />
       </FormField>
       <FormField label="Email:" labelFor="email">
@@ -100,8 +100,8 @@ function RegisterForm() {
           id="email"
           name="email"
           type="email"
-          isBlock={true}
-          leftAddOn={<EnvelopeIcon width={16} height={16} />}
+          fullWidth={true}
+          slotLeft={<EnvelopeIcon width={16} height={16} />}
         />
       </FormField>
       <FormField
@@ -112,7 +112,7 @@ function RegisterForm() {
         <PasswordInput
           id="password"
           name="password"
-          isBlock={true}
+          fullWidth={true}
         />
       </FormField>
     </form>
@@ -145,7 +145,7 @@ function VerifyPhoneDialog(props: {
             ref={inputRef}
             id="code"
             name="code"
-            isBlock={true}
+            fullWidth={true}
             inputMode="numeric"
           />
         </FormField>

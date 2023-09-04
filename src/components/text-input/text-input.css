@@ -1,4 +1,4 @@
-.dc-text-input__container {
+.dc-text-input {
   --dc-input-font-size: 14px;
   --dc-input-height: 36px;
   --dc-input-padding-x: 12px;
@@ -7,8 +7,8 @@
   --dc-input-border-color: var(--dc-control-border-color);
   --dc-input-border-color-error: var(--dc-control-error-color);
   --dc-input-bg: var(--dc-control-bg);
-  --dc-input-prefix-color: var(--dc-control-secondary-text-color);
-  --dc-input-suffix-color: var(--dc-control-secondary-text-color);
+  --dc-input-add-on-color: var(--dc-control-secondary-text-color);
+  --dc-input-add-on-bg: none;
   --dc-input-focus-ring-color: var(--dc-control-primary-color);
 
   color-scheme: light;
@@ -29,48 +29,49 @@
   background: var(--dc-input-bg);
 }
 
-.dc-text-input__container > :first-child {
+.dc-text-input > :first-child {
   border-top-left-radius: calc(var(--dc-input-border-radius) - 1px);
   border-bottom-left-radius: calc(var(--dc-input-border-radius) - 1px);
 }
 
-.dc-text-input__container > :last-child {
+.dc-text-input > :last-child {
   border-top-right-radius: calc(var(--dc-input-border-radius) - 1px);
   border-bottom-right-radius: calc(var(--dc-input-border-radius) - 1px);
 }
 
-.dc-text-input__container:focus-within {
+.dc-text-input:focus-within {
   border-color: var(--dc-input-focus-ring-color);
   box-shadow: 0 0 0 1px var(--dc-input-focus-ring-color);
 }
 
-.dc-text-input__container_disabled {
+.dc-text-input_disabled {
   opacity: var(--dc-disabled-state-opacity);
 }
 
-.dc-text-input__container_invalid {
+.dc-text-input_invalid {
   border-color: var(--dc-input-border-color-error);
 }
 
-.dc-text-input__container_block {
+.dc-text-input_full-width {
   display: flex;
+  width: 100%;
 }
 
-.dc-text-input__container_sm {
+.dc-text-input_sm {
   --dc-input-font-size: 13px;
   --dc-input-height: 32px;
   --dc-input-padding-x: 8px;
   --dc-input-border-radius: 6px;
 }
 
-.dc-text-input__container_lg {
+.dc-text-input_lg {
   --dc-input-font-size: 15px;
   --dc-input-height: 40px;
   --dc-input-padding-x: 16px;
   --dc-input-border-radius: 8px;
 }
 
-.dc-text-input {
+.dc-text-input__native {
   appearance: none;
   font: inherit;
   color: inherit;
@@ -83,65 +84,51 @@
   background: none;
 }
 
-.dc-text-input::placeholder {
+.dc-text-input__native::placeholder {
   color: inherit;
   opacity: 0.4;
 }
 
-.dc-text-input:focus {
+.dc-text-input__native:focus {
   outline: none;
 }
 
-.dc-text-input_width_2ch {
-  width: 2.5ch;
-}
-
-.dc-text-input_width_3ch {
-  width: 3.5ch;
-}
-
-.dc-text-input_width_4ch {
-  width: 4.5ch;
-}
-
-.dc-text-input_width_5ch {
-  width: 5.5ch;
-}
-
-.dc-text-input_width_10ch {
-  width: 10.5ch;
-}
-
-.dc-text-input_width_20ch {
-  width: 20.5ch;
-}
-
-.dc-text-input_width_40ch {
-  width: 40.5ch;
-}
-
-.dc-text-input__left-addon,
-.dc-text-input__right-addon {
+.dc-text-input__slot-left,
+.dc-text-input__slot-right {
+  color: var(--dc-input-add-on-color);
   display: inline-flex;
   flex: none;
   align-items: center;
   box-sizing: border-box;
+  background: var(--dc-input-add-on-bg);
 }
 
-.dc-text-input__left-addon {
-  color: var(--dc-input-prefix-color);
+.dc-text-input__slot-left {
   padding-left: var(--dc-input-padding-x);
 }
 
-.dc-text-input__right-addon {
-  color: var(--dc-input-suffix-color);
+.dc-text-input__slot-right {
   padding-right: var(--dc-input-padding-x);
 }
 
-.dc-text-input__container_left-addon .dc-text-input {
+.dc-text-input_has_slot-left:not(.dc-text-input_slot_tinted) .dc-text-input__native {
   padding-left: calc(var(--dc-input-padding-x) / 2);
 }
 
-.dc-text-input__container_right-addon .dc-text-input {
+.dc-text-input_has_slot-right:not(.dc-text-input_slot_tinted) .dc-text-input__native {
   padding-right: calc(var(--dc-input-padding-x) / 2);
+}
+
+.dc-text-input_slot_tinted {
+  --dc-input-add-on-bg: rgb(var(--dc-gray-400-rgb) / 0.1);
+}
+
+.dc-text-input_slot_tinted .dc-text-input__slot-left {
+  padding-right: var(--dc-input-padding-x);
+  border-right: 1px solid var(--dc-input-border-color);
+}
+
+.dc-text-input_slot_tinted .dc-text-input__slot-right {
+  padding-left: var(--dc-input-padding-x);
+  border-left: 1px solid var(--dc-input-border-color);
 }

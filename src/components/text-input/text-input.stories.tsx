@@ -1,28 +1,15 @@
 import { Meta, StoryFn } from '@storybook/react';
+import { CSSProperties } from 'react';
+import { TextInput } from './text-input';
 import { StorySection } from '../../storybook/story-section';
-import { TextInput, TextInputWidth } from './text-input';
 
 const meta: Meta<typeof TextInput> = {
   title: 'Forms/TextInput',
   component: TextInput,
   args: {
-    disabled: false,
-    isBlock: false,
-    type: 'text',
     size: 'md',
-    leftAddOn: '',
-    rightAddOn: '',
-  },
-  argTypes: {
-    leftAddOn: {
-      control: { type: 'text' },
-    },
-    rightAddOn: {
-      control: { type: 'text' },
-    },
-    onChangeValue: {
-      action: 'value changed',
-    },
+    type: 'text',
+    slotStyle: 'plain',
   },
 };
 export default meta;
@@ -42,136 +29,155 @@ Disabled.args = {
 
 export const Invalid = Basic.bind({});
 Invalid.args = {
-  'placeholder': 'Your email',
-  'defaultValue': 'you@examplecom',
-  'type': 'email',
-  'aria-invalid': true,
+  placeholder: 'Your email',
+  defaultValue: 'you@examplecom',
+  type: 'email',
+  invalid: true,
 };
 
 export const FullWidth = Basic.bind({});
+FullWidth.storyName = 'Full width';
 FullWidth.args = {
   placeholder: 'Full width input',
-  isBlock: true,
+  fullWidth: true,
 };
 
-export const LeftAddOn = Basic.bind({});
-LeftAddOn.storyName = 'Left Add-on';
-LeftAddOn.args = {
+export const SlotLeft = Basic.bind({});
+SlotLeft.storyName = 'Slot left';
+SlotLeft.args = {
   placeholder: '0.00',
-  width: '4ch',
-  leftAddOn: '€',
+  sizeInChars: 4,
+  slotLeft: '€',
 };
 
-export const RightAddOn = Basic.bind({});
-RightAddOn.storyName = 'Right Add-on';
-RightAddOn.args = {
+export const SlotRight = Basic.bind({});
+SlotRight.storyName = 'Slot right';
+SlotRight.args = {
   placeholder: '0.00',
-  width: '4ch',
-  rightAddOn: 'kg',
+  sizeInChars: 4,
+  slotRight: 'kg',
 };
 
-export const LeftAndRightAddOn = Basic.bind({});
-LeftAndRightAddOn.storyName = 'Left and Right Add-on';
-LeftAndRightAddOn.args = {
+export const BothSlots = Basic.bind({});
+BothSlots.storyName = 'Both slots';
+BothSlots.args = {
   placeholder: '0.00',
-  width: '4ch',
-  leftAddOn: '$',
-  rightAddOn: 'per item',
+  sizeInChars: 4,
+  slotLeft: '$',
+  slotRight: 'per item',
 };
 
-export const CustomAddOn = Basic.bind({});
-CustomAddOn.storyName = 'Custom Add-on';
-CustomAddOn.args = {
-  placeholder: '0.00',
-  width: '4ch',
-  rightAddOn: ({ className }) => (
-    <div
-      className={className}
-      style={{
-        paddingLeft: 8,
-        borderLeft: '1px solid var(--dc-input-border-color)',
-        background: 'var(--dc-bg-transparent-1)',
-      }}
+export const IconLeft = Basic.bind({});
+IconLeft.storyName = 'Icon left';
+IconLeft.args = {
+  placeholder: 'Search (⌘K)',
+  slotLeft: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={16}
+      height={16}
+      stroke="currentColor"
+      strokeWidth={1.5}
+      fill="none"
     >
-      kg
-    </div>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+      />
+    </svg>
   ),
 };
 
-export const Widths: StoryFn<typeof TextInput> = (args) => {
-  const widths: TextInputWidth[] = [
-    '40ch',
-    '20ch',
-    '10ch',
-    '5ch',
-    '4ch',
-    '3ch',
-    '2ch',
-  ];
-  const labels: Record<TextInputWidth, string> = {
-    '40ch': '40 character width',
-    '20ch': '20 character width',
-    '10ch': '10 character width',
-    '5ch': '5 character width',
-    '4ch': '4 character width',
-    '3ch': '3 character width',
-    '2ch': '2 character width',
+export const IconRight = Basic.bind({});
+IconRight.storyName = 'Icon right';
+IconRight.args = {
+  placeholder: 'Pick a date',
+  slotRight: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={16}
+      height={16}
+      stroke="currentColor"
+      strokeWidth={1.5}
+      fill="none"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"
+      />
+    </svg>
+  ),
+};
+
+export const SlotCustomRenderer = Basic.bind({});
+SlotCustomRenderer.storyName = 'Slot custom renderer';
+SlotCustomRenderer.args = {
+  type: 'password',
+  defaultValue: 'Qwerty123',
+  slotRight: () => {
+    const wrapperStyle: CSSProperties = {
+      display: 'inline-flex',
+      boxSizing: 'border-box',
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingLeft: 5,
+      paddingRight: 5,
+    } as CSSProperties;
+    const buttonStyle: CSSProperties = {
+      fontFamily: 'inherit',
+      fontSize: 12,
+      fontWeight: 500,
+      color: 'var(--dc-button-default-tinted-text-color)',
+      cursor: 'pointer',
+      boxSizing: 'border-box',
+      height: 24,
+      padding: '0 8px',
+      border: 'none',
+      borderRadius: 3,
+      background: 'var(--dc-button-default-tinted-bg)',
+    };
+    return (
+      <div style={wrapperStyle}>
+        <button style={buttonStyle}>
+          Show
+        </button>
+      </div>
+    );
+  },
+};
+
+export const SizeInChars: StoryFn<typeof TextInput> = (args) => {
+  const sizes = [40, 20, 10, 5, 4, 3, 2];
+  const labels: Record<number, string> = {
+    40: '40 characters',
+    20: '20 characters',
+    10: '10 characters',
+    5: '5 characters',
+    4: '4 characters',
+    3: '3 characters',
+    2: '2 characters',
   };
   return (
     <>
-      {widths.map((width) => {
-        const label = labels[width];
+      {sizes.map((size) => {
+        const label = labels[size];
         return (
-          <StorySection key={width} heading={label}>
-            <TextInput {...args} width={width} aria-label={label} />
+          <StorySection key={size} heading={label}>
+            <TextInput {...args} sizeInChars={size} aria-label={label} />
           </StorySection>
         );
       })}
     </>
   );
 };
-Widths.parameters = {
+SizeInChars.storyName = 'Size in characters';
+SizeInChars.parameters = {
   controls: {
     exclude: ['width'],
   },
 };
-Widths.args = {};
-
-export const WithIcon: StoryFn<typeof TextInput> = (args) => {
-  const envelope = (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="1.35em"
-      height="1.35em"
-      fill="none"
-      strokeWidth={1.5}
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-      />
-    </svg>
-  );
-  return (
-    <div style={{
-      display: 'flex',
-      flexWrap: 'wrap',
-      alignItems: 'center',
-      gap: '1rem',
-    }}>
-      <TextInput {...args} leftAddOn={envelope} />
-      <TextInput {...args} rightAddOn={envelope} />
-    </div>
-  );
-};
-WithIcon.parameters = {
-  controls: {
-    exclude: ['prefix', 'suffix'],
-  },
-};
-WithIcon.args = {
-  placeholder: 'Your email',
-};
+SizeInChars.args = {};
