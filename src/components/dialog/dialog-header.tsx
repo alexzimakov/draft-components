@@ -39,11 +39,12 @@ export function DialogHeader({
           </h2>
         )}
         <IconButton
-          icon={<XMarkIcon width={18} height={18} strokeWidth={2} />}
-          variant="plain"
           className="dc-dialog-header__close-btn"
+          buttonStyle="plain"
           onClick={() => onClose()}
-        />
+        >
+          <XMarkIcon width={18} height={18} strokeWidth={2} />
+        </IconButton>
       </div>
       {shouldRenderDescription && (
         <div id={descriptionId} className="dc-dialog-header__subheading">

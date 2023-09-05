@@ -15,7 +15,7 @@ import {
 } from 'react';
 import { classNames, focusElement } from '../../lib/react-helpers';
 import { assertIfNullable } from '../../lib/helpers';
-import { Button, ButtonAppearance, ButtonVariant } from '../button';
+import { Button, ButtonSize, ButtonStyle, ButtonTint } from '../button';
 import { Popover, PopoverAlignment, PopoverAnchorRenderFn, PopoverPlacement } from '../popover';
 import { MenuItem, MenuItemProps } from './menu-item';
 
@@ -45,8 +45,9 @@ export type MenuProps = {
   onClose?: () => void;
   button: ReactNode | MenuButtonRenderFn;
   buttonClassName?: string;
-  buttonAppearance?: ButtonAppearance;
-  buttonVariant?: ButtonVariant;
+  buttonStyle?: ButtonStyle;
+  buttonSize?: ButtonSize;
+  buttonTint?: ButtonTint;
 } & MenuHTMLProps;
 
 export function Menu({
@@ -54,8 +55,9 @@ export function Menu({
   placement = 'bottom',
   alignment = 'start',
   buttonClassName = '',
-  buttonAppearance = 'default',
-  buttonVariant = 'filled',
+  buttonStyle = 'filled',
+  buttonSize = 'sm',
+  buttonTint = 'gray',
   button,
   className,
   children,
@@ -240,11 +242,12 @@ export function Menu({
         aria-haspopup={true}
         aria-expanded={isOpen}
         aria-controls={menuId}
+        className={buttonClassName}
+        buttonStyle={buttonStyle}
+        size={buttonSize}
+        tint={buttonTint}
         onClick={handleButtonClick}
         onKeyDown={handleButtonKeyDown}
-        className={buttonClassName}
-        appearance={buttonAppearance}
-        variant={buttonVariant}
       >
         {button}
       </Button>

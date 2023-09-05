@@ -107,7 +107,7 @@ export const Nested = () => {
           <TextInput fullWidth={true} placeholder="Name of List" />
           <Textarea fullWidth={true} placeholder="Write a description" />
         </div>
-        <Button style={styles.button} size="md" appearance="primary">
+        <Button style={styles.button} size="md" tint="blue">
           Create
         </Button>
       </Popover>

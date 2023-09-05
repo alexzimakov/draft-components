@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef } from 'react';
-import { Button, ButtonRenderFn } from './button';
+import { Button, ButtonRenderer } from './button';
 import { IconButton } from './icon-button';
 import { expect, it, vi } from 'vitest';
 import { render, screen, userEvent, within } from '../../test/test-utils';
@@ -14,7 +14,7 @@ it('renders without errors', () => {
 it('renders with left icon', () => {
   const iconTestId = 'leading-icon';
   const icon = <MoonIcon data-testid={iconTestId} />;
-  render(<Button leftIcon={icon}>With icon</Button>);
+  render(<Button iconLeft={icon}>With icon</Button>);
 
   within(screen.getByRole('button')).getByTestId(iconTestId);
 });
@@ -22,7 +22,7 @@ it('renders with left icon', () => {
 it('renders with right icon', () => {
   const iconTestId = 'leading-icon';
   const icon = <MoonIcon data-testid={iconTestId} />;
-  render(<Button rightIcon={icon}>With icon</Button>);
+  render(<Button iconRight={icon}>With icon</Button>);
 
   within(screen.getByRole('button')).getByTestId(iconTestId);
 });
@@ -40,7 +40,7 @@ it('renders with caption', () => {
 it('renders using custom render function', () => {
   const url = 'https://example.com';
   const label = 'Render as link';
-  const renderAs: ButtonRenderFn = ({ className, children }) => (
+  const renderAs: ButtonRenderer = ({ className, children }) => (
     <a className={className} href={url}>{children}</a>
   );
   render(<Button renderAs={renderAs}>{label}</Button>);
@@ -65,7 +65,7 @@ it('should show loader indicator and make button inactive', async () => {
 it('<IconButton /> renders without errors', () => {
   const iconTestId = 'x-mark-icon';
   const icon = <MoonIcon data-testid={iconTestId} />;
-  render(<IconButton icon={icon} />);
+  render(<IconButton>{icon}</IconButton>);
 
   within(screen.getByRole('button')).getByTestId(iconTestId);
 });

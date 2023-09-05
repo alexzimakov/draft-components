@@ -25,14 +25,14 @@ export function DateRangePickerPopoverFooter({
       )}
       <Button
         className="dc-date-range-picker-popover__footer-cancel"
-        variant="tinted"
+        buttonStyle="tinted"
         onClick={onClickCancelButton}
       >
         {cancelButtonLabel}
       </Button>
       <Button
         className="dc-date-range-picker-popover__footer-confirm"
-        appearance="primary"
+        tint="blue"
         onClick={onClickConfirmButton}
       >
         {confirmButtonLabel}

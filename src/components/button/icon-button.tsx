@@ -1,23 +1,20 @@
-import { ReactNode, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { Button, ButtonProps } from './button';
 
-export type IconButtonBaseProps = Omit<ButtonProps,
-  | 'children'
+export type IconButtonProps = Omit<ButtonProps,
   | 'caption'
-  | 'leftIcon'
-  | 'rightIcon'>;
-export type IconButtonProps = {
-  icon: ReactNode;
-} & IconButtonBaseProps;
+  | 'iconLeft'
+  | 'iconRight'>;
 
-export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
-  function IconButton({ className, icon, ...props }, ref) {
-    return <Button
-      {...props}
-      ref={ref}
-      leftIcon={icon}
-      className={classNames('dc-button_icon-only', className)}
-    />;
-  },
-);
+export const IconButton = forwardRef<
+  HTMLButtonElement,
+  IconButtonProps
+>(function IconButton({ className, children, ...props }, ref) {
+  return <Button
+    {...props}
+    ref={ref}
+    className={classNames('dc-button_icon-only', className)}
+    iconLeft={children}
+  />;
+});

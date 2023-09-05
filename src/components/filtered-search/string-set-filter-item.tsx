@@ -111,15 +111,15 @@ export function StringSetFilterItem({
         />
         <div className="dc-filter-form__buttons">
           <Button
-            variant="plain"
             type="button"
+            buttonStyle="plain"
             onClick={cancelEdit}
           >
             {translations.cancelButton}
           </Button>
           <Button
-            appearance="primary"
             type="submit"
+            tint="blue"
             disabled={filterValue.length < 1}
           >
             {translations.applyButton}

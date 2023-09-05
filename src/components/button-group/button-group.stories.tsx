@@ -46,7 +46,7 @@ const plusIcon = (
 
 export const Basic: StoryFn<typeof ButtonGroup> = (args) => (
   <ButtonGroup {...args}>
-    <IconButton icon={minusIcon} />
-    <IconButton icon={plusIcon} />
+    <IconButton>{minusIcon}</IconButton>
+    <IconButton>{plusIcon}</IconButton>
   </ButtonGroup>
 );

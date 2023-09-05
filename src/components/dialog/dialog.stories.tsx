@@ -32,7 +32,7 @@ export const Basic = () => {
       <Button
         {...props}
         ref={mergeRefs(ref, menuButtonRef)}
-        variant="plain"
+        buttonStyle="plain"
         style={{ marginRight: 'auto' }}
       >
         Verify phone
@@ -62,14 +62,10 @@ export const Basic = () => {
         </DialogBody>
         <DialogFooter hasBorder={true}>
           {verifyPhoneMenu}
-          <Button
-            ref={cancelButtonRef}
-            appearance="default"
-            onClick={closeDialog}
-          >
+          <Button ref={cancelButtonRef} tint="gray" onClick={closeDialog}>
             Cancel
           </Button>
-          <Button appearance="primary" onClick={closeDialog}>
+          <Button tint="blue" onClick={closeDialog}>
             Create
           </Button>
         </DialogFooter>
@@ -151,12 +147,7 @@ function VerifyPhoneDialog(props: {
         </FormField>
       </DialogBody>
       <DialogFooter>
-        <Button
-          isBlock={true}
-          appearance="primary"
-          size="md"
-          onClick={onClose}
-        >
+        <Button fullWidth={true} tint="blue" size="md" onClick={onClose}>
           Confirm
         </Button>
       </DialogFooter>

@@ -314,12 +314,13 @@ export function FilteredSearch({
         <IconButton
           className="dc-filtered-search__clear-button"
           aria-label={clearButtonAccessibleName}
-          icon={<TrashIcon />}
+          buttonStyle="plain"
+          tint="blue"
           size="sm"
-          variant="plain"
-          appearance="primary"
           onClick={onClearButtonPressed}
-        />
+        >
+          <TrashIcon />
+        </IconButton>
         {expanded && renderedOptions.length > 0 && (
           <ul
             className="dc-filtered-search__list-box"

@@ -23,7 +23,7 @@ export const Basic: StoryFn<typeof DatePickerPopover> = (args) => {
         args.onChangeValue?.(value);
       }}
     >
-      <Button leftIcon={<CalendarIcon width={18} height={18} />}>
+      <Button iconLeft={<CalendarIcon width={18} height={18} />}>
         {dateISO
           ? intl.format(new Date(dateISO))
           : 'Choose date'}

@@ -39,12 +39,13 @@ export function SlideOverHeader({
           {title}
         </h2>
         <IconButton
-          icon={<XMarkIcon />}
-          aria-label={closeButtonAccessibleName}
-          variant="tinted"
+          buttonStyle="tinted"
           size="xs"
+          aria-label={closeButtonAccessibleName}
           onClick={onCloseButtonClicked}
-        />
+        >
+          <XMarkIcon />
+        </IconButton>
       </div>
       {description ? (
         <div id={descriptionId} className="dc-slide-over-header__description">

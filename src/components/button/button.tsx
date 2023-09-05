@@ -2,68 +2,65 @@ import { ComponentPropsWithRef, JSX, ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { Spinner } from '../spinner';
 
+type ButtonHTMLProps = ComponentPropsWithRef<'button'>;
+export type ButtonStyle = 'filled' | 'tinted' | 'plain';
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type ButtonAppearance = 'default' | 'primary' | 'danger' | 'success';
-export type ButtonVariant = 'filled' | 'tinted' | 'plain';
-export type ButtonRenderFn = (props: {
-  className: string;
-  children: JSX.Element;
-}) => JSX.Element;
+export type ButtonTint = 'gray' | 'blue' | 'red' | 'green';
+export type ButtonRenderer = (props: { className: string; children: JSX.Element }) => JSX.Element;
 export type ButtonProps = {
-  isBlock?: boolean;
+  fullWidth?: boolean;
   loading?: boolean;
+  buttonStyle?: ButtonStyle;
   size?: ButtonSize,
-  variant?: ButtonVariant;
-  appearance?: ButtonAppearance;
-  leftIcon?: ReactNode;
-  rightIcon?: ReactNode;
+  tint?: ButtonTint;
   caption?: ReactNode;
-  renderAs?: ButtonRenderFn;
-} & ComponentPropsWithRef<'button'>;
+  iconLeft?: ReactNode;
+  iconRight?: ReactNode;
+  renderAs?: ButtonRenderer;
+} & ButtonHTMLProps;
 
 export const Button = forwardRef<
   HTMLButtonElement,
   ButtonProps
 >(function Button({
-  isBlock = false,
-  disabled = false,
-  loading = false,
-  type = 'button',
+  fullWidth,
+  disabled,
+  loading,
+  buttonStyle = 'filled',
   size = 'sm',
-  variant = 'filled',
-  appearance = 'default',
-  leftIcon = null,
-  rightIcon = null,
-  caption = null,
-  renderAs,
+  tint = 'default',
+  iconLeft,
+  iconRight,
+  caption,
   className,
   children,
+  type = 'button',
+  renderAs,
   ...props
 }, ref) {
   children = (
     <>
       {loading
         ? <Spinner data-testid="button-spinner" size="1.15em" />
-        : leftIcon}
+        : iconLeft}
       {caption ? (
         <div className="dc-button__label">
           {children}
           <small className="dc-button__caption">{caption}</small>
         </div>
       ) : children}
-      {rightIcon}
+      {iconRight}
     </>
   );
 
-  className = classNames(className, {
-    'dc-button': true,
-    'dc-button_block': isBlock,
-    'dc-button_loading': loading,
-    'dc-button_with_left-icon': leftIcon,
-    'dc-button_with_right-icon': rightIcon,
+  className = classNames(className, 'dc-button', {
+    [`dc-button_style_${buttonStyle}`]: buttonStyle,
+    [`dc-button_tint_${tint}`]: tint,
     [`dc-button_${size}`]: size,
-    [`dc-button_appearance_${appearance}`]: appearance,
-    [`dc-button_variant_${variant}`]: variant,
+    'dc-button_full-width': fullWidth,
+    'dc-button_loading': loading,
+    'dc-button_has_icon-left': iconLeft,
+    'dc-button_has_icon-right': iconRight,
   });
 
   if (typeof renderAs === 'function') {

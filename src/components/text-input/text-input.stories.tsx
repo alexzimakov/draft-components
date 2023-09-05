@@ -131,14 +131,14 @@ SlotCustomRenderer.args = {
       fontFamily: 'inherit',
       fontSize: 12,
       fontWeight: 500,
-      color: 'var(--dc-button-default-tinted-text-color)',
+      color: 'var(--dc-button-gray-tinted-text-color)',
       cursor: 'pointer',
       boxSizing: 'border-box',
       height: 24,
       padding: '0 8px',
       border: 'none',
       borderRadius: 3,
-      background: 'var(--dc-button-default-tinted-bg)',
+      background: 'var(--dc-button-gray-tinted-bg)',
     };
     return (
       <div style={wrapperStyle}>

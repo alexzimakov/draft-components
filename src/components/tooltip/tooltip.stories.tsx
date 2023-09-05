@@ -23,7 +23,9 @@ export default meta;
 
 export const Basic: StoryFn<typeof Tooltip> = (args) => (
   <Tooltip {...args}>
-    <IconButton icon={<BookmarkIcon width={18} height={18} />} />
+    <IconButton>
+      <BookmarkIcon width={18} height={18} />
+    </IconButton>
   </Tooltip>
 );
 Basic.args = {
@@ -35,10 +37,11 @@ export const Controlled: StoryFn<typeof Tooltip> = (args) => {
   return (
     <Tooltip {...args} isShown={isShown}>
       <IconButton
-        icon={<BookmarkIcon width={18} height={18} />}
         onMouseEnter={() => setIsShown(true)}
         onMouseLeave={() => setIsShown(false)}
-      />
+      >
+        <BookmarkIcon width={18} height={18} />
+      </IconButton>
     </Tooltip>
   );
 };

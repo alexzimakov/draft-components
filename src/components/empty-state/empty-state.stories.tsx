@@ -37,12 +37,12 @@ Basic.args = {
     'Get started with one of the built-in templates or ' +
     'create an empty document.',
   primaryAction: (
-    <Button appearance="primary">
+    <Button tint="blue">
       Create a new document
     </Button>
   ),
   secondaryAction: (
-    <Button appearance="primary" variant="plain">
+    <Button tint="blue" buttonStyle="plain">
       Choose a Template
     </Button>
   ),

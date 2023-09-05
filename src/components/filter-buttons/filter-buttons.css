@@ -1,10 +1,10 @@
 .dc-filter-buttons {
-  --dc-filter-button-text-color: var(--dc-button-default-tinted-text-color);
-  --dc-filter-button-bg: var(--dc-button-default-tinted-bg);
-  --dc-filter-button-bg-hover: var(--dc-button-default-tinted-bg-hover);
-  --dc-filter-button-text-color-active: var(--dc-button-primary-text-color);
-  --dc-filter-button-bg-active: var(--dc-button-primary-bg);
-  --dc-filter-button-bg-active-hover: var(--dc-button-primary-bg-hover);
+  --dc-filter-button-text-color: var(--dc-button-gray-tinted-text-color);
+  --dc-filter-button-bg: var(--dc-button-gray-tinted-bg);
+  --dc-filter-button-bg-hover: var(--dc-button-gray-tinted-bg-hover);
+  --dc-filter-button-text-color-active: var(--dc-button-blue-text-color);
+  --dc-filter-button-bg-active: var(--dc-button-blue-bg);
+  --dc-filter-button-bg-active-hover: var(--dc-button-blue-bg-hover);
 
   color-scheme: light;
   position: relative;
