@@ -9,8 +9,8 @@
   color-scheme: dark;
 }
 
-.dark .dc-alert_appearance_warning,
-.dark.dc-alert_appearance_warning {
+.dark .dc-alert_tint_orange,
+.dark.dc-alert_tint_orange {
   --dc-alert-text-color: var(--dc-orange-400);
   --dc-alert-icon-color: var(--dc-orange-400);
   --dc-alert-bg: rgb(var(--dc-orange-200-rgb) / 0.1);
@@ -18,8 +18,8 @@
   --dc-alert-accent-border-color: var(--dc-orange-500);
 }
 
-.dark .dc-alert_appearance_error,
-.dark.dc-alert_appearance_error {
+.dark .dc-alert_tint_red,
+.dark.dc-alert_tint_red {
   --dc-alert-text-color: var(--dc-red-400);
   --dc-alert-icon-color: var(--dc-red-400);
   --dc-alert-bg: rgb(var(--dc-red-300-rgb) / 0.1);
@@ -27,8 +27,8 @@
   --dc-alert-accent-border-color: var(--dc-red-500);
 }
 
-.dark .dc-alert_appearance_info,
-.dark.dc-alert_appearance_info {
+.dark .dc-alert_tint_blue,
+.dark.dc-alert_tint_blue {
   --dc-alert-text-color: var(--dc-blue-300);
   --dc-alert-icon-color: var(--dc-blue-300);
   --dc-alert-bg: rgb(var(--dc-blue-200-rgb) / 0.1);
@@ -36,8 +36,8 @@
   --dc-alert-accent-border-color: var(--dc-blue-400);
 }
 
-.dark .dc-alert_appearance_success,
-.dark.dc-alert_appearance_success {
+.dark .dc-alert_tint_green,
+.dark.dc-alert_tint_green {
   --dc-alert-text-color: var(--dc-green-400);
   --dc-alert-icon-color: var(--dc-green-400);
   --dc-alert-bg: rgb(var(--dc-green-200-rgb) / 0.1);

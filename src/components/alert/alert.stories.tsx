@@ -1,16 +1,21 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { StorySection } from '../../storybook/story-section';
 import { Alert } from './alert';
-import { BoltIcon, CogIcon, HandThumbUpIcon, ScaleIcon, SignalSlashIcon } from '@heroicons/react/24/solid';
+import BoltIcon from '@heroicons/react/24/solid/BoltIcon';
+import CogIcon from '@heroicons/react/24/solid/CogIcon';
+import HandThumbUpIcon from '@heroicons/react/24/solid/HandThumbUpIcon';
+import ScaleIcon from '@heroicons/react/24/solid/ScaleIcon';
+import SignalSlashIcon from '@heroicons/react/24/solid/SignalSlashIcon';
 
 const meta: Meta<typeof Alert> = {
   title: 'Feedback/Alert',
   component: Alert,
+  args: {
+    alertStyle: 'default',
+    tint: 'gray',
+  },
   argTypes: {
-    icon: {
-      control: { disable: true },
-    },
-    heading: {
+    title: {
       control: 'text',
     },
     children: {
@@ -20,111 +25,111 @@ const meta: Meta<typeof Alert> = {
 };
 export default meta;
 
-const LAYOUT_MAX_WIDTH = '720px';
-
 export const Basic: StoryFn<typeof Alert> = (args) => (
-  <Alert style={{ maxWidth: LAYOUT_MAX_WIDTH }} {...args} />
+  <Alert style={{ maxWidth: 720 }} {...args} />
 );
-Basic.argTypes = {
-  children: {
-    control: { disable: true },
-  },
-};
 Basic.args = {
-  heading: 'MIT License',
+  title: 'MIT License',
   children:
     'A short and simple permissive license with conditions only requiring' +
     'preservation of copyright and license notices.',
 };
 
 export const WithIcon = Basic.bind({});
-WithIcon.argTypes = {
-  ...Basic.argTypes,
-};
+WithIcon.storyName = 'With icon';
 WithIcon.args = {
   ...Basic.args,
   icon: <ScaleIcon width={18} height={18} />,
 };
 
-export const Variant: StoryFn<typeof Alert> = (args) => (
-  <section style={{ maxWidth: LAYOUT_MAX_WIDTH }}>
+export const Dismissible = Basic.bind({});
+Dismissible.args = {
+  shouldShowDismissButton: true,
+  tint: 'blue',
+  icon: <CogIcon width={20} height={20} />,
+  title: 'Update is available',
+  children: 'The next version of app is available with new features and security improvements.',
+};
+
+export const Styles: StoryFn<typeof Alert> = (args) => (
+  <section style={{ maxWidth: 720 }}>
     <StorySection title="default">
-      <Alert {...args} variant="default" />
+      <Alert {...args} alertStyle="default" />
     </StorySection>
 
     <StorySection title="full-width">
-      <Alert {...args} variant="full-width" />
+      <Alert {...args} alertStyle="full-width" />
     </StorySection>
 
     <StorySection title="accent-border">
-      <Alert {...args} variant="accent-border" />
+      <Alert {...args} alertStyle="accent-left" />
     </StorySection>
   </section>
 );
-Variant.argTypes = {
-  variant: {
-    control: { disable: true },
+Styles.argTypes = {
+  alertStyle: {
+    table: { disable: true },
   },
 };
-Variant.args = {
+Styles.args = {
   ...WithIcon.args,
 };
 
-export const Appearance: StoryFn<typeof Alert> = (args) => (
-  <section style={{ maxWidth: LAYOUT_MAX_WIDTH }}>
-    <StorySection title="default">
+export const Tints: StoryFn<typeof Alert> = (args) => (
+  <section style={{ maxWidth: 720 }}>
+    <StorySection title="Gray">
       <Alert
         {...args}
+        tint="gray"
         icon={<ScaleIcon width={18} height={18} />}
-        heading="MIT License"
-        appearance="default"
+        title="MIT License"
       >
         A short and simple permissive license with conditions only requiring
         preservation of copyright and license notices.
       </Alert>
     </StorySection>
 
-    <StorySection title="warning">
+    <StorySection title="Orange">
       <Alert
         {...args}
         icon={<BoltIcon width={18} height={18} />}
-        heading="Low Power Mode"
-        appearance="warning"
+        tint="orange"
+        title="Low Power Mode"
       >
         Automatic downloads and background app refresh are disabled
         in Low Power Mode.
       </Alert>
     </StorySection>
 
-    <StorySection title="error">
+    <StorySection title="Red">
       <Alert
         {...args}
         icon={<SignalSlashIcon width={18} height={18} />}
-        heading="You're currently offline"
-        appearance="error"
+        tint="red"
+        title="You're currently offline"
       >
         Please check your internet connection and try again.
       </Alert>
     </StorySection>
 
-    <StorySection title="info">
+    <StorySection title="Blue">
       <Alert
         {...args}
         icon={<CogIcon width={20} height={20} />}
-        heading="Update is available"
-        appearance="info"
+        tint="blue"
+        title="Update is available"
       >
         The next version of app is available with new features and security
         improvements.
       </Alert>
     </StorySection>
 
-    <StorySection title="success">
+    <StorySection title="Green">
       <Alert
         {...args}
         icon={<HandThumbUpIcon width={18} height={18} />}
-        heading="Update completed"
-        appearance="success"
+        tint="green"
+        title="Update completed"
       >
         Your app was updated successfully. There are just a few more steps to
         follow, and then you're done!
@@ -132,17 +137,8 @@ export const Appearance: StoryFn<typeof Alert> = (args) => (
     </StorySection>
   </section>
 );
-Appearance.argTypes = {
-  icon: {
-    control: { disable: true },
+Tints.parameters = {
+  controls: {
+    exclude: ['icon', 'title', 'children', 'tint'],
   },
-  heading: {
-    control: { disable: true },
-  },
-  appearance: {
-    control: { disable: true },
-  },
-};
-Appearance.args = {
-  variant: 'default',
 };

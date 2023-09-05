@@ -1,57 +1,64 @@
-import { ComponentPropsWithRef, JSX, ReactNode, forwardRef } from 'react';
+import { ComponentPropsWithRef, MouseEventHandler, ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
+import { XMarkIcon } from '../icons/x-mark-icon';
 
 type AlertHTMLProps = ComponentPropsWithRef<'div'>;
-export type AlertAppearance =
-  | 'default'
-  | 'info'
-  | 'success'
-  | 'warning'
-  | 'error';
-export type AlertVariant =
+type AlertBaseProps = Omit<AlertHTMLProps, 'title'>;
+export type AlertStyle =
   | 'default'
   | 'full-width'
-  | 'accent-border'
+  | 'accent-left';
+export type AlertTint =
+  | 'gray'
+  | 'orange'
+  | 'red'
+  | 'blue'
+  | 'green';
 export type AlertProps = {
-  icon?: JSX.Element | null;
-  heading?: ReactNode;
-  variant?: AlertVariant;
-  appearance?: AlertAppearance;
-} & AlertHTMLProps;
+  shouldShowDismissButton?: boolean;
+  alertStyle?: AlertStyle;
+  tint?: AlertTint;
+  icon?: ReactNode;
+  title?: ReactNode;
+  onClickDismissButton?: MouseEventHandler<HTMLButtonElement>;
+} & AlertBaseProps;
 
 export const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert({
-  icon = null,
-  heading = null,
-  variant = 'default',
-  appearance = 'default',
-  className,
+  shouldShowDismissButton,
+  alertStyle = 'default',
+  tint = 'gray',
+  icon,
+  title,
   children,
+  className,
+  onClickDismissButton,
   ...props
 }, ref) {
-  const shouldShowIcon = Boolean(icon);
-  const shouldRenderHeading = Boolean(heading);
-  const shouldRenderContent = Boolean(children);
-
   return (
     <div
       {...props}
       ref={ref}
-      className={classNames(className, {
-        'dc-alert': true,
-        'dc-alert_has_icon': shouldShowIcon,
-        [`dc-alert_variant_${variant}`]: variant,
-        [`dc-alert_appearance_${appearance}`]: appearance,
+      className={classNames(className, 'dc-alert', {
+        [`dc-alert_style_${alertStyle}`]: alertStyle,
+        [`dc-alert_tint_${tint}`]: tint,
+        'dc-alert_has_icon': icon,
+        'dc-alert_has_dismiss-button': shouldShowDismissButton,
       })}
     >
-      {shouldShowIcon && <div className="dc-alert__icon">{icon}</div>}
+      {icon ? <div className="dc-alert__icon">{icon}</div> : null}
       <div className="dc-alert__body">
-        {shouldRenderHeading && (
-          <h1 className="dc-alert__title">{heading}</h1>
-        )}
-        {shouldRenderContent && (
-          <div className="dc-alert__content">{children}</div>
-        )}
+        {title ? <h2 className="dc-alert__title">{title}</h2> : null}
+        {children}
       </div>
+      {shouldShowDismissButton && (
+        <button
+          type="button"
+          className="dc-alert__dismiss-button"
+          onClick={onClickDismissButton}
+        >
+          <XMarkIcon width={18} height={18} strokeWidth={2} />
+        </button>
+      )}
     </div>
   );
 });

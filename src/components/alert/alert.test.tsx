@@ -1,20 +1,35 @@
 import { Alert } from './alert';
-import { it } from 'vitest';
-import { render, screen } from '../../test/test-utils';
+import { expect, it, vitest } from 'vitest';
+import { render, screen, userEvent } from '../../test/test-utils';
 
 it('renders without errors', () => {
-  const heading = 'MIT License';
+  const title = 'MIT License';
   const children = 'A short and simple permissive license';
-  render(<Alert heading={heading}>{children}</Alert>);
-  screen.getByText(heading);
+  render(<Alert title={title}>{children}</Alert>);
+  screen.getByText(title);
   screen.getByText(children);
 });
 
-it('should show icon', () => {
+it('renders with icon', () => {
   const icon = <svg role="img" />;
-  const heading = 'Successfully uploaded';
-  render(<Alert heading={heading} icon={icon} />);
+  const title = 'Successfully uploaded';
+  render(<Alert title={title} icon={icon} />);
 
-  screen.getByText(heading);
+  screen.getByText(title);
   screen.getByRole('img');
+});
+
+it('renders with dismiss button', async () => {
+  const user = userEvent.setup();
+  const onClickDismissButtonMock = vitest.fn();
+  render(
+    <Alert
+      title="Update is available"
+      shouldShowDismissButton={true}
+      onClickDismissButton={onClickDismissButtonMock}
+    />,
+  );
+
+  await user.click(screen.getByRole('button'));
+  expect(onClickDismissButtonMock).toHaveBeenCalledTimes(1);
 });

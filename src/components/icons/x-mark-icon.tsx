@@ -1,15 +1,19 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithRef, forwardRef } from 'react';
 
-export function XMarkIcon(props: ComponentPropsWithoutRef<'svg'>) {
+export const XMarkIcon = forwardRef<
+  SVGSVGElement,
+  ComponentPropsWithRef<'svg'>
+>(function XMarkIcon(props, ref) {
   return (
     <svg
+      ref={ref}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       width={24}
       height={24}
-      fill="none"
-      strokeWidth={1.5}
       stroke="currentColor"
+      strokeWidth={1.5}
+      fill="none"
       {...props}
     >
       <path
@@ -19,4 +23,4 @@ export function XMarkIcon(props: ComponentPropsWithoutRef<'svg'>) {
       />
     </svg>
   );
-}
+});

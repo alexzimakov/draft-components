@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { useDialogContext } from './dialog-context';
 import { IconButton } from '../button';
-import { XMarkIcon } from './x-mark-icon';
+import { XMarkIcon } from '../icons/x-mark-icon';
 
 type DialogHeaderHTMLProps = ComponentPropsWithoutRef<'div'>;
 export type DialogHeaderProps = {
