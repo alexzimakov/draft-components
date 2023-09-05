@@ -2,43 +2,44 @@ import { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
 type EmptyStateHTMLProps = ComponentPropsWithoutRef<'div'>;
+type EmptyStateBaseProps = Omit<EmptyStateHTMLProps, 'title'>;
 export type EmptyStateProps = {
   image?: ReactNode;
-  heading?: ReactNode;
-  description?: ReactNode;
+  title?: ReactNode;
+  message?: ReactNode;
   primaryAction?: ReactNode;
   secondaryAction?: ReactNode;
-} & EmptyStateHTMLProps;
+} & EmptyStateBaseProps;
 
 export function EmptyState({
   className,
   image,
-  heading,
-  description,
+  title,
+  message,
   primaryAction,
   secondaryAction,
   children,
 }: EmptyStateProps) {
   return (
     <section className={classNames('dc-empty-state', className)}>
-      {Boolean(image) && (
-        <div className="dc-empty-state__image">{image}</div>
-      )}
-      {Boolean(heading) && (
-        <h1 className="dc-empty-state__heading">{heading}</h1>
-      )}
-      {Boolean(description) && (
-        <div className="dc-empty-state__description">{description}</div>
-      )}
-      {Boolean(primaryAction) && (
-        <div className="dc-empty-state__primary-action">{primaryAction}</div>
-      )}
-      {Boolean(secondaryAction) && (
-        <div className="dc-empty-state__secondary-action">{secondaryAction}</div>
-      )}
-      {Boolean(children) && (
-        <div className="dc-empty-state__content">{children}</div>
-      )}
+      {image
+        ? <div className="dc-empty-state__image">{image}</div>
+        : null}
+      {title
+        ? <h2 className="dc-empty-state__title">{title}</h2>
+        : null}
+      {message
+        ? <div className="dc-empty-state__message">{message}</div>
+        : null}
+      {primaryAction
+        ? <div className="dc-empty-state__primary-action">{primaryAction}</div>
+        : null}
+      {secondaryAction
+        ? <div className="dc-empty-state__secondary-action">{secondaryAction}</div>
+        : null}
+      {children
+        ? <div className="dc-empty-state__content">{children}</div>
+        : null}
     </section>
   );
 }

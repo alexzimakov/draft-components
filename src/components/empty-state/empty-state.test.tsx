@@ -12,8 +12,8 @@ it('renders without errors', () => {
   render(
     <EmptyState
       image={image}
-      heading={heading}
-      description={description}
+      title={heading}
+      message={description}
       primaryAction={<button>{primaryAction}</button>}
       secondaryAction={<button>{secondaryAction}</button>}
     >
@@ -31,8 +31,8 @@ it('renders without errors', () => {
 
 it('renders without errors without the image', () => {
   render(<EmptyState
-    heading="Empty state heading"
-    description="Empty state description"
+    title="Empty state heading"
+    message="Empty state description"
     primaryAction={<button>Primary action</button>}
     secondaryAction={<button>Secondary action</button>}
   >
@@ -43,7 +43,7 @@ it('renders without errors without the image', () => {
 it('renders without errors without the heading', () => {
   render(<EmptyState
     image={<img src="https://test.local/image.png" alt="" />}
-    description="Empty state description"
+    message="Empty state description"
     primaryAction={<button>Primary action</button>}
     secondaryAction={<button>Secondary action</button>}
   >
@@ -54,7 +54,7 @@ it('renders without errors without the heading', () => {
 it('renders without errors without the description', () => {
   render(<EmptyState
     image={<img src="https://test.local/image.png" alt="" />}
-    heading="Empty state heading"
+    title="Empty state heading"
     primaryAction={<button>Primary action</button>}
     secondaryAction={<button>Secondary action</button>}
   >
@@ -65,8 +65,8 @@ it('renders without errors without the description', () => {
 it('renders without errors without the primary action', () => {
   render(<EmptyState
     image={<img src="https://test.local/image.png" alt="" />}
-    heading="Empty state heading"
-    description="Empty state description"
+    title="Empty state heading"
+    message="Empty state description"
     secondaryAction={<button>Secondary action</button>}
   >
     Empty state content
@@ -76,8 +76,8 @@ it('renders without errors without the primary action', () => {
 it('renders without errors without the secondary action', () => {
   render(<EmptyState
     image={<img src="https://test.local/image.png" alt="" />}
-    heading="Empty state heading"
-    description="Empty state description"
+    title="Empty state heading"
+    message="Empty state description"
     primaryAction={<button>Primary action</button>}
   >
     Empty state content
@@ -87,8 +87,8 @@ it('renders without errors without the secondary action', () => {
 it('renders without errors without children', () => {
   render(<EmptyState
     image={<img src="https://test.local/image.png" alt="" />}
-    heading="Empty state heading"
-    description="Empty state description"
+    title="Empty state heading"
+    message="Empty state description"
     primaryAction={<button>Primary action</button>}
     secondaryAction={<button>Secondary action</button>}
   />);

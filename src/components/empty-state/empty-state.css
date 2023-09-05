@@ -18,26 +18,25 @@
   color: var(--dc-empty-state-secondary-color);
 }
 
-.dc-empty-state__heading,
-.dc-empty-state__description {
+.dc-empty-state__title,
+.dc-empty-state__message {
   max-width: var(--dc-empty-state-inner-width);
   margin: 0;
 }
 
-.dc-empty-state__heading {
-  font: 600 var(--dc-text-lg);
+.dc-empty-state__title {
+  font: 700 var(--dc-text-md);
 }
 
-.dc-empty-state__description {
-  color: var(--dc-empty-state-secondary-color);
+.dc-empty-state__message {
 }
 
-* + .dc-empty-state__heading,
-* + .dc-empty-state__description {
+* + .dc-empty-state__title,
+* + .dc-empty-state__message {
   margin-top: 8px;
 }
 
-.dc-empty-state__heading + .dc-empty-state__description {
+.dc-empty-state__title + .dc-empty-state__message {
   margin-top: 4px;
 }
 
