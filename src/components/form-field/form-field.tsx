@@ -2,6 +2,7 @@ import { ComponentPropsWithoutRef, ReactNode, useId } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { Label } from '../label';
 import { Caption } from '../caption';
+import { ExclamationTriangleIcon } from '../icons/solid/exclamation-triangle-icon';
 
 export type FormFieldRenderFn = (props: {
   id: string;
@@ -57,8 +58,9 @@ export function FormField({
       <Caption
         id={errorId}
         className="dc-form-field__error"
-        appearance="error"
-        showIcon={true}
+        role="alert"
+        color="red"
+        icon={<ExclamationTriangleIcon width={20} height={20} />}
       >
         {error}
       </Caption>

@@ -1,8 +1,9 @@
+import { useId } from 'react';
 import { classNames } from '../../lib';
-import { ArrowReturnRight } from './icons';
 import { TextInput } from '../text-input';
 import { Caption } from '../caption';
-import { useId } from 'react';
+import { ArrowReturnRight } from './icons';
+import { ExclamationTriangleIcon } from '../icons/solid/exclamation-triangle-icon';
 
 export type StringFilterInputProps = {
   className?: string;
@@ -45,9 +46,9 @@ export function StringFilterInput({
         <Caption
           id={alertId}
           className="dc-string-filter-input__error"
-          appearance="error"
-          showIcon={true}
           role="alert"
+          color="red"
+          icon={<ExclamationTriangleIcon width={20} height={20} />}
         >
           {error}
         </Caption>

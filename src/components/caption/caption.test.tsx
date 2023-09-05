@@ -1,5 +1,5 @@
-import { Caption, CaptionAppearance } from './caption';
-import { describe, expect, it } from 'vitest';
+import { Caption } from './caption';
+import { expect, it } from 'vitest';
 import { render, screen } from '../../test/test-utils';
 
 it('renders without errors', () => {
@@ -23,24 +23,9 @@ it('should forward extra props', () => {
   expect(captionEl).toHaveAttribute('data-name', attrs['data-name']);
 });
 
-describe('renders with different icons', () => {
-  const appearances: CaptionAppearance[] = [
-    'default',
-    'info',
-    'success',
-    'error',
-    'warning',
-  ];
-  appearances.forEach((appearance) => {
-    it(`'${appearance}' appearance`, () => {
-      const text = 'You can use letters, numbers & periods';
-      render(
-        <Caption showIcon={true} appearance={appearance}>
-          {text}
-        </Caption>,
-      );
-      screen.getByText(text);
-      screen.getByTestId('caption-icon');
-    });
-  });
+it('renders with icon', () => {
+  const text = 'You can use letters, numbers & periods';
+  const icon = <svg role="img" />;
+  render(<Caption icon={icon}>{text}</Caption>);
+  screen.getByRole('img');
 });

@@ -7,26 +7,25 @@
   text-align: left;
 }
 
-.dc-caption_appearance_info {
+.dc-caption_color_blue {
   color: var(--dc-info-text-color);
 }
 
-.dc-caption_appearance_success {
+.dc-caption_color_green {
   color: var(--dc-success-text-color);
 }
 
-.dc-caption_appearance_error {
-  color: var(--dc-error-text-color);
+.dc-caption_color_orange {
+  color: var(--dc-warning-text-color);
 }
 
-.dc-caption_appearance_warning {
-  color: var(--dc-warning-text-color);
+.dc-caption_color_red {
+  color: var(--dc-error-text-color);
 }
 
 .dc-caption__icon {
   color: inherit;
+  display: inline-flex;
   float: left;
-  width: 20px;
-  height: 20px;
   margin-right: 0.5em;
 }
