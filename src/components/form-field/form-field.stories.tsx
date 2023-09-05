@@ -18,7 +18,7 @@ export default meta;
 
 export const Basic: StoryFn<typeof FormField> = (args) => (
   <FormField {...args}>
-    <TextInput id={args.labelFor} width="40ch" />
+    <TextInput id={args.labelFor} sizeInChars={40} />
   </FormField>
 );
 Basic.args = {

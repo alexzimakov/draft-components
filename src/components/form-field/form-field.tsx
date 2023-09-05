@@ -5,9 +5,12 @@ import { Caption } from '../caption';
 
 export type FormFieldRenderFn = (props: {
   id: string;
+  invalid: boolean;
   required: boolean;
-  'aria-invalid': boolean;
-  'aria-describedby': string;
+  /**
+   * The list of IDs that describe the input element.
+   */
+  describedBy: string[];
 }) => ReactNode;
 type FormFieldHTMLProps = ComponentPropsWithoutRef<'div'>;
 type FormFieldBaseProps = Omit<FormFieldHTMLProps, 'children'>;
@@ -31,6 +34,7 @@ export function FormField({
   ...props
 }: FormFieldProps) {
   const id = useId();
+  const invalid = Boolean(error);
   const inputId = labelFor || `${id}-input`;
   const inputDescribedBy: string[] = [];
 
@@ -46,7 +50,7 @@ export function FormField({
   }
 
   let errorElement: ReactNode = null;
-  if (error) {
+  if (invalid) {
     const errorId = `${inputId}-error`;
     inputDescribedBy.push(errorId);
     errorElement = (
@@ -64,10 +68,10 @@ export function FormField({
   let inputElement: ReactNode;
   if (typeof children === 'function') {
     inputElement = children({
-      'id': inputId,
-      'aria-invalid': Boolean(error),
-      'aria-describedby': inputDescribedBy.join(' '),
+      invalid,
       required,
+      id: inputId,
+      describedBy: inputDescribedBy,
     });
   } else {
     inputElement = children;

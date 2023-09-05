@@ -49,7 +49,14 @@ it('renders without errors when `children` is a function', () => {
       error="Username must only include letters a to z"
       required={true}
     >
-      {(props) => <input {...props} />}
+      {(props) => (
+        <input
+          id={props.id}
+          required={props.required}
+          aria-invalid={props.invalid}
+          aria-describedby={props.describedBy.join(' ')}
+        />
+      )}
     </FormField>,
   );
 
