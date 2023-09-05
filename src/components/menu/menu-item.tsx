@@ -3,13 +3,11 @@ import { classNames } from '../../lib/react-helpers';
 
 type MenuItemHTMLProps = ComponentPropsWithRef<'button'>;
 type MenuItemBaseProps = Omit<MenuItemHTMLProps, 'children' | 'role'>;
-export type MenuItemAppearance = 'default' | 'destructive';
-export type MenuItemRole = 'menuitem' | 'menuitemradio';
 export type MenuItemProps = {
-  role?: MenuItemRole;
-  appearance?: MenuItemAppearance;
-  leftIcon?: ReactNode;
-  rightIcon?: ReactNode;
+  role?: 'menuitem' | 'menuitemradio';
+  destructive?: boolean;
+  iconLeft?: ReactNode;
+  iconRight?: ReactNode;
   children: ReactNode;
 } & MenuItemBaseProps;
 
@@ -18,18 +16,18 @@ export const MenuItem = forwardRef<
   MenuItemProps
 >(function MenuItem({
   role = 'menuitem',
-  appearance = 'default',
-  leftIcon = null,
-  rightIcon = null,
-  className,
+  destructive,
+  iconLeft,
+  iconRight,
   children,
+  className,
   ...props
 }, ref) {
   let label = children;
-  if (leftIcon || rightIcon) {
+  if (iconLeft || iconRight) {
     const className = classNames('dc-menu-btn__label', {
-      'dc-menu-btn__label_gap_left': leftIcon,
-      'dc-menu-btn__label_gap_right': rightIcon,
+      'dc-menu-btn__label_gap_left': iconLeft,
+      'dc-menu-btn__label_gap_right': iconRight,
     });
     label = <span className={className}>{label}</span>;
   }
@@ -40,15 +38,15 @@ export const MenuItem = forwardRef<
         {...props}
         ref={ref}
         className={classNames(className, 'dc-menu-btn', {
-          [`dc-menu-btn_${appearance}`]: appearance,
+          'dc-menu-btn_destructive': destructive,
         })}
         type="button"
         role={role}
         tabIndex={-1}
       >
-        {leftIcon}
+        {iconLeft}
         {label}
-        {rightIcon}
+        {iconRight}
       </button>
     </li>
   );

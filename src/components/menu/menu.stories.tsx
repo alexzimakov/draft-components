@@ -2,7 +2,10 @@ import { Meta, StoryFn } from '@storybook/react';
 import { Menu } from './menu';
 import { MenuItem } from './menu-item';
 import { MenuSeparator } from './menu-separator';
-import { ArrowDownTrayIcon, DocumentDuplicateIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
+import ArrowDownTrayIcon from '@heroicons/react/24/outline/ArrowDownTrayIcon';
+import DocumentDuplicateIcon from '@heroicons/react/24/outline/DocumentDuplicateIcon';
+import PencilIcon from '@heroicons/react/24/outline/PencilIcon';
+import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
 
 const meta: Meta<typeof Menu> = {
   title: 'Navigation/Menu',
@@ -19,7 +22,7 @@ export const Basic: StoryFn<typeof Menu> = (args) => (
     <MenuItem>Rename</MenuItem>
     <MenuItem>Duplicate</MenuItem>
     <MenuSeparator />
-    <MenuItem appearance="destructive">Delete</MenuItem>
+    <MenuItem destructive={true}>Delete</MenuItem>
   </Menu>
 );
 Basic.argTypes = {
@@ -36,24 +39,22 @@ Basic.args = {
 
 export const WithIcon: StoryFn<typeof Menu> = (args) => (
   <Menu {...args}>
-    <MenuItem leftIcon={<ArrowDownTrayIcon width={16} height={16} />}>
+    <MenuItem iconLeft={<ArrowDownTrayIcon width={16} height={16} />}>
       Save
     </MenuItem>
-    <MenuItem leftIcon={<PencilIcon width={16} height={16} />}>
+    <MenuItem iconLeft={<PencilIcon width={16} height={16} />}>
       Rename
     </MenuItem>
-    <MenuItem leftIcon={<DocumentDuplicateIcon width={16} height={16} />}>
+    <MenuItem iconLeft={<DocumentDuplicateIcon width={16} height={16} />}>
       Rename
     </MenuItem>
     <MenuSeparator />
-    <MenuItem
-      leftIcon={<TrashIcon width={16} height={16} />}
-      appearance="destructive"
-    >
+    <MenuItem iconLeft={<TrashIcon width={16} height={16} />} destructive={true}>
       Delete
     </MenuItem>
   </Menu>
 );
+WithIcon.storyName = 'With icon';
 WithIcon.argTypes = {
   button: {
     control: 'text',
