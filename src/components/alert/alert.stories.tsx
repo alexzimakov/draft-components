@@ -48,15 +48,15 @@ WithIcon.args = {
 
 export const Variant: StoryFn<typeof Alert> = (args) => (
   <section style={{ maxWidth: LAYOUT_MAX_WIDTH }}>
-    <StorySection heading="default">
+    <StorySection title="default">
       <Alert {...args} variant="default" />
     </StorySection>
 
-    <StorySection heading="full-width">
+    <StorySection title="full-width">
       <Alert {...args} variant="full-width" />
     </StorySection>
 
-    <StorySection heading="accent-border">
+    <StorySection title="accent-border">
       <Alert {...args} variant="accent-border" />
     </StorySection>
   </section>
@@ -72,7 +72,7 @@ Variant.args = {
 
 export const Appearance: StoryFn<typeof Alert> = (args) => (
   <section style={{ maxWidth: LAYOUT_MAX_WIDTH }}>
-    <StorySection heading="default">
+    <StorySection title="default">
       <Alert
         {...args}
         icon={<ScaleIcon width={18} height={18} />}
@@ -84,7 +84,7 @@ export const Appearance: StoryFn<typeof Alert> = (args) => (
       </Alert>
     </StorySection>
 
-    <StorySection heading="warning">
+    <StorySection title="warning">
       <Alert
         {...args}
         icon={<BoltIcon width={18} height={18} />}
@@ -96,7 +96,7 @@ export const Appearance: StoryFn<typeof Alert> = (args) => (
       </Alert>
     </StorySection>
 
-    <StorySection heading="error">
+    <StorySection title="error">
       <Alert
         {...args}
         icon={<SignalSlashIcon width={18} height={18} />}
@@ -107,7 +107,7 @@ export const Appearance: StoryFn<typeof Alert> = (args) => (
       </Alert>
     </StorySection>
 
-    <StorySection heading="info">
+    <StorySection title="info">
       <Alert
         {...args}
         icon={<CogIcon width={20} height={20} />}
@@ -119,7 +119,7 @@ export const Appearance: StoryFn<typeof Alert> = (args) => (
       </Alert>
     </StorySection>
 
-    <StorySection heading="success">
+    <StorySection title="success">
       <Alert
         {...args}
         icon={<HandThumbUpIcon width={18} height={18} />}

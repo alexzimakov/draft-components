@@ -166,7 +166,7 @@ export const SizeInChars: StoryFn<typeof TextInput> = (args) => {
       {sizes.map((size) => {
         const label = labels[size];
         return (
-          <StorySection key={size} heading={label}>
+          <StorySection key={size} title={label}>
             <TextInput {...args} sizeInChars={size} aria-label={label} />
           </StorySection>
         );

@@ -123,7 +123,7 @@ export const ButtonStyles = (args: ButtonProps) => {
   return buttonStyles.map((buttonStyle, index) => (
     <StorySection
       key={buttonStyle}
-      heading={buttonStyle}
+      title={buttonStyle}
       style={{ paddingTop: index === 0 ? 0 : 16 }}
     >
       <div style={rowStyle}>
