@@ -13,8 +13,8 @@ export const Basic: StoryFn<typeof Tag> = (args) => (
 );
 Basic.args = {
   children: 'Protected',
-  variant: 'tinted',
-  fill: 'gray',
+  tagStyle: 'default',
+  tint: 'gray',
   size: 'md',
 };
 
@@ -25,9 +25,9 @@ export const Sizes: StoryFn<typeof Tag> = (args) => (
     <Tag {...args} size="lg" />
   </div>
 );
-Sizes.argTypes = {
-  size: {
-    control: { disable: true },
+Sizes.parameters = {
+  controls: {
+    exclude: ['size'],
   },
 };
 Sizes.args = {
@@ -35,39 +35,42 @@ Sizes.args = {
 };
 
 export const WithIcon = Basic.bind({});
+WithIcon.storyName = 'With icon';
 WithIcon.args = {
   children: (
     <>
-      <LockClosedIcon style={{ marginRight: 6 }} width="1em" height="1em" />
-      Protected
+      <LockClosedIcon
+        style={{ marginRight: 6 }}
+        width="1em"
+        height="1em"
+      /> Protected
     </>
   ),
 };
 
-export const FillColors: StoryFn<typeof Tag> = (args) => (
+export const Tints: StoryFn<typeof Tag> = (args) => (
   <div style={{
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'flex-end',
     gap: 16,
   }}>
-    <Tag {...args} fill="gray">Gray</Tag>
-    <Tag {...args} fill="green">Green</Tag>
-    <Tag {...args} fill="cyan">Cyan</Tag>
-    <Tag {...args} fill="blue">Blue</Tag>
-    <Tag {...args} fill="purple">Purple</Tag>
-    <Tag {...args} fill="pink">Pink</Tag>
-    <Tag {...args} fill="red">Red</Tag>
-    <Tag {...args} fill="orange">Orange</Tag>
-    <Tag {...args} fill="yellow">Yellow</Tag>
+    <Tag {...args} tint="gray">Gray</Tag>
+    <Tag {...args} tint="green">Green</Tag>
+    <Tag {...args} tint="cyan">Cyan</Tag>
+    <Tag {...args} tint="blue">Blue</Tag>
+    <Tag {...args} tint="purple">Purple</Tag>
+    <Tag {...args} tint="pink">Pink</Tag>
+    <Tag {...args} tint="red">Red</Tag>
+    <Tag {...args} tint="orange">Orange</Tag>
+    <Tag {...args} tint="yellow">Yellow</Tag>
   </div>
 );
-FillColors.argTypes = {
-  size: {
-    fill: { disable: true },
-    children: { disable: true },
+Tints.parameters = {
+  controls: {
+    exclude: ['tint', 'children'],
   },
 };
-FillColors.args = {
+Tints.args = {
   ...Basic.args,
 };

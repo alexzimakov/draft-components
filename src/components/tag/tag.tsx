@@ -1,8 +1,10 @@
-import { ComponentPropsWithoutRef, forwardRef } from 'react';
+import { ComponentPropsWithRef, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
 
-type TagBaseProps = ComponentPropsWithoutRef<'strong'>;
-export type TagFill =
+type TagHTMLProps = ComponentPropsWithRef<'strong'>;
+export type TagStyle = 'default' | 'filled' | 'tinted';
+export type TagSize = 'sm' | 'md' | 'lg';
+export type TagTint =
   | 'gray'
   | 'green'
   | 'cyan'
@@ -12,36 +14,51 @@ export type TagFill =
   | 'red'
   | 'orange'
   | 'yellow';
-export type TagSize = 'sm' | 'md' | 'lg';
-export type TagVariant = 'default' | 'filled' | 'tinted';
+export type TagElementType =
+  | 'abbr'
+  | 'b'
+  | 'bdo'
+  | 'cite'
+  | 'code'
+  | 'dfn'
+  | 'em'
+  | 'i'
+  | 'kbd'
+  | 'samp'
+  | 'small'
+  | 'span'
+  | 'strong'
+  | 'var';
 export type TagProps = {
-  isRounded?: boolean;
-  variant?: TagVariant;
-  fill?: TagFill;
+  as?: TagElementType;
+  tagStyle?: TagStyle;
   size?: TagSize;
-} & TagBaseProps;
+  tint?: TagTint;
+  rounded?: boolean;
+} & TagHTMLProps;
 
 export const Tag = forwardRef<HTMLElement, TagProps>(function Tag({
-  isRounded = false,
-  variant = 'default',
-  fill = 'gray',
+  as: Component = 'strong',
+  tagStyle = 'default',
   size = 'md',
+  tint = 'gray',
+  rounded,
   className,
   children,
   ...props
 }, ref) {
   return (
-    <strong
+    <Component
       {...props}
       ref={ref}
       className={classNames(className, 'dc-tag', {
-        [`dc-tag_${variant}`]: variant,
-        [`dc-tag_${fill}`]: fill,
+        [`dc-tag_${tagStyle}`]: tagStyle,
         [`dc-tag_${size}`]: size,
-        'dc-tag_rounded': isRounded,
+        [`dc-tag_${tint}`]: tint,
+        'dc-tag_rounded': rounded,
       })}
     >
       {children}
-    </strong>
+    </Component>
   );
 });
