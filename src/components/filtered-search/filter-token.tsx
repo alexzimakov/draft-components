@@ -1,7 +1,7 @@
 import { MouseEventHandler, ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib';
-import { XMarkIcon } from './icons';
 import { useTranslations } from './use-translations';
+import { XMarkIcon } from '../hero-icons/24/outline/x-mark-icon';
 
 export type FilterTokenProps = {
   className?: string;
@@ -40,7 +40,7 @@ export const FilterToken = forwardRef<
         aria-label={removeFilterButton}
         onClick={onClickCloseButton}
       >
-        <XMarkIcon />
+        <XMarkIcon width={16} height={16} />
       </button>
     </div>
   );

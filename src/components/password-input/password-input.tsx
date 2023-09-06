@@ -2,7 +2,8 @@ import { ReactNode, forwardRef, useState } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { TextInput, TextInputProps } from '../text-input';
 import { Tooltip } from '../tooltip';
-import { EyeIcon, EyeSlashIcon } from './icons';
+import { EyeIcon } from '../hero-icons/24/outline/eye-icon';
+import { EyeSlashIcon } from '../hero-icons/24/outline/eye-slash-icon';
 
 export type PasswordInputBaseProps = Omit<TextInputProps, 'type' | 'slotRight'>
 export type PasswordInputProps = {

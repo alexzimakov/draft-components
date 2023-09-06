@@ -16,7 +16,8 @@ import { TranslationsProvider } from './use-translations';
 import { useComboboxIds } from './use-combobox-ids';
 import { IconButton } from '../button';
 import { FilterItem } from './filter-item';
-import { MagnifyingGlassIcon, TrashIcon } from './icons';
+import { TrashIcon } from '../hero-icons/24/outline/trash-icon';
+import { MagnifyingGlassIcon } from '../hero-icons/24/outline/magnifying-glass-icon';
 import { KeyboardKeys, classNames, exhaustiveCheck } from '../../lib';
 
 export type FilteredSearchHTMLProps = ComponentPropsWithoutRef<'div'>;
@@ -291,7 +292,11 @@ export function FilteredSearch({
         onMouseDown={onContainerPressed}
         {...props}
       >
-        <MagnifyingGlassIcon className="dc-filtered-search__icon" />
+        <MagnifyingGlassIcon
+          className="dc-filtered-search__icon"
+          width={18}
+          height={18}
+        />
         <div className="dc-filtered-search__filters">
           {renderedFilters}
           <input
@@ -319,7 +324,7 @@ export function FilteredSearch({
           size="sm"
           onClick={onClearButtonPressed}
         >
-          <TrashIcon />
+          <TrashIcon width={18} height={18} />
         </IconButton>
         {expanded && renderedOptions.length > 0 && (
           <ul

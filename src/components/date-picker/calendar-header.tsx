@@ -4,7 +4,8 @@ import { JSX, useEffect, useState } from 'react';
 import { IconButton } from '../button';
 import { Select } from '../select';
 import { TextInput } from '../text-input';
-import { ChevronLeftIcon, ChevronRightIcon } from './icons';
+import { ChevronLeftIcon } from '../hero-icons/24/outline/chevron-left-icon';
+import { ChevronRightIcon } from '../hero-icons/24/outline/chevron-right-icon';
 
 export type CalendarHeaderProps = {
   focusDay: Date;
@@ -45,7 +46,7 @@ export function CalendarHeader({
         aria-label={prevMonthButtonLabel}
         onClick={() => onChangeFocusDay(addMonths(focusDay, -1))}
       >
-        <ChevronLeftIcon width={14} height={14} />
+        <ChevronLeftIcon width={16} height={16} strokeWidth={2} />
       </IconButton>
 
       <Select
@@ -83,7 +84,7 @@ export function CalendarHeader({
         aria-label={nextMonthButtonLabel}
         onClick={() => onChangeFocusDay(addMonths(focusDay, 1))}
       >
-        <ChevronRightIcon width={14} height={14} />
+        <ChevronRightIcon width={16} height={16} strokeWidth={2} />
       </IconButton>
     </div>
   );

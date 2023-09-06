@@ -1,6 +1,6 @@
 import { ComponentPropsWithRef, MouseEventHandler, ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { XMarkIcon } from '../icons/outline/x-mark-icon';
+import { XMarkIcon } from '../hero-icons/24/outline/x-mark-icon';
 
 type AlertHTMLProps = ComponentPropsWithRef<'div'>;
 type AlertBaseProps = Omit<AlertHTMLProps, 'title'>;

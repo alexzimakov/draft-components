@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, ReactNode, useId } from 'react';
 import { classNames } from '../../lib/react-helpers';
 import { Label } from '../label';
 import { Caption } from '../caption';
-import { ExclamationTriangleIcon } from '../icons/solid/exclamation-triangle-icon';
+import { ExclamationTriangleIcon } from '../hero-icons/24/solid/exclamation-triangle-icon';
 
 export type FormFieldRenderFn = (props: {
   id: string;

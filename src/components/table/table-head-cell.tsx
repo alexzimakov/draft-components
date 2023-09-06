@@ -1,6 +1,8 @@
 import { ComponentPropsWithRef, ComponentPropsWithoutRef, ElementType, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers';
-import { ArrowSmallDown, ArrowSmallUp, ArrowsUpDown } from './icons';
+import { ArrowsUpDownIcon } from '../hero-icons/24/outline/arrows-up-down-icon';
+import { ArrowSmallUpIcon } from '../hero-icons/24/outline/arrow-small-up-icon';
+import { ArrowSmallDownIcon } from '../hero-icons/24/outline/arrow-small-down-icon';
 
 type TableHeadCellBaseProps = ComponentPropsWithRef<'th'>;
 export type TableHeadCellSort = 'none' | 'ascending' | 'descending'
@@ -14,9 +16,9 @@ const iconMapping: Record<
   TableHeadCellSort,
   ElementType<ComponentPropsWithoutRef<'svg'>>
 > = {
-  none: ArrowsUpDown,
-  ascending: ArrowSmallUp,
-  descending: ArrowSmallDown,
+  none: ArrowsUpDownIcon,
+  ascending: ArrowSmallUpIcon,
+  descending: ArrowSmallDownIcon,
 };
 
 const stateMapping: Record<
@@ -29,7 +31,7 @@ const stateMapping: Record<
 };
 
 export const TableHeadCell = forwardRef<
-  HTMLTableHeaderCellElement,
+  HTMLTableCellElement,
   TableHeadCellProps
 >(function TableHeaderCell({
   isSortable = false,
