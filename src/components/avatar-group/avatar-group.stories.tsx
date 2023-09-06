@@ -26,7 +26,7 @@ export const Basic: StoryFn<typeof AvatarGroup> = (args) => (
 export const Square: StoryFn<typeof AvatarGroup> = (args) => (
   <AvatarGroup {...args}>
     {urls.map((url, index) => (
-      <Avatar key={`avatar-${index}`} src={url} isSquare={true} />
+      <Avatar key={`avatar-${index}`} src={url} square={true} />
     ))}
   </AvatarGroup>
 );

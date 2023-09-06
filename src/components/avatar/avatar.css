@@ -2,126 +2,129 @@
   --dc-avatar-size: 40px;
   --dc-avatar-radius: 50%;
   --dc-avatar-font-size: 16px;
-  --dc-avatar-text-color: white;
-  --dc-avatar-bg: none;
-  --dc-avatar-inner-border-color: rgb(var(--dc-gray-700-rgb) / 0.15);
+  --dc-avatar-color: var(--dc-white);
+  --dc-avatar-bg: var(--dc-gray-400);
+  --dc-avatar-image-border-color: rgb(var(--dc-gray-700-rgb) / 0.1);
 
   color-scheme: light;
+  font-family: var(--dc-primary-font);
+  font-size: var(--dc-avatar-font-size);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--dc-avatar-color);
   position: relative;
   display: inline-flex;
+  overflow: hidden;
   user-select: none;
-  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   width: var(--dc-avatar-size);
   height: var(--dc-avatar-size);
   border-radius: var(--dc-avatar-radius);
+  background: var(--dc-avatar-bg);
 }
 
-.dc-avatar_has_inner-shadow::after {
-  content: "";
+.dc-avatar_image::after {
+  content: '';
   position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: var(--dc-avatar-radius);
-  box-shadow: inset 0 0 0 1px var(--dc-avatar-inner-border-color);
-}
-
-.dc-avatar__image,
-.dc-avatar__placeholder {
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
-  border-radius: var(--dc-avatar-radius);
+  border: 1px solid var(--dc-avatar-image-border-color);
+  border-radius: inherit;
 }
 
-.dc-avatar__image {
-  object-fit: cover;
+.dc-avatar_size_xs {
+  --dc-avatar-size: 24px;
+  --dc-avatar-font-size: 10px;
 }
 
-.dc-avatar__placeholder {
-  font-family: var(--dc-primary-font);
-  font-size: var(--dc-avatar-font-size);
-  font-weight: 600;
-  color: var(--dc-avatar-text-color);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  background: var(--dc-avatar-bg);
+.dc-avatar_size_sm {
+  --dc-avatar-size: 32px;
+  --dc-avatar-font-size: 12px;
+}
+
+.dc-avatar_size_lg {
+  --dc-avatar-size: 48px;
+  --dc-avatar-font-size: 20px;
+}
+
+.dc-avatar_size_xl {
+  --dc-avatar-size: 56px;
+  --dc-avatar-font-size: 24px;
 }
 
 .dc-avatar_square {
   --dc-avatar-radius: 8px;
 }
 
-.dc-avatar_size_xs {
-  --dc-avatar-font-size: 10px;
-  --dc-avatar-size: 24px;
-}
-
 .dc-avatar_square.dc-avatar_size_xs {
   --dc-avatar-radius: 4px;
-}
-
-.dc-avatar_size_sm {
-  --dc-avatar-font-size: 12px;
-  --dc-avatar-size: 32px;
 }
 
 .dc-avatar_square.dc-avatar_size_sm {
   --dc-avatar-radius: 6px;
 }
 
-.dc-avatar_size_lg {
-  --dc-avatar-font-size: 20px;
-  --dc-avatar-size: 48px;
-}
-
 .dc-avatar_square.dc-avatar_size_lg {
-  --dc-avatar-radius: 10px;
-}
-
-.dc-avatar_size_xl {
-  --dc-avatar-font-size: 24px;
-  --dc-avatar-size: 56px;
+  --dc-avatar-radius: 9px;
 }
 
 .dc-avatar_square.dc-avatar_size_xl {
-  --dc-avatar-radius: 12px;
-}
-
-.dc-avatar_circular {
-  --dc-avatar-radius: 50%;
-}
-
-.dc-avatar_fill_gray {
-  --dc-avatar-bg: linear-gradient(#9ca3af, #6b7280);
+  --dc-avatar-radius: 10px;
 }
 
 .dc-avatar_fill_pink {
-  --dc-avatar-bg: linear-gradient(#fb7185, #f43f5e);
+  --dc-avatar-color: var(--dc-white);
+  --dc-avatar-bg: #f472b6;
 }
 
 .dc-avatar_fill_red {
-  --dc-avatar-bg: linear-gradient(#f87171, #ef4444);
+  --dc-avatar-color: var(--dc-white);
+  --dc-avatar-bg: #f87171;
 }
 
 .dc-avatar_fill_orange {
-  --dc-avatar-bg: linear-gradient(#fb923c, #f97316);
+  --dc-avatar-color: var(--dc-white);
+  --dc-avatar-bg: #fb923c;
 }
 
 .dc-avatar_fill_yellow {
-  --dc-avatar-bg: linear-gradient(#fbbf24, #f59e0b);
+  --dc-avatar-color: var(--dc-white);
+  --dc-avatar-bg: #fbbf24;
 }
 
 .dc-avatar_fill_green {
-  --dc-avatar-bg: linear-gradient(#4ade80, #10b981);
+  --dc-avatar-color: var(--dc-white);
+  --dc-avatar-bg: #4ade80;
+}
+
+.dc-avatar_fill_teal {
+  --dc-avatar-color: var(--dc-white);
+  --dc-avatar-bg: #2dd4bf;
 }
 
 .dc-avatar_fill_blue {
-  --dc-avatar-bg: linear-gradient(#38bdf8, #0ea5e9);
+  --dc-avatar-color: var(--dc-white);
+  --dc-avatar-bg: #60a5fa;
+}
+
+.dc-avatar_fill_indigo {
+  --dc-avatar-color: var(--dc-white);
+  --dc-avatar-bg: #818cf8;
 }
 
 .dc-avatar_fill_violet {
-  --dc-avatar-bg: linear-gradient(#818cf8, #6366f1);
+  --dc-avatar-color: var(--dc-white);
+  --dc-avatar-bg: #a78bfa;
+}
+
+.dc-avatar__image,
+.dc-avatar__silhouette {
+  line-height: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
 }

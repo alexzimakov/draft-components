@@ -6,7 +6,7 @@ it('renders without error', () => {
   const src = 'avatar-test.png';
   const alt = 'portrait photography of man';
 
-  render(<Avatar src={src} alt={alt} />);
+  render(<Avatar src={src} altText={alt} />);
 
   const image = screen.getByRole('img');
   expect(image).toHaveAttribute('src', src);
@@ -19,7 +19,7 @@ it('renders with initials', () => {
   const alt = 'John Doe';
   const initials = 'JD';
 
-  render(<Avatar alt={alt} placeholder={initials} />);
+  render(<Avatar altText={alt} initials={initials} />);
   screen.getByText(initials);
   screen.getByLabelText(alt);
   expect(screen.getByText(initials)).toBe(screen.getByLabelText(alt));

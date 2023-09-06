@@ -5,18 +5,13 @@ const meta: Meta<typeof Avatar> = {
   title: 'Avatar',
   component: Avatar,
   argTypes: {
-    placeholder: {
+    initials: {
       control: 'text',
     },
   },
   args: {
     size: 'lg',
     fill: 'gray',
-    isSquare: false,
-    hasInnerShadow: false,
-    src: '',
-    alt: '',
-    placeholder: '',
   },
 };
 export default meta;
@@ -36,23 +31,23 @@ const images = {
 
 export const Basic: StoryFn<typeof Avatar> = (args, context) => {
   let src = args.src;
-  let alt = args.alt;
+  let altText = args.altText;
   if (!src) {
     if (context.globals.theme === 'dark') {
       src = images.portraitOfMan.src;
-      alt = images.portraitOfMan.alt;
+      altText = images.portraitOfMan.alt;
     } else {
       src = images.portraitOfOscarWilde.src;
-      alt = images.portraitOfOscarWilde.alt;
+      altText = images.portraitOfOscarWilde.alt;
     }
   }
-  return <Avatar {...args} src={src} alt={alt} />;
+  return <Avatar {...args} src={src} altText={altText} />;
 };
 Basic.args = {};
 
 export const Square = Basic.bind({});
 Square.args = {
-  isSquare: true,
+  square: true,
 };
 
 export const Sizes: StoryFn<typeof Avatar> = (args) => (
@@ -64,34 +59,40 @@ export const Sizes: StoryFn<typeof Avatar> = (args) => (
     <Avatar {...args} size="xl" />
   </div>
 );
-Sizes.argTypes = {
-  size: {
-    control: { disable: true },
+Sizes.parameters = {
+  controls: {
+    exclude: ['size'],
   },
 };
 Sizes.args = {
   src: images.portraitOfOscarWilde.src,
-  alt: images.portraitOfOscarWilde.alt,
+  altText: images.portraitOfOscarWilde.alt,
 };
 
-export const WithPlaceholder: StoryFn<typeof Avatar> = (args) => (
-  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20 }}>
+export const Fills: StoryFn<typeof Avatar> = (args) => (
+  <div style={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: 20,
+  }}>
     <Avatar {...args} fill="gray" />
     <Avatar {...args} fill="pink" />
     <Avatar {...args} fill="red" />
     <Avatar {...args} fill="orange" />
     <Avatar {...args} fill="yellow" />
     <Avatar {...args} fill="green" />
+    <Avatar {...args} fill="teal" />
     <Avatar {...args} fill="blue" />
+    <Avatar {...args} fill="indigo" />
     <Avatar {...args} fill="violet" />
   </div>
 );
-WithPlaceholder.argTypes = {
-  fill: {
-    control: { disable: true },
+Fills.parameters = {
+  controls: {
+    exclude: ['fill'],
   },
 };
-WithPlaceholder.args = {
-  size: 'lg',
-  placeholder: 'AR',
+Fills.args = {
+  size: 'md',
+  initials: 'AR',
 };
