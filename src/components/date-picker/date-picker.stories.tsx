@@ -72,6 +72,7 @@ Range.args = {
 };
 
 export const MinMaxValues = Basic.bind({});
+MinMaxValues.storyName = 'Min & Max';
 MinMaxValues.args = {
   value: '2022-12-21',
   min: '2022-12-07',

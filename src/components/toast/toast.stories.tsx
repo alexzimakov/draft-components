@@ -32,6 +32,7 @@ Basic.args = {
 };
 
 export const WithMessage = Basic.bind({});
+WithMessage.storyName = 'With message';
 WithMessage.args = {
   children: 'Photo deleted',
   message:
@@ -41,6 +42,7 @@ WithMessage.args = {
 };
 
 export const WithIcon = Basic.bind({});
+WithIcon.storyName = 'With icon';
 WithIcon.args = {
   children: 'Focus is on',
   message: 'All notifications and alerts will be silent.',

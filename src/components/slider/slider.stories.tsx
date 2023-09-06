@@ -22,11 +22,12 @@ Basic.args = {
 
 export const Disabled = Basic.bind({});
 Disabled.args = {
-  // defaultValue: 30,
+  defaultValue: 30,
   disabled: true,
 };
 
 export const WithTickMarks = Basic.bind({});
+WithTickMarks.storyName = 'With tick marks';
 WithTickMarks.args = {
   defaultValue: 2,
   thumbStyle: 'rect',

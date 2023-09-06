@@ -108,3 +108,4 @@ export const IconAndCounter = () => {
     </Tabs>
   );
 };
+IconAndCounter.storyName = 'With icon and badge';

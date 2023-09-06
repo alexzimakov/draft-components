@@ -54,6 +54,7 @@ export const WithTooltip = () => (
     <div style={{ padding: 16 }}>Popover Content</div>
   </Popover>
 );
+WithTooltip.storyName = 'With tooltip';
 
 export const Nested = () => {
   const styles = {
