@@ -1,7 +1,8 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { Breadcrumbs } from './breadcrumbs';
 import { BreadcrumbsItem } from './breadcrumbs-item';
-import { ChevronRightIcon, HomeIcon } from '@heroicons/react/24/outline';
+import ChevronRightIcon from '@heroicons/react/24/outline/ChevronRightIcon';
+import HomeIcon from '@heroicons/react/24/outline/HomeIcon';
 
 const meta: Meta<typeof Breadcrumbs> = {
   title: 'Navigation/Breadcrumbs',

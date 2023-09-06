@@ -2,7 +2,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { useState } from 'react';
 import { Tooltip } from './tooltip';
 import { IconButton } from '../button';
-import { BookmarkIcon } from '@heroicons/react/24/outline';
+import BookmarkIcon from '@heroicons/react/24/outline/BookmarkIcon';
 
 const meta: Meta<typeof Tooltip> = {
   title: 'Overlays/Tooltip',

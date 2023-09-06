@@ -10,7 +10,8 @@ import { FormField } from '../form-field';
 import { TextInput } from '../text-input';
 import { PasswordInput } from '../password-input';
 import { Menu, MenuItem } from '../menu';
-import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/solid';
+import EnvelopeIcon from '@heroicons/react/24/solid/EnvelopeIcon';
+import PhoneIcon from '@heroicons/react/24/solid/PhoneIcon';
 
 const meta: Meta<typeof Dialog> = {
   title: 'Overlays/Dialog',

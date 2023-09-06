@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { Toast } from './toast';
 import { ToastButton } from './toast-button';
-import { MoonIcon } from '@heroicons/react/24/solid';
+import MoonIcon from '@heroicons/react/24/solid/MoonIcon';
 
 const meta: Meta<typeof Toast> = {
   title: 'Feedback/Toast',

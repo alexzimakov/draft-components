@@ -4,7 +4,10 @@ import { Tabs } from './tabs';
 import { TabList } from './tab-list';
 import { Tab } from './tab';
 import { TabPanel } from './tab-panel';
-import { ArchiveBoxIcon, DocumentIcon, InboxIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline';
+import ArchiveBoxIcon from '@heroicons/react/24/outline/ArchiveBoxIcon';
+import DocumentIcon from '@heroicons/react/24/outline/DocumentIcon';
+import InboxIcon from '@heroicons/react/24/outline/InboxIcon';
+import PaperAirplaneIcon from '@heroicons/react/24/outline/PaperAirplaneIcon';
 
 const meta: Meta<typeof Tabs> = {
   title: 'Navigation/Tabs',

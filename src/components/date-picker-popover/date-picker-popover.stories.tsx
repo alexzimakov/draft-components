@@ -3,7 +3,7 @@ import { DateISO } from '../date-picker/date-helpers';
 import { useState } from 'react';
 import { DatePickerPopover } from './date-picker-popover';
 import { Button } from '../button';
-import { CalendarIcon } from '@heroicons/react/24/outline';
+import CalendarIcon from '@heroicons/react/24/outline/CalendarIcon';
 
 const meta: Meta<typeof DatePickerPopover> = {
   title: 'Overlays/DatePickerPopover',

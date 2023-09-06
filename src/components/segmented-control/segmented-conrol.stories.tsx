@@ -1,7 +1,8 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { useState } from 'react';
 import { SegmentedControl } from './segmented-control';
-import { ClockIcon, StarIcon } from '@heroicons/react/24/outline';
+import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
+import StarIcon from '@heroicons/react/24/outline/StarIcon';
 
 const meta: Meta<typeof SegmentedControl> = {
   title: 'Forms/SegmentedControl',

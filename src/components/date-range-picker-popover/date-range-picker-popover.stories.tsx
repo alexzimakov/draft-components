@@ -4,7 +4,7 @@ import { ReactNode, useState } from 'react';
 import { addDays, getStartOfMonth, getStartOfWeek, isSameDay, toDateISO } from '../date-picker/date-helpers';
 import { DateRangePickerPopover } from './date-range-picker-popover';
 import { Button } from '../button';
-import { CalendarIcon } from '@heroicons/react/24/outline';
+import CalendarIcon from '@heroicons/react/24/outline/CalendarIcon';
 
 const meta: Meta<typeof DateRangePickerPopover> = {
   title: 'Overlays/DateRangePickerPopover',
