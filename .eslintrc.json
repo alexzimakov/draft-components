@@ -1,0 +1,61 @@
+{
+  "root": true,
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "env": {
+    "node": true,
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["@alexzimakov/eslint-config"],
+
+  "overrides": [
+    {
+      "files": ["src/**/*.[jt]s?(x)"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        }
+      },
+      "plugins": [
+        "@typescript-eslint",
+        "react",
+        "react-hooks",
+        "jsx-a11y",
+        "storybook"
+      ],
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime",
+        "plugin:react-hooks/recommended",
+        "plugin:jsx-a11y/recommended",
+        "plugin:storybook/recommended"
+      ],
+      "settings": {
+        "react": {
+          "version": "detect"
+        }
+      },
+      "rules": {
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": ["error", {
+          "functions": false,
+          "classes": false,
+          "typedefs": false,
+          "ignoreTypeReferences": true
+        }],
+        "react/no-unescaped-entities": ["error", {
+          "forbid": [">", "}"]
+        }]
+      }
+    },
+
+    {
+      "files": ["src/**/__tests__/**/*.[jt]s?(x)", "src/**/?(*.)+(spec|test).[jt]s?(x)"],
+      "extends": ["plugin:testing-library/react"]
+    }
+  ]
+}

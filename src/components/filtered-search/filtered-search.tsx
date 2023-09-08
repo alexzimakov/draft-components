@@ -289,6 +289,7 @@ export function FilteredSearch({
           'dc-filtered-search': true,
           'dc-filtered-search_has_focus': hasFocus,
         })}
+        role="presentation"
         onMouseDown={onContainerPressed}
         {...props}
       >

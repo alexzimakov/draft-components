@@ -157,6 +157,7 @@ const SlideOverWithRef = forwardRef<SlideOverRef, SlideOverProps>(function Slide
           data-testid="slide-over-backdrop"
           className="dc-slide-over__backdrop"
           ref={backdropRef}
+          role="presentation"
           onClick={onClickBackdrop}
         />
         <div

@@ -78,6 +78,7 @@ export function TabList({
       {...props}
       ref={ref}
       role="tablist"
+      tabIndex={-1}
       className={classNames('dc-tab-list', className)}
       onFocus={handleFocus}
       onBlur={handleBlur}

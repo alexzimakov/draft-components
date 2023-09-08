@@ -29,11 +29,10 @@ export function FilterValueList({
 
   return (
     <ul className={classNames('dc-filter-value-list', className)}>
-      {values.map((value, index) => (
+      {values.map((value) => (
         <li key={value}>
           <SelectionControl label={formatValue(value)}>
             <Checkbox
-              autoFocus={index === 0}
               value={value}
               checked={checkedValues.includes(value)}
               onChange={onChange}

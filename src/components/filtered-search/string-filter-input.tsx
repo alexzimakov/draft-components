@@ -37,7 +37,6 @@ export function StringFilterInput({
         placeholder={placeholder}
         type="text"
         required={true}
-        autoFocus={true}
         value={value}
         invalid={invalid}
         onChangeValue={onChangeValue}

@@ -162,7 +162,7 @@ export function CalendarGrid({
   return (
     <table className="dc-calendar__grid" role="grid" aria-label={ariaLabel}>
       <CalendarGridHead locale={locale} weekStartsOn={weekStartsOn} />
-      <tbody onKeyDown={handleKeydown}>{rows}</tbody>
+      <tbody role="presentation" onKeyDown={handleKeydown}>{rows}</tbody>
     </table>
   );
 }
