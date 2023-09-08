@@ -10,7 +10,7 @@ coverage
 !.editorconfig
 !.eslintrc.cjs
 !.eslintignore
-!.stylelintrc.cjs
+!.stylelintrc.json
 !.storybook
 !.browserslistrc
 
