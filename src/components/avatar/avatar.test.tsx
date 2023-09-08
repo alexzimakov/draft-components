@@ -1,6 +1,6 @@
-import { Avatar } from './avatar';
 import { expect, it } from 'vitest';
-import { render, screen } from '../../test/test-utils';
+import { Avatar } from './avatar.js';
+import { render, screen } from '../../test/test-utils.js';
 
 it('renders without error', () => {
   const src = 'avatar-test.png';

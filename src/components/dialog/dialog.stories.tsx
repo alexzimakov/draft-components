@@ -1,17 +1,16 @@
 import { Meta } from '@storybook/react';
 import { RefObject, useRef, useState } from 'react';
-import { Dialog } from './dialog';
-import { DialogHeader } from './dialog-header';
-import { DialogBody } from './dialog-body';
-import { DialogFooter } from './dialog-footer';
-import { mergeRefs } from '../../lib/react-helpers';
-import { Button } from '../button';
-import { FormField } from '../form-field';
-import { TextInput } from '../text-input';
-import { PasswordInput } from '../password-input';
-import { Menu, MenuItem } from '../menu';
-import EnvelopeIcon from '@heroicons/react/24/solid/EnvelopeIcon';
-import PhoneIcon from '@heroicons/react/24/solid/PhoneIcon';
+import { Dialog } from './dialog.js';
+import { DialogHeader } from './dialog-header.js';
+import { DialogBody } from './dialog-body.js';
+import { DialogFooter } from './dialog-footer.js';
+import { mergeRefs } from '../../lib/react-helpers.js';
+import { Button } from '../button/index.js';
+import { FormField } from '../form-field/index.js';
+import { TextInput } from '../text-input/index.js';
+import { PasswordInput } from '../password-input/index.js';
+import { Menu, MenuItem } from '../menu/index.js';
+import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/solid';
 
 const meta: Meta<typeof Dialog> = {
   title: 'Overlays/Dialog',

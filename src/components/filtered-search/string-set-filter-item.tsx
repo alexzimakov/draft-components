@@ -1,11 +1,11 @@
-import { StringSetFilter, StringSetFilterOperator } from './model/string-set-filter';
+import { StringSetFilter, StringSetFilterOperator } from './model/string-set-filter.js';
 import { FormEventHandler, useState } from 'react';
-import { useTranslations } from './use-translations';
-import { Popover } from '../popover';
-import { FilterToken } from './filter-token';
-import { FilterOperatorSelect } from './filter-operator-select';
-import { FilterValueList } from './filter-value-list';
-import { Button } from '../button';
+import { useTranslations } from './use-translations.js';
+import { Popover } from '../popover/index.js';
+import { FilterToken } from './filter-token.js';
+import { FilterOperatorSelect } from './filter-operator-select.js';
+import { FilterValueList } from './filter-value-list.js';
+import { Button } from '../button/index.js';
 
 export type StringSetFilterItemProps = {
   filter: StringSetFilter;

@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { useState } from 'react';
-import { DatePicker } from './date-picker';
-import { DateRangePicker } from './date-range-picker';
+import { DatePicker } from './date-picker.js';
+import { DateRangePicker } from './date-range-picker.js';
 
 const meta: Meta<typeof DatePicker> = {
   title: 'Forms/DatePicker',

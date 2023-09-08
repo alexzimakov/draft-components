@@ -1,18 +1,5 @@
-import { ReactElement } from 'react';
-import { RenderOptions, cleanup, render } from '@testing-library/react';
-import { afterEach } from 'vitest';
+import userEventPkg from '@testing-library/user-event';
 
-afterEach(() => {
-  cleanup();
-});
-
-function customRender(ui: ReactElement, options: RenderOptions = {}) {
-  return render(ui, {
-    wrapper: ({ children }) => children,
-    ...options,
-  });
-}
-
+// https://github.com/testing-library/user-event/issues/1146
+export const userEvent = userEventPkg as unknown as (typeof userEventPkg)['default'];
 export * from '@testing-library/react';
-export { default as userEvent } from '@testing-library/user-event';
-export { customRender as render };

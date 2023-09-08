@@ -1,8 +1,8 @@
-import { DatePicker } from './date-picker';
-import { DateRangePicker } from './date-range-picker';
-import { DAYS_IN_WEEK, toDateISO } from './date-helpers';
 import { expect, it, vi } from 'vitest';
-import { render, screen, userEvent } from '../../test/test-utils';
+import { DatePicker } from './date-picker.js';
+import { DateRangePicker } from './date-range-picker.js';
+import { DAYS_IN_WEEK, toDateISO } from './date-helpers.js';
+import { render, screen, userEvent } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const prevMonthButtonLabel = 'prev month';

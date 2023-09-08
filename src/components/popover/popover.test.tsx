@@ -1,7 +1,7 @@
-import { Popover } from './popover';
 import { beforeAll, expect, it, vi } from 'vitest';
-import { render, screen, userEvent, waitFor } from '../../test/test-utils';
-import { mockMatchMedia } from '../../test/mock-match-media';
+import { Popover } from './popover.js';
+import { render, screen, userEvent, waitFor } from '../../test/test-utils.js';
+import { mockMatchMedia } from '../../test/mock-match-media.js';
 
 beforeAll(() => {
   mockMatchMedia();

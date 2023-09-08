@@ -1,9 +1,9 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { DateISO } from '../date-picker/date-helpers';
+import { DateISO } from '../date-picker/date-helpers.js';
 import { useState } from 'react';
-import { DatePickerPopover } from './date-picker-popover';
-import { Button } from '../button';
-import CalendarIcon from '@heroicons/react/24/outline/CalendarIcon';
+import { DatePickerPopover } from './date-picker-popover.js';
+import { Button } from '../button/index.js';
+import { CalendarIcon } from '@heroicons/react/24/outline';
 
 const meta: Meta<typeof DatePickerPopover> = {
   title: 'Overlays/DatePickerPopover',

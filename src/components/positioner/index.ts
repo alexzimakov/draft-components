@@ -1,1 +1,1 @@
-export * from './positioner';
+export * from './positioner.js';

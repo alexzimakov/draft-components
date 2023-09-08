@@ -1,6 +1,6 @@
-import { TextInput } from './text-input';
 import { expect, it, vi } from 'vitest';
-import { render, screen, userEvent } from '../../test/test-utils';
+import { TextInput } from './text-input.js';
+import { render, screen, userEvent } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const placeholder = 'Your name';

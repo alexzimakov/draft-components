@@ -1,8 +1,8 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { useState } from 'react';
-import { SlideOver } from './slide-over';
-import { Button } from '../button';
-import { SlideOverCloseCallback } from './types';
+import { SlideOver } from './slide-over.js';
+import { Button } from '../button/index.js';
+import { SlideOverCloseCallback } from './types.js';
 
 const meta: Meta = {
   title: 'Overlays/SlideOver',

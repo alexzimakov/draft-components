@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
-import { classNames } from '../../lib/react-helpers';
-import { BreadcrumbsContextProvider } from './breadcrumbs-context';
+import { classNames } from '../../lib/react-helpers.js';
+import { BreadcrumbsContextProvider } from './breadcrumbs-context.js';
 
 type BreadcrumbsHTMLProps = ComponentPropsWithoutRef<'nav'>;
 export type BreadcrumbsProps = {

@@ -10,9 +10,9 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { classNames, isReactElementWithRef, mergeRefs } from '../../lib/react-helpers';
-import { useMountTransition } from '../../hooks';
-import { Positioner, PositionerAnchorRenderFn, PositionerContentRenderFn, PositionerProps } from '../positioner';
+import { classNames, isReactElementWithRef, mergeRefs } from '../../lib/react-helpers.js';
+import { useMountTransition } from '../../hooks/index.js';
+import { Positioner, PositionerAnchorRenderFn, PositionerContentRenderFn, PositionerProps } from '../positioner/index.js';
 
 type TooltipChildrenRenderFn = (props: {
   ref: RefCallback<HTMLElement>;

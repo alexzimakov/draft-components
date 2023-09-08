@@ -1,6 +1,6 @@
-import { Switch } from './switch';
 import { expect, it, vi } from 'vitest';
-import { render, screen, userEvent } from '../../test/test-utils';
+import { Switch } from './switch.js';
+import { render, screen, userEvent } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const ariaLabel = 'Enable Location Services';

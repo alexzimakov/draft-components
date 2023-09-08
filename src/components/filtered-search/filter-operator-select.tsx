@@ -1,5 +1,5 @@
-import { classNames } from '../../lib';
-import { Select } from '../select';
+import { classNames } from '../../lib/index.js';
+import { Select } from '../select/index.js';
 
 export type FilterOperatorSelectProps<T extends string> = {
   className?: string;

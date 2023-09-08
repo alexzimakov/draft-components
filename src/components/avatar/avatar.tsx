@@ -1,5 +1,5 @@
 import { ComponentPropsWithRef, ReactNode, forwardRef, useState } from 'react';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../lib/react-helpers.js';
 
 type AvatarHTMLProps = ComponentPropsWithRef<'div'>;
 export type AvatarSize =

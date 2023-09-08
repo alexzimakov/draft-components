@@ -1,7 +1,7 @@
 import { MouseEventHandler, ReactNode, forwardRef } from 'react';
-import { classNames } from '../../lib';
-import { useTranslations } from './use-translations';
-import { XMarkIcon } from '../hero-icons/24/outline/x-mark-icon';
+import { classNames } from '../../lib/index.js';
+import { useTranslations } from './use-translations.js';
+import { XMarkIcon } from '../hero-icons/24/outline/x-mark-icon.js';
 
 export type FilterTokenProps = {
   className?: string;

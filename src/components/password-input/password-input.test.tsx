@@ -1,7 +1,7 @@
-import { PasswordInput } from './password-input';
 import { beforeAll, expect, it } from 'vitest';
-import { mockMatchMedia } from '../../test/mock-match-media';
-import { render, screen, userEvent } from '../../test/test-utils';
+import { PasswordInput } from './password-input.js';
+import { mockMatchMedia } from '../../test/mock-match-media.js';
+import { render, screen, userEvent } from '../../test/test-utils.js';
 
 beforeAll(() => {
   mockMatchMedia();

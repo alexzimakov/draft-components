@@ -1,11 +1,8 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { Menu } from './menu';
-import { MenuItem } from './menu-item';
-import { MenuSeparator } from './menu-separator';
-import ArrowDownTrayIcon from '@heroicons/react/24/outline/ArrowDownTrayIcon';
-import DocumentDuplicateIcon from '@heroicons/react/24/outline/DocumentDuplicateIcon';
-import PencilIcon from '@heroicons/react/24/outline/PencilIcon';
-import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
+import { Menu } from './menu.js';
+import { MenuItem } from './menu-item.js';
+import { MenuSeparator } from './menu-separator.js';
+import { ArrowDownTrayIcon, DocumentDuplicateIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 
 const meta: Meta<typeof Menu> = {
   title: 'Navigation/Menu',

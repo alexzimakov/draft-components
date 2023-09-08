@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, MouseEvent, ReactNode } from 'react';
-import { classNames } from '../../lib/react-helpers';
-import { useTabsContext } from './tabs-context';
-import { Badge } from '../badge';
+import { classNames } from '../../lib/react-helpers.js';
+import { useTabsContext } from './tabs-context.js';
+import { Badge } from '../badge/index.js';
 
 export type TabProps = {
   icon?: ReactNode;

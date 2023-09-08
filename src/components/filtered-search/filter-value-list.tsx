@@ -1,7 +1,7 @@
 import { ChangeEventHandler } from 'react';
-import { classNames } from '../../lib';
-import { SelectionControl } from '../selection-control';
-import { Checkbox } from '../checkbox';
+import { classNames } from '../../lib/index.js';
+import { SelectionControl } from '../selection-control/index.js';
+import { Checkbox } from '../checkbox/index.js';
 
 export type FilterValueListProps = {
   className?: string;

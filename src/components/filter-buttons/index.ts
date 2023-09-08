@@ -1,2 +1,2 @@
-export * from './filter-buttons';
-export * from './filter-button';
+export * from './filter-buttons.js';
+export * from './filter-button.js';

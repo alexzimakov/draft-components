@@ -1,4 +1,4 @@
-import { SlideOverCloseCallback } from './types';
+import { SlideOverCloseCallback } from './types.js';
 import { ReactNode, createContext, useContext, useMemo } from 'react';
 
 export type SlideOverContext = {

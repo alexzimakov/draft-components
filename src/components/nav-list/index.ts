@@ -1,3 +1,3 @@
-export * from './nav-list';
-export * from './nav-list-item';
-export * from './nav-list-title';
+export * from './nav-list.js';
+export * from './nav-list-item.js';
+export * from './nav-list-title.js';

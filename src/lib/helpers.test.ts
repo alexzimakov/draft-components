@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { assertIfNullable, exhaustiveCheck, once } from './helpers';
+import { assertIfNullable, exhaustiveCheck, once } from './helpers.js';
 
 describe('#once()', () => {
   it('creates function that invokes only once', () => {

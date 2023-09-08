@@ -1,7 +1,7 @@
-import { Toast } from './toast';
-import { ToastButton } from './toast-button';
 import { expect, it, vi } from 'vitest';
-import { render, screen, userEvent } from '../../test/test-utils';
+import { Toast } from './toast.js';
+import { ToastButton } from './toast-button.js';
+import { render, screen, userEvent } from '../../test/test-utils.js';
 
 const title = 'Focus is on';
 const message = 'All notifications and alerts will be silent.';

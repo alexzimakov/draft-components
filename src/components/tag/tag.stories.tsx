@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { Tag } from './tag';
-import LockClosedIcon from '@heroicons/react/24/outline/LockClosedIcon';
+import { Tag } from './tag.js';
+import { LockClosedIcon } from '@heroicons/react/24/outline';
 
 const meta: Meta<typeof Tag> = {
   title: 'Tag',

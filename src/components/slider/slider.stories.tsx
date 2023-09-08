@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { Slider } from './slider';
+import { Slider } from './slider.js';
 
 const meta: Meta<typeof Slider> = {
   title: 'Forms/Slider',

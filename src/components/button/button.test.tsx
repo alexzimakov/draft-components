@@ -1,8 +1,8 @@
 import { ComponentPropsWithoutRef } from 'react';
-import { Button, ButtonRenderer } from './button';
-import { IconButton } from './icon-button';
 import { expect, it, vi } from 'vitest';
-import { render, screen, userEvent, within } from '../../test/test-utils';
+import { Button, ButtonRenderer } from './button.js';
+import { IconButton } from './icon-button.js';
+import { render, screen, userEvent, within } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const label = 'Button text';

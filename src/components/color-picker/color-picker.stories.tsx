@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { ColorPicker } from './color-picker';
+import { ColorPicker } from './color-picker.js';
 
 const meta: Meta<typeof ColorPicker> = {
   title: 'Forms/ColorPicker',

@@ -1,6 +1,6 @@
-import { ColorPicker } from './color-picker';
 import { expect, it, vi } from 'vitest';
-import { render, screen, userEvent } from '../../test/test-utils';
+import { ColorPicker } from './color-picker.js';
+import { render, screen, userEvent } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const options = [

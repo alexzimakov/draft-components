@@ -1,5 +1,5 @@
 import { MouseEventHandler, ReactNode } from 'react';
-import { Button } from '../button';
+import { Button } from '../button/index.js';
 
 export type DateRangePickerPopoverFooterProps = {
   children?: ReactNode;

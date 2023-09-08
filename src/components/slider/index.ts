@@ -1,2 +1,2 @@
-export * from './slider';
-export { SliderTickMarks } from './slider-tick-marks';
+export * from './slider.js';
+export { SliderTickMarks } from './slider-tick-marks.js';

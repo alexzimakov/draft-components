@@ -1,12 +1,12 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { Popover, PopoverAlignment, PopoverPlacement } from './popover';
+import { Popover, PopoverAlignment, PopoverPlacement } from './popover.js';
 import { useState } from 'react';
-import { Button } from '../button';
-import { Tooltip } from '../tooltip';
-import { TextInput } from '../text-input';
-import { Textarea } from '../textarea';
-import { Checkbox } from '../checkbox';
-import { SelectionControl } from '../selection-control';
+import { Button } from '../button/index.js';
+import { Tooltip } from '../tooltip/index.js';
+import { TextInput } from '../text-input/index.js';
+import { Textarea } from '../textarea/index.js';
+import { Checkbox } from '../checkbox/index.js';
+import { SelectionControl } from '../selection-control/index.js';
 
 const meta: Meta<typeof Popover> = {
   title: 'Overlays/Popover',

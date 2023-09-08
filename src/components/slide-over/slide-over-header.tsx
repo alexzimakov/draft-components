@@ -1,8 +1,8 @@
 import { ComponentPropsWithoutRef, MouseEventHandler, ReactNode } from 'react';
-import { classNames } from '../../lib';
-import { IconButton } from '../button';
-import { useSlideOverContext } from './slide-over-context';
-import { XMarkIcon } from '../hero-icons/24/outline/x-mark-icon';
+import { classNames } from '../../lib/index.js';
+import { IconButton } from '../button/index.js';
+import { useSlideOverContext } from './slide-over-context.js';
+import { XMarkIcon } from '../hero-icons/24/outline/x-mark-icon.js';
 
 export type SlideOverHeaderHTMLProps = ComponentPropsWithoutRef<'div'>;
 export type SlideOverHeaderBaseProps = Omit<SlideOverHeaderHTMLProps, 'title'>;

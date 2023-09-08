@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import { usePortalRoot } from './portal-context';
+import { usePortalRoot } from './portal-context.js';
 
 export type PortalProps = {
   children: ReactNode;

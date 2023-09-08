@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { Label } from './label';
+import { Label } from './label.js';
 
 const meta: Meta<typeof Label> = {
   title: 'Label',

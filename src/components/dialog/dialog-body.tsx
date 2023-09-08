@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, useRef } from 'react';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../lib/react-helpers.js';
 
 type DialogBodyHTMLProps = ComponentPropsWithoutRef<'div'>;
 export type DialogBodyProps = DialogBodyHTMLProps;

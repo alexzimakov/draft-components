@@ -1,13 +1,10 @@
 import { Meta } from '@storybook/react';
 import { useState } from 'react';
-import { Tabs } from './tabs';
-import { TabList } from './tab-list';
-import { Tab } from './tab';
-import { TabPanel } from './tab-panel';
-import ArchiveBoxIcon from '@heroicons/react/24/outline/ArchiveBoxIcon';
-import DocumentIcon from '@heroicons/react/24/outline/DocumentIcon';
-import InboxIcon from '@heroicons/react/24/outline/InboxIcon';
-import PaperAirplaneIcon from '@heroicons/react/24/outline/PaperAirplaneIcon';
+import { Tabs } from './tabs.js';
+import { TabList } from './tab-list.js';
+import { Tab } from './tab.js';
+import { TabPanel } from './tab-panel.js';
+import { ArchiveBoxIcon, DocumentIcon, InboxIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline';
 
 const meta: Meta<typeof Tabs> = {
   title: 'Navigation/Tabs',

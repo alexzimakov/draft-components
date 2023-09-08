@@ -1,5 +1,5 @@
 import { ComponentPropsWithRef, ComponentPropsWithoutRef, JSX, forwardRef } from 'react';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../lib/react-helpers.js';
 
 type RadioHTMLProps = ComponentPropsWithRef<'input'>;
 type RadioBaseProps = Omit<RadioHTMLProps, 'type'>;

@@ -1,11 +1,11 @@
-import { Dialog } from './dialog';
-import { DialogHeader } from './dialog-header';
-import { DialogBody } from './dialog-body';
-import { DialogFooter } from './dialog-footer';
-import { useRef, useState } from 'react';
 import { beforeAll, expect, it, vi } from 'vitest';
-import { mockMatchMedia } from '../../test/mock-match-media';
-import { render, screen, userEvent, waitFor, within } from '../../test/test-utils';
+import { useRef, useState } from 'react';
+import { Dialog } from './dialog.js';
+import { DialogHeader } from './dialog-header.js';
+import { DialogBody } from './dialog-body.js';
+import { DialogFooter } from './dialog-footer.js';
+import { mockMatchMedia } from '../../test/mock-match-media.js';
+import { render, screen, userEvent, waitFor, within } from '../../test/test-utils.js';
 
 beforeAll(() => {
   mockMatchMedia();

@@ -1,2 +1,2 @@
-export * from './breadcrumbs';
-export * from './breadcrumbs-item';
+export * from './breadcrumbs.js';
+export * from './breadcrumbs-item.js';

@@ -1,5 +1,5 @@
 import { ComponentPropsWithRef, forwardRef } from 'react';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../lib/react-helpers.js';
 
 type TableRowBaseProps = ComponentPropsWithRef<'tr'>;
 export type TableRowProps = {

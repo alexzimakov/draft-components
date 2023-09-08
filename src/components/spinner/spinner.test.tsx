@@ -1,6 +1,6 @@
-import { Spinner } from './spinner';
 import { expect, it } from 'vitest';
-import { render, screen } from '../../test/test-utils';
+import { Spinner } from './spinner.js';
+import { render, screen } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const testId = 'spinner';

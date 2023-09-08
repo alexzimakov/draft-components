@@ -1,9 +1,9 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { ReactNode } from 'react';
-import { SelectionControl } from './selection-control';
-import { Switch as SwitchComponent } from '../switch';
-import { Checkbox as CheckboxComponent } from '../checkbox';
-import { Radio as RadioComponent } from '../radio';
+import { SelectionControl } from './selection-control.js';
+import { Switch as SwitchComponent } from '../switch/index.js';
+import { Checkbox as CheckboxComponent } from '../checkbox/index.js';
+import { Radio as RadioComponent } from '../radio/index.js';
 
 const meta: Meta<typeof SelectionControl> = {
   title: 'Forms/SelectionControl',

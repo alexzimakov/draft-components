@@ -1,10 +1,10 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { DateRangePickerPopoverOption, DateRangePickerPopoverSelection } from './types';
+import { DateRangePickerPopoverOption, DateRangePickerPopoverSelection } from './types.js';
 import { ReactNode, useState } from 'react';
-import { addDays, getStartOfMonth, getStartOfWeek, isSameDay, toDateISO } from '../date-picker/date-helpers';
-import { DateRangePickerPopover } from './date-range-picker-popover';
-import { Button } from '../button';
-import CalendarIcon from '@heroicons/react/24/outline/CalendarIcon';
+import { addDays, getStartOfMonth, getStartOfWeek, isSameDay, toDateISO } from '../date-picker/date-helpers.js';
+import { DateRangePickerPopover } from './date-range-picker-popover.js';
+import { Button } from '../button/index.js';
+import { CalendarIcon } from '@heroicons/react/24/outline';
 
 const meta: Meta<typeof DateRangePickerPopover> = {
   title: 'Overlays/DateRangePickerPopover',

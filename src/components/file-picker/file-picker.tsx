@@ -8,8 +8,8 @@ import {
   useRef,
   useState,
 } from 'react';
-import { classNames, mergeRefs } from '../../lib/react-helpers';
-import { Button } from '../button';
+import { classNames, mergeRefs } from '../../lib/react-helpers.js';
+import { Button } from '../button/index.js';
 
 type FilePickerHTMLProps = ComponentPropsWithRef<'input'>;
 type FilePickerBaseProps = Omit<FilePickerHTMLProps, 'type'>;

@@ -1,9 +1,9 @@
-import { DateRangePickerPopoverOption, DateRangePickerPopoverSelection } from './types';
+import { DateRangePickerPopoverOption, DateRangePickerPopoverSelection } from './types.js';
 import { ChangeEvent, useId } from 'react';
-import { findSelectedOption } from './helpers';
-import { Select } from '../select';
-import { Radio } from '../radio';
-import { SelectionControl } from '../selection-control';
+import { findSelectedOption } from './helpers.js';
+import { Select } from '../select/index.js';
+import { Radio } from '../radio/index.js';
+import { SelectionControl } from '../selection-control/index.js';
 
 export type DateRangePickerPopoverPresetsProps = {
   isCompactView: boolean;

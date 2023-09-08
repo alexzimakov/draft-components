@@ -1,7 +1,7 @@
-import { FilterButton } from './filter-button';
-import { FilterButtons } from './filter-buttons';
 import { expect, it } from 'vitest';
-import { render, screen, within } from '../../test/test-utils';
+import { FilterButton } from './filter-button.js';
+import { FilterButtons } from './filter-buttons.js';
+import { render, screen, within } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   render(

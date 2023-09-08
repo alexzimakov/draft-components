@@ -1,6 +1,6 @@
-import { Checkbox } from './checkbox';
 import { expect, it, vi } from 'vitest';
-import { render, screen, userEvent } from '../../test/test-utils';
+import { Checkbox } from './checkbox.js';
+import { render, screen, userEvent } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const ariaLabel = 'Enable Location Services';

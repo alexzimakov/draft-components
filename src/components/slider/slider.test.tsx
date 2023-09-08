@@ -1,6 +1,6 @@
-import { Slider } from './slider';
 import { expect, it, vi } from 'vitest';
-import { fireEvent, render, screen } from '../../test/test-utils';
+import { Slider } from './slider.js';
+import { fireEvent, render, screen } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   render(<Slider value={50} onChangeValue={vi.fn()} />);

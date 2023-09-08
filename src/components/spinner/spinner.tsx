@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, forwardRef } from 'react';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../lib/react-helpers.js';
 
 export type SpinnerProps = ComponentPropsWithoutRef<'svg'> & {
   size?: number | string;

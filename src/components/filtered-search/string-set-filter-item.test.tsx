@@ -1,9 +1,9 @@
-import { StringSetFilter } from './model/string-set-filter';
-import { TranslationsProvider } from './use-translations';
-import { StringSetFilterItem } from './string-set-filter-item';
 import { beforeAll, describe, expect, it, vi } from 'vitest';
-import { mockMatchMedia } from '../../test/mock-match-media';
-import { render, screen, userEvent, within } from '../../test/test-utils';
+import { StringSetFilter } from './model/string-set-filter.js';
+import { TranslationsProvider } from './use-translations.js';
+import { StringSetFilterItem } from './string-set-filter-item.js';
+import { mockMatchMedia } from '../../test/mock-match-media.js';
+import { render, screen, userEvent, within } from '../../test/test-utils.js';
 
 beforeAll(() => {
   mockMatchMedia();

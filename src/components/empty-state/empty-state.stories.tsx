@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { EmptyState } from './empty-state';
-import { Button } from '../button';
-import DocumentPlusIcon from '@heroicons/react/24/outline/DocumentPlusIcon';
+import { EmptyState } from './empty-state.js';
+import { Button } from '../button/index.js';
+import { DocumentPlusIcon } from '@heroicons/react/24/outline';
 
 const meta: Meta<typeof EmptyState> = {
   title: 'Feedback/EmptyState',

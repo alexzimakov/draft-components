@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, MouseEventHandler, ReactNode } from 'react';
-import { classNames } from '../../lib/react-helpers';
-import { XMarkIcon } from '../hero-icons/24/outline/x-mark-icon';
+import { classNames } from '../../lib/react-helpers.js';
+import { XMarkIcon } from '../hero-icons/24/outline/x-mark-icon.js';
 
 type ToastBaseProps = ComponentPropsWithoutRef<'section'>;
 export type ToastProps = {

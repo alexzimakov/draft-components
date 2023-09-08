@@ -1,9 +1,9 @@
-import { Tabs } from './tabs';
-import { TabList } from './tab-list';
-import { Tab } from './tab';
-import { TabPanel } from './tab-panel';
 import { expect, it, vi } from 'vitest';
-import { render, screen, userEvent, within } from '../../test/test-utils';
+import { Tabs } from './tabs.js';
+import { TabList } from './tab-list.js';
+import { Tab } from './tab.js';
+import { TabPanel } from './tab-panel.js';
+import { render, screen, userEvent, within } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const label = 'Todos';

@@ -1,7 +1,7 @@
 import { JSX } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { Switch } from './switch';
-import { Radio } from '../radio';
+import { Switch } from './switch.js';
+import { Radio } from '../radio/index.js';
 
 const meta: Meta<typeof Switch> = {
   title: 'Forms/Switch',

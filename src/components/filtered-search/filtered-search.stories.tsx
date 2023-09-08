@@ -1,8 +1,8 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { Filter, FilterConfig } from './types';
-import { StringFilter } from './model/string-filter';
-import { StringSetFilter } from './model/string-set-filter';
-import { FilteredSearch } from './filtered-search';
+import { Filter, FilterConfig } from './types.js';
+import { StringFilter } from './model/string-filter.js';
+import { StringSetFilter } from './model/string-set-filter.js';
+import { FilteredSearch } from './filtered-search.js';
 import { useCallback, useState } from 'react';
 
 const meta: Meta = {

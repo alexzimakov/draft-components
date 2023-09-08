@@ -1,6 +1,6 @@
 import { ChangeEventHandler, ComponentPropsWithRef, forwardRef } from 'react';
-import { classNames } from '../../lib/react-helpers';
-import { Spinner } from '../spinner';
+import { classNames } from '../../lib/react-helpers.js';
+import { Spinner } from '../spinner/index.js';
 
 export type SelectSize = 'sm' | 'md' | 'lg';
 type SelectHTMLProps = ComponentPropsWithRef<'select'>;

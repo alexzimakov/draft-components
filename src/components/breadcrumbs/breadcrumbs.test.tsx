@@ -1,7 +1,7 @@
-import { Breadcrumbs } from './breadcrumbs';
-import { BreadcrumbsItem, BreadcrumbsItemRenderFn } from './breadcrumbs-item';
 import { expect, it, vi } from 'vitest';
-import { render, screen, within } from '../../test/test-utils';
+import { Breadcrumbs } from './breadcrumbs.js';
+import { BreadcrumbsItem, BreadcrumbsItemRenderFn } from './breadcrumbs-item.js';
+import { render, screen, within } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   render(

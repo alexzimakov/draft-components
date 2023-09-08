@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, JSX, ReactNode, cloneElement, useId } from 'react';
-import { classNames } from '../../lib/react-helpers';
-import { Label } from '../label';
-import { Caption } from '../caption';
+import { classNames } from '../../lib/react-helpers.js';
+import { Label } from '../label/index.js';
+import { Caption } from '../caption/index.js';
 
 export type SelectionControlRenderFn = (props: {
   id: string;

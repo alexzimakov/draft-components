@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../lib/react-helpers.js';
 
 type NavListTitleHTMLProps = ComponentPropsWithoutRef<'li'>;
 type NavListTitleBaseProps = Omit<NavListTitleHTMLProps, 'children'>;

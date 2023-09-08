@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, JSX } from 'react';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../lib/react-helpers.js';
 
 type AvatarGroupBaseProps = Omit<ComponentPropsWithoutRef<'div'>, 'children'>;
 export type AvatarGroupProps = AvatarGroupBaseProps & {

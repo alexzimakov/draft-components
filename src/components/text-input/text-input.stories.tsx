@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { CSSProperties } from 'react';
-import { TextInput } from './text-input';
-import { StorySection } from '../../storybook/story-section';
+import { TextInput } from './text-input.js';
+import { StorySection } from '../../storybook/story-section.js';
 
 const meta: Meta<typeof TextInput> = {
   title: 'Forms/TextInput',

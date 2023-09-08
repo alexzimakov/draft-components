@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { Caption } from './caption';
-import ExclamationTriangleIcon from '@heroicons/react/24/solid/ExclamationTriangleIcon';
+import { Caption } from './caption.js';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
 
 const meta: Meta<typeof Caption> = {
   title: 'Caption',

@@ -1,11 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { StorySection } from '../../storybook/story-section';
-import { Alert } from './alert';
-import BoltIcon from '@heroicons/react/24/solid/BoltIcon';
-import CogIcon from '@heroicons/react/24/solid/CogIcon';
-import HandThumbUpIcon from '@heroicons/react/24/solid/HandThumbUpIcon';
-import ScaleIcon from '@heroicons/react/24/solid/ScaleIcon';
-import SignalSlashIcon from '@heroicons/react/24/solid/SignalSlashIcon';
+import { StorySection } from '../../storybook/story-section.js';
+import { Alert } from './alert.js';
+import { BoltIcon, CogIcon, HandThumbUpIcon, ScaleIcon, SignalSlashIcon } from '@heroicons/react/24/solid';
 
 const meta: Meta<typeof Alert> = {
   title: 'Feedback/Alert',

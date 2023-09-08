@@ -1,3 +1,3 @@
-export * from './menu';
-export * from './menu-item';
-export * from './menu-separator';
+export * from './menu.js';
+export * from './menu-item.js';
+export * from './menu-separator.js';

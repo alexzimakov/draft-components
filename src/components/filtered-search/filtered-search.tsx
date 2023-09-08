@@ -9,16 +9,16 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Filter, FilterConfig } from './types';
-import { StringFilter } from './model/string-filter';
-import { StringSetFilter } from './model/string-set-filter';
-import { TranslationsProvider } from './use-translations';
-import { useComboboxIds } from './use-combobox-ids';
-import { IconButton } from '../button';
-import { FilterItem } from './filter-item';
-import { TrashIcon } from '../hero-icons/24/outline/trash-icon';
-import { MagnifyingGlassIcon } from '../hero-icons/24/outline/magnifying-glass-icon';
-import { KeyboardKeys, classNames, exhaustiveCheck } from '../../lib';
+import { Filter, FilterConfig } from './types.js';
+import { StringFilter } from './model/string-filter.js';
+import { StringSetFilter } from './model/string-set-filter.js';
+import { TranslationsProvider } from './use-translations.js';
+import { useComboboxIds } from './use-combobox-ids.js';
+import { IconButton } from '../button/index.js';
+import { FilterItem } from './filter-item.js';
+import { TrashIcon } from '../hero-icons/24/outline/trash-icon.js';
+import { MagnifyingGlassIcon } from '../hero-icons/24/outline/magnifying-glass-icon.js';
+import { KeyboardKeys, classNames, exhaustiveCheck } from '../../lib/index.js';
 
 export type FilteredSearchHTMLProps = ComponentPropsWithoutRef<'div'>;
 export type FilteredSearchBaseProps = Omit<FilteredSearchHTMLProps,

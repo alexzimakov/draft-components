@@ -1,12 +1,15 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true
+  },
   "exclude": [
     "**/node_modules",
     "**/.*/",
     "src/**/*.test.ts",
     "src/**/*.test.tsx",
     "src/**/*.stories.tsx",
-    "src/tests",
+    "src/test",
     "src/storybook"
   ]
 }

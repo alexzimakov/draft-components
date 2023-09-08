@@ -1,4 +1,4 @@
-import { SlideOverCloseCallback } from './types';
+import { SlideOverCloseCallback } from './types.js';
 import {
   ComponentPropsWithoutRef,
   forwardRef,
@@ -9,12 +9,12 @@ import {
   useMemo,
   useRef,
 } from 'react';
-import { SlideOverContextProvider } from './slide-over-context';
-import { classNames, getRefElement } from '../../lib';
-import { useDisableBodyScroll, useEscKeyDown, useFocusTrap } from '../../hooks';
-import { Portal } from '../portal';
-import { SlideOverHeader } from './slide-over-header';
-import { SlideOverBody } from './slide-over-body';
+import { SlideOverContextProvider } from './slide-over-context.js';
+import { classNames, getRefElement } from '../../lib/index.js';
+import { useDisableBodyScroll, useEscKeyDown, useFocusTrap } from '../../hooks/index.js';
+import { Portal } from '../portal/index.js';
+import { SlideOverHeader } from './slide-over-header.js';
+import { SlideOverBody } from './slide-over-body.js';
 
 export type SlideOverHTMLProps = ComponentPropsWithoutRef<'div'>;
 export type SlideOverProps = SlideOverHTMLProps & {

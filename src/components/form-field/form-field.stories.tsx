@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { FormField } from './form-field';
-import { TextInput } from '../text-input';
+import { FormField } from './form-field.js';
+import { TextInput } from '../text-input/index.js';
 
 const meta: Meta<typeof FormField> = {
   title: 'Forms/FormField',

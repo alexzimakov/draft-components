@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef } from 'react';
-import { classNames } from '../../lib';
+import { classNames } from '../../lib/index.js';
 
 export type SlideOverBodyProps = ComponentPropsWithoutRef<'div'>;
 

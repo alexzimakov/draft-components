@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { FilterButtons } from './filter-buttons';
-import { FilterButton } from './filter-button';
+import { FilterButtons } from './filter-buttons.js';
+import { FilterButton } from './filter-button.js';
 import { useState } from 'react';
 
 const meta: Meta<typeof FilterButtons> = {

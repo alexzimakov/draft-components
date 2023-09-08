@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, JSX, ReactNode } from 'react';
-import { classNames } from '../../lib/react-helpers';
-import { Badge } from '../badge';
+import { classNames } from '../../lib/react-helpers.js';
+import { Badge } from '../badge/index.js';
 
 type NavListItemHTMLProps = ComponentPropsWithoutRef<'a'>;
 export type NavListItemRenderFn = (props: {

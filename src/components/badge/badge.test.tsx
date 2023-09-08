@@ -1,6 +1,6 @@
-import { Badge } from './badge';
 import { it } from 'vitest';
-import { render, screen } from '../../test/test-utils';
+import { Badge } from './badge.js';
+import { render, screen } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const count = 10;

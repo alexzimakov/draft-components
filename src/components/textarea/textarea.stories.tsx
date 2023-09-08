@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { Textarea } from './textarea';
+import { Textarea } from './textarea.js';
 
 const meta: Meta<typeof Textarea> = {
   title: 'Forms/Textarea',

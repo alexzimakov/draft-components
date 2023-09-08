@@ -1,7 +1,7 @@
 import { CSSProperties, ReactNode, RefCallback, useLayoutEffect, useState } from 'react';
-import { Alignment, Placement, Rect } from './types';
-import { calcPosition } from './calc-position';
-import { Portal } from '../portal';
+import { Alignment, Placement, Rect } from './types.js';
+import { calcPosition } from './calc-position.js';
+import { Portal } from '../portal/index.js';
 
 export type PositionerAnchorRenderFn = (params: {
   setRef: RefCallback<HTMLElement>,

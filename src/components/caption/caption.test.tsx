@@ -1,6 +1,6 @@
-import { Caption } from './caption';
 import { expect, it } from 'vitest';
-import { render, screen } from '../../test/test-utils';
+import { Caption } from './caption.js';
+import { render, screen } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const text = 'You can use letters, numbers & periods';

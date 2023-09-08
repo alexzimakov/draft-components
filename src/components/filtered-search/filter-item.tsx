@@ -1,9 +1,9 @@
-import { Filter } from './types';
-import { StringFilter } from './model/string-filter';
-import { StringSetFilter } from './model/string-set-filter';
-import { exhaustiveCheck } from '../../lib';
-import { StringFilterItem } from './string-filter-item';
-import { StringSetFilterItem } from './string-set-filter-item';
+import { Filter } from './types.js';
+import { StringFilter } from './model/string-filter.js';
+import { StringSetFilter } from './model/string-set-filter.js';
+import { exhaustiveCheck } from '../../lib/index.js';
+import { StringFilterItem } from './string-filter-item.js';
+import { StringSetFilterItem } from './string-set-filter-item.js';
 
 export type FilterItemProps = {
   filter: Filter;

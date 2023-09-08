@@ -1,4 +1,4 @@
-import { KeyboardKeys } from '../../lib/keyboard-keys';
+import { KeyboardKeys } from '../../lib/keyboard-keys.js';
 import {
   Children,
   ComponentPropsWithoutRef,
@@ -13,11 +13,11 @@ import {
   useId,
   useState,
 } from 'react';
-import { classNames, focusElement } from '../../lib/react-helpers';
-import { assertIfNullable } from '../../lib/helpers';
-import { Button, ButtonSize, ButtonStyle, ButtonTint } from '../button';
-import { Popover, PopoverAlignment, PopoverAnchorRenderFn, PopoverPlacement } from '../popover';
-import { MenuItem, MenuItemProps } from './menu-item';
+import { classNames, focusElement } from '../../lib/react-helpers.js';
+import { assertIfNullable } from '../../lib/helpers.js';
+import { Button, ButtonSize, ButtonStyle, ButtonTint } from '../button/index.js';
+import { Popover, PopoverAlignment, PopoverAnchorRenderFn, PopoverPlacement } from '../popover/index.js';
+import { MenuItem, MenuItemProps } from './menu-item.js';
 
 export type MenuButtonRenderFn = (props: {
   ref: RefCallback<HTMLElement>;

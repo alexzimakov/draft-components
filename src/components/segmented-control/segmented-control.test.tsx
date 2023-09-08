@@ -1,7 +1,7 @@
-import { SegmentedControl } from './segmented-control';
-import { useState } from 'react';
 import { expect, it, vi } from 'vitest';
-import { render, screen, userEvent, within } from '../../test/test-utils';
+import { SegmentedControl } from './segmented-control.js';
+import { useState } from 'react';
+import { render, screen, userEvent, within } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const options = [

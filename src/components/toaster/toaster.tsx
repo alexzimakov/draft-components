@@ -1,8 +1,8 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
-import { assertIfNullable } from '../../lib/helpers';
-import { classNames } from '../../lib/react-helpers';
-import { Portal } from '../portal';
-import { Toast, ToastButton } from '../toast';
+import { assertIfNullable } from '../../lib/helpers.js';
+import { classNames } from '../../lib/react-helpers.js';
+import { Portal } from '../portal/index.js';
+import { Toast, ToastButton } from '../toast/index.js';
 
 type YPosition = 'top' | 'bottom';
 type XPosition = 'left' | 'center' | 'right';

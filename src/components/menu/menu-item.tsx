@@ -1,5 +1,5 @@
 import { ComponentPropsWithRef, ReactNode, forwardRef } from 'react';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../lib/react-helpers.js';
 
 type MenuItemHTMLProps = ComponentPropsWithRef<'button'>;
 type MenuItemBaseProps = Omit<MenuItemHTMLProps, 'children' | 'role'>;

@@ -1,6 +1,6 @@
-import { Alert } from './alert';
 import { expect, it, vitest } from 'vitest';
-import { render, screen, userEvent } from '../../test/test-utils';
+import { Alert } from './alert.js';
+import { render, screen, userEvent } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const title = 'MIT License';

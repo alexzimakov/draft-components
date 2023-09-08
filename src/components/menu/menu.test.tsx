@@ -1,9 +1,9 @@
-import { Menu } from './menu';
-import { MenuItem } from './menu-item';
-import { MenuSeparator } from './menu-separator';
 import { beforeAll, describe, expect, it, vi } from 'vitest';
-import { mockMatchMedia } from '../../test/mock-match-media';
-import { render, screen, userEvent, waitFor, within } from '../../test/test-utils';
+import { Menu } from './menu.js';
+import { MenuItem } from './menu-item.js';
+import { MenuSeparator } from './menu-separator.js';
+import { mockMatchMedia } from '../../test/mock-match-media.js';
+import { render, screen, userEvent, waitFor, within } from '../../test/test-utils.js';
 
 beforeAll(() => {
   mockMatchMedia();

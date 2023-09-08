@@ -1,12 +1,8 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { NavList } from './nav-list';
-import { NavListItem } from './nav-list-item';
-import { NavListTitle } from './nav-list-title';
-import DocumentChartBarIcon from '@heroicons/react/24/outline/DocumentChartBarIcon';
-import FolderArrowDownIcon from '@heroicons/react/24/outline/FolderArrowDownIcon';
-import FolderIcon from '@heroicons/react/24/outline/FolderIcon';
-import HomeIcon from '@heroicons/react/24/outline/HomeIcon';
-import UsersIcon from '@heroicons/react/24/outline/UsersIcon';
+import { NavList } from './nav-list.js';
+import { NavListItem } from './nav-list-item.js';
+import { NavListTitle } from './nav-list-title.js';
+import { DocumentChartBarIcon, FolderArrowDownIcon, FolderIcon, HomeIcon, UsersIcon } from '@heroicons/react/24/outline';
 
 const meta: Meta<typeof NavList> = {
   title: 'Navigation/NavList',

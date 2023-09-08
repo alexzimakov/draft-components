@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { AvatarGroup } from './avatar-group';
-import { Avatar } from '../avatar';
+import { AvatarGroup } from './avatar-group.js';
+import { Avatar } from '../avatar/index.js';
 
 const meta: Meta<typeof AvatarGroup> = {
   title: 'AvatarGroup',

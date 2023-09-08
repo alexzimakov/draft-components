@@ -1,35 +1,25 @@
-import fs from 'node:fs/promises';
 import path from 'node:path';
 import childProcess from 'node:child_process';
+import fs from 'node:fs/promises';
 import postcss from 'postcss';
-import postcssConfig from '../postcss.config.js';
+import autoprefixer from 'autoprefixer';
+import postcssImport from 'postcss-import';
 
 const PATHS = {
-  css: 'css',
-  esm: 'esm',
-  cjs: 'cjs',
-  types: 'types',
+  esm: 'dist/esm',
+  css: 'dist/css',
 };
 
 (async function main() {
-  await generateTypes();
   await buildTs();
   await buildCss();
 })();
 
-async function generateTypes() {
-  await rm(PATHS.types);
-  await exec('npx tsc' +
-    " --project 'tsconfig.build.json'" +
-    ' --declaration' +
-    ' --emitDeclarationOnly' +
-    ` --outDir '${PATHS.types}'`);
-}
-
 async function buildTs() {
   await rm(PATHS.esm);
-  await rm(PATHS.cjs);
-  await exec('npx rollup --config rollup.config.js');
+  await exec('npx tsc' +
+      " --project 'tsconfig.build.json'" +
+      ` --outDir '${PATHS.esm}'`);
 }
 
 async function buildCss() {
@@ -52,7 +42,10 @@ async function buildCss() {
   ];
   const promises = files.map(async (options) => {
     const css = await fs.readFile(options.from);
-    const result = await postcss(postcssConfig.plugins).process(css, options);
+    const result = await postcss([
+      postcssImport,
+      autoprefixer,
+    ]).process(css, options);
     return appendFile(options.to, result.css);
   });
   return Promise.all(promises);
@@ -60,17 +53,16 @@ async function buildCss() {
 
 function exec(command) {
   return new Promise((resolve, reject) => {
-    console.log(`\u001b[36mexec:\u001b[0m ${command}`);
+    console.log(`${cyan('exec:')} ${command}`);
     childProcess.exec(command, (error, stdout, stderr) => {
-      if (error) {
-        return reject(error);
-      }
-
       if (stderr) {
         console.error(stderr);
       }
       if (stdout) {
         console.log(stdout);
+      }
+      if (error) {
+        return reject(error);
       }
       resolve({ stdout, stderr });
     });
@@ -78,16 +70,20 @@ function exec(command) {
 }
 
 function rm(path) {
-  console.log(`\u001b[36mrm:\u001b[0m ${path}`);
+  console.log(`${cyan('rm:')} ${path}`);
   return fs.rm(path, { recursive: true, force: true });
 }
 
 function mkdir(path) {
-  console.log(`\u001b[36mmkdir:\u001b[0m ${path}`);
+  console.log(`${cyan('mkdir:')} ${path}`);
   return fs.mkdir(path, { recursive: true });
 }
 
 function appendFile(path, data) {
-  console.log(`\u001b[36mappendFile:\u001b[0m ${path}`);
+  console.log(`${cyan('appendFile:')} ${path}`);
   return fs.appendFile(path, data);
+}
+
+function cyan(text) {
+  return `\u001b[36m${text}\u001b[0m`;
 }

@@ -10,17 +10,17 @@ import {
   useRef,
   useState,
 } from 'react';
-import { classNames, focusElement, isReactElementWithRef, mergeRefs } from '../../lib/react-helpers';
-import { useMountTransition } from '../../hooks/use-mount-transition';
-import { useEscKeyDown } from '../../hooks/use-esc-key-down';
-import { useFocusTrap } from '../../hooks/use-focus-trap';
-import { usePageClick } from './use-page-click';
+import { classNames, focusElement, isReactElementWithRef, mergeRefs } from '../../lib/react-helpers.js';
+import { useMountTransition } from '../../hooks/use-mount-transition.js';
+import { useEscKeyDown } from '../../hooks/use-esc-key-down.js';
+import { useFocusTrap } from '../../hooks/use-focus-trap.js';
+import { usePageClick } from './use-page-click.js';
 import {
   Positioner,
   type PositionerAnchorRenderFn,
   type PositionerContentRenderFn,
   type PositionerProps,
-} from '../positioner';
+} from '../positioner/index.js';
 
 export type PopoverRef = {
   open(): void;

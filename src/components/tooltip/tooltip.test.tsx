@@ -1,7 +1,7 @@
-import { Tooltip } from './tooltip';
 import { beforeAll, expect, it } from 'vitest';
-import { mockMatchMedia } from '../../test/mock-match-media';
-import { render, screen, userEvent, waitFor } from '../../test/test-utils';
+import { Tooltip } from './tooltip.js';
+import { mockMatchMedia } from '../../test/mock-match-media.js';
+import { render, screen, userEvent, waitFor } from '../../test/test-utils.js';
 
 beforeAll(() => {
   mockMatchMedia();

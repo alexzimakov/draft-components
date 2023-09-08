@@ -1,4 +1,4 @@
-import { Alignment, Coordinates, Placement, Rect } from './types';
+import { Alignment, Coordinates, Placement, Rect } from './types.js';
 
 export type CalcPositionParams = {
   placement: Placement;

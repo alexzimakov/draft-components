@@ -1,13 +1,10 @@
 import { CSSProperties } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { Button, ButtonProps, ButtonSize, ButtonStyle, ButtonTint } from './button';
-import { IconButton } from './icon-button';
-import { StorySection } from '../../storybook/story-section';
-import MoonIcon from '@heroicons/react/24/solid/MoonIcon';
-import BuildingOffice2Icon from '@heroicons/react/24/outline/BuildingOffice2Icon';
-import ChatBubbleOvalLeftIcon from '@heroicons/react/24/outline/ChatBubbleOvalLeftIcon';
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import ShoppingBagIcon from '@heroicons/react/24/outline/ShoppingBagIcon';
+import { Button, ButtonProps, ButtonSize, ButtonStyle, ButtonTint } from './button.js';
+import { IconButton } from './icon-button.js';
+import { StorySection } from '../../storybook/story-section.js';
+import { MoonIcon } from '@heroicons/react/24/solid';
+import { BuildingOffice2Icon, ChatBubbleOvalLeftIcon, MagnifyingGlassIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
 
 const meta: Meta<typeof Button> = {
   title: 'Button',

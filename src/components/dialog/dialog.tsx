@@ -1,8 +1,8 @@
 import { CSSProperties, ComponentPropsWithoutRef, RefObject, useEffect, useId, useRef } from 'react';
-import { classNames, focusElement } from '../../lib/react-helpers';
-import { useDisableBodyScroll, useEscKeyDown, useFocusTrap, useMountTransition } from '../../hooks';
-import { Portal } from '../portal';
-import { DialogContextProvider } from './dialog-context';
+import { classNames, focusElement } from '../../lib/react-helpers.js';
+import { useDisableBodyScroll, useEscKeyDown, useFocusTrap, useMountTransition } from '../../hooks/index.js';
+import { Portal } from '../portal/index.js';
+import { DialogContextProvider } from './dialog-context.js';
 
 type DialogHTMLProps = ComponentPropsWithoutRef<'section'>;
 export type DialogWidth = 'sm' | 'md' | 'lg';

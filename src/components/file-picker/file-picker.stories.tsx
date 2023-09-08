@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { ComponentPropsWithoutRef, useState } from 'react';
-import { FilePicker } from './file-picker';
+import { FilePicker } from './file-picker.js';
 
 const meta: Meta<typeof FilePicker> = {
   title: 'Forms/FilePicker',

@@ -1,18 +1,17 @@
 /**
  * @type {import('@storybook/core-common').StorybookConfig}
  */
-const config = {
+export default {
   core: {
-    disableTelemetry: true
+    disableTelemetry: true,
   },
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
   framework: {
     name: '@storybook/react-vite',
-    options: {}
+    options: {},
   },
   docs: {
-    autodocs: true
-  }
+    autodocs: true,
+  },
 };
-module.exports = config;

@@ -1,6 +1,6 @@
-import { Radio } from './radio';
 import { expect, it, vi } from 'vitest';
-import { render, screen, userEvent } from '../../test/test-utils';
+import { Radio } from './radio.js';
+import { render, screen, userEvent } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const ariaLabel = 'Private access';

@@ -1,5 +1,5 @@
 import { JSX } from 'react';
-import { DAYS_IN_WEEK, Weekday, addDays, getStartOfWeek } from './date-helpers';
+import { DAYS_IN_WEEK, Weekday, addDays, getStartOfWeek } from './date-helpers.js';
 
 export type CalendarGridHeadProps = {
   locale?: string;

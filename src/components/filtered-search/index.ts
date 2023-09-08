@@ -3,20 +3,20 @@ export {
   type FilteredSearchProps,
   type FilteredSearchBaseProps,
   type FilteredSearchHTMLProps,
-} from './filtered-search';
+} from './filtered-search.js';
 export {
   type Filter,
   type FilterConfig,
-} from './types';
+} from './types.js';
 export {
   StringFilter,
   type StringFilterState,
   type StringFilterConfig,
   type StringFilterOperator,
-} from './model/string-filter';
+} from './model/string-filter.js';
 export {
   StringSetFilter,
   type StringSetFilterState,
   type StringSetFilterConfig,
   type StringSetFilterOperator,
-} from './model/string-set-filter';
+} from './model/string-set-filter.js';

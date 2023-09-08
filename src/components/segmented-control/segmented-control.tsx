@@ -1,8 +1,8 @@
 import { ComponentPropsWithRef, KeyboardEvent, ReactNode, useRef } from 'react';
-import { KeyboardKeys } from '../../lib/keyboard-keys';
-import { assertIfNullable } from '../../lib/helpers';
-import { classNames, focusElement } from '../../lib/react-helpers';
-import { SegmentedControlButton } from './segmented-control-button';
+import { KeyboardKeys } from '../../lib/keyboard-keys.js';
+import { assertIfNullable } from '../../lib/helpers.js';
+import { classNames, focusElement } from '../../lib/react-helpers.js';
+import { SegmentedControlButton } from './segmented-control-button.js';
 
 export type SegmentedControlOption<T extends string | number> = {
   value: T;

@@ -1,7 +1,7 @@
-import { Portal } from './portal';
-import { PortalRootProvider } from './portal-context';
 import { it } from 'vitest';
-import { render, screen, within } from '../../test/test-utils';
+import { Portal } from './portal.js';
+import { PortalRootProvider } from './portal-context.js';
+import { render, screen, within } from '../../test/test-utils.js';
 
 it('creates HTML element and mounts portals to it.', () => {
   const content1 = 'First Portal';

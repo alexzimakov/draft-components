@@ -1,8 +1,8 @@
 import { ComponentPropsWithoutRef, useId } from 'react';
-import { classNames } from '../../lib';
-import { TextInput } from '../text-input';
-import { Caption } from '../caption';
-import { ExclamationTriangleIcon } from '../hero-icons/24/solid/exclamation-triangle-icon';
+import { classNames } from '../../lib/index.js';
+import { TextInput } from '../text-input/index.js';
+import { Caption } from '../caption/index.js';
+import { ExclamationTriangleIcon } from '../hero-icons/24/solid/exclamation-triangle-icon.js';
 
 export type StringFilterInputProps = {
   className?: string;

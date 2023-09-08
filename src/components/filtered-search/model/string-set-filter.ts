@@ -1,4 +1,4 @@
-import { AbstractFilter } from './abstract-filter';
+import { AbstractFilter } from './abstract-filter.js';
 
 const TYPE = 'STRING_SET' as const;
 const OPERATORS = {

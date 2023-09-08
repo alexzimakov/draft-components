@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef } from 'react';
-import { TabName, TabSetter } from './types';
-import { classNames } from '../../lib/react-helpers';
-import { TabsContextProvider } from './tabs-context';
+import { TabName, TabSetter } from './types.js';
+import { classNames } from '../../lib/react-helpers.js';
+import { TabsContextProvider } from './tabs-context.js';
 
 export interface TabsProps extends ComponentPropsWithoutRef<'div'> {
   selectedTab: TabName;

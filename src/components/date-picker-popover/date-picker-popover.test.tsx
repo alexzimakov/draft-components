@@ -1,7 +1,7 @@
-import { DatePickerPopover } from './date-picker-popover';
 import { beforeAll, expect, it, vi } from 'vitest';
-import { mockMatchMedia } from '../../test/mock-match-media';
-import { render, screen, userEvent, waitFor } from '../../test/test-utils';
+import { DatePickerPopover } from './date-picker-popover.js';
+import { mockMatchMedia } from '../../test/mock-match-media.js';
+import { render, screen, userEvent, waitFor } from '../../test/test-utils.js';
 
 beforeAll(() => {
   mockMatchMedia();

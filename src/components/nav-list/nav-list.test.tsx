@@ -1,8 +1,8 @@
-import { NavList } from './nav-list';
-import { NavListTitle } from './nav-list-title';
-import { NavListItem, NavListItemRenderFn } from './nav-list-item';
 import { expect, it } from 'vitest';
-import { render, screen, within } from '../../test/test-utils';
+import { NavList } from './nav-list.js';
+import { NavListTitle } from './nav-list-title.js';
+import { NavListItem, NavListItemRenderFn } from './nav-list-item.js';
+import { render, screen, within } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const title = 'Shared';

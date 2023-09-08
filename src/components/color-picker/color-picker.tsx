@@ -1,6 +1,6 @@
 import { ChangeEventHandler, ComponentPropsWithoutRef, ReactNode } from 'react';
-import { classNames } from '../../lib/react-helpers';
-import { ColorPickerButton } from './color-picker-button';
+import { classNames } from '../../lib/react-helpers.js';
+import { ColorPickerButton } from './color-picker-button.js';
 
 export type ColorPickerOption<T extends string | number> = {
   value: T;

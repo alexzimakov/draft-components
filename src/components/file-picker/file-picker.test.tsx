@@ -1,6 +1,6 @@
-import { FilePicker } from './file-picker';
 import { expect, it, vi } from 'vitest';
-import { fireEvent, render, screen } from '../../test/test-utils';
+import { FilePicker } from './file-picker.js';
+import { fireEvent, render, screen } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const label = 'Upload a profile photo';

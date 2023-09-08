@@ -1,6 +1,6 @@
-import { SelectionControl } from './selection-control';
 import { expect, it } from 'vitest';
-import { render, screen } from '../../test/test-utils';
+import { SelectionControl } from './selection-control.js';
+import { render, screen } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const id = 'test';

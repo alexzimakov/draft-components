@@ -1,9 +1,9 @@
-import { StringFilter } from './model/string-filter';
-import { StringSetFilter } from './model/string-set-filter';
-import { FilteredSearch } from './filtered-search';
 import { beforeAll, expect, it, vi } from 'vitest';
-import { mockMatchMedia } from '../../test/mock-match-media';
-import { fireEvent, render, screen, userEvent, within } from '../../test/test-utils';
+import { StringFilter } from './model/string-filter.js';
+import { StringSetFilter } from './model/string-set-filter.js';
+import { FilteredSearch } from './filtered-search.js';
+import { mockMatchMedia } from '../../test/mock-match-media.js';
+import { fireEvent, render, screen, userEvent, within } from '../../test/test-utils.js';
 
 beforeAll(() => {
   mockMatchMedia();

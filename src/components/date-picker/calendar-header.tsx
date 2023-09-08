@@ -1,11 +1,11 @@
-import { MONTHS_IN_YEAR, addMonths, setDateMonth, setDateYear } from './date-helpers';
-import { classNames } from '../../lib/react-helpers';
+import { MONTHS_IN_YEAR, addMonths, setDateMonth, setDateYear } from './date-helpers.js';
+import { classNames } from '../../lib/react-helpers.js';
 import { JSX, useEffect, useState } from 'react';
-import { IconButton } from '../button';
-import { Select } from '../select';
-import { TextInput } from '../text-input';
-import { ChevronLeftIcon } from '../hero-icons/24/outline/chevron-left-icon';
-import { ChevronRightIcon } from '../hero-icons/24/outline/chevron-right-icon';
+import { IconButton } from '../button/index.js';
+import { Select } from '../select/index.js';
+import { TextInput } from '../text-input/index.js';
+import { ChevronLeftIcon } from '../hero-icons/24/outline/chevron-left-icon.js';
+import { ChevronRightIcon } from '../hero-icons/24/outline/chevron-right-icon.js';
 
 export type CalendarHeaderProps = {
   focusDay: Date;

@@ -1,6 +1,6 @@
-import { Toaster } from './toaster';
 import { expect, it, vi } from 'vitest';
-import { act, render, screen, userEvent, within } from '../../test/test-utils';
+import { Toaster } from './toaster.js';
+import { act, render, screen, userEvent, within } from '../../test/test-utils.js';
 
 it('renders without errors', async () => {
   const toaster = new Toaster();

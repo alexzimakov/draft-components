@@ -1,6 +1,6 @@
 import { RefObject, useEffect } from 'react';
-import { KeyboardKeys } from '../lib/keyboard-keys';
-import { focusElement } from '../lib/react-helpers';
+import { KeyboardKeys } from '../lib/keyboard-keys.js';
+import { focusElement } from '../lib/react-helpers.js';
 
 type ModalRef = RefObject<HTMLElement>;
 type Options = { isEnabled: boolean };

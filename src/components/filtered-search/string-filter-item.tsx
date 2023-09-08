@@ -1,11 +1,11 @@
-import { StringFilter, StringFilterOperator } from './model/string-filter';
+import { StringFilter, StringFilterOperator } from './model/string-filter.js';
 import { FormEventHandler, useState } from 'react';
-import { useTranslations } from './use-translations';
-import { Popover } from '../popover';
-import { FilterToken } from './filter-token';
-import { FilterOperatorSelect } from './filter-operator-select';
-import { StringFilterInput } from './string-filter-input';
-import { Button } from '../button';
+import { useTranslations } from './use-translations.js';
+import { Popover } from '../popover/index.js';
+import { FilterToken } from './filter-token.js';
+import { FilterOperatorSelect } from './filter-operator-select.js';
+import { StringFilterInput } from './string-filter-input.js';
+import { Button } from '../button/index.js';
 
 export type StringFilterItemProps = {
   filter: StringFilter;

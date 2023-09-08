@@ -1,6 +1,6 @@
 import { MutableRefObject } from 'react';
 import { describe, expect, it } from 'vitest';
-import { classNames, getRefElement, mergeRefs } from './react-helpers';
+import { classNames, getRefElement, mergeRefs } from './react-helpers.js';
 
 describe('#classNames()', () => {
   it('should return class string without falsy values', () => {

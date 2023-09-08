@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef } from 'react';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../lib/react-helpers.js';
 
 type BadgeHTMLProps = ComponentPropsWithoutRef<'span'>;
 type BadgeBaseProps = Omit<BadgeHTMLProps, 'children'>;

@@ -1,7 +1,7 @@
-import { Avatar } from '../avatar';
-import { AvatarGroup } from './avatar-group';
 import { expect, it } from 'vitest';
-import { render, screen } from '../../test/test-utils';
+import { AvatarGroup } from './avatar-group.js';
+import { Avatar } from '../avatar/index.js';
+import { render, screen } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const urls = [

@@ -1,8 +1,8 @@
-import { DateRangePickerPopoverOption } from './types';
-import { DateRangePickerPopover } from './date-range-picker-popover';
 import { beforeEach, expect, it, vi } from 'vitest';
-import { render, screen, userEvent, waitFor } from '../../test/test-utils';
-import { mockMatchMedia } from '../../test/mock-match-media';
+import { DateRangePickerPopoverOption } from './types.js';
+import { DateRangePickerPopover } from './date-range-picker-popover.js';
+import { render, screen, userEvent, waitFor } from '../../test/test-utils.js';
+import { mockMatchMedia } from '../../test/mock-match-media.js';
 
 beforeEach(() => {
   mockMatchMedia();

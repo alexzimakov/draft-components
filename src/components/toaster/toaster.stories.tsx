@@ -1,8 +1,6 @@
-import { ToastParams, ToastPosition, Toaster } from './toaster';
-import { Button } from '../button';
-import BellAlertIcon from '@heroicons/react/24/outline/BellAlertIcon';
-import ExclamationCircleIcon from '@heroicons/react/24/outline/ExclamationCircleIcon';
-import WifiIcon from '@heroicons/react/24/outline/WifiIcon';
+import { ToastParams, ToastPosition, Toaster } from './toaster.js';
+import { Button } from '../button/index.js';
+import { BellAlertIcon, ExclamationCircleIcon, WifiIcon } from '@heroicons/react/24/outline';
 
 export default {
   title: 'Feedback/Toaster',

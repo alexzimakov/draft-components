@@ -1,8 +1,8 @@
 import { ComponentPropsWithRef, ComponentPropsWithoutRef, ElementType, forwardRef } from 'react';
-import { classNames } from '../../lib/react-helpers';
-import { ArrowsUpDownIcon } from '../hero-icons/24/outline/arrows-up-down-icon';
-import { ArrowSmallUpIcon } from '../hero-icons/24/outline/arrow-small-up-icon';
-import { ArrowSmallDownIcon } from '../hero-icons/24/outline/arrow-small-down-icon';
+import { classNames } from '../../lib/react-helpers.js';
+import { ArrowsUpDownIcon } from '../hero-icons/24/outline/arrows-up-down-icon.js';
+import { ArrowSmallUpIcon } from '../hero-icons/24/outline/arrow-small-up-icon.js';
+import { ArrowSmallDownIcon } from '../hero-icons/24/outline/arrow-small-down-icon.js';
 
 type TableHeadCellBaseProps = ComponentPropsWithRef<'th'>;
 export type TableHeadCellSort = 'none' | 'ascending' | 'descending'

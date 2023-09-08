@@ -1,6 +1,6 @@
-import { FormField } from './form-field';
 import { expect, it } from 'vitest';
-import { render, screen } from '../../test/test-utils';
+import { FormField } from './form-field.js';
+import { render, screen } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const label = 'Username';

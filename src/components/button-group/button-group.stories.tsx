@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { ButtonGroup } from './button-group';
-import { IconButton } from '../button';
+import { ButtonGroup } from './button-group.js';
+import { IconButton } from '../button/index.js';
 
 const meta: Meta<typeof ButtonGroup> = {
   title: 'ButtonGroup',

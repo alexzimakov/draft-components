@@ -1,12 +1,12 @@
-import { Table } from './table';
-import { TableHead } from './table-head';
-import { TableBody } from './table-body';
-import { TableRow } from './table-row';
-import { TableHeadCell } from './table-head-cell';
-import { TableCell } from './table-cell';
-import { TableContainer } from './table-container';
 import { expect, it, vi } from 'vitest';
-import { render, screen, userEvent, within } from '../../test/test-utils';
+import { Table } from './table.js';
+import { TableHead } from './table-head.js';
+import { TableBody } from './table-body.js';
+import { TableRow } from './table-row.js';
+import { TableHeadCell } from './table-head-cell.js';
+import { TableCell } from './table-cell.js';
+import { TableContainer } from './table-container.js';
+import { render, screen, userEvent, within } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const headers = ['Person', 'Age'];

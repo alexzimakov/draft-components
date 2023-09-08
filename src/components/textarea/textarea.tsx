@@ -1,5 +1,5 @@
 import { ChangeEventHandler, ComponentPropsWithRef, forwardRef } from 'react';
-import { classNames } from '../../lib/react-helpers';
+import { classNames } from '../../lib/react-helpers.js';
 
 type TextareaHTMLProps = ComponentPropsWithRef<'textarea'>;
 export type TextareaSize = 'sm' | 'md' | 'lg';

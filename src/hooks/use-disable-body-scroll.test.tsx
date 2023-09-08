@@ -1,6 +1,6 @@
-import { useDisableBodyScroll } from './use-disable-body-scroll';
 import { expect, it } from 'vitest';
-import { render } from '../test/test-utils';
+import { useDisableBodyScroll } from './use-disable-body-scroll.js';
+import { render } from '../test/test-utils.js';
 
 it('should disable body scroll', () => {
   const HookTest = () => {

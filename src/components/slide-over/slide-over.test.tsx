@@ -1,8 +1,8 @@
-import { SlideOver, SlideOverRef } from './slide-over';
-import { useRef } from 'react';
 import { afterEach, beforeAll, beforeEach, expect, it, vi } from 'vitest';
-import { mockMatchMedia } from '../../test/mock-match-media';
-import { render, screen, userEvent } from '../../test/test-utils';
+import { SlideOver, SlideOverRef } from './slide-over.js';
+import { useRef } from 'react';
+import { mockMatchMedia } from '../../test/mock-match-media.js';
+import { render, screen, userEvent } from '../../test/test-utils.js';
 
 beforeAll(() => {
   mockMatchMedia();

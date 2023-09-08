@@ -1,6 +1,6 @@
-import { EmptyState } from './empty-state';
 import { it } from 'vitest';
-import { render, screen } from '../../test/test-utils';
+import { EmptyState } from './empty-state.js';
+import { render, screen } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
   const image = <img src="https://test.local/image.png" alt="" />;

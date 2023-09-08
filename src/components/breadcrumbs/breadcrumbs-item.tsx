@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, JSX, ReactNode } from 'react';
-import { classNames } from '../../lib/react-helpers';
-import { useBreadcrumbsContext } from './breadcrumbs-context';
+import { classNames } from '../../lib/react-helpers.js';
+import { useBreadcrumbsContext } from './breadcrumbs-context.js';
 
 type BreadcrumbsItemHTMLProps = ComponentPropsWithoutRef<'a'>;
 export type BreadcrumbsItemRenderFn = (props: {

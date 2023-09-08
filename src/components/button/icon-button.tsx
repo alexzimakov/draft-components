@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
-import { classNames } from '../../lib/react-helpers';
-import { Button, ButtonProps } from './button';
+import { classNames } from '../../lib/react-helpers.js';
+import { Button, ButtonProps } from './button.js';
 
 export type IconButtonProps = Omit<ButtonProps,
   | 'caption'

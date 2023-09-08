@@ -1,1 +1,1 @@
-export * from './selection-control';
+export * from './selection-control.js';
