@@ -1,23 +1,25 @@
 .dc-segmented {
-  --dc-segmented-bg: var(--dc-bg-transparent-1);
   --dc-segmented-border-color: var(--dc-control-border-color);
+  --dc-segmented-bg: var(--dc-bg-transparent-1);
   --dc-segmented-delimiter-color: var(--dc-border-color-transparent-3);
-  --dc-segmented-btn-padding-x: 16px;
-  --dc-segmented-btn-bg-checked: white;
-  --dc-segmented-btn-border-color: transparent;
-  --dc-segmented-btn-border-color-focus: var(--dc-blue-600);
-  --dc-segmented-btn-border-color-checked: var(--dc-gray-500);
-  --dc-segmented-btn-focus-ring-color: var(--dc-focus-ring-color);
+  --dc-segmented-button-height: 36px;
+  --dc-segmented-button-padding-x: 16px;
+  --dc-segmented-button-radius: 9px;
+  --dc-segmented-button-text-color: var(--dc-primary-text-color);
+  --dc-segmented-button-border-color: transparent;
+  --dc-segmented-button-border-color-focus: var(--dc-blue-600);
+  --dc-segmented-button-border-color-selected: var(--dc-gray-500);
+  --dc-segmented-button-bg: none;
+  --dc-segmented-button-bg-selected: var(--dc-white);
+  --dc-segmented-button-focus-ring-color: var(--dc-focus-ring-color);
 
   color-scheme: light;
   font: 14px/1 var(--dc-primary-font);
   display: inline-flex;
-  align-items: stretch;
-  height: 36px;
   margin: 0;
   padding: 0;
   list-style: none;
-  border-radius: 9px;
+  border-radius: var(--dc-segmented-button-radius);
   background: var(--dc-segmented-bg);
   box-shadow: inset 0 0 0 1px var(--dc-segmented-border-color);
 }
@@ -27,67 +29,71 @@
   pointer-events: none;
 }
 
-.dc-segmented_sm {
-  --dc-segmented-btn-padding-x: 12px;
+.dc-segmented_size_sm {
+  --dc-segmented-button-height: 32px;
+  --dc-segmented-button-padding-x: 12px;
+  --dc-segmented-button-radius: 8px;
 
   font-size: 13px;
-  height: 32px;
-  border-radius: 8px;
 }
 
-.dc-segmented_lg {
-  --dc-segmented-btn-padding-x: 18px;
+.dc-segmented_size_lg {
+  --dc-segmented-button-height: 40px;
+  --dc-segmented-button-padding-x: 18px;
+  --dc-segmented-button-radius: 10px;
 
   font-size: 15px;
-  height: 40px;
-  border-radius: 10px;
 }
 
-.dc-segmented__button {
+.dc-segmented__item + .dc-segmented__item::before {
+  content: "";
+  display: inline-block;
+  float: left;
+  width: 1px;
+  height: calc(var(--dc-segmented-button-height) - var(--dc-segmented-button-radius) * 2);
+  transform: translateY(var(--dc-segmented-button-radius));
+  background: var(--dc-segmented-delimiter-color);
+}
+
+.dc-segmented__item_selected::before,
+.dc-segmented__item_selected + .dc-segmented__item::before {
+  visibility: hidden;
+}
+
+.dc-segmented-button {
+  appearance: none;
+  font: inherit;
+  color: var(--dc-segmented-button-text-color);
   position: relative;
   display: flex;
   cursor: pointer;
   user-select: none;
   flex: auto;
-  gap: calc(var(--dc-segmented-btn-padding-x) / 2);
+  gap: calc(var(--dc-segmented-button-padding-x) / 2);
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding: 0 var(--dc-segmented-btn-padding-x);
-  border: 1px solid var(--dc-segmented-btn-border-color);
-  border-radius: inherit;
+  height: var(--dc-segmented-button-height);
+  padding: 0 var(--dc-segmented-button-padding-x);
+  border: 1px solid var(--dc-segmented-button-border-color);
+  border-radius: var(--dc-segmented-button-radius);
+  background: var(--dc-segmented-button-bg);
 }
 
-.dc-segmented__button[aria-checked="true"] {
-  --dc-segmented-btn-border-color: var(--dc-segmented-btn-border-color-checked);
+.dc-segmented-button[aria-current="true"] {
+  --dc-segmented-button-border-color: var(--dc-segmented-button-border-color-selected);
+  --dc-segmented-button-bg: var(--dc-segmented-button-bg-selected);
 
   cursor: default;
-  background: var(--dc-segmented-btn-bg-checked);
 }
 
-.dc-segmented__button:focus {
-  border-color: var(--dc-segmented-btn-border-color-focus);
+.dc-segmented-button:focus {
+  border-color: var(--dc-segmented-button-border-color-focus);
   outline: none;
-  box-shadow: 0 0 0 3px var(--dc-segmented-btn-focus-ring-color);
+  box-shadow: 0 0 0 3px var(--dc-segmented-button-focus-ring-color);
 }
 
-.dc-segmented__button:focus:not(:focus-visible) {
-  border-color: var(--dc-segmented-btn-border-color);
+.dc-segmented-button:focus:not(:focus-visible) {
+  border-color: var(--dc-segmented-button-border-color);
   box-shadow: none;
-}
-
-.dc-segmented__button + .dc-segmented__button::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 50%;
-  left: -2px;
-  width: 1px;
-  height: 50%;
-  transform: translateY(-50%);
-  background: var(--dc-segmented-delimiter-color);
-}
-
-.dc-segmented__button[aria-checked="true"]::before {
-  opacity: 0;
 }

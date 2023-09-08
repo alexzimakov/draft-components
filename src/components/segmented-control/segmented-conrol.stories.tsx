@@ -1,11 +1,35 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { useState } from 'react';
 import { SegmentedControl } from './segmented-control.js';
+import { useState } from 'react';
 import { ClockIcon, StarIcon } from '@heroicons/react/24/outline';
+
+const options = [
+  { value: 'newest', label: 'Newest' },
+  { value: 'popular', label: 'Popular' },
+  { value: 'topRated', label: 'Top rated' },
+];
+const optionsWithIcon = [
+  {
+    value: 'popular',
+    label: 'Popular',
+    icon: <StarIcon width="1.25em" height="1.25em" />,
+  },
+  {
+    value: 'recent',
+    label: 'Recent',
+    icon: <ClockIcon width="1.25em" height="1.25em" />,
+  },
+];
 
 const meta: Meta<typeof SegmentedControl> = {
   title: 'Forms/SegmentedControl',
   component: SegmentedControl,
+  args: {
+    options,
+    'size': 'md',
+    'aria-label': 'Category',
+    'value': options[0].value,
+  },
   argTypes: {
     value: {
       control: { disable: true },
@@ -15,7 +39,7 @@ const meta: Meta<typeof SegmentedControl> = {
 export default meta;
 
 export const Basic: StoryFn<typeof SegmentedControl> = (args) => {
-  const [value, setValue] = useState(args.options[0].value);
+  const [value, setValue] = useState(args.value);
   return (
     <SegmentedControl
       {...args}
@@ -27,37 +51,15 @@ export const Basic: StoryFn<typeof SegmentedControl> = (args) => {
     />
   );
 };
-Basic.args = {
-  'aria-label': 'Category',
-  'disabled': false,
-  'size': 'md',
-  'options': [
-    { value: 'newest', label: 'Newest' },
-    { value: 'popular', label: 'Popular' },
-    { value: 'topRated', label: 'Top rated' },
-  ],
-};
 
 export const Disabled = Basic.bind({});
 Disabled.args = {
-  ...Basic.args,
   disabled: true,
 };
 
 export const WithIcon = Basic.bind({});
 WithIcon.storyName = 'With icon';
 WithIcon.args = {
-  ...Basic.args,
-  options: [
-    {
-      value: 'popular',
-      label: 'Popular',
-      icon: <StarIcon width="1.25em" height="1.25em" />,
-    },
-    {
-      value: 'recent',
-      label: 'Recent',
-      icon: <ClockIcon width="1.25em" height="1.25em" />,
-    },
-  ],
+  options: optionsWithIcon,
+  defaultValue: optionsWithIcon[0].value,
 };
