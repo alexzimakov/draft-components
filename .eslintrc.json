@@ -6,7 +6,7 @@
   "env": {
     "node": true,
     "browser": true,
-    "es2021": true
+    "es2020": true
   },
   "extends": ["@alexzimakov/eslint-config"],
 
