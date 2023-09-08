@@ -21,10 +21,11 @@
     "prepare": "husky install",
     "test": "vitest run",
     "coverage": "vitest run --coverage",
-    "lint": "eslint '**/*.{js,ts,tsx}'",
-    "lint-styles": "stylelint 'src/**/*.css'",
-    "check-types": "tsc --project 'tsconfig.json' --noEmit",
-    "prebuild": "npm run check-types && npm run test && npm run lint && npm run lint-styles",
+    "lint": "npm run lint-js && npm run lint-css",
+    "lint-js": "eslint '**/*.{js,ts,tsx}'",
+    "lint-css": "stylelint 'src/**/*.css'",
+    "typecheck": "tsc --project 'tsconfig.json' --noEmit",
+    "prebuild": "npm run typecheck && npm run lint && npm run test",
     "build": "node scripts/build.js",
     "build-storybook": "storybook build",
     "preversion": "npm run build",
@@ -90,7 +91,7 @@
     "vitest": "0.34.3"
   },
   "lint-staged": {
-    "*.ts?(x)": "npm run lint",
-    "*.css": "npm run lint-styles"
+    "*.ts?(x)": "npm run lint-js",
+    "*.css": "npm run lint-css"
   }
 }
