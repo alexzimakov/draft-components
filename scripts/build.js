@@ -6,8 +6,8 @@ import autoprefixer from 'autoprefixer';
 import postcssImport from 'postcss-import';
 
 const PATHS = {
-  esm: 'dist/esm',
-  css: 'dist/css',
+  dist: 'dist',
+  css: 'css',
 };
 
 (async function main() {
@@ -16,10 +16,10 @@ const PATHS = {
 })();
 
 async function buildTs() {
-  await rm(PATHS.esm);
+  await rm(PATHS.dist);
   await exec('npx tsc' +
       " --project 'tsconfig.build.json'" +
-      ` --outDir '${PATHS.esm}'`);
+      ` --outDir '${PATHS.dist}'`);
 }
 
 async function buildCss() {

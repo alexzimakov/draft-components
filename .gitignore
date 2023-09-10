@@ -16,5 +16,6 @@ coverage
 
 # Build artifacts
 /dist
+/css
 /storybook-static
 /*.tgz

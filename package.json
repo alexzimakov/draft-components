@@ -5,17 +5,17 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/esm/index.d.ts",
-      "import": "./dist/esm/index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     },
-    "./css/*": "./dist/css/*"
+    "./css/*": "./css/*"
   },
   "engines": {
     "node": ">= 16"
   },
   "files": [
-    "dist/esm",
-    "dist/css"
+    "dist",
+    "css"
   ],
   "scripts": {
     "prepare": "husky install",
