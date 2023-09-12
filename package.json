@@ -1,6 +1,6 @@
 {
   "name": "draft-components",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "The React based UI components library.",
   "type": "module",
   "exports": {
