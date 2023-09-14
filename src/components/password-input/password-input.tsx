@@ -1,4 +1,4 @@
-import { ReactNode, forwardRef, useState } from 'react';
+import { MouseEventHandler, ReactNode, forwardRef, useState } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { TextInput, TextInputProps } from '../text-input/index.js';
 import { Tooltip } from '../tooltip/index.js';
@@ -12,6 +12,7 @@ export type PasswordInputProps = {
   defaultVisible?: boolean;
   getTooltipText?: (visible: boolean) => ReactNode;
   renderToggleButtonIcon?: (visible: boolean) => ReactNode;
+  onClickToggleButton?: MouseEventHandler<HTMLButtonElement>;
 } & PasswordInputBaseProps;
 
 const getDefaultTooltipText = (visible: boolean) => (visible
@@ -31,9 +32,17 @@ export const PasswordInput = forwardRef<
   defaultVisible = false,
   getTooltipText = getDefaultTooltipText,
   renderToggleButtonIcon = renderToggleButtonDefaultIcon,
+  onClickToggleButton,
   ...props
 }, ref) {
   const [visible, setVisible] = useState(defaultVisible);
+
+  const handleClickToggleButton: MouseEventHandler<HTMLButtonElement> = (event) => {
+    setVisible(!visible);
+    if (typeof onClickToggleButton === 'function') {
+      onClickToggleButton(event);
+    }
+  };
 
   return (
     <TextInput
@@ -48,7 +57,7 @@ export const PasswordInput = forwardRef<
             className="dc-password-input__toggle-button"
             type="button"
             disabled={loading}
-            onClick={() => setVisible(!visible)}
+            onClick={handleClickToggleButton}
           >
             {loading
               ? <Spinner width="1.15em" />

@@ -1,4 +1,4 @@
-import { beforeAll, expect, it } from 'vitest';
+import { beforeAll, expect, it, vitest } from 'vitest';
 import { PasswordInput } from './password-input.js';
 import { mockMatchMedia } from '../../test/mock-match-media.js';
 import { render, screen, userEvent } from '../../test/test-utils.js';
@@ -29,6 +29,14 @@ it('renders with custom tooltip text', async () => {
   screen.getByText(hideText);
 });
 
+it('renders with custom toggle button icon', async () => {
+  const iconTestId = 'custom-icon';
+  const icon = <svg role="img" data-testid={iconTestId} />;
+  render(<PasswordInput renderToggleButtonIcon={() => icon} />);
+
+  screen.getByTestId(iconTestId);
+});
+
 it('should toggle password visibility', async () => {
   const user = userEvent.setup();
   const placeholder = 'Enter your password';
@@ -42,4 +50,14 @@ it('should toggle password visibility', async () => {
 
   await user.click(buttonEl);
   expect(inputEl).toHaveAttribute('type', 'password');
+});
+
+it('should invoke onClickToggleButton callback', async () => {
+  const user = userEvent.setup();
+  const onClickToggleButtonMock = vitest.fn();
+  render(<PasswordInput onClickToggleButton={onClickToggleButtonMock} />);
+
+  await user.click(screen.getByRole('button'));
+
+  expect(onClickToggleButtonMock).toHaveBeenCalledTimes(1);
 });
