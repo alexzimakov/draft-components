@@ -16,6 +16,7 @@
   color-scheme: light;
   font: 14px/1 var(--dc-primary-font);
   display: inline-flex;
+  flex-shrink: 0;
   margin: 0;
   padding: 0;
   list-style: none;

@@ -24,6 +24,7 @@
   transition-duration: 0.2s;
   transition-property: color, background-color;
   text-align: center;
+  white-space: nowrap;
   text-decoration: none;
   text-transform: none;
   border: 1px solid var(--dc-button-border-color);
