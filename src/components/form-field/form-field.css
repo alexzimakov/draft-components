@@ -1,6 +1,7 @@
 .dc-form-field {
   color-scheme: light;
   display: block;
+  min-width: 0;
   text-align: left;
 }
 
@@ -9,7 +10,6 @@
 }
 
 .dc-form-field__input {
-  min-width: 0;
 }
 
 .dc-form-field__error,
