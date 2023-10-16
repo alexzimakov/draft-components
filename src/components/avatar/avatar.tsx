@@ -25,7 +25,7 @@ export type AvatarProps = {
   fill?: AvatarFill;
   src?: string;
   altText?: string;
-  initials?: ReactNode;
+  initials?: string;
 } & AvatarHTMLProps;
 
 const sizesInPixels: Record<AvatarSize, number> = {
@@ -68,10 +68,18 @@ export const Avatar = forwardRef<
       <img
         className="dc-avatar__image"
         src={src}
-        alt={altText}
         width={sizePx}
         height={sizePx}
-        onError={() => setType(initials ? 'initials' : 'silhouette')}
+        alt=""
+        loading="lazy"
+        onLoad={(event) => {
+          if (altText) {
+            event.currentTarget.setAttribute('alt', altText);
+          }
+        }}
+        onError={() => {
+          setType(initials ? 'initials' : 'silhouette');
+        }}
       />
     );
   } else if (type === 'initials') {

@@ -10,7 +10,6 @@ it('renders without error', () => {
 
   const image = screen.getByRole('img');
   expect(image).toHaveAttribute('src', src);
-  expect(image).toHaveAttribute('alt', alt);
   expect(image).toHaveAttribute('width', expect.stringMatching(/^\d+$/));
   expect(image).toHaveAttribute('height', expect.stringMatching(/^\d+$/));
 });
