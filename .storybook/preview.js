@@ -1,35 +1,14 @@
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
+import { withThemeByClassName } from '@storybook/addon-themes';
 import '../src/components/index.css';
 import '../src/components/index.dark.css';
 import './preview.css';
 
-const withTheme = (storyFn, context) => {
-  const viewMode = context.viewMode;
-  const theme = context.globals.theme || 'light';
-
-  useLayoutEffect(() => {
-    const className = 'dc-story-doc';
-    const body = document.body;
-    const docs = document.querySelectorAll('.docs-story');
-
-    body.classList.add(theme);
-    for (const doc of docs) {
-      doc.classList.add(className);
-    }
-    return () => {
-      body.classList.remove(theme);
-      for (const doc of docs) {
-        doc.classList.remove(className);
-      }
-    };
-  }, [viewMode, theme]);
-
-  return storyFn();
-};
-
-const preview = {
+export default {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
+    actions: {
+      argTypesRegex: '^on[A-Z].*',
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -44,24 +23,26 @@ const preview = {
     },
   },
 
-  globalTypes: {
-    theme: {
-      name: 'Theme',
-      description: 'Global theme for components',
-      defaultValue: 'light',
-      toolbar: {
-        icon: 'photo',
-        items: [
-          { value: 'light', title: 'Light' },
-          { value: 'dark', title: 'Dark' },
-        ],
-        title: true,
-        dynamicTitle: true,
+  decorators: [
+    setViewModeAttribute,
+    withThemeByClassName({
+      themes: {
+        light: 'light',
+        dark: 'dark',
       },
-    },
-  },
-
-  decorators: [withTheme],
+      defaultTheme: 'light',
+    }),
+  ],
 };
 
-export default preview;
+function setViewModeAttribute(storyFn, context) {
+  const viewMode = context.viewMode;
+
+  useEffect(() => {
+    if (document.body instanceof HTMLBodyElement) {
+      document.body.dataset.viewMode = viewMode;
+    }
+  }, [viewMode]);
+
+  return storyFn();
+}
