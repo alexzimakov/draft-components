@@ -60,7 +60,6 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
-        width="auto"
         height="55%"
         stroke="currentColor"
         strokeWidth={1.5}
@@ -77,7 +76,6 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       slotElement = (
         <Spinner
           color="currentColor"
-          width="auto"
           height="45%"
         />
       );
