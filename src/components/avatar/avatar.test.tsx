@@ -1,4 +1,4 @@
-import { expect, it } from 'vitest';
+import { it } from 'vitest';
 import { Avatar } from './avatar.js';
 import { render, screen } from '../../test/test-utils.js';
 
@@ -8,19 +8,16 @@ it('renders without error', () => {
 
   render(<Avatar src={src} altText={alt} />);
 
-  const image = screen.getByRole('img');
-  expect(image).toHaveAttribute('src', src);
-  expect(image).toHaveAttribute('width', expect.stringMatching(/^\d+$/));
-  expect(image).toHaveAttribute('height', expect.stringMatching(/^\d+$/));
+  screen.getByRole('img');
+  screen.getByLabelText(alt);
 });
 
 it('renders with initials', () => {
   const alt = 'John Doe';
   const initials = 'JD';
 
-  render(<Avatar altText={alt} initials={initials} />);
-  screen.getByText(initials);
+  render(<Avatar altText={alt} monogram={initials} />);
+  screen.getByRole('img');
   screen.getByLabelText(alt);
-  expect(screen.getByText(initials)).toBe(screen.getByLabelText(alt));
-  expect(screen.queryByRole('img')).toBeNull();
+  screen.getByText(initials);
 });

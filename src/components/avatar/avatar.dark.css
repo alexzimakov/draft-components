@@ -1,6 +1,11 @@
 .dark .dc-avatar,
 .dark.dc-avatar {
-  --dc-avatar-image-border-color: rgb(var(--dc-gray-50-rgb) / 0.15);
+  --dc-avatar-border-color: rgb(var(--dc-white-rgb) / 0.025);
 
   color-scheme: dark;
+}
+
+.dark .dc-avatar_type_image,
+.dark.dc-avatar_type_image {
+  --dc-avatar-border-color: rgb(var(--dc-white-rgb) / 0.1);
 }

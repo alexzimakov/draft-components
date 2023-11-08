@@ -5,7 +5,7 @@ const meta: Meta<typeof Avatar> = {
   title: 'Avatar',
   component: Avatar,
   argTypes: {
-    initials: {
+    monogram: {
       control: 'text',
     },
   },
@@ -94,5 +94,5 @@ Fills.parameters = {
 };
 Fills.args = {
   size: 'md',
-  initials: 'AR',
+  monogram: 'AR',
 };
