@@ -1,6 +1,5 @@
 export * from './alert/index.js';
 export * from './avatar/index.js';
-export * from './avatar-group/index.js';
 export * from './badge/index.js';
 export * from './breadcrumbs/index.js';
 export * from './button/index.js';
