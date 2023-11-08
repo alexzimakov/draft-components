@@ -59,7 +59,7 @@
 
 .dc-avatar__monogram {
   font-family: var(--dc-primary-font);
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
   letter-spacing: 0.025em;
   fill: var(--dc-avatar-monogram-color);
