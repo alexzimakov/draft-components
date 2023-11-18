@@ -18,6 +18,7 @@ import { assertIfNullable } from '../../lib/helpers.js';
 import { Button, ButtonSize, ButtonStyle, ButtonTint } from '../button/index.js';
 import { Popover, PopoverAlignment, PopoverAnchorRenderFn, PopoverPlacement } from '../popover/index.js';
 import { MenuItem, MenuItemProps } from './menu-item.js';
+import { MenuSeparator } from './menu-separator.js';
 
 export type MenuButtonRenderFn = (props: {
   ref: RefCallback<HTMLElement>;
@@ -292,6 +293,8 @@ export function Menu({
     </Popover>
   );
 }
+Menu.Item = MenuItem;
+Menu.Separator = MenuSeparator;
 
 function isMenuItem(el: ReactNode): el is ReactElement<MenuItemProps> {
   return isValidElement(el) && el.type === MenuItem;
