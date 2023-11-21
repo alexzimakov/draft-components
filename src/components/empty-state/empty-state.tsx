@@ -19,9 +19,10 @@ export function EmptyState({
   primaryAction,
   secondaryAction,
   children,
+  ...props
 }: EmptyStateProps) {
   return (
-    <section className={classNames('dc-empty-state', className)}>
+    <div {...props} className={classNames('dc-empty-state', className)}>
       {image
         ? <div className="dc-empty-state__image">{image}</div>
         : null}
@@ -40,6 +41,6 @@ export function EmptyState({
       {children
         ? <div className="dc-empty-state__content">{children}</div>
         : null}
-    </section>
+    </div>
   );
 }
