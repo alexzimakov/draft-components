@@ -3,72 +3,55 @@
   --dc-dialog-safe-area: 16px;
   --dc-dialog-viewport-gap: 16px;
   --dc-dialog-transition-duration: 200ms;
+  --dc-dialog-open-transition-duration: 250ms;
+  --dc-dialog-close-transition-duration: 150ms;
   --dc-dialog-text-color: var(--dc-primary-text-color);
   --dc-dialog-border-color: transparent;
   --dc-dialog-bg: var(--dc-primary-bg);
-  --dc-dialog-inset-shadow-color: var(--dc-border-color-transparent-2);
+  --dc-dialog-divider-color: var(--dc-border-color-transparent-2);
   --dc-dialog-backdrop-color: rgb(var(--dc-gray-900-rgb) / 0.4);
 
   color-scheme: light;
-  position: relative;
-  z-index: var(--dc-overlay-z-index);
-}
-
-.dc-dialog-backdrop {
   position: fixed;
+  z-index: var(--dc-overlay-z-index);
   top: 0;
   left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
   padding: var(--dc-dialog-viewport-gap);
+}
+
+.dc-dialog__backdrop {
+  position: fixed;
+  inset: 0;
   background: var(--dc-dialog-backdrop-color);
 }
 
-.dc-dialog_closed .dc-dialog-backdrop {
-  opacity: 0;
-  transition: opacity var(--dc-dialog-transition-duration) linear;
-}
-
-.dc-dialog_opened .dc-dialog-backdrop {
-  opacity: 1;
-}
-
-.dc-dialog-modal {
+.dc-dialog__modal {
+  font: var(--dc-text-sm);
   color: var(--dc-dialog-text-color);
-  position: fixed;
-  top: 50%;
-  left: 50%;
+  position: relative;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  width: 100%;
-  max-width: calc(var(--dc-dialog-max-width) + 2 * var(--dc-dialog-safe-area));
-  max-height: calc(100% - 2 * var(--dc-dialog-viewport-gap));
-  transform: translate(-50%, -50%);
+  width: 480px;
+  max-width: 100%;
+  max-height: 100%;
   border-radius: 12px;
   background: var(--dc-dialog-bg);
   box-shadow: var(--dc-shadow-xl);
 }
 
-.dc-dialog-modal_sm {
-  --dc-dialog-max-width: 320px;
+.dc-dialog__modal_sm {
+  width: 320px;
 }
 
-.dc-dialog-modal_lg {
-  --dc-dialog-max-width: 640px;
-}
-
-.dc-dialog_closed .dc-dialog-modal {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.95);
-  transition: var(--dc-dialog-transition-duration) ease;
-  transition-property: opacity, transform;
-}
-
-.dc-dialog_opened .dc-dialog-modal {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+.dc-dialog__modal_lg {
+  width: 640px;
 }
 
 .dc-dialog-header,
@@ -79,33 +62,31 @@
 
 .dc-dialog-header {
   font: var(--dc-text-sm);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 4px;
+  align-items: center;
 }
 
-.dc-dialog-header_has_border {
-  border-bottom: 1px solid var(--dc-dialog-inset-shadow-color);
+.dc-dialog-header_has_divider {
+  border-bottom: 1px solid var(--dc-dialog-divider-color);
 }
 
-.dc-dialog-header__title-bar {
-  position: relative;
-  padding-right: 24px;
-}
-
-.dc-dialog-header__heading {
+.dc-dialog-header__title {
   font: 700 var(--dc-text-md);
+  grid-column: 1 / 2;
   margin: 0;
 }
 
-.dc-dialog-header__close-btn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 24px;
-  height: 24px;
+.dc-dialog-header__subtitle,
+.dc-dialog-header__body {
+  grid-column: 1 / 3;
 }
 
-.dc-dialog-header__subheading,
-.dc-dialog-header__body {
-  margin-top: 4px;
+.dc-dialog-header__close-button {
+  grid-column: 2 / 3;
+  width: 24px;
+  height: 24px;
 }
 
 .dc-dialog-body {
@@ -120,28 +101,57 @@
 .dc-dialog-footer {
   display: flex;
   flex-wrap: wrap;
+  gap: 8px;
   align-items: center;
   justify-content: flex-end;
 }
 
-.dc-dialog-footer > * + * {
-  margin-left: 8px;
+.dc-dialog-footer_has_divider {
+  border-top: 1px solid var(--dc-dialog-divider-color);
 }
 
-.dc-dialog-footer_has_border {
-  border-top: 1px solid var(--dc-dialog-inset-shadow-color);
-}
-
-.dc-dialog-modal > .dc-dialog-header:first-child,
-.dc-dialog-modal > .dc-dialog-body:first-child,
-.dc-dialog-modal > .dc-dialog-footer:first-child {
+.dc-dialog__modal > :first-child {
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
 }
 
-.dc-dialog-modal > .dc-dialog-header:last-child,
-.dc-dialog-modal > .dc-dialog-body:last-child,
-.dc-dialog-modal > .dc-dialog-footer:last-child {
+.dc-dialog__modal > :last-child {
   border-bottom-right-radius: inherit;
   border-bottom-left-radius: inherit;
+}
+
+.dc-dialog.enter {
+  transition: opacity var(--dc-dialog-open-transition-duration) ease;
+}
+
+.dc-dialog.enter-from {
+  opacity: 0;
+}
+
+.dc-dialog.enter-to {
+  opacity: 1;
+}
+
+.dc-dialog.enter .dc-dialog__modal {
+  transition: transform var(--dc-dialog-open-transition-duration) ease-out;
+}
+
+.dc-dialog.enter-from .dc-dialog__modal {
+  transform: scale(0.95);
+}
+
+.dc-dialog.enter-to .dc-dialog__modal {
+  transform: scale(1);
+}
+
+.dc-dialog.leave {
+  transition: opacity var(--dc-dialog-close-transition-duration) ease;
+}
+
+.dc-dialog.leave-from {
+  opacity: 1;
+}
+
+.dc-dialog.leave-to {
+  opacity: 0;
 }

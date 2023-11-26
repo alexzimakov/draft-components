@@ -19,8 +19,8 @@ it('renders with necessary elements', () => {
   render(
     <Dialog isOpen={true} onClose={vi.fn()}>
       <DialogHeader
-        heading={heading}
-        subheading={subheading}
+        title={heading}
+        subtitle={subheading}
       />
       <DialogBody>
         <input placeholder={namePlaceholder} />
@@ -58,7 +58,7 @@ it('should invoke `onClose` callback when click on close button', async () => {
   const onCloseMock = vi.fn();
   render(
     <Dialog isOpen={true} onClose={onCloseMock}>
-      <DialogHeader heading="Dialog title" />
+      <DialogHeader title="Dialog title" />
       <DialogBody>Dialog content</DialogBody>
     </Dialog>,
   );
@@ -73,7 +73,7 @@ it('should invoke `onClose` callback when press Esc button', async () => {
   const onCloseMock = vi.fn();
   render(
     <Dialog isOpen={true} onClose={onCloseMock}>
-      <DialogHeader heading="Dialog title" />
+      <DialogHeader title="Dialog title" />
       <DialogBody>Dialog content</DialogBody>
     </Dialog>,
   );
@@ -89,7 +89,7 @@ it('should capture focus within the dialog', async () => {
     <>
       <button data-testid="button-outside">Button outside dialog</button>
       <Dialog isOpen={true} onClose={vi.fn()}>
-        <DialogHeader heading="New user">
+        <DialogHeader title="New user">
           Enter information about a new user
         </DialogHeader>
         <DialogBody>
@@ -198,11 +198,11 @@ it('should focus a given element after the dialog is opened', async () => {
           Open
         </button>
         <Dialog
-          openFocusRef={inputRef}
+          focusAfterOpenRef={inputRef}
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
         >
-          <DialogHeader heading="New user" />
+          <DialogHeader title="New user" />
           <input ref={inputRef} placeholder={placeholder} />
         </Dialog>
       </div>
@@ -227,11 +227,11 @@ it('should focus a given element after the dialog is closed', async () => {
           Open
         </button>
         <Dialog
-          closeFocusRef={buttonRef}
+          focusAfterCloseRef={buttonRef}
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
         >
-          <DialogHeader heading="New user" />
+          <DialogHeader title="New user" />
           <input placeholder="Full name" />
         </Dialog>
       </div>

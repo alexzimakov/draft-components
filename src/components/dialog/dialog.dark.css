@@ -2,7 +2,7 @@
 .dark.dc-dialog {
   --dc-dialog-border-color: var(--dc-gray-700);
   --dc-dialog-bg: var(--dc-gray-800);
-  --dc-dialog-inset-shadow-color: var(--dc-border-color-transparent-1);
+  --dc-dialog-divider-color: var(--dc-border-color-transparent-1);
 
   color-scheme: dark;
 }

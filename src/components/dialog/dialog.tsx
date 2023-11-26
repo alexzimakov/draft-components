@@ -1,82 +1,113 @@
 import { CSSProperties, ComponentPropsWithoutRef, RefObject, useEffect, useId, useRef } from 'react';
 import { classNames, focusElement } from '../../lib/react-helpers.js';
-import { useDisableBodyScroll, useEscKeyDown, useFocusTrap, useMountTransition } from '../../hooks/index.js';
+import {
+  useDisableBodyScroll,
+  useEscKeyDown,
+  useFocusTrap,
+  usePreservePropsWhenClosed,
+  useShowTransition,
+} from '../../hooks/index.js';
 import { Portal } from '../portal/index.js';
 import { DialogContextProvider } from './dialog-context.js';
+import { DialogHeader } from './dialog-header.js';
+import { DialogBody } from './dialog-body.js';
+import { DialogFooter } from './dialog-footer.js';
 
 type DialogHTMLProps = ComponentPropsWithoutRef<'section'>;
+type ContainerProps = ComponentPropsWithoutRef<'div'>;
+type BackdropProps = ComponentPropsWithoutRef<'div'>;
 export type DialogWidth = 'sm' | 'md' | 'lg';
 export type DialogProps = {
   width?: DialogWidth;
-  openFocusRef?: RefObject<HTMLElement>;
-  closeFocusRef?: RefObject<HTMLElement>;
+  focusAfterOpenRef?: RefObject<HTMLElement>;
+  focusAfterCloseRef?: RefObject<HTMLElement>;
+  openAnimationDurationMs?: number;
+  closeAnimationDurationMs?: number;
+  containerProps?: ContainerProps;
+  backdropProps?: BackdropProps;
   isOpen: boolean;
   onClose: () => void;
+  onOpenAnimationEnd?: () => void;
+  onCloseAnimationEnd?: () => void;
 } & DialogHTMLProps;
 
-export function Dialog({
-  width = 'md',
-  isOpen = false,
-  openFocusRef,
-  closeFocusRef,
-  onClose,
-  className,
-  children,
-  ...props
-}: DialogProps) {
+export function Dialog(props: DialogProps) {
+  const {
+    className,
+    width = 'md',
+    isOpen = false,
+    focusAfterOpenRef,
+    focusAfterCloseRef,
+    openAnimationDurationMs = 250,
+    closeAnimationDurationMs = 150,
+    containerProps = {},
+    backdropProps = {},
+    children,
+    onClose,
+    onOpenAnimationEnd,
+    onCloseAnimationEnd,
+    ...otherProps
+  } = usePreservePropsWhenClosed(props, 'isOpen');
   const defaultId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
-  const durationMs = 200;
-  const { isMounted, className: transitionClass } = useMountTransition({
-    durationMs,
-    isShown: isOpen,
-    enterFrom: 'dc-dialog_closed',
-    enterTo: 'dc-dialog_opened',
+  const modalRef = useRef<HTMLDivElement>(null);
+  const { shouldRender, transitionClassName } = useShowTransition({
+    isOpen,
+    enterDurationMs: openAnimationDurationMs,
+    leaveDurationMs: closeAnimationDurationMs,
+    onEnterTransitionEnd: onOpenAnimationEnd,
+    onLeaveTransitionEnd: onCloseAnimationEnd,
   });
 
+  useDisableBodyScroll({ isEnabled: shouldRender });
+
+  useEscKeyDown(onClose, { isEnabled: shouldRender });
+
+  useFocusTrap(modalRef, { isEnabled: shouldRender });
+
   useEffect(() => {
-    if (isOpen) {
-      const openFocus = openFocusRef?.current;
-      const closeFocus = closeFocusRef?.current;
-
-      focusElement(openFocus);
-      return () => focusElement(closeFocus);
+    if (shouldRender) {
+      const focusAfterOpen = focusAfterOpenRef?.current;
+      const focusAfterClose = focusAfterCloseRef?.current;
+      focusElement(focusAfterOpen);
+      return () => {
+        focusElement(focusAfterClose);
+      };
     }
-  }, [isOpen, openFocusRef, closeFocusRef]);
+  }, [shouldRender, focusAfterOpenRef, focusAfterCloseRef]);
 
-  useEscKeyDown(() => {
-    onClose();
-  }, { isEnabled: isOpen });
-
-  useFocusTrap(dialogRef, { isEnabled: isOpen });
-
-  useDisableBodyScroll({ isEnabled: isOpen });
-
-  if (!isOpen && !isMounted) {
+  if (!shouldRender) {
     return null;
   }
 
-  const id = props.id || defaultId;
+  const id = otherProps.id || defaultId;
   const titleId = `dialog-title-${id}`;
   const descriptionId = `dialog-description-${id}`;
   return (
     <Portal>
       <div
+        {...containerProps}
+        ref={dialogRef}
+        className={classNames('dc-dialog', transitionClassName, containerProps.className)}
         style={{
-          '--dc-dialog-transition-duration': `${durationMs}ms`,
+          '--dc-dialog-open-transition-duration': `${openAnimationDurationMs}ms`,
+          '--dc-dialog-close-transition-duration': `${closeAnimationDurationMs}ms`,
+          ...containerProps.style,
         } as CSSProperties}
-        className={classNames('dc-dialog', transitionClass)}
       >
-        <div className="dc-dialog-backdrop" />
         <div
-          {...props}
-          ref={dialogRef}
-          className={classNames(className, {
-            'dc-dialog-modal': true,
-            [`dc-dialog-modal_${width}`]: width,
-          })}
-          role="dialog"
+          {...backdropProps}
+          className={classNames('dc-dialog__backdrop', backdropProps.className)}
+        />
+        <div
+          {...otherProps}
           id={id}
+          className={classNames(className, {
+            'dc-dialog__modal': true,
+            [`dc-dialog__modal_${width}`]: width,
+          })}
+          ref={modalRef}
+          role="dialog"
           aria-labelledby={titleId}
           aria-describedby={descriptionId}
           aria-modal={true}
@@ -94,3 +125,6 @@ export function Dialog({
     </Portal>
   );
 }
+Dialog.Header = DialogHeader;
+Dialog.Body = DialogBody;
+Dialog.Footer = DialogFooter;

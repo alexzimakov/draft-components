@@ -15,10 +15,6 @@ export function once<
   };
 }
 
-export function exhaustiveCheck(value: never, message?: string): never {
-  throw new Error(message);
-}
-
 export function assertIfNullable<T>(
   value: T,
   message = 'assertIfNullable: value is null or undefined.',
@@ -26,4 +22,12 @@ export function assertIfNullable<T>(
   if (value == null) {
     throw Error(message);
   }
+}
+
+export function exhaustiveCheck(value: never, message?: string): never {
+  throw new Error(message);
+}
+
+export function noop() {
+  return undefined;
 }

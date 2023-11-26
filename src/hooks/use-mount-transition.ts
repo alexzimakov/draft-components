@@ -34,6 +34,9 @@ export type TransitionState = {
   className: string;
 };
 
+/**
+ * @deprecated
+ */
 export function useMountTransition({
   animateFirstMount = false,
   isShown,

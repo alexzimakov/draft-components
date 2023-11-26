@@ -5,57 +5,42 @@ import { IconButton } from '../button/index.js';
 import { XMarkIcon } from '../hero-icons/24/outline/x-mark-icon.js';
 
 type DialogHeaderHTMLProps = ComponentPropsWithoutRef<'div'>;
+type DialogHeaderBaseProps = Omit<DialogHeaderHTMLProps, 'title'>;
 export type DialogHeaderProps = {
-  hasBorder?: boolean;
-  heading?: ReactNode;
-  subheading?: ReactNode;
-} & DialogHeaderHTMLProps;
+  hasDivider?: boolean;
+  title?: ReactNode;
+  subtitle?: ReactNode;
+} & DialogHeaderBaseProps;
 
 export function DialogHeader({
-  hasBorder,
-  heading,
-  subheading,
   className,
+  hasDivider,
+  title,
+  subtitle,
   children,
 }: DialogHeaderProps) {
-  const {
-    titleId,
-    descriptionId,
-    onClose,
-  } = useDialogContext();
-  const shouldRenderHeading = Boolean(heading);
-  const shouldRenderDescription = Boolean(subheading);
-  const shouldRenderChildren = Boolean(children);
-
+  const { titleId, descriptionId, onClose } = useDialogContext();
   return (
     <div className={classNames(className, {
       'dc-dialog-header': true,
-      'dc-dialog-header_has_border': hasBorder,
+      'dc-dialog-header_has_divider': hasDivider,
     })}>
-      <div className="dc-dialog-header__title-bar">
-        {shouldRenderHeading && (
-          <h2 id={titleId} className="dc-dialog-header__heading">
-            {heading}
-          </h2>
-        )}
-        <IconButton
-          className="dc-dialog-header__close-btn"
-          buttonStyle="plain"
-          onClick={() => onClose()}
-        >
-          <XMarkIcon width={18} height={18} strokeWidth={2} />
-        </IconButton>
-      </div>
-      {shouldRenderDescription && (
-        <div id={descriptionId} className="dc-dialog-header__subheading">
-          {subheading}
-        </div>
-      )}
-      {shouldRenderChildren && (
-        <div className="dc-dialog-header__body">
-          {children}
-        </div>
-      )}
+      {title
+        ? <h3 id={titleId} className="dc-dialog-header__title">{title}</h3>
+        : null}
+      <IconButton
+        buttonStyle="plain"
+        className="dc-dialog-header__close-button"
+        onClick={() => onClose()}
+      >
+        <XMarkIcon width={18} height={18} strokeWidth={2} />
+      </IconButton>
+      {subtitle
+        ? <div id={descriptionId} className="dc-dialog-header__subtitle">{subtitle}</div>
+        : null}
+      {children
+        ? <div className="dc-dialog-header__body">{children}</div>
+        : null}
     </div>
   );
 }
