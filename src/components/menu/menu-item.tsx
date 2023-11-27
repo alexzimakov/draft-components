@@ -5,6 +5,7 @@ type MenuItemHTMLProps = ComponentPropsWithRef<'button'>;
 type MenuItemBaseProps = Omit<MenuItemHTMLProps, 'children' | 'role'>;
 export type MenuItemProps = {
   role?: 'menuitem' | 'menuitemradio';
+  disabled?: boolean;
   destructive?: boolean;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
@@ -16,6 +17,7 @@ export const MenuItem = forwardRef<
   MenuItemProps
 >(function MenuItem({
   role = 'menuitem',
+  disabled,
   destructive,
   iconLeft,
   iconRight,
@@ -41,6 +43,7 @@ export const MenuItem = forwardRef<
           'dc-menu-btn_destructive': destructive,
         })}
         type="button"
+        disabled={disabled}
         role={role}
         tabIndex={-1}
       >

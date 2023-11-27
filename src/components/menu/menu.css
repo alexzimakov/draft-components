@@ -52,6 +52,11 @@
   background: var(--dc-menu-item-bg);
 }
 
+.dc-menu-btn:disabled {
+  opacity: var(--dc-disabled-state-opacity);
+  cursor: default;
+}
+
 .dc-menu-btn__label {
   flex-grow: 1;
 }

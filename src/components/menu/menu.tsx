@@ -307,7 +307,7 @@ function getMenuItems(menuId: string): HTMLButtonElement[] {
   }
 
   const nodes = menuEl.querySelectorAll<HTMLButtonElement>(
-    'button[role="menuitem"], button[role="menuitemradio"]',
+    'button[role="menuitem"]:not(:disabled), button[role="menuitemradio"]:not(:disabled)',
   );
   return Array.from(nodes);
 }
