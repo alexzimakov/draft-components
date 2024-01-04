@@ -31,3 +31,11 @@ export function exhaustiveCheck(value: never, message?: string): never {
 export function noop() {
   return undefined;
 }
+
+export function formatNumber(num: number, fractionDigits = 5): number {
+  return Number(num.toFixed(fractionDigits));
+}
+
+export function formatPercent(percent: number): string {
+  return `${formatNumber(percent * 100)}%`;
+}

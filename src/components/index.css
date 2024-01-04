@@ -23,6 +23,7 @@
 @import url("checkbox/checkbox.css");
 @import url("radio/radio.css");
 @import url("slider/slider.css");
+@import url("slider-range/slider-range.css");
 @import url("file-picker/file-picker.css");
 @import url("date-picker/date-picker.css");
 @import url("segmented-control/segmented-control.css");
