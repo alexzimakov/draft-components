@@ -52,13 +52,17 @@
   border: none;
 }
 
+.dc-slider-range__label,
+.dc-slider-range__label[hidden] {
+  display: inline-flex;
+}
+
 .dc-slider-range__label {
   font: var(--dc-text-xs);
   color: var(--dc-slider-range-label-text-color);
   position: absolute;
   top: 0;
   left: 0;
-  display: inline-flex;
   align-items: center;
   box-sizing: border-box;
   height: var(--dc-slider-range-label-height);
