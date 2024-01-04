@@ -92,7 +92,7 @@
 .dc-slider-range__track::after {
   content: "";
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   top: 50%;
   display: block;
   box-sizing: border-box;
@@ -120,6 +120,7 @@
 .dc-slider-range__input {
   appearance: none;
   position: absolute;
+  z-index: 1;
   top: 0;
   left: 0;
   cursor: default;
@@ -132,7 +133,7 @@
 }
 
 .dc-slider-range__input_active {
-  z-index: 1;
+  z-index: 2;
 }
 
 .dc-slider-range__input:focus {
