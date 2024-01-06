@@ -80,10 +80,3 @@ export function getRefElement<T extends HTMLElement>(
   }
   return value;
 }
-
-export function getCustomPropertyValue(
-  element: HTMLElement,
-  property: string,
-): string {
-  return window.getComputedStyle(element).getPropertyValue(property) || '';
-}

@@ -39,7 +39,3 @@ export function formatNumber(num: number, fractionDigits = 5): number {
 export function formatPercent(percent: number): string {
   return `${formatNumber(percent * 100)}%`;
 }
-
-export function roundToNearest(decimal: number, nearest: number): number {
-  return Math.round(decimal * nearest) / nearest;
-}
