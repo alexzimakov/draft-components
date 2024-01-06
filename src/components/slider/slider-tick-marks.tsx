@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { getOffsetRelativeToThumb } from './get-offset-relative-to-thumb.js';
+import { calcPosition } from './calc-position.js';
 
 export type SliderTickMark = {
   value: number;
@@ -40,7 +41,9 @@ export function SliderTickMarks({
         className="dc-slider__tick-mark"
         key={key}
         data-value={value}
-        style={{ left: getOffsetRelativeToThumb(value / (max - min)) }}
+        style={{
+          left: getOffsetRelativeToThumb(calcPosition(value, { min, max })),
+        }}
       />,
     );
   }
