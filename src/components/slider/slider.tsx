@@ -1,7 +1,8 @@
 import { CSSProperties, ReactNode, useId } from 'react';
+import { classNames } from '../../lib/index.js';
+import { calcPosition } from './calc-position.js';
 import { SliderTickMark, SliderTrack } from './slider-track.js';
 import { SliderThumb } from './slider-thumb.js';
-import { classNames } from '../../lib/index.js';
 import { SliderTickMarks } from './slider-tick-marks.js';
 
 export type SliderProps = {
@@ -47,7 +48,7 @@ export function Slider({
 }: SliderProps) {
   const defaultId = useId();
   const thumbId = id || `${defaultId}slider-thumb`;
-  const position = value / (max - min);
+  const position = calcPosition(value, { min, max });
 
   let dataListId: string | undefined;
   let tickMarksElement: ReactNode;

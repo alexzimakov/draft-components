@@ -1,7 +1,8 @@
 import { CSSProperties, ReactNode, useId, useState } from 'react';
+import { classNames } from '../../lib/index.js';
+import { calcPosition } from './calc-position.js';
 import { SliderTickMark, SliderTrack } from './slider-track.js';
 import { SliderThumb } from './slider-thumb.js';
-import { classNames } from '../../lib/index.js';
 import { SliderTickMarks } from './slider-tick-marks.js';
 
 export type RangeSliderValue = {
@@ -60,8 +61,8 @@ export function RangeSlider({
 }: RangeSliderProps) {
   const defaultId = useId();
   const [focusedThumb, setFocusedThumb] = useState<'min' | 'max'>('min');
-  const positionMin = range.min / (max - min);
-  const positionMax = range.max / (max - min);
+  const positionMin = calcPosition(range.min, { min, max });
+  const positionMax = calcPosition(range.max, { min, max });
 
   let dataListId: string | undefined;
   let tickMarksElement: ReactNode;
