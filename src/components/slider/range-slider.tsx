@@ -16,7 +16,7 @@ export type RangeSliderProps = {
   className?: string;
   disabled?: boolean;
   fullWidth?: boolean;
-  showLabel?: boolean;
+  showLabels?: boolean;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   tickMarks?: SliderTickMark[];
@@ -42,7 +42,7 @@ export function RangeSlider({
   className,
   disabled,
   fullWidth,
-  showLabel = true,
+  showLabels,
   iconLeft,
   iconRight,
   tickMarks,
@@ -115,7 +115,7 @@ export function RangeSlider({
     >
       <div className={classNames({
         'dc-slider__body': true,
-        'dc-slider__body_has_label': showLabel,
+        'dc-slider__body_has_labels': showLabels,
         'dc-slider__body_has_tick-marks': tickMarksElement,
       })}>
         {iconLeft}
@@ -128,7 +128,7 @@ export function RangeSlider({
             name={minThumbName || (name && `${name}[min]`)}
             active={focusedThumb === 'min'}
             aria-label={minThumbAriaLabel}
-            showLabel={showLabel}
+            showLabel={showLabels}
             dataListId={dataListId}
             position={positionMin}
             step={step}
@@ -143,7 +143,7 @@ export function RangeSlider({
             name={maxThumbName || (name && `${name}[max]`)}
             active={focusedThumb === 'max'}
             aria-label={maxThumbAriaLabel}
-            showLabel={showLabel}
+            showLabel={showLabels}
             dataListId={dataListId}
             position={positionMax}
             step={step}

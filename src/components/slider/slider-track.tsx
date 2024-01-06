@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { formatPercent } from '../../lib/index.js';
 
 export type SliderTickMark = {
   value: number;
@@ -17,8 +16,8 @@ export function SliderTrack({
   positionEnd,
   children,
 }: SliderTrackProps) {
-  const start = formatPercent(positionStart);
-  const end = formatPercent(positionEnd);
+  const start = `${Math.floor(positionStart * 100)}%`;
+  const end = `${Math.floor(positionEnd * 100)}%`;
   const background = 'linear-gradient(' +
     'to right, ' +
     `var(--dc-slider-track-bg) ${start}, ` +

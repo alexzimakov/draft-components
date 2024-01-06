@@ -68,12 +68,14 @@ export function SliderThumb({
         <output
           style={{ left: getOffsetRelativeToThumb(position) }}
           className={classNames({
-            'dc-slider__input-label': true,
-            'dc-slider__input-label_active': active,
+            'dc-slider__label': true,
+            'dc-slider__label_active': active,
           })}
           htmlFor={id}
         >
-          {formatValue(value)}
+          <span className="dc-slider__label-text">
+            {formatValue(value)}
+          </span>
         </output>
       )}
     </>

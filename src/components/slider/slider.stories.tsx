@@ -9,7 +9,7 @@ const meta: Meta<typeof Slider> = {
   args: {
     disabled: false,
     fullWidth: false,
-    showLabel: true,
+    showLabel: false,
     step: 1,
     min: 0,
     max: 100,
@@ -42,9 +42,9 @@ Disabled.args = {
   disabled: true,
 };
 
-export const WithoutLabel = Basic.bind({});
-WithoutLabel.args = {
-  showLabel: false,
+export const WithLabel = Basic.bind({});
+WithLabel.args = {
+  showLabel: true,
 };
 
 export const WithIcons = Basic.bind({});

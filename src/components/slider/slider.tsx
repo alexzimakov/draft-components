@@ -33,7 +33,7 @@ export function Slider({
   className,
   disabled,
   fullWidth,
-  showLabel = true,
+  showLabel,
   iconLeft,
   iconRight,
   tickMarks,
@@ -74,7 +74,7 @@ export function Slider({
     >
       <div className={classNames({
         'dc-slider__body': true,
-        'dc-slider__body_has_label': showLabel,
+        'dc-slider__body_has_labels': showLabel,
         'dc-slider__body_has_tick-marks': tickMarksElement,
       })}>
         {iconLeft}
