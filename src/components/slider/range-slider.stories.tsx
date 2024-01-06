@@ -1,11 +1,16 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { useEffect, useState } from 'react';
-import { Slider } from './slider.js';
-import { SpeakerWaveIcon, SpeakerXMarkIcon } from '@heroicons/react/20/solid';
+import { RangeSlider } from './range-slider.js';
 
-const meta: Meta<typeof Slider> = {
-  title: 'Forms/Slider',
-  component: Slider,
+const valueFormatter = new Intl.NumberFormat(undefined, {
+  style: 'currency',
+  currency: 'USD',
+  maximumFractionDigits: 0,
+});
+
+const meta: Meta<typeof RangeSlider> = {
+  title: 'Forms/RangeSlider',
+  component: RangeSlider,
   args: {
     disabled: false,
     fullWidth: false,
@@ -13,12 +18,13 @@ const meta: Meta<typeof Slider> = {
     step: 1,
     min: 0,
     max: 100,
-    value: 30,
+    value: { min: 30, max: 70 },
+    formatValue: valueFormatter.format,
   },
 };
 export default meta;
 
-export const Basic: StoryFn<typeof Slider> = (args) => {
+export const Basic: StoryFn<typeof RangeSlider> = (args) => {
   const [value, setValue] = useState(args.value);
 
   useEffect(() => {
@@ -26,7 +32,7 @@ export const Basic: StoryFn<typeof Slider> = (args) => {
   }, [args.value]);
 
   return (
-    <Slider
+    <RangeSlider
       {...args}
       value={value}
       onChange={setValue}
@@ -34,7 +40,7 @@ export const Basic: StoryFn<typeof Slider> = (args) => {
   );
 };
 Basic.args = {
-  name: 'volume',
+  name: 'priceRange',
 };
 
 export const Disabled = Basic.bind({});
@@ -47,20 +53,13 @@ WithoutLabel.args = {
   showLabel: false,
 };
 
-export const WithIcons = Basic.bind({});
-WithIcons.args = {
-  iconLeft: <SpeakerXMarkIcon width={20} height={20} />,
-  iconRight: <SpeakerWaveIcon width={20} height={20} />,
-};
-
 export const WithTickMarks = Basic.bind({});
 WithTickMarks.args = {
   tickMarks: Array.from({ length: 11 }).map((_, index) => {
     const value = index * 10;
-    const valueFormatter = new Intl.NumberFormat(undefined, { style: 'percent' });
     return {
       value,
-      label: valueFormatter.format(value / 100),
+      label: valueFormatter.format(value),
     };
   }),
 };

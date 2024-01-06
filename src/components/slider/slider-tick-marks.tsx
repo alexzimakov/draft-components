@@ -1,32 +1,58 @@
-import { JSX, ReactNode } from 'react';
+import { ReactNode } from 'react';
+import { getOffsetRelativeToThumb } from './get-offset-relative-to-thumb.js';
 
-export type RenderTickMarkLabel = (index: number) => ReactNode;
+export type SliderTickMark = {
+  value: number;
+  label?: ReactNode;
+};
+
 export type SliderTickMarksProps = {
-  tickMarksCount: number;
-  renderTickMarkLabel?: RenderTickMarkLabel;
+  dataListId: string;
+  min: number;
+  max: number;
+  tickMarks: SliderTickMark[];
 };
 
 export function SliderTickMarks({
-  tickMarksCount,
-  renderTickMarkLabel,
+  dataListId,
+  min,
+  max,
+  tickMarks,
 }: SliderTickMarksProps) {
-  if (tickMarksCount < 1) {
-    return null;
+  const options: ReactNode[] = [];
+  const listItems: ReactNode[] = [];
+  for (let index = 0; index < tickMarks.length; index += 1) {
+    const { value, label } = tickMarks[index];
+    const key = `tick-mark-${value}:${index}`;
+
+    options.push(
+      <option
+        key={key}
+        value={value}
+        data-testid="slider-data-list-option"
+      >
+        {label}
+      </option>,
+    );
+
+    listItems.push(
+      <li
+        className="dc-slider__tick-mark"
+        key={key}
+        data-value={value}
+        style={{ left: getOffsetRelativeToThumb(value / (max - min)) }}
+      />,
+    );
   }
 
-  const tickMarks: JSX.Element[] = [];
-  for (let index = 0; index < tickMarksCount; index += 1) {
-    const label = renderTickMarkLabel?.(index);
-    tickMarks.push((
-      <div key={index} className="dc-slider-tick-mark" data-testid="tick-mark">
-        {Boolean(label) && (
-          <span className="dc-slider-tick-mark__label">
-            {label}
-          </span>
-        )}
-      </div>
-    ));
-  }
-
-  return <div className="dc-slider__tick-marks">{tickMarks}</div>;
+  return (
+    <>
+      <datalist id={dataListId}>
+        {options}
+      </datalist>
+      <ol className="dc-slider__tick-marks">
+        {listItems}
+      </ol>
+    </>
+  );
 }

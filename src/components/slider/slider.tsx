@@ -1,107 +1,106 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
-import { classNames } from '../../lib/react-helpers.js';
-import { SliderTickMarks, SliderTickMarksProps } from './slider-tick-marks.js';
+import { CSSProperties, ReactNode, useId } from 'react';
+import { SliderTickMark, SliderTrack } from './slider-track.js';
+import { SliderThumb } from './slider-thumb.js';
+import { classNames } from '../../lib/index.js';
+import { SliderTickMarks } from './slider-tick-marks.js';
 
-type SliderHTMLProps = ComponentPropsWithRef<'input'>;
-type SliderBaseProps = Omit<
-  SliderHTMLProps,
-  | 'type'
-  | 'min'
-  | 'max'
-  | 'step'
-  | 'value'
-  | 'defaultValue'
->;
-export type SliderThumbStyle = 'round' | 'rect';
-export type SliderChangeValueHandler = (value: number) => void;
 export type SliderProps = {
-  thumbStyle?: SliderThumbStyle;
+  'aria-label'?: string;
+  id?: string;
+  style?: CSSProperties;
+  className?: string;
+  disabled?: boolean;
+  fullWidth?: boolean;
+  showLabel?: boolean;
+  iconLeft?: ReactNode;
+  iconRight?: ReactNode;
+  tickMarks?: SliderTickMark[];
+  name?: string;
   step?: number;
   min?: number;
   max?: number;
-  value?: number;
-  defaultValue?: number;
-  onChangeValue?: SliderChangeValueHandler;
-}
-  & SliderBaseProps
-  & Partial<SliderTickMarksProps>;
+  value: number;
+  onChange: (value: number) => void;
+  formatValue?: (value: number) => ReactNode;
+};
 
-export const Slider = forwardRef<
-  HTMLInputElement,
-  SliderProps
->(function Slider({
-  thumbStyle = 'round',
-  tickMarksCount = 0,
-  renderTickMarkLabel,
-  step = 1,
-  min = 0,
-  max = 100,
+const numberFormatter = new Intl.NumberFormat();
+
+export function Slider({
+  'aria-label': ariaLabel,
+  id,
   style,
   className,
   disabled,
+  fullWidth,
+  showLabel = true,
+  iconLeft,
+  iconRight,
+  tickMarks,
+  step = 1,
+  min = 0,
+  max = 100,
+  name,
   value,
-  defaultValue,
   onChange,
-  onChangeValue,
-  ...props
-}, ref) {
-  defaultValue = value == null ? defaultValue || 0 : undefined;
+  formatValue = numberFormatter.format,
+}: SliderProps) {
+  const defaultId = useId();
+  const thumbId = id || `${defaultId}slider-thumb`;
+  const position = value / (max - min);
+
+  let dataListId: string | undefined;
+  let tickMarksElement: ReactNode;
+  if (tickMarks && tickMarks.length > 0) {
+    dataListId = `${defaultId}slider-datalist`;
+    tickMarksElement = (
+      <SliderTickMarks
+        tickMarks={tickMarks}
+        dataListId={dataListId}
+        min={min}
+        max={max}
+      />
+    );
+  }
+
   return (
     <div
       style={style}
-      className={classNames(className, 'dc-slider', {
-        [`dc-slider_thumb_${thumbStyle}`]: thumbStyle !== undefined,
+      className={classNames(className, {
+        'dc-slider': true,
         'dc-slider_disabled': disabled,
+        'dc-slider_full-width': fullWidth,
       })}
     >
-      <input
-        {...props}
-        ref={ref}
-        style={{
-          background: getTrackBackground({
-            min,
-            max,
-            value: value ?? defaultValue,
-          }),
-        }}
-        className="dc-slider__input"
-        type="range"
-        value={value}
-        defaultValue={defaultValue}
-        min={min}
-        max={max}
-        step={step}
-        disabled={disabled}
-        onChange={(event) => {
-          const target = event.target;
-          const value = Number(target.value);
-          onChange?.(event);
-          onChangeValue?.(value);
-          target.style.background = getTrackBackground({ min, max, value });
-        }}
-      />
-      <SliderTickMarks
-        tickMarksCount={tickMarksCount}
-        renderTickMarkLabel={renderTickMarkLabel}
-      />
+      <div className={classNames({
+        'dc-slider__body': true,
+        'dc-slider__body_has_label': showLabel,
+        'dc-slider__body_has_tick-marks': tickMarksElement,
+      })}>
+        {iconLeft}
+        <SliderTrack
+          positionStart={0}
+          positionEnd={position}
+        >
+          {tickMarksElement}
+          <SliderThumb
+            id={thumbId}
+            name={name}
+            aria-label={ariaLabel}
+            disabled={disabled}
+            showLabel={showLabel}
+            dataListId={dataListId}
+            position={position}
+            step={step}
+            min={min}
+            max={max}
+            value={value}
+            onChange={onChange}
+            formatValue={formatValue}
+          />
+        </SliderTrack>
+        {iconRight}
+      </div>
     </div>
   );
-});
-
-function getTrackBackground(params: {
-  min?: number,
-  max?: number,
-  value?: number,
-}): string {
-  const value = params.value || 0;
-  const min = params.min || 0;
-  const max = params.max || 0;
-  const valuePct = ((value - min) / (max - min) * 100).toFixed(2);
-  return `linear-gradient(
-    to right,
-    var(--dc-slider-track-bg-fill) 0%,
-    var(--dc-slider-track-bg-fill) ${valuePct}%,
-    var(--dc-slider-track-bg) ${valuePct}%,
-    var(--dc-slider-track-bg) ${valuePct}%
-  )`;
 }
