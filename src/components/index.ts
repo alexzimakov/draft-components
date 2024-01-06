@@ -28,7 +28,6 @@ export * from './segmented-control/index.js';
 export * from './select/index.js';
 export * from './selection-control/index.js';
 export * from './slide-over/index.js';
-export * from './slider-range/index.js';
 export * from './slider/index.js';
 export * from './spinner/index.js';
 export * from './switch/index.js';
