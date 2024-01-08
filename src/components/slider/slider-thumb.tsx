@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FocusEventHandler, ReactNode } from 'react';
+import { ChangeEventHandler, PointerEventHandler, ReactNode } from 'react';
 import { getOffsetRelativeToThumb } from './get-offset-relative-to-thumb.js';
 import { classNames } from '../../lib/index.js';
 
@@ -15,10 +15,9 @@ export type SliderThumbProps = {
   min: number;
   max: number;
   value: number;
-  formatValue: (value: number) => ReactNode;
+  format: (value: number) => ReactNode;
   onChange: (value: number) => void;
-  onFocus?: FocusEventHandler<HTMLInputElement>;
-  onBlur?: FocusEventHandler<HTMLInputElement>;
+  onPointerDown?: PointerEventHandler<HTMLInputElement>;
 };
 
 export function SliderThumb({
@@ -34,10 +33,9 @@ export function SliderThumb({
   min,
   max,
   value,
-  formatValue,
+  format,
   onChange,
-  onFocus,
-  onBlur,
+  onPointerDown,
 }: SliderThumbProps) {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     onChange(event.target.valueAsNumber);
@@ -61,8 +59,7 @@ export function SliderThumb({
         disabled={disabled}
         value={value}
         onChange={handleChange}
-        onFocus={onFocus}
-        onBlur={onBlur}
+        onPointerDown={onPointerDown}
       />
       {showLabel && (
         <output
@@ -74,7 +71,7 @@ export function SliderThumb({
           htmlFor={id}
         >
           <span className="dc-slider__label-text">
-            {formatValue(value)}
+            {format(value)}
           </span>
         </output>
       )}

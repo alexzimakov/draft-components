@@ -29,9 +29,9 @@ export type RangeSliderProps = {
   max?: number;
   maxThumbName?: string;
   maxThumbAriaLabel?: string;
+  format?: (value: number) => ReactNode;
   value: RangeSliderValue;
   onChange: (value: RangeSliderValue) => void;
-  formatValue?: (value: number) => ReactNode;
 };
 
 const numberFormatter = new Intl.NumberFormat();
@@ -55,14 +55,14 @@ export function RangeSlider({
   maxThumbName,
   maxThumbAriaLabel,
   name,
-  value: range,
+  value,
+  format = numberFormatter.format,
   onChange,
-  formatValue = numberFormatter.format,
 }: RangeSliderProps) {
   const defaultId = useId();
-  const [focusedThumb, setFocusedThumb] = useState<'min' | 'max'>('min');
-  const positionMin = calcPosition(range.min, { min, max });
-  const positionMax = calcPosition(range.max, { min, max });
+  const [activeThumb, setActiveThumb] = useState<'min' | 'max'>('min');
+  const positionMin = calcPosition(value.min, { min, max });
+  const positionMax = calcPosition(value.max, { min, max });
 
   let dataListId: string | undefined;
   let tickMarksElement: ReactNode;
@@ -78,26 +78,26 @@ export function RangeSlider({
     );
   }
 
-  const handleChangeMin = (value: number) => {
+  const handleChangeMin = (min: number) => {
     onChange({
-      ...range,
-      min: Math.min(range.max, value),
+      ...value,
+      min: Math.min(value.max, min),
     });
   };
 
-  const handleFocusMinThumb = () => {
-    setFocusedThumb('min');
+  const handlePointerDownOnMinThumb = () => {
+    setActiveThumb('min');
   };
 
-  const handleChangeMax = (value: number) => {
+  const handleChangeMax = (max: number) => {
     onChange({
-      ...range,
-      max: Math.max(range.min, value),
+      ...value,
+      max: Math.max(value.min, max),
     });
   };
 
-  const handleFocusMaxThumb = () => {
-    setFocusedThumb('max');
+  const handlePointerDownOnMaxThumb = () => {
+    setActiveThumb('max');
   };
 
   return (
@@ -127,7 +127,7 @@ export function RangeSlider({
           {tickMarksElement}
           <SliderThumb
             name={minThumbName || (name && `${name}[min]`)}
-            active={focusedThumb === 'min'}
+            active={activeThumb === 'min'}
             aria-label={minThumbAriaLabel}
             showLabel={showLabels}
             dataListId={dataListId}
@@ -135,14 +135,14 @@ export function RangeSlider({
             step={step}
             min={min}
             max={max}
-            value={range.min}
-            formatValue={formatValue}
+            value={value.min}
+            format={format}
             onChange={handleChangeMin}
-            onFocus={handleFocusMinThumb}
+            onPointerDown={handlePointerDownOnMinThumb}
           />
           <SliderThumb
             name={maxThumbName || (name && `${name}[max]`)}
-            active={focusedThumb === 'max'}
+            active={activeThumb === 'max'}
             aria-label={maxThumbAriaLabel}
             showLabel={showLabels}
             dataListId={dataListId}
@@ -150,10 +150,10 @@ export function RangeSlider({
             step={step}
             min={min}
             max={max}
-            value={range.max}
-            formatValue={formatValue}
+            value={value.max}
+            format={format}
             onChange={handleChangeMax}
-            onFocus={handleFocusMaxThumb}
+            onPointerDown={handlePointerDownOnMaxThumb}
           />
         </SliderTrack>
         {iconRight}

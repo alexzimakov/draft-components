@@ -19,7 +19,7 @@ const meta: Meta<typeof RangeSlider> = {
     min: 0,
     max: 100,
     value: { min: 30, max: 70 },
-    formatValue: valueFormatter.format,
+    format: valueFormatter.format,
   },
 };
 export default meta;

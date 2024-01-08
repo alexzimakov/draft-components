@@ -21,8 +21,8 @@ export type SliderProps = {
   min?: number;
   max?: number;
   value: number;
+  format?: (value: number) => ReactNode;
   onChange: (value: number) => void;
-  formatValue?: (value: number) => ReactNode;
 };
 
 const numberFormatter = new Intl.NumberFormat();
@@ -43,8 +43,8 @@ export function Slider({
   max = 100,
   name,
   value,
+  format = numberFormatter.format,
   onChange,
-  formatValue = numberFormatter.format,
 }: SliderProps) {
   const defaultId = useId();
   const thumbId = id || `${defaultId}slider-thumb`;
@@ -97,7 +97,7 @@ export function Slider({
             max={max}
             value={value}
             onChange={onChange}
-            formatValue={formatValue}
+            format={format}
           />
         </SliderTrack>
         {iconRight}
