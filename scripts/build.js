@@ -2,12 +2,13 @@ import path from 'node:path';
 import childProcess from 'node:child_process';
 import fs from 'node:fs/promises';
 import postcss from 'postcss';
-import autoprefixer from 'autoprefixer';
-import postcssImport from 'postcss-import';
+import postcssConfig from '../postcss.config.js';
+import { glob } from 'glob';
 
 const PATHS = {
+  src: 'src',
   dist: 'dist',
-  css: 'css',
+  distCss: 'css',
 };
 
 (async function main() {
@@ -18,34 +19,45 @@ const PATHS = {
 async function buildTs() {
   await rm(PATHS.dist);
   await exec('npx tsc' +
-      " --project 'tsconfig.build.json'" +
-      ` --outDir '${PATHS.dist}'`);
+    " --project 'tsconfig.build.json'" +
+    ` --outDir '${PATHS.dist}'`);
 }
 
 async function buildCss() {
-  await rm(PATHS.css);
-  await mkdir(PATHS.css);
+  await rm(PATHS.distCss);
+  await mkdir(PATHS.distCss);
 
+  const componentsDir = path.join(PATHS.src, 'components');
+  const componentCssFiles = await glob(path.join(componentsDir, '*', '*.css'));
   const files = [
     {
-      from: 'src/components/index.css',
-      to: path.join(PATHS.css, 'draft-components.css'),
+      from: path.join(componentsDir, 'index.css'),
+      to: path.join(PATHS.distCss, 'draft-components.css'),
     },
     {
-      from: 'src/components/index.dark.css',
-      to: path.join(PATHS.css, 'draft-components.dark.css'),
+      from: path.join(componentsDir, 'index.dark.css'),
+      to: path.join(PATHS.distCss, 'draft-components.dark.css'),
     },
     {
-      from: 'src/css-utilities/index.css',
-      to: path.join(PATHS.css, 'draft-components-utilities.css'),
+      from: path.join(componentsDir, 'variables.css'),
+      to: path.join(PATHS.distCss, 'draft-components-variables.css'),
     },
+    {
+      from: path.join(componentsDir, 'variables.dark.css'),
+      to: path.join(PATHS.distCss, 'draft-components-variables.dark.css'),
+    },
+    {
+      from: path.join(PATHS.src, 'css-utilities', 'index.css'),
+      to: path.join(PATHS.distCss, 'draft-components-utilities.css'),
+    },
+    ...componentCssFiles.map((file) => ({
+      from: file,
+      to: file.replace(PATHS.src, PATHS.dist),
+    })),
   ];
   const promises = files.map(async (options) => {
     const css = await fs.readFile(options.from);
-    const result = await postcss([
-      postcssImport,
-      autoprefixer,
-    ]).process(css, options);
+    const result = await postcss(postcssConfig.plugins).process(css, options);
     return appendFile(options.to, result.css);
   });
   return Promise.all(promises);

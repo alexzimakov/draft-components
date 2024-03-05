@@ -11,6 +11,9 @@
     "hue-degree-notation": "number",
     "length-zero-no-unit": true,
     "selector-class-pattern": null,
+    "function-no-unknown": [true, {
+      "ignoreFunctions": ["rgb-parts"]
+    }],
 
     "order/order": [
       "custom-properties",
