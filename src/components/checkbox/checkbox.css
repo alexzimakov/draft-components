@@ -83,3 +83,8 @@
 .dc-checkbox__input:focus:not(:focus-visible) + .dc-checkbox__check::after {
   content: none;
 }
+
+.dark .dc-checkbox,
+.dark.dc-checkbox {
+  color-scheme: dark;
+}

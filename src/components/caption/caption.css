@@ -29,3 +29,8 @@
   float: left;
   margin-right: 0.5em;
 }
+
+.dark .dc-caption,
+.dark.dc-caption {
+  color-scheme: dark;
+}

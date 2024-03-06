@@ -51,3 +51,8 @@
 
 .dc-empty-state__content {
 }
+
+.dark .dc-empty-state,
+.dark.dc-empty-state {
+  color-scheme: dark;
+}

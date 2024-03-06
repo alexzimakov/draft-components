@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import '../src/components/index.css';
-import '../src/components/index.dark.css';
 import './preview.css';
 
 export default {

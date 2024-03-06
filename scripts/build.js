@@ -35,16 +35,8 @@ async function buildCss() {
       to: path.join(PATHS.distCss, 'draft-components.css'),
     },
     {
-      from: path.join(componentsDir, 'index.dark.css'),
-      to: path.join(PATHS.distCss, 'draft-components.dark.css'),
-    },
-    {
       from: path.join(componentsDir, 'variables.css'),
       to: path.join(PATHS.distCss, 'draft-components-variables.css'),
-    },
-    {
-      from: path.join(componentsDir, 'variables.dark.css'),
-      to: path.join(PATHS.distCss, 'draft-components-variables.dark.css'),
     },
     {
       from: path.join(PATHS.src, 'css-utilities', 'index.css'),

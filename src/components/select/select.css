@@ -112,3 +112,8 @@
 .dc-select_multiple .dc-select__slot-left {
   display: none;
 }
+
+.dark .dc-select,
+.dark.dc-select {
+  color-scheme: dark;
+}

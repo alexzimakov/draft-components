@@ -76,3 +76,8 @@
 .dc-menu-btn_destructive:focus {
   background: var(--dc-menu-item-bg-destructive);
 }
+
+.dark .dc-menu,
+.dark.dc-menu {
+  color-scheme: dark;
+}

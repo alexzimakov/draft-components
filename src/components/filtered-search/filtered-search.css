@@ -136,3 +136,15 @@
   color: var(--dc-filtered-search-selected-option-color);
   background: var(--dc-filtered-search-selected-option-bg);
 }
+
+.dark .dc-filtered-search,
+.dark.dc-filtered-search {
+  --dc-filtered-search-listbox-bg: var(--dc-gray-800);
+  --dc-filtered-search-listbox-shadow:
+    0 0 0 1px var(--dc-gray-700),
+    var(--dc-shadow-lg);
+  --dc-filtered-search-token-bg: var(--dc-gray-700);
+  --dc-filtered-search-token-bg-hover: rgb(var(--dc-white-rgb) / 0.1);
+
+  color-scheme: dark;
+}

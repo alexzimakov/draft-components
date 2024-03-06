@@ -81,3 +81,8 @@
 .dc-radio__input:focus:not(:focus-visible) + .dc-radio__check::after {
   content: none;
 }
+
+.dark .dc-radio,
+.dark.dc-radio {
+  color-scheme: dark;
+}

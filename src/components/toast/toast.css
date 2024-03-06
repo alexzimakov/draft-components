@@ -124,3 +124,27 @@
   color: var(--dc-toast-secondary-text-color);
   margin-top: 0.25em;
 }
+
+.dark .dc-toast,
+.dark.dc-toast {
+  --dc-toast-text-color: var(--dc-gray-800);
+  --dc-toast-secondary-text-color: var(--dc-gray-600);
+  --dc-toast-icon-color: var(--dc-gray-700);
+  --dc-toast-bg: var(--dc-gray-100);
+  --dc-toast-close-btn-color: var(--dc-gray-800);
+  --dc-toast-close-btn-bg: var(--dc-gray-100);
+  --dc-toast-btn-text-color: var(--dc-gray-800);
+  --dc-toast-btn-bg: rgb(var(--dc-gray-900-rgb) / 0.1);
+  --dc-toast-btn-bg-hover: rgb(var(--dc-gray-900-rgb) / 0.2);
+  --dc-toast-btn-focus-ring-color: var(--dc-gray-700);
+
+  color-scheme: dark;
+}
+
+.dark .dc-toast .dc-toast__close-btn,
+.dark.dc-toast .dc-toast__close-btn {
+  box-shadow:
+    0 0 0 1px rgb(var(--dc-black-rgb) / 0.1),
+    var(--dc-shadow-sm),
+    var(--dc-shadow-md);
+}

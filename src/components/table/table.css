@@ -174,3 +174,10 @@
 .dc-table_highlight_row .dc-table-body .dc-table-row:hover .dc-table-cell {
   background: var(--dc-table-row-bg-highlighted);
 }
+
+.dark .dc-table,
+.dark.dc-table,
+.dark .dc-table-container,
+.dark.dc-table-container {
+  color-scheme: dark;
+}

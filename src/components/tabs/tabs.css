@@ -85,3 +85,8 @@
 .dc-tab-list > * + * {
   margin-left: 16px;
 }
+
+.dark .dc-tabs,
+.dark.dc-tabs {
+  color-scheme: dark;
+}

@@ -67,3 +67,8 @@
   border-color: var(--dc-file-picker-border-color-drag-over);
   background: var(--dc-file-picker-bg-drag-over);
 }
+
+.dark .dc-file-picker,
+.dark.dc-file-picker {
+  color-scheme: dark;
+}

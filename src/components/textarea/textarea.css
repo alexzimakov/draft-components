@@ -70,3 +70,8 @@
   --dc-textarea-padding-x: 16px;
   --dc-textarea-radius: 8px;
 }
+
+.dark .dc-textarea,
+.dark.dc-textarea {
+  color-scheme: dark;
+}

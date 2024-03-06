@@ -132,3 +132,8 @@
   padding-left: var(--dc-input-padding-x);
   border-left: 1px solid var(--dc-input-border-color);
 }
+
+.dark .dc-text-input,
+.dark.dc-text-input {
+  color-scheme: dark;
+}

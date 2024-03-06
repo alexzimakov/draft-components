@@ -88,3 +88,8 @@
 .dc-toasts-list_bottom-right .dc-toasts-list__toast {
   animation-name: dc-toast-slide-bottom;
 }
+
+.dark .dc-toaster,
+.dark.dc-toaster {
+  color-scheme: dark;
+}

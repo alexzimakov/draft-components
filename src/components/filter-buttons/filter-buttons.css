@@ -51,3 +51,8 @@
 .dc-filter-button[aria-pressed="true"]:hover {
   background: var(--dc-filter-button-bg-active-hover);
 }
+
+.dark .dc-filter-buttons,
+.dark.dc-filter-buttons {
+  color-scheme: dark;
+}

@@ -155,3 +155,19 @@
 .dc-dialog.leave-to {
   opacity: 0;
 }
+
+.dark .dc-dialog,
+.dark.dc-dialog {
+  --dc-dialog-border-color: var(--dc-gray-700);
+  --dc-dialog-bg: var(--dc-gray-800);
+  --dc-dialog-divider-color: var(--dc-border-color-transparent-1);
+
+  color-scheme: dark;
+}
+
+.dark .dc-dialog .dc-dialog-modal,
+.dark.dc-dialog .dc-dialog-modal {
+  box-shadow:
+    0 0 0 1px var(--dc-border-color-transparent-2),
+    var(--dc-shadow-xl);
+}

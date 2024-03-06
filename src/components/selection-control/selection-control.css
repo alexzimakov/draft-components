@@ -27,3 +27,8 @@
 .dc-selection-control__caption {
   grid-area: caption;
 }
+
+.dark .dc-selection-control,
+.dark.dc-selection-control {
+  color-scheme: dark;
+}

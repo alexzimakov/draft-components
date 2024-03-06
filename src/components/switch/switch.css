@@ -116,3 +116,8 @@
 .dc-switch__input:focus:not(:focus-visible) + .dc-switch__track::after {
   content: none;
 }
+
+.dark .dc-switch,
+.dark.dc-switch {
+  color-scheme: dark;
+}

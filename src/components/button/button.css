@@ -32,6 +32,11 @@
   background: var(--dc-button-bg);
 }
 
+.dark .dc-button,
+.dark.dc-button {
+  color-scheme: dark;
+}
+
 .dc-button:focus {
   outline: none;
 }
@@ -59,23 +64,27 @@
   content: none;
 }
 
-.dc-button:not(.dc-button_loading):disabled {
+.dc-button:disabled {
   opacity: var(--dc-disabled-state-opacity);
 }
 
-.dc-button:not(.dc-button_loading, :disabled):hover {
+.dc-button:hover:not(:disabled) {
   cursor: pointer;
   background: var(--dc-button-bg-hover);
-}
-
-.dc-button_loading {
-  cursor: default;
 }
 
 .dc-button_loading,
 .dc-button_has_icon-left,
 .dc-button_has_icon-right {
   grid-template-columns: repeat(2, auto);
+}
+
+.dc-button_loading {
+  cursor: default;
+}
+
+.dc-button_loading:disabled {
+  opacity: initial;
 }
 
 .dc-button_loading.dc-button_has_icon-right,

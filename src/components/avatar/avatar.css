@@ -73,3 +73,15 @@
   fill: none;
   stroke: var(--dc-avatar-border-color);
 }
+
+.dark .dc-avatar,
+.dark.dc-avatar {
+  --dc-avatar-border-color: rgb(var(--dc-white-rgb) / 0.025);
+
+  color-scheme: dark;
+}
+
+.dark .dc-avatar_type_image,
+.dark.dc-avatar_type_image {
+  --dc-avatar-border-color: rgb(var(--dc-white-rgb) / 0.1);
+}

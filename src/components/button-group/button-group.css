@@ -20,3 +20,8 @@
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
+
+.dark .dc-button-group,
+.dark.dc-button-group {
+  color-scheme: dark;
+}

@@ -76,3 +76,10 @@
   border-radius: 50%;
   box-shadow: 0 0 0 3px var(--dc-color-picker-btn-focus-ring-color);
 }
+
+.dark .dc-color-picker,
+.dark.dc-color-picker {
+  --dc-color-picker-btn-inner-border-color: rgb(255 255 255 / 0.1);
+
+  color-scheme: dark;
+}
