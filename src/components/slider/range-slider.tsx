@@ -12,26 +12,26 @@ export type RangeSliderValue = {
 
 export type RangeSliderProps = {
   'aria-label'?: string;
-  id?: string;
-  style?: CSSProperties;
-  className?: string;
-  disabled?: boolean;
-  fullWidth?: boolean;
-  showLabels?: boolean;
-  iconLeft?: ReactNode;
-  iconRight?: ReactNode;
-  tickMarks?: SliderTickMark[];
-  name?: string;
-  step?: number;
-  min?: number;
-  minThumbName?: string;
-  minThumbAriaLabel?: string;
-  max?: number;
-  maxThumbName?: string;
-  maxThumbAriaLabel?: string;
-  format?: (value: number) => ReactNode;
-  value: RangeSliderValue;
-  onChange: (value: RangeSliderValue) => void;
+  'id'?: string;
+  'style'?: CSSProperties;
+  'className'?: string;
+  'disabled'?: boolean;
+  'fullWidth'?: boolean;
+  'showLabels'?: boolean;
+  'iconLeft'?: ReactNode;
+  'iconRight'?: ReactNode;
+  'tickMarks'?: SliderTickMark[];
+  'name'?: string;
+  'step'?: number;
+  'min'?: number;
+  'minThumbName'?: string;
+  'minThumbAriaLabel'?: string;
+  'max'?: number;
+  'maxThumbName'?: string;
+  'maxThumbAriaLabel'?: string;
+  'format'?: (value: number) => ReactNode;
+  'value': RangeSliderValue;
+  'onChange': (value: RangeSliderValue) => void;
 };
 
 const numberFormatter = new Intl.NumberFormat();
@@ -118,7 +118,8 @@ export function RangeSlider({
         'dc-slider__body': true,
         'dc-slider__body_has_labels': showLabels,
         'dc-slider__body_has_tick-marks': tickMarksElement,
-      })}>
+      })}
+      >
         {iconLeft}
         <SliderTrack
           positionStart={positionMin}

@@ -150,8 +150,8 @@ Bordered.args = {
 export const Sortable: StoryFn<typeof Table> = (args) => {
   type Column = typeof headers[number]['column'];
   type SortingState = {
-    column: Column,
-    sort: TableHeadCellSort,
+    column: Column;
+    sort: TableHeadCellSort;
   };
   const [sorting, setSorting] = useState<SortingState>({
     column: 'browser',

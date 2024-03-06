@@ -2,7 +2,7 @@
 type AnyFunction = (...args: any[]) => any;
 
 export function once<
-  T extends AnyFunction
+  T extends AnyFunction,
 >(fn: T): (...args: Parameters<T>) => ReturnType<T> {
   let called = false;
   let result: ReturnType<T>;

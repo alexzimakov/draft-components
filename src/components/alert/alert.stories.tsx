@@ -27,8 +27,8 @@ export const Basic: StoryFn<typeof Alert> = (args) => (
 Basic.args = {
   title: 'MIT License',
   children:
-    'A short and simple permissive license with conditions only requiring' +
-    'preservation of copyright and license notices.',
+    'A short and simple permissive license with conditions only requiring'
+    + 'preservation of copyright and license notices.',
 };
 
 export const WithIcon = Basic.bind({});

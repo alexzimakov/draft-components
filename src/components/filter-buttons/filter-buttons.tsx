@@ -18,8 +18,8 @@ export function FilterButtons({
 
     for (const child of el.children) {
       if (
-        child instanceof HTMLButtonElement &&
-        child.dataset.active === 'true'
+        child instanceof HTMLButtonElement
+        && child.dataset.active === 'true'
       ) {
         const offset = el.offsetWidth - child.offsetWidth - child.offsetLeft;
         if (offset < 0) {

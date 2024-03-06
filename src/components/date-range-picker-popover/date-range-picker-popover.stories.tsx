@@ -166,7 +166,7 @@ function formatSelection(
 }
 
 function renderFooter(params: {
-  selection: DateRangePickerPopoverSelection | null,
+  selection: DateRangePickerPopoverSelection | null;
 }): ReactNode {
   const selection = params.selection;
   let range = '';
@@ -192,10 +192,18 @@ function renderFooter(params: {
     timeZoneName: 'shortOffset',
   }).format(date).replace(/^\d{1,2} /, '');
 
-  return (<>
-    {range && (<div>
-      <b>{range}</b>
-    </div>)}
-    {timeZoneName} ({timeZoneOffset})
-  </>);
+  return (
+    <>
+      {range && (
+        <div>
+          <b>{range}</b>
+        </div>
+      )}
+      {timeZoneName}
+      {' '}
+      (
+      {timeZoneOffset}
+      )
+    </>
+  );
 }

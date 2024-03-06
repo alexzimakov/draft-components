@@ -24,7 +24,8 @@ export function DialogHeader({
     <div className={classNames(className, {
       'dc-dialog-header': true,
       'dc-dialog-header_has_divider': hasDivider,
-    })}>
+    })}
+    >
       {title
         ? <h3 id={titleId} className="dc-dialog-header__title">{title}</h3>
         : null}

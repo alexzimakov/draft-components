@@ -4,20 +4,20 @@ import { classNames } from '../../lib/index.js';
 
 export type SliderThumbProps = {
   'aria-label'?: string;
-  id?: string;
-  name?: string;
-  active?: boolean;
-  disabled?: boolean;
-  showLabel?: boolean;
-  dataListId?: string;
-  position: number;
-  step: number;
-  min: number;
-  max: number;
-  value: number;
-  format: (value: number) => ReactNode;
-  onChange: (value: number) => void;
-  onPointerDown?: PointerEventHandler<HTMLInputElement>;
+  'id'?: string;
+  'name'?: string;
+  'active'?: boolean;
+  'disabled'?: boolean;
+  'showLabel'?: boolean;
+  'dataListId'?: string;
+  'position': number;
+  'step': number;
+  'min': number;
+  'max': number;
+  'value': number;
+  'format': (value: number) => ReactNode;
+  'onChange': (value: number) => void;
+  'onPointerDown'?: PointerEventHandler<HTMLInputElement>;
 };
 
 export function SliderThumb({

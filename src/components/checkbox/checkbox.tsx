@@ -35,17 +35,19 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           data-testid="checkbox-check"
           aria-hidden={true}
         >
-          {hasMixedState ? (
-            <DashIcon
-              className="dc-checkbox__icon"
-              data-testid="checkbox-dash-icon"
-            />
-          ) : (
-            <CheckIcon
-              className="dc-checkbox__icon"
-              data-testid="checkbox-check-icon"
-            />
-          )}
+          {hasMixedState
+            ? (
+              <DashIcon
+                className="dc-checkbox__icon"
+                data-testid="checkbox-dash-icon"
+              />
+            )
+            : (
+              <CheckIcon
+                className="dc-checkbox__icon"
+                data-testid="checkbox-check-icon"
+              />
+            )}
         </span>
       </label>
     );

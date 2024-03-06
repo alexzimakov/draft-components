@@ -199,9 +199,9 @@ describe('defaultValuesFormatter()', () => {
   it('2 items', () => {
     const values = ['active', 'deleted'];
     const expected = (
-      defaultValueFormatter(values[0]) +
-      ' or ' +
-      defaultValueFormatter(values[1])
+      defaultValueFormatter(values[0])
+      + ' or '
+      + defaultValueFormatter(values[1])
     );
     expect(defaultValuesFormatter(values)).toBe(expected);
   });
@@ -209,11 +209,11 @@ describe('defaultValuesFormatter()', () => {
   it('3 items', () => {
     const values = ['active', 'deleted', 'paused'];
     const expected = (
-      defaultValueFormatter(values[0]) +
-      ', ' +
-      defaultValueFormatter(values[1]) +
-      ', or ' +
-      defaultValueFormatter(values[2])
+      defaultValueFormatter(values[0])
+      + ', '
+      + defaultValueFormatter(values[1])
+      + ', or '
+      + defaultValueFormatter(values[2])
     );
     expect(defaultValuesFormatter(values)).toBe(expected);
   });
@@ -221,10 +221,10 @@ describe('defaultValuesFormatter()', () => {
   it('4 or more items', () => {
     const values = ['active', 'deleted', 'paused', 'errors'];
     const expected = (
-      defaultValueFormatter(values[0]) +
-      ', ' +
-      defaultValueFormatter(values[1]) +
-      ', and 2 more'
+      defaultValueFormatter(values[0])
+      + ', '
+      + defaultValueFormatter(values[1])
+      + ', and 2 more'
     );
     expect(defaultValuesFormatter(values)).toBe(expected);
   });

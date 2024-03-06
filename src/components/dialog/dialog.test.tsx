@@ -123,8 +123,8 @@ it('should capture focus within the dialog', async () => {
 });
 
 it(
-  'should invoke the `onClose` callback only for the top dialog ' +
-  'when opening one or more dialogs and press the Esc key',
+  'should invoke the `onClose` callback only for the top dialog '
+  + 'when opening one or more dialogs and press the Esc key',
   async () => {
     const user = userEvent.setup();
     const closeFirstDialogMock = vi.fn();
@@ -148,8 +148,8 @@ it(
 );
 
 it(
-  'should capture focus only within the top dialog when open one ' +
-  'or more dialogs',
+  'should capture focus only within the top dialog when open one '
+  + 'or more dialogs',
   async () => {
     const user = userEvent.setup();
     render(

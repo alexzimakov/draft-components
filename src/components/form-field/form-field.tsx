@@ -81,15 +81,17 @@ export function FormField({
 
   return (
     <div {...props} className={classNames('dc-form-field', className)}>
-      {label ? (
-        <Label
-          className="dc-form-field__label"
-          required={required}
-          htmlFor={inputId}
-        >
-          {label}
-        </Label>
-      ) : null}
+      {label
+        ? (
+          <Label
+            className="dc-form-field__label"
+            required={required}
+            htmlFor={inputId}
+          >
+            {label}
+          </Label>
+        )
+        : null}
       <div className="dc-form-field__input">
         {inputElement}
       </div>

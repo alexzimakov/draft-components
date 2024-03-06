@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { Alignment, Rect } from './types.js';
 import { calcPosition } from './calc-position.js';
 
-describe("calculates position for the 'top' placement", () => {
+describe('calculates position for the \'top\' placement', () => {
   const anchorRect: Rect = {
     width: 80,
     height: 20,
@@ -30,10 +30,10 @@ describe("calculates position for the 'top' placement", () => {
     viewportGap: 20,
   };
 
-  const y = params.scrollY +
-    anchorRect.top -
-    contentRect.height -
-    params.anchorGap;
+  const y = params.scrollY
+    + anchorRect.top
+    - contentRect.height
+    - params.anchorGap;
   const testCases = [
     {
       alignment: 'end',
@@ -53,10 +53,10 @@ describe("calculates position for the 'top' placement", () => {
       alignment: 'center',
       coordinates: {
         y,
-        x: params.scrollX +
-          anchorRect.left +
-          (anchorRect.width / 2) -
-          (contentRect.width / 2),
+        x: params.scrollX
+        + anchorRect.left
+        + (anchorRect.width / 2)
+        - (contentRect.width / 2),
       },
     },
   ];
@@ -80,7 +80,7 @@ describe("calculates position for the 'top' placement", () => {
   });
 });
 
-describe("calculates position for the 'bottom' placement", () => {
+describe('calculates position for the \'bottom\' placement', () => {
   const anchorRect: Rect = {
     width: 80,
     height: 20,
@@ -128,10 +128,10 @@ describe("calculates position for the 'bottom' placement", () => {
       alignment: 'center',
       coordinates: {
         y,
-        x: params.scrollX +
-          anchorRect.left +
-          (anchorRect.width / 2) -
-          (contentRect.width / 2),
+        x: params.scrollX
+        + anchorRect.left
+        + (anchorRect.width / 2)
+        - (contentRect.width / 2),
       },
     },
   ];
@@ -155,7 +155,7 @@ describe("calculates position for the 'bottom' placement", () => {
   });
 });
 
-describe("calculates position for the 'left' placement", () => {
+describe('calculates position for the \'left\' placement', () => {
   const anchorRect: Rect = {
     width: 80,
     height: 20,
@@ -183,10 +183,10 @@ describe("calculates position for the 'left' placement", () => {
     viewportGap: 20,
   };
 
-  const x = params.scrollX +
-    anchorRect.left -
-    contentRect.width -
-    params.anchorGap;
+  const x = params.scrollX
+    + anchorRect.left
+    - contentRect.width
+    - params.anchorGap;
   const testCases = [
     {
       alignment: 'end',
@@ -206,8 +206,8 @@ describe("calculates position for the 'left' placement", () => {
       alignment: 'center',
       coordinates: {
         x,
-        y: params.scrollY + anchorRect.top +
-          (anchorRect.height / 2) - (contentRect.height / 2),
+        y: params.scrollY + anchorRect.top
+        + (anchorRect.height / 2) - (contentRect.height / 2),
       },
     },
   ];
@@ -231,7 +231,7 @@ describe("calculates position for the 'left' placement", () => {
   });
 });
 
-describe("calculates position for the 'right' placement", () => {
+describe('calculates position for the \'right\' placement', () => {
   const anchorRect: Rect = {
     width: 80,
     height: 20,
@@ -279,8 +279,8 @@ describe("calculates position for the 'right' placement", () => {
       alignment: 'center',
       coordinates: {
         x,
-        y: params.scrollY + anchorRect.top +
-          (anchorRect.height / 2) - (contentRect.height / 2),
+        y: params.scrollY + anchorRect.top
+        + (anchorRect.height / 2) - (contentRect.height / 2),
       },
     },
   ];
@@ -386,10 +386,10 @@ describe(
       ).toEqual({
         y: params.scrollY + anchorRect.bottom + params.anchorGap,
         x:
-          params.scrollX +
-          params.viewportWidth -
-          contentRect.width -
-          params.viewportGap,
+          params.scrollX
+          + params.viewportWidth
+          - contentRect.width
+          - params.viewportGap,
         placement: 'bottom',
         alignment: 'start',
       });
@@ -477,8 +477,8 @@ describe('should flip placement when content out of viewport bounds', () => {
     ).toEqual({
       x: params.scrollX + anchorRect.left,
       y:
-        params.scrollY + anchorRect.top -
-        contentRect.height - params.anchorGap,
+        params.scrollY + anchorRect.top
+        - contentRect.height - params.anchorGap,
       placement: 'top',
       alignment: 'start',
     });

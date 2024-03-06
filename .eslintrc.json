@@ -4,57 +4,77 @@
     "sourceType": "module"
   },
   "env": {
+    "es2022": true,
     "node": true,
-    "browser": true,
-    "es2022": true
+    "browser": true
   },
-  "extends": ["@alexzimakov/eslint-config"],
-
+  "extends": ["eslint:recommended", "plugin:@stylistic/recommended-extends"],
+  "rules": {
+    "@stylistic/semi": ["error", "always"],
+    "@stylistic/arrow-parens": ["error", "always"],
+    "@stylistic/brace-style": ["error", "1tbs"],
+    "@stylistic/indent": ["error", 2, {
+      "SwitchCase": 1,
+      "VariableDeclarator": "first",
+      "outerIIFEBody": 1,
+      "MemberExpression": 1,
+      "FunctionDeclaration": { "parameters": 1, "body": 1 },
+      "FunctionExpression": { "parameters": 1, "body": 1 },
+      "StaticBlock": { "body": 1 },
+      "CallExpression": { "arguments": 1 },
+      "ArrayExpression": 1,
+      "ObjectExpression": 1,
+      "ImportDeclaration": 1,
+      "flatTernaryExpressions": false,
+      "offsetTernaryExpressions": false
+    }]
+  },
   "overrides": [
     {
-      "files": ["src/**/*.[jt]s?(x)"],
+      "files": ["*.ts?(x)"],
       "parser": "@typescript-eslint/parser",
+      "extends": ["plugin:@typescript-eslint/recommended"],
+      "rules": {
+        "@stylistic/member-delimiter-style": [
+          "error",
+          {
+            "multiline": { "delimiter": "semi", "requireLast": true },
+            "singleline": { "delimiter": "semi", "requireLast": false },
+            "multilineDetection": "brackets"
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.[jt]sx"],
       "parserOptions": {
         "ecmaFeatures": {
           "jsx": true
         }
       },
-      "plugins": [
-        "@typescript-eslint",
-        "react",
-        "react-hooks",
-        "jsx-a11y",
-        "storybook"
-      ],
       "extends": [
-        "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
         "plugin:react/jsx-runtime",
         "plugin:react-hooks/recommended",
-        "plugin:jsx-a11y/recommended",
-        "plugin:storybook/recommended"
+        "plugin:jsx-a11y/recommended"
       ],
+      "plugins": ["react", "react-hooks", "jsx-a11y"],
       "settings": {
         "react": {
           "version": "detect"
         }
       },
       "rules": {
-        "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": ["error", {
-          "functions": false,
-          "classes": false,
-          "typedefs": false,
-          "ignoreTypeReferences": true
-        }],
-        "react/no-unescaped-entities": ["error", {
-          "forbid": [">", "}"]
-        }]
+        "react/no-unescaped-entities": ["error", { "forbid": [">", "}"] }]
       }
     },
-
     {
-      "files": ["src/**/__tests__/**/*.[jt]s?(x)", "src/**/?(*.)+(spec|test).[jt]s?(x)"],
+      "files": ["*.stories.[jt]sx"],
+      "extends": ["plugin:storybook/recommended"],
+      "plugins": ["storybook"]
+    },
+    {
+      "files": ["*.{spec,test}.[jt]s?(x)", "**/__tests__/**/*.[jt]s?(x)"],
       "extends": ["plugin:testing-library/react"]
     }
   ]

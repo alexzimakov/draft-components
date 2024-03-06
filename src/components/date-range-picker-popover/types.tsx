@@ -2,7 +2,7 @@ import { DateISORange } from '../date-picker/date-range.js';
 
 export type DateRangePickerPopoverSelection = {
   preset: string;
-  range: DateISORange
+  range: DateISORange;
 };
 
 export type DateRangePickerPopoverOption = {

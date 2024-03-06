@@ -113,7 +113,6 @@ it('focus textbox when click on container', async () => {
     />,
   );
 
-
   const container = screen.getByTestId('combobox-container');
   await user.click(container);
 

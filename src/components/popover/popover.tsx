@@ -31,11 +31,11 @@ export type PopoverRef = {
 export type PopoverAnchorRenderFn = (props: {
   ref: RefCallback<HTMLElement>;
 }, context: {
-  isOpen: boolean;
-  openPopover: () => void;
-  closePopover: () => void;
-  togglePopover: () => void;
-}) => ReactNode;
+    isOpen: boolean;
+    openPopover: () => void;
+    closePopover: () => void;
+    togglePopover: () => void;
+  }) => ReactNode;
 
 type PopoverHTMLProps = ComponentPropsWithoutRef<'div'>;
 export type PopoverPlacement = PositionerProps['placement'];
@@ -118,9 +118,9 @@ export const Popover = forwardRef<
     const anchor = anchorRef.current;
     const content = contentRef.current;
     if (
-      target instanceof Node &&
-      !anchor?.contains(target) &&
-      !content?.contains(target)
+      target instanceof Node
+      && !anchor?.contains(target)
+      && !content?.contains(target)
     ) {
       closePopover();
     }

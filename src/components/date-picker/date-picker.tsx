@@ -12,11 +12,11 @@ export type DatePickerProps = {
   min?: DateISO;
   max?: DateISO;
 } & Pick<CalendarProps,
-  | 'locale'
-  | 'prevMonthButtonLabel'
-  | 'nextMonthButtonLabel'
-  | 'monthSelectLabel'
-  | 'yearInputLabel'
+| 'locale'
+| 'prevMonthButtonLabel'
+| 'nextMonthButtonLabel'
+| 'monthSelectLabel'
+| 'yearInputLabel'
 > & DatePickerHTMLProps;
 
 export function DatePicker({

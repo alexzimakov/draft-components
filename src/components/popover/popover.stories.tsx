@@ -50,7 +50,8 @@ export const WithTooltip = () => (
     <Tooltip content="Click on me!">
       <Button ref={ref} onClick={togglePopover}>Hover on me</Button>
     </Tooltip>
-  )}>
+  )}
+  >
     <div style={{ padding: 16 }}>Popover Content</div>
   </Popover>
 );
@@ -121,11 +122,11 @@ export const Positioning = () => (
     style={{
       display: 'inline-grid',
       gridTemplateAreas:
-        '" .            top-start    top-center    top-end              . "' +
-        '" right-start  .            .             .          left-start  "' +
-        '" right-center .            .             .          left-center "' +
-        '" right-end    .            .             .          left-end    "' +
-        '" .            bottom-start bottom-center bottom-end           . "',
+        '" .            top-start    top-center    top-end              . "'
+        + '" right-start  .            .             .          left-start  "'
+        + '" right-center .            .             .          left-center "'
+        + '" right-end    .            .             .          left-end    "'
+        + '" .            bottom-start bottom-center bottom-end           . "',
       gap: '12px 8px',
       justifyItems: 'center',
       whiteSpace: 'nowrap',
@@ -157,7 +158,13 @@ function PopoverExample(props: {
   return (
     <div style={{ gridArea: `${placement}-${alignment}` }}>
       <Popover
-        anchor={<Button>{placement} {alignment}</Button>}
+        anchor={(
+          <Button>
+            {placement}
+            {' '}
+            {alignment}
+          </Button>
+        )}
         placement={placement}
         alignment={alignment}
       >

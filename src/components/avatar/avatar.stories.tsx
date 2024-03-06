@@ -70,11 +70,13 @@ Sizes.args = {
 };
 
 export const Fills: StoryFn<typeof Avatar> = (args) => (
-  <div style={{
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: 20,
-  }}>
+  <div
+    style={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 20,
+    }}
+  >
     <Avatar {...args} fill="gray" />
     <Avatar {...args} fill="pink" />
     <Avatar {...args} fill="red" />

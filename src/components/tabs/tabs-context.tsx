@@ -40,7 +40,8 @@ export function TabsContextProvider({
       setSelectedTab,
       tabListHasFocus,
       setTabListHasFocus,
-    }}>
+    }}
+    >
       {children}
     </TabsContext.Provider>
   );

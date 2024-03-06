@@ -23,8 +23,8 @@ export class DateRange {
 
   contains(date: Date): boolean {
     return (
-      (isSameDay(date, this.start) || date > this.start) &&
-      (isSameDay(date, this.end) || date < this.end)
+      (isSameDay(date, this.start) || date > this.start)
+      && (isSameDay(date, this.end) || date < this.end)
     );
   }
 

@@ -43,7 +43,9 @@ WithIcon.args = {
         style={{ marginRight: 6 }}
         width="1em"
         height="1em"
-      /> Protected
+      />
+      {' '}
+      Protected
     </>
   ),
 };
@@ -54,7 +56,8 @@ export const Tints: StoryFn<typeof Tag> = (args) => (
     flexWrap: 'wrap',
     alignItems: 'flex-end',
     gap: 16,
-  }}>
+  }}
+  >
     <Tag {...args} tint="gray">Gray</Tag>
     <Tag {...args} tint="green">Green</Tag>
     <Tag {...args} tint="cyan">Cyan</Tag>

@@ -13,7 +13,6 @@ export type NavListItemProps = {
   renderAs?: NavListItemRenderFn;
 } & NavListItemHTMLProps;
 
-
 export function NavListItem({
   className,
   icon,
@@ -25,11 +24,19 @@ export function NavListItem({
   className = classNames(className, 'dc-nav-link');
   children = (
     <>
-      {icon != null && <div className="dc-nav-link__icon">{icon} </div>}
+      {icon != null && (
+        <div className="dc-nav-link__icon">
+          {icon}
+          {' '}
+        </div>
+      )}
       <div className="dc-nav-link__text">{children}</div>
-      {badge != null && <>
-        &nbsp;<Badge className="dc-nav-link__badge">{badge}</Badge>
-      </>}
+      {badge != null && (
+        <>
+        &nbsp;
+          <Badge className="dc-nav-link__badge">{badge}</Badge>
+        </>
+      )}
     </>
   );
 

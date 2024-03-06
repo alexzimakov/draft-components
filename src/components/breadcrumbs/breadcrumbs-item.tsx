@@ -12,7 +12,6 @@ export type BreadcrumbsItemProps = {
   renderAs?: BreadcrumbsItemRenderFn;
 } & BreadcrumbsItemHTMLProps;
 
-
 export function BreadcrumbsItem({
   className,
   icon,

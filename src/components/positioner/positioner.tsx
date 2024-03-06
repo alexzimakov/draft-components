@@ -4,7 +4,7 @@ import { calcPosition } from './calc-position.js';
 import { Portal } from '../portal/index.js';
 
 export type PositionerAnchorRenderFn = (params: {
-  setRef: RefCallback<HTMLElement>,
+  setRef: RefCallback<HTMLElement>;
 }) => ReactNode;
 export type PositionerContentRenderFn = (params: {
   setRef: RefCallback<HTMLElement>;

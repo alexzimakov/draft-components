@@ -79,12 +79,14 @@ WithCaption.args = {
 export const Sizes = (args: ButtonProps) => {
   const sizes: ButtonSize[] = ['xs', 'sm', 'md', 'lg', 'xl'];
   return (
-    <div style={{
-      display: 'flex',
-      flexWrap: 'wrap',
-      alignItems: 'flex-start',
-      gap: '1rem',
-    }}>
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'flex-start',
+        gap: '1rem',
+      }}
+    >
       {sizes.map((size) => <Button {...args} key={size} size={size} />)}
     </div>
   );

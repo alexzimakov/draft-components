@@ -5,7 +5,7 @@ import { ArrowSmallUpIcon } from '../hero-icons/24/outline/arrow-small-up-icon.j
 import { ArrowSmallDownIcon } from '../hero-icons/24/outline/arrow-small-down-icon.js';
 
 type TableHeadCellBaseProps = ComponentPropsWithRef<'th'>;
-export type TableHeadCellSort = 'none' | 'ascending' | 'descending'
+export type TableHeadCellSort = 'none' | 'ascending' | 'descending';
 export type TableHeadCellProps = {
   isSortable?: boolean;
   sort?: TableHeadCellSort;
@@ -49,7 +49,9 @@ export const TableHeadCell = forwardRef<
         type="button"
         onClick={() => onChangeSort?.(stateMapping[sort])}
       >
-        {children} <Icon
+        {children}
+        {' '}
+        <Icon
           className="dc-table-cell__sort-icon"
           aria-hidden={true}
           strokeWidth={2}

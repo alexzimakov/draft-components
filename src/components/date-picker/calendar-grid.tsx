@@ -71,21 +71,23 @@ export function CalendarGrid({
 
       let calendarDay: JSX.Element | null = null;
       if (inDisplayedMonth) {
-        calendarDay = <CalendarDay
-          {...getDayProps?.(date)}
-          date={date}
-          dateISO={dateISO}
-          locale={locale}
-          isToday={isSameDay(date, today)}
-          isWeekend={isWeekend(date)}
-          isFocusable={isSameDay(date, focusDay)}
-          isDisabled={
-            (minDate != null && date < minDate) ||
-            (maxDate != null && date > maxDate)
-          }
-          onClick={handleSelectDay(date)}
-          onMouseEnter={handleHoverDay(date)}
-        />;
+        calendarDay = (
+          <CalendarDay
+            {...getDayProps?.(date)}
+            date={date}
+            dateISO={dateISO}
+            locale={locale}
+            isToday={isSameDay(date, today)}
+            isWeekend={isWeekend(date)}
+            isFocusable={isSameDay(date, focusDay)}
+            isDisabled={
+              (minDate != null && date < minDate)
+              || (maxDate != null && date > maxDate)
+            }
+            onClick={handleSelectDay(date)}
+            onMouseEnter={handleHoverDay(date)}
+          />
+        );
       }
       columns.push(<td key={dateISO} role="gridcell">{calendarDay}</td>);
       date = addDays(date, 1);

@@ -13,14 +13,14 @@ export type DatePickerPopoverProps = {
   value: DateISO | null;
   onChangeValue: DatePickerChangeValueFn;
 } & Pick<DatePickerProps,
-  | 'min'
-  | 'max'
-  | 'locale'
-  | 'weekStartsOn'
-  | 'prevMonthButtonLabel'
-  | 'nextMonthButtonLabel'
-  | 'monthSelectLabel'
-  | 'yearInputLabel'
+| 'min'
+| 'max'
+| 'locale'
+| 'weekStartsOn'
+| 'prevMonthButtonLabel'
+| 'nextMonthButtonLabel'
+| 'monthSelectLabel'
+| 'yearInputLabel'
 >;
 
 export function DatePickerPopover({

@@ -14,14 +14,15 @@ import { classNames, isReactElementWithRef, mergeRefs } from '../../lib/react-he
 import { useMountTransition } from '../../hooks/index.js';
 import { Positioner, PositionerAnchorRenderFn, PositionerContentRenderFn, PositionerProps } from '../positioner/index.js';
 
-type TooltipChildrenRenderFn = (props: {
-  ref: RefCallback<HTMLElement>;
-}, context: {
-  isShown: boolean;
-  tooltipId: string;
-  hideTooltip: () => void;
-  showTooltip: () => void;
-}) => ReactNode;
+type TooltipChildrenRenderFn = (
+  props: { ref: RefCallback<HTMLElement> },
+  context: {
+    isShown: boolean;
+    tooltipId: string;
+    hideTooltip: () => void;
+    showTooltip: () => void;
+  }
+) => ReactNode;
 
 type TooltipHTMLProps = ComponentPropsWithoutRef<'div'>;
 type TooltipBaseProps = Omit<TooltipHTMLProps, 'children' | 'content'>;

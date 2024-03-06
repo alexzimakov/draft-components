@@ -25,9 +25,13 @@ export const Caption = forwardRef<
   ...props
 }, ref) {
   return (
-    <div {...props} ref={ref} className={classNames(className, 'dc-caption', {
-      [`dc-caption_color_${color}`]: color,
-    })}>
+    <div
+      {...props}
+      ref={ref}
+      className={classNames(className, 'dc-caption', {
+        [`dc-caption_color_${color}`]: color,
+      })}
+    >
       {icon
         ? <span className="dc-caption__icon">{icon}</span>
         : null}

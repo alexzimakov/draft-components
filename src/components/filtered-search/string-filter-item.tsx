@@ -83,12 +83,16 @@ export function StringFilterItem({
       onClickCloseButton={onClickCloseButton}
     >
       {label}
-      {filter.value ? (
-        <>
-          &nbsp;<span>{formatOperator(filter.operator)}</span>
-          &nbsp;<b>{filter.value}</b>
-        </>
-      ) : null}
+      {filter.value
+        ? (
+          <>
+          &nbsp;
+            <span>{formatOperator(filter.operator)}</span>
+          &nbsp;
+            <b>{filter.value}</b>
+          </>
+        )
+        : null}
     </FilterToken>
   );
   return (
@@ -147,7 +151,7 @@ function defaultOperatorFormatter(operator: StringFilterOperator) {
     [StringFilter.Operators.equal]: 'is',
     [StringFilter.Operators.notEqual]: 'is not',
     [StringFilter.Operators.contain]: 'contains',
-    [StringFilter.Operators.notContain]: "doesn't contain",
+    [StringFilter.Operators.notContain]: 'doesn\'t contain',
   };
   return messages[operator];
 }

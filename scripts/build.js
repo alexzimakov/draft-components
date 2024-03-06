@@ -18,9 +18,9 @@ const PATHS = {
 
 async function buildTs() {
   await rm(PATHS.dist);
-  await exec('npx tsc' +
-    " --project 'tsconfig.build.json'" +
-    ` --outDir '${PATHS.dist}'`);
+  await exec('npx tsc'
+  + ' --project \'tsconfig.build.json\''
+  + ` --outDir '${PATHS.dist}'`);
 }
 
 async function buildCss() {

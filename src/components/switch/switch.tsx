@@ -5,7 +5,7 @@ type SwitchHTMLProps = ComponentPropsWithRef<'input'>;
 type SwitchBaseProps = Omit<SwitchHTMLProps, 'type'>;
 export type SwitchToggleHandler = (checked: boolean) => void;
 export type SwitchProps = SwitchBaseProps & {
-  showCheckIcon?: boolean,
+  showCheckIcon?: boolean;
   onToggle?: SwitchToggleHandler;
 };
 

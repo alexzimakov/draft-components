@@ -25,12 +25,14 @@ export const Basic: StoryFn<typeof FilePicker> = (args) => {
 
   let icon = <PhotoIcon width={28} height={28} />;
   if (files.length > 0) {
-    icon = <img
-      style={{ objectFit: 'contain' }}
-      src={URL.createObjectURL(files[0])}
-      height={32}
-      alt=""
-    />;
+    icon = (
+      <img
+        style={{ objectFit: 'contain' }}
+        src={URL.createObjectURL(files[0])}
+        height={32}
+        alt=""
+      />
+    );
   }
 
   return (

@@ -215,7 +215,7 @@ it('selects a focused day when pressing Space key', async () => {
   expect(onChangeValueMock).toHaveBeenNthCalledWith(1, '2022-12-01');
 });
 
-it("can't move focus to disabled dates", async () => {
+it('can\'t move focus to disabled dates', async () => {
   const user = userEvent.setup();
   const handleChangeValue = vi.fn();
   render(
@@ -287,8 +287,8 @@ it('throws error when min greater or equal than max', () => {
 });
 
 it(
-  'should use a min date as the default focusable day when ' +
-  'the selected value is less than the min date',
+  'should use a min date as the default focusable day when '
+  + 'the selected value is less than the min date',
   async () => {
     const user = userEvent.setup();
     render(
@@ -311,8 +311,8 @@ it(
 );
 
 it(
-  'should use a max date value as the default focusable day when ' +
-  'the selected value is greater than the max date',
+  'should use a max date value as the default focusable day when '
+  + 'the selected value is greater than the max date',
   async () => {
     const user = userEvent.setup();
     render(

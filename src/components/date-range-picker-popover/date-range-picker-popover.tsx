@@ -13,7 +13,7 @@ import { DateRangePickerPopoverPresets } from './date-range-picker-popover-prese
 export type DateRangePickerPopoverPlacement = PopoverPlacement;
 export type DateRangePickerPopoverAlignment = PopoverAlignment;
 export type DateRangePickerPopoverRenderFooter = (context: {
-  selection: DateRangePickerPopoverSelection | null,
+  selection: DateRangePickerPopoverSelection | null;
 }) => ReactNode;
 export type DateRangePickerPopoverProps = {
   className?: string;
@@ -31,14 +31,14 @@ export type DateRangePickerPopoverProps = {
   value: DateRangePickerPopoverSelection | null;
   onChangeValue: (value: DateRangePickerPopoverSelection) => void;
 } & Pick<DateRangePickerProps,
-  | 'min'
-  | 'max'
-  | 'locale'
-  | 'weekStartsOn'
-  | 'prevMonthButtonLabel'
-  | 'nextMonthButtonLabel'
-  | 'monthSelectLabel'
-  | 'yearInputLabel'
+| 'min'
+| 'max'
+| 'locale'
+| 'weekStartsOn'
+| 'prevMonthButtonLabel'
+| 'nextMonthButtonLabel'
+| 'monthSelectLabel'
+| 'yearInputLabel'
 >;
 
 export function DateRangePickerPopover({

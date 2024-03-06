@@ -37,25 +37,26 @@ export const Colors: StoryFn<typeof Caption> = (args) => (
     display: 'flex',
     flexDirection: 'column',
     gap: 8,
-  }}>
+  }}
+  >
     <Caption {...args} color="gray">
-        Write a few sentences about yourself.
+      Write a few sentences about yourself.
     </Caption>
 
     <Caption {...args} color="blue">
-        Update is available.
+      Update is available.
     </Caption>
 
     <Caption {...args} color="green">
-        Removed 'index.js' from list.
+      Removed 'index.js' from list.
     </Caption>
 
     <Caption {...args} color="orange">
-        Token expires in 15 days.
+      Token expires in 15 days.
     </Caption>
 
     <Caption {...args} color="red">
-        Username must be between 3 and 64 characters.
+      Username must be between 3 and 64 characters.
     </Caption>
   </div>
 );

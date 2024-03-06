@@ -19,13 +19,13 @@ export function SliderTrack({
 }: SliderTrackProps) {
   const start = formatPercent(positionStart);
   const end = formatPercent(positionEnd);
-  const background = 'linear-gradient(' +
-    'to right, ' +
-    `var(--dc-slider-track-bg) ${start}, ` +
-    `var(--dc-slider-active-track-bg) ${start}, ` +
-    `var(--dc-slider-active-track-bg) ${end}, ` +
-    `var(--dc-slider-track-bg) ${end}` +
-    ')';
+  const background = 'linear-gradient('
+    + 'to right, '
+    + `var(--dc-slider-track-bg) ${start}, `
+    + `var(--dc-slider-active-track-bg) ${start}, `
+    + `var(--dc-slider-active-track-bg) ${end}, `
+    + `var(--dc-slider-track-bg) ${end}`
+    + ')';
   return (
     <div style={{ background }} className="dc-slider__track">
       {children}

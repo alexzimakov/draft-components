@@ -70,7 +70,8 @@ function Layout({ children }: { children: ReactNode }) {
       display: 'flex',
       flexDirection: 'column',
       gap: 24,
-    }}>
+    }}
+    >
       {children}
     </div>
   );

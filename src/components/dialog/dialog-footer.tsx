@@ -15,7 +15,8 @@ export function DialogFooter({
     <div className={classNames(className, {
       'dc-dialog-footer': true,
       'dc-dialog-footer_has_divider': hasDivider,
-    })}>
+    })}
+    >
       {children}
     </div>
   );

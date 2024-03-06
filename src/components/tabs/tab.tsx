@@ -52,7 +52,10 @@ export function Tab({
           <span className="dc-tab__icon">{icon}</span>
         )}
         {children != null && (
-          <span className="dc-tab__label">{children} </span>
+          <span className="dc-tab__label">
+            {children}
+            {' '}
+          </span>
         )}
         {counter != null && counter !== 0 && (
           <Badge className="dc-tab__counter">{counter}</Badge>

@@ -23,8 +23,8 @@ Basic.args = {
   ),
   title: 'Create your first document',
   message:
-    'Get started with one of the built-in templates or ' +
-    'create an empty document.',
+    'Get started with one of the built-in templates or '
+    + 'create an empty document.',
   primaryAction: (
     <Button tint="blue">
       Create a new document

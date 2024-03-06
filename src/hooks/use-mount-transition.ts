@@ -53,8 +53,8 @@ export function useMountTransition({
   );
 
   const disableTransition = (
-    prefersReducedMotion.matches ||
-    (!animateFirstMount && firstMount.current)
+    prefersReducedMotion.matches
+    || (!animateFirstMount && firstMount.current)
   );
   if (disableTransition) {
     durationMs = 0;

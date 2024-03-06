@@ -12,10 +12,12 @@ it('renders without error', () => {
   render(
     <Toast
       message={message}
-      actions={<>
-        <ToastButton>{cancelButtonLabel}</ToastButton>
-        <ToastButton>{confirmButtonLabel}</ToastButton>
-      </>}
+      actions={(
+        <>
+          <ToastButton>{cancelButtonLabel}</ToastButton>
+          <ToastButton>{confirmButtonLabel}</ToastButton>
+        </>
+      )}
     >
       {title}
     </Toast>,

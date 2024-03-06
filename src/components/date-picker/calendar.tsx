@@ -10,18 +10,18 @@ export type CalendarProps = {
   weekStartsOn?: Weekday;
   onFocusDay?(date: Date): void;
 } & Pick<CalendarGridProps,
-  | 'minDate'
-  | 'maxDate'
-  | 'getDayProps'
-  | 'onHoverDay'
-  | 'onFocusDay'
-  | 'onSelectDay'
+| 'minDate'
+| 'maxDate'
+| 'getDayProps'
+| 'onHoverDay'
+| 'onFocusDay'
+| 'onSelectDay'
 > & Pick<CalendarHeaderProps,
-  | 'locale'
-  | 'nextMonthButtonLabel'
-  | 'prevMonthButtonLabel'
-  | 'monthSelectLabel'
-  | 'yearInputLabel'
+| 'locale'
+| 'nextMonthButtonLabel'
+| 'prevMonthButtonLabel'
+| 'monthSelectLabel'
+| 'yearInputLabel'
 >;
 
 export function Calendar({

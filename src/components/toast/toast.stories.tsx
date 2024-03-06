@@ -27,7 +27,7 @@ export const Basic: StoryFn<typeof Toast> = (args) => (
   <Toast {...args} />
 );
 Basic.args = {
-  children: "Can't add song to your library",
+  children: 'Can\'t add song to your library',
   actions: <ToastButton>Retry</ToastButton>,
 };
 
@@ -36,8 +36,8 @@ WithMessage.storyName = 'With message';
 WithMessage.args = {
   children: 'Photo deleted',
   message:
-    'Deleted photos are available in the "Recently Deleted" folder ' +
-    'for 30 days.',
+    'Deleted photos are available in the "Recently Deleted" folder '
+    + 'for 30 days.',
   actions: <ToastButton>Undo</ToastButton>,
 };
 

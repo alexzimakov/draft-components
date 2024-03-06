@@ -37,8 +37,8 @@ export function calcPosition({
   );
 
   if (
-    (placement === 'left' || placement === 'right') &&
-    contentRect.width >= maxSideWidth
+    (placement === 'left' || placement === 'right')
+    && contentRect.width >= maxSideWidth
   ) {
     placement = 'bottom';
   }
@@ -179,8 +179,8 @@ export function getYAxisOffset({
   } else {
     y = bottom;
     if (
-      y + contentHeight > scrollY + viewportHeight &&
-      anchorY > anchorBottom
+      y + contentHeight > scrollY + viewportHeight
+      && anchorY > anchorBottom
     ) {
       y = top;
       placement = placement === 'bottom' ? 'top' : 'left';

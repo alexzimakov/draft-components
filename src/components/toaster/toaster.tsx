@@ -111,7 +111,7 @@ export class Toaster {
 }
 
 type ToastsListProps = {
-  toaster: Toaster,
+  toaster: Toaster;
   toastGap?: number;
   toastPosition?: ToastPosition;
   toastCloseButtonAriaLabel?: string;
@@ -166,9 +166,9 @@ function ToastsList({
 
         const d = item.offsetHeight + toastGap;
         if (
-          toastPosition === 'top-right' ||
-          toastPosition === 'top-center' ||
-          toastPosition === 'top-left'
+          toastPosition === 'top-right'
+          || toastPosition === 'top-center'
+          || toastPosition === 'top-left'
         ) {
           offset += d;
         } else {
@@ -180,19 +180,25 @@ function ToastsList({
 
   return (
     <Portal>
-      <ul ref={ref} className={classNames({
-        'dc-toasts-list': true,
-        [`dc-toasts-list_${toastPosition}`]: toastPosition,
-      })}>
+      <ul
+        ref={ref}
+        className={classNames({
+          'dc-toasts-list': true,
+          [`dc-toasts-list_${toastPosition}`]: toastPosition,
+        })}
+      >
         {toasts.map((toast) => {
           const hideToast = () => toaster.hideToast(toast.id);
           const actions = toast.actions?.map((action, index) => (
-            <ToastButton key={index} onClick={() => {
-              action.onClick?.();
-              if (action.shouldHideAfterClick ?? true) {
-                hideToast();
-              }
-            }}>
+            <ToastButton
+              key={index}
+              onClick={() => {
+                action.onClick?.();
+                if (action.shouldHideAfterClick ?? true) {
+                  hideToast();
+                }
+              }}
+            >
               {action.content}
             </ToastButton>
           ));

@@ -48,16 +48,20 @@ export function SlideOverHeader({
           <XMarkIcon width={20} height={20} />
         </IconButton>
       </div>
-      {description ? (
-        <div id={descriptionId} className="dc-slide-over-header__description">
-          {description}
-        </div>
-      ) : null}
-      {children ? (
-        <div className="dc-slide-over-header__content">
-          {children}
-        </div>
-      ) : null}
+      {description
+        ? (
+          <div id={descriptionId} className="dc-slide-over-header__description">
+            {description}
+          </div>
+        )
+        : null}
+      {children
+        ? (
+          <div className="dc-slide-over-header__content">
+            {children}
+          </div>
+        )
+        : null}
     </div>
   );
 }

@@ -65,10 +65,12 @@ it('invokes `onChangeValue` callback with changed value', async () => {
   const placeholder = 'Your name';
   const name = 'John Doe';
   const onChangeValueMock = vi.fn();
-  render(<TextInput
-    placeholder={placeholder}
-    onChangeValue={onChangeValueMock}
-  />);
+  render(
+    <TextInput
+      placeholder={placeholder}
+      onChangeValue={onChangeValueMock}
+    />,
+  );
 
   await user.type(screen.getByPlaceholderText(placeholder), name);
 

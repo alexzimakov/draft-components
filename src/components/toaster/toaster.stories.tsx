@@ -47,7 +47,7 @@ const toasts: ToastParams[] = [
     actions: [{ content: 'Dismiss' }],
   },
   {
-    title: "Couldn't send photo.",
+    title: 'Couldn\'t send photo.',
     icon: <ExclamationCircleIcon color="#f87171" width={20} height={20} />,
     actions: [{ content: 'Retry' }],
   },

@@ -7,22 +7,22 @@ import { SliderTickMarks } from './slider-tick-marks.js';
 
 export type SliderProps = {
   'aria-label'?: string;
-  id?: string;
-  style?: CSSProperties;
-  className?: string;
-  disabled?: boolean;
-  fullWidth?: boolean;
-  showLabel?: boolean;
-  iconLeft?: ReactNode;
-  iconRight?: ReactNode;
-  tickMarks?: SliderTickMark[];
-  name?: string;
-  step?: number;
-  min?: number;
-  max?: number;
-  value: number;
-  format?: (value: number) => ReactNode;
-  onChange: (value: number) => void;
+  'id'?: string;
+  'style'?: CSSProperties;
+  'className'?: string;
+  'disabled'?: boolean;
+  'fullWidth'?: boolean;
+  'showLabel'?: boolean;
+  'iconLeft'?: ReactNode;
+  'iconRight'?: ReactNode;
+  'tickMarks'?: SliderTickMark[];
+  'name'?: string;
+  'step'?: number;
+  'min'?: number;
+  'max'?: number;
+  'value': number;
+  'format'?: (value: number) => ReactNode;
+  'onChange': (value: number) => void;
 };
 
 const numberFormatter = new Intl.NumberFormat();
@@ -77,7 +77,8 @@ export function Slider({
         'dc-slider__body': true,
         'dc-slider__body_has_labels': showLabel,
         'dc-slider__body_has_tick-marks': tickMarksElement,
-      })}>
+      })}
+      >
         {iconLeft}
         <SliderTrack
           positionStart={0}

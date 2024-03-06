@@ -21,19 +21,18 @@ import { MenuItem, MenuItemProps } from './menu-item.js';
 import { MenuSeparator } from './menu-separator.js';
 
 export type MenuButtonRenderFn = (props: {
-  ref: RefCallback<HTMLElement>;
-  id: string;
+  'ref': RefCallback<HTMLElement>;
+  'id': string;
   'aria-haspopup': true;
   'aria-expanded': boolean;
   'aria-controls': string;
-  onClick: MouseEventHandler,
-  onKeyDown: KeyboardEventHandler,
+  'onClick': MouseEventHandler;
+  'onKeyDown': KeyboardEventHandler;
 }, context: {
-  isOpen: boolean;
-  openMenu: () => void,
-  closeMenu: () => void,
-}) => JSX.Element;
-
+    isOpen: boolean;
+    openMenu: () => void;
+    closeMenu: () => void;
+  }) => JSX.Element;
 
 type MenuHTMLProps = ComponentPropsWithoutRef<'ul'>;
 export type MenuPlacement = PopoverPlacement;
@@ -166,10 +165,10 @@ export function Menu({
 
   const handleButtonKeyDown: KeyboardEventHandler<HTMLElement> = (event) => {
     if (
-      event.key === KeyboardKeys.ArrowUp ||
-      event.key === KeyboardKeys.ArrowDown ||
-      event.key === KeyboardKeys.Enter ||
-      event.key === KeyboardKeys.Space
+      event.key === KeyboardKeys.ArrowUp
+      || event.key === KeyboardKeys.ArrowDown
+      || event.key === KeyboardKeys.Enter
+      || event.key === KeyboardKeys.Space
     ) {
       openMenu();
       window.setTimeout(event.key === KeyboardKeys.ArrowUp

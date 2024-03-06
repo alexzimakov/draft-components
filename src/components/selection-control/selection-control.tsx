@@ -13,7 +13,7 @@ export type SelectionControlProps = {
   labelFor?: string;
   caption?: ReactNode;
   label: ReactNode;
-  children: JSX.Element | SelectionControlRenderFn
+  children: JSX.Element | SelectionControlRenderFn;
 } & SelectionControlBaseProps;
 
 export function SelectionControl({
@@ -28,10 +28,13 @@ export function SelectionControl({
   const controlId = labelFor || defaultId;
 
   return (
-    <div {...props} className={classNames(className, {
-      'dc-selection-control': true,
-      'dc-selection-control__with_caption': caption,
-    })}>
+    <div
+      {...props}
+      className={classNames(className, {
+        'dc-selection-control': true,
+        'dc-selection-control__with_caption': caption,
+      })}
+    >
       <div className="dc-selection-control__input">
         {typeof children === 'function'
           ? children({ id: controlId })
@@ -40,11 +43,13 @@ export function SelectionControl({
       <Label className="dc-selection-control__label" htmlFor={controlId}>
         {label}
       </Label>
-      {caption ? (
-        <Caption className="dc-selection-control__caption">
-          {caption}
-        </Caption>
-      ) : null}
+      {caption
+        ? (
+          <Caption className="dc-selection-control__caption">
+            {caption}
+          </Caption>
+        )
+        : null}
     </div>
   );
 }

@@ -36,7 +36,9 @@ export const Basic = () => {
         focusAfterCloseRef={openButtonRef}
       >
         <Dialog.Header title="Create your account" hasDivider={true}>
-          Already have an account? <a href="/">Sign in</a>
+          Already have an account?
+          {' '}
+          <a href="/">Sign in</a>
         </Dialog.Header>
         <Dialog.Body>
           <RegisterForm />
@@ -51,7 +53,8 @@ export const Basic = () => {
             >
               Verify phone
             </Button>
-          )}>
+          )}
+          >
             <MenuItem onClick={verifyPhone}>Via SMS</MenuItem>
             <MenuItem onClick={verifyPhone}>Via voice call</MenuItem>
           </Menu>
@@ -208,7 +211,9 @@ function VerifyPhoneDialog({
       onClose={onClose}
     >
       <Dialog.Header title="Verify phone number">
-        A text message with a verification code was just sent to <b>(+888) ******371</b>
+        A text message with a verification code was just sent to
+        {' '}
+        <b>(+888) ******371</b>
       </Dialog.Header>
       <Dialog.Body>
         <FormField label="Verification code:" labelFor="otp">

@@ -7,7 +7,6 @@ export type NavListTitleProps = {
   children: ReactNode;
 } & NavListTitleBaseProps;
 
-
 export function NavListTitle({
   className,
   children,

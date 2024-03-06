@@ -11,7 +11,7 @@ export type ButtonProps = {
   fullWidth?: boolean;
   loading?: boolean;
   buttonStyle?: ButtonStyle;
-  size?: ButtonSize,
+  size?: ButtonSize;
   tint?: ButtonTint;
   caption?: ReactNode;
   iconLeft?: ReactNode;
@@ -43,12 +43,14 @@ export const Button = forwardRef<
       {loading
         ? <Spinner data-testid="button-spinner" size="1.15em" />
         : iconLeft}
-      {caption ? (
-        <div className="dc-button__label">
-          {children}
-          <small className="dc-button__caption">{caption}</small>
-        </div>
-      ) : children}
+      {caption
+        ? (
+          <div className="dc-button__label">
+            {children}
+            <small className="dc-button__caption">{caption}</small>
+          </div>
+        )
+        : children}
       {iconRight}
     </>
   );

@@ -23,7 +23,7 @@ import { KeyboardKeys, classNames, exhaustiveCheck } from '../../lib/index.js';
 export type FilteredSearchHTMLProps = ComponentPropsWithoutRef<'div'>;
 export type FilteredSearchBaseProps = Omit<FilteredSearchHTMLProps,
   | 'children'
-  | 'placeholder'>
+  | 'placeholder'>;
 export type FilteredSearchProps = FilteredSearchBaseProps & {
   placeholder?: string;
   applyButtonLabel?: string;

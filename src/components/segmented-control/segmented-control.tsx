@@ -37,10 +37,13 @@ export function SegmentedControl<T extends string | number>({
       {options.map((option) => {
         const selected = value === option.value;
         return (
-          <li key={option.value} className={classNames({
-            'dc-segmented__item': true,
-            'dc-segmented__item_selected': selected,
-          })}>
+          <li
+            key={option.value}
+            className={classNames({
+              'dc-segmented__item': true,
+              'dc-segmented__item_selected': selected,
+            })}
+          >
             <SegmentedButton
               icon={option.icon}
               value={option.value}

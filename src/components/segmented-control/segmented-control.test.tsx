@@ -9,11 +9,13 @@ it('renders without errors', () => {
     { value: 'topRated', label: 'Top-Rated' },
   ];
   const selectedOption = options[0];
-  render(<SegmentedControl
-    options={options}
-    value={selectedOption.value}
-    onChangeValue={vi.fn()}
-  />);
+  render(
+    <SegmentedControl
+      options={options}
+      value={selectedOption.value}
+      onChangeValue={vi.fn()}
+    />,
+  );
 
   const segmentedButtons = screen.getAllByRole('button');
   expect(segmentedButtons).toHaveLength(options.length);
@@ -40,11 +42,13 @@ it('renders with icons', () => {
       icon: <svg role="img" />,
     },
   ];
-  render(<SegmentedControl
-    options={options}
-    value={options[0].value}
-    onChangeValue={vi.fn()}
-  />);
+  render(
+    <SegmentedControl
+      options={options}
+      value={options[0].value}
+      onChangeValue={vi.fn()}
+    />,
+  );
 
   const segmentedButtons = screen.getAllByRole('button');
   expect(segmentedButtons).toHaveLength(options.length);
@@ -63,11 +67,13 @@ it('can select a segment using the mouse', async () => {
   ];
   const selectedOption = options[0];
   const onChangeValueMock = vi.fn();
-  render(<SegmentedControl
-    options={options}
-    value={selectedOption.value}
-    onChangeValue={onChangeValueMock}
-  />);
+  render(
+    <SegmentedControl
+      options={options}
+      value={selectedOption.value}
+      onChangeValue={onChangeValueMock}
+    />,
+  );
 
   await user.click(screen.getByText(selectedOption.label));
   await user.click(screen.getByText(options[1].label));

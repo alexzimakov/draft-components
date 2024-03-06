@@ -6,7 +6,7 @@ import { EyeIcon } from '../hero-icons/24/outline/eye-icon.js';
 import { EyeSlashIcon } from '../hero-icons/24/outline/eye-slash-icon.js';
 import { Spinner } from '../spinner/index.js';
 
-export type PasswordInputBaseProps = Omit<TextInputProps, 'type' | 'slotRight'>
+export type PasswordInputBaseProps = Omit<TextInputProps, 'type' | 'slotRight'>;
 export type PasswordInputProps = {
   loading?: boolean;
   defaultVisible?: boolean;

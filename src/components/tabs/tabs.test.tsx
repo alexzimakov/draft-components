@@ -223,8 +223,8 @@ it('can focus tab using keyboard', async () => {
 });
 
 it(
-  'should throw an error when `TabList`, `Tab`, or `TabPanel` ' +
-  'are using outside the `Tabs` component',
+  'should throw an error when `TabList`, `Tab`, or `TabPanel` '
+  + 'are using outside the `Tabs` component',
   () => {
     // Suppress logging of render error.
     const consoleErrorMock = vi.spyOn(console, 'error').mockImplementation(() => undefined);

@@ -22,7 +22,8 @@ export const States: StoryFn<typeof Checkbox> = (args) => (
     flexWrap: 'wrap',
     alignItems: 'center',
     gap: '1rem 4rem',
-  }}>
+  }}
+  >
     <StateView caption="Unchecked">
       <Checkbox {...args} checked={false} />
     </StateView>
@@ -51,7 +52,7 @@ Disabled.args = {
   disabled: true,
 };
 
-function StateView(props: { children: JSX.Element, caption: string }) {
+function StateView(props: { children: JSX.Element; caption: string }) {
   return (
     <div style={{ fontSize: '0.875rem' }}>
       <div style={{ marginBottom: '0.5rem' }}>{props.caption}</div>

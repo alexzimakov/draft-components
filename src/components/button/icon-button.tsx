@@ -11,10 +11,12 @@ export const IconButton = forwardRef<
   HTMLButtonElement,
   IconButtonProps
 >(function IconButton({ className, children, ...props }, ref) {
-  return <Button
-    {...props}
-    ref={ref}
-    className={classNames('dc-button_icon-only', className)}
-    iconLeft={children}
-  />;
+  return (
+    <Button
+      {...props}
+      ref={ref}
+      className={classNames('dc-button_icon-only', className)}
+      iconLeft={children}
+    />
+  );
 });

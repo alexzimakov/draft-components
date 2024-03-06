@@ -10,7 +10,7 @@ export type DateRangePickerPopoverPresetsProps = {
   customPresetLabel: string;
   options: DateRangePickerPopoverOption[];
   value: DateRangePickerPopoverSelection | null;
-  onChangeValue: (value: DateRangePickerPopoverSelection) => void,
+  onChangeValue: (value: DateRangePickerPopoverSelection) => void;
 };
 
 export function DateRangePickerPopoverPresets({
