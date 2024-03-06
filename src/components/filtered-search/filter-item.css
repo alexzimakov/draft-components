@@ -1,8 +1,8 @@
 .dc-filter-popover {
-  font: var(--dc-text-sm);
   width: 320px;
   max-width: 100%;
   padding: 16px;
+  font: var(--dc-text-sm);
 }
 
 .dc-filter-form {
@@ -15,10 +15,10 @@
 }
 
 .dc-filter-form__value-list {
-  margin-right: -16px;
-  margin-left: -16px;
   padding-right: 16px;
   padding-left: 16px;
+  margin-right: -16px;
+  margin-left: -16px;
 }
 
 .dc-filter-form__buttons {

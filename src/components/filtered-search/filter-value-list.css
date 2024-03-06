@@ -1,12 +1,12 @@
 .dc-filter-value-list {
-  overflow-y: auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
   box-sizing: border-box;
   max-height: 192px;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  overflow-y: auto;
   list-style: none;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
 }
 
 .dc-filter-value-list > li {

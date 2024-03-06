@@ -3,13 +3,13 @@
   --dc-avatar-silhouette-color: var(--dc-white);
   --dc-avatar-bg-color-1: #94a3b8;
   --dc-avatar-bg-color-2: #64748b;
-  --dc-avatar-border-color: rgb(var(--dc-black-rgb) / 0.025);
+  --dc-avatar-border-color: rgb(var(--dc-black-rgb) / 2.5%);
 
   user-select: none;
 }
 
 .dc-avatar_type_image {
-  --dc-avatar-border-color: rgb(var(--dc-black-rgb) / 0.1);
+  --dc-avatar-border-color: rgb(var(--dc-black-rgb) / 10%);
 }
 
 .dc-avatar_fill_pink {
@@ -76,12 +76,12 @@
 
 .dark .dc-avatar,
 .dark.dc-avatar {
-  --dc-avatar-border-color: rgb(var(--dc-white-rgb) / 0.025);
+  --dc-avatar-border-color: rgb(var(--dc-white-rgb) / 2.5%);
 
   color-scheme: dark;
 }
 
 .dark .dc-avatar_type_image,
 .dark.dc-avatar_type_image {
-  --dc-avatar-border-color: rgb(var(--dc-white-rgb) / 0.1);
+  --dc-avatar-border-color: rgb(var(--dc-white-rgb) / 10%);
 }

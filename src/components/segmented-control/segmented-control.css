@@ -13,21 +13,21 @@
   --dc-segmented-button-bg-selected: var(--dc-white);
   --dc-segmented-button-focus-ring-color: var(--dc-focus-ring-color);
 
-  color-scheme: light;
-  font: 14px/1 var(--dc-primary-font);
   display: inline-flex;
   flex-shrink: 0;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  font: 14px/1 var(--dc-primary-font);
   list-style: none;
-  border-radius: var(--dc-segmented-button-radius);
+  color-scheme: light;
   background: var(--dc-segmented-bg);
+  border-radius: var(--dc-segmented-button-radius);
   box-shadow: inset 0 0 0 1px var(--dc-segmented-border-color);
 }
 
 .dc-segmented_disabled {
-  opacity: var(--dc-disabled-state-opacity);
   pointer-events: none;
+  opacity: var(--dc-disabled-state-opacity);
 }
 
 .dc-segmented_size_sm {
@@ -47,13 +47,13 @@
 }
 
 .dc-segmented__item + .dc-segmented__item::before {
-  content: "";
   display: inline-block;
   float: left;
   width: 1px;
   height: calc(var(--dc-segmented-button-height) - var(--dc-segmented-button-radius) * 2);
-  transform: translateY(var(--dc-segmented-button-radius));
+  content: "";
   background: var(--dc-segmented-delimiter-color);
+  transform: translateY(var(--dc-segmented-button-radius));
 }
 
 .dc-segmented__item_selected::before,
@@ -62,23 +62,23 @@
 }
 
 .dc-segmented-button {
-  appearance: none;
-  font: inherit;
-  color: var(--dc-segmented-button-text-color);
   position: relative;
+  box-sizing: border-box;
   display: flex;
-  cursor: pointer;
-  user-select: none;
   flex: auto;
   gap: calc(var(--dc-segmented-button-padding-x) / 2);
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
   height: var(--dc-segmented-button-height);
   padding: 0 var(--dc-segmented-button-padding-x);
+  font: inherit;
+  color: var(--dc-segmented-button-text-color);
+  appearance: none;
+  cursor: pointer;
+  user-select: none;
+  background: var(--dc-segmented-button-bg);
   border: 1px solid var(--dc-segmented-button-border-color);
   border-radius: var(--dc-segmented-button-radius);
-  background: var(--dc-segmented-button-bg);
 }
 
 .dc-segmented-button[aria-current="true"] {

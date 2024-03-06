@@ -1,6 +1,6 @@
 .story-section {
-  font: inherit;
   display: block;
+  font: inherit;
 }
 
 .story-section + .story-section {
@@ -8,12 +8,9 @@
 }
 
 .story-section__title {
+  margin: 0 0 8px;
   font-family: var(--dc-font-mono);
   font-size: 14px;
   font-weight: 600;
   color: var(--dc-secondary-text-color);
-  margin: 0 0 8px;
-}
-
-.story-section__content {
 }

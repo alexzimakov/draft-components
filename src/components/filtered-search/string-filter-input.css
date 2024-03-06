@@ -1,9 +1,9 @@
 .dc-string-filter-input {
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-gap: 4px 8px;
   align-items: center;
-  box-sizing: border-box;
   padding-left: 4px;
 }
 

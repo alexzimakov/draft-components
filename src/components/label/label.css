@@ -2,17 +2,17 @@
   --dc-label-text-color: var(--dc-primary-text-color);
   --dc-label-required-mark-color: #dc2626;
 
-  color-scheme: light;
+  display: inline-block;
   font: var(--dc-text-sm);
   font-weight: 500;
   color: var(--dc-label-text-color);
-  display: inline-block;
+  color-scheme: light;
 }
 
 .dc-label_required::after {
-  content: "*";
-  color: var(--dc-label-required-mark-color);
   padding-left: 0.25em;
+  color: var(--dc-label-required-mark-color);
+  content: "*";
 }
 
 .dark .dc-label,

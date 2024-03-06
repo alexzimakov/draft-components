@@ -1,7 +1,7 @@
 .dc-button-group {
-  color-scheme: light;
   display: inline-flex;
   align-items: center;
+  color-scheme: light;
 }
 
 .dc-button-group > .dc-button:focus::after {

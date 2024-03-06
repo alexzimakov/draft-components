@@ -6,13 +6,13 @@
   --dc-filter-button-bg-active: var(--dc-button-blue-bg);
   --dc-filter-button-bg-active-hover: var(--dc-button-blue-bg-hover);
 
-  color-scheme: light;
   position: relative;
   display: flex;
-  overflow: auto;
   align-items: center;
   max-width: 100%;
   padding-bottom: 4px;
+  overflow: auto;
+  color-scheme: light;
 }
 
 .dc-filter-buttons > * + * {
@@ -20,21 +20,21 @@
 }
 
 .dc-filter-button {
-  font: var(--dc-text-sm);
-  color: var(--dc-filter-button-text-color);
-  display: inline-flex;
-  cursor: pointer;
-  user-select: none;
-  align-items: center;
   box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
   height: 28px;
   padding: 0 8px;
-  transition-duration: 0.2s;
-  transition-property: color, background-color;
+  font: var(--dc-text-sm);
+  color: var(--dc-filter-button-text-color);
   white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  background: var(--dc-filter-button-bg);
   border: 1px solid transparent;
   border-radius: 7px;
-  background: var(--dc-filter-button-bg);
+  transition-duration: 0.2s;
+  transition-property: color, background-color;
 }
 
 .dc-filter-button:hover {

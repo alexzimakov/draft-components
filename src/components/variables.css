@@ -3,6 +3,7 @@
   --dc-toaster-z-index: 1010;
 
   /* Typography */
+
   /* https://tailwindcss.com/docs/font-family */
   --dc-font-serif:
     ui-serif, "Georgia", "Cambria", "Times New Roman", "Times", serif;
@@ -236,14 +237,14 @@
 
   /* Background */
   --dc-primary-bg: var(--dc-white);
-  --dc-bg-transparent-1: rgb(var(--dc-gray-900-rgb) / 0.05);
-  --dc-bg-transparent-2: rgb(var(--dc-gray-900-rgb) / 0.1);
-  --dc-bg-transparent-3: rgb(var(--dc-gray-900-rgb) / 0.2);
+  --dc-bg-transparent-1: rgb(var(--dc-gray-900-rgb) / 5%);
+  --dc-bg-transparent-2: rgb(var(--dc-gray-900-rgb) / 10%);
+  --dc-bg-transparent-3: rgb(var(--dc-gray-900-rgb) / 20%);
 
   /* Borders */
-  --dc-border-color-transparent-1: rgb(var(--dc-gray-900-rgb) / 0.05);
-  --dc-border-color-transparent-2: rgb(var(--dc-gray-900-rgb) / 0.15);
-  --dc-border-color-transparent-3: rgb(var(--dc-gray-900-rgb) / 0.25);
+  --dc-border-color-transparent-1: rgb(var(--dc-gray-900-rgb) / 5%);
+  --dc-border-color-transparent-2: rgb(var(--dc-gray-900-rgb) / 15%);
+  --dc-border-color-transparent-3: rgb(var(--dc-gray-900-rgb) / 25%);
 
   /* Text */
   --dc-primary-text-color: var(--dc-gray-800);
@@ -256,8 +257,8 @@
   --dc-on-primary-color: var(--dc-white);
 
   /* Secondary */
-  --dc-secondary-color: rgb(var(--dc-blue-500-rgb) / 0.15);
-  --dc-secondary-color-hover: rgb(var(--dc-blue-500-rgb) / 0.3);
+  --dc-secondary-color: rgb(var(--dc-blue-500-rgb) / 15%);
+  --dc-secondary-color-hover: rgb(var(--dc-blue-500-rgb) / 30%);
   --dc-on-secondary-color: var(--dc-blue-600);
 
   /* Accents */
@@ -268,14 +269,14 @@
 
   /* Gray button */
   --dc-button-gray-text-color: var(--dc-gray-800);
-  --dc-button-gray-border-color: rgb(var(--dc-gray-900-rgb) / 0.1);
+  --dc-button-gray-border-color: rgb(var(--dc-gray-900-rgb) / 10%);
   --dc-button-gray-bg: var(--dc-gray-100);
   --dc-button-gray-bg-hover: var(--dc-gray-200);
   --dc-button-gray-tinted-text-color: var(--dc-gray-800);
-  --dc-button-gray-tinted-bg: rgb(var(--dc-gray-900-rgb) / 0.1);
-  --dc-button-gray-tinted-bg-hover: rgb(var(--dc-gray-900-rgb) / 0.2);
+  --dc-button-gray-tinted-bg: rgb(var(--dc-gray-900-rgb) / 10%);
+  --dc-button-gray-tinted-bg-hover: rgb(var(--dc-gray-900-rgb) / 20%);
   --dc-button-gray-plain-text-color: var(--dc-gray-800);
-  --dc-button-gray-plain-bg-hover: rgb(var(--dc-gray-900-rgb) / 0.1);
+  --dc-button-gray-plain-bg-hover: rgb(var(--dc-gray-900-rgb) / 10%);
 
   /* Blue button */
   --dc-button-blue-text-color: var(--dc-white);
@@ -283,10 +284,10 @@
   --dc-button-blue-bg: var(--dc-blue-500);
   --dc-button-blue-bg-hover: var(--dc-blue-600);
   --dc-button-blue-tinted-text-color: var(--dc-blue-600);
-  --dc-button-blue-tinted-bg: rgb(var(--dc-blue-500-rgb) / 0.15);
-  --dc-button-blue-tinted-bg-hover: rgb(var(--dc-blue-500-rgb) / 0.3);
+  --dc-button-blue-tinted-bg: rgb(var(--dc-blue-500-rgb) / 15%);
+  --dc-button-blue-tinted-bg-hover: rgb(var(--dc-blue-500-rgb) / 30%);
   --dc-button-blue-plain-text-color: var(--dc-blue-600);
-  --dc-button-blue-plain-bg-hover: rgb(var(--dc-blue-500-rgb) / 0.15);
+  --dc-button-blue-plain-bg-hover: rgb(var(--dc-blue-500-rgb) / 15%);
 
   /* Red button */
   --dc-button-red-text-color: var(--dc-white);
@@ -294,10 +295,10 @@
   --dc-button-red-bg: var(--dc-red-500);
   --dc-button-red-bg-hover: var(--dc-red-600);
   --dc-button-red-tinted-text-color: var(--dc-red-600);
-  --dc-button-red-tinted-bg: rgb(var(--dc-red-600-rgb) / 0.15);
-  --dc-button-red-tinted-bg-hover: rgb(var(--dc-red-600-rgb) / 0.3);
+  --dc-button-red-tinted-bg: rgb(var(--dc-red-600-rgb) / 15%);
+  --dc-button-red-tinted-bg-hover: rgb(var(--dc-red-600-rgb) / 30%);
   --dc-button-red-plain-text-color: var(--dc-red-600);
-  --dc-button-red-plain-bg-hover: rgb(var(--dc-red-600-rgb) / 0.15);
+  --dc-button-red-plain-bg-hover: rgb(var(--dc-red-600-rgb) / 15%);
 
   /* Green button */
   --dc-button-green-text-color: var(--dc-white);
@@ -305,10 +306,10 @@
   --dc-button-green-bg: var(--dc-green-500);
   --dc-button-green-bg-hover: var(--dc-green-600);
   --dc-button-green-tinted-text-color: var(--dc-green-600);
-  --dc-button-green-tinted-bg: rgb(var(--dc-green-500-rgb) / 0.15);
-  --dc-button-green-tinted-bg-hover: rgb(var(--dc-green-500-rgb) / 0.3);
+  --dc-button-green-tinted-bg: rgb(var(--dc-green-500-rgb) / 15%);
+  --dc-button-green-tinted-bg-hover: rgb(var(--dc-green-500-rgb) / 30%);
   --dc-button-green-plain-text-color: var(--dc-green-600);
-  --dc-button-green-plain-bg-hover: rgb(var(--dc-green-500-rgb) / 0.15);
+  --dc-button-green-plain-bg-hover: rgb(var(--dc-green-500-rgb) / 15%);
 
   /* Controls */
   --dc-control-primary-text-color: var(--dc-gray-800);
@@ -316,44 +317,45 @@
   --dc-control-primary-color: var(--dc-blue-500);
   --dc-control-primary-color-hover: var(--dc-blue-600);
   --dc-control-on-primary-color: var(--dc-white);
-  --dc-control-secondary-color: rgb(var(--dc-blue-500-rgb) / 0.15);
+  --dc-control-secondary-color: rgb(var(--dc-blue-500-rgb) / 15%);
   --dc-control-border-color: var(--dc-gray-300);
   --dc-control-bg: var(--dc-white);
-  --dc-control-bg-inset: rgb(var(--dc-gray-900-rgb) / 0.15);
+  --dc-control-bg-inset: rgb(var(--dc-gray-900-rgb) / 15%);
   --dc-control-error-color: var(--dc-red-500);
-  --dc-focus-ring-color: rgb(var(--dc-blue-500-rgb) / 0.7);
+  --dc-focus-ring-color: rgb(var(--dc-blue-500-rgb) / 70%);
   --dc-disabled-state-opacity: 0.5;
 
   /* Shadows */
+
   /* https://tailwindcss.com/docs/box-shadow */
-  --dc-shadow-sm: 0 1px 2px 0 rgb(var(--dc-black-rgb) / 0.05);
+  --dc-shadow-sm: 0 1px 2px 0 rgb(var(--dc-black-rgb) / 5%);
   --dc-shadow:
-    0 1px 3px 0 rgb(var(--dc-black-rgb) / 0.1),
-    0 1px 2px -1px rgb(var(--dc-black-rgb) / 0.1);
+    0 1px 3px 0 rgb(var(--dc-black-rgb) / 10%),
+    0 1px 2px -1px rgb(var(--dc-black-rgb) / 10%);
   --dc-shadow-md:
-    0 4px 6px -1px rgb(var(--dc-black-rgb) / 0.1),
-    0 2px 4px -2px rgb(var(--dc-black-rgb) / 0.1);
+    0 4px 6px -1px rgb(var(--dc-black-rgb) / 10%),
+    0 2px 4px -2px rgb(var(--dc-black-rgb) / 10%);
   --dc-shadow-lg:
-    0 10px 15px -3px rgb(var(--dc-black-rgb) / 0.1),
-    0 4px 6px -4px rgb(var(--dc-black-rgb) / 0.1);
+    0 10px 15px -3px rgb(var(--dc-black-rgb) / 10%),
+    0 4px 6px -4px rgb(var(--dc-black-rgb) / 10%);
   --dc-shadow-xl:
-    0 20px 25px -5px rgb(var(--dc-black-rgb) / 0.1),
-    0 8px 10px -6px rgb(var(--dc-black-rgb) / 0.1);
-  --dc-shadow-2xl: 0 25px 50px -12px rgb(var(--dc-black-rgb) / 0.25);
-  --dc-shadow-inner: inset 0 2px 4px 0 rgb(var(--dc-black-rgb) / 0.05);
+    0 20px 25px -5px rgb(var(--dc-black-rgb) / 10%),
+    0 8px 10px -6px rgb(var(--dc-black-rgb) / 10%);
+  --dc-shadow-2xl: 0 25px 50px -12px rgb(var(--dc-black-rgb) / 25%);
+  --dc-shadow-inner: inset 0 2px 4px 0 rgb(var(--dc-black-rgb) / 5%);
 }
 
 .dark {
   /* Background */
   --dc-primary-bg: var(--dc-gray-900);
-  --dc-bg-transparent-1: rgb(var(--dc-gray-50-rgb) / 0.1);
-  --dc-bg-transparent-2: rgb(var(--dc-gray-50-rgb) / 0.15);
-  --dc-bg-transparent-3: rgb(var(--dc-gray-50-rgb) / 0.25);
+  --dc-bg-transparent-1: rgb(var(--dc-gray-50-rgb) / 10%);
+  --dc-bg-transparent-2: rgb(var(--dc-gray-50-rgb) / 15%);
+  --dc-bg-transparent-3: rgb(var(--dc-gray-50-rgb) / 25%);
 
   /* Borders */
-  --dc-border-color-transparent-1: rgb(var(--dc-gray-50-rgb) / 0.1);
-  --dc-border-color-transparent-2: rgb(var(--dc-gray-50-rgb) / 0.2);
-  --dc-border-color-transparent-3: rgb(var(--dc-gray-50-rgb) / 0.3);
+  --dc-border-color-transparent-1: rgb(var(--dc-gray-50-rgb) / 10%);
+  --dc-border-color-transparent-2: rgb(var(--dc-gray-50-rgb) / 20%);
+  --dc-border-color-transparent-3: rgb(var(--dc-gray-50-rgb) / 30%);
 
   /* Text */
   --dc-primary-text-color: var(--dc-gray-100);
@@ -366,8 +368,8 @@
   --dc-on-primary-color: var(--dc-white);
 
   /* Secondary */
-  --dc-secondary-color: rgb(var(--dc-blue-400-rgb) / 0.15);
-  --dc-secondary-color-hover: rgb(var(--dc-blue-400-rgb) / 0.3);
+  --dc-secondary-color: rgb(var(--dc-blue-400-rgb) / 15%);
+  --dc-secondary-color-hover: rgb(var(--dc-blue-400-rgb) / 30%);
   --dc-on-secondary-color: var(--dc-blue-400);
 
   /* Accents */
@@ -378,14 +380,14 @@
 
   /* Gray button */
   --dc-button-gray-text-color: var(--dc-gray-100);
-  --dc-button-gray-border-color: rgb(var(--dc-gray-50-rgb) / 0.1);
+  --dc-button-gray-border-color: rgb(var(--dc-gray-50-rgb) / 10%);
   --dc-button-gray-bg: var(--dc-gray-700);
   --dc-button-gray-bg-hover: var(--dc-gray-600);
   --dc-button-gray-tinted-text-color: var(--dc-gray-100);
-  --dc-button-gray-tinted-bg: rgb(var(--dc-gray-50-rgb) / 0.1);
-  --dc-button-gray-tinted-bg-hover: rgb(var(--dc-gray-50-rgb) / 0.2);
+  --dc-button-gray-tinted-bg: rgb(var(--dc-gray-50-rgb) / 10%);
+  --dc-button-gray-tinted-bg-hover: rgb(var(--dc-gray-50-rgb) / 20%);
   --dc-button-gray-plain-text-color: var(--dc-gray-100);
-  --dc-button-gray-plain-bg-hover: rgb(var(--dc-gray-50-rgb) / 0.1);
+  --dc-button-gray-plain-bg-hover: rgb(var(--dc-gray-50-rgb) / 10%);
 
   /* Blue button */
   --dc-button-blue-text-color: var(--dc-white);
@@ -393,10 +395,10 @@
   --dc-button-blue-bg: var(--dc-blue-600);
   --dc-button-blue-bg-hover: var(--dc-blue-500);
   --dc-button-blue-tinted-text-color: var(--dc-blue-400);
-  --dc-button-blue-tinted-bg: rgb(var(--dc-blue-400-rgb) / 0.15);
-  --dc-button-blue-tinted-bg-hover: rgb(var(--dc-blue-400-rgb) / 0.3);
+  --dc-button-blue-tinted-bg: rgb(var(--dc-blue-400-rgb) / 15%);
+  --dc-button-blue-tinted-bg-hover: rgb(var(--dc-blue-400-rgb) / 30%);
   --dc-button-blue-plain-text-color: var(--dc-blue-400);
-  --dc-button-blue-plain-bg-hover: rgb(var(--dc-blue-400-rgb) / 0.15);
+  --dc-button-blue-plain-bg-hover: rgb(var(--dc-blue-400-rgb) / 15%);
 
   /* Red button */
   --dc-button-red-text-color: var(--dc-white);
@@ -404,10 +406,10 @@
   --dc-button-red-bg: var(--dc-red-600);
   --dc-button-red-bg-hover: var(--dc-red-500);
   --dc-button-red-tinted-text-color: var(--dc-red-400);
-  --dc-button-red-tinted-bg: rgb(var(--dc-red-400-rgb) / 0.15);
-  --dc-button-red-tinted-bg-hover: rgb(var(--dc-red-400-rgb) / 0.3);
+  --dc-button-red-tinted-bg: rgb(var(--dc-red-400-rgb) / 15%);
+  --dc-button-red-tinted-bg-hover: rgb(var(--dc-red-400-rgb) / 30%);
   --dc-button-red-plain-text-color: var(--dc-red-400);
-  --dc-button-red-plain-bg-hover: rgb(var(--dc-red-400-rgb) / 0.15);
+  --dc-button-red-plain-bg-hover: rgb(var(--dc-red-400-rgb) / 15%);
 
   /* Green button */
   --dc-button-green-text-color: var(--dc-white);
@@ -415,10 +417,10 @@
   --dc-button-green-bg: var(--dc-green-600);
   --dc-button-green-bg-hover: var(--dc-green-500);
   --dc-button-green-tinted-text-color: var(--dc-green-400);
-  --dc-button-green-tinted-bg: rgb(var(--dc-green-400-rgb) / 0.15);
-  --dc-button-green-tinted-bg-hover: rgb(var(--dc-green-400-rgb) / 0.3);
+  --dc-button-green-tinted-bg: rgb(var(--dc-green-400-rgb) / 15%);
+  --dc-button-green-tinted-bg-hover: rgb(var(--dc-green-400-rgb) / 30%);
   --dc-button-green-plain-text-color: var(--dc-green-400);
-  --dc-button-green-plain-bg-hover: rgb(var(--dc-green-400-rgb) / 0.15);
+  --dc-button-green-plain-bg-hover: rgb(var(--dc-green-400-rgb) / 15%);
 
   /* Controls */
   --dc-control-primary-text-color: var(--dc-gray-100);
@@ -426,10 +428,10 @@
   --dc-control-primary-color: var(--dc-blue-600);
   --dc-control-primary-color-hover: var(--dc-blue-500);
   --dc-control-on-primary-color: var(--dc-white);
-  --dc-control-secondary-color: rgb(var(--dc-blue-400-rgb) / 0.15);
+  --dc-control-secondary-color: rgb(var(--dc-blue-400-rgb) / 15%);
   --dc-control-border-color: var(--dc-gray-600);
   --dc-control-bg: var(--dc-gray-800);
-  --dc-control-bg-inset: rgb(var(--dc-gray-50-rgb) / 0.25);
+  --dc-control-bg-inset: rgb(var(--dc-gray-50-rgb) / 25%);
   --dc-control-error-color: var(--dc-red-400);
-  --dc-focus-ring-color: rgb(var(--dc-blue-400-rgb) / 0.7);
+  --dc-focus-ring-color: rgb(var(--dc-blue-400-rgb) / 70%);
 }

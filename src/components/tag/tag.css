@@ -1,18 +1,18 @@
 .dc-tag {
   --dc-tag-text-color: var(--dc-gray-700);
-  --dc-tag-border-color: rgb(var(--dc-gray-700-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-gray-300-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-gray-700-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-gray-300-rgb) / 10%);
 
-  color-scheme: light;
-  font: 400 14px/16px var(--dc-primary-font);
-  color: var(--dc-tag-text-color);
+  box-sizing: border-box;
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
-  box-sizing: border-box;
   padding: 4px 10px;
-  border-radius: 6px;
+  font: 400 14px/16px var(--dc-primary-font);
+  color: var(--dc-tag-text-color);
+  color-scheme: light;
   background: var(--dc-tag-bg);
+  border-radius: 6px;
   box-shadow: inset 0 0 0 1px var(--dc-tag-border-color);
 }
 
@@ -25,7 +25,7 @@
 .dc-tag_tinted {
   --dc-tag-text-color: var(--dc-gray-900);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-gray-300-rgb) / 0.4);
+  --dc-tag-bg: rgb(var(--dc-gray-300-rgb) / 40%);
 }
 
 .dc-tag_rounded {
@@ -33,9 +33,9 @@
 }
 
 .dc-tag_sm {
+  padding: 2px 8px;
   font-size: 13px;
   line-height: 16px;
-  padding: 2px 8px;
   border-radius: 5px;
 }
 
@@ -44,9 +44,9 @@
 }
 
 .dc-tag_lg {
+  padding: 4px 12px;
   font-size: 15px;
   line-height: 20px;
-  padding: 4px 12px;
   border-radius: 7px;
 }
 
@@ -56,8 +56,8 @@
 
 .dc-tag_green {
   --dc-tag-text-color: var(--dc-green-800);
-  --dc-tag-border-color: rgb(var(--dc-green-700-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-green-300-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-green-700-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-green-300-rgb) / 10%);
 }
 
 .dc-tag_green.dc-tag_filled {
@@ -69,13 +69,13 @@
 .dc-tag_green.dc-tag_tinted {
   --dc-tag-text-color: var(--dc-green-900);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-green-300-rgb) / 0.4);
+  --dc-tag-bg: rgb(var(--dc-green-300-rgb) / 40%);
 }
 
 .dc-tag_cyan {
   --dc-tag-text-color: var(--dc-sky-700);
-  --dc-tag-border-color: rgb(var(--dc-sky-700-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-sky-300-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-sky-700-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-sky-300-rgb) / 10%);
 }
 
 .dc-tag_cyan.dc-tag_filled {
@@ -87,13 +87,13 @@
 .dc-tag_cyan.dc-tag_tinted {
   --dc-tag-text-color: var(--dc-sky-900);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-sky-300-rgb) / 0.4);
+  --dc-tag-bg: rgb(var(--dc-sky-300-rgb) / 40%);
 }
 
 .dc-tag_blue {
   --dc-tag-text-color: var(--dc-blue-800);
-  --dc-tag-border-color: rgb(var(--dc-blue-700-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-blue-300-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-blue-700-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-blue-300-rgb) / 10%);
 }
 
 .dc-tag_blue.dc-tag_filled {
@@ -105,13 +105,13 @@
 .dc-tag_blue.dc-tag_tinted {
   --dc-tag-text-color: var(--dc-blue-900);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-blue-300-rgb) / 0.4);
+  --dc-tag-bg: rgb(var(--dc-blue-300-rgb) / 40%);
 }
 
 .dc-tag_purple {
   --dc-tag-text-color: var(--dc-violet-800);
-  --dc-tag-border-color: rgb(var(--dc-violet-700-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-violet-300-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-violet-700-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-violet-300-rgb) / 10%);
 }
 
 .dc-tag_purple.dc-tag_filled {
@@ -123,13 +123,13 @@
 .dc-tag_purple.dc-tag_tinted {
   --dc-tag-text-color: var(--dc-violet-900);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-violet-300-rgb) / 0.4);
+  --dc-tag-bg: rgb(var(--dc-violet-300-rgb) / 40%);
 }
 
 .dc-tag_pink {
   --dc-tag-text-color: var(--dc-pink-700);
-  --dc-tag-border-color: rgb(var(--dc-pink-700-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-pink-300-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-pink-700-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-pink-300-rgb) / 10%);
 }
 
 .dc-tag_pink.dc-tag_filled {
@@ -141,13 +141,13 @@
 .dc-tag_pink.dc-tag_tinted {
   --dc-tag-text-color: var(--dc-pink-900);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-pink-300-rgb) / 0.4);
+  --dc-tag-bg: rgb(var(--dc-pink-300-rgb) / 40%);
 }
 
 .dc-tag_red {
   --dc-tag-text-color: var(--dc-red-700);
-  --dc-tag-border-color: rgb(var(--dc-red-700-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-red-300-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-red-700-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-red-300-rgb) / 10%);
 }
 
 .dc-tag_red.dc-tag_filled {
@@ -159,13 +159,13 @@
 .dc-tag_red.dc-tag_tinted {
   --dc-tag-text-color: var(--dc-red-900);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-red-300-rgb) / 0.4);
+  --dc-tag-bg: rgb(var(--dc-red-300-rgb) / 40%);
 }
 
 .dc-tag_orange {
   --dc-tag-text-color: var(--dc-orange-700);
-  --dc-tag-border-color: rgb(var(--dc-orange-700-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-orange-300-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-orange-700-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-orange-300-rgb) / 10%);
 }
 
 .dc-tag_orange.dc-tag_filled {
@@ -177,13 +177,13 @@
 .dc-tag_orange.dc-tag_tinted {
   --dc-tag-text-color: var(--dc-orange-900);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-orange-300-rgb) / 0.4);
+  --dc-tag-bg: rgb(var(--dc-orange-300-rgb) / 40%);
 }
 
 .dc-tag_yellow {
   --dc-tag-text-color: var(--dc-yellow-800);
-  --dc-tag-border-color: rgb(var(--dc-yellow-700-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-yellow-300-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-yellow-700-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-yellow-300-rgb) / 10%);
 }
 
 .dc-tag_yellow.dc-tag_filled {
@@ -195,14 +195,14 @@
 .dc-tag_yellow.dc-tag_tinted {
   --dc-tag-text-color: var(--dc-yellow-900);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-yellow-300-rgb) / 0.4);
+  --dc-tag-bg: rgb(var(--dc-yellow-300-rgb) / 40%);
 }
 
 .dark .dc-tag,
 .dark.dc-tag {
   --dc-tag-text-color: var(--dc-gray-300);
-  --dc-tag-border-color: rgb(var(--dc-gray-200-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-gray-400-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-gray-200-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-gray-400-rgb) / 10%);
 
   color-scheme: dark;
 }
@@ -218,14 +218,14 @@
 .dark.dc-tag_tinted {
   --dc-tag-text-color: var(--dc-gray-50);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-gray-400-rgb) / 0.4);
+  --dc-tag-bg: rgb(var(--dc-gray-400-rgb) / 40%);
 }
 
 .dark .dc-tag_green,
 .dark.dc-tag_green {
   --dc-tag-text-color: var(--dc-green-400);
-  --dc-tag-border-color: rgb(var(--dc-green-200-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-green-400-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-green-200-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-green-400-rgb) / 10%);
 }
 
 .dark.dc-tag_green.dc-tag_filled,
@@ -239,14 +239,14 @@
 .dark.dc-tag_green.dc-tag_tinted {
   --dc-tag-text-color: var(--dc-green-50);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-green-400-rgb) / 0.5);
+  --dc-tag-bg: rgb(var(--dc-green-400-rgb) / 50%);
 }
 
 .dark .dc-tag_cyan,
 .dark.dc-tag_cyan {
   --dc-tag-text-color: var(--dc-sky-400);
-  --dc-tag-border-color: rgb(var(--dc-sky-200-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-sky-400-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-sky-200-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-sky-400-rgb) / 10%);
 }
 
 .dark .dc-tag_cyan.dc-tag_filled,
@@ -260,14 +260,14 @@
 .dark.dc-tag_cyan.dc-tag_tinted {
   --dc-tag-text-color: var(--dc-sky-50);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-sky-400-rgb) / 0.5);
+  --dc-tag-bg: rgb(var(--dc-sky-400-rgb) / 50%);
 }
 
 .dark .dc-tag_blue,
 .dark.dc-tag_blue {
   --dc-tag-text-color: var(--dc-blue-400);
-  --dc-tag-border-color: rgb(var(--dc-blue-200-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-blue-400-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-blue-200-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-blue-400-rgb) / 10%);
 }
 
 .dark .dc-tag_blue.dc-tag_filled,
@@ -281,14 +281,14 @@
 .dark.dc-tag_blue.dc-tag_tinted {
   --dc-tag-text-color: var(--dc-blue-50);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-blue-400-rgb) / 0.5);
+  --dc-tag-bg: rgb(var(--dc-blue-400-rgb) / 50%);
 }
 
 .dark .dc-tag_purple,
 .dark.dc-tag_purple {
   --dc-tag-text-color: var(--dc-violet-400);
-  --dc-tag-border-color: rgb(var(--dc-violet-200-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-violet-400-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-violet-200-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-violet-400-rgb) / 10%);
 }
 
 .dark .dc-tag_purple.dc-tag_filled,
@@ -302,14 +302,14 @@
 .dark.dc-tag_purple.dc-tag_tinted {
   --dc-tag-text-color: var(--dc-violet-50);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-violet-400-rgb) / 0.5);
+  --dc-tag-bg: rgb(var(--dc-violet-400-rgb) / 50%);
 }
 
 .dark.dc-tag_pink,
 .dark .dc-tag_pink {
   --dc-tag-text-color: var(--dc-pink-400);
-  --dc-tag-border-color: rgb(var(--dc-pink-200-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-pink-400-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-pink-200-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-pink-400-rgb) / 10%);
 }
 
 .dark .dc-tag_pink.dc-tag_filled,
@@ -323,14 +323,14 @@
 .dark.dc-tag_pink.dc-tag_tinted {
   --dc-tag-text-color: var(--dc-pink-50);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-pink-400-rgb) / 0.5);
+  --dc-tag-bg: rgb(var(--dc-pink-400-rgb) / 50%);
 }
 
 .dark .dc-tag_red,
 .dark.dc-tag_red {
   --dc-tag-text-color: var(--dc-red-400);
-  --dc-tag-border-color: rgb(var(--dc-red-200-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-red-400-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-red-200-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-red-400-rgb) / 10%);
 }
 
 .dark .dc-tag_red.dc-tag_filled,
@@ -344,14 +344,14 @@
 .dark.dc-tag_red.dc-tag_tinted {
   --dc-tag-text-color: var(--dc-red-50);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-red-400-rgb) / 0.5);
+  --dc-tag-bg: rgb(var(--dc-red-400-rgb) / 50%);
 }
 
 .dark .dc-tag_orange,
 .dark.dc-tag_orange {
   --dc-tag-text-color: var(--dc-orange-500);
-  --dc-tag-border-color: rgb(var(--dc-orange-200-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-orange-400-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-orange-200-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-orange-400-rgb) / 10%);
 }
 
 .dark .dc-tag_orange.dc-tag_filled,
@@ -365,14 +365,14 @@
 .dark.dc-tag_orange.dc-tag_tinted {
   --dc-tag-text-color: var(--dc-orange-50);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-orange-400-rgb) / 0.5);
+  --dc-tag-bg: rgb(var(--dc-orange-400-rgb) / 50%);
 }
 
 .dark .dc-tag_yellow,
 .dark.dc-tag_yellow {
   --dc-tag-text-color: var(--dc-yellow-500);
-  --dc-tag-border-color: rgb(var(--dc-yellow-200-rgb) / 0.2);
-  --dc-tag-bg: rgb(var(--dc-yellow-400-rgb) / 0.1);
+  --dc-tag-border-color: rgb(var(--dc-yellow-200-rgb) / 20%);
+  --dc-tag-bg: rgb(var(--dc-yellow-400-rgb) / 10%);
 }
 
 .dark .dc-tag_yellow.dc-tag_filled,
@@ -386,5 +386,5 @@
 .dark.dc-tag_yellow.dc-tag_tinted {
   --dc-tag-text-color: var(--dc-yellow-50);
   --dc-tag-border-color: transparent;
-  --dc-tag-bg: rgb(var(--dc-yellow-400-rgb) / 0.5);
+  --dc-tag-bg: rgb(var(--dc-yellow-400-rgb) / 50%);
 }

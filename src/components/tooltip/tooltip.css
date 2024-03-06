@@ -3,16 +3,16 @@
   --dc-tooltip-bg: var(--dc-gray-700);
   --dc-tooltip-transition-duration: 100ms;
 
-  color-scheme: light;
-  font: var(--dc-text-xs);
-  color: var(--dc-tooltip-text-color);
-  z-index: var(--dc-overlay-z-index);
   top: 0;
   left: 0;
+  z-index: var(--dc-overlay-z-index);
   box-sizing: border-box;
   padding: 4px 8px;
-  border-radius: 6px;
+  font: var(--dc-text-xs);
+  color: var(--dc-tooltip-text-color);
+  color-scheme: light;
   background: var(--dc-tooltip-bg);
+  border-radius: 6px;
   box-shadow: var(--dc-shadow-md);
 }
 

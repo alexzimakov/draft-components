@@ -1,10 +1,10 @@
 .dc-filter-token {
-  color: var(--dc-filtered-search-token-color);
   display: inline-flex;
   align-items: center;
   min-width: 0;
-  border-radius: 6px;
+  color: var(--dc-filtered-search-token-color);
   background: var(--dc-filtered-search-token-bg);
+  border-radius: 6px;
 }
 
 .dc-filter-token_highlighted {
@@ -14,24 +14,24 @@
 
 .dc-filter-token__label,
 .dc-filter-token__button {
-  font-size: 14px;
-  color: inherit;
-  cursor: pointer;
   box-sizing: border-box;
   height: 28px;
   padding: 0;
-  border: none;
+  font-size: 14px;
+  color: inherit;
+  cursor: pointer;
   background: none;
+  border: none;
 }
 
 .dc-filter-token__label {
-  line-height: 28px;
-  overflow: hidden;
   min-width: 0;
   max-width: 100%;
   padding: 0 4px 0 8px;
-  white-space: nowrap;
+  overflow: hidden;
+  line-height: 28px;
   text-overflow: ellipsis;
+  white-space: nowrap;
   border-top-left-radius: inherit;
   border-bottom-left-radius: inherit;
 }
@@ -48,8 +48,8 @@
 
 .dc-filter-token__label:focus,
 .dc-filter-token__button:focus {
-  outline: none;
   background: var(--dc-filtered-search-token-bg-hover);
+  outline: none;
 }
 
 .dc-filter-token__label:hover,

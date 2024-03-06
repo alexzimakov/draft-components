@@ -114,12 +114,12 @@
 
 .text-truncate {
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-/* Line height */
-/* https://tailwindcss.com/docs/line-height */
+/* Line height
+ * https://tailwindcss.com/docs/line-height */
 
 .leading-none {
   line-height: 1 !important;

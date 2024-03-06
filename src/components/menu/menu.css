@@ -6,12 +6,12 @@
   --dc-menu-item-bg-destructive: var(--dc-button-red-plain-bg-hover);
   --dc-menu-separator-color: var(--dc-bg-transparent-2);
 
-  color-scheme: light;
   box-sizing: border-box;
   width: 100%;
-  margin: 0;
   padding: 0;
+  margin: 0;
   list-style: none;
+  color-scheme: light;
 }
 
 .dc-menu__container {
@@ -27,20 +27,20 @@
 }
 
 .dc-menu-btn {
-  appearance: none;
-  font: var(--dc-text-sm);
-  color: var(--dc-menu-item-color);
   display: flex;
-  user-select: none;
   align-items: center;
   width: 100%;
   height: 32px;
   padding: 0 12px;
+  font: var(--dc-text-sm);
+  color: var(--dc-menu-item-color);
   text-align: left;
   white-space: nowrap;
+  appearance: none;
+  user-select: none;
+  background: transparent;
   border: none;
   border-radius: 6px;
-  background: transparent;
 }
 
 .dc-menu-btn:hover {
@@ -48,13 +48,13 @@
 }
 
 .dc-menu-btn:focus {
-  outline: none;
   background: var(--dc-menu-item-bg);
+  outline: none;
 }
 
 .dc-menu-btn:disabled {
-  opacity: var(--dc-disabled-state-opacity);
   cursor: default;
+  opacity: var(--dc-disabled-state-opacity);
 }
 
 .dc-menu-btn__label {

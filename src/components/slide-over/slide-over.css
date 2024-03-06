@@ -6,11 +6,11 @@
   --dc-slide-over-secondary-text-color: var(--dc-secondary-text-color);
   --dc-slide-over-panel-max-width: 512px;
   --dc-slide-over-panel-bg: var(--dc-primary-bg);
-  --dc-slide-over-backdrop-color: rgb(var(--dc-gray-900-rgb) / 0.4);
+  --dc-slide-over-backdrop-color: rgb(var(--dc-gray-900-rgb) / 40%);
 
-  color-scheme: light;
   position: relative;
   z-index: var(--dc-overlay-z-index);
+  color-scheme: light;
 }
 
 .dc-slide-over__backdrop,
@@ -27,13 +27,13 @@
 }
 
 .dc-slide-over__panel {
-  color: var(--dc-primary-text-color);
   right: 0;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   width: 100%;
   max-width: var(--dc-slide-over-panel-max-width);
+  color: var(--dc-primary-text-color);
   background: var(--dc-slide-over-panel-bg);
   box-shadow: var(--dc-shadow-md);
 }

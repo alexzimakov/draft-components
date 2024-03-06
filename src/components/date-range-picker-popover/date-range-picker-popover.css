@@ -1,5 +1,4 @@
 .dc-date-range-picker-popover {
-  color-scheme: light;
   display: inline-grid;
   grid-template-areas:
     "presets calendar"
@@ -7,6 +6,7 @@
   grid-template-columns: auto 1fr;
   grid-gap: 20px 24px;
   max-width: none;
+  color-scheme: light;
 }
 
 .dc-date-range-picker-popover_compact {
@@ -20,8 +20,8 @@
 
 .dc-date-range-picker-popover__presets {
   grid-area: presets;
-  margin: 0;
   padding: 0;
+  margin: 0;
   list-style: none;
 }
 
@@ -38,13 +38,13 @@
 }
 
 .dc-date-range-picker-popover__footer {
-  font: var(--dc-text-xs);
   display: grid;
   grid-area: footer;
   grid-template-areas: "content cancel confirm";
   grid-template-columns: 1fr auto auto;
   grid-gap: 8px;
   align-items: center;
+  font: var(--dc-text-xs);
 }
 
 .dc-date-range-picker-popover__footer-content {

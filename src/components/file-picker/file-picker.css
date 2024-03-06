@@ -6,39 +6,39 @@
   --dc-file-picker-border-color-drag-over: var(--dc-control-primary-color);
   --dc-file-picker-bg-drag-over: var(--dc-control-secondary-color);
 
-  color-scheme: light;
   position: relative;
+  box-sizing: border-box;
   display: inline-flex;
   flex-wrap: wrap;
   gap: 12px 20px;
   align-items: center;
-  box-sizing: border-box;
   padding: 16px 20px;
+  color-scheme: light;
   border: 1px dashed var(--dc-file-picker-border-color);
   border-radius: 8px;
 }
 
 .dc-file-picker__input {
   position: absolute;
-  overflow: hidden;
   width: 1px;
   height: 1px;
+  overflow: hidden;
   clip: rect(0, 0, 0, 0);
 }
 
 .dc-file-picker__body {
-  font-family: var(--dc-primary-font);
-  font-size: 14px;
-  line-height: 1.25;
   display: flex;
   flex: auto;
   align-items: center;
+  font-family: var(--dc-primary-font);
+  font-size: 14px;
+  line-height: 1.25;
 }
 
 .dc-file-picker__icon {
-  color: var(--dc-file-picker-icon-color);
   display: inline-flex;
   margin-right: 16px;
+  color: var(--dc-file-picker-icon-color);
 }
 
 .dc-file-picker__label {
@@ -46,9 +46,9 @@
 }
 
 .dc-file-picker__caption {
+  margin-top: 4px;
   font-size: 12px;
   color: var(--dc-file-picker-caption-color);
-  margin-top: 4px;
 }
 
 .dc-file-picker__button {
@@ -64,8 +64,8 @@
 }
 
 .dc-file-picker_dragging-over {
-  border-color: var(--dc-file-picker-border-color-drag-over);
   background: var(--dc-file-picker-bg-drag-over);
+  border-color: var(--dc-file-picker-border-color-drag-over);
 }
 
 .dark .dc-file-picker,

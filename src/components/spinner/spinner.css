@@ -31,9 +31,9 @@
 }
 
 .dc-spinner circle {
+  stroke-linecap: round;
   transition: color 0.2s;
   animation: dc-spinner-dash-animation 1.5s ease-in-out infinite;
-  stroke-linecap: round;
 }
 
 .dark .dc-spinner,

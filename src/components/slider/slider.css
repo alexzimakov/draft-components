@@ -35,19 +35,19 @@
   /* Tick mark properties */
   --dc-slider-tick-mark-width: 1px;
   --dc-slider-tick-mark-height: 6px;
-  --dc-slider-tick-mark-color: rgb(var(--dc-gray-900-rgb) / 0.3);
+  --dc-slider-tick-mark-color: rgb(var(--dc-gray-900-rgb) / 30%);
   --dc-slider-tick-marks-gap: 4px;
 
-  color-scheme: light;
   display: inline-flex;
   width: 240px;
   min-width: 0;
   max-width: 100%;
+  color-scheme: light;
 }
 
 .dc-slider_range {
-  margin: 0;
   padding: 0;
+  margin: 0;
   border: none;
 }
 
@@ -61,12 +61,12 @@
 }
 
 .dc-slider__body {
-  color: var(--dc-slider-icon-color);
   display: flex;
   gap: 8px;
   align-items: center;
   width: 100%;
   min-height: var(--dc-slider-thumb-height);
+  color: var(--dc-slider-icon-color);
 }
 
 .dc-slider__body_has_labels {
@@ -89,21 +89,21 @@
   position: relative;
   width: 100%;
   height: var(--dc-slider-track-height);
-  border-radius: var(--dc-slider-track-radius);
   background-color: var(--dc-slider-track-bg);
+  border-radius: var(--dc-slider-track-radius);
 }
 
 .dc-slider__input {
-  appearance: none;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  margin: 0;
   padding: 0;
-  border: none;
+  margin: 0;
+  appearance: none;
   background: none;
+  border: none;
 }
 
 .dc-slider__input:focus {
@@ -125,16 +125,16 @@
 }
 
 .dc-slider__input::-moz-range-thumb {
-  appearance: none;
-  display: inline-flex;
   box-sizing: border-box;
+  display: inline-flex;
   width: var(--dc-slider-thumb-width);
   height: var(--dc-slider-thumb-height);
-  transition: var(--dc-slider-thumb-transition);
+  appearance: none;
+  background: var(--dc-slider-thumb-bg);
   border: var(--dc-slider-thumb-border);
   border-radius: var(--dc-slider-thumb-radius);
-  background: var(--dc-slider-thumb-bg);
   box-shadow: var(--dc-slider-thumb-shadow);
+  transition: var(--dc-slider-thumb-transition);
 }
 
 .dc-slider_range .dc-slider__input::-moz-range-thumb {
@@ -150,16 +150,16 @@
 }
 
 .dc-slider__input::-webkit-slider-thumb {
-  appearance: none;
-  display: inline-block;
   box-sizing: border-box;
+  display: inline-block;
   width: var(--dc-slider-thumb-width);
   height: var(--dc-slider-thumb-height);
-  transition: var(--dc-slider-thumb-transition);
+  appearance: none;
+  background: var(--dc-slider-thumb-bg);
   border: var(--dc-slider-thumb-border);
   border-radius: var(--dc-slider-thumb-radius);
-  background: var(--dc-slider-thumb-bg);
   box-shadow: var(--dc-slider-thumb-shadow);
+  transition: var(--dc-slider-thumb-transition);
 }
 
 .dc-slider_range .dc-slider__input::-webkit-slider-thumb {
@@ -175,9 +175,6 @@
 }
 
 .dc-slider__label {
-  font: var(--dc-text-xs);
-  font-variant-numeric: tabular-nums;
-  color: var(--dc-slider-label-text-color);
   position: absolute;
   bottom: calc(
     var(--dc-slider-thumb-height) / 2 -
@@ -186,24 +183,27 @@
     var(--dc-slider-track-height)
   );
   left: 0;
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
-  height: var(--dc-slider-label-height);
   min-width: var(--dc-slider-label-height);
   max-width: var(--dc-slider-label-max-width);
+  height: var(--dc-slider-label-height);
   padding: 0 var(--dc-slider-label-padding-x);
-  transform: translateX(-50%);
+  font: var(--dc-text-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--dc-slider-label-text-color);
+  background: var(--dc-slider-label-bg);
   border: var(--dc-slider-label-border);
   border-radius: var(--dc-slider-label-radius);
-  background: var(--dc-slider-label-bg);
+  transform: translateX(-50%);
 }
 
 .dc-slider__label-text {
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .dc-slider__input_active,
@@ -220,8 +220,8 @@
   left: 0;
   width: 100%;
   height: var(--dc-slider-tick-mark-height);
-  margin: 0;
   padding: 0;
+  margin: 0;
   list-style: none;
 }
 
@@ -232,8 +232,8 @@
   display: inline-flex;
   width: var(--dc-slider-tick-mark-width);
   height: var(--dc-slider-tick-mark-height);
-  transform: translateX(-50%);
   background: var(--dc-slider-tick-mark-color);
+  transform: translateX(-50%);
 }
 
 .dark .dc-slider,
@@ -249,5 +249,5 @@
   --dc-slider-label-bg: var(--dc-gray-700);
 
   /* Tick mark properties */
-  --dc-slider-tick-mark-color: rgb(var(--dc-gray-50-rgb) / 0.5);
+  --dc-slider-tick-mark-color: rgb(var(--dc-gray-50-rgb) / 50%);
 }

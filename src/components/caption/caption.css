@@ -1,10 +1,10 @@
 .dc-caption {
-  color-scheme: light;
-  font: var(--dc-text-sm);
-  color: var(--dc-secondary-text-color);
   display: block;
   align-items: center;
+  font: var(--dc-text-sm);
+  color: var(--dc-secondary-text-color);
   text-align: left;
+  color-scheme: light;
 }
 
 .dc-caption_color_blue {
@@ -24,10 +24,10 @@
 }
 
 .dc-caption__icon {
-  color: inherit;
   display: inline-flex;
   float: left;
   margin-right: 0.5em;
+  color: inherit;
 }
 
 .dark .dc-caption,

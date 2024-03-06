@@ -7,64 +7,64 @@
   --dc-toast-close-btn-color: var(--dc-gray-50);
   --dc-toast-close-btn-bg: var(--dc-gray-500);
   --dc-toast-btn-text-color: var(--dc-gray-100);
-  --dc-toast-btn-bg: rgb(var(--dc-gray-50-rgb) / 0.15);
-  --dc-toast-btn-bg-hover: rgb(var(--dc-gray-50-rgb) / 0.3);
+  --dc-toast-btn-bg: rgb(var(--dc-gray-50-rgb) / 15%);
+  --dc-toast-btn-bg-hover: rgb(var(--dc-gray-50-rgb) / 30%);
   --dc-toast-btn-focus-ring-color: var(--dc-gray-200);
 
-  color-scheme: light;
-  font: var(--dc-text-sm);
-  color: var(--dc-toast-text-color);
   position: relative;
   display: inline-flex;
   min-width: 256px;
+  font: var(--dc-text-sm);
+  color: var(--dc-toast-text-color);
   text-align: left;
-  border-radius: 10px;
+  color-scheme: light;
   background: var(--dc-toast-bg);
+  border-radius: 10px;
   box-shadow: var(--dc-shadow-lg);
 }
 
 .dc-toast__close-btn {
-  appearance: none;
-  color: var(--dc-toast-close-btn-color);
   position: absolute;
   top: -8px;
   left: -8px;
+  box-sizing: border-box;
   display: inline-flex;
-  opacity: 0;
-  cursor: pointer;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
   width: 24px;
   height: 24px;
   padding: 0;
+  color: var(--dc-toast-close-btn-color);
+  appearance: none;
   pointer-events: none;
-  transition: opacity 150ms ease;
+  cursor: pointer;
+  background: var(--dc-toast-close-btn-bg);
   border: none;
   border-radius: 50%;
-  background: var(--dc-toast-close-btn-bg);
   box-shadow:
     var(--dc-shadow-sm),
     var(--dc-shadow-md);
+  opacity: 0;
+  transition: opacity 150ms ease;
 }
 
 .dc-toast:hover .dc-toast__close-btn {
-  opacity: 1;
   pointer-events: all;
+  opacity: 1;
 }
 
 .dc-toast__btn {
-  appearance: none;
-  font: var(--dc-text-xs);
-  color: var(--dc-toast-btn-text-color);
-  cursor: pointer;
   box-sizing: border-box;
   padding: 4px 12px;
-  transition: 100ms ease;
-  transition-property: background-color, box-shadow;
+  font: var(--dc-text-xs);
+  color: var(--dc-toast-btn-text-color);
+  appearance: none;
+  cursor: pointer;
+  background: var(--dc-toast-btn-bg);
   border: none;
   border-radius: 6px;
-  background: var(--dc-toast-btn-bg);
+  transition: 100ms ease;
+  transition-property: background-color, box-shadow;
 }
 
 .dc-toast__btn:hover {
@@ -72,8 +72,8 @@
 }
 
 .dc-toast__btn:focus {
-  outline: none;
   background: var(--dc-toast-btn-bg-hover);
+  outline: none;
   box-shadow: 0 0 0 1px var(--dc-toast-btn-focus-ring-color);
 }
 
@@ -93,9 +93,9 @@
 }
 
 .dc-toast__actions {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   padding: 4px;
 }
 
@@ -108,21 +108,21 @@
 }
 
 .dc-toast__icon {
-  color: var(--dc-toast-icon-color);
   display: inline-flex;
   flex-shrink: 0;
   margin-right: 12px;
+  color: var(--dc-toast-icon-color);
 }
 
 .dc-toast__title {
+  margin: 0;
   font: inherit;
   font-weight: 500;
-  margin: 0;
 }
 
 .dc-toast__message {
-  color: var(--dc-toast-secondary-text-color);
   margin-top: 0.25em;
+  color: var(--dc-toast-secondary-text-color);
 }
 
 .dark .dc-toast,
@@ -134,8 +134,8 @@
   --dc-toast-close-btn-color: var(--dc-gray-800);
   --dc-toast-close-btn-bg: var(--dc-gray-100);
   --dc-toast-btn-text-color: var(--dc-gray-800);
-  --dc-toast-btn-bg: rgb(var(--dc-gray-900-rgb) / 0.1);
-  --dc-toast-btn-bg-hover: rgb(var(--dc-gray-900-rgb) / 0.2);
+  --dc-toast-btn-bg: rgb(var(--dc-gray-900-rgb) / 10%);
+  --dc-toast-btn-bg-hover: rgb(var(--dc-gray-900-rgb) / 20%);
   --dc-toast-btn-focus-ring-color: var(--dc-gray-700);
 
   color-scheme: dark;
@@ -144,7 +144,7 @@
 .dark .dc-toast .dc-toast__close-btn,
 .dark.dc-toast .dc-toast__close-btn {
   box-shadow:
-    0 0 0 1px rgb(var(--dc-black-rgb) / 0.1),
+    0 0 0 1px rgb(var(--dc-black-rgb) / 10%),
     var(--dc-shadow-sm),
     var(--dc-shadow-md);
 }

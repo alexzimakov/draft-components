@@ -17,8 +17,8 @@
   --dc-day-bg-range: var(--dc-control-secondary-color);
   --dc-day-focus-ring-color: var(--dc-control-primary-color);
 
-  color-scheme: light;
   display: inline-block;
+  color-scheme: light;
 }
 
 /* Calendar controls */
@@ -37,23 +37,23 @@
 
 /* Calendar day */
 .dc-calendar-day {
-  appearance: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
   font-family: var(--dc-primary-font);
   font-size: 14px;
   font-weight: 500;
   color: var(--dc-day-text-color);
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  border: none;
+  appearance: none;
   background: none;
+  border: none;
 }
 
 .dc-calendar-day__body {
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
   width: var(--dc-day-size);
   height: var(--dc-day-size);
   border-radius: var(--dc-day-radius);
@@ -64,10 +64,10 @@
 }
 
 .dc-calendar-day_in-range::before {
-  content: "";
   position: absolute;
-  z-index: -1;
   inset: 0;
+  z-index: -1;
+  content: "";
   background: var(--dc-day-bg-range);
 }
 
@@ -114,8 +114,8 @@
 }
 
 .dc-calendar-day:disabled > .dc-calendar-day__body {
-  opacity: var(--dc-disabled-state-opacity);
   box-shadow: none;
+  opacity: var(--dc-disabled-state-opacity);
 }
 
 .dc-calendar-day:focus {
@@ -132,9 +132,9 @@
 }
 
 .dc-calendar-day_selected:focus > .dc-calendar-day__body::after {
-  content: "";
   position: absolute;
   inset: -2px;
+  content: "";
   border-radius: 50%;
   box-shadow: 0 0 0 2px var(--dc-day-focus-ring-color);
 }
@@ -183,10 +183,10 @@
 }
 
 .dc-calendar__grid th {
+  padding-bottom: 4px;
   font-size: 14px;
   font-weight: 400;
   color: var(--dc-columnheader-text-color);
-  padding-bottom: 4px;
 }
 
 .dc-calendar__grid td {

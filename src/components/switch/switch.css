@@ -10,26 +10,26 @@
   --dc-switch-icon-color: var(--dc-control-primary-color);
   --dc-switch-focus-ring-color: var(--dc-focus-ring-color);
 
-  color-scheme: light;
-  line-height: 0;
   position: relative;
   display: inline-block;
   flex-shrink: 0;
   width: var(--dc-switch-width);
   height: var(--dc-switch-height);
+  line-height: 0;
   text-align: left;
+  color-scheme: light;
 }
 
 .dc-switch__input {
   position: absolute;
-  overflow: hidden;
   width: 1px;
   height: 1px;
-  margin: -1px;
   padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
-  clip: rect(0, 0, 0, 0);
 }
 
 .dc-switch__track,
@@ -41,37 +41,37 @@
 }
 
 .dc-switch__track {
-  cursor: pointer;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+  vertical-align: middle;
+  cursor: pointer;
+  background: var(--dc-switch-track-bg);
+  border-radius: var(--dc-switch-radius);
   transition-duration: 0.2s;
   transition-property: opacity, background-color;
-  vertical-align: middle;
-  border-radius: var(--dc-switch-radius);
-  background: var(--dc-switch-track-bg);
 }
 
 .dc-switch__thumb {
   width: var(--dc-switch-thumb-size);
   height: var(--dc-switch-thumb-size);
+  background: var(--dc-switch-thumb-bg);
+  border-radius: 50%;
+  box-shadow:
+    0 1px 3px 0 rgb(var(--dc-black-rgb) / 10%),
+    0 4px 6px -1px rgb(var(--dc-black-rgb) / 10%),
+    0 2px 4px -1px rgb(var(--dc-black-rgb) / 6%);
+  transition: transform 0.2s;
   transform:
     translateX(var(--dc-switch-thumb-offset))
     translateY(var(--dc-switch-thumb-offset));
-  transition: transform 0.2s;
-  border-radius: 50%;
-  background: var(--dc-switch-thumb-bg);
-  box-shadow:
-    0 1px 3px 0 rgb(var(--dc-black-rgb) / 0.1),
-    0 4px 6px -1px rgb(var(--dc-black-rgb) / 0.1),
-    0 2px 4px -1px rgb(var(--dc-black-rgb) / 0.06);
 }
 
 .dc-switch__icon {
-  color: var(--dc-switch-icon-color);
-  opacity: 0;
   width: var(--dc-switch-thumb-size);
   height: var(--dc-switch-thumb-size);
+  color: var(--dc-switch-icon-color);
+  opacity: 0;
   transition: opacity 0.2s;
 }
 
@@ -96,8 +96,8 @@
 }
 
 .dc-switch__input:disabled + .dc-switch__track {
-  opacity: var(--dc-disabled-state-opacity);
   cursor: default;
+  opacity: var(--dc-disabled-state-opacity);
 }
 
 .dc-switch__input:focus {
@@ -105,10 +105,10 @@
 }
 
 .dc-switch__input:focus + .dc-switch__track::after {
-  content: "";
   position: absolute;
   inset: -3px;
   pointer-events: none;
+  content: "";
   border-radius: calc(3px + var(--dc-switch-radius));
   box-shadow: 0 0 0 3px var(--dc-switch-focus-ring-color);
 }

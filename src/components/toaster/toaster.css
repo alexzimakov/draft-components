@@ -2,15 +2,15 @@
   --dc-toaster-padding: 16px;
   --dc-toaster-animation: 200ms ease;
 
-  color-scheme: light;
   position: fixed;
-  z-index: var(--dc-toaster-z-index);
   right: var(--dc-toaster-padding);
   left: var(--dc-toaster-padding);
+  z-index: var(--dc-toaster-z-index);
   box-sizing: border-box;
-  margin: 0;
   padding: 0;
+  margin: 0;
   list-style: none;
+  color-scheme: light;
   pointer-events: none;
 }
 

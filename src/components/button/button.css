@@ -7,29 +7,29 @@
   --dc-button-bg-hover: var(--dc-button-gray-bg-hover);
   --dc-button-focus-ring-color: var(--dc-focus-ring-color);
 
-  appearance: none;
-  color-scheme: light;
-  font: 500 var(--dc-text-sm);
-  color: var(--dc-button-text-color);
   position: relative;
+  box-sizing: border-box;
   display: inline-grid;
-  user-select: none;
   grid-template-columns: 1fr;
   grid-column-gap: 0.5em;
   place-items: center;
   justify-content: center;
-  box-sizing: border-box;
   height: var(--dc-button-height);
   padding: 0 16px;
-  transition-duration: 0.2s;
-  transition-property: color, background-color;
+  font: 500 var(--dc-text-sm);
+  color: var(--dc-button-text-color);
   text-align: center;
-  white-space: nowrap;
   text-decoration: none;
   text-transform: none;
+  white-space: nowrap;
+  appearance: none;
+  color-scheme: light;
+  user-select: none;
+  background: var(--dc-button-bg);
   border: 1px solid var(--dc-button-border-color);
   border-radius: var(--dc-button-radius);
-  background: var(--dc-button-bg);
+  transition-duration: 0.2s;
+  transition-property: color, background-color;
 }
 
 .dark .dc-button,
@@ -42,10 +42,10 @@
 }
 
 .dc-button:focus::after {
-  content: "";
   position: absolute;
   inset: -3px;
   pointer-events: none;
+  content: "";
   border-radius: calc(3px + var(--dc-button-radius));
   box-shadow: 0 0 0 3px var(--dc-button-focus-ring-color);
 }
@@ -105,8 +105,8 @@
   --dc-button-text-color: var(--dc-button-gray-plain-text-color);
   --dc-button-bg-hover: var(--dc-button-gray-plain-bg-hover);
 
-  border-color: transparent;
   background: transparent;
+  border-color: transparent;
   box-shadow: none;
 }
 
@@ -114,36 +114,36 @@
   --dc-button-height: 28px;
   --dc-button-radius: 7px;
 
-  font: 500 var(--dc-text-xs);
   padding-right: 8px;
   padding-left: 8px;
+  font: 500 var(--dc-text-xs);
 }
 
 .dc-button_sm {
   --dc-button-height: 32px;
   --dc-button-radius: 8px;
 
-  font: 500 var(--dc-text-sm);
   padding-right: 12px;
   padding-left: 12px;
+  font: 500 var(--dc-text-sm);
 }
 
 .dc-button_lg {
   --dc-button-height: 40px;
   --dc-button-radius: 10px;
 
-  font: 500 var(--dc-text-md);
   padding-right: 18px;
   padding-left: 18px;
+  font: 500 var(--dc-text-md);
 }
 
 .dc-button_xl {
   --dc-button-height: 44px;
   --dc-button-radius: 11px;
 
-  font: 500 var(--dc-text-md);
   padding-right: 20px;
   padding-left: 20px;
+  font: 500 var(--dc-text-md);
 }
 
 .dc-button_tint_blue.dc-button_style_filled {
@@ -206,11 +206,11 @@
 }
 
 .dc-button__caption {
+  display: block;
+  margin-top: 2px;
   font-size: 11px;
   font-weight: 400;
   line-height: 1;
-  display: block;
-  margin-top: 2px;
 }
 
 .dc-button_xs .dc-button__label {
