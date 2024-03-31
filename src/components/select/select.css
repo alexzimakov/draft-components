@@ -65,7 +65,7 @@
 }
 
 .dc-select__native {
-  width: 100%;
+  max-width: 100%;
   padding-right: calc(var(--dc-select-height) + 0.5em);
   padding-left: var(--dc-select-padding-x);
   font: inherit;
