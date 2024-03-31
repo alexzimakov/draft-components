@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, JSX, ReactNode, cloneElement, useId } from 'react';
+import { ComponentPropsWithoutRef, JSX, ReactNode, cloneElement, forwardRef, useId } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { Label } from '../label/index.js';
 import { Caption } from '../caption/index.js';
@@ -16,20 +16,24 @@ export type SelectionControlProps = {
   children: JSX.Element | SelectionControlRenderFn;
 } & SelectionControlBaseProps;
 
-export function SelectionControl({
+export const SelectionControl = forwardRef<
+  HTMLDivElement,
+  SelectionControlProps
+>(function SelectionControl({
   label,
   labelFor,
   caption,
   className,
   children,
   ...props
-}: SelectionControlProps) {
+}, ref) {
   const defaultId = useId();
   const controlId = labelFor || defaultId;
 
   return (
     <div
       {...props}
+      ref={ref}
       className={classNames(className, {
         'dc-selection-control': true,
         'dc-selection-control__with_caption': caption,
@@ -52,4 +56,4 @@ export function SelectionControl({
         : null}
     </div>
   );
-}
+});
