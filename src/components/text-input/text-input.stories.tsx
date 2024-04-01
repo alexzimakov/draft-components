@@ -132,12 +132,11 @@ SlotCustomRenderer.args = {
       fontSize: 12,
       fontWeight: 500,
       color: 'var(--dc-button-gray-tinted-text-color)',
-      cursor: 'pointer',
       boxSizing: 'border-box',
       height: 24,
       padding: '0 8px',
       border: 'none',
-      borderRadius: 3,
+      borderRadius: 4,
       background: 'var(--dc-button-gray-tinted-bg)',
     };
     return (

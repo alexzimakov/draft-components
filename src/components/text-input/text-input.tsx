@@ -1,4 +1,4 @@
-import { ChangeEventHandler, ComponentPropsWithRef, ReactNode, forwardRef } from 'react';
+import { ChangeEventHandler, ComponentPropsWithRef, FocusEventHandler, ReactNode, forwardRef, useState } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
 type TextInputHTMLProps = ComponentPropsWithRef<'input'>;
@@ -47,9 +47,13 @@ export const TextInput = forwardRef<
   invalid,
   disabled,
   onChange,
+  onFocus,
+  onBlur,
   onChangeValue,
   ...props
 }, ref) {
+  const [focused, setFocused] = useState(false);
+
   let elementBeforeInput: ReactNode;
   if (slotLeft) {
     const className = 'dc-text-input__slot-left';
@@ -79,6 +83,20 @@ export const TextInput = forwardRef<
     }
   };
 
+  const handleFocus: FocusEventHandler<HTMLInputElement> = (event) => {
+    setFocused(true);
+    if (typeof onFocus === 'function') {
+      onFocus(event);
+    }
+  };
+
+  const handleBlur: FocusEventHandler<HTMLInputElement> = (event) => {
+    setFocused(false);
+    if (typeof onBlur === 'function') {
+      onBlur(event);
+    }
+  };
+
   return (
     <div
       style={style}
@@ -87,6 +105,7 @@ export const TextInput = forwardRef<
         [`dc-text-input_slot_${slotStyle}`]: slotStyle,
         'dc-text-input_full-width': fullWidth,
         'dc-text-input_invalid': invalid,
+        'dc-text-input_focused': focused,
         'dc-text-input_disabled': disabled,
         'dc-text-input_has_slot-left': elementBeforeInput,
         'dc-text-input_has_slot-right': elementAfterInput,
@@ -102,6 +121,8 @@ export const TextInput = forwardRef<
         disabled={disabled}
         aria-invalid={props['aria-invalid'] ?? invalid}
         onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
       />
       {elementAfterInput}
     </div>
