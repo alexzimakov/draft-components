@@ -37,7 +37,6 @@
   color: var(--dc-toast-close-btn-color);
   appearance: none;
   pointer-events: none;
-  cursor: pointer;
   background: var(--dc-toast-close-btn-bg);
   border: none;
   border-radius: 50%;
@@ -59,7 +58,6 @@
   font: var(--dc-text-xs);
   color: var(--dc-toast-btn-text-color);
   appearance: none;
-  cursor: pointer;
   background: var(--dc-toast-btn-bg);
   border: none;
   border-radius: 6px;

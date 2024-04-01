@@ -39,7 +39,6 @@
   width: 100%;
   height: 100%;
   vertical-align: middle;
-  cursor: pointer;
   background: var(--dc-checkbox-bg);
   border: 1px solid var(--dc-checkbox-border-color);
   border-radius: var(--dc-checkbox-radius);

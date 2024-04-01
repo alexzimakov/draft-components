@@ -16,7 +16,6 @@
   font: var(--dc-text-sm);
   color: var(--dc-tab-text-color);
   appearance: none;
-  cursor: pointer;
   background: none;
   border: none;
 }

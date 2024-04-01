@@ -43,10 +43,6 @@
   border-radius: 6px;
 }
 
-.dc-menu-btn:hover {
-  cursor: pointer;
-}
-
 .dc-menu-btn:focus {
   background: var(--dc-menu-item-bg);
   outline: none;

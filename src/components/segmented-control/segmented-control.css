@@ -74,7 +74,6 @@
   font: inherit;
   color: var(--dc-segmented-button-text-color);
   appearance: none;
-  cursor: pointer;
   user-select: none;
   background: var(--dc-segmented-button-bg);
   border: 1px solid var(--dc-segmented-button-border-color);

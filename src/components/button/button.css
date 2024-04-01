@@ -69,7 +69,6 @@
 }
 
 .dc-button:hover:not(:disabled) {
-  cursor: pointer;
   background: var(--dc-button-bg-hover);
 }
 
@@ -77,10 +76,6 @@
 .dc-button_has_icon-left,
 .dc-button_has_icon-right {
   grid-template-columns: repeat(2, auto);
-}
-
-.dc-button_loading {
-  cursor: default;
 }
 
 .dc-button_loading:disabled {

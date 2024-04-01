@@ -37,7 +37,6 @@
   width: var(--dc-radio-size);
   height: var(--dc-radio-size);
   vertical-align: middle;
-  cursor: pointer;
   background: var(--dc-radio-color-bg);
   border: 1px solid var(--dc-radio-color-border);
   border-radius: 50%;
