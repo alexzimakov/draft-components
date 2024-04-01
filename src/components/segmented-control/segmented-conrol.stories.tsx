@@ -61,5 +61,5 @@ export const WithIcon = Basic.bind({});
 WithIcon.storyName = 'With icon';
 WithIcon.args = {
   options: optionsWithIcon,
-  defaultValue: optionsWithIcon[0].value,
+  value: optionsWithIcon[0].value,
 };
