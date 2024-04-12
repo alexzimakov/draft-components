@@ -126,7 +126,7 @@
 
 .dc-slider__input::-moz-range-thumb {
   box-sizing: border-box;
-  display: inline-flex;
+  display: block;
   width: var(--dc-slider-thumb-width);
   height: var(--dc-slider-thumb-height);
   appearance: none;
@@ -151,7 +151,7 @@
 
 .dc-slider__input::-webkit-slider-thumb {
   box-sizing: border-box;
-  display: inline-block;
+  display: block;
   width: var(--dc-slider-thumb-width);
   height: var(--dc-slider-thumb-height);
   appearance: none;
@@ -160,6 +160,10 @@
   border-radius: var(--dc-slider-thumb-radius);
   box-shadow: var(--dc-slider-thumb-shadow);
   transition: var(--dc-slider-thumb-transition);
+}
+
+.dc-slider__input::-webkit-slider-container {
+  min-height: 0;
 }
 
 .dc-slider_range .dc-slider__input::-webkit-slider-thumb {
