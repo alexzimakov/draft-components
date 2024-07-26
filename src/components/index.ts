@@ -24,6 +24,7 @@ export * from './popover/index.js';
 export * from './portal/index.js';
 export * from './positioner/index.js';
 export * from './radio/index.js';
+export * from './search-select/index.js';
 export * from './segmented-control/index.js';
 export * from './select/index.js';
 export * from './selection-control/index.js';
