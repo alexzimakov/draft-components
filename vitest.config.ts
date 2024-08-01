@@ -1,16 +1,24 @@
-import { defineConfig } from 'vitest/config';
+import {
+  mergeConfig,
+  defineConfig,
+  coverageConfigDefaults,
+} from 'vitest/config';
+import viteConfig from './vite.config.ts';
 
-export default defineConfig({
+export default mergeConfig(viteConfig, defineConfig({
   test: {
+    include: ['src/**/*.{test,spec}.?(c|m)[jt]s?(x)'],
     environment: 'jsdom',
     setupFiles: 'src/test/setup.ts',
     coverage: {
-      provider: 'istanbul',
+      include: ['src/**'],
       exclude: [
-        'src/styleguide/**',
-        'src/storybook/**',
+        ...coverageConfigDefaults.exclude,
+        '**/*.stories.?(c|m)[jt]s?(x)',
         'src/test/**',
+        'src/storybook/**',
       ],
+      provider: 'istanbul',
     },
   },
-});
+}));

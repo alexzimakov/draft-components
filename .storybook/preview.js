@@ -32,6 +32,8 @@ export default {
       defaultTheme: 'light',
     }),
   ],
+
+  tags: ['autodocs'],
 };
 
 function setViewModeAttribute(storyFn, context) {

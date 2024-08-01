@@ -3,7 +3,7 @@ import { EmptyState } from './empty-state.js';
 import { render, screen } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
-  const image = <img src="https://test.local/image.png" alt="" />;
+  const image = <img data-testid="empty-state-image" src="https://test.local/image.png" alt="" />;
   const heading = 'Empty state heading';
   const description = 'Empty state description';
   const primaryAction = 'Primary action';
@@ -21,7 +21,7 @@ it('renders without errors', () => {
     </EmptyState>,
   );
 
-  screen.getByRole('img');
+  screen.getByTestId('empty-state-image');
   screen.getByText(heading);
   screen.getByText(description);
   screen.getByText(primaryAction);

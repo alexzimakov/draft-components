@@ -60,7 +60,7 @@ it('renders without errors', async () => {
       placeholder={placeholder}
       filtersConfig={filtersConfig}
       filters={[]}
-      onChangeFilters={vi.fn}
+      onChangeFilters={vi.fn()}
     />,
   );
 
@@ -87,7 +87,7 @@ it('close options list', async () => {
     <FilteredSearch
       filtersConfig={filtersConfig}
       filters={[]}
-      onChangeFilters={vi.fn}
+      onChangeFilters={vi.fn()}
     />,
   );
 
@@ -108,7 +108,7 @@ it('focus textbox when click on container', async () => {
     <FilteredSearch
       filtersConfig={filtersConfig}
       filters={[]}
-      onChangeFilters={vi.fn}
+      onChangeFilters={vi.fn()}
       onMouseDown={onMouseDownMock}
     />,
   );
@@ -127,7 +127,7 @@ it('select filter using keyboard', async () => {
     <FilteredSearch
       filtersConfig={[idFilterConfig, nameFilterConfig]}
       filters={[]}
-      onChangeFilters={vi.fn}
+      onChangeFilters={vi.fn()}
     />,
   );
 
@@ -165,7 +165,7 @@ it('filter options based on the search text', async () => {
     <FilteredSearch
       filtersConfig={[idFilterConfig, nameFilterConfig]}
       filters={[]}
-      onChangeFilters={vi.fn}
+      onChangeFilters={vi.fn()}
     />,
   );
 
