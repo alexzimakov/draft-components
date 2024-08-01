@@ -22,7 +22,7 @@ type RenderLabelFn<Value> = (value: Value) => ReactNode;
 
 type RenderOptionsFn = (props: {
   searchQuery: string;
-  searchQueryLowercased: string;
+  searchQueryLowerCased: string;
 }) => ReactNode;
 
 export type SearchSelectSize = 'sm' | 'md' | 'lg';
@@ -226,7 +226,7 @@ export function SearchSelect<Value>({
           {typeof displayedValue === 'function'
             ? displayedValue(selectedValue)
             : displayedValue}
-          <span className="dc-search-select__slot-left">
+          <span className="dc-search-select__slot-right">
             {loading
               ? (
                 <Spinner
@@ -278,7 +278,7 @@ export function SearchSelect<Value>({
             {typeof children === 'function'
               ? children({
                 searchQuery,
-                searchQueryLowercased: searchQuery.toLowerCase(),
+                searchQueryLowerCased: searchQuery.toLowerCase(),
               })
               : children}
           </ul>
@@ -292,10 +292,12 @@ SearchSelect.Option = function SearchSelectOption<T>({
   className,
   value,
   children,
+  caption,
 }: {
   className?: string;
   value: T;
   children: ReactNode;
+  caption?: ReactNode;
 }) {
   const {
     options,
@@ -311,9 +313,9 @@ SearchSelect.Option = function SearchSelectOption<T>({
     /* eslint-disable jsx-a11y/click-events-have-key-events */
     <li
       className={classNames(className, {
-        'dc-search-select__option': true,
-        'dc-search-select__option_selected': selected,
-        'dc-search-select__option_highlighted': highlighted,
+        'dc-search-select-option': true,
+        'dc-search-select-option_selected': selected,
+        'dc-search-select-option_highlighted': highlighted,
       })}
       id={id}
       role="option"
@@ -321,7 +323,12 @@ SearchSelect.Option = function SearchSelectOption<T>({
       onClick={() => setSelectedValue(value)}
       onMouseEnter={() => setHighlightedValue(value)}
     >
-      {children}
+      <div className="dc-search-select-option__label">
+        {children}
+      </div>
+      {caption
+        ? <div className="dc-search-select-option__caption">{caption}</div>
+        : null}
     </li>
   );
 };
@@ -335,12 +342,33 @@ SearchSelect.Separator = function SearchSelectSeparator({
 }) {
   return (
     <li
-      className={classNames('dc-search-select__separator', className)}
+      className={classNames('dc-search-select-separator', className)}
       role="separator"
     >
       {children
-        ? <div className="dc-search-select__separator-label">{children}</div>
+        ? <div className="dc-search-select-separator__label">{children}</div>
         : null}
     </li>
+  );
+};
+
+SearchSelect.ButtonLabel = function SearchSelectButtonLabel({
+  className,
+  icon,
+  value,
+  children,
+}: {
+  className?: string;
+  icon?: ReactNode;
+  value: ReactNode;
+  children: ReactNode;
+}) {
+  return (
+    <div className={classNames('dc-search-select-button-label', className)}>
+      {icon}
+      <span>
+        {children} <b>{value}</b>
+      </span>
+    </div>
   );
 };

@@ -30,7 +30,7 @@ const meta: Meta<typeof SearchSelect<Fruit>> = {
     invalid: false,
     loading: false,
     disabled: false,
-    displayedValue: getFruitName,
+    displayedValue: renderSelectedFruit,
     textboxPlaceholder: 'Search...',
   },
 };
@@ -81,6 +81,36 @@ FullWidth.storyName = 'Full width';
 FullWidth.args = {
   fullWidth: true,
 };
+
+export const OptionsWithCaption: StoryFn<typeof SearchSelect<Fruit>> = (args) => {
+  const [value, setValue] = useState(args.value);
+  const handleChange = (value: Fruit) => {
+    setValue(value);
+    args.onChange?.(value);
+  };
+
+  return (
+    <SearchSelect
+      {...args}
+      value={value}
+      onChange={handleChange}
+    >
+      {({ searchQuery }) => fruits
+        .filter(filterByName(searchQuery))
+        .map((fruit) => (
+          <SearchSelect.Option
+            key={fruit.id}
+            value={fruit}
+            caption={`${fruit.calories} Calories`}
+          >
+            {getFruitName(fruit)}
+          </SearchSelect.Option>
+        ))}
+    </SearchSelect>
+  );
+};
+OptionsWithCaption.storyName = 'Options with caption';
+OptionsWithCaption.args = {};
 
 export const WithSeparator: StoryFn<typeof SearchSelect<Fruit>> = (args) => {
   const [value, setValue] = useState(args.value);
@@ -139,4 +169,30 @@ function getFruitName(fruit: Fruit) {
 function filterByName(searchQuery: string) {
   searchQuery = searchQuery.toLowerCase();
   return (fruit: Fruit) => fruit.name.toLowerCase().includes(searchQuery);
+}
+
+function renderSelectedFruit(fruit: Fruit) {
+  const icon = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1.15em"
+      height="1.15em"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+      />
+    </svg>
+
+  );
+  return (
+    <SearchSelect.ButtonLabel icon={icon} value={getFruitName(fruit)}>
+      Favorite fruit
+    </SearchSelect.ButtonLabel>
+  );
 }
