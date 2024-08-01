@@ -229,20 +229,20 @@ export function SearchSelect<Value>({
           <span className="dc-search-select__slot-right">
             {loading
               ? (
-                <Spinner
-                  className="dc-search-select__spinner"
-                  width="1.05em"
-                  height="1.05em"
-                />
-              )
+                  <Spinner
+                    className="dc-search-select__spinner"
+                    width="1.05em"
+                    height="1.05em"
+                  />
+                )
               : (
-                <ChevronDown
-                  className="dc-search-select__arrow"
-                  width="1.05em"
-                  height="1.05em"
-                  strokeWidth={2}
-                />
-              )}
+                  <ChevronDown
+                    className="dc-search-select__arrow"
+                    width="1.05em"
+                    height="1.05em"
+                    strokeWidth={2}
+                  />
+                )}
           </span>
         </button>
       )}

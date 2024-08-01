@@ -1,7 +1,6 @@
 import { JSX } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { Switch } from './switch.js';
-import { Radio } from '../radio/index.js';
 
 const meta: Meta<typeof Switch> = {
   title: 'Forms/Switch',
@@ -18,7 +17,7 @@ export const Basic: StoryFn<typeof Switch> = (args) => (
 );
 Basic.args = {};
 
-export const States: StoryFn<typeof Radio> = (args) => (
+export const States: StoryFn<typeof Switch> = (args) => (
   <div style={{
     display: 'flex',
     flexWrap: 'wrap',

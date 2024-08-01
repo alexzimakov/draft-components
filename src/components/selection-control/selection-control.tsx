@@ -49,10 +49,10 @@ export const SelectionControl = forwardRef<
       </Label>
       {caption
         ? (
-          <Caption className="dc-selection-control__caption">
-            {caption}
-          </Caption>
-        )
+            <Caption className="dc-selection-control__caption">
+              {caption}
+            </Caption>
+          )
         : null}
     </div>
   );

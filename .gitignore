@@ -8,7 +8,7 @@ coverage
 !.npmrc
 !.husky
 !.editorconfig
-!.eslintrc.json
+!.eslintrc.cjs
 !.eslintignore
 !.stylelintrc.json
 !.stylelintignore

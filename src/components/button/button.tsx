@@ -45,11 +45,11 @@ export const Button = forwardRef<
         : iconLeft}
       {caption
         ? (
-          <div className="dc-button__label">
-            {children}
-            <small className="dc-button__caption">{caption}</small>
-          </div>
-        )
+            <div className="dc-button__label">
+              {children}
+              <small className="dc-button__caption">{caption}</small>
+            </div>
+          )
         : children}
       {iconRight}
     </>

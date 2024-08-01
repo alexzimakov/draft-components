@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import '../src/components/index.css';
 import './preview.css';
@@ -23,7 +22,15 @@ export default {
   },
 
   decorators: [
-    setViewModeAttribute,
+    (Story, { viewMode }) => {
+      if (
+        typeof document !== 'undefined'
+        && document.body instanceof HTMLBodyElement
+      ) {
+        document.body.dataset.viewMode = viewMode;
+      }
+      return <Story />;
+    },
     withThemeByClassName({
       themes: {
         light: 'light',
@@ -35,15 +42,3 @@ export default {
 
   tags: ['autodocs'],
 };
-
-function setViewModeAttribute(storyFn, context) {
-  const viewMode = context.viewMode;
-
-  useEffect(() => {
-    if (document.body instanceof HTMLBodyElement) {
-      document.body.dataset.viewMode = viewMode;
-    }
-  }, [viewMode]);
-
-  return storyFn();
-}

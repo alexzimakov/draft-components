@@ -50,17 +50,17 @@ export function SlideOverHeader({
       </div>
       {description
         ? (
-          <div id={descriptionId} className="dc-slide-over-header__description">
-            {description}
-          </div>
-        )
+            <div id={descriptionId} className="dc-slide-over-header__description">
+              {description}
+            </div>
+          )
         : null}
       {children
         ? (
-          <div className="dc-slide-over-header__content">
-            {children}
-          </div>
-        )
+            <div className="dc-slide-over-header__content">
+              {children}
+            </div>
+          )
         : null}
     </div>
   );

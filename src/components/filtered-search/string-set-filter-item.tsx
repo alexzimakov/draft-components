@@ -77,13 +77,13 @@ export function StringSetFilterItem({
       {label}
       {filter.value.length > 0
         ? (
-          <>
-          &nbsp;
-            <span>{formatOperator(filter.operator)}</span>
-          &nbsp;
-            <b>{formatValues(filter.value)}</b>
-          </>
-        )
+            <>
+              &nbsp;
+              <span>{formatOperator(filter.operator)}</span>
+              &nbsp;
+              <b>{formatValues(filter.value)}</b>
+            </>
+          )
         : null}
     </FilterToken>
   );

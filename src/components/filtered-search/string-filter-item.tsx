@@ -85,13 +85,13 @@ export function StringFilterItem({
       {label}
       {filter.value
         ? (
-          <>
-          &nbsp;
-            <span>{formatOperator(filter.operator)}</span>
-          &nbsp;
-            <b>{filter.value}</b>
-          </>
-        )
+            <>
+              &nbsp;
+              <span>{formatOperator(filter.operator)}</span>
+              &nbsp;
+              <b>{filter.value}</b>
+            </>
+          )
         : null}
     </FilterToken>
   );
