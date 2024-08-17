@@ -34,6 +34,7 @@ export type SearchSelectProps<Value> = {
   invalid?: boolean;
   loading?: boolean;
   disabled?: boolean;
+  readOnly?: boolean;
   textboxIcon?: ReactNode;
   textboxAriaLabel?: string;
   textboxPlaceholder?: string;
@@ -51,6 +52,7 @@ export function SearchSelect<Value>({
   invalid,
   loading,
   disabled,
+  readOnly,
   textboxIcon,
   textboxAriaLabel,
   textboxPlaceholder = '',
@@ -70,7 +72,7 @@ export function SearchSelect<Value>({
   const [highlightedValue, setHighlightedValue] = useState(selectedValue);
 
   const openPopover = () => {
-    if (disabled || loading) {
+    if (readOnly || disabled || loading) {
       return;
     }
     options.clear();

@@ -30,6 +30,7 @@ const meta: Meta<typeof SearchSelect<Fruit>> = {
     invalid: false,
     loading: false,
     disabled: false,
+    readOnly: false,
     displayedValue: renderSelectedFruit,
     textboxPlaceholder: 'Search...',
   },
