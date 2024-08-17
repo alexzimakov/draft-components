@@ -93,6 +93,18 @@
   outline: none;
 }
 
+.dc-text-input_align_left .dc-text-input__native {
+  text-align: left;
+}
+
+.dc-text-input_align_right .dc-text-input__native {
+  text-align: right;
+}
+
+.dc-text-input_align_center .dc-text-input__native {
+  text-align: center;
+}
+
 .dc-text-input__slot-left,
 .dc-text-input__slot-right {
   box-sizing: border-box;

@@ -10,6 +10,7 @@ const meta: Meta<typeof TextInput> = {
     size: 'md',
     type: 'text',
     slotStyle: 'plain',
+    textAlign: 'left',
   },
 };
 export default meta;

@@ -17,6 +17,7 @@ export type TextInputType =
   | 'week';
 export type TextInputSize = 'sm' | 'md' | 'lg';
 export type TextInputSlotStyle = 'plain' | 'tinted';
+export type TextInputTextAlign = 'left' | 'right' | 'center';
 export type TextInputSlotRenderer = (props: { className: string }) => ReactNode;
 export type TextInputValueChangeHandler = (value: string) => void;
 export type TextInputProps = TextInputBaseProps & {
@@ -28,6 +29,7 @@ export type TextInputProps = TextInputBaseProps & {
   slotLeft?: ReactNode | TextInputSlotRenderer;
   slotRight?: ReactNode | TextInputSlotRenderer;
   slotStyle?: TextInputSlotStyle;
+  textAlign?: TextInputTextAlign;
   onChangeValue?: TextInputValueChangeHandler;
 };
 
@@ -41,6 +43,7 @@ export const TextInput = forwardRef<
   size = 'md',
   sizeInChars,
   slotStyle = 'plain',
+  textAlign = 'left',
   slotLeft,
   slotRight,
   type = 'text',
@@ -103,6 +106,7 @@ export const TextInput = forwardRef<
       className={classNames(className, 'dc-text-input', {
         [`dc-text-input_${size}`]: size,
         [`dc-text-input_slot_${slotStyle}`]: slotStyle,
+        [`dc-text-input_align_${textAlign}`]: textAlign,
         'dc-text-input_full-width': fullWidth,
         'dc-text-input_invalid': invalid,
         'dc-text-input_focused': focused,
