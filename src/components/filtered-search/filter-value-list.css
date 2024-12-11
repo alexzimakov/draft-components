@@ -11,7 +11,7 @@
 
 .dc-filter-value-list > li {
   display: flex;
-  scroll-snap-align: start;
   align-items: center;
   min-height: 32px;
+  scroll-snap-align: start;
 }
