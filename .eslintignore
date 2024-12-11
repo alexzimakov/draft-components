@@ -1,9 +1,0 @@
-node_modules
-/coverage
-
-!.storybook
-!.stylelintrc.json
-
-# Build artifacts
-/dist
-/storybook-static
