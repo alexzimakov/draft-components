@@ -54,9 +54,9 @@ describe('calculates position for the \'top\' placement', () => {
       coordinates: {
         y,
         x: params.scrollX
-        + anchorRect.left
-        + (anchorRect.width / 2)
-        - (contentRect.width / 2),
+          + anchorRect.left
+          + (anchorRect.width / 2)
+          - (contentRect.width / 2),
       },
     },
   ];
@@ -129,9 +129,9 @@ describe('calculates position for the \'bottom\' placement', () => {
       coordinates: {
         y,
         x: params.scrollX
-        + anchorRect.left
-        + (anchorRect.width / 2)
-        - (contentRect.width / 2),
+          + anchorRect.left
+          + (anchorRect.width / 2)
+          - (contentRect.width / 2),
       },
     },
   ];
@@ -207,7 +207,7 @@ describe('calculates position for the \'left\' placement', () => {
       coordinates: {
         x,
         y: params.scrollY + anchorRect.top
-        + (anchorRect.height / 2) - (contentRect.height / 2),
+          + (anchorRect.height / 2) - (contentRect.height / 2),
       },
     },
   ];
@@ -280,7 +280,7 @@ describe('calculates position for the \'right\' placement', () => {
       coordinates: {
         x,
         y: params.scrollY + anchorRect.top
-        + (anchorRect.height / 2) - (contentRect.height / 2),
+          + (anchorRect.height / 2) - (contentRect.height / 2),
       },
     },
   ];

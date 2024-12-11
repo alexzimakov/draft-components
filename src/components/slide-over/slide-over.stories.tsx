@@ -39,12 +39,12 @@ export const Basic: StoryFn<typeof SlideOver> = (args) => {
                 height: '64px',
                 backgroundSize: '10px 10px',
                 backgroundImage: 'repeating-linear-gradient('
-                + '45deg, '
-                + 'var(--dc-bg-transparent-2) 0, '
-                + 'var(--dc-bg-transparent-2) 1px, '
-                + 'transparent 0, '
-                + 'transparent 50%'
-                + ')',
+                  + '45deg, '
+                  + 'var(--dc-bg-transparent-2) 0, '
+                  + 'var(--dc-bg-transparent-2) 1px, '
+                  + 'transparent 0, '
+                  + 'transparent 50%'
+                  + ')',
               }}
             >
               Slide-over header
@@ -62,12 +62,12 @@ export const Basic: StoryFn<typeof SlideOver> = (args) => {
                 minHeight: '320px',
                 backgroundSize: '10px 10px',
                 backgroundImage: 'repeating-linear-gradient('
-                + '45deg, '
-                + 'var(--dc-bg-transparent-2) 0, '
-                + 'var(--dc-bg-transparent-2) 1px, '
-                + 'transparent 0, '
-                + 'transparent 50%'
-                + ')',
+                  + '45deg, '
+                  + 'var(--dc-bg-transparent-2) 0, '
+                  + 'var(--dc-bg-transparent-2) 1px, '
+                  + 'transparent 0, '
+                  + 'transparent 50%'
+                  + ')',
               }}
             >
               Slide-over body

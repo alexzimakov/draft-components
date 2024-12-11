@@ -31,7 +31,7 @@ Basic.args = {
   options: [
     {
       value: 'multicolor',
-      color: `conic-gradient(${backgrounds.map(((bg) => bg.color)).join(',')})`,
+      color: `conic-gradient(${backgrounds.map((bg) => bg.color).join(',')})`,
     },
     ...backgrounds,
   ],

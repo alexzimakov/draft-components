@@ -279,9 +279,9 @@ export function SearchSelect<Value>({
           >
             {typeof children === 'function'
               ? children({
-                searchQuery,
-                searchQueryLowerCased: searchQuery.toLowerCase(),
-              })
+                  searchQuery,
+                  searchQueryLowerCased: searchQuery.toLowerCase(),
+                })
               : children}
           </ul>
         </SearchSelectContextProvider>
