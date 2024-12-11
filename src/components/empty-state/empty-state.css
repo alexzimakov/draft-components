@@ -14,6 +14,10 @@
   color-scheme: light;
 }
 
+.dc-empty-state_full_height {
+  height: 100%;
+}
+
 .dc-empty-state__image {
   color: var(--dc-empty-state-secondary-color);
 }

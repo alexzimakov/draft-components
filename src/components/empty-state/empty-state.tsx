@@ -9,6 +9,7 @@ export type EmptyStateProps = {
   message?: ReactNode;
   primaryAction?: ReactNode;
   secondaryAction?: ReactNode;
+  fullHeight?: boolean;
 } & EmptyStateBaseProps;
 
 export function EmptyState({
@@ -18,11 +19,18 @@ export function EmptyState({
   message,
   primaryAction,
   secondaryAction,
+  fullHeight,
   children,
   ...props
 }: EmptyStateProps) {
   return (
-    <div {...props} className={classNames('dc-empty-state', className)}>
+    <div
+      {...props}
+      className={classNames(className, {
+        'dc-empty-state': true,
+        'dc-empty-state_full_height': fullHeight,
+      })}
+    >
       {image
         ? <div className="dc-empty-state__image">{image}</div>
         : null}
