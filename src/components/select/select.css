@@ -19,8 +19,8 @@
   font-size: var(--dc-select-font-size);
   font-weight: 400;
   line-height: 1.25;
-  color: var(--dc-select-text-color);
   vertical-align: middle;
+  color: var(--dc-select-text-color);
   color-scheme: light;
   background: var(--dc-select-bg);
   border: 1px solid var(--dc-select-border-color);

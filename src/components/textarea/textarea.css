@@ -36,8 +36,8 @@
 }
 
 .dc-textarea:focus {
-  border-color: var(--dc-textarea-focus-ring-color);
   outline: none;
+  border-color: var(--dc-textarea-focus-ring-color);
   box-shadow: 0 0 0 1px var(--dc-textarea-focus-ring-color);
 }
 

@@ -70,8 +70,8 @@
 }
 
 .dc-toast__btn:focus {
-  background: var(--dc-toast-btn-bg-hover);
   outline: none;
+  background: var(--dc-toast-btn-bg-hover);
   box-shadow: 0 0 0 1px var(--dc-toast-btn-focus-ring-color);
 }
 

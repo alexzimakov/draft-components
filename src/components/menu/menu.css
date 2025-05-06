@@ -10,8 +10,8 @@
   width: 100%;
   padding: 0;
   margin: 0;
-  list-style: none;
   color-scheme: light;
+  list-style: none;
 }
 
 .dc-menu__container {
@@ -44,8 +44,8 @@
 }
 
 .dc-menu-btn:focus {
-  background: var(--dc-menu-item-bg);
   outline: none;
+  background: var(--dc-menu-item-bg);
 }
 
 .dc-menu-btn:disabled {

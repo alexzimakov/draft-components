@@ -28,8 +28,8 @@
   max-width: 100%;
   padding: 0 4px 0 8px;
   overflow: hidden;
-  line-height: 28px;
   text-overflow: ellipsis;
+  line-height: 28px;
   white-space: nowrap;
   border-top-left-radius: inherit;
   border-bottom-left-radius: inherit;
@@ -47,8 +47,8 @@
 
 .dc-filter-token__label:focus,
 .dc-filter-token__button:focus {
-  background: var(--dc-filtered-search-token-bg-hover);
   outline: none;
+  background: var(--dc-filtered-search-token-bg-hover);
 }
 
 .dc-filter-token__label:hover,

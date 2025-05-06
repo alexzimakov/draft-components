@@ -21,12 +21,12 @@
   font: 500 var(--dc-text-sm);
   color: var(--dc-button-text-color);
   text-align: center;
-  text-decoration: none;
   text-transform: none;
   white-space: nowrap;
+  text-decoration: none;
   appearance: none;
-  color-scheme: light;
   user-select: none;
+  color-scheme: light;
   background: var(--dc-button-bg);
   border: 1px solid var(--dc-button-border-color);
   border-radius: var(--dc-button-radius);

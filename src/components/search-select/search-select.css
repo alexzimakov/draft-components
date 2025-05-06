@@ -90,8 +90,8 @@
   font-size: var(--dc-search-select-font-size);
   font-weight: 400;
   line-height: 1.25;
-  color: var(--dc-search-select-text-color);
   vertical-align: middle;
+  color: var(--dc-search-select-text-color);
   color-scheme: light;
   background: var(--dc-search-select-bg);
   border: 1px solid var(--dc-search-select-border-color);
@@ -99,8 +99,8 @@
 }
 
 .dc-search-select:focus {
-  border-color: var(--dc-search-select-focus-ring-color);
   outline: none;
+  border-color: var(--dc-search-select-focus-ring-color);
   box-shadow: 0 0 0 1px var(--dc-search-select-focus-ring-color);
 }
 

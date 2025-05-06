@@ -40,8 +40,8 @@
   height: 36px;
   font: var(--dc-text-sm);
   color: var(--dc-nav-link-text-color);
-  text-decoration: none;
   white-space: nowrap;
+  text-decoration: none;
   cursor: pointer;
   border-radius: 8px;
 }

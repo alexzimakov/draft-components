@@ -9,9 +9,9 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  list-style: none;
-  color-scheme: light;
   pointer-events: none;
+  color-scheme: light;
+  list-style: none;
 }
 
 .dc-toasts-list_top-left,

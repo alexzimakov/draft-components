@@ -21,8 +21,8 @@
   font-size: var(--dc-input-font-size);
   font-weight: 400;
   line-height: 1;
-  color: var(--dc-input-text-color);
   vertical-align: middle;
+  color: var(--dc-input-text-color);
   color-scheme: light;
   background: var(--dc-input-bg);
   border: 1px solid var(--dc-input-border-color);

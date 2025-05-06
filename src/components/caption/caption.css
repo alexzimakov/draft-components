@@ -24,8 +24,8 @@
 }
 
 .dc-caption__icon {
-  display: inline-flex;
   float: left;
+  display: inline-flex;
   margin-right: 0.5em;
   color: inherit;
 }

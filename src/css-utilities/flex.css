@@ -58,16 +58,8 @@
   justify-items: center !important;
 }
 
-.justify-items-between {
-  justify-items: space-between !important;
-}
-
-.justify-items-around {
-  justify-items: space-around !important;
-}
-
-.justify-items-evenly {
-  justify-items: space-evenly !important;
+.justify-items-stretch {
+  justify-items: stretch !important;
 }
 
 .justify-content-start {
