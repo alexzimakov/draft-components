@@ -6,19 +6,22 @@ import { ComponentPropsWithoutRef, useState } from 'react';
 import { Calendar, CalendarProps } from './calendar.js';
 
 type DateRangePickerHTMLProps = ComponentPropsWithoutRef<'div'>;
-export type DateRangePickerProps = {
-  value: DateISORange | null;
-  onChangeValue: (value: DateISORange) => void;
+
+type CalendarPassedProps = Pick<CalendarProps,
+  | 'locale'
+  | 'prevMonthButtonLabel'
+  | 'nextMonthButtonLabel'
+  | 'monthSelectLabel'
+  | 'yearInputLabel'
+>;
+
+export type DateRangePickerProps = CalendarPassedProps & DateRangePickerHTMLProps & {
   weekStartsOn?: Weekday;
   min?: DateISO;
   max?: DateISO;
-} & Pick<CalendarProps,
-| 'locale'
-| 'prevMonthButtonLabel'
-| 'nextMonthButtonLabel'
-| 'monthSelectLabel'
-| 'yearInputLabel'
-> & DateRangePickerHTMLProps;
+  value: DateISORange | null;
+  onChangeValue: (value: DateISORange) => void;
+};
 
 export function DateRangePicker({
   value,
@@ -34,11 +37,10 @@ export function DateRangePicker({
   className,
   ...props
 }: DateRangePickerProps) {
-  const { minDate, maxDate } = parseMinMaxProps({ min, max });
-
-  const selectedRange = parseValue(value);
   const [start, setStart] = useState<Date | null>(null);
   const [end, setEnd] = useState<Date | null>(null);
+  const allowedRange = parseMinMaxProps({ min, max });
+  const selectedRange = parseValue(value);
 
   const getCalendarDayProps: CalendarProps['getDayProps'] = (date) => {
     let isSelected = false;
@@ -72,9 +74,10 @@ export function DateRangePicker({
   return (
     <div {...props} className={classNames('dc-datepicker', className)}>
       <Calendar
-        defaultFocusDay={selectedRange?.start}
-        minDate={minDate}
-        maxDate={maxDate}
+        key={selectedRange ? `${selectedRange.start}-${selectedRange.end}` : ''}
+        defaultFocusDay={selectedRange ? selectedRange.end : null}
+        minDate={allowedRange.minDate}
+        maxDate={allowedRange.maxDate}
         locale={locale}
         weekStartsOn={weekStartsOn}
         prevMonthButtonLabel={prevMonthButtonLabel}

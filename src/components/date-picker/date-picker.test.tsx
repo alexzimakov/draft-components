@@ -359,10 +359,8 @@ it('<DateRangePicker /> renders without errors', () => {
   expect(screen.getByRole('grid')).toHaveAccessibleName('December 2022');
   expect(screen.getAllByRole('columnheader')).toHaveLength(DAYS_IN_WEEK);
   expect(screen.getAllByRole('gridcell')).toHaveLength(DAYS_IN_WEEK * 5);
-  expect(screen.getByLabelText('December 5, 2022'))
-    .toHaveAttribute('tabindex', '0');
-  expect(screen.getByLabelText('December 20, 2022'))
-    .toHaveAttribute('tabindex', '-1');
+  expect(screen.getByLabelText('December 5, 2022')).toHaveAttribute('tabindex', '-1');
+  expect(screen.getByLabelText('December 20, 2022')).toHaveAttribute('tabindex', '0');
 });
 
 it('can select date range using keyboard', async () => {

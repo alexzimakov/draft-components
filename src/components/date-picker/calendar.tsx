@@ -4,25 +4,29 @@ import { Weekday, getStartOfDay } from './date-helpers.js';
 import { CalendarHeader, CalendarHeaderProps } from './calendar-header.js';
 import { CalendarGrid, CalendarGridProps } from './calendar-grid.js';
 
-export type CalendarProps = {
-  className?: string;
-  defaultFocusDay?: Date | null;
-  weekStartsOn?: Weekday;
-  onFocusDay?(date: Date): void;
-} & Pick<CalendarGridProps,
-| 'minDate'
-| 'maxDate'
-| 'getDayProps'
-| 'onHoverDay'
-| 'onFocusDay'
-| 'onSelectDay'
-> & Pick<CalendarHeaderProps,
-| 'locale'
-| 'nextMonthButtonLabel'
-| 'prevMonthButtonLabel'
-| 'monthSelectLabel'
-| 'yearInputLabel'
+type CalendarHeaderPassedProps = Pick<CalendarHeaderProps,
+  | 'locale'
+  | 'nextMonthButtonLabel'
+  | 'prevMonthButtonLabel'
+  | 'monthSelectLabel'
+  | 'yearInputLabel'
 >;
+
+type CalendarGridPassedProps = Pick<CalendarGridProps,
+  | 'minDate'
+  | 'maxDate'
+  | 'getDayProps'
+  | 'onHoverDay'
+  | 'onFocusDay'
+  | 'onSelectDay'
+>;
+
+export type CalendarProps = CalendarHeaderPassedProps & CalendarGridPassedProps & {
+  className?: string;
+  weekStartsOn?: Weekday;
+  defaultFocusDay?: Date | null;
+  onFocusDay?: (date: Date) => void;
+};
 
 export function Calendar({
   className,

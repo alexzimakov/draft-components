@@ -5,19 +5,22 @@ import { parseMinMaxProps } from './parse-min-max-props.js';
 import { Calendar, CalendarProps } from './calendar.js';
 
 type DatePickerHTMLProps = ComponentPropsWithoutRef<'div'>;
-export type DatePickerProps = {
-  value: DateISO | null;
-  onChangeValue: (value: DateISO) => void;
+
+type CalendarPassedProps = Pick<CalendarProps,
+  | 'locale'
+  | 'prevMonthButtonLabel'
+  | 'nextMonthButtonLabel'
+  | 'monthSelectLabel'
+  | 'yearInputLabel'
+>;
+
+export type DatePickerProps = DatePickerHTMLProps & CalendarPassedProps & {
   weekStartsOn?: Weekday;
   min?: DateISO;
   max?: DateISO;
-} & Pick<CalendarProps,
-| 'locale'
-| 'prevMonthButtonLabel'
-| 'nextMonthButtonLabel'
-| 'monthSelectLabel'
-| 'yearInputLabel'
-> & DatePickerHTMLProps;
+  value: DateISO | null;
+  onChangeValue: (value: DateISO) => void;
+};
 
 export function DatePicker({
   value,
@@ -33,11 +36,12 @@ export function DatePicker({
   className,
   ...props
 }: DatePickerProps) {
-  const { minDate, maxDate } = parseMinMaxProps({ min, max });
+  const allowedRange = parseMinMaxProps({ min, max });
 
   const selectedDay = value && isValidDateISO(value)
     ? parseDateISO(value)
     : null;
+
   const getDayProps: CalendarProps['getDayProps'] = (date) => ({
     isSelected: selectedDay != null && isSameDay(selectedDay, date),
   });
@@ -45,9 +49,10 @@ export function DatePicker({
   return (
     <div {...props} className={classNames('dc-datepicker', className)}>
       <Calendar
+        key={selectedDay ? String(selectedDay) : ''}
         defaultFocusDay={selectedDay}
-        minDate={minDate}
-        maxDate={maxDate}
+        minDate={allowedRange.minDate}
+        maxDate={allowedRange.maxDate}
         locale={locale}
         weekStartsOn={weekStartsOn}
         prevMonthButtonLabel={prevMonthButtonLabel}
