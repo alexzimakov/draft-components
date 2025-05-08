@@ -45,7 +45,11 @@ it('renders without errors', () => {
       value={value}
       onChangeValue={vi.fn()}
     >
-      <button>{anchorButtonLabel}</button>
+      {({ ref, toggle }) => (
+        <button ref={ref} onClick={toggle}>
+          {anchorButtonLabel}
+        </button>
+      )}
     </DateRangePickerPopover>,
   );
 
@@ -66,7 +70,11 @@ it('renders with footer', () => {
       onChangeValue={vi.fn()}
       footer={() => footer}
     >
-      <button>{anchorButtonLabel}</button>
+      {({ ref, toggle }) => (
+        <button ref={ref} onClick={toggle}>
+          {anchorButtonLabel}
+        </button>
+      )}
     </DateRangePickerPopover>,
   );
 
@@ -90,7 +98,11 @@ it('renders `Select` element instead of `RadioGroup` on phones', () => {
       value={value}
       onChangeValue={vi.fn()}
     >
-      <button>{anchorButtonLabel}</button>
+      {({ ref, toggle }) => (
+        <button ref={ref} onClick={toggle}>
+          {anchorButtonLabel}
+        </button>
+      )}
     </DateRangePickerPopover>,
   );
 
@@ -110,7 +122,11 @@ it('can toggle popover visibility', async () => {
       value={null}
       onChangeValue={vi.fn()}
     >
-      <button>{anchorButtonLabel}</button>
+      {({ ref, toggle }) => (
+        <button ref={ref} onClick={toggle}>
+          {anchorButtonLabel}
+        </button>
+      )}
     </DateRangePickerPopover>,
   );
 
@@ -133,7 +149,11 @@ it('should close popover when click on the confirm button', async () => {
       value={null}
       onChangeValue={vi.fn()}
     >
-      <button>{anchorButtonLabel}</button>
+      {({ ref, toggle }) => (
+        <button ref={ref} onClick={toggle}>
+          {anchorButtonLabel}
+        </button>
+      )}
     </DateRangePickerPopover>,
   );
 
@@ -152,7 +172,11 @@ it('should close popover when click on the cancel button', async () => {
       value={null}
       onChangeValue={vi.fn()}
     >
-      <button>{anchorButtonLabel}</button>
+      {({ ref, toggle }) => (
+        <button ref={ref} onClick={toggle}>
+          {anchorButtonLabel}
+        </button>
+      )}
     </DateRangePickerPopover>,
   );
 
@@ -179,7 +203,11 @@ it('can select date range using calendar', async () => {
       value={value}
       onChangeValue={onChangeValueMock}
     >
-      <button>{anchorButtonLabel}</button>
+      {({ ref, toggle }) => (
+        <button ref={ref} onClick={toggle}>
+          {anchorButtonLabel}
+        </button>
+      )}
     </DateRangePickerPopover>,
   );
 
@@ -212,7 +240,11 @@ it('can select date range using date preset select', async () => {
       value={value}
       onChangeValue={onChangeValueMock}
     >
-      <button>{anchorButtonLabel}</button>
+      {({ ref, toggle }) => (
+        <button ref={ref} onClick={toggle}>
+          {anchorButtonLabel}
+        </button>
+      )}
     </DateRangePickerPopover>,
   );
 
@@ -243,7 +275,11 @@ it('can select date range with date preset using calendar', async () => {
       value={value}
       onChangeValue={onChangeValueMock}
     >
-      <button>{anchorButtonLabel}</button>
+      {({ ref, toggle }) => (
+        <button ref={ref} onClick={toggle}>
+          {anchorButtonLabel}
+        </button>
+      )}
     </DateRangePickerPopover>,
   );
 

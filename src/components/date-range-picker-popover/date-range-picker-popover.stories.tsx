@@ -109,9 +109,15 @@ export const Basic: StoryFn<typeof DateRangePickerPopover> = (args) => {
         args.onChangeValue?.(value);
       }}
     >
-      <Button iconLeft={<CalendarIcon width={18} height={18} />}>
-        {formatSelection(value)}
-      </Button>
+      {({ ref, toggle }) => (
+        <Button
+          ref={ref}
+          onClick={toggle}
+          iconLeft={<CalendarIcon width={18} height={18} />}
+        >
+          {formatSelection(value)}
+        </Button>
+      )}
     </DateRangePickerPopover>
   );
 };

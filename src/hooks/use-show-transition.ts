@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
-import { useCallbackRef } from './index.js';
 import { classNames, noop } from '../lib/index.js';
+import { useEffect, useRef, useState } from 'react';
+import { useRefCallback } from './use-ref-callback.js';
 import { usePrefersReducedMotion } from './use-prefers-reduced-motion.js';
 
 export function useShowTransition({
@@ -28,8 +28,8 @@ export function useShowTransition({
   onEnterTransitionEnd?: () => void;
   onLeaveTransitionEnd?: () => void;
 }) {
-  const onEnterTransitionEnd = useCallbackRef(_onEnterTransitionEnd);
-  const onLeaveTransitionEnd = useCallbackRef(_onLeaveTransitionEnd);
+  const onEnterTransitionEnd = useRefCallback(_onEnterTransitionEnd);
+  const onLeaveTransitionEnd = useRefCallback(_onLeaveTransitionEnd);
   const enterTimeoutRef = useRef(-1);
   const leaveTimeoutRef = useRef(-1);
   const prefersReducedMotion = usePrefersReducedMotion();

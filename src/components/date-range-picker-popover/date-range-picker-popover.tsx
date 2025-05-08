@@ -1,60 +1,63 @@
 import { DateISORange } from '../date-picker/date-range.js';
 import { DateRangePickerPopoverOption, DateRangePickerPopoverSelection } from './types.js';
 import { classNames } from '../../lib/react-helpers.js';
-import { assertIfNullable } from '../../lib/helpers.js';
 import { findSelectedOption } from './helpers.js';
-import { JSX, ReactNode, useRef, useState } from 'react';
 import { useIsCompactView } from './use-is-compact-view.js';
-import { Popover, PopoverAlignment, PopoverPlacement, PopoverRef } from '../popover/index.js';
+import { JSX, ReactNode, RefCallback, useMemo, useState } from 'react';
+import { Popover, PopoverPlacement } from '../popover/index.js';
 import { DateRangePicker, DateRangePickerProps } from '../date-picker/index.js';
 import { DateRangePickerPopoverFooter } from './date-range-picker-popover-footer.js';
 import { DateRangePickerPopoverPresets } from './date-range-picker-popover-presets.js';
 
-export type DateRangePickerPopoverPlacement = PopoverPlacement;
-export type DateRangePickerPopoverAlignment = PopoverAlignment;
-export type DateRangePickerPopoverRenderFooter = (context: {
+export type DateRangePickerPopoverFooter = (props: {
   selection: DateRangePickerPopoverSelection | null;
 }) => ReactNode;
-export type DateRangePickerPopoverProps = {
+
+export type DateRangePickerPopoverChildren = (props: {
+  ref: RefCallback<HTMLElement>;
+  open: () => void;
+  close: () => void;
+  toggle: () => void;
+}) => JSX.Element;
+
+export type DateRangePickerPopoverProps = Pick<DateRangePickerProps,
+  | 'min'
+  | 'max'
+  | 'locale'
+  | 'weekStartsOn'
+  | 'prevMonthButtonLabel'
+  | 'nextMonthButtonLabel'
+  | 'monthSelectLabel'
+  | 'yearInputLabel'
+> & {
   className?: string;
   defaultIsOpen?: boolean;
+  placement?: PopoverPlacement;
   compactViewBreakpoint?: string;
   customPreset?: string;
   customPresetLabel?: string;
-  placement?: DateRangePickerPopoverPlacement;
-  alignment?: DateRangePickerPopoverAlignment;
   cancelButtonLabel?: ReactNode;
   confirmButtonLabel?: ReactNode;
-  footer?: ReactNode | DateRangePickerPopoverRenderFooter;
   options?: DateRangePickerPopoverOption[];
-  children: JSX.Element;
   value: DateRangePickerPopoverSelection | null;
+  footer?: ReactNode | DateRangePickerPopoverFooter;
+  children: DateRangePickerPopoverChildren;
   onChangeValue: (value: DateRangePickerPopoverSelection) => void;
-} & Pick<DateRangePickerProps,
-| 'min'
-| 'max'
-| 'locale'
-| 'weekStartsOn'
-| 'prevMonthButtonLabel'
-| 'nextMonthButtonLabel'
-| 'monthSelectLabel'
-| 'yearInputLabel'
->;
+};
 
 export function DateRangePickerPopover({
+  className,
   defaultIsOpen = false,
+  placement = 'bottom-start',
   compactViewBreakpoint = '(max-width: 599px)',
   customPreset = 'custom',
   customPresetLabel = 'Custom date preset',
-  placement = 'bottom',
-  alignment = 'start',
   cancelButtonLabel = 'Cancel',
   confirmButtonLabel = 'Confirm',
-  footer = null,
-  className,
   options = [],
-  children,
   value,
+  footer,
+  children,
   onChangeValue,
   // DateRangePickerProps
   min,
@@ -67,24 +70,29 @@ export function DateRangePickerPopover({
   yearInputLabel,
 }: DateRangePickerPopoverProps) {
   const [selection, setSelection] = useState(value);
-  const popoverRef = useRef<PopoverRef>(null);
+  const [isOpen, setIsOpen] = useState(defaultIsOpen);
+  const popoverApi = useMemo(() => ({
+    open: () => {
+      setIsOpen(false);
+    },
+    close: () => {
+      setIsOpen(false);
+    },
+    toggle: () => {
+      setIsOpen((isOpen) => !isOpen);
+    },
+  }), [setIsOpen]);
   const isCompactView = useIsCompactView(compactViewBreakpoint);
 
-  function getPopover(): PopoverRef {
-    const popover = popoverRef.current;
-    assertIfNullable(popover, 'Popover ref was not set');
-    return popover;
-  }
-
   function handleClickCancelButton() {
-    getPopover().close();
+    popoverApi.close();
   }
 
   function handleClickConfirmButton() {
     if (selection) {
       onChangeValue(selection);
     }
-    getPopover().close();
+    popoverApi.close();
   }
 
   function handleChangeDateRange(range: DateISORange) {
@@ -106,12 +114,11 @@ export function DateRangePickerPopover({
         'dc-date-range-picker-popover': true,
         'dc-date-range-picker-popover_compact': isCompactView,
       })}
-      ref={popoverRef}
       placement={placement}
-      alignment={alignment}
-      anchor={children}
-      defaultIsOpen={defaultIsOpen}
-      onOpen={() => setSelection(value)}
+      isOpen={isOpen}
+      onClose={popoverApi.close}
+      onUnmount={() => setSelection(value)}
+      renderAnchor={({ ref }) => children({ ref, ...popoverApi })}
     >
       {options.length > 0 && (
         <DateRangePickerPopoverPresets
@@ -141,9 +148,7 @@ export function DateRangePickerPopover({
         onClickCancelButton={handleClickCancelButton}
         onClickConfirmButton={handleClickConfirmButton}
       >
-        {typeof footer === 'function'
-          ? footer({ selection })
-          : footer}
+        {typeof footer === 'function' ? footer({ selection }) : footer}
       </DateRangePickerPopoverFooter>
     </Popover>
   );

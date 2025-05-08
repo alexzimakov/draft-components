@@ -1,9 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { Alignment, Rect } from './types.js';
-import { calcPosition } from './calc-position.js';
+import { calcPosition, BoundingRect } from './calc-position.js';
 
 describe('calculates position for the \'top\' placement', () => {
-  const anchorRect: Rect = {
+  const anchorRect: BoundingRect = {
     width: 80,
     height: 20,
     left: 400,
@@ -11,7 +10,7 @@ describe('calculates position for the \'top\' placement', () => {
     top: 800,
     bottom: 820,
   };
-  const contentRect: Rect = {
+  const popoverRect: BoundingRect = {
     width: 400,
     height: 100,
     left: 0,
@@ -21,25 +20,25 @@ describe('calculates position for the \'top\' placement', () => {
   };
   const params = {
     anchorRect,
-    contentRect,
+    popoverRect,
     viewportWidth: 1000,
     viewportHeight: 1000,
     scrollY: 0,
     scrollX: 0,
-    anchorGap: 10,
-    viewportGap: 20,
+    anchorPadding: 10,
+    viewportPadding: 20,
   };
 
   const y = params.scrollY
     + anchorRect.top
-    - contentRect.height
-    - params.anchorGap;
+    - popoverRect.height
+    - params.anchorPadding;
   const testCases = [
     {
       alignment: 'end',
       coordinates: {
         y,
-        x: params.scrollX + anchorRect.right - contentRect.width,
+        x: params.scrollX + anchorRect.right - popoverRect.width,
       },
     },
     {
@@ -56,14 +55,14 @@ describe('calculates position for the \'top\' placement', () => {
         x: params.scrollX
           + anchorRect.left
           + (anchorRect.width / 2)
-          - (contentRect.width / 2),
+          - (popoverRect.width / 2),
       },
     },
-  ];
+  ] as const;
 
   testCases.forEach((testCase) => {
     const placement = 'top';
-    const alignment = testCase.alignment as Alignment;
+    const alignment = testCase.alignment;
     it(`- '${alignment}' alignment`, () => {
       expect(
         calcPosition({
@@ -81,7 +80,7 @@ describe('calculates position for the \'top\' placement', () => {
 });
 
 describe('calculates position for the \'bottom\' placement', () => {
-  const anchorRect: Rect = {
+  const anchorRect: BoundingRect = {
     width: 80,
     height: 20,
     left: 400,
@@ -89,7 +88,7 @@ describe('calculates position for the \'bottom\' placement', () => {
     top: 800,
     bottom: 820,
   };
-  const contentRect: Rect = {
+  const popoverRect: BoundingRect = {
     width: 400,
     height: 100,
     left: 0,
@@ -99,22 +98,22 @@ describe('calculates position for the \'bottom\' placement', () => {
   };
   const params = {
     anchorRect,
-    contentRect,
+    popoverRect,
     viewportWidth: 1000,
     viewportHeight: 1000,
     scrollY: 0,
     scrollX: 0,
-    anchorGap: 10,
-    viewportGap: 20,
+    anchorPadding: 10,
+    viewportPadding: 20,
   };
 
-  const y = params.scrollY + anchorRect.bottom + params.anchorGap;
+  const y = params.scrollY + anchorRect.bottom + params.anchorPadding;
   const testCases = [
     {
       alignment: 'end',
       coordinates: {
         y,
-        x: params.scrollX + anchorRect.right - contentRect.width,
+        x: params.scrollX + anchorRect.right - popoverRect.width,
       },
     },
     {
@@ -131,14 +130,14 @@ describe('calculates position for the \'bottom\' placement', () => {
         x: params.scrollX
           + anchorRect.left
           + (anchorRect.width / 2)
-          - (contentRect.width / 2),
+          - (popoverRect.width / 2),
       },
     },
-  ];
+  ] as const;
 
   testCases.forEach((testCase) => {
     const placement = 'bottom';
-    const alignment = testCase.alignment as Alignment;
+    const alignment = testCase.alignment;
     it(`- '${alignment}' alignment`, () => {
       expect(
         calcPosition({
@@ -156,7 +155,7 @@ describe('calculates position for the \'bottom\' placement', () => {
 });
 
 describe('calculates position for the \'left\' placement', () => {
-  const anchorRect: Rect = {
+  const anchorRect: BoundingRect = {
     width: 80,
     height: 20,
     left: 700,
@@ -164,7 +163,7 @@ describe('calculates position for the \'left\' placement', () => {
     top: 800,
     bottom: 820,
   };
-  const contentRect: Rect = {
+  const popoverRect: BoundingRect = {
     width: 400,
     height: 100,
     left: 0,
@@ -174,25 +173,25 @@ describe('calculates position for the \'left\' placement', () => {
   };
   const params = {
     anchorRect,
-    contentRect,
+    popoverRect,
     viewportWidth: 1000,
     viewportHeight: 1000,
     scrollY: 0,
     scrollX: 0,
-    anchorGap: 10,
-    viewportGap: 20,
+    anchorPadding: 10,
+    viewportPadding: 20,
   };
 
   const x = params.scrollX
     + anchorRect.left
-    - contentRect.width
-    - params.anchorGap;
+    - popoverRect.width
+    - params.anchorPadding;
   const testCases = [
     {
       alignment: 'end',
       coordinates: {
         x,
-        y: params.scrollY + anchorRect.bottom - contentRect.height,
+        y: params.scrollY + anchorRect.bottom - popoverRect.height,
       },
     },
     {
@@ -207,14 +206,14 @@ describe('calculates position for the \'left\' placement', () => {
       coordinates: {
         x,
         y: params.scrollY + anchorRect.top
-          + (anchorRect.height / 2) - (contentRect.height / 2),
+          + (anchorRect.height / 2) - (popoverRect.height / 2),
       },
     },
-  ];
+  ] as const;
 
   testCases.forEach((testCase) => {
     const placement = 'left';
-    const alignment = testCase.alignment as Alignment;
+    const alignment = testCase.alignment;
     it(`- '${alignment}' alignment`, () => {
       expect(
         calcPosition({
@@ -232,7 +231,7 @@ describe('calculates position for the \'left\' placement', () => {
 });
 
 describe('calculates position for the \'right\' placement', () => {
-  const anchorRect: Rect = {
+  const anchorRect: BoundingRect = {
     width: 80,
     height: 20,
     left: 200,
@@ -240,7 +239,7 @@ describe('calculates position for the \'right\' placement', () => {
     top: 800,
     bottom: 820,
   };
-  const contentRect: Rect = {
+  const popoverRect: BoundingRect = {
     width: 400,
     height: 100,
     left: 0,
@@ -250,22 +249,22 @@ describe('calculates position for the \'right\' placement', () => {
   };
   const params = {
     anchorRect,
-    contentRect,
+    popoverRect,
     viewportWidth: 1000,
     viewportHeight: 1000,
     scrollY: 0,
     scrollX: 0,
-    anchorGap: 10,
-    viewportGap: 20,
+    anchorPadding: 10,
+    viewportPadding: 20,
   };
 
-  const x = params.scrollX + anchorRect.right + params.anchorGap;
+  const x = params.scrollX + anchorRect.right + params.anchorPadding;
   const testCases = [
     {
       alignment: 'end',
       coordinates: {
         x,
-        y: params.scrollY + anchorRect.bottom - contentRect.height,
+        y: params.scrollY + anchorRect.bottom - popoverRect.height,
       },
     },
     {
@@ -280,14 +279,14 @@ describe('calculates position for the \'right\' placement', () => {
       coordinates: {
         x,
         y: params.scrollY + anchorRect.top
-          + (anchorRect.height / 2) - (contentRect.height / 2),
+          + (anchorRect.height / 2) - (popoverRect.height / 2),
       },
     },
-  ];
+  ] as const;
 
   testCases.forEach((testCase) => {
     const placement = 'right';
-    const alignment = testCase.alignment as Alignment;
+    const alignment = testCase.alignment;
     it(`- '${alignment}' alignment`, () => {
       expect(
         calcPosition({
@@ -308,7 +307,7 @@ describe(
   'should correct position by X-axis when content out of viewport bounds',
   () => {
     it('at the left edge', () => {
-      const anchorRect: Rect = {
+      const anchorRect: BoundingRect = {
         width: 200,
         height: 100,
         left: 100,
@@ -316,7 +315,7 @@ describe(
         top: 450,
         bottom: 550,
       };
-      const contentRect: Rect = {
+      const popoverRect: BoundingRect = {
         width: 400,
         height: 200,
         left: 0,
@@ -326,13 +325,13 @@ describe(
       };
       const params = {
         anchorRect,
-        contentRect,
+        popoverRect,
         viewportWidth: 1000,
         viewportHeight: 1000,
         scrollY: 0,
         scrollX: 0,
-        anchorGap: 10,
-        viewportGap: 20,
+        anchorPadding: 10,
+        viewportPadding: 20,
       };
 
       expect(
@@ -342,15 +341,15 @@ describe(
           alignment: 'end',
         }),
       ).toEqual({
-        y: params.scrollY + anchorRect.bottom + params.anchorGap,
-        x: params.scrollX + params.viewportGap,
+        y: params.scrollY + anchorRect.bottom + params.anchorPadding,
+        x: params.scrollX + params.viewportPadding,
         placement: 'bottom',
         alignment: 'end',
       });
     });
 
     it('at the right edge', () => {
-      const anchorRect: Rect = {
+      const anchorRect: BoundingRect = {
         width: 200,
         height: 100,
         left: 700,
@@ -358,7 +357,7 @@ describe(
         top: 450,
         bottom: 550,
       };
-      const contentRect: Rect = {
+      const popoverRect: BoundingRect = {
         width: 400,
         height: 200,
         left: 0,
@@ -368,13 +367,13 @@ describe(
       };
       const params = {
         anchorRect,
-        contentRect,
+        popoverRect,
         viewportWidth: 1000,
         viewportHeight: 1000,
         scrollY: 0,
         scrollX: 0,
-        anchorGap: 10,
-        viewportGap: 20,
+        anchorPadding: 10,
+        viewportPadding: 20,
       };
 
       expect(
@@ -384,12 +383,12 @@ describe(
           alignment: 'start',
         }),
       ).toEqual({
-        y: params.scrollY + anchorRect.bottom + params.anchorGap,
+        y: params.scrollY + anchorRect.bottom + params.anchorPadding,
         x:
           params.scrollX
           + params.viewportWidth
-          - contentRect.width
-          - params.viewportGap,
+          - popoverRect.width
+          - params.viewportPadding,
         placement: 'bottom',
         alignment: 'start',
       });
@@ -399,7 +398,7 @@ describe(
 
 describe('should flip placement when content out of viewport bounds', () => {
   it('at the top edge', () => {
-    const anchorRect: Rect = {
+    const anchorRect: BoundingRect = {
       width: 200,
       height: 100,
       left: 400,
@@ -407,7 +406,7 @@ describe('should flip placement when content out of viewport bounds', () => {
       top: 100,
       bottom: 200,
     };
-    const contentRect: Rect = {
+    const popoverRect: BoundingRect = {
       width: 400,
       height: 400,
       left: 0,
@@ -417,13 +416,13 @@ describe('should flip placement when content out of viewport bounds', () => {
     };
     const params = {
       anchorRect,
-      contentRect,
+      popoverRect,
       viewportWidth: 1000,
       viewportHeight: 1000,
       scrollY: 0,
       scrollX: 0,
-      anchorGap: 10,
-      viewportGap: 20,
+      anchorPadding: 10,
+      viewportPadding: 20,
     };
 
     expect(
@@ -434,14 +433,14 @@ describe('should flip placement when content out of viewport bounds', () => {
       }),
     ).toEqual({
       x: params.scrollX + anchorRect.left,
-      y: params.scrollY + anchorRect.bottom + params.anchorGap,
+      y: params.scrollY + anchorRect.bottom + params.anchorPadding,
       placement: 'bottom',
       alignment: 'start',
     });
   });
 
   it('at the bottom edge', () => {
-    const anchorRect: Rect = {
+    const anchorRect: BoundingRect = {
       width: 200,
       height: 100,
       left: 400,
@@ -449,7 +448,7 @@ describe('should flip placement when content out of viewport bounds', () => {
       top: 800,
       bottom: 900,
     };
-    const contentRect: Rect = {
+    const popoverRect: BoundingRect = {
       width: 400,
       height: 400,
       left: 0,
@@ -459,13 +458,13 @@ describe('should flip placement when content out of viewport bounds', () => {
     };
     const params = {
       anchorRect,
-      contentRect,
+      popoverRect,
       viewportWidth: 1000,
       viewportHeight: 1000,
       scrollY: 0,
       scrollX: 0,
-      anchorGap: 10,
-      viewportGap: 20,
+      anchorPadding: 10,
+      viewportPadding: 20,
     };
 
     expect(
@@ -478,7 +477,7 @@ describe('should flip placement when content out of viewport bounds', () => {
       x: params.scrollX + anchorRect.left,
       y:
         params.scrollY + anchorRect.top
-        - contentRect.height - params.anchorGap,
+        - popoverRect.height - params.anchorPadding,
       placement: 'top',
       alignment: 'start',
     });
@@ -486,7 +485,7 @@ describe('should flip placement when content out of viewport bounds', () => {
 });
 
 it('should place content at the start of left edge if not enough width', () => {
-  const anchorRect: Rect = {
+  const anchorRect: BoundingRect = {
     width: 200,
     height: 200,
     left: 200,
@@ -494,7 +493,7 @@ it('should place content at the start of left edge if not enough width', () => {
     top: 200,
     bottom: 400,
   };
-  const contentRect: Rect = {
+  const popoverRect: BoundingRect = {
     width: 800,
     height: 200,
     left: 0,
@@ -504,13 +503,13 @@ it('should place content at the start of left edge if not enough width', () => {
   };
   const params = {
     anchorRect,
-    contentRect,
+    popoverRect,
     viewportWidth: 600,
     viewportHeight: 600,
     scrollY: 0,
     scrollX: 0,
-    anchorGap: 10,
-    viewportGap: 20,
+    anchorPadding: 10,
+    viewportPadding: 20,
   };
 
   expect(
@@ -520,8 +519,8 @@ it('should place content at the start of left edge if not enough width', () => {
       alignment: 'start',
     }),
   ).toEqual({
-    y: params.scrollY + anchorRect.bottom + params.anchorGap,
-    x: params.scrollX + params.viewportGap,
+    y: params.scrollY + anchorRect.bottom + params.anchorPadding,
+    x: params.scrollX + params.viewportPadding,
     placement: 'bottom',
     alignment: 'start',
   });
@@ -530,7 +529,7 @@ it('should place content at the start of left edge if not enough width', () => {
 it(
   'should place content on bottom if not enough space on right or left side',
   () => {
-    const anchorRect: Rect = {
+    const anchorRect: BoundingRect = {
       width: 200,
       height: 100,
       left: 400,
@@ -538,7 +537,7 @@ it(
       top: 450,
       bottom: 550,
     };
-    const contentRect: Rect = {
+    const popoverRect: BoundingRect = {
       width: 500,
       height: 200,
       left: 0,
@@ -548,13 +547,13 @@ it(
     };
     const params = {
       anchorRect,
-      contentRect,
+      popoverRect,
       viewportWidth: 1000,
       viewportHeight: 1000,
       scrollY: 0,
       scrollX: 0,
-      anchorGap: 10,
-      viewportGap: 20,
+      anchorPadding: 10,
+      viewportPadding: 20,
     };
 
     expect(
@@ -564,7 +563,7 @@ it(
         alignment: 'start',
       }),
     ).toEqual({
-      y: params.scrollY + anchorRect.bottom + params.anchorGap,
+      y: params.scrollY + anchorRect.bottom + params.anchorPadding,
       x: params.scrollX + anchorRect.left,
       placement: 'bottom',
       alignment: 'start',
@@ -577,7 +576,7 @@ it(
         alignment: 'start',
       }),
     ).toEqual({
-      y: params.scrollY + anchorRect.bottom + params.anchorGap,
+      y: params.scrollY + anchorRect.bottom + params.anchorPadding,
       x: params.scrollX + anchorRect.left,
       placement: 'bottom',
       alignment: 'start',

@@ -1,12 +1,10 @@
 import { CSSProperties, ComponentPropsWithoutRef, RefObject, useEffect, useId, useRef } from 'react';
 import { classNames, focusElement } from '../../lib/react-helpers.js';
-import {
-  useDisableBodyScroll,
-  useEscKeyDown,
-  useFocusTrap,
-  usePreservePropsWhenClosed,
-  useShowTransition,
-} from '../../hooks/index.js';
+import { useCloseOnEsc } from '../../hooks/use-close-on-esc.js';
+import { useLockBodyScroll } from '../../hooks/use-lock-body-scroll.js';
+import { useFocusTrap } from '../../hooks/use-focus-trap.js';
+import { usePreservePropsWhenClosed } from '../../hooks/use-preserve-props-when-closed.js';
+import { useShowTransition } from '../../hooks/use-show-transition.js';
 import { Portal } from '../portal/index.js';
 import { DialogContextProvider } from './dialog-context.js';
 import { DialogHeader } from './dialog-header.js';
@@ -59,11 +57,11 @@ export function Dialog(props: DialogProps) {
     onLeaveTransitionEnd: onCloseAnimationEnd,
   });
 
-  useDisableBodyScroll({ isEnabled: shouldRender });
+  useLockBodyScroll({ disabled: !shouldRender });
 
-  useEscKeyDown(onClose, { isEnabled: shouldRender });
+  useCloseOnEsc(onClose, { disabled: !shouldRender });
 
-  useFocusTrap(modalRef, { isEnabled: shouldRender });
+  useFocusTrap(modalRef, { disabled: !shouldRender });
 
   useEffect(() => {
     if (shouldRender) {

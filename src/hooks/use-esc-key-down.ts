@@ -12,6 +12,7 @@ const handlers: Handler[] = [];
  * For example, this behavior can be used to close only top-level popover
  * or dialog.
  *
+ * @deprecated
  * @param handler The key down handler.
  * @param options An object with hook options.
  * @param options.isEnabled A flag that determines whether to run

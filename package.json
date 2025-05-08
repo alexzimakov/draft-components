@@ -24,7 +24,8 @@
   "scripts": {
     "prepare": "husky",
     "test": "vitest run",
-    "coverage": "vitest run --coverage",
+    "test-watch": "vitest",
+    "test-coverage": "vitest run --coverage",
     "lint": "npm run lint-js && npm run lint-css",
     "lint-js": "eslint",
     "lint-css": "stylelint 'src/**/*.css'",

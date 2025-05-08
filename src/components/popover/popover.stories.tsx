@@ -1,174 +1,196 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { Popover, PopoverAlignment, PopoverPlacement } from './popover.js';
-import { useState } from 'react';
-import { Button } from '../button/index.js';
-import { Tooltip } from '../tooltip/index.js';
-import { TextInput } from '../text-input/index.js';
-import { Textarea } from '../textarea/index.js';
+import { Popover, PopoverPlacement } from './popover.js';
+import { useRef, useState } from 'react';
+import { Button, IconButton } from '../button/index.js';
 import { Checkbox } from '../checkbox/index.js';
 import { SelectionControl } from '../selection-control/index.js';
 
 const meta: Meta<typeof Popover> = {
   title: 'Overlays/Popover',
   component: Popover,
+  argTypes: {
+    placement: {
+      options: [
+        'top',
+        'top-start',
+        'top-end',
+        'right',
+        'right-start',
+        'right-end',
+        'bottom',
+        'bottom-start',
+        'bottom-end',
+        'left',
+        'left-start',
+        'left-end',
+      ],
+      control: {
+        type: 'select',
+      },
+    },
+  },
 };
 export default meta;
 
-export const Basic: StoryFn<typeof Popover> = (args) => (
-  <Popover {...args} anchor={<Button>Open popover</Button>}>
-    <div style={{ padding: 16 }}>Popover content</div>
-  </Popover>
-);
+export const Basic: StoryFn<typeof Popover> = (args) => {
+  const [isOpen, setIsOpen] = useState(args.isOpen);
+  const genres = [
+    { value: 'CLASSICAL', label: 'Classical' },
+    { value: 'HIP_HOP', label: 'HipHop' },
+    { value: 'JAZZ', label: 'Jazz' },
+    { value: 'LATIN', label: 'Latin' },
+    { value: 'ROCK', label: 'Rock' },
+    { value: 'POP', label: 'Pop' },
+    { value: 'RNB', label: 'RnB' },
+    { value: 'ELECTRONIC', label: 'Electronic' },
+  ];
+
+  const togglePopover = () => {
+    setIsOpen((isOpen) => !isOpen);
+  };
+
+  const handlePopover = () => {
+    setIsOpen(false);
+  };
+
+  return (
+    <Popover
+      {...args}
+      isOpen={isOpen}
+      onClose={handlePopover}
+      renderAnchor={(props) => <Button {...props} onClick={togglePopover}>Favorites Genres</Button>}
+    >
+      <div style={{ fontWeight: 'bold', paddingBottom: 12 }}>
+        Choose your favorites genres <Hint />
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 16px' }}>
+        {genres.map(({ value, label }) => (
+          <SelectionControl key={value} label={label}>
+            <Checkbox name="favoriteGenres" value={value} />
+          </SelectionControl>
+        ))}
+      </div>
+    </Popover>
+  );
+};
+
 Basic.argTypes = {
-  anchor: {
+  anchorRef: {
+    control: { disable: true },
+  },
+  renderAnchor: {
+    control: { disable: true },
+  },
+  onClose: {
+    control: { disable: true },
+  },
+  onUnmount: {
     control: { disable: true },
   },
 };
 Basic.args = {
-  anchorGap: 4,
-  viewportGap: 8,
-  placement: 'bottom',
-  alignment: 'start',
+  placement: 'bottom-start',
+  anchorPadding: 4,
+  viewportPadding: 4,
 };
 
-export const Controlled = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const anchor = (
-    <Button onClick={() => setIsOpen(!isOpen)}>
-      {isOpen ? 'Close' : 'Open'}
-    </Button>
-  );
+export const Placements = () => {
+  const gridTemplateAreas = `
+".           bottom-start bottom bottom-end .         "
+"right-start .            .      .          left-start"
+"right       .            .      .          left      "
+"right-end   .            .      .          left-end  "
+".           top-start    top    top-end    .         "
+`;
   return (
-    <Popover anchor={anchor} isOpen={isOpen} onClose={() => setIsOpen(false)}>
-      <div style={{ padding: 16 }}>Controlled popover content</div>
-    </Popover>
+    <div
+      style={{
+        display: 'inline-grid',
+        gridTemplateAreas,
+        gap: '12px 8px',
+        justifyItems: 'center',
+        whiteSpace: 'nowrap',
+      }}
+    >
+      <PopoverExample placement="bottom-start" />
+      <PopoverExample placement="bottom" />
+      <PopoverExample placement="bottom-end" />
+
+      <PopoverExample placement="right-start" />
+      <PopoverExample placement="right" />
+      <PopoverExample placement="right-end" />
+
+      <PopoverExample placement="left-start" />
+      <PopoverExample placement="left" />
+      <PopoverExample placement="left-end" />
+
+      <PopoverExample placement="top-start" />
+      <PopoverExample placement="top" />
+      <PopoverExample placement="top-end" />
+    </div>
   );
 };
 
-export const WithTooltip = () => (
-  <Popover anchor={({ ref }, { togglePopover }) => (
-    <Tooltip content="Click on me!">
-      <Button ref={ref} onClick={togglePopover}>Hover on me</Button>
-    </Tooltip>
-  )}
-  >
-    <div style={{ padding: 16 }}>Popover Content</div>
-  </Popover>
-);
-WithTooltip.storyName = 'With tooltip';
+function Hint() {
+  const anchorRef = useRef<HTMLButtonElement | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
-export const Nested = () => {
-  const styles = {
-    headline: {
-      fontSize: 12,
-      fontWeight: 700,
-      margin: 0,
-    },
-    list: {
-      display: 'grid',
-      gap: 4,
-      minWidth: 192,
-      marginTop: 8,
-    },
-    form: {
-      display: 'grid',
-      gap: 8,
-      minWidth: 288,
-      marginTop: 8,
-    },
-    button: {
-      width: '100%',
-      marginTop: 12,
-    },
+  const openPopover = () => {
+    setIsOpen(true);
+  };
+
+  const closePopover = () => {
+    setIsOpen(false);
   };
 
   return (
-    <Popover anchor={<Button>Add to List +</Button>}>
-      <h2 style={styles.headline}>My Lists</h2>
-      <div style={styles.list}>
-        <SelectionControl label="Upcoming">
-          {({ id }) => <Checkbox id={id} />}
-        </SelectionControl>
-        <SelectionControl label="Work">
-          {({ id }) => <Checkbox id={id} />}
-        </SelectionControl>
-        <SelectionControl label="Family">
-          {({ id }) => <Checkbox id={id} />}
-        </SelectionControl>
-      </div>
-
+    <>
+      <IconButton
+        style={{ borderRadius: '50%' }}
+        size="xs"
+        buttonStyle="tinted"
+        ref={anchorRef}
+        onMouseEnter={openPopover}
+        onMouseLeave={closePopover}
+      >
+        <code style={{ fontWeight: 'bold' }}>?</code>
+      </IconButton>
       <Popover
+        anchorRef={anchorRef}
         placement="right"
-        alignment="start"
-        anchor={<Button style={styles.button}>Create List</Button>}
+        isOpen={isOpen}
+        onClose={closePopover}
       >
-        <h2 style={styles.headline}>
-          Create a list to organize your reminders
-        </h2>
-        <div style={styles.form}>
-          <TextInput fullWidth={true} placeholder="Name of List" />
-          <Textarea fullWidth={true} placeholder="Write a description" />
-        </div>
-        <Button style={styles.button} size="md" tint="blue">
-          Create
-        </Button>
+        You can change it later in the settings
       </Popover>
-    </Popover>
+    </>
   );
-};
+}
 
-export const Positioning = () => (
-  <div
-    style={{
-      display: 'inline-grid',
-      gridTemplateAreas:
-        '" .            top-start    top-center    top-end              . "'
-        + '" right-start  .            .             .          left-start  "'
-        + '" right-center .            .             .          left-center "'
-        + '" right-end    .            .             .          left-end    "'
-        + '" .            bottom-start bottom-center bottom-end           . "',
-      gap: '12px 8px',
-      justifyItems: 'center',
-      whiteSpace: 'nowrap',
-    }}
-  >
-    <PopoverExample placement="top" alignment="start" />
-    <PopoverExample placement="top" alignment="center" />
-    <PopoverExample placement="top" alignment="end" />
-
-    <PopoverExample placement="right" alignment="start" />
-    <PopoverExample placement="right" alignment="center" />
-    <PopoverExample placement="right" alignment="end" />
-
-    <PopoverExample placement="left" alignment="start" />
-    <PopoverExample placement="left" alignment="center" />
-    <PopoverExample placement="left" alignment="end" />
-
-    <PopoverExample placement="bottom" alignment="start" />
-    <PopoverExample placement="bottom" alignment="center" />
-    <PopoverExample placement="bottom" alignment="end" />
-  </div>
-);
-
-function PopoverExample(props: {
+function PopoverExample({
+  placement,
+}: {
   placement: PopoverPlacement;
-  alignment: PopoverAlignment;
 }) {
-  const { placement, alignment } = props;
+  const [isOpen, setIsOpen] = useState(false);
+
+  const togglePopover = () => {
+    setIsOpen((isOpen) => !isOpen);
+  };
+
+  const closePopover = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <div style={{ gridArea: `${placement}-${alignment}` }}>
+    <div style={{ gridArea: placement }}>
       <Popover
-        anchor={(
-          <Button>
-            {placement}
-            {' '}
-            {alignment}
-          </Button>
-        )}
         placement={placement}
-        alignment={alignment}
+        isOpen={isOpen}
+        onClose={closePopover}
+        renderAnchor={(props) => <Button {...props} onClick={togglePopover}>{placement}</Button>}
       >
-        <div style={{ padding: 16 }}>Popover content</div>
+        Popover content
       </Popover>
     </div>
   );

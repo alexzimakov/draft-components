@@ -16,31 +16,32 @@ import {
 import { classNames, focusElement } from '../../lib/react-helpers.js';
 import { assertIfNullable } from '../../lib/helpers.js';
 import { Button, ButtonSize, ButtonStyle, ButtonTint } from '../button/index.js';
-import { Popover, PopoverAlignment, PopoverAnchorRenderFn, PopoverPlacement } from '../popover/index.js';
+import { Popover, PopoverPlacement, PopoverRenderAnchor } from '../popover/index.js';
 import { MenuItem, MenuItemProps } from './menu-item.js';
 import { MenuSeparator } from './menu-separator.js';
 
-export type MenuButtonRenderFn = (props: {
-  'ref': RefCallback<HTMLElement>;
-  'id': string;
-  'aria-haspopup': true;
-  'aria-expanded': boolean;
-  'aria-controls': string;
-  'onClick': MouseEventHandler;
-  'onKeyDown': KeyboardEventHandler;
-}, context: {
+type MenuHTMLProps = ComponentPropsWithoutRef<'ul'>;
+
+export type MenuButtonRenderFn = (
+  props: {
+    'ref': RefCallback<HTMLElement>;
+    'id': string;
+    'aria-haspopup': true;
+    'aria-expanded': boolean;
+    'aria-controls': string;
+    'onClick': MouseEventHandler;
+    'onKeyDown': KeyboardEventHandler;
+  },
+  context: {
     isOpen: boolean;
     openMenu: () => void;
     closeMenu: () => void;
-  }) => JSX.Element;
+  },
+) => JSX.Element;
 
-type MenuHTMLProps = ComponentPropsWithoutRef<'ul'>;
-export type MenuPlacement = PopoverPlacement;
-export type MenuAlignment = PopoverAlignment;
-export type MenuProps = {
+export type MenuProps = MenuHTMLProps & {
   defaultIsOpen?: boolean;
-  placement?: MenuPlacement;
-  alignment?: MenuAlignment;
+  placement?: PopoverPlacement;
   onOpen?: () => void;
   onClose?: () => void;
   button: ReactNode | MenuButtonRenderFn;
@@ -48,12 +49,11 @@ export type MenuProps = {
   buttonStyle?: ButtonStyle;
   buttonSize?: ButtonSize;
   buttonTint?: ButtonTint;
-} & MenuHTMLProps;
+};
 
 export function Menu({
   defaultIsOpen = false,
-  placement = 'bottom',
-  alignment = 'start',
+  placement = 'bottom-start',
   buttonClassName = '',
   buttonStyle = 'filled',
   buttonSize = 'sm',
@@ -217,7 +217,7 @@ export function Menu({
     onKeyDown?.(event);
   };
 
-  const renderAnchor: PopoverAnchorRenderFn = ({ ref }) => {
+  const renderAnchor: PopoverRenderAnchor = ({ ref }) => {
     if (typeof button === 'function') {
       return button({
         ref,
@@ -258,10 +258,9 @@ export function Menu({
     <Popover
       className="dc-menu__container"
       placement={placement}
-      alignment={alignment}
-      anchor={renderAnchor}
       isOpen={isOpen}
       onClose={closeMenu}
+      renderAnchor={renderAnchor}
     >
       <ul
         {...props}

@@ -16,7 +16,11 @@ it('renders without errors', () => {
       value={null}
       onChangeValue={vi.fn()}
     >
-      <button>{label}</button>
+      {({ ref, toggle }) => (
+        <button ref={ref} onClick={toggle}>
+          {label}
+        </button>
+      )}
     </DatePickerPopover>,
   );
 
@@ -29,7 +33,11 @@ it('can toggle popover visibility', async () => {
   const label = 'Select date';
   render(
     <DatePickerPopover value={null} onChangeValue={vi.fn()}>
-      <button>{label}</button>
+      {({ ref, toggle }) => (
+        <button ref={ref} onClick={toggle}>
+          {label}
+        </button>
+      )}
     </DatePickerPopover>,
   );
 
@@ -48,7 +56,11 @@ it('can select date using calendar', async () => {
   const onChangeValueMock = vi.fn();
   render(
     <DatePickerPopover value="2022-02-06" onChangeValue={onChangeValueMock}>
-      <button>{label}</button>
+      {({ ref, toggle }) => (
+        <button ref={ref} onClick={toggle}>
+          {label}
+        </button>
+      )}
     </DatePickerPopover>,
   );
 

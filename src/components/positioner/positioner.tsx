@@ -1,6 +1,6 @@
 import { CSSProperties, ReactNode, RefCallback, useLayoutEffect, useState } from 'react';
-import { Alignment, Placement, Rect } from './types.js';
-import { calcPosition } from './calc-position.js';
+import { calcPosition, Placement, Alignment } from '../../lib/calc-position.js';
+import { getElementBoundingRect } from '../../lib/get-element-bounding-rect.js';
 import { Portal } from '../portal/index.js';
 
 export type PositionerAnchorRenderFn = (params: {
@@ -43,10 +43,10 @@ export function Positioner({
       const result = calcPosition({
         placement,
         alignment,
-        anchorGap,
-        viewportGap,
-        anchorRect: getRect(anchor),
-        contentRect: getRect(content),
+        anchorPadding: anchorGap,
+        viewportPadding: viewportGap,
+        anchorRect: getElementBoundingRect(anchor),
+        popoverRect: getElementBoundingRect(content),
         viewportWidth: document.documentElement.clientWidth,
         viewportHeight: document.documentElement.clientHeight,
         scrollX: isPositionedFixed ? 0 : Math.round(window.scrollX),
@@ -80,20 +80,4 @@ export function Positioner({
       </Portal>
     </>
   );
-}
-
-function getRect(element: HTMLElement): Rect {
-  const domRect = element.getBoundingClientRect();
-  const width = Math.round(domRect.width);
-  const height = Math.round(domRect.height);
-  const top = Math.round(domRect.top);
-  const left = Math.round(domRect.left);
-  return {
-    width,
-    height,
-    top,
-    left,
-    right: left + width,
-    bottom: top + height,
-  };
 }

@@ -1,11 +1,9 @@
 import { RefObject, useEffect } from 'react';
-import { KeyboardKeys } from '../lib/keyboard-keys.js';
 import { focusElement } from '../lib/react-helpers.js';
 
-type ModalRef = RefObject<HTMLElement>;
-type Options = { isEnabled: boolean };
+type ModalRef = RefObject<HTMLElement | null>;
 
-const modals: ModalRef[] = [];
+const modalStack: ModalRef[] = [];
 const focusableElementsSelector = [
   'a[href]',
   'area[href]',
@@ -20,51 +18,39 @@ const focusableElementsSelector = [
   .map((selector) => `${selector}:not([tabindex='-1'])`)
   .join(', ');
 
-/**
- * Prevents focus move outside a modal element.
- *
- * @param {ModalRef} modalRef - The modal element ref object.
- * @param {Object} options - An object with hook options.
- * @param {boolean} options.isEnabled - A flag that determines whether
- * to trap focus or not.
- */
-export function useFocusTrap(modalRef: ModalRef, options: Options = {
-  isEnabled: true,
-}): void {
-  const isEnabled = options.isEnabled;
+export function useFocusTrap(modalRef: ModalRef, opts: {
+  disabled?: boolean;
+} = {}): void {
+  const disabled = opts.disabled || false;
 
   useEffect(() => {
-    if (!isEnabled) {
+    if (disabled) {
       return;
     }
 
-    modals.push(modalRef);
-
     const handleBodyKeyDown = (event: KeyboardEvent): void => {
-      if (event.key !== KeyboardKeys.Tab) {
+      if (event.key !== 'Tab') {
         return;
       }
 
-      const activeModalRef = modals[modals.length - 1];
-      if (activeModalRef == null) {
+      const topModalRef = modalStack.at(-1);
+      if (topModalRef == null) {
         return;
       }
 
-      const activeModal = activeModalRef.current;
-      if (activeModal == null) {
+      const topModal = topModalRef.current;
+      if (topModal == null) {
         return;
       }
 
-      const focusableEls = Array.from(
-        activeModal.querySelectorAll(focusableElementsSelector),
-      );
-      if (focusableEls.length === 0) {
+      const focusableElementList = [...topModal.querySelectorAll(focusableElementsSelector)];
+      if (focusableElementList.length === 0) {
         return;
       }
 
-      const firstFocusableEl = focusableEls[0];
-      const lastFocusableEl = focusableEls[focusableEls.length - 1];
-      if (!activeModal.contains(document.activeElement)) {
+      const firstFocusableEl = focusableElementList.at(0);
+      const lastFocusableEl = focusableElementList.at(-1);
+      if (!topModal.contains(document.activeElement)) {
         event.preventDefault();
         focusElement(firstFocusableEl);
       } else if (event.shiftKey) {
@@ -78,22 +64,16 @@ export function useFocusTrap(modalRef: ModalRef, options: Options = {
       }
     };
 
-    // Add only one global `body` key down handler.
-    if (modals.length === 1) {
-      document.body.addEventListener('keydown', handleBodyKeyDown);
+    modalStack.push(modalRef);
+    if (modalStack.length === 1) {
+      document.body.addEventListener('keydown', handleBodyKeyDown, { capture: true });
     }
 
     return () => {
-      const index = modals.indexOf(modalRef);
-      if (index >= 0) {
-        modals.splice(index, 1);
-      }
-
-      // Remove the global `body` key down handler
-      // if there are no active modals.
-      if (modals.length === 0) {
-        document.body.removeEventListener('keydown', handleBodyKeyDown);
+      modalStack.pop();
+      if (modalStack.length === 0) {
+        document.body.removeEventListener('keydown', handleBodyKeyDown, { capture: true });
       }
     };
-  }, [isEnabled, modalRef]);
+  }, [disabled, modalRef]);
 }

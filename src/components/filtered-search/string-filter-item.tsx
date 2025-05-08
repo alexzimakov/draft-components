@@ -1,7 +1,7 @@
 import { StringFilter, StringFilterOperator } from './model/string-filter.js';
 import { FormEventHandler, useState } from 'react';
 import { useTranslations } from './use-translations.js';
-import { Popover } from '../popover/index.js';
+import { Popover, PopoverRenderAnchor } from '../popover/index.js';
 import { FilterToken } from './filter-token.js';
 import { FilterOperatorSelect } from './filter-operator-select.js';
 import { StringFilterInput } from './string-filter-input.js';
@@ -76,33 +76,27 @@ export function StringFilterItem({
     onChange(filter);
   };
 
-  const anchor = (
+  const renderAnchor: PopoverRenderAnchor = ({ ref }) => (
     <FilterToken
+      ref={ref}
       isHighlighted={isEditing}
       onClickLabel={startEdit}
       onClickCloseButton={onClickCloseButton}
     >
       {label}
       {filter.value
-        ? (
-            <>
-              &nbsp;
-              <span>{formatOperator(filter.operator)}</span>
-              &nbsp;
-              <b>{filter.value}</b>
-            </>
-          )
+        ? <> <span>{formatOperator(filter.operator)}</span> <b>{filter.value}</b></>
         : null}
     </FilterToken>
   );
+
   return (
     <Popover
       className="dc-filter-popover"
-      anchor={anchor}
-      anchorGap={2}
-      transitionDurationMs={0}
+      anchorPadding={2}
       isOpen={isEditing}
       onClose={cancelEdit}
+      renderAnchor={renderAnchor}
     >
       <form
         className="dc-filter-form"

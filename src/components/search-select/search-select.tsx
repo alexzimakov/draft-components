@@ -204,10 +204,12 @@ export function SearchSelect<Value>({
   return (
     <Popover
       className="dc-search-select__popover"
+      placement="bottom-start"
       isOpen={isOpen}
       onClose={closePopover}
-      anchor={(
+      renderAnchor={({ ref }) => (
         <button
+          ref={ref}
           className={classNames(className, {
             'dc-search-select': true,
             'dc-search-select_full-width': fullWidth,
@@ -248,8 +250,6 @@ export function SearchSelect<Value>({
           </span>
         </button>
       )}
-      alignment="start"
-      placement="bottom"
     >
       <>
         <div className="dc-search-select__textbox">

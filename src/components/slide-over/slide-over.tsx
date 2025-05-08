@@ -11,7 +11,7 @@ import {
 } from 'react';
 import { SlideOverContextProvider } from './slide-over-context.js';
 import { classNames, getRefElement } from '../../lib/index.js';
-import { useDisableBodyScroll, useEscKeyDown, useFocusTrap } from '../../hooks/index.js';
+import { useLockBodyScroll, useEscKeyDown, useFocusTrap } from '../../hooks/index.js';
 import { Portal } from '../portal/index.js';
 import { SlideOverHeader } from './slide-over-header.js';
 import { SlideOverBody } from './slide-over-body.js';
@@ -142,7 +142,7 @@ const SlideOverWithRef = forwardRef<SlideOverRef, SlideOverProps>(function Slide
 
   useFocusTrap(panelRef);
 
-  useDisableBodyScroll();
+  useLockBodyScroll();
 
   const onClickBackdrop = () => {
     if (shouldCloseOnBackdropClick) {

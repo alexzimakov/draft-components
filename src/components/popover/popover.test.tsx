@@ -1,6 +1,6 @@
 import { beforeAll, expect, it, vi } from 'vitest';
 import { Popover } from './popover.js';
-import { render, screen, userEvent, waitFor } from '../../test/test-utils.js';
+import { render, screen, userEvent } from '../../test/test-utils.js';
 import { mockMatchMedia } from '../../test/mock-match-media.js';
 
 beforeAll(() => {
@@ -11,122 +11,72 @@ const anchorLabel = 'Show Popover';
 const popoverContent = 'Popover Content';
 
 it('renders without errors', () => {
-  const popoverTestId = 'popover';
   render(
     <Popover
-      anchor={<button>{anchorLabel}</button>}
-      defaultIsOpen={true}
-      data-testid={popoverTestId}
+      isOpen={true}
+      renderAnchor={({ ref }) => <button ref={ref}>{anchorLabel}</button>}
     >
       {popoverContent}
     </Popover>,
   );
 
   screen.getByRole('button');
-  expect(screen.getByTestId(popoverTestId)).toHaveTextContent(popoverContent);
+  expect(screen.getByRole('dialog')).toHaveTextContent(popoverContent);
 });
 
-it('renders without errors when anchor property is function', () => {
-  const popoverTestId = 'popover';
-  render(
-    <Popover
-      anchor={({ ref }) => <button ref={ref}>{anchorLabel}</button>}
-      defaultIsOpen={true}
-      data-testid={popoverTestId}
-    >
-      {popoverContent}
-    </Popover>,
-  );
-
-  screen.getByRole('button');
-  expect(screen.getByTestId(popoverTestId)).toHaveTextContent(popoverContent);
-});
-
-it('should open popover when click on anchor element', async () => {
+it('should invoke `onClose` callback when click outside of popover', async () => {
   const user = userEvent.setup();
-  const anchorTestId = 'anchor';
-  const popoverTestId = 'popover';
-  const openMock = vi.fn();
+  const outsideButtonTestId = 'close-popover';
+  const closeMock = vi.fn();
   render(
-    <Popover
-      anchor={<button data-testid={anchorTestId}>{anchorLabel}</button>}
-      data-testid={popoverTestId}
-      onOpen={openMock}
-    >
-      {popoverContent}
-    </Popover>,
+    <div>
+      <button data-testid={outsideButtonTestId}>Close popover</button>
+      <Popover
+        isOpen={true}
+        onClose={closeMock}
+        renderAnchor={({ ref }) => <button ref={ref}>{anchorLabel}</button>}
+      >
+        {popoverContent}
+      </Popover>
+    </div>,
   );
 
-  expect(screen.queryByTestId(popoverTestId)).toBeNull();
+  screen.getByRole('dialog');
 
-  await user.click(screen.getByTestId(anchorTestId));
-  screen.getByTestId(popoverTestId);
-  expect(openMock).toHaveBeenCalledTimes(1);
-});
-
-it(
-  'should close popover when click on element outside of popover',
-  async () => {
-    const user = userEvent.setup();
-    const popoverTestId = 'popover';
-    const externalElementTestId = 'close-popover';
-    const closeMock = vi.fn();
-    render(
-      <div>
-        <button data-testid={externalElementTestId}>Close popover</button>
-        <Popover
-          anchor={<button>{anchorLabel}</button>}
-          defaultIsOpen={true}
-          data-testid={popoverTestId}
-          onClose={closeMock}
-        >
-          {popoverContent}
-        </Popover>
-      </div>,
-    );
-
-    screen.getByTestId(popoverTestId);
-
-    await user.click(screen.getByTestId(externalElementTestId));
-    await waitFor(() => expect(screen.queryByTestId(popoverTestId)).toBeNull());
-    expect(closeMock).toHaveBeenCalledTimes(1);
-  },
+  await user.click(screen.getByTestId(outsideButtonTestId));
+  expect(closeMock).toHaveBeenCalledTimes(1);
+},
 );
 
-it('should close popover when press Esc button', async () => {
+it('should invoke `onClose` callback when press Esc button', async () => {
   const user = userEvent.setup();
-  const popoverTestId = 'popover';
   const closeMock = vi.fn();
   render(
     <Popover
-      anchor={<button>{anchorLabel}</button>}
-      defaultIsOpen={true}
-      data-testid={popoverTestId}
+      isOpen={true}
       onClose={closeMock}
+      renderAnchor={({ ref }) => <button ref={ref}>{anchorLabel}</button>}
     >
       {popoverContent}
     </Popover>,
   );
 
-  screen.getByTestId(popoverTestId);
+  screen.getByRole('dialog');
 
   await user.keyboard('{Escape}');
-  await waitFor(() => expect(screen.queryByTestId(popoverTestId)).toBeNull());
   expect(closeMock).toHaveBeenCalledTimes(1);
 });
 
 it('should trap focus within the popover', async () => {
   const user = userEvent.setup();
-  const popoverTestId = 'popover';
   const inputTestId = 'input';
   const buttonTestId = 'button';
   const closeMock = vi.fn();
   render(
     <Popover
-      anchor={<button>{anchorLabel}</button>}
-      defaultIsOpen={true}
-      data-testid={popoverTestId}
+      isOpen={true}
       onClose={closeMock}
+      renderAnchor={({ ref }) => <button ref={ref}>{anchorLabel}</button>}
     >
       <input data-testid={inputTestId} />
       <button data-testid={buttonTestId}>Add</button>
