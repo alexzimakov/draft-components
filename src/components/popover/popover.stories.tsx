@@ -8,27 +8,6 @@ import { SelectionControl } from '../selection-control/index.js';
 const meta: Meta<typeof Popover> = {
   title: 'Overlays/Popover',
   component: Popover,
-  argTypes: {
-    placement: {
-      options: [
-        'top',
-        'top-start',
-        'top-end',
-        'right',
-        'right-start',
-        'right-end',
-        'bottom',
-        'bottom-start',
-        'bottom-end',
-        'left',
-        'left-start',
-        'left-end',
-      ],
-      control: {
-        type: 'select',
-      },
-    },
-  },
 };
 export default meta;
 

@@ -7,23 +7,19 @@
   --dc-menu-separator-color: var(--dc-bg-transparent-2);
 
   box-sizing: border-box;
-  width: 100%;
-  padding: 0;
+  min-width: 160px;
+  max-width: 288px;
+  padding: 4px;
   margin: 0;
   color-scheme: light;
-  list-style: none;
 }
 
-.dc-menu__container {
-  min-width: 160px;
-  padding: 4px;
-}
-
-.dc-menu__separator {
+.dc-menu-separator {
   box-sizing: border-box;
   height: 1px;
   margin: 4px 8px;
   background: var(--dc-menu-separator-color);
+  border: none;
 }
 
 .dc-menu-btn {
@@ -57,12 +53,8 @@
   flex-grow: 1;
 }
 
-.dc-menu-btn__label_gap_left {
-  padding-left: var(--dc-menu-item-icon-gap);
-}
-
-.dc-menu-btn__label_gap_right {
-  padding-right: var(--dc-menu-item-icon-gap);
+.dc-menu-btn_has-icon {
+  gap: var(--dc-menu-item-icon-gap);
 }
 
 .dc-menu-btn_destructive {

@@ -1,19 +1,13 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentProps } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type MenuSeparatorHTMLProps = ComponentPropsWithoutRef<'li'>;
-type MenuSeparatorBaseProps = Omit<MenuSeparatorHTMLProps, 'children'>;
-export type MenuSeparatorProps = MenuSeparatorBaseProps;
+export type MenuSeparatorProps = ComponentProps<'hr'>;
 
 export function MenuSeparator({
   className,
   ...props
 }: MenuSeparatorProps) {
   return (
-    <li
-      {...props}
-      className={classNames('dc-menu__separator', className)}
-      role="separator"
-    />
+    <hr {...props} className={classNames('dc-menu-separator', className)} />
   );
 }

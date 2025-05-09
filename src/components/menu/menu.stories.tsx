@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { Menu } from './menu.js';
 import { ArrowDownTrayIcon, DocumentDuplicateIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { Button } from '../button/index.js';
 
 const meta: Meta<typeof Menu> = {
   title: 'Navigation/Menu',
@@ -21,15 +22,15 @@ export const Basic: StoryFn<typeof Menu> = (args) => (
   </Menu>
 );
 Basic.argTypes = {
-  button: {
-    control: 'text',
+  renderButton: {
+    control: { disable: true },
   },
   children: {
     control: { disable: true },
   },
 };
 Basic.args = {
-  button: 'Open menu',
+  renderButton: (props) => <Button {...props}>Open Menu</Button>,
 };
 
 export const WithIcon: StoryFn<typeof Menu> = (args) => (
@@ -41,7 +42,7 @@ export const WithIcon: StoryFn<typeof Menu> = (args) => (
       Rename
     </Menu.Item>
     <Menu.Item iconLeft={<DocumentDuplicateIcon width={16} height={16} />}>
-      Rename
+      Duplicate
     </Menu.Item>
     <Menu.Separator />
     <Menu.Item iconLeft={<TrashIcon width={16} height={16} />} destructive={true}>
@@ -51,7 +52,7 @@ export const WithIcon: StoryFn<typeof Menu> = (args) => (
 );
 WithIcon.storyName = 'With icon';
 WithIcon.argTypes = {
-  button: {
+  renderButton: {
     control: 'text',
   },
   children: {
@@ -59,7 +60,7 @@ WithIcon.argTypes = {
   },
 };
 WithIcon.args = {
-  button: 'Open menu',
+  renderButton: (props) => <Button {...props}>Open Menu</Button>,
 };
 
 export const DisabledItems: StoryFn<typeof Menu> = (args) => (
@@ -72,7 +73,7 @@ export const DisabledItems: StoryFn<typeof Menu> = (args) => (
   </Menu>
 );
 DisabledItems.argTypes = {
-  button: {
+  renderButton: {
     control: 'text',
   },
   children: {
@@ -80,5 +81,5 @@ DisabledItems.argTypes = {
   },
 };
 DisabledItems.args = {
-  button: 'Open menu',
+  renderButton: (props) => <Button {...props}>Open Menu</Button>,
 };

@@ -39,3 +39,11 @@ export function formatNumber(num: number, fractionDigits = 5): number {
 export function formatPercent(percent: number, fractionDigits = 2): string {
   return `${formatNumber(percent * 100, fractionDigits)}%`;
 }
+
+export function omit<T extends object, K extends keyof T>(obj: T, ...keys: K[]): Omit<T, K> {
+  const result = { ...obj };
+  for (const key of keys) {
+    delete result[key];
+  }
+  return result;
+}

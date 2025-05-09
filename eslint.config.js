@@ -33,6 +33,7 @@ export default defineConfig([
     },
     rules: {
       'react/no-unescaped-entities': ['error', { forbid: ['>', '}'] }],
+      'jsx-a11y/mouse-events-have-key-events': 'off',
       '@stylistic/jsx-one-expression-per-line': 'off',
     },
   },

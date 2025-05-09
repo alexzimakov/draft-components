@@ -4,9 +4,32 @@ import { useRefCallback } from '../../hooks/use-ref-callback.js';
 import { useLockBodyScroll } from '../../hooks/use-lock-body-scroll.js';
 import { useCloseOnEsc } from '../../hooks/use-close-on-esc.js';
 import { useCloseOnClickOutside } from '../../hooks/use-close-on-click-outside.js';
-import { CSSProperties, JSX, ReactNode, RefCallback, RefObject, useEffect, useRef, useState } from 'react';
+import { ComponentProps, JSX, RefCallback, RefObject, useEffect, useRef, useState } from 'react';
 import { Portal } from '../portal/portal.js';
 import { useFocusTrap } from '../../hooks/use-focus-trap.js';
+import { omit } from '../../lib/helpers.js';
+
+type PopoverHTMLProps = ComponentProps<'div'>;
+
+type PopoverCommonProps = {
+  placement?: PopoverPlacement;
+  anchorPadding?: number;
+  viewportPadding?: number;
+  openAnimationDuration?: number;
+  closeAnimationDuration?: number;
+  shouldTrapFocus?: boolean;
+  shouldLockBodyScroll?: boolean;
+  shouldCloseOnEsc?: boolean;
+  shouldCloseOnClickOutside?: boolean;
+  isOpen?: boolean;
+  onClose?: PopoverCloseHandler;
+  onUnmount?: PopoverUnmountHandler;
+};
+
+type PopoverBaseProps = PopoverCommonProps & (
+  | { anchorRef: RefObject<HTMLElement> }
+  | { renderAnchor: PopoverRenderAnchor }
+);
 
 export { type PopoverPlacement };
 
@@ -16,45 +39,40 @@ export type PopoverUnmountHandler = () => void;
 
 export type PopoverRenderAnchor = (props: { ref: RefCallback<HTMLElement> }) => JSX.Element;
 
-export type PopoverBaseProps = {
-  id?: string;
-  style?: CSSProperties;
-  className?: string;
-  placement?: PopoverPlacement;
-  anchorPadding?: number;
-  viewportPadding?: number;
-  openAnimationDuration?: number;
-  closeAnimationDuration?: number;
-  children?: ReactNode;
-  isOpen?: boolean;
-  onClose?: PopoverCloseHandler;
-  onUnmount?: PopoverUnmountHandler;
-};
-
-export type PopoverProps = PopoverBaseProps & (
-  | { anchorRef: RefObject<HTMLElement> }
-  | { renderAnchor: PopoverRenderAnchor }
-);
+export type PopoverProps =
+  & PopoverBaseProps
+  & Omit<PopoverHTMLProps, keyof PopoverBaseProps>;
 
 export function Popover({
-  id,
-  style,
   className,
+  role = 'dialog',
+  'aria-modal': ariaModal = true,
   placement = 'bottom-start',
   anchorPadding = 4,
   viewportPadding = 4,
   openAnimationDuration = 50,
   closeAnimationDuration = 50,
+  shouldTrapFocus = true,
+  shouldLockBodyScroll = true,
+  shouldCloseOnEsc = true,
+  shouldCloseOnClickOutside = true,
   children = null,
   isOpen = false,
   onClose,
   onUnmount,
   ...props
 }: PopoverProps) {
+  const [isMounted, setIsMounted] = useState(false);
   const popoverRef = useRef<HTMLDivElement | null>(null);
   const defaultAnchorRef = useRef<HTMLElement | null>(null);
-  const anchorRef = 'anchorRef' in props ? props.anchorRef : defaultAnchorRef;
-  const [isMounted, setIsMounted] = useState(false);
+
+  const isAnchorRefProvided = 'anchorRef' in props;
+  let anchorRef: RefObject<HTMLElement | null>;
+  if (isAnchorRefProvided) {
+    anchorRef = props.anchorRef;
+  } else {
+    anchorRef = defaultAnchorRef;
+  }
 
   const close = useRefCallback(() => {
     if (typeof onClose === 'function') {
@@ -121,26 +139,26 @@ export function Popover({
   ]);
 
   useFocusTrap(popoverRef, {
-    disabled: !isMounted,
+    disabled: !shouldTrapFocus || !isMounted,
   });
 
   useLockBodyScroll({
-    disabled: !isMounted,
+    disabled: !shouldLockBodyScroll || !isMounted,
   });
 
   useCloseOnEsc(close, {
-    disabled: !isMounted,
+    disabled: !shouldCloseOnEsc || !isMounted,
   });
 
   useCloseOnClickOutside(close, {
     ref: popoverRef,
-    disabled: !isMounted,
+    disabled: !shouldCloseOnClickOutside || !isMounted,
     shouldIgnoreClick: (node) => anchorRef.current ? anchorRef.current.contains(node) : false,
   });
 
   return (
     <>
-      {'renderAnchor' in props && props.renderAnchor({
+      {!isAnchorRefProvided && props.renderAnchor({
         ref: (el) => {
           defaultAnchorRef.current = el;
         },
@@ -148,12 +166,11 @@ export function Popover({
       {(isOpen || isMounted) && (
         <Portal>
           <div
-            id={id}
-            style={style}
             className={classNames('dc-popover', className)}
-            aria-modal={true}
-            role="dialog"
             ref={popoverRef}
+            role={role}
+            aria-modal={ariaModal}
+            {...isAnchorRefProvided ? omit(props, 'anchorRef') : omit(props, 'renderAnchor')}
           >
             {children}
           </div>
