@@ -4,7 +4,8 @@
   --dc-popover-text-color: var(--dc-primary-text-color);
   --dc-popover-bg: var(--dc-white);
   --dc-popover-radius: 8px;
-  --dc-popover-shadow: 0 0 0 1px rgb(var(--dc-black-rgb) / 7.5%), 0 -1px 0 0 rgb(var(--dc-black-rgb) / 5%), var(--dc-shadow-lg);
+  --dc-popover-shadow: 0 0 0 1px rgb(var(--dc-black-rgb) / 7.5%),
+    0 -1px 0 0 rgb(var(--dc-black-rgb) / 5%), var(--dc-shadow-lg);
 
   position: absolute;
   top: 0;
@@ -13,9 +14,11 @@
   box-sizing: border-box;
   width: max-content;
   padding: var(--dc-popover-padding);
+  overflow: auto;
   font: var(--dc-popover-font);
   color: var(--dc-popover-text-color);
   color-scheme: light;
+  scrollbar-width: thin;
   background: var(--dc-popover-bg);
   border-radius: var(--dc-popover-radius);
   box-shadow: var(--dc-popover-shadow);

@@ -27,6 +27,8 @@ export type PositionCalcParams = {
 export type PositionCalcResult = Coordinates & {
   placement: Placement;
   alignment: Alignment;
+  maxWidth: number;
+  maxHeight: number;
 };
 
 export function calcPosition({
@@ -41,11 +43,10 @@ export function calcPosition({
   scrollX,
   scrollY,
 }: PositionCalcParams): PositionCalcResult {
-  const maxWidth = viewportWidth - (2 * viewportPadding);
-  const maxInlinePadding = Math.max(
-    anchorRect.left - anchorPadding - viewportPadding,
-    viewportWidth - anchorRect.right - anchorPadding - viewportPadding,
-  );
+  const maxLeftSpace = anchorRect.left - anchorPadding - viewportPadding;
+  const maxRightSpace = viewportWidth - anchorRect.right - anchorPadding - viewportPadding;
+  const maxInlineWidth = viewportWidth - (2 * viewportPadding);
+  const maxInlinePadding = Math.max(maxLeftSpace, maxRightSpace);
 
   if (popoverRect.width >= maxInlinePadding && (placement === 'left' || placement === 'right')) {
     placement = 'bottom';
@@ -53,7 +54,7 @@ export function calcPosition({
 
   let x: number;
   let y: number;
-  if (popoverRect.width >= maxWidth) {
+  if (popoverRect.width >= maxInlineWidth) {
     x = scrollX + viewportPadding;
     const result = calcMainAxisOffset({
       placement,
@@ -112,7 +113,37 @@ export function calcPosition({
     placement = result.placement;
   }
 
-  return { x, y, placement, alignment };
+  let maxWidth = popoverRect.width;
+  let maxHeight = popoverRect.height;
+  if (placement === 'top' || placement === 'bottom') {
+    maxWidth = Math.min(maxWidth, maxInlineWidth);
+    if (placement === 'top') {
+      const maxTopSpace = anchorRect.top - anchorPadding - viewportPadding;
+      maxHeight = Math.min(maxHeight, maxTopSpace);
+    } else {
+      const maxBottomSpace = viewportHeight - viewportPadding - anchorRect.bottom - anchorPadding;
+      maxHeight = Math.min(maxHeight, maxBottomSpace);
+    }
+  } else {
+    maxHeight = Math.min(
+      maxHeight,
+      viewportHeight - 2 * viewportPadding,
+    );
+    if (placement === 'left') {
+      maxWidth = Math.min(maxWidth, maxLeftSpace);
+    } else {
+      maxWidth = Math.min(maxWidth, maxRightSpace);
+    }
+  }
+
+  return {
+    x,
+    y,
+    placement,
+    alignment,
+    maxWidth,
+    maxHeight,
+  };
 }
 
 function calcMainAxisOffset({

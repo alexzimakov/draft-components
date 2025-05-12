@@ -1,12 +1,13 @@
 import { classNames } from '../../lib/react-helpers.js';
+import { observeMove } from './observe-move.js';
 import { calcPopoverPosition, PopoverPlacement } from '../../lib/calc-popover-position.js';
 import { useRefCallback } from '../../hooks/use-ref-callback.js';
+import { useFocusTrap } from '../../hooks/use-focus-trap.js';
 import { useLockBodyScroll } from '../../hooks/use-lock-body-scroll.js';
 import { useCloseOnEsc } from '../../hooks/use-close-on-esc.js';
 import { useCloseOnClickOutside } from '../../hooks/use-close-on-click-outside.js';
 import { ComponentProps, JSX, RefCallback, RefObject, useEffect, useRef, useState } from 'react';
 import { Portal } from '../portal/portal.js';
-import { useFocusTrap } from '../../hooks/use-focus-trap.js';
 import { omit } from '../../lib/helpers.js';
 
 type PopoverHTMLProps = ComponentProps<'div'>;
@@ -95,15 +96,22 @@ export function Popover({
         return;
       }
 
-      setIsMounted(isOpen);
+      const positionPopover = () => {
+        popover.style.removeProperty('max-width');
+        popover.style.removeProperty('max-height');
+        const result = calcPopoverPosition(anchor, popover, {
+          placement,
+          anchorPadding,
+          viewportPadding,
+        });
+        popover.style.setProperty('top', `${result.y}px`);
+        popover.style.setProperty('left', `${result.x}px`);
+        popover.style.setProperty('max-width', `${result.maxWidth}px`);
+        popover.style.setProperty('max-height', `${result.maxHeight}px`);
+      };
 
-      const result = calcPopoverPosition(anchor, popover, {
-        placement,
-        anchorPadding,
-        viewportPadding,
-      });
-      popover.style.setProperty('top', `${result.y}px`);
-      popover.style.setProperty('left', `${result.x}px`);
+      setIsMounted(isOpen);
+      const unobserve = observeMove(anchor, positionPopover);
       popover.animate({
         opacity: [0, 1],
         easing: 'ease',
@@ -113,6 +121,7 @@ export function Popover({
       });
 
       return () => {
+        unobserve();
         const animation = popover.animate({
           opacity: [1, 0],
           easing: 'ease',

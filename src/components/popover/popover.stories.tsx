@@ -8,6 +8,9 @@ import { SelectionControl } from '../selection-control/index.js';
 const meta: Meta<typeof Popover> = {
   title: 'Overlays/Popover',
   component: Popover,
+  parameters: {
+    layout: 'centered',
+  },
 };
 export default meta;
 
@@ -18,10 +21,8 @@ export const Basic: StoryFn<typeof Popover> = (args) => {
     { value: 'HIP_HOP', label: 'HipHop' },
     { value: 'JAZZ', label: 'Jazz' },
     { value: 'LATIN', label: 'Latin' },
-    { value: 'ROCK', label: 'Rock' },
     { value: 'POP', label: 'Pop' },
-    { value: 'RNB', label: 'RnB' },
-    { value: 'ELECTRONIC', label: 'Electronic' },
+    { value: 'ROCK', label: 'Rock' },
   ];
 
   const togglePopover = () => {
@@ -42,7 +43,7 @@ export const Basic: StoryFn<typeof Popover> = (args) => {
       <div style={{ fontWeight: 'bold', paddingBottom: 12 }}>
         Choose your favorites genres <Hint />
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 16px' }}>
+      <div style={{ display: 'grid', gap: 8 }}>
         {genres.map(({ value, label }) => (
           <SelectionControl key={value} label={label}>
             <Checkbox name="favoriteGenres" value={value} />
