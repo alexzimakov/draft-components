@@ -1,20 +1,26 @@
-import { ComponentPropsWithRef, ComponentPropsWithoutRef, ElementType, forwardRef } from 'react';
+import { ComponentProps, ElementType, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { ArrowsUpDownIcon } from '../hero-icons/24/outline/arrows-up-down-icon.js';
 import { ArrowSmallUpIcon } from '../hero-icons/24/outline/arrow-small-up-icon.js';
 import { ArrowSmallDownIcon } from '../hero-icons/24/outline/arrow-small-down-icon.js';
 
-type TableHeadCellBaseProps = ComponentPropsWithRef<'th'>;
 export type TableHeadCellSort = 'none' | 'ascending' | 'descending';
-export type TableHeadCellProps = {
+
+type TableHeadCellHTMLProps = ComponentProps<'th'>;
+
+type TableHeadCellBaseProps = {
   isSortable?: boolean;
   sort?: TableHeadCellSort;
   onChangeSort?: (sort: TableHeadCellSort) => void;
-} & TableHeadCellBaseProps;
+};
+
+export type TableHeadCellProps =
+  & TableHeadCellBaseProps
+  & Omit<TableHeadCellHTMLProps, keyof TableHeadCellBaseProps>;
 
 const iconMapping: Record<
   TableHeadCellSort,
-  ElementType<ComponentPropsWithoutRef<'svg'>>
+  ElementType<ComponentProps<'svg'>>
 > = {
   none: ArrowsUpDownIcon,
   ascending: ArrowSmallUpIcon,

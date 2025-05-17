@@ -1,9 +1,4 @@
-export {
-  FilteredSearch,
-  type FilteredSearchProps,
-  type FilteredSearchBaseProps,
-  type FilteredSearchHTMLProps,
-} from './filtered-search.js';
+export * from './filtered-search.js';
 export {
   type Filter,
   type FilterConfig,

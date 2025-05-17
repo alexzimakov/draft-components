@@ -1,10 +1,15 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type FilterButtonHTMLProps = ComponentPropsWithRef<'button'>;
-export type FilterButtonProps = {
+type FilterButtonHTMLProps = ComponentProps<'button'>;
+
+type FilterButtonBaseProps = {
   isActive?: boolean;
-} & FilterButtonHTMLProps;
+};
+
+export type FilterButtonProps =
+  & FilterButtonBaseProps
+  & Omit<FilterButtonHTMLProps, keyof FilterButtonBaseProps>;
 
 export const FilterButton = forwardRef<
   HTMLButtonElement,

@@ -1,11 +1,17 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentProps } from 'react';
 import { TabName } from './types.js';
 import { classNames } from '../../lib/react-helpers.js';
 import { useTabsContext } from './tabs-context.js';
 
-export type TabPanelProps = {
+type TabPanelHTMLProps = ComponentProps<'div'>;
+
+type TabPanelBaseProps = {
   tab: TabName;
-} & ComponentPropsWithoutRef<'div'>;
+};
+
+export type TabPanelProps =
+  & TabPanelBaseProps
+  & Omit<TabPanelHTMLProps, keyof TabPanelBaseProps>;
 
 export function TabPanel({
   tab,

@@ -1,13 +1,19 @@
-import { ComponentPropsWithoutRef, MouseEvent, ReactNode } from 'react';
+import { ComponentProps, MouseEvent, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { useTabsContext } from './tabs-context.js';
 import { Badge } from '../badge/index.js';
 
-export type TabProps = {
+type TabHTMLProps = ComponentProps<'button'>;
+
+type TabBaseProps = {
   icon?: ReactNode;
   counter?: number;
   name: string;
-} & ComponentPropsWithoutRef<'button'>;
+};
+
+export type TabProps =
+  & TabBaseProps
+  & Omit<TabHTMLProps, keyof TabBaseProps>;
 
 export function Tab({
   id,

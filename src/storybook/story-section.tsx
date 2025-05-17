@@ -1,12 +1,17 @@
-import { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { ComponentProps, ReactNode } from 'react';
 import { classNames } from '../lib/react-helpers.js';
 import './story-section.css';
 
-type StorySectionBaseProps = Omit<ComponentPropsWithoutRef<'div'>, 'children' | 'title'>;
-export type StorySectionProps = {
+type StorySectionHTMLProps = ComponentProps<'div'>;
+
+type StorySectionBaseProps = {
   title: ReactNode;
   children: ReactNode;
-} & StorySectionBaseProps;
+};
+
+export type StorySectionProps =
+  & StorySectionBaseProps
+  & Omit<StorySectionHTMLProps, keyof StorySectionBaseProps>;
 
 export function StorySection({
   className,

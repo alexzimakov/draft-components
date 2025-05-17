@@ -1,9 +1,10 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type TagHTMLProps = ComponentPropsWithRef<'strong'>;
 export type TagStyle = 'default' | 'filled' | 'tinted';
+
 export type TagSize = 'sm' | 'md' | 'lg';
+
 export type TagTint =
   | 'gray'
   | 'green'
@@ -14,6 +15,7 @@ export type TagTint =
   | 'red'
   | 'orange'
   | 'yellow';
+
 export type TagElementType =
   | 'abbr'
   | 'b'
@@ -29,20 +31,27 @@ export type TagElementType =
   | 'span'
   | 'strong'
   | 'var';
-export type TagProps = {
+
+type TagHTMLProps = ComponentProps<'strong'>;
+
+type TagBaseProps = {
   as?: TagElementType;
   tagStyle?: TagStyle;
   size?: TagSize;
   tint?: TagTint;
-  rounded?: boolean;
-} & TagHTMLProps;
+  isRounded?: boolean;
+};
+
+export type TagProps =
+  & TagBaseProps
+  & Omit<TagHTMLProps, keyof TagBaseProps>;
 
 export const Tag = forwardRef<HTMLElement, TagProps>(function Tag({
   as: Component = 'strong',
   tagStyle = 'default',
   size = 'md',
   tint = 'gray',
-  rounded,
+  isRounded: rounded,
   className,
   children,
   ...props

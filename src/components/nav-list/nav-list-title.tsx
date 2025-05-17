@@ -1,11 +1,15 @@
-import { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { ComponentProps, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type NavListTitleHTMLProps = ComponentPropsWithoutRef<'li'>;
-type NavListTitleBaseProps = Omit<NavListTitleHTMLProps, 'children'>;
-export type NavListTitleProps = {
+type NavListTitleHTMLProps = ComponentProps<'li'>;
+
+type NavListTitleBaseProps = {
   children: ReactNode;
-} & NavListTitleBaseProps;
+};
+
+export type NavListTitleProps =
+  & NavListTitleBaseProps
+  & Omit<NavListTitleHTMLProps, keyof NavListTitleBaseProps>;
 
 export function NavListTitle({
   className,

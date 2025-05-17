@@ -1,6 +1,6 @@
 import { expect, it, vi } from 'vitest';
 import { Breadcrumbs } from './breadcrumbs.js';
-import { BreadcrumbsItem, BreadcrumbsItemRenderFn } from './breadcrumbs-item.js';
+import { BreadcrumbsItem, BreadcrumbsItemRenderer } from './breadcrumbs-item.js';
 import { render, screen, within } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
@@ -28,7 +28,7 @@ it('renders without errors', () => {
 });
 
 it('should render breadcrumbs item using custom render fn', () => {
-  const renderLink: BreadcrumbsItemRenderFn = ({ className, children }) => (
+  const renderLink: BreadcrumbsItemRenderer = ({ className, children }) => (
     <button className={className}>{children}</button>
   );
   render(

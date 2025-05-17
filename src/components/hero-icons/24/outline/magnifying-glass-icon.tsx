@@ -1,8 +1,8 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 
 export const MagnifyingGlassIcon = forwardRef<
   SVGSVGElement,
-  ComponentPropsWithRef<'svg'>
+  ComponentProps<'svg'>
 >(function MagnifyingGlassIcon(props, ref) {
   return (
     <svg

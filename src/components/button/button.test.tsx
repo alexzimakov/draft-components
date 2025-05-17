@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentProps } from 'react';
 import { expect, it, vi } from 'vitest';
 import { Button, ButtonRenderer } from './button.js';
 import { IconButton } from './icon-button.js';
@@ -70,7 +70,7 @@ it('<IconButton /> renders without errors', () => {
   within(screen.getByRole('button')).getByTestId(iconTestId);
 });
 
-function MoonIcon(props: ComponentPropsWithoutRef<'svg'>) {
+function MoonIcon(props: ComponentProps<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

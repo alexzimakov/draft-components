@@ -1,10 +1,15 @@
-import { ComponentPropsWithoutRef, JSX } from 'react';
+import { ComponentProps, JSX } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type ButtonGroupBaseProps = Omit<ComponentPropsWithoutRef<'div'>, 'children'>;
-export type ButtonGroupProps = ButtonGroupBaseProps & {
+type ButtonGroupHTMLProps = ComponentProps<'div'>;
+
+type ButtonGroupBaseProps = {
   children: JSX.Element | JSX.Element[];
 };
+
+export type ButtonGroupProps =
+  & ButtonGroupBaseProps
+  & Omit<ButtonGroupHTMLProps, keyof ButtonGroupBaseProps>;
 
 export function ButtonGroup({
   className,

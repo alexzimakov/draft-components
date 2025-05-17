@@ -1,9 +1,15 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-export type LabelProps = ComponentPropsWithRef<'label'> & {
+type LabelHTMLProps = ComponentProps<'label'>;
+
+type LabelBaseProps = {
   required?: boolean;
 };
+
+export type LabelProps =
+  & LabelBaseProps
+  & Omit<LabelHTMLProps, keyof LabelBaseProps>;
 
 export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label({
   required = false,
@@ -15,7 +21,8 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label({
     <label
       {...props}
       ref={ref}
-      className={classNames(className, 'dc-label', {
+      className={classNames(className, {
+        'dc-label': true,
         'dc-label_required': required,
       })}
     >

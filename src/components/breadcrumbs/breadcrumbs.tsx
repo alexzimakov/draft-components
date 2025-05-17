@@ -1,11 +1,16 @@
-import { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { ComponentProps, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { BreadcrumbsContextProvider } from './breadcrumbs-context.js';
 
-type BreadcrumbsHTMLProps = ComponentPropsWithoutRef<'nav'>;
-export type BreadcrumbsProps = {
+type BreadcrumbsHTMLProps = ComponentProps<'nav'>;
+
+type BreadcrumbsBaseProps = {
   separator?: ReactNode;
-} & BreadcrumbsHTMLProps;
+};
+
+export type BreadcrumbsProps =
+  & BreadcrumbsBaseProps
+  & Omit<BreadcrumbsHTMLProps, keyof BreadcrumbsBaseProps>;
 
 const defaultSeparator = (
   <svg

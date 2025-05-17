@@ -1,8 +1,9 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentProps } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type CalendarDayHTMLProps = ComponentPropsWithoutRef<'button'>;
-export type CalendarDayProps = {
+type CalendarDayHTMLProps = ComponentProps<'button'>;
+
+type CalendarDayBaseProps = {
   date: Date;
   dateISO: string;
   locale?: string;
@@ -14,7 +15,11 @@ export type CalendarDayProps = {
   inRange?: boolean;
   isRangeStart?: boolean;
   isRangeEnd?: boolean;
-} & CalendarDayHTMLProps;
+};
+
+export type CalendarDayProps =
+  & CalendarDayBaseProps
+  & Omit<CalendarDayHTMLProps, keyof CalendarDayBaseProps>;
 
 export function CalendarDay({
   date,

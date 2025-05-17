@@ -23,6 +23,7 @@ export type GetCalendarDayProps = (date: Date) => Pick<CalendarDayProps,
   | 'isRangeStart'
   | 'isRangeEnd'
 >;
+
 export type CalendarGridProps = {
   focusDay: Date;
   minDate?: Date | null;

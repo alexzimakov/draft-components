@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { ComponentPropsWithoutRef, useState } from 'react';
+import { ComponentProps, useState } from 'react';
 import { FilePicker } from './file-picker.js';
 
 const meta: Meta<typeof FilePicker> = {
@@ -58,7 +58,7 @@ Disabled.args = {
   caption: 'PNG, JPG or GIF (min size 320 × 320px)',
 };
 
-function PhotoIcon(props: ComponentPropsWithoutRef<'svg'>) {
+function PhotoIcon(props: ComponentProps<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

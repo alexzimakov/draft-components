@@ -1,8 +1,8 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 
 export const EyeIcon = forwardRef<
   SVGSVGElement,
-  ComponentPropsWithRef<'svg'>
+  ComponentProps<'svg'>
 >(function EyeIcon(props, ref) {
   return (
     <svg

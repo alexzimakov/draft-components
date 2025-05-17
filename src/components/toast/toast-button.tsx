@@ -1,7 +1,9 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-export type ToastButtonProps = ComponentPropsWithRef<'button'>;
+type ToastButtonHTMLProps = ComponentProps<'button'>;
+
+export type ToastButtonProps = ToastButtonHTMLProps;
 
 export const ToastButton = forwardRef<
   HTMLButtonElement,

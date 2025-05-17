@@ -9,11 +9,13 @@ type XPosition = 'left' | 'center' | 'right';
 export type ToastPosition = `${YPosition}-${XPosition}`;
 
 export type ToastID = number;
+
 export type ToastAction = {
   content: ReactNode;
   onClick?: () => void;
   shouldHideAfterClick?: boolean;
 };
+
 export type ToastParams = {
   title: ReactNode;
   icon?: ReactNode;
@@ -21,8 +23,11 @@ export type ToastParams = {
   actions?: ToastAction[];
   timeoutMs?: number;
 };
+
 export type ToastParamsWithID = { id: ToastID } & ToastParams;
+
 export type ToastShowCallback = (toast: ToastParamsWithID) => void;
+
 export type ToastHideCallback = (id: ToastID) => void;
 
 type ToastShowEvent = CustomEvent<{

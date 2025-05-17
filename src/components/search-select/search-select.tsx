@@ -18,16 +18,16 @@ import { TextInput } from '../text-input/text-input.js';
 import { Spinner } from '../spinner/spinner.js';
 import { ChevronDown, MagnifyingGlass } from './icons.js';
 
-type RenderLabelFn<Value> = (value: Value) => ReactNode;
+export type SearchSelectLabelRenderer<Value> = (value: Value) => ReactNode;
 
-type RenderOptionsFn = (props: {
+export type SearchSelectOptionsRenderer = (props: {
   searchQuery: string;
   searchQueryLowerCased: string;
 }) => ReactNode;
 
 export type SearchSelectSize = 'sm' | 'md' | 'lg';
 
-export type SearchSelectProps<Value> = {
+export type SearchSelectProps<T> = {
   className?: string;
   size?: SearchSelectSize;
   fullWidth?: boolean;
@@ -39,13 +39,13 @@ export type SearchSelectProps<Value> = {
   textboxAriaLabel?: string;
   textboxPlaceholder?: string;
   labelledBy?: string;
-  displayedValue?: ReactNode | RenderLabelFn<Value>;
-  children?: ReactNode | RenderOptionsFn;
-  value: Value;
-  onChange: (value: Value) => void;
+  displayedValue?: ReactNode | SearchSelectLabelRenderer<T>;
+  children?: ReactNode | SearchSelectOptionsRenderer;
+  value: T;
+  onChange: (value: T) => void;
 };
 
-export function SearchSelect<Value>({
+export function SearchSelect<T>({
   className,
   size = 'md',
   fullWidth,
@@ -61,12 +61,12 @@ export function SearchSelect<Value>({
   children,
   value: selectedValue,
   onChange: onSelectedValueChange,
-}: SearchSelectProps<Value>) {
+}: SearchSelectProps<T>) {
   const id = useId();
   const buttonId = `${id}button`;
   const textboxId = `${id}textbox`;
   const listboxId = `${id}listbox`;
-  const [options] = useState(() => new OptionStore<Value>(`${id}option-`));
+  const [options] = useState(() => new OptionStore<T>(`${id}option-`));
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [highlightedValue, setHighlightedValue] = useState(selectedValue);
@@ -105,7 +105,7 @@ export function SearchSelect<Value>({
     });
   };
 
-  const setSelectedValue = (value: Value) => {
+  const setSelectedValue = (value: T) => {
     onSelectedValueChange(value);
     closePopover();
   };
@@ -202,7 +202,7 @@ export function SearchSelect<Value>({
       }
   }, [listboxId, options, highlightedValue]);
 
-  const ctx: SearchSelectContext<Value> = {
+  const ctx: SearchSelectContext<T> = {
     options: options,
     selectedValue,
     highlightedValue,

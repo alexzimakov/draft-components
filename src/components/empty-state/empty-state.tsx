@@ -1,16 +1,20 @@
-import { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { ComponentProps, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type EmptyStateHTMLProps = ComponentPropsWithoutRef<'div'>;
-type EmptyStateBaseProps = Omit<EmptyStateHTMLProps, 'title'>;
-export type EmptyStateProps = {
+type EmptyStateHTMLProps = ComponentProps<'div'>;
+
+type EmptyStateBaseProps = {
   image?: ReactNode;
   title?: ReactNode;
   message?: ReactNode;
   primaryAction?: ReactNode;
   secondaryAction?: ReactNode;
   fullHeight?: boolean;
-} & EmptyStateBaseProps;
+};
+
+export type EmptyStateProps =
+  & EmptyStateBaseProps
+  & Omit<EmptyStateHTMLProps, keyof EmptyStateBaseProps>;
 
 export function EmptyState({
   className,

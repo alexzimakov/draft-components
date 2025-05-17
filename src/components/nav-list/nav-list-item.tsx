@@ -1,17 +1,23 @@
-import { ComponentPropsWithoutRef, JSX, ReactNode } from 'react';
+import { ComponentProps, JSX, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { Badge } from '../badge/index.js';
 
-type NavListItemHTMLProps = ComponentPropsWithoutRef<'a'>;
-export type NavListItemRenderFn = (props: {
+export type NavListItemRenderer = (props: {
   className: string;
   children: JSX.Element;
 }) => ReactNode;
-export type NavListItemProps = {
+
+type NavListItemHTMLProps = ComponentProps<'a'>;
+
+type NavListItemBaseProps = {
   icon?: ReactNode;
   badge?: string | number;
-  renderAs?: NavListItemRenderFn;
-} & NavListItemHTMLProps;
+  renderAs?: NavListItemRenderer;
+};
+
+export type NavListItemProps =
+  & NavListItemBaseProps
+  & Omit<NavListItemHTMLProps, keyof NavListItemBaseProps>;
 
 export function NavListItem({
   className,

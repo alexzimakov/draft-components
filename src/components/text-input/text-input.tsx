@@ -1,8 +1,6 @@
-import { ChangeEventHandler, ComponentPropsWithRef, FocusEventHandler, ReactNode, forwardRef, useState } from 'react';
+import { ChangeEventHandler, ComponentProps, FocusEventHandler, ReactNode, forwardRef, useState } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type TextInputHTMLProps = ComponentPropsWithRef<'input'>;
-type TextInputBaseProps = Omit<TextInputHTMLProps, 'type' | 'size'>;
 export type TextInputType =
   | 'date'
   | 'datetime-local'
@@ -15,12 +13,20 @@ export type TextInputType =
   | 'time'
   | 'url'
   | 'week';
+
 export type TextInputSize = 'sm' | 'md' | 'lg';
+
 export type TextInputSlotStyle = 'plain' | 'tinted';
+
 export type TextInputTextAlign = 'left' | 'right' | 'center';
+
 export type TextInputSlotRenderer = (props: { className: string }) => ReactNode;
+
 export type TextInputValueChangeHandler = (value: string) => void;
-export type TextInputProps = TextInputBaseProps & {
+
+type TextInputHTMLProps = ComponentProps<'input'>;
+
+type TextInputBaseProps = {
   fullWidth?: boolean;
   invalid?: boolean;
   type?: TextInputType;
@@ -32,6 +38,10 @@ export type TextInputProps = TextInputBaseProps & {
   textAlign?: TextInputTextAlign;
   onChangeValue?: TextInputValueChangeHandler;
 };
+
+export type TextInputProps =
+  & TextInputBaseProps
+  & Omit<TextInputHTMLProps, keyof TextInputBaseProps>;
 
 export const TextInput = forwardRef<
   HTMLInputElement,

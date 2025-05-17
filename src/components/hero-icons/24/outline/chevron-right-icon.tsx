@@ -1,8 +1,8 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 
 export const ChevronRightIcon = forwardRef<
   SVGSVGElement,
-  ComponentPropsWithRef<'svg'>
+  ComponentProps<'svg'>
 >(function ChevronRightIcon(props, ref) {
   return (
     <svg

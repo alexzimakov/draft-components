@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, useId } from 'react';
+import { ComponentProps, useId } from 'react';
 import { classNames } from '../../lib/index.js';
 import { TextInput } from '../text-input/index.js';
 import { Caption } from '../caption/index.js';
@@ -56,7 +56,7 @@ export function StringFilterInput({
   );
 }
 
-function ArrowReturnRightIcon(props: ComponentPropsWithoutRef<'svg'>) {
+function ArrowReturnRightIcon(props: ComponentProps<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

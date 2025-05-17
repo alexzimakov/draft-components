@@ -1,13 +1,18 @@
-import { ComponentPropsWithRef, ComponentPropsWithoutRef, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type SwitchHTMLProps = ComponentPropsWithRef<'input'>;
-type SwitchBaseProps = Omit<SwitchHTMLProps, 'type'>;
 export type SwitchToggleHandler = (checked: boolean) => void;
-export type SwitchProps = SwitchBaseProps & {
+
+type SwitchHTMLProps = ComponentProps<'input'>;
+
+type SwitchBaseProps = {
   showCheckIcon?: boolean;
   onToggle?: SwitchToggleHandler;
 };
+
+export type SwitchProps =
+  & SwitchBaseProps
+  & Omit<SwitchHTMLProps, keyof SwitchBaseProps>;
 
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   function Switch({
@@ -49,7 +54,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   },
 );
 
-function CheckIcon(props: ComponentPropsWithoutRef<'svg'>) {
+function CheckIcon(props: ComponentProps<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

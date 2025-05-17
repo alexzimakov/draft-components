@@ -1,21 +1,28 @@
-import { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { ComponentProps, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { SegmentedButton } from './segmented-button.js';
 
-type SegmentedControlHTMLProps = ComponentPropsWithoutRef<'ul'>;
 export type SegmentedControlSize = 'sm' | 'md' | 'lg';
+
 export type SegmentedControlOption<T extends string | number> = {
   value: T;
   icon?: ReactNode;
   label?: ReactNode;
 };
-export type SegmentedControlProps<T extends string | number> = {
+
+type SegmentedControlHTMLProps = ComponentProps<'ul'>;
+
+type SegmentedControlBaseProps<T extends string | number> = {
   size?: SegmentedControlSize;
   disabled?: boolean;
   options: SegmentedControlOption<T>[];
   value: T;
   onChangeValue: (value: T) => void;
-} & SegmentedControlHTMLProps;
+};
+
+export type SegmentedControlProps<T extends string | number> =
+  & SegmentedControlBaseProps<T>
+  & Omit<SegmentedControlHTMLProps, keyof SegmentedControlBaseProps<T>>;
 
 export function SegmentedControl<T extends string | number>({
   size = 'md',

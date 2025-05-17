@@ -1,14 +1,20 @@
-import { ComponentPropsWithRef, ComponentPropsWithoutRef, JSX, forwardRef } from 'react';
+import { ComponentProps, JSX, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type RadioHTMLProps = ComponentPropsWithRef<'input'>;
-type RadioBaseProps = Omit<RadioHTMLProps, 'type'>;
 export type RadioIcon = 'dot' | 'check';
+
 export type RadioToggleHandler = (checked: boolean) => void;
-export type RadioProps = RadioBaseProps & {
+
+type RadioHTMLProps = ComponentProps<'input'>;
+
+type RadioBaseProps = {
   icon?: RadioIcon;
   onToggle?: RadioToggleHandler;
 };
+
+export type RadioProps =
+  & RadioBaseProps
+  & Omit<RadioHTMLProps, keyof RadioBaseProps>;
 
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio({
   icon = 'dot',
@@ -50,7 +56,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio({
   );
 });
 
-function CheckIcon(props: ComponentPropsWithoutRef<'svg'>) {
+function CheckIcon(props: ComponentProps<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +77,7 @@ function CheckIcon(props: ComponentPropsWithoutRef<'svg'>) {
   );
 }
 
-function DotIcon(props: ComponentPropsWithoutRef<'svg'>) {
+function DotIcon(props: ComponentProps<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

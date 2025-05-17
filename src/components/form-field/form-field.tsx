@@ -1,28 +1,30 @@
-import { ComponentPropsWithoutRef, ReactNode, useId } from 'react';
+import { ComponentProps, ReactNode, useId } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { Label } from '../label/index.js';
 import { Caption } from '../caption/index.js';
 import { ExclamationTriangleIcon } from '../hero-icons/24/solid/exclamation-triangle-icon.js';
 
-export type FormFieldRenderFn = (props: {
+export type FormFieldRender = (props: {
   id: string;
   invalid: boolean;
   required: boolean;
-  /**
-   * The list of IDs that describe the input element.
-   */
   describedBy: string[];
 }) => ReactNode;
-type FormFieldHTMLProps = ComponentPropsWithoutRef<'div'>;
-type FormFieldBaseProps = Omit<FormFieldHTMLProps, 'children'>;
-export type FormFieldProps = {
+
+type FormFieldHTMLProps = ComponentProps<'div'>;
+
+type FormFieldBaseProps = {
   required?: boolean;
   labelFor?: string;
   label?: ReactNode;
   error?: ReactNode;
   hint?: ReactNode;
-  children: ReactNode | FormFieldRenderFn;
-} & FormFieldBaseProps;
+  children: ReactNode | FormFieldRender;
+};
+
+export type FormFieldProps =
+  & FormFieldBaseProps
+  & Omit<FormFieldHTMLProps, keyof FormFieldBaseProps>;
 
 export function FormField({
   required = false,

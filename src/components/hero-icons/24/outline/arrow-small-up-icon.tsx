@@ -1,8 +1,8 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 
 export const ArrowSmallUpIcon = forwardRef<
   SVGSVGElement,
-  ComponentPropsWithRef<'svg'>
+  ComponentProps<'svg'>
 >(function ArrowSmallUpIcon(props, ref) {
   return (
     <svg

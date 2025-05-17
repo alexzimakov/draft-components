@@ -1,10 +1,15 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type TableRowBaseProps = ComponentPropsWithRef<'tr'>;
-export type TableRowProps = {
+type TableRowHTMLProps = ComponentProps<'tr'>;
+
+type TableRowBaseProps = {
   isSelected?: boolean;
-} & TableRowBaseProps;
+};
+
+export type TableRowProps =
+  & TableRowBaseProps
+  & Omit<TableRowHTMLProps, keyof TableRowBaseProps>;
 
 export const TableRow = forwardRef<
   HTMLTableRowElement,

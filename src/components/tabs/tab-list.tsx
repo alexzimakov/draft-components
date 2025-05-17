@@ -1,10 +1,12 @@
-import { ComponentPropsWithoutRef, FocusEvent, KeyboardEvent, useRef } from 'react';
+import { ComponentProps, FocusEvent, KeyboardEvent, useRef } from 'react';
 import { KeyboardKeys } from '../../lib/keyboard-keys.js';
 import { assertIfNullable } from '../../lib/helpers.js';
 import { classNames, focusElement } from '../../lib/react-helpers.js';
 import { useTabsContext } from './tabs-context.js';
 
-export type TabListProps = ComponentPropsWithoutRef<'div'>;
+type TabListHTMLProps = ComponentProps<'div'>;
+
+export type TabListProps = TabListHTMLProps;
 
 export function TabList({
   className,

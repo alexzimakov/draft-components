@@ -1,8 +1,9 @@
-import { ComponentPropsWithoutRef, useLayoutEffect, useRef } from 'react';
+import { ComponentProps, useLayoutEffect, useRef } from 'react';
 import { assertIfNullable } from '../../lib/helpers.js';
 import { classNames } from '../../lib/react-helpers.js';
 
-type FilterButtonsHTMLProps = ComponentPropsWithoutRef<'div'>;
+type FilterButtonsHTMLProps = ComponentProps<'div'>;
+
 export type FilterButtonsProps = FilterButtonsHTMLProps;
 
 export function FilterButtons({

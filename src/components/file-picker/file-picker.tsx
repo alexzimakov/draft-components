@@ -1,6 +1,6 @@
 import {
   type ChangeEventHandler,
-  type ComponentPropsWithRef,
+  type ComponentProps,
   type DragEventHandler,
   type ReactNode,
   forwardRef,
@@ -11,16 +11,21 @@ import {
 import { classNames, mergeRefs } from '../../lib/react-helpers.js';
 import { Button } from '../button/index.js';
 
-type FilePickerHTMLProps = ComponentPropsWithRef<'input'>;
-type FilePickerBaseProps = Omit<FilePickerHTMLProps, 'type'>;
-export type SelectFilesHandler = (files: File[]) => void;
-export type FilePickerProps = FilePickerBaseProps & {
+export type FilePickerSelectFilesHandler = (files: File[]) => void;
+
+type FilePickerHTMLProps = ComponentProps<'input'>;
+
+type FilePickerBaseProps = {
   label: ReactNode;
   icon?: ReactNode;
   caption?: ReactNode;
   buttonLabel?: ReactNode;
-  onSelectFiles?: SelectFilesHandler;
+  onSelectFiles?: FilePickerSelectFilesHandler;
 };
+
+export type FilePickerProps =
+  & FilePickerBaseProps
+  & Omit<FilePickerHTMLProps, (keyof FilePickerBaseProps) | 'type'>;
 
 export const FilePicker = forwardRef<
   HTMLInputElement,

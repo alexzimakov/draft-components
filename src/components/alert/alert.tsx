@@ -1,27 +1,33 @@
-import { ComponentPropsWithRef, MouseEventHandler, ReactNode, forwardRef } from 'react';
+import { ComponentProps, MouseEventHandler, ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { XMarkIcon } from '../hero-icons/24/outline/x-mark-icon.js';
 
-type AlertHTMLProps = ComponentPropsWithRef<'div'>;
-type AlertBaseProps = Omit<AlertHTMLProps, 'title'>;
 export type AlertStyle =
   | 'default'
   | 'full-width'
   | 'accent-left';
+
 export type AlertTint =
   | 'gray'
   | 'orange'
   | 'red'
   | 'blue'
   | 'green';
-export type AlertProps = {
+
+type AlertHTMLProps = ComponentProps<'div'>;
+
+type AlertBaseProps = {
   shouldShowDismissButton?: boolean;
   alertStyle?: AlertStyle;
   tint?: AlertTint;
   icon?: ReactNode;
   title?: ReactNode;
   onClickDismissButton?: MouseEventHandler<HTMLButtonElement>;
-} & AlertBaseProps;
+};
+
+export type AlertProps =
+  & AlertBaseProps
+  & Omit<AlertHTMLProps, keyof AlertBaseProps>;
 
 export const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert({
   shouldShowDismissButton,

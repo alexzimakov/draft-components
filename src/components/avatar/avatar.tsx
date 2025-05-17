@@ -1,14 +1,13 @@
-import { ComponentPropsWithRef, ReactNode, forwardRef, useId } from 'react';
+import { ComponentProps, ReactNode, forwardRef, useId } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type AvatarHTMLProps = ComponentPropsWithRef<'svg'>;
-type AvatarBaseProps = Omit<AvatarHTMLProps, 'fill'>;
 export type AvatarSize =
   | 'xs'
   | 'sm'
   | 'md'
   | 'lg'
   | 'xl';
+
 export type AvatarFill =
   | 'gray'
   | 'pink'
@@ -20,14 +19,21 @@ export type AvatarFill =
   | 'blue'
   | 'indigo'
   | 'violet';
-export type AvatarProps = {
+
+type AvatarHTMLProps = ComponentProps<'svg'>;
+
+type AvatarBaseProps = {
   square?: boolean;
   size?: AvatarSize;
   fill?: AvatarFill;
   src?: string;
   altText?: string;
   monogram?: string;
-} & AvatarBaseProps;
+};
+
+export type AvatarProps =
+  & AvatarBaseProps
+  & Omit<AvatarHTMLProps, keyof AvatarBaseProps>;
 
 const sizesInPixels: Record<AvatarSize, number> = {
   xs: 24,

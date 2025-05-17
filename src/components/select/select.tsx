@@ -1,10 +1,12 @@
-import { ChangeEventHandler, ComponentPropsWithRef, forwardRef } from 'react';
+import { ChangeEventHandler, ComponentProps, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { Spinner } from '../spinner/index.js';
 
 export type SelectSize = 'sm' | 'md' | 'lg';
-type SelectHTMLProps = ComponentPropsWithRef<'select'>;
-type SelectBaseProps = Omit<SelectHTMLProps, 'size' | 'multiple' | 'value' | 'defaultValue'> & {
+
+type SelectHTMLProps = ComponentProps<'select'>;
+
+type SelectCommonProps = {
   fullWidth?: boolean;
   invalid?: boolean;
   loading?: boolean;
@@ -12,7 +14,7 @@ type SelectBaseProps = Omit<SelectHTMLProps, 'size' | 'multiple' | 'value' | 'de
   displayedOptionsCount?: number;
 };
 
-export type SelectProps = SelectBaseProps & ({
+type SelectBaseProps = SelectCommonProps & ({
   multiple?: false;
   value?: string | number;
   defaultValue?: string | number;
@@ -23,6 +25,10 @@ export type SelectProps = SelectBaseProps & ({
   defaultValue?: string[];
   onChangeValue?: (value: string[]) => void;
 });
+
+export type SelectProps =
+  & SelectBaseProps
+  & Omit<SelectHTMLProps, keyof SelectBaseProps>;
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   function Select({

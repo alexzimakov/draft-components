@@ -1,15 +1,22 @@
-import { ChangeEventHandler, ComponentPropsWithRef, forwardRef } from 'react';
+import { ChangeEventHandler, ComponentProps, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type TextareaHTMLProps = ComponentPropsWithRef<'textarea'>;
 export type TextareaSize = 'sm' | 'md' | 'lg';
+
 export type TextareaValueChangeHandler = (value: string) => void;
-export type TextareaProps = TextareaHTMLProps & {
+
+type TextareaHTMLProps = ComponentProps<'textarea'>;
+
+type TextareaBaseProps = {
   fullWidth?: boolean;
   invalid?: boolean;
   size?: TextareaSize;
   onChangeValue?: TextareaValueChangeHandler;
 };
+
+export type TextareaProps =
+  & TextareaBaseProps
+  & Omit<TextareaHTMLProps, keyof TextareaBaseProps>;
 
 export const Textarea = forwardRef<
   HTMLTextAreaElement,

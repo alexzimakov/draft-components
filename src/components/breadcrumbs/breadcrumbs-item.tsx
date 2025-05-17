@@ -1,16 +1,22 @@
-import { ComponentPropsWithoutRef, JSX, ReactNode } from 'react';
+import { ComponentProps, JSX, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { useBreadcrumbsContext } from './breadcrumbs-context.js';
 
-type BreadcrumbsItemHTMLProps = ComponentPropsWithoutRef<'a'>;
-export type BreadcrumbsItemRenderFn = (props: {
+export type BreadcrumbsItemRenderer = (props: {
   className: string;
   children: JSX.Element;
 }) => ReactNode;
-export type BreadcrumbsItemProps = {
+
+type BreadcrumbsItemHTMLProps = ComponentProps<'a'>;
+
+type BreadcrumbsItemBaseProps = {
   icon?: ReactNode;
-  renderAs?: BreadcrumbsItemRenderFn;
-} & BreadcrumbsItemHTMLProps;
+  renderAs?: BreadcrumbsItemRenderer;
+};
+
+export type BreadcrumbsItemProps =
+  & BreadcrumbsItemBaseProps
+  & Omit<BreadcrumbsItemHTMLProps, keyof BreadcrumbsItemBaseProps>;
 
 export function BreadcrumbsItem({
   className,

@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest';
 import { NavList } from './nav-list.js';
 import { NavListTitle } from './nav-list-title.js';
-import { NavListItem, NavListItemRenderFn } from './nav-list-item.js';
+import { NavListItem, NavListItemRenderer } from './nav-list-item.js';
 import { render, screen, within } from '../../test/test-utils.js';
 
 it('renders without errors', () => {
@@ -63,7 +63,7 @@ it('renders without errors', () => {
 });
 
 it('should render `NavItem` using custom render function', () => {
-  const renderItem: NavListItemRenderFn = (props) => (
+  const renderItem: NavListItemRenderer = (props) => (
     <button {...props} />
   );
   render(

@@ -1,7 +1,9 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-export type TableBodyProps = ComponentPropsWithRef<'tbody'>;
+type TableBodyHTMLProps = ComponentProps<'tbody'>;
+
+export type TableBodyProps = TableBodyHTMLProps;
 
 export const TableBody = forwardRef<
   HTMLTableSectionElement,

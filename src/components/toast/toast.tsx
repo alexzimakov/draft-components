@@ -1,15 +1,20 @@
-import { ComponentPropsWithoutRef, MouseEventHandler, ReactNode } from 'react';
+import { ComponentProps, MouseEventHandler, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { XMarkIcon } from '../hero-icons/24/outline/x-mark-icon.js';
 
-type ToastBaseProps = ComponentPropsWithoutRef<'section'>;
-export type ToastProps = {
+type ToastHTMLProps = ComponentProps<'section'>;
+
+type ToastBaseProps = {
   icon?: ReactNode;
   message?: ReactNode;
   actions?: ReactNode;
   closeButtonAriaLabel?: string;
   onClickCloseButton?: MouseEventHandler<HTMLButtonElement>;
-} & ToastBaseProps;
+};
+
+export type ToastProps =
+  & ToastBaseProps
+  & Omit<ToastHTMLProps, keyof ToastBaseProps>;
 
 export function Toast({
   icon,

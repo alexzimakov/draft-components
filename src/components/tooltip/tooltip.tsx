@@ -1,6 +1,6 @@
 import {
   CSSProperties,
-  ComponentPropsWithoutRef,
+  ComponentProps,
   FocusEvent,
   MouseEvent,
   ReactNode,
@@ -14,21 +14,25 @@ import { classNames, isReactElementWithRef, mergeRefs } from '../../lib/react-he
 import { useMountTransition } from '../../hooks/index.js';
 import { Positioner, PositionerAnchorRenderFn, PositionerContentRenderFn, PositionerProps } from '../positioner/index.js';
 
-type TooltipChildrenRenderFn = (
-  props: { ref: RefCallback<HTMLElement> },
+export type TooltipPlacement = PositionerProps['placement'];
+
+export type TooltipAlignment = PositionerProps['alignment'];
+
+export type TooltipChildrenRenderer = (
+  props: {
+    ref: RefCallback<HTMLElement>;
+  },
   context: {
     isShown: boolean;
     tooltipId: string;
-    hideTooltip: () => void;
     showTooltip: () => void;
+    hideTooltip: () => void;
   }
 ) => ReactNode;
 
-type TooltipHTMLProps = ComponentPropsWithoutRef<'div'>;
-type TooltipBaseProps = Omit<TooltipHTMLProps, 'children' | 'content'>;
-export type TooltipPlacement = PositionerProps['placement'];
-export type TooltipAlignment = PositionerProps['alignment'];
-export type TooltipProps = {
+type TooltipHTMLProps = ComponentProps<'div'>;
+
+type TooltipBaseProps = {
   htmlContent?: TooltipHTMLProps['content'];
   anchorGap?: number;
   placement?: TooltipPlacement;
@@ -36,8 +40,12 @@ export type TooltipProps = {
   defaultIsShown?: boolean;
   isShown?: boolean;
   content: ReactNode;
-  children: ReactNode | TooltipChildrenRenderFn;
-} & TooltipBaseProps;
+  children: ReactNode | TooltipChildrenRenderer;
+};
+
+export type TooltipProps =
+  & TooltipBaseProps
+  & Omit<TooltipHTMLProps, keyof TooltipBaseProps>;
 
 export function Tooltip({
   anchorGap = 8,

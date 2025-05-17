@@ -1,9 +1,15 @@
-import { ComponentPropsWithoutRef, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-export type SpinnerProps = ComponentPropsWithoutRef<'svg'> & {
+type SpinnerHTMLProps = ComponentProps<'svg'>;
+
+type SpinnerBaseProps = {
   size?: number | string;
 };
+
+export type SpinnerProps =
+  & SpinnerBaseProps
+  & Omit<SpinnerHTMLProps, keyof SpinnerBaseProps>;
 
 export const Spinner = forwardRef<SVGSVGElement, SpinnerProps>(
   function Spinner({

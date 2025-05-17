@@ -1,18 +1,23 @@
-import { ComponentPropsWithRef, ReactNode, forwardRef } from 'react';
+import { ComponentProps, ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type CaptionHTMLProps = ComponentPropsWithRef<'div'>;
-type CaptionBaseProps = Omit<CaptionHTMLProps, 'color'>;
 export type CaptionColor =
   | 'gray'
   | 'blue'
   | 'green'
   | 'orange'
   | 'red';
-export type CaptionProps = {
+
+type CaptionHTMLProps = ComponentProps<'div'>;
+
+type CaptionBaseProps = {
   icon?: ReactNode;
   color?: CaptionColor;
-} & CaptionBaseProps;
+};
+
+export type CaptionProps =
+  & CaptionBaseProps
+  & Omit<CaptionHTMLProps, keyof CaptionBaseProps>;
 
 export const Caption = forwardRef<
   HTMLDivElement,

@@ -1,13 +1,21 @@
-import { ComponentPropsWithRef, JSX, ReactNode, forwardRef } from 'react';
+import { ComponentProps, JSX, ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { Spinner } from '../spinner/index.js';
 
-type ButtonHTMLProps = ComponentPropsWithRef<'button'>;
 export type ButtonStyle = 'filled' | 'tinted' | 'plain';
+
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
 export type ButtonTint = 'gray' | 'blue' | 'red' | 'green';
-export type ButtonRenderer = (props: { className: string; children: JSX.Element }) => JSX.Element;
-export type ButtonProps = {
+
+export type ButtonRenderer = (props: {
+  className: string;
+  children: JSX.Element;
+}) => JSX.Element;
+
+type ButtonHTMLProps = ComponentProps<'button'>;
+
+type ButtonBaseProps = {
   fullWidth?: boolean;
   loading?: boolean;
   buttonStyle?: ButtonStyle;
@@ -17,7 +25,11 @@ export type ButtonProps = {
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   renderAs?: ButtonRenderer;
-} & ButtonHTMLProps;
+};
+
+export type ButtonProps =
+  & ButtonBaseProps
+  & Omit<ButtonHTMLProps, keyof ButtonBaseProps>;
 
 export const Button = forwardRef<
   HTMLButtonElement,

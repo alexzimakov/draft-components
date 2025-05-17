@@ -1,10 +1,10 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentProps } from 'react';
 
 export function MagnifyingGlass({
   width = 24,
   height = 24,
   ...props
-}: ComponentPropsWithoutRef<'svg'>) {
+}: ComponentProps<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ export function ChevronDown({
   width = 24,
   height = 24,
   ...props
-}: ComponentPropsWithoutRef<'svg'>) {
+}: ComponentProps<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -1,22 +1,31 @@
-import { ChangeEventHandler, ComponentPropsWithoutRef, ReactNode } from 'react';
+import { ChangeEventHandler, ComponentProps, ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { ColorPickerButton } from './color-picker-button.js';
 
-export type ColorPickerOption<T extends string | number> = {
+export type ColorPickerValue = string | number;
+
+export type ColorPickerOption<T extends ColorPickerValue> = {
   value: T;
-  color: string; // Any valid CSS background
+  color: string;
   label?: ReactNode;
 };
-export type ColorPickerProps<T extends string | number> = {
-  name: string;
+
+type ColorPickerHTMLProps = ComponentProps<'fieldset'>;
+
+type ColorPickerBaseProps<T extends ColorPickerValue> = {
   options: ColorPickerOption<T>[] | Readonly<ColorPickerOption<T>[]>;
+  name: string;
   value?: T;
   defaultValue?: T;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onChangeValue?: (value: T) => void;
-} & ComponentPropsWithoutRef<'fieldset'>;
+};
 
-export function ColorPicker<T extends string | number>({
+export type ColorPickerProps<T extends ColorPickerValue> =
+  & ColorPickerBaseProps<T>
+  & Omit<ColorPickerHTMLProps, keyof ColorPickerBaseProps<T>>;
+
+export function ColorPicker<T extends ColorPickerValue>({
   className,
   name,
   disabled,

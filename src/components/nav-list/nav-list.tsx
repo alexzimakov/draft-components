@@ -1,7 +1,10 @@
-import { ComponentPropsWithoutRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
+import { ComponentProps } from 'react';
+import { NavListItem } from './nav-list-item.js';
+import { NavListTitle } from './nav-list-title.js';
 
-type NavListHTMLProps = ComponentPropsWithoutRef<'nav'>;
+type NavListHTMLProps = ComponentProps<'nav'>;
+
 export type NavListProps = NavListHTMLProps;
 
 export function NavList({
@@ -15,3 +18,6 @@ export function NavList({
     </nav>
   );
 }
+
+NavList.Title = NavListTitle;
+NavList.Item = NavListItem;

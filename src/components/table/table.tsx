@@ -1,14 +1,20 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type TableBaseProps = ComponentPropsWithRef<'table'>;
 export type TableCellSize = 'sm' | 'md' | 'lg';
-export type TableProps = {
+
+type TableHTMLProps = ComponentProps<'table'>;
+
+type TableBaseProps = {
   cellSize?: TableCellSize;
   isStriped?: boolean;
   isBordered?: boolean;
-  highlightRowOnHover?: boolean;
-} & TableBaseProps;
+  shouldHighlightHoveredRow?: boolean;
+};
+
+export type TableProps =
+  & TableBaseProps
+  & Omit<TableHTMLProps, keyof TableBaseProps>;
 
 export const Table = forwardRef<
   HTMLTableElement,
@@ -17,7 +23,7 @@ export const Table = forwardRef<
   cellSize = 'md',
   isStriped = false,
   isBordered = false,
-  highlightRowOnHover = false,
+  shouldHighlightHoveredRow = false,
   className,
   children,
   ...props
@@ -30,7 +36,7 @@ export const Table = forwardRef<
         [`dc-table_cell_${cellSize}`]: cellSize,
         'dc-table_striped': isStriped,
         'dc-table_bordered': isBordered,
-        'dc-table_highlight_row': highlightRowOnHover,
+        'dc-table_highlight_row': shouldHighlightHoveredRow,
       })}
     >
       {children}

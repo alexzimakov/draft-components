@@ -1,11 +1,15 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentProps } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type BadgeHTMLProps = ComponentPropsWithoutRef<'span'>;
-type BadgeBaseProps = Omit<BadgeHTMLProps, 'children'>;
-export type BadgeProps = {
+type BadgeHTMLProps = ComponentProps<'span'>;
+
+type BadgeBaseProps = {
   children: number | string;
-} & BadgeBaseProps;
+};
+
+export type BadgeProps =
+  & BadgeBaseProps
+  & Omit<BadgeHTMLProps, keyof BadgeBaseProps>;
 
 export function Badge({
   className,

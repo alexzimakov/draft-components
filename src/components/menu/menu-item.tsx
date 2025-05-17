@@ -1,7 +1,7 @@
-import { ComponentPropsWithRef, ReactNode, forwardRef } from 'react';
+import { ComponentProps, ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type MenuItemHTMLProps = ComponentPropsWithRef<'button'>;
+type MenuItemHTMLProps = ComponentProps<'button'>;
 
 type MenuItemBaseProps = {
   role?: 'menuitem' | 'menuitemradio';

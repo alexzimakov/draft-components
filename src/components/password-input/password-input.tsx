@@ -6,14 +6,15 @@ import { EyeIcon } from '../hero-icons/24/outline/eye-icon.js';
 import { EyeSlashIcon } from '../hero-icons/24/outline/eye-slash-icon.js';
 import { Spinner } from '../spinner/index.js';
 
-export type PasswordInputBaseProps = Omit<TextInputProps, 'type' | 'slotRight'>;
-export type PasswordInputProps = {
+type PasswordInputBaseProps = Omit<TextInputProps, 'type' | 'slotRight'>;
+
+export type PasswordInputProps = PasswordInputBaseProps & {
   loading?: boolean;
   defaultVisible?: boolean;
   getTooltipText?: (visible: boolean) => ReactNode;
   renderToggleButtonIcon?: (visible: boolean) => ReactNode;
   onClickToggleButton?: MouseEventHandler<HTMLButtonElement>;
-} & PasswordInputBaseProps;
+};
 
 const getDefaultTooltipText = (visible: boolean) => (visible
   ? 'Hide password'

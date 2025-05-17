@@ -1,13 +1,18 @@
-import { ComponentPropsWithRef, ComponentPropsWithoutRef, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type CheckboxHTMLProps = ComponentPropsWithRef<'input'>;
-type CheckboxBaseProps = Omit<CheckboxHTMLProps, 'type'>;
 export type CheckboxToggleHandler = (checked: boolean) => void;
-export type CheckboxProps = CheckboxBaseProps & {
+
+type CheckboxHTMLProps = ComponentProps<'input'>;
+
+type CheckboxBaseProps = {
   hasMixedState?: boolean;
   onToggle?: CheckboxToggleHandler;
 };
+
+export type CheckboxProps =
+  & CheckboxBaseProps
+  & Omit<CheckboxHTMLProps, keyof CheckboxBaseProps>;
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   function Checkbox({
@@ -54,7 +59,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   },
 );
 
-function CheckIcon(props: ComponentPropsWithoutRef<'svg'>) {
+function CheckIcon(props: ComponentProps<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +80,7 @@ function CheckIcon(props: ComponentPropsWithoutRef<'svg'>) {
   );
 }
 
-function DashIcon(props: ComponentPropsWithoutRef<'svg'>) {
+function DashIcon(props: ComponentProps<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

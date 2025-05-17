@@ -13,16 +13,6 @@ import { Popover, PopoverPlacement, PopoverRenderAnchor } from '../popover/index
 import { MenuItem } from './menu-item.js';
 import { MenuSeparator } from './menu-separator.js';
 
-type MenuHTMLProps = ComponentProps<'div'>;
-
-type MenuBaseProps = {
-  defaultIsOpen?: boolean;
-  placement?: PopoverPlacement;
-  renderButton: MenuRenderButton;
-  onOpen?: MenuOpenHandler;
-  onClose?: MenuCloseHandler;
-};
-
 export type MenuOpenHandler = () => void;
 
 export type MenuCloseHandler = () => void;
@@ -33,7 +23,7 @@ export type MenuApi = {
   toggle: () => void;
 };
 
-export type MenuRenderButton = (props: {
+export type MenuButtonRenderer = (props: {
   'ref': RefCallback<HTMLElement>;
   'id': string;
   'aria-haspopup': true;
@@ -42,6 +32,16 @@ export type MenuRenderButton = (props: {
   'onClick': MouseEventHandler;
   'onKeyDown': KeyboardEventHandler;
 }) => JSX.Element;
+
+type MenuHTMLProps = ComponentProps<'div'>;
+
+type MenuBaseProps = {
+  defaultIsOpen?: boolean;
+  placement?: PopoverPlacement;
+  renderButton: MenuButtonRenderer;
+  onOpen?: MenuOpenHandler;
+  onClose?: MenuCloseHandler;
+};
 
 export type MenuProps =
   & MenuBaseProps

@@ -1,20 +1,22 @@
-import { ComponentPropsWithoutRef, JSX, ReactNode, cloneElement, forwardRef, useId } from 'react';
+import { ComponentProps, JSX, ReactNode, cloneElement, forwardRef, useId } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { Label } from '../label/index.js';
 import { Caption } from '../caption/index.js';
 
-export type SelectionControlRenderFn = (props: {
-  id: string;
-}) => JSX.Element;
+export type SelectionControlRenderer = (props: { id: string }) => JSX.Element;
 
-type SelectionControlHTMLProps = ComponentPropsWithoutRef<'div'>;
-type SelectionControlBaseProps = Omit<SelectionControlHTMLProps, 'children'>;
-export type SelectionControlProps = {
+type SelectionControlHTMLProps = ComponentProps<'div'>;
+
+type SelectionControlBaseProps = {
   labelFor?: string;
   caption?: ReactNode;
   label: ReactNode;
-  children: JSX.Element | SelectionControlRenderFn;
-} & SelectionControlBaseProps;
+  children: JSX.Element | SelectionControlRenderer;
+};
+
+export type SelectionControlProps =
+  & SelectionControlBaseProps
+  & Omit<SelectionControlHTMLProps, keyof SelectionControlBaseProps>;
 
 export const SelectionControl = forwardRef<
   HTMLDivElement,

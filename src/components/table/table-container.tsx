@@ -1,16 +1,22 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-type TableContainerBaseProps = ComponentPropsWithRef<'div'>;
 export type TableContainerBorder = {
   top?: boolean;
   right?: boolean;
   bottom?: boolean;
   left?: boolean;
 };
-export type TableContainerProps = {
+
+type TableContainerHTMLProps = ComponentProps<'div'>;
+
+type TableContainerBaseProps = {
   border?: 'none' | 'all' | TableContainerBorder;
-} & TableContainerBaseProps;
+};
+
+export type TableContainerProps =
+  & TableContainerBaseProps
+  & Omit<TableContainerHTMLProps, keyof TableContainerBaseProps>;
 
 export const TableContainer = forwardRef<
   HTMLDivElement,

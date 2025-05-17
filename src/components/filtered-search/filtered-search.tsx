@@ -1,6 +1,6 @@
 import {
   ChangeEventHandler,
-  ComponentPropsWithoutRef,
+  ComponentProps,
   FocusEventHandler,
   JSX,
   KeyboardEventHandler,
@@ -20,11 +20,9 @@ import { TrashIcon } from '../hero-icons/24/outline/trash-icon.js';
 import { MagnifyingGlassIcon } from '../hero-icons/24/outline/magnifying-glass-icon.js';
 import { KeyboardKeys, classNames, exhaustiveCheck } from '../../lib/index.js';
 
-export type FilteredSearchHTMLProps = ComponentPropsWithoutRef<'div'>;
-export type FilteredSearchBaseProps = Omit<FilteredSearchHTMLProps,
-  | 'children'
-  | 'placeholder'>;
-export type FilteredSearchProps = FilteredSearchBaseProps & {
+type FilteredSearchHTMLProps = ComponentProps<'div'>;
+
+type FilteredSearchBaseProps = {
   placeholder?: string;
   applyButtonLabel?: string;
   cancelButtonLabel?: string;
@@ -34,6 +32,10 @@ export type FilteredSearchProps = FilteredSearchBaseProps & {
   filters: Filter[];
   onChangeFilters: (filters: Filter[]) => void;
 };
+
+export type FilteredSearchProps =
+  & FilteredSearchBaseProps
+  & Omit<FilteredSearchHTMLProps, (keyof FilteredSearchBaseProps) | 'children'>;
 
 export function FilteredSearch({
   filters: appliedFilters,
