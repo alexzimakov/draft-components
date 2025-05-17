@@ -1,4 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
+import { JSX } from 'react';
 import { Radio } from './radio.js';
 
 const meta: Meta<typeof Radio> = {
