@@ -51,8 +51,6 @@ export function Popover({
   placement = 'bottom-start',
   anchorPadding = 4,
   viewportPadding = 4,
-  openAnimationDuration = 50,
-  closeAnimationDuration = 50,
   shouldTrapFocus = true,
   shouldLockBodyScroll = true,
   shouldCloseOnEsc = true,
@@ -63,9 +61,9 @@ export function Popover({
   onUnmount,
   ...props
 }: PopoverProps) {
-  const [isMounted, setIsMounted] = useState(false);
-  const popoverRef = useRef<HTMLDivElement | null>(null);
+  const [isMounted, setIsMounted] = useState(isOpen);
   const defaultAnchorRef = useRef<HTMLElement | null>(null);
+  const popoverRef = useRef<HTMLDivElement | null>(null);
 
   const isAnchorRefProvided = 'anchorRef' in props;
   let anchorRef: RefObject<HTMLElement | null>;
@@ -89,14 +87,23 @@ export function Popover({
   });
 
   useEffect(() => {
-    if (isOpen) {
-      const anchor = anchorRef.current;
-      const popover = popoverRef.current;
-      if (!anchor || !popover) {
-        return;
-      }
+    const anchor = anchorRef.current;
+    const popover = popoverRef.current;
+    if (!anchor || !popover) {
+      return;
+    }
 
-      const positionPopover = () => {
+    if (isOpen) {
+      setIsMounted((isMounted) => {
+        if (isMounted) {
+          return isMounted;
+        }
+
+        popover.setAttribute('data-animation', 'enter');
+        return !isMounted;
+      });
+
+      return observeMove(anchor, () => {
         popover.style.removeProperty('max-width');
         popover.style.removeProperty('max-height');
         const result = calcPopoverPosition(anchor, popover, {
@@ -108,42 +115,17 @@ export function Popover({
         popover.style.setProperty('left', `${result.x}px`);
         popover.style.setProperty('max-width', `${result.maxWidth}px`);
         popover.style.setProperty('max-height', `${result.maxHeight}px`);
-      };
-
-      setIsMounted(isOpen);
-      const unobserve = observeMove(anchor, positionPopover);
-      popover.animate({
-        opacity: [0, 1],
-        easing: 'ease',
-      }, {
-        duration: openAnimationDuration,
-        fill: 'forwards',
       });
-
-      return () => {
-        unobserve();
-        const animation = popover.animate({
-          opacity: [1, 0],
-          easing: 'ease',
-        }, {
-          duration: closeAnimationDuration,
-          fill: 'forwards',
-        });
-        animation.finished.then(() => {
-          unmount();
-          anchor.focus();
-        });
-      };
+    } else {
+      popover.setAttribute('data-animation', 'leave');
+      popover.addEventListener('animationend', unmount, { once: true });
     }
   }, [
+    anchorRef,
+    isOpen,
     placement,
     anchorPadding,
     viewportPadding,
-    openAnimationDuration,
-    closeAnimationDuration,
-    isOpen,
-    anchorRef,
-    close,
     unmount,
   ]);
 
@@ -164,6 +146,17 @@ export function Popover({
     disabled: !shouldCloseOnClickOutside || !isMounted,
     shouldIgnoreClick: (node) => anchorRef.current ? anchorRef.current.contains(node) : false,
   });
+
+  useEffect(() => {
+    if (isOpen) {
+      const prevFocusedElement = document.activeElement;
+      return () => {
+        if (prevFocusedElement instanceof HTMLElement) {
+          prevFocusedElement.focus();
+        }
+      };
+    }
+  }, [isOpen]);
 
   return (
     <>

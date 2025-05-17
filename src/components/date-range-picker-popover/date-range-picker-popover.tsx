@@ -114,6 +114,7 @@ export function DateRangePickerPopover({
         'dc-date-range-picker-popover': true,
         'dc-date-range-picker-popover_compact': isCompactView,
       })}
+      data-testid="date-range-picker-popover"
       placement={placement}
       isOpen={isOpen}
       onClose={popoverApi.close}

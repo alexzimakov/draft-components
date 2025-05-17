@@ -24,6 +24,41 @@
   box-shadow: var(--dc-popover-shadow);
 }
 
+@keyframes dc-popover-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.dc-popover[data-animation="enter"] {
+  animation: dc-popover-enter 50ms ease forwards;
+}
+
+@keyframes dc-popover-leave {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.dc-popover[data-animation="leave"] {
+  animation: dc-popover-leave 50ms ease forwards;
+}
+
+@media (prefers-reduced-motion) {
+  .dc-popover[data-animation="enter"]
+  .dc-popover[data-animation="leave"] {
+    animation-duration: 0ms !important;
+  }
+}
+
 .dark .dc-popover,
 .dark.dc-popover {
   --dc-popover-border-color: var(--dc-gray-700);

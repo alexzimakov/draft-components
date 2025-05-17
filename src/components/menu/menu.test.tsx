@@ -3,7 +3,7 @@ import { Menu } from './menu.js';
 import { MenuItem } from './menu-item.js';
 import { MenuSeparator } from './menu-separator.js';
 import { mockMatchMedia } from '../../test/mock-match-media.js';
-import { render, screen, userEvent, waitFor, within } from '../../test/test-utils.js';
+import { fireEvent, render, screen, userEvent, waitFor, within } from '../../test/test-utils.js';
 
 beforeAll(() => {
   mockMatchMedia();
@@ -73,6 +73,9 @@ it('should toggle the menu by click on the menu button', async () => {
   screen.getByRole('menu');
 
   await user.click(screen.getByText(label));
+  fireEvent.animationStart(screen.getByRole('menu'));
+  fireEvent.animationEnd(screen.getByRole('menu'));
+
   await waitFor(() => expect(screen.queryByRole('menu')).toBeNull());
 });
 
@@ -95,6 +98,9 @@ it('should close the menu when the Esc key pressed', async () => {
   screen.getByRole('menu');
 
   await user.keyboard('{Escape}');
+  fireEvent.animationStart(screen.getByRole('menu'));
+  fireEvent.animationEnd(screen.getByRole('menu'));
+
   await waitFor(() => expect(screen.queryByRole('menu')).toBeNull());
 });
 
@@ -102,10 +108,10 @@ it('should close the menu when click on outside the menu', async () => {
   const user = userEvent.setup();
   const label = 'Actions';
   const actions = ['Duplicate', 'Rename', 'Delete'];
-  const externalButtonTestId = 'external-button';
+  const outsideButtonTestId = 'external-button';
   render(
     <div>
-      <button data-testid={externalButtonTestId}>Close menu</button>
+      <button data-testid={outsideButtonTestId}>Close menu</button>
       <Menu
         defaultIsOpen={true}
         renderButton={(props) => <button {...props}>{label}</button>}
@@ -120,7 +126,10 @@ it('should close the menu when click on outside the menu', async () => {
 
   screen.getByRole('menu');
 
-  await user.click(screen.getByTestId(externalButtonTestId));
+  await user.click(screen.getByTestId(outsideButtonTestId));
+  fireEvent.animationStart(screen.getByRole('menu'));
+  fireEvent.animationEnd(screen.getByRole('menu'));
+
   await waitFor(() => expect(screen.queryByRole('menu')).toBeNull());
 });
 
@@ -344,6 +353,9 @@ it('should close the menu when click on any menu item', async () => {
   const [first] = screen.getAllByRole('menuitem');
 
   await user.click(first);
+  fireEvent.animationStart(screen.getByRole('menu'));
+  fireEvent.animationEnd(screen.getByRole('menu'));
+
   await waitFor(() => expect(screen.queryByRole('menu')).toBeNull());
   expect(onClickMock).toHaveBeenCalledTimes(1);
 });

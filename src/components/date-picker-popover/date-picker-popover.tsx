@@ -71,6 +71,7 @@ export function DatePickerPopover({
   return (
     <Popover
       className={classNames('dc-date-picker-popover', className)}
+      data-testid="date-picker-popover"
       placement={placement}
       isOpen={isOpen}
       onClose={popoverApi.close}

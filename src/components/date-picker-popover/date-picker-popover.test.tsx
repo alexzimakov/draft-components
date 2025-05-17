@@ -1,7 +1,7 @@
 import { beforeAll, expect, it, vi } from 'vitest';
 import { DatePickerPopover } from './date-picker-popover.js';
 import { mockMatchMedia } from '../../test/mock-match-media.js';
-import { render, screen, userEvent, waitFor } from '../../test/test-utils.js';
+import { fireEvent, render, screen, userEvent, waitFor } from '../../test/test-utils.js';
 
 beforeAll(() => {
   mockMatchMedia();
@@ -47,6 +47,9 @@ it('can toggle popover visibility', async () => {
   screen.getByRole('grid');
 
   await user.click(button);
+  fireEvent.animationStart(screen.getByTestId('date-picker-popover'));
+  fireEvent.animationEnd(screen.getByTestId('date-picker-popover'));
+
   await waitFor(() => expect(screen.queryByRole('grid')).toBeNull());
 });
 
@@ -66,6 +69,9 @@ it('can select date using calendar', async () => {
 
   await user.click(screen.getByText(label));
   await user.click(screen.getByText('3'));
+  fireEvent.animationStart(screen.getByTestId('date-picker-popover'));
+  fireEvent.animationEnd(screen.getByTestId('date-picker-popover'));
+
   await waitFor(() => expect(screen.queryByRole('grid')).toBeNull());
   expect(onChangeValueMock).toHaveBeenCalledTimes(1);
   expect(onChangeValueMock).toHaveBeenCalledWith('2022-02-03');

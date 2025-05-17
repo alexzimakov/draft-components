@@ -1,7 +1,7 @@
 import { beforeEach, expect, it, vi } from 'vitest';
 import { DateRangePickerPopoverOption } from './types.js';
 import { DateRangePickerPopover } from './date-range-picker-popover.js';
-import { render, screen, userEvent, waitFor } from '../../test/test-utils.js';
+import { fireEvent, render, screen, userEvent, waitFor } from '../../test/test-utils.js';
 import { mockMatchMedia } from '../../test/mock-match-media.js';
 
 beforeEach(() => {
@@ -136,6 +136,9 @@ it('can toggle popover visibility', async () => {
   screen.getByRole('grid');
 
   await user.click(anchorButton);
+  fireEvent.animationStart(screen.getByTestId('date-range-picker-popover'));
+  fireEvent.animationEnd(screen.getByTestId('date-range-picker-popover'));
+
   await waitFor(() => expect(screen.queryByRole('grid')).toBeNull());
 });
 
@@ -158,7 +161,11 @@ it('should close popover when click on the confirm button', async () => {
   );
 
   screen.getByRole('grid');
+
   await user.click(screen.getByText(confirmButtonLabel));
+  fireEvent.animationStart(screen.getByTestId('date-range-picker-popover'));
+  fireEvent.animationEnd(screen.getByTestId('date-range-picker-popover'));
+
   await waitFor(() => expect(screen.queryByRole('grid')).toBeNull());
 });
 
@@ -181,7 +188,11 @@ it('should close popover when click on the cancel button', async () => {
   );
 
   screen.getByRole('grid');
+
   await user.click(screen.getByText(cancelButtonLabel));
+  fireEvent.animationStart(screen.getByTestId('date-range-picker-popover'));
+  fireEvent.animationEnd(screen.getByTestId('date-range-picker-popover'));
+
   await waitFor(() => expect(screen.queryByRole('grid')).toBeNull());
 });
 
