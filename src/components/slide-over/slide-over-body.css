@@ -1,7 +1,0 @@
-.dc-slide-over-body {
-  box-sizing: border-box;
-  flex-grow: 1;
-  padding: 0 16px;
-  overflow: auto;
-  color: var(--dc-slide-over-text-color);
-}
