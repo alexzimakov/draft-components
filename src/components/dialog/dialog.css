@@ -9,6 +9,10 @@
   --dc-dialog-scroll-shadow-bottom: 0 -2px 2px rgb(0 0 0 / 10%);
   --dc-dialog-section-delimiter-width: 1px;
   --dc-dialog-section-delimiter-color: var(--dc-border-color-transparent-2);
+  --dc-dialog-enter-animation-duration: 100ms;
+  --dc-dialog-leave-animation-duration: 100ms;
+  --dc-dialog-enter-slide-animation-duration: 250ms;
+  --dc-dialog-leave-slide-animation-duration: 250ms;
 }
 
 .dc-dialog,
@@ -86,18 +90,21 @@
 }
 
 .dc-dialog__backdrop[data-animation="enter"] {
-  animation: dc-dialog-backdrop-enter 100ms ease forwards;
+  animation: dc-dialog-backdrop-enter var(--dc-dialog-enter-animation-duration) ease forwards;
 }
 
 .dc-dialog__backdrop[data-animation="leave"] {
-  animation: dc-dialog-backdrop-leave 100ms ease forwards;
+  animation: dc-dialog-backdrop-leave var(--dc-dialog-leave-animation-duration) ease forwards;
 }
 
 .dc-dialog_position_right .dc-dialog__backdrop[data-animation="enter"],
+.dc-dialog_position_left .dc-dialog__backdrop[data-animation="enter"] {
+  animation-duration: var(--dc-dialog-enter-slide-animation-duration);
+}
+
 .dc-dialog_position_right .dc-dialog__backdrop[data-animation="leave"],
-.dc-dialog_position_left .dc-dialog__backdrop[data-animation="enter"],
 .dc-dialog_position_left .dc-dialog__backdrop[data-animation="leave"] {
-  animation-duration: 250ms;
+  animation-duration: var(--dc-dialog-leave-slide-animation-duration);
 }
 
 .dc-dialog__modal {
@@ -182,31 +189,31 @@
 }
 
 .dc-dialog__modal[data-animation="enter"] {
-  animation: dc-dialog-modal-enter 100ms ease forwards;
+  animation: dc-dialog-modal-enter var(--dc-dialog-enter-animation-duration) ease forwards;
 }
 
 .dc-dialog__modal[data-animation="leave"] {
-  animation: dc-dialog-modal-leave 100ms ease forwards;
+  animation: dc-dialog-modal-leave var(--dc-dialog-leave-animation-duration) ease forwards;
 }
 
 .dc-dialog_position_right .dc-dialog__modal[data-animation="enter"] {
   animation-name: dc-dialog-modal-slide-left-enter;
-  animation-duration: 250ms;
+  animation-duration: var(--dc-dialog-enter-slide-animation-duration);
 }
 
 .dc-dialog_position_right .dc-dialog__modal[data-animation="leave"] {
   animation-name: dc-dialog-modal-slide-left-leave;
-  animation-duration: 250ms;
+  animation-duration: var(--dc-dialog-leave-slide-animation-duration);
 }
 
 .dc-dialog_position_left .dc-dialog__modal[data-animation="enter"] {
   animation-name: dc-dialog-modal-slide-right-enter;
-  animation-duration: 250ms;
+  animation-duration: var(--dc-dialog-enter-slide-animation-duration);
 }
 
 .dc-dialog_position_left .dc-dialog__modal[data-animation="leave"] {
   animation-name: dc-dialog-modal-slide-right-leave;
-  animation-duration: 250ms;
+  animation-duration: var(--dc-dialog-leave-slide-animation-duration);
 }
 
 @media (prefers-reduced-motion) {
@@ -364,10 +371,13 @@
   }
 
   .dc-dialog_position_centered .dc-dialog__backdrop[data-animation="enter"],
+  .dc-dialog_position_centered .dc-dialog__modal[data-animation="enter"] {
+    animation-duration: var(--dc-dialog-enter-slide-animation-duration);
+  }
+
   .dc-dialog_position_centered .dc-dialog__backdrop[data-animation="leave"],
-  .dc-dialog_position_centered .dc-dialog__modal[data-animation="enter"],
   .dc-dialog_position_centered .dc-dialog__modal[data-animation="leave"] {
-    animation-duration: 250ms;
+    animation-duration: var(--dc-dialog-leave-slide-animation-duration);
   }
 }
 

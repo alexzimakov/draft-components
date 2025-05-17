@@ -128,6 +128,7 @@
   box-sizing: border-box;
   padding: 6px 8px;
   color: var(--dc-filtered-search-option-color);
+  cursor: default;
   border-radius: 5px;
 }
 

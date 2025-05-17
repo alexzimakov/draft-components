@@ -6,6 +6,7 @@
   --dc-menu-item-bg-destructive: var(--dc-button-red-plain-bg-hover);
   --dc-menu-separator-color: var(--dc-bg-transparent-2);
 
+  position: fixed;
   box-sizing: border-box;
   min-width: 160px;
   max-width: 288px;
