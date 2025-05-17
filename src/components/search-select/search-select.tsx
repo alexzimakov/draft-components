@@ -84,6 +84,14 @@ export function SearchSelect<Value>({
       if (textbox) {
         textbox.focus();
       }
+
+      const listbox = window.document.getElementById(listboxId);
+      if (listbox) {
+        const option = listbox.querySelector('[role="option"][aria-selected="true"]');
+        if (option) {
+          option.scrollIntoView(false);
+        }
+      }
     });
   };
 
