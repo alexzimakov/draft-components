@@ -1,10 +1,11 @@
-import { ReactNode, createContext, useContext } from 'react';
+import { ReactNode, createContext, useContext, useState } from 'react';
 
 export type DialogContextValue = {
   titleId: string;
-  descriptionId: string;
   isOpen: boolean;
   onClose: () => void;
+  isBodyHasScroll: boolean;
+  setIsBodyHasScroll: (value: boolean) => void;
 };
 
 const DialogContext = createContext<DialogContextValue | null>(null);
@@ -17,23 +18,30 @@ export function useDialogContext(): DialogContextValue {
   return context;
 }
 
-export function DialogContextProvider(props: {
+export function DialogContextProvider({
+  children,
+  titleId,
+  isOpen,
+  onClose,
+}: {
   children: ReactNode;
   titleId: string;
-  descriptionId: string;
   isOpen: boolean;
   onClose: () => void;
 }) {
+  const [isBodyHasScroll, setIsBodyHasScroll] = useState(false);
+
   return (
     <DialogContext.Provider
       value={{
-        titleId: props.titleId,
-        descriptionId: props.descriptionId,
-        isOpen: props.isOpen,
-        onClose: props.onClose,
+        titleId,
+        isOpen,
+        onClose,
+        isBodyHasScroll,
+        setIsBodyHasScroll,
       }}
     >
-      {props.children}
+      {children}
     </DialogContext.Provider>
   );
 }

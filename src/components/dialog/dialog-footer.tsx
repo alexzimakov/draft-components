@@ -1,23 +1,23 @@
-import { ComponentPropsWithoutRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
+import { useDialogContext } from './dialog-context.js';
+import { ComponentProps } from 'react';
 
-type DialogFooterHTMLProps = ComponentPropsWithoutRef<'div'>;
-export type DialogFooterProps = {
-  hasDivider?: boolean;
-} & DialogFooterHTMLProps;
+type DialogFooterHTMLProps = ComponentProps<'div'>;
+
+export type DialogFooterProps = DialogFooterHTMLProps;
 
 export function DialogFooter({
   className,
-  hasDivider,
-  children,
+  ...props
 }: DialogFooterProps) {
+  const { isBodyHasScroll } = useDialogContext();
   return (
-    <div className={classNames(className, {
-      'dc-dialog-footer': true,
-      'dc-dialog-footer_has_divider': hasDivider,
-    })}
-    >
-      {children}
-    </div>
+    <div
+      className={classNames(className, {
+        'dc-dialog__footer': true,
+        'dc-dialog__footer_has_scroll-shadow': isBodyHasScroll,
+      })}
+      {...props}
+    />
   );
 }

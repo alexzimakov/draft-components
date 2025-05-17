@@ -67,8 +67,11 @@ export function useCloseOnClickOutside(handler: CloseHandler, opts: {
     }
 
     return () => {
-      handlerStack.pop();
-      callbackParams.delete(onClose);
+      const index = handlerStack.indexOf(onClose);
+      if (index >= 0) {
+        handlerStack.splice(index, 1);
+        callbackParams.delete(onClose);
+      }
       if (handlerStack.length === 0) {
         document.removeEventListener('click', handleClick, { capture: true });
       }

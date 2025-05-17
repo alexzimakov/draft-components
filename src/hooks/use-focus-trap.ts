@@ -70,7 +70,10 @@ export function useFocusTrap(modalRef: ModalRef, opts: {
     }
 
     return () => {
-      modalStack.pop();
+      const index = modalStack.indexOf(modalRef);
+      if (index >= 0) {
+        modalStack.splice(index, 1);
+      }
       if (modalStack.length === 0) {
         document.body.removeEventListener('keydown', handleBodyKeyDown, { capture: true });
       }

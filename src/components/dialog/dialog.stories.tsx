@@ -1,7 +1,6 @@
 import { Meta } from '@storybook/react';
-import { RefObject, useRef, useState } from 'react';
+import { ReactNode, useRef, useState } from 'react';
 import { Dialog } from './dialog.js';
-import { mergeRefs } from '../../lib/react-helpers.js';
 import { Button } from '../button/index.js';
 import { FormField } from '../form-field/index.js';
 import { TextInput } from '../text-input/index.js';
@@ -12,64 +11,133 @@ import { EnvelopeIcon, MusicalNoteIcon, PhoneIcon } from '@heroicons/react/24/so
 const meta: Meta<typeof Dialog> = {
   title: 'Overlays/Dialog',
   component: Dialog,
+  parameters: {
+    layout: 'centered',
+  },
 };
 export default meta;
 
 export const Basic = () => {
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const cancelButtonRef = useRef<HTMLButtonElement>(null);
-  const openButtonRef = useRef<HTMLButtonElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [phoneVerifying, setPhoneVerifying] = useState(false);
-  const closeDialog = () => setIsOpen(false);
-  const verifyPhone = () => setPhoneVerifying(true);
+  const [isPhoneCheckDialogOpen, setIsPhoneCheckDialogOpen] = useState(false);
+
+  const openDialog = () => {
+    return setIsOpen(true);
+  };
+
+  const closeDialog = () => {
+    return setIsOpen(false);
+  };
+
+  const openPhoneCheckDialogOpen = () => {
+    return setIsPhoneCheckDialogOpen(true);
+  };
+
+  const closePhoneCheckDialogOpen = () => {
+    return setIsPhoneCheckDialogOpen(false);
+  };
 
   return (
     <div>
-      <Button ref={openButtonRef} onClick={() => setIsOpen(!isOpen)}>
-        Open dialog
+      <Button onClick={openDialog}>
+        Sign Up
       </Button>
-      <Dialog
-        isOpen={isOpen}
-        onClose={closeDialog}
-        focusAfterOpenRef={cancelButtonRef}
-        focusAfterCloseRef={openButtonRef}
-      >
-        <Dialog.Header title="Create your account" hasDivider={true}>
-          Already have an account?
-          {' '}
-          <a href="/">Sign in</a>
+      <Dialog isOpen={isOpen} onClose={closeDialog}>
+        <Dialog.Header title="Create your account" contentAlign="center">
+          Already have an account? <u>Sign in</u>
         </Dialog.Header>
-        <Dialog.Body>
+        <Dialog.Body shouldShowScrollShadow={true}>
           <RegisterForm />
         </Dialog.Body>
-        <Dialog.Footer hasDivider={true}>
-          <Menu button={({ ref, ...props }) => (
-            <Button
-              {...props}
-              ref={mergeRefs(ref, menuButtonRef)}
-              style={{ marginRight: 'auto' }}
-              buttonStyle="plain"
-            >
-              Verify phone
-            </Button>
-          )}
-          >
-            <MenuItem onClick={verifyPhone}>Via SMS</MenuItem>
-            <MenuItem onClick={verifyPhone}>Via voice call</MenuItem>
-          </Menu>
-          <Button ref={cancelButtonRef} tint="gray" onClick={closeDialog}>
-            Cancel
-          </Button>
+        <Dialog.Footer>
           <Button tint="blue" onClick={closeDialog}>
             Create
           </Button>
+          <Button onClick={closeDialog} buttonStyle="plain">
+            Cancel
+          </Button>
+          <Menu
+            placement="bottom-end"
+            renderButton={({ ref, ...props }) => (
+              <Button
+                {...props}
+                ref={ref}
+                style={{ marginLeft: 'auto' }}
+              >
+                Verify phone
+              </Button>
+            )}
+          >
+            <MenuItem onClick={openPhoneCheckDialogOpen}>Via SMS</MenuItem>
+            <MenuItem onClick={openPhoneCheckDialogOpen}>Via voice call</MenuItem>
+          </Menu>
         </Dialog.Footer>
-        <VerifyPhoneDialog
-          focusAfterCloseRef={menuButtonRef}
-          isOpen={phoneVerifying}
-          onClose={() => setPhoneVerifying(false)}
+        <PhoneCheckDialog
+          isOpen={isPhoneCheckDialogOpen}
+          onClose={closePhoneCheckDialogOpen}
         />
+      </Dialog>
+    </div>
+  );
+};
+
+export const RightSheet = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openDialog = () => {
+    return setIsOpen(true);
+  };
+
+  const closeDialog = () => {
+    return setIsOpen(false);
+  };
+
+  return (
+    <div>
+      <Button onClick={openDialog}>
+        Show Right Sheet
+      </Button>
+      <Dialog position="right" isOpen={isOpen} onClose={closeDialog}>
+        <Dialog.Header title="Right Sheet">
+          <ContentMock>Header</ContentMock>
+        </Dialog.Header>
+        <Dialog.Body shouldShowScrollShadow={true}>
+          <ContentMock>Main content</ContentMock>
+        </Dialog.Body>
+        <Dialog.Footer>
+          <ContentMock>Footer</ContentMock>
+        </Dialog.Footer>
+      </Dialog>
+    </div>
+  );
+};
+
+export const LeftSheet = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openDialog = () => {
+    return setIsOpen(true);
+  };
+
+  const closeDialog = () => {
+    return setIsOpen(false);
+  };
+
+  return (
+    <div>
+      <Button onClick={openDialog}>
+        Show Left Sheet
+      </Button>
+      <Dialog position="left" isOpen={isOpen} onClose={closeDialog}>
+        <Dialog.Header title="Left Sheet">
+          <ContentMock>Header</ContentMock>
+        </Dialog.Header>
+        <Dialog.Body shouldShowScrollShadow={true}>
+          <ContentMock>Main content</ContentMock>
+        </Dialog.Body>
+        <Dialog.Footer>
+          <ContentMock>Footer</ContentMock>
+        </Dialog.Footer>
       </Dialog>
     </div>
   );
@@ -77,42 +145,42 @@ export const Basic = () => {
 
 export const PreserveProps = () => {
   type SongCredits = {
-    album: string;
-    artist: string;
-    released: number;
-    genres: string[];
+    song: string;
+    performedBy: string;
+    writtenBy: string;
+    producedBy: string;
   };
-  const [account, setAccount] = useState<SongCredits | null>(null);
+  const [credits, setCredits] = useState<SongCredits | null>(null);
   const styles = {
     dialog: {
-      width: 400,
+      maxWidth: 400,
     },
-    credits: {
+    meta: {
       display: 'grid',
       gridTemplateColumns: 'auto 1fr',
       gridGap: '8px 16px',
-      margin: 0,
+      margin: '16px 0 0',
     },
-    credits__key: {
+    key: {
       opacity: 0.75,
       textAlign: 'right' as const,
     },
-    credits__value: {
+    value: {
       margin: 0,
     },
   };
 
   const openDialog = () => {
-    setAccount({
-      album: 'Whenever You Need Somebody',
-      artist: 'Rick Astley',
-      released: 1987,
-      genres: ['Dance-pop', 'Blue-eyed soul', 'Pop', 'Adult Contemporary'],
+    setCredits({
+      song: 'Never Gonna Give You Up',
+      performedBy: 'Rick Astley',
+      writtenBy: 'Matt Aitken, Mike Stock, Pete Waterman',
+      producedBy: 'Mike Stock, Matt Aitken, Pete Waterman',
     });
   };
 
   const closeDialog = () => {
-    setAccount(null);
+    setCredits(null);
   };
 
   return (
@@ -123,25 +191,25 @@ export const PreserveProps = () => {
 
       <Dialog
         style={styles.dialog}
-        isOpen={account !== null}
+        isOpen={credits !== null}
         onClose={closeDialog}
       >
-        <Dialog.Header title="Credits" hasDivider={true} />
-        <Dialog.Body>
-          {account && (
-            <dl style={styles.credits}>
-              <dt style={styles.credits__key}>Album:</dt>
-              <dd style={styles.credits__value}>{account.album}</dd>
+        <Dialog.Header title="Credits" />
+        <Dialog.Body style={styles.dialog} hasTopDelimiter={true}>
+          {credits && (
+            <>
+              <b>{credits.song}</b>
+              <dl style={styles.meta}>
+                <dt style={styles.key}>Performed by:</dt>
+                <dd style={styles.value}>{credits.performedBy}</dd>
 
-              <dt style={styles.credits__key}>Artist:</dt>
-              <dd style={styles.credits__value}>{account.artist}</dd>
+                <dt style={styles.key}>Written by:</dt>
+                <dd style={styles.value}>{credits.writtenBy}</dd>
 
-              <dt style={styles.credits__key}>Released:</dt>
-              <dd style={styles.credits__value}>{account.released}</dd>
-
-              <dt style={styles.credits__key}>Genres:</dt>
-              <dd style={styles.credits__value}>{account.genres.join(', ')}</dd>
-            </dl>
+                <dt style={styles.key}>Produced by:</dt>
+                <dd style={styles.value}>{credits.producedBy}</dd>
+              </dl>
+            </>
           )}
         </Dialog.Body>
       </Dialog>
@@ -180,7 +248,6 @@ function RegisterForm() {
       <FormField
         label="Password:"
         labelFor="password"
-        hint="Must contain at least 10 characters."
       >
         <PasswordInput
           id="password"
@@ -192,28 +259,22 @@ function RegisterForm() {
   );
 }
 
-function VerifyPhoneDialog({
-  focusAfterCloseRef,
+function PhoneCheckDialog({
   isOpen,
   onClose,
 }: {
-  focusAfterCloseRef: RefObject<HTMLElement>;
   isOpen: boolean;
   onClose: () => void;
 }) {
   const otpInputRef = useRef<HTMLInputElement>(null);
   return (
     <Dialog
-      width="sm"
-      focusAfterOpenRef={otpInputRef}
-      focusAfterCloseRef={focusAfterCloseRef}
+      size="sm"
       isOpen={isOpen}
       onClose={onClose}
     >
       <Dialog.Header title="Verify phone number">
-        A text message with a verification code was just sent to
-        {' '}
-        <b>(+888) ******371</b>
+        A text message with a verification code was just sent to <b>(+888) ******371</b>
       </Dialog.Header>
       <Dialog.Body>
         <FormField label="Verification code:" labelFor="otp">
@@ -233,5 +294,31 @@ function VerifyPhoneDialog({
         </Button>
       </Dialog.Footer>
     </Dialog>
+  );
+}
+
+function ContentMock({ children }: { children?: ReactNode }) {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        boxSizing: 'border-box',
+        width: '100%',
+        height: '100%',
+        minHeight: '48px',
+        backgroundSize: '10px 10px',
+        backgroundImage: 'repeating-linear-gradient('
+          + '45deg, '
+          + 'var(--dc-bg-transparent-2) 0, '
+          + 'var(--dc-bg-transparent-2) 1px, '
+          + 'transparent 0, '
+          + 'transparent 50%'
+          + ')',
+      }}
+    >
+      {children}
+    </div>
   );
 }

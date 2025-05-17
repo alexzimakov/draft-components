@@ -30,7 +30,10 @@ export function useCloseOnEsc(handler: CloseHandler, opts: {
     }
 
     return () => {
-      handlerStack.pop();
+      const index = handlerStack.indexOf(onClose);
+      if (index >= 0) {
+        handlerStack.splice(index, 1);
+      }
       if (handlerStack.length === 0) {
         document.removeEventListener('keydown', handleKeyDown);
       }
