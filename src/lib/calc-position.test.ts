@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calcPosition, BoundingRect } from './calc-position.js';
+import { calcPosition, type BoundingRect } from './calc-position.js';
 
 describe('calculates position for the \'top\' placement', () => {
   const anchorRect: BoundingRect = {

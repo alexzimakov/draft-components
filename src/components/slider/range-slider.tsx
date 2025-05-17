@@ -1,7 +1,7 @@
-import { CSSProperties, ReactNode, useId, useState } from 'react';
+import { type CSSProperties, type ReactNode, useId, useState } from 'react';
 import { classNames } from '../../lib/index.js';
 import { calcPosition } from './calc-position.js';
-import { SliderTickMark, SliderTrack } from './slider-track.js';
+import { type SliderTickMark, SliderTrack } from './slider-track.js';
 import { SliderThumb } from './slider-thumb.js';
 import { SliderTickMarks } from './slider-tick-marks.js';
 

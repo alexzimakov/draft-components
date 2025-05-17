@@ -1,9 +1,8 @@
 import {
-  type MutableRefObject,
   type ReactElement,
   type Ref,
   type RefCallback,
-  RefObject,
+  type RefObject,
   isValidElement,
 } from 'react';
 
@@ -38,7 +37,7 @@ export function classNames(...classes: ClassName[]): string {
 }
 
 export type RefParameter<T> =
-  | MutableRefObject<T>
+  | RefObject<T>
   | Ref<T>
   | undefined;
 
@@ -71,7 +70,7 @@ export function focusElement(element: EventTarget | null | undefined): void {
 }
 
 export function getRefElement<T extends HTMLElement>(
-  ref: RefObject<T> | MutableRefObject<T>,
+  ref: RefObject<T> | RefObject<T>,
   message = 'getElementFromRef: ref value is null.',
 ): NonNullable<T> {
   const value = ref.current;

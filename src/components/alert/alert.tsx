@@ -1,4 +1,4 @@
-import { ComponentProps, MouseEventHandler, ReactNode, forwardRef } from 'react';
+import { type ComponentProps, type MouseEventHandler, type ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { XMarkIcon } from '../hero-icons/24/outline/x-mark-icon.js';
 

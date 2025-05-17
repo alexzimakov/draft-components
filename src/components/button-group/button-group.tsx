@@ -1,4 +1,4 @@
-import { ComponentProps, JSX } from 'react';
+import { type ComponentProps, type JSX } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
 type ButtonGroupHTMLProps = ComponentProps<'div'>;

@@ -1,4 +1,4 @@
-import { RefObject, useEffect } from 'react';
+import { type RefObject, useEffect } from 'react';
 import { useRefCallback } from './use-ref-callback.js';
 
 export type CloseHandler = () => void;

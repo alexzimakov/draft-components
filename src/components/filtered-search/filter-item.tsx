@@ -1,4 +1,4 @@
-import { Filter } from './types.js';
+import { type Filter } from './types.js';
 import { StringFilter } from './model/string-filter.js';
 import { StringSetFilter } from './model/string-set-filter.js';
 import { exhaustiveCheck } from '../../lib/index.js';

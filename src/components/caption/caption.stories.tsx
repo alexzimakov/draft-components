@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { Caption } from './caption.js';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
 

@@ -1,4 +1,4 @@
-import { ComponentProps, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
+import { type ComponentProps, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { useRefCallback } from '../../hooks/use-ref-callback.js';
 import { useCloseOnEsc } from '../../hooks/use-close-on-esc.js';

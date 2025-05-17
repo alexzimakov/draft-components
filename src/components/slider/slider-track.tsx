@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { formatPercent } from '../../lib/index.js';
 
 export type SliderTickMark = {

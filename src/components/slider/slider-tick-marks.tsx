@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { getOffsetRelativeToThumb } from './get-offset-relative-to-thumb.js';
 import { calcPosition } from './calc-position.js';
 

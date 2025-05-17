@@ -1,5 +1,5 @@
-import { Meta, StoryFn } from '@storybook/react';
-import { Popover, PopoverPlacement } from './popover.js';
+import { type Meta, type StoryFn } from '@storybook/react';
+import { Popover, type PopoverPlacement } from './popover.js';
 import { useRef, useState } from 'react';
 import { Button, IconButton } from '../button/index.js';
 import { Checkbox } from '../checkbox/index.js';

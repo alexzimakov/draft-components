@@ -1,5 +1,5 @@
-import { CSSProperties, ReactNode, RefCallback, useLayoutEffect, useState } from 'react';
-import { calcPosition, Placement, Alignment } from '../../lib/calc-position.js';
+import { type CSSProperties, type ReactNode, type RefCallback, useLayoutEffect, useState } from 'react';
+import { calcPosition, type Placement, type Alignment } from '../../lib/calc-position.js';
 import { getElementBoundingRect } from '../../lib/get-element-bounding-rect.js';
 import { Portal } from '../portal/index.js';
 

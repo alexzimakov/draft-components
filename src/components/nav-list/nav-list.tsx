@@ -1,5 +1,5 @@
 import { classNames } from '../../lib/react-helpers.js';
-import { ComponentProps } from 'react';
+import { type ComponentProps } from 'react';
 import { NavListItem } from './nav-list-item.js';
 import { NavListTitle } from './nav-list-title.js';
 

@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react';
+import { type ComponentProps } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
 export type MenuSeparatorProps = ComponentProps<'hr'>;

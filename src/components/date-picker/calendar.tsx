@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
-import { Weekday, getStartOfDay } from './date-helpers.js';
-import { CalendarHeader, CalendarHeaderProps } from './calendar-header.js';
-import { CalendarGrid, CalendarGridProps } from './calendar-grid.js';
+import { type Weekday, getStartOfDay } from './date-helpers.js';
+import { CalendarHeader, type CalendarHeaderProps } from './calendar-header.js';
+import { CalendarGrid, type CalendarGridProps } from './calendar-grid.js';
 
 type CalendarHeaderPassedProps = Pick<CalendarHeaderProps,
   | 'locale'

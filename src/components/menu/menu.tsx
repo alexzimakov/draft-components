@@ -1,15 +1,15 @@
 import {
-  ComponentProps,
-  MouseEventHandler,
-  KeyboardEventHandler,
-  RefCallback,
-  JSX,
+  type ComponentProps,
+  type MouseEventHandler,
+  type KeyboardEventHandler,
+  type RefCallback,
+  type JSX,
   useId,
   useState,
 } from 'react';
 import { classNames, focusElement } from '../../lib/react-helpers.js';
 import { useRefCallback } from '../../hooks/use-ref-callback.js';
-import { Popover, PopoverPlacement, PopoverRenderAnchor } from '../popover/index.js';
+import { Popover, type PopoverPlacement, type PopoverRenderAnchor } from '../popover/index.js';
 import { MenuItem } from './menu-item.js';
 import { MenuSeparator } from './menu-separator.js';
 

@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from 'react';
+import { type ChangeEventHandler } from 'react';
 import { classNames } from '../../lib/index.js';
 import { SelectionControl } from '../selection-control/index.js';
 import { Checkbox } from '../checkbox/index.js';

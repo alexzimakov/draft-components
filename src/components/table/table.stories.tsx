@@ -1,10 +1,10 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { TableContainer } from './table-container.js';
 import { Table } from './table.js';
 import { TableHead } from './table-head.js';
 import { TableBody } from './table-body.js';
 import { TableRow } from './table-row.js';
-import { TableHeadCell, TableHeadCellSort } from './table-head-cell.js';
+import { TableHeadCell, type TableHeadCellSort } from './table-head-cell.js';
 import { TableCell } from './table-cell.js';
 import { useState } from 'react';
 

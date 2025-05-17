@@ -1,10 +1,10 @@
 import {
-  CSSProperties,
-  ComponentProps,
-  FocusEvent,
-  MouseEvent,
-  ReactNode,
-  RefCallback,
+  type CSSProperties,
+  type ComponentProps,
+  type FocusEvent,
+  type MouseEvent,
+  type ReactNode,
+  type RefCallback,
   cloneElement,
   useId,
   useMemo,
@@ -12,7 +12,7 @@ import {
 } from 'react';
 import { classNames, isReactElementWithRef, mergeRefs } from '../../lib/react-helpers.js';
 import { useMountTransition } from '../../hooks/index.js';
-import { Positioner, PositionerAnchorRenderFn, PositionerContentRenderFn, PositionerProps } from '../positioner/index.js';
+import { Positioner, type PositionerAnchorRenderFn, type PositionerContentRenderFn, type PositionerProps } from '../positioner/index.js';
 
 export type TooltipPlacement = PositionerProps['placement'];
 

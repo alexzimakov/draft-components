@@ -1,4 +1,4 @@
-import { ComponentProps, ReactNode, useId } from 'react';
+import { type ComponentProps, type ReactNode, useId } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { Label } from '../label/index.js';
 import { Caption } from '../caption/index.js';

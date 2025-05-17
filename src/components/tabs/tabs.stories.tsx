@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { type Meta } from '@storybook/react';
 import { useState } from 'react';
 import { Tabs } from './tabs.js';
 import { TabList } from './tab-list.js';

@@ -1,6 +1,6 @@
 import { classNames } from '../../lib/react-helpers.js';
 import { useDialogContext } from './dialog-context.js';
-import { ComponentProps, ReactNode } from 'react';
+import { type ComponentProps, type ReactNode } from 'react';
 import { IconButton } from '../button/index.js';
 import { XMarkIcon } from '../hero-icons/24/outline/x-mark-icon.js';
 

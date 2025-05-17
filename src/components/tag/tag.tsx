@@ -1,4 +1,4 @@
-import { ComponentProps, forwardRef } from 'react';
+import { type ComponentProps, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
 export type TagStyle = 'default' | 'filled' | 'tinted';

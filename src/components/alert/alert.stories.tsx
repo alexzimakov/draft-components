@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { StorySection } from '../../storybook/story-section.js';
 import { Alert } from './alert.js';
 import { BoltIcon, CogIcon, HandThumbUpIcon, ScaleIcon, SignalSlashIcon } from '@heroicons/react/24/solid';

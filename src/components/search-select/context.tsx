@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext } from 'react';
+import { createContext, type ReactNode, useContext } from 'react';
 
 export class OptionStore<T> {
   private _map: Map<T, string>;

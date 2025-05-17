@@ -1,4 +1,4 @@
-import { RefObject, useEffect } from 'react';
+import { type RefObject, useEffect } from 'react';
 import { focusElement } from '../lib/react-helpers.js';
 
 type ModalRef = RefObject<HTMLElement | null>;

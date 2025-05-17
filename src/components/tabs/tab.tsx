@@ -1,4 +1,4 @@
-import { ComponentProps, MouseEvent, ReactNode } from 'react';
+import { type ComponentProps, type MouseEvent, type ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { useTabsContext } from './tabs-context.js';
 import { Badge } from '../badge/index.js';

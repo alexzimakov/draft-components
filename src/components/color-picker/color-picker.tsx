@@ -1,4 +1,4 @@
-import { ChangeEventHandler, ComponentProps, ReactNode } from 'react';
+import { type ChangeEventHandler, type ComponentProps, type ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { ColorPickerButton } from './color-picker-button.js';
 

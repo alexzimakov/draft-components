@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useContext } from 'react';
+import { type ReactNode, createContext, useContext } from 'react';
 
 export type BreadcrumbsContextValue = { separator: ReactNode };
 

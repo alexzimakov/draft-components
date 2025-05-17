@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { useEffect, useState } from 'react';
 import { Slider } from './slider.js';
 import { SpeakerWaveIcon, SpeakerXMarkIcon } from '@heroicons/react/20/solid';

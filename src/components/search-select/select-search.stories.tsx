@@ -1,6 +1,6 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
+import { type ReactNode, useState } from 'react';
 import { SearchSelect } from './search-select.js';
-import { ReactNode, useState } from 'react';
 
 type Fruit = {
   id: number;

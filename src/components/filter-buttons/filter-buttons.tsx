@@ -1,4 +1,4 @@
-import { ComponentProps, useLayoutEffect, useRef } from 'react';
+import { type ComponentProps, useLayoutEffect, useRef } from 'react';
 import { assertIfNullable } from '../../lib/helpers.js';
 import { classNames } from '../../lib/react-helpers.js';
 

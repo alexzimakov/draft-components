@@ -1,15 +1,15 @@
 import {
   useId,
   useState,
-  ReactNode,
-  ChangeEvent,
-  KeyboardEvent,
+  type ReactNode,
+  type ChangeEvent,
+  type KeyboardEvent,
   useEffect,
 } from 'react';
 import {
   useSearchSelectContext,
   SearchSelectContextProvider,
-  SearchSelectContext,
+  type SearchSelectContext,
   OptionStore,
 } from './context.js';
 import { classNames } from '../../lib/react-helpers.js';

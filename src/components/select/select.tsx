@@ -1,4 +1,4 @@
-import { ChangeEventHandler, ComponentProps, forwardRef } from 'react';
+import { type ChangeEventHandler, type ComponentProps, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { Spinner } from '../spinner/index.js';
 

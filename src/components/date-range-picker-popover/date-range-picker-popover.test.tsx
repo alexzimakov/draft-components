@@ -1,5 +1,5 @@
 import { beforeEach, expect, it, vi } from 'vitest';
-import { DateRangePickerPopoverOption } from './types.js';
+import { type DateRangePickerPopoverOption } from './types.js';
 import { DateRangePickerPopover } from './date-range-picker-popover.js';
 import { fireEvent, render, screen, userEvent, waitFor } from '../../test/test-utils.js';
 import { mockMatchMedia } from '../../test/mock-match-media.js';

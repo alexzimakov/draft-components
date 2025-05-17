@@ -1,4 +1,4 @@
-import { ComponentProps, JSX, ReactNode, forwardRef } from 'react';
+import { type ComponentProps, type JSX, type ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { Spinner } from '../spinner/index.js';
 

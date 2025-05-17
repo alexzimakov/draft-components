@@ -1,6 +1,6 @@
-import { ComponentProps } from 'react';
+import { type ComponentProps } from 'react';
 import { expect, it, vi } from 'vitest';
-import { Button, ButtonRenderer } from './button.js';
+import { Button, type ButtonRenderer } from './button.js';
 import { IconButton } from './icon-button.js';
 import { render, screen, userEvent, within } from '../../test/test-utils.js';
 

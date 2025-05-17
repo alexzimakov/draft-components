@@ -1,6 +1,6 @@
 import { expect, it, vi } from 'vitest';
 import { Breadcrumbs } from './breadcrumbs.js';
-import { BreadcrumbsItem, BreadcrumbsItemRenderer } from './breadcrumbs-item.js';
+import { BreadcrumbsItem, type BreadcrumbsItemRenderer } from './breadcrumbs-item.js';
 import { render, screen, within } from '../../test/test-utils.js';
 
 it('renders without errors', () => {

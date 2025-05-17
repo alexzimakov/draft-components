@@ -1,4 +1,4 @@
-import { ComponentProps, useId } from 'react';
+import { type ComponentProps, useId } from 'react';
 import { classNames } from '../../lib/index.js';
 import { TextInput } from '../text-input/index.js';
 import { Caption } from '../caption/index.js';

@@ -1,4 +1,4 @@
-import { calcPosition, Alignment, Placement, PositionCalcResult } from './calc-position.js';
+import { calcPosition, type Alignment, type Placement, type PositionCalcResult } from './calc-position.js';
 import { getElementBoundingRect } from './get-element-bounding-rect.js';
 
 type AlignmentWithoutCenter = Exclude<Alignment, 'center'>;

@@ -1,15 +1,15 @@
 import {
-  ChangeEventHandler,
-  ComponentProps,
-  FocusEventHandler,
-  JSX,
-  KeyboardEventHandler,
-  MouseEventHandler,
+  type ChangeEventHandler,
+  type ComponentProps,
+  type FocusEventHandler,
+  type JSX,
+  type KeyboardEventHandler,
+  type MouseEventHandler,
   useMemo,
   useRef,
   useState,
 } from 'react';
-import { Filter, FilterConfig } from './types.js';
+import { type Filter, type FilterConfig } from './types.js';
 import { StringFilter } from './model/string-filter.js';
 import { StringSetFilter } from './model/string-set-filter.js';
 import { TranslationsProvider } from './use-translations.js';

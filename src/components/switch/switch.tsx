@@ -1,4 +1,4 @@
-import { ComponentProps, forwardRef } from 'react';
+import { type ComponentProps, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
 export type SwitchToggleHandler = (checked: boolean) => void;

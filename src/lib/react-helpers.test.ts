@@ -1,4 +1,4 @@
-import { MutableRefObject } from 'react';
+import { type MutableRefObject } from 'react';
 import { describe, expect, it } from 'vitest';
 import { classNames, getRefElement, mergeRefs } from './react-helpers.js';
 

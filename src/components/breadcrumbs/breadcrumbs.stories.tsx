@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { Breadcrumbs } from './breadcrumbs.js';
 import { BreadcrumbsItem } from './breadcrumbs-item.js';
 import { ChevronRightIcon, HomeIcon } from '@heroicons/react/24/outline';

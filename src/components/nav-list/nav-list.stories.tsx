@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { NavList } from './nav-list.js';
 import { NavListItem } from './nav-list-item.js';
 import { NavListTitle } from './nav-list-title.js';

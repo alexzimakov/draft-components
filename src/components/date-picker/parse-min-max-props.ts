@@ -1,4 +1,4 @@
-import { DateISO, parseDateISO } from './date-helpers.js';
+import { type DateISO, parseDateISO } from './date-helpers.js';
 
 export function parseMinMaxProps(props: {
   min?: DateISO;

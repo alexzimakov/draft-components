@@ -1,4 +1,11 @@
-import { ChangeEventHandler, ComponentProps, FocusEventHandler, ReactNode, forwardRef, useState } from 'react';
+import {
+  type ChangeEventHandler,
+  type ComponentProps,
+  type FocusEventHandler,
+  type ReactNode,
+  forwardRef,
+  useState,
+} from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
 export type TextInputType =

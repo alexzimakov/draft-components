@@ -1,4 +1,4 @@
-import { DateRangePickerPopoverOption, DateRangePickerPopoverSelection } from './types.js';
+import { type DateRangePickerPopoverOption, type DateRangePickerPopoverSelection } from './types.js';
 
 export function findSelectedOption(
   selection: DateRangePickerPopoverSelection | null,

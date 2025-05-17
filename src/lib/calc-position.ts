@@ -1,4 +1,4 @@
-import { BoundingRect } from './get-element-bounding-rect.js';
+import { type BoundingRect } from './get-element-bounding-rect.js';
 
 export { type BoundingRect };
 

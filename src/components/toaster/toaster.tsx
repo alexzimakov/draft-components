@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { assertIfNullable } from '../../lib/helpers.js';
 import { classNames } from '../../lib/react-helpers.js';
 import { Portal } from '../portal/index.js';

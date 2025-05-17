@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { SegmentedControl } from './segmented-control.js';
 import { useState } from 'react';
 import { ClockIcon, StarIcon } from '@heroicons/react/24/outline';

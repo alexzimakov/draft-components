@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest';
 import { NavList } from './nav-list.js';
 import { NavListTitle } from './nav-list-title.js';
-import { NavListItem, NavListItemRenderer } from './nav-list-item.js';
+import { NavListItem, type NavListItemRenderer } from './nav-list-item.js';
 import { render, screen, within } from '../../test/test-utils.js';
 
 it('renders without errors', () => {

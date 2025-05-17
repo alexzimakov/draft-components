@@ -1,4 +1,4 @@
-import { ComponentProps, ReactNode, forwardRef } from 'react';
+import { type ComponentProps, type ReactNode, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
 export type CaptionColor =

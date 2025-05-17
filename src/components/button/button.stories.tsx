@@ -1,6 +1,6 @@
-import { CSSProperties } from 'react';
-import { Meta, StoryFn } from '@storybook/react';
-import { Button, ButtonProps, ButtonSize, ButtonStyle, ButtonTint } from './button.js';
+import { type CSSProperties } from 'react';
+import { type Meta, type StoryFn } from '@storybook/react';
+import { Button, type ButtonProps, type ButtonSize, type ButtonStyle, type ButtonTint } from './button.js';
 import { IconButton } from './icon-button.js';
 import { StorySection } from '../../storybook/story-section.js';
 import { MoonIcon } from '@heroicons/react/24/solid';

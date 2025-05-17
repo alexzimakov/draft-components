@@ -1,4 +1,4 @@
-import { ComponentProps, useEffect, useRef } from 'react';
+import { type ComponentProps, useEffect, useRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { useDialogContext } from './dialog-context.js';
 

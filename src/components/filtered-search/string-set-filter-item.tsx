@@ -1,7 +1,7 @@
-import { StringSetFilter, StringSetFilterOperator } from './model/string-set-filter.js';
-import { FormEventHandler, useState } from 'react';
+import { StringSetFilter, type StringSetFilterOperator } from './model/string-set-filter.js';
+import { type FormEventHandler, useState } from 'react';
 import { useTranslations } from './use-translations.js';
-import { Popover, PopoverRenderAnchor } from '../popover/index.js';
+import { Popover, type PopoverRenderAnchor } from '../popover/index.js';
 import { FilterToken } from './filter-token.js';
 import { FilterOperatorSelect } from './filter-operator-select.js';
 import { FilterValueList } from './filter-value-list.js';

@@ -1,4 +1,4 @@
-import { ComponentProps, JSX, ReactNode } from 'react';
+import { type ComponentProps, type JSX, type ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { useBreadcrumbsContext } from './breadcrumbs-context.js';
 

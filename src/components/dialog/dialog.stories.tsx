@@ -1,5 +1,5 @@
-import { Meta } from '@storybook/react';
-import { ReactNode, useRef, useState } from 'react';
+import { type Meta } from '@storybook/react';
+import { type ReactNode, useRef, useState } from 'react';
 import { Dialog } from './dialog.js';
 import { Button } from '../button/index.js';
 import { FormField } from '../form-field/index.js';

@@ -1,5 +1,5 @@
 import { AbstractFilter } from './abstract-filter.js';
-import { ValidationResult } from './validation-result.js';
+import { type ValidationResult } from './validation-result.js';
 
 const TYPE = 'STRING' as const;
 const OPERATORS = {

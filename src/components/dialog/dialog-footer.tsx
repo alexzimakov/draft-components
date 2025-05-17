@@ -1,6 +1,6 @@
 import { classNames } from '../../lib/react-helpers.js';
 import { useDialogContext } from './dialog-context.js';
-import { ComponentProps } from 'react';
+import { type ComponentProps } from 'react';
 
 type DialogFooterHTMLProps = ComponentProps<'div'>;
 

@@ -1,6 +1,6 @@
-import { MouseEventHandler, ReactNode, forwardRef, useState } from 'react';
+import { type MouseEventHandler, type ReactNode, forwardRef, useState } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
-import { TextInput, TextInputProps } from '../text-input/index.js';
+import { TextInput, type TextInputProps } from '../text-input/index.js';
 import { Tooltip } from '../tooltip/index.js';
 import { EyeIcon } from '../hero-icons/24/outline/eye-icon.js';
 import { EyeSlashIcon } from '../hero-icons/24/outline/eye-slash-icon.js';

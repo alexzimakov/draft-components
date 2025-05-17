@@ -1,12 +1,12 @@
 import { classNames } from '../../lib/react-helpers.js';
 import { observeMove } from './observe-move.js';
-import { calcPopoverPosition, PopoverPlacement } from '../../lib/calc-popover-position.js';
+import { calcPopoverPosition, type PopoverPlacement } from '../../lib/calc-popover-position.js';
 import { useRefCallback } from '../../hooks/use-ref-callback.js';
 import { useFocusTrap } from '../../hooks/use-focus-trap.js';
 import { useLockBodyScroll } from '../../hooks/use-lock-body-scroll.js';
 import { useCloseOnEsc } from '../../hooks/use-close-on-esc.js';
 import { useCloseOnClickOutside } from '../../hooks/use-close-on-click-outside.js';
-import { ComponentProps, JSX, RefCallback, RefObject, useEffect, useRef, useState } from 'react';
+import { type ComponentProps, type JSX, type RefCallback, type RefObject, useEffect, useRef, useState } from 'react';
 import { Portal } from '../portal/portal.js';
 import { omit } from '../../lib/helpers.js';
 

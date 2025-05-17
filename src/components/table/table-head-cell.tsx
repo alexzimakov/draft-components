@@ -1,4 +1,4 @@
-import { ComponentProps, ElementType, forwardRef } from 'react';
+import { type ComponentProps, type ElementType, forwardRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { ArrowsUpDownIcon } from '../hero-icons/24/outline/arrows-up-down-icon.js';
 import { ArrowSmallUpIcon } from '../hero-icons/24/outline/arrow-small-up-icon.js';

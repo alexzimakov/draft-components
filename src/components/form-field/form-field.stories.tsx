@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react';
 import { FormField } from './form-field.js';
 import { TextInput } from '../text-input/index.js';
 

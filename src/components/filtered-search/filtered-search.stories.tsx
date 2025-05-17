@@ -1,5 +1,5 @@
-import { Meta, StoryFn } from '@storybook/react';
-import { Filter, FilterConfig } from './types.js';
+import { type Meta, type StoryFn } from '@storybook/react';
+import { type Filter, type FilterConfig } from './types.js';
 import { StringFilter } from './model/string-filter.js';
 import { StringSetFilter } from './model/string-set-filter.js';
 import { FilteredSearch } from './filtered-search.js';

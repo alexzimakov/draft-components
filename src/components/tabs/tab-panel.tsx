@@ -1,5 +1,5 @@
-import { ComponentProps } from 'react';
-import { TabName } from './types.js';
+import { type ComponentProps } from 'react';
+import { type TabName } from './types.js';
 import { classNames } from '../../lib/react-helpers.js';
 import { useTabsContext } from './tabs-context.js';
 

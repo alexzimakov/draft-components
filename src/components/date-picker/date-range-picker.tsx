@@ -1,9 +1,9 @@
-import { DateISORange, DateRange } from './date-range.js';
-import { DateISO, Weekday, isSameDay, isValidDateISO, parseDateISO } from './date-helpers.js';
+import { type DateISORange, DateRange } from './date-range.js';
+import { type DateISO, type Weekday, isSameDay, isValidDateISO, parseDateISO } from './date-helpers.js';
 import { classNames } from '../../lib/react-helpers.js';
 import { parseMinMaxProps } from './parse-min-max-props.js';
-import { ComponentProps, useState } from 'react';
-import { Calendar, CalendarProps } from './calendar.js';
+import { type ComponentProps, useState } from 'react';
+import { Calendar, type CalendarProps } from './calendar.js';
 
 type DateRangePickerHTMLProps = ComponentProps<'div'>;
 
