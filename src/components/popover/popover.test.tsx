@@ -1,11 +1,6 @@
-import { beforeAll, expect, it, vi } from 'vitest';
+import { expect, it, vi } from 'vitest';
 import { Popover } from './popover.js';
 import { render, screen, userEvent } from '../../test/test-utils.js';
-import { mockMatchMedia } from '../../test/mock-match-media.js';
-
-beforeAll(() => {
-  mockMatchMedia();
-});
 
 const anchorLabel = 'Show Popover';
 const popoverContent = 'Popover Content';

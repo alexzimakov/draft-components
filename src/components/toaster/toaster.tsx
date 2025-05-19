@@ -1,5 +1,4 @@
 import { type ReactNode, useEffect, useRef, useState } from 'react';
-import { assertIfNullable } from '../../lib/helpers.js';
 import { classNames } from '../../lib/react-helpers.js';
 import { Portal } from '../portal/index.js';
 import { Toast, ToastButton } from '../toast/index.js';
@@ -54,15 +53,15 @@ export class Toaster {
   readonly onShow?: ToastShowCallback;
   readonly onHide?: ToastHideCallback;
 
-  constructor(params?: {
+  constructor(params: {
     timeoutMs?: number;
     onShowToast?: ToastShowCallback;
     onHideToast?: ToastHideCallback;
-  }) {
+  } = {}) {
     this._id = 0;
-    this.timeoutMs = params?.timeoutMs || 10_000;
-    this.onShow = params?.onShowToast;
-    this.onHide = params?.onHideToast;
+    this.timeoutMs = params.timeoutMs || 10_000;
+    this.onShow = params.onShowToast;
+    this.onHide = params.onHideToast;
   }
 
   private _getNextId() {
@@ -80,7 +79,9 @@ export class Toaster {
     });
     const timeoutMs = toast.timeoutMs || this.timeoutMs;
 
-    this.onShow?.(event.detail.toast);
+    if (typeof this.onShow === 'function') {
+      this.onShow(event.detail.toast);
+    }
     window.dispatchEvent(event);
     window.setTimeout(() => this.hideToast(id), timeoutMs);
 
@@ -95,21 +96,23 @@ export class Toaster {
       },
     });
 
-    this.onHide?.(id);
+    if (typeof this.onHide === 'function') {
+      this.onHide(id);
+    }
     window.dispatchEvent(event);
   }
 
-  render(options?: {
+  render(options: {
     toastGap?: number;
     toastPosition?: ToastPosition;
     toastCloseButtonAriaLabel?: string;
-  }) {
+  } = {}) {
     return (
       <ToastsList
         toaster={this}
-        toastGap={options?.toastGap}
-        toastPosition={options?.toastPosition}
-        toastCloseButtonAriaLabel={options?.toastCloseButtonAriaLabel}
+        toastGap={options.toastGap}
+        toastPosition={options.toastPosition}
+        toastCloseButtonAriaLabel={options.toastCloseButtonAriaLabel}
       />
     );
   }
@@ -162,7 +165,9 @@ function ToastsList({
 
   useEffect(() => {
     const listEl = ref.current;
-    assertIfNullable(listEl, 'ToastsList ref was not set');
+    if (!listEl) {
+      return;
+    }
 
     let offset = 0;
     for (const item of listEl.children) {
@@ -194,19 +199,26 @@ function ToastsList({
       >
         {toasts.map((toast) => {
           const hideToast = () => toaster.hideToast(toast.id);
-          const actions = toast.actions?.map((action, index) => (
-            <ToastButton
-              key={index}
-              onClick={() => {
-                action.onClick?.();
-                if (action.shouldHideAfterClick ?? true) {
-                  hideToast();
-                }
-              }}
-            >
-              {action.content}
-            </ToastButton>
-          ));
+
+          let actionButtons = null;
+          if (toast.actions) {
+            actionButtons = toast.actions.map((action, index) => (
+              <ToastButton
+                key={index}
+                onClick={() => {
+                  if (typeof action.onClick === 'function') {
+                    action.onClick();
+                  }
+                  if (action.shouldHideAfterClick ?? true) {
+                    hideToast();
+                  }
+                }}
+              >
+                {action.content}
+              </ToastButton>
+            ));
+          }
+
           return (
             <li key={toast.id}>
               <Toast
@@ -214,7 +226,7 @@ function ToastsList({
                 role="alert"
                 icon={toast.icon}
                 message={toast.message}
-                actions={actions}
+                actions={actionButtons}
                 closeButtonAriaLabel={toastCloseButtonAriaLabel}
                 onClickCloseButton={hideToast}
               >

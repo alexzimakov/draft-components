@@ -37,7 +37,9 @@ export function Tab({
 
   function handleClick(event: MouseEvent<HTMLButtonElement>): void {
     setSelectedTab(name);
-    onClick?.(event);
+    if (typeof onClick === 'function') {
+      onClick(event);
+    }
   }
 
   return (

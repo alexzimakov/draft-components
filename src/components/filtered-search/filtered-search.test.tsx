@@ -1,13 +1,8 @@
-import { beforeAll, expect, it, vi } from 'vitest';
+import { expect, it, vi } from 'vitest';
 import { StringFilter } from './model/string-filter.js';
 import { StringSetFilter } from './model/string-set-filter.js';
 import { FilteredSearch } from './filtered-search.js';
-import { mockMatchMedia } from '../../test/mock-match-media.js';
 import { fireEvent, render, screen, userEvent, within } from '../../test/test-utils.js';
-
-beforeAll(() => {
-  mockMatchMedia();
-});
 
 const idFilterConfig = {
   type: StringFilter.Type,

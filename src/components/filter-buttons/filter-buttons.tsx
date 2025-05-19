@@ -1,5 +1,5 @@
 import { type ComponentProps, useLayoutEffect, useRef } from 'react';
-import { assertIfNullable } from '../../lib/helpers.js';
+import { assertNullOrUndefined } from '../../lib/helpers.js';
 import { classNames } from '../../lib/react-helpers.js';
 
 type FilterButtonsHTMLProps = ComponentProps<'div'>;
@@ -15,7 +15,7 @@ export function FilterButtons({
 
   useLayoutEffect(() => {
     const el = ref.current;
-    assertIfNullable(el, 'FilterButtons ref was not set');
+    assertNullOrUndefined(el, 'FilterButtons ref was not set');
 
     for (const child of el.children) {
       if (

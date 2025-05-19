@@ -53,7 +53,11 @@ export const TableHeadCell = forwardRef<
       <button
         className="dc-table-cell__sort-btn"
         type="button"
-        onClick={() => onChangeSort?.(stateMapping[sort])}
+        onClick={() => {
+          if (typeof onChangeSort === 'function') {
+            onChangeSort(stateMapping[sort]);
+          }
+        }}
       >
         {children}
         {' '}

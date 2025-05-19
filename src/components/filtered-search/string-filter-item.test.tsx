@@ -1,13 +1,8 @@
-import { beforeAll, expect, it, vi } from 'vitest';
+import { expect, it, vi } from 'vitest';
 import { StringFilter } from './model/string-filter.js';
 import { StringFilterItem } from './string-filter-item.js';
 import { TranslationsProvider } from './use-translations.js';
-import { mockMatchMedia } from '../../test/mock-match-media.js';
 import { render, screen, userEvent, within } from '../../test/test-utils.js';
-
-beforeAll(() => {
-  mockMatchMedia();
-});
 
 const applyButtonLabel = 'Apply';
 const cancelButtonLabel = 'Cancel';

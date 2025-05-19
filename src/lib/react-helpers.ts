@@ -1,11 +1,3 @@
-import {
-  type ReactElement,
-  type Ref,
-  type RefCallback,
-  type RefObject,
-  isValidElement,
-} from 'react';
-
 export type ClassNamesObject = { [className: string]: unknown };
 export type ClassName =
   | string
@@ -36,46 +28,8 @@ export function classNames(...classes: ClassName[]): string {
   return resultString.trimEnd();
 }
 
-export type RefParameter<T> =
-  | RefObject<T>
-  | Ref<T>
-  | undefined;
-
-export function mergeRefs<T>(...refs: RefParameter<T>[]): RefCallback<T> {
-  return (instance) => {
-    for (const ref of refs) {
-      if (ref != null) {
-        if (typeof ref === 'function') {
-          ref(instance);
-        } else {
-          Object.assign(ref, { current: instance });
-        }
-      }
-    }
-  };
-}
-
-export type ReactElementWithRef = ReactElement & { ref: Ref<unknown> };
-
-export function isReactElementWithRef(
-  element: unknown,
-): element is ReactElementWithRef {
-  return isValidElement(element) && 'ref' in element;
-}
-
-export function focusElement(element: EventTarget | null | undefined): void {
+export function tryToFocusElement(element: EventTarget | null | undefined): void {
   if (element != null && element instanceof HTMLElement) {
     element.focus();
   }
-}
-
-export function getRefElement<T extends HTMLElement>(
-  ref: RefObject<T> | RefObject<T>,
-  message = 'getElementFromRef: ref value is null.',
-): NonNullable<T> {
-  const value = ref.current;
-  if (value == null) {
-    throw new Error(message);
-  }
-  return value;
 }

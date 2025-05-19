@@ -41,8 +41,12 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio({
         type="radio"
         className="dc-radio__input"
         onChange={(event) => {
-          onChange?.(event);
-          onToggle?.(event.target.checked);
+          if (typeof onChange === 'function') {
+            onChange(event);
+          }
+          if (typeof onToggle === 'function') {
+            onToggle(event.target.checked);
+          }
         }}
       />
       <span

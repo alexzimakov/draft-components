@@ -20,7 +20,9 @@ export const Basic: StoryFn<typeof DatePickerPopover> = (args) => {
       value={dateISO}
       onChangeValue={(value) => {
         setDateISO(value);
-        args.onChangeValue?.(value);
+        if (typeof args.onChangeValue === 'function') {
+          args.onChangeValue(value);
+        }
       }}
     >
       {({ ref, toggle }) => (

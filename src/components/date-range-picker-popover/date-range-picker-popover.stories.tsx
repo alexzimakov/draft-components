@@ -106,7 +106,9 @@ export const Basic: StoryFn<typeof DateRangePickerPopover> = (args) => {
       value={value}
       onChangeValue={(value) => {
         setValue(value);
-        args.onChangeValue?.(value);
+        if (typeof args.onChangeValue === 'function') {
+          args.onChangeValue(value);
+        }
       }}
     >
       {({ ref, toggle }) => (

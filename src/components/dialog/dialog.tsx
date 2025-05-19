@@ -1,5 +1,5 @@
 import { type ComponentProps, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
-import { classNames } from '../../lib/react-helpers.js';
+import { classNames, tryToFocusElement } from '../../lib/react-helpers.js';
 import { useRefCallback } from '../../hooks/use-ref-callback.js';
 import { useCloseOnEsc } from '../../hooks/use-close-on-esc.js';
 import { useLockBodyScroll } from '../../hooks/use-lock-body-scroll.js';
@@ -73,29 +73,36 @@ export function Dialog(props: DialogProps) {
           return isMounted;
         }
 
-        modal.setAttribute('data-animation', 'enter');
-        backdrop.setAttribute('data-animation', 'enter');
+        modal.dataset.animation = 'enter';
+        backdrop.dataset.animation = 'enter';
         return !isMounted;
       });
     } else {
       let isModalAnimationEnded = false;
       let isBackdropAnimationEnded = false;
 
-      modal.setAttribute('data-animation', 'leave');
-      modal.addEventListener('animationend', () => {
+      const handleModalAnimationEnd = () => {
         isModalAnimationEnded = true;
         if (isModalAnimationEnded && isBackdropAnimationEnded) {
           unmount();
         }
-      }, { once: true });
+      };
+      modal.dataset.animation = 'leave';
+      modal.addEventListener('animationend', handleModalAnimationEnd);
 
-      backdrop.setAttribute('data-animation', 'leave');
-      backdrop.addEventListener('animationend', () => {
+      const handleBackdropAnimationEnd = () => {
         isBackdropAnimationEnded = true;
         if (isModalAnimationEnded && isBackdropAnimationEnded) {
           unmount();
         }
-      }, { once: true });
+      };
+      backdrop.dataset.animation = 'leave';
+      backdrop.addEventListener('animationend', handleBackdropAnimationEnd);
+
+      return () => {
+        modal.removeEventListener('animationend', handleModalAnimationEnd);
+        backdrop.removeEventListener('animationend', handleBackdropAnimationEnd);
+      };
     }
   }, [isOpen, unmount]);
 
@@ -118,9 +125,7 @@ export function Dialog(props: DialogProps) {
         prevFocusedElement.blur();
       }
       return () => {
-        if (prevFocusedElement instanceof HTMLElement) {
-          prevFocusedElement.focus();
-        }
+        tryToFocusElement(prevFocusedElement);
       };
     }
   }, [isOpen]);

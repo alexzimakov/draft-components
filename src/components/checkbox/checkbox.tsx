@@ -31,8 +31,12 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           type="checkbox"
           className="dc-checkbox__input"
           onChange={(event) => {
-            onChange?.(event);
-            onToggle?.(event.target.checked);
+            if (typeof onChange === 'function') {
+              onChange(event);
+            }
+            if (typeof onToggle === 'function') {
+              onToggle(event.target.checked);
+            }
           }}
         />
         <span

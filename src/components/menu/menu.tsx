@@ -7,7 +7,8 @@ import {
   useId,
   useState,
 } from 'react';
-import { classNames, focusElement } from '../../lib/react-helpers.js';
+import { classNames, tryToFocusElement } from '../../lib/react-helpers.js';
+import { KeyboardKey } from '../../lib/keyboard-key.js';
 import { useRefCallback } from '../../hooks/use-ref-callback.js';
 import { Popover, type PopoverPlacement, type PopoverRenderAnchor } from '../popover/index.js';
 import { MenuItem } from './menu-item.js';
@@ -86,7 +87,7 @@ export function Menu({
     if (index >= menuitems.length) {
       index = 0;
     }
-    focusElement(menuitems[index]);
+    tryToFocusElement(menuitems[index]);
   };
 
   const focusPrevMenuItem = () => {
@@ -96,17 +97,17 @@ export function Menu({
     if (index < 0) {
       index = menuitems.length - 1;
     }
-    focusElement(menuitems[index]);
+    tryToFocusElement(menuitems[index]);
   };
 
   const focusFirstMenuitem = () => {
     const menuitems = findMenuitems(menuId);
-    focusElement(menuitems[0]);
+    tryToFocusElement(menuitems[0]);
   };
 
   const focusLastMenuitem = () => {
     const menuitems = findMenuitems(menuId);
-    focusElement(menuitems[menuitems.length - 1]);
+    tryToFocusElement(menuitems[menuitems.length - 1]);
   };
 
   const focusMenuitemByFirstChar = (char: string) => {
@@ -126,7 +127,7 @@ export function Menu({
       const label = (menuitem.textContent || '').trim().toLowerCase();
       return index >= fromIndex && label.startsWith(search);
     });
-    focusElement(menuitem);
+    tryToFocusElement(menuitem);
   };
 
   const handleButtonClick: MouseEventHandler<HTMLElement> = (event) => {
@@ -139,7 +140,7 @@ export function Menu({
       window.setTimeout(() => {
         const menuElement = document.getElementById(menuId);
         if (menuElement) {
-          menuElement.focus();
+          tryToFocusElement(menuElement);
         }
       });
     }
@@ -147,15 +148,15 @@ export function Menu({
 
   const handleButtonKeyDown: KeyboardEventHandler<HTMLElement> = (event) => {
     if (
-      event.key === 'ArrowUp'
-      || event.key === 'ArrowDown'
-      || event.key === 'Enter'
-      || event.key === ' '
+      event.key === KeyboardKey.ARROW_UP
+      || event.key === KeyboardKey.ARROW_DOWN
+      || event.key === KeyboardKey.ENTER
+      || event.key === KeyboardKey.SPACE
     ) {
       event.preventDefault();
       event.stopPropagation();
       open();
-      window.setTimeout(event.key === 'ArrowUp'
+      window.setTimeout(event.key === KeyboardKey.ARROW_UP
         ? focusLastMenuitem
         : focusFirstMenuitem);
     }
@@ -167,19 +168,19 @@ export function Menu({
     }
 
     let handled = false;
-    if (event.key === 'ArrowUp') {
+    if (event.key === KeyboardKey.ARROW_UP) {
       focusPrevMenuItem();
       handled = true;
-    } else if (event.key === 'ArrowDown') {
+    } else if (event.key === KeyboardKey.ARROW_DOWN) {
       focusNextMenuItem();
       handled = true;
-    } else if (event.key === 'Home') {
+    } else if (event.key === KeyboardKey.HOME) {
       focusFirstMenuitem();
       handled = true;
-    } else if (event.key === 'End') {
+    } else if (event.key === KeyboardKey.END) {
       focusLastMenuitem();
       handled = true;
-    } else if (event.key === 'Tab') {
+    } else if (event.key === KeyboardKey.TAB) {
       close();
       handled = true;
     } else if (event.key.match(/^\S$/)) {
@@ -199,7 +200,7 @@ export function Menu({
   const handleMenuMouseOver: MouseEventHandler<HTMLDivElement> = (event) => {
     const menuitem = findTargetMenuitem(event.currentTarget, event.target);
     if (menuitem && !menuitem.disabled) {
-      focusElement(menuitem);
+      tryToFocusElement(menuitem);
     }
     if (typeof onMouseOver === 'function') {
       onMouseOver(event);

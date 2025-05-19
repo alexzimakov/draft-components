@@ -41,7 +41,9 @@ export const Basic: StoryFn<typeof SearchSelect<Fruit>> = (args) => {
   const [value, setValue] = useState(args.value);
   const handleChange = (value: Fruit) => {
     setValue(value);
-    args.onChange?.(value);
+    if (typeof args.onChange === 'function') {
+      args.onChange(value);
+    }
   };
 
   return (
@@ -87,7 +89,9 @@ export const OptionsWithCaption: StoryFn<typeof SearchSelect<Fruit>> = (args) =>
   const [value, setValue] = useState(args.value);
   const handleChange = (value: Fruit) => {
     setValue(value);
-    args.onChange?.(value);
+    if (typeof args.onChange === 'function') {
+      args.onChange(value);
+    }
   };
 
   return (
@@ -117,7 +121,9 @@ export const WithSeparator: StoryFn<typeof SearchSelect<Fruit>> = (args) => {
   const [value, setValue] = useState(args.value);
   const handleChange = (value: Fruit) => {
     setValue(value);
-    args.onChange?.(value);
+    if (typeof args.onChange === 'function') {
+      args.onChange(value);
+    }
   };
 
   const berries = [

@@ -8,7 +8,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { classNames, mergeRefs } from '../../lib/react-helpers.js';
+import { classNames } from '../../lib/react-helpers.js';
 import { Button } from '../button/index.js';
 
 export type FilePickerSelectFilesHandler = (files: File[]) => void;
@@ -47,9 +47,14 @@ export const FilePicker = forwardRef<
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [draggingOver, setDraggingOver] = useState(false);
 
+  const selectFiles = (files: FileList | null) => {
+    if (typeof onSelectFiles === 'function') {
+      onSelectFiles(files ? Array.from(files) : []);
+    }
+  };
+
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const fileList = event.target.files;
-    onSelectFiles?.(fileList ? Array.from(fileList) : []);
+    selectFiles(event.target.files);
   };
 
   const handleDragOver: DragEventHandler<HTMLDivElement> = (event) => {
@@ -73,8 +78,7 @@ export const FilePicker = forwardRef<
     event.stopPropagation();
     if (!disabled) {
       setDraggingOver(false);
-      const fileList = event.dataTransfer.files;
-      onSelectFiles?.(fileList ? Array.from(fileList) : []);
+      selectFiles(event.dataTransfer.files);
     }
   };
 
@@ -93,7 +97,14 @@ export const FilePicker = forwardRef<
       <input
         {...props}
         id={inputId}
-        ref={mergeRefs(ref, inputRef)}
+        ref={(el) => {
+          inputRef.current = el;
+          if (typeof ref === 'function') {
+            ref(el);
+          } else if (ref) {
+            ref.current = el;
+          }
+        }}
         className="dc-file-picker__input"
         type="file"
         disabled={disabled}
@@ -116,7 +127,11 @@ export const FilePicker = forwardRef<
       </div>
       <Button
         className="dc-file-picker__button"
-        onClick={() => inputRef.current?.click()}
+        onClick={() => {
+          if (inputRef.current instanceof HTMLInputElement) {
+            inputRef.current.click();
+          }
+        }}
       >
         {buttonLabel}
       </Button>

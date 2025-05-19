@@ -1,3 +1,5 @@
+import { roundNumber } from './helpers.js';
+
 export type BoundingRect = {
   top: number;
   right: number;
@@ -9,10 +11,10 @@ export type BoundingRect = {
 
 export function getElementBoundingRect(element: Element): BoundingRect {
   const domRect = element.getBoundingClientRect();
-  const top = round(domRect.top);
-  const left = round(domRect.left);
-  const width = round(domRect.width);
-  const height = round(domRect.height);
+  const top = roundNumber(domRect.top);
+  const left = roundNumber(domRect.left);
+  const width = roundNumber(domRect.width);
+  const height = roundNumber(domRect.height);
   return {
     width,
     height,
@@ -21,8 +23,4 @@ export function getElementBoundingRect(element: Element): BoundingRect {
     right: left + width,
     bottom: top + height,
   };
-}
-
-function round(n: number, precision = 2) {
-  return Number(n.toFixed(precision));
 }

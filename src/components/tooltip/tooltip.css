@@ -23,26 +23,36 @@
 
 .dc-tooltip::before {
   position: absolute;
-  inset: 0;
-  z-index: -1;
   display: block;
   content: "";
 }
 
 .dc-tooltip[data-placement="top"]::before {
-  bottom: calc(0px - var(--anchor-offset));
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: var(--anchor-offset);
 }
 
 .dc-tooltip[data-placement="right"]::before {
-  left: calc(0px - var(--anchor-offset));
+  top: 0;
+  right: 100%;
+  width: var(--anchor-offset);
+  height: 100%;
 }
 
 .dc-tooltip[data-placement="bottom"]::before {
-  top: calc(0px - var(--anchor-offset));
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  height: var(--anchor-offset);
 }
 
 .dc-tooltip[data-placement="left"]::before {
-  right: calc(0px - var(--anchor-offset));
+  top: 0;
+  left: 100%;
+  width: var(--anchor-offset);
+  height: 100%;
 }
 
 @keyframes dc-tooltip-enter {

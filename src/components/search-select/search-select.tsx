@@ -12,7 +12,8 @@ import {
   type SearchSelectContext,
   OptionStore,
 } from './context.js';
-import { classNames } from '../../lib/react-helpers.js';
+import { KeyboardKey } from '../../lib/keyboard-key.js';
+import { classNames, tryToFocusElement } from '../../lib/react-helpers.js';
 import { Popover } from '../popover/popover.js';
 import { TextInput } from '../text-input/text-input.js';
 import { Spinner } from '../spinner/spinner.js';
@@ -81,9 +82,7 @@ export function SearchSelect<T>({
     setIsOpen(true);
     window.setTimeout(() => {
       const textbox = window.document.getElementById(textboxId);
-      if (textbox) {
-        textbox.focus();
-      }
+      tryToFocusElement(textbox);
 
       const listbox = window.document.getElementById(listboxId);
       if (listbox) {
@@ -99,9 +98,7 @@ export function SearchSelect<T>({
     setIsOpen(false);
     window.setTimeout(() => {
       const button = window.document.getElementById(buttonId);
-      if (button) {
-        button.focus();
-      }
+      tryToFocusElement(button);
     });
   };
 
@@ -120,10 +117,10 @@ export function SearchSelect<T>({
 
   const handleButtonKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
     let handled = false;
-    if (event.key === 'ArrowUp') {
+    if (event.key === KeyboardKey.ARROW_UP) {
       handled = true;
       openPopover();
-    } else if (event.key === 'ArrowDown') {
+    } else if (event.key === KeyboardKey.ARROW_DOWN) {
       handled = true;
       openPopover();
     }
@@ -140,7 +137,7 @@ export function SearchSelect<T>({
 
   const handleTextboxKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     let handled = false;
-    if (event.key === 'ArrowUp') {
+    if (event.key === KeyboardKey.ARROW_UP) {
       handled = true;
       const values = options.values;
       const index = values.indexOf(highlightedValue) - 1;
@@ -148,7 +145,7 @@ export function SearchSelect<T>({
         ? values[index]
         : values[values.length - 1]);
     }
-    if (event.key === 'ArrowDown') {
+    if (event.key === KeyboardKey.ARROW_DOWN) {
       handled = true;
       const values = options.values;
       const index = values.indexOf(highlightedValue) + 1;
@@ -156,17 +153,17 @@ export function SearchSelect<T>({
         ? values[index]
         : values[0]);
     }
-    if (event.key === 'Home') {
+    if (event.key === KeyboardKey.HOME) {
       handled = true;
       const values = options.values;
       setHighlightedValue(values[0]);
     }
-    if (event.key === 'End') {
+    if (event.key === KeyboardKey.END) {
       handled = true;
       const values = options.values;
       setHighlightedValue(values[values.length - 1]);
     }
-    if (event.key === 'Enter') {
+    if (event.key === KeyboardKey.ENTER) {
       handled = true;
       setSelectedValue(highlightedValue);
     }

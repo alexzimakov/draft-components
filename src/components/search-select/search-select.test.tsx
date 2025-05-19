@@ -1,11 +1,6 @@
-import { it, vi, beforeAll } from 'vitest';
+import { it, vi } from 'vitest';
 import { render, screen } from '../../test/test-utils.js';
-import { mockMatchMedia } from '../../test/mock-match-media.js';
 import { SearchSelect } from './search-select.js';
-
-beforeAll(() => {
-  mockMatchMedia();
-});
 
 it('renders without errors', () => {
   type Fruit = {

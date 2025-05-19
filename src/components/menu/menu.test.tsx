@@ -1,13 +1,8 @@
-import { beforeAll, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { Menu } from './menu.js';
 import { MenuItem } from './menu-item.js';
 import { MenuSeparator } from './menu-separator.js';
-import { mockMatchMedia } from '../../test/mock-match-media.js';
 import { fireEvent, render, screen, userEvent, waitFor, within } from '../../test/test-utils.js';
-
-beforeAll(() => {
-  mockMatchMedia();
-});
 
 it('renders without errors', () => {
   const label = 'Actions';

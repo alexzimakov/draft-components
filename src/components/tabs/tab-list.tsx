@@ -1,7 +1,7 @@
 import { type ComponentProps, type FocusEvent, type KeyboardEvent, useRef } from 'react';
-import { KeyboardKeys } from '../../lib/keyboard-keys.js';
-import { assertIfNullable } from '../../lib/helpers.js';
-import { classNames, focusElement } from '../../lib/react-helpers.js';
+import { KeyboardKey } from '../../lib/keyboard-key.js';
+import { assertNullOrUndefined } from '../../lib/helpers.js';
+import { classNames, tryToFocusElement } from '../../lib/react-helpers.js';
 import { useTabsContext } from './tabs-context.js';
 
 type TabListHTMLProps = ComponentProps<'div'>;
@@ -21,17 +21,21 @@ export function TabList({
 
   function handleFocus(event: FocusEvent<HTMLDivElement>): void {
     setTabListHasFocus(true);
-    onFocus?.(event);
+    if (typeof onFocus === 'function') {
+      onFocus(event);
+    }
   }
 
   function handleBlur(event: FocusEvent<HTMLDivElement>): void {
     setTabListHasFocus(false);
-    onBlur?.(event);
+    if (typeof onBlur === 'function') {
+      onBlur(event);
+    }
   }
 
   function handleKeyDown(event: KeyboardEvent<HTMLDivElement>): void {
     const tabList = ref.current;
-    assertIfNullable(tabList, 'ref.current is null or undefined');
+    assertNullOrUndefined(tabList, 'ref.current is null or undefined');
 
     let focusTabIndex = 0;
     const tabs = tabList.querySelectorAll<HTMLButtonElement>('[role="tab"]');
@@ -47,13 +51,13 @@ export function TabList({
     }
 
     let index = focusTabIndex;
-    if (event.key === KeyboardKeys.ArrowRight) {
+    if (event.key === KeyboardKey.ARROW_RIGHT) {
       index += 1;
-    } else if (event.key === KeyboardKeys.ArrowLeft) {
+    } else if (event.key === KeyboardKey.ARROW_LEFT) {
       index -= 1;
-    } else if (event.key === KeyboardKeys.End) {
+    } else if (event.key === KeyboardKey.END) {
       index = tabs.length - 1;
-    } else if (event.key === KeyboardKeys.Home) {
+    } else if (event.key === KeyboardKey.HOME) {
       index = 0;
     }
 
@@ -68,11 +72,13 @@ export function TabList({
       event.stopPropagation();
 
       const newFocusTab = tabs[index];
-      assertIfNullable(newFocusTab, `Unable to get tab at index ${index}`);
-      focusElement(newFocusTab);
+      assertNullOrUndefined(newFocusTab, `Unable to get tab at index ${index}`);
+      tryToFocusElement(newFocusTab);
     }
 
-    onKeyDown?.(event);
+    if (typeof onKeyDown === 'function') {
+      onKeyDown(event);
+    }
   }
 
   return (

@@ -1,5 +1,4 @@
 import { type JSX, type KeyboardEvent } from 'react';
-import { KeyboardKeys } from '../../lib/keyboard-keys.js';
 import {
   DAYS_IN_WEEK,
   type Weekday,
@@ -14,6 +13,8 @@ import {
   isWeekend,
   toDateISO,
 } from './date-helpers.js';
+import { KeyboardKey } from '../../lib/keyboard-key.js';
+import { tryToFocusElement } from '../../lib/react-helpers.js';
 import { CalendarGridHead } from './calendar-grid-head.js';
 import { CalendarDay, type CalendarDayProps } from './calendar-day.js';
 
@@ -72,9 +73,12 @@ export function CalendarGrid({
 
       let calendarDay: JSX.Element | null = null;
       if (inDisplayedMonth) {
+        const dayProps = typeof getDayProps === 'function'
+          ? getDayProps(date)
+          : {};
         calendarDay = (
           <CalendarDay
-            {...getDayProps?.(date)}
+            {...dayProps}
             date={date}
             dateISO={dateISO}
             locale={locale}
@@ -107,29 +111,31 @@ export function CalendarGrid({
 
   function handleHoverDay(date: Date) {
     return () => {
-      onHoverDay?.(date);
+      if (typeof onHoverDay === 'function') {
+        onHoverDay(date);
+      }
     };
   }
 
   function handleKeydown(event: KeyboardEvent<HTMLTableSectionElement>) {
     let newFocusDay: Date | null = null;
-    if (event.code === KeyboardKeys.ArrowRight) {
+    if (event.code === KeyboardKey.ARROW_RIGHT) {
       newFocusDay = addDays(focusDay, 1);
-    } else if (event.key === KeyboardKeys.ArrowLeft) {
+    } else if (event.key === KeyboardKey.ARROW_LEFT) {
       newFocusDay = addDays(focusDay, -1);
-    } else if (event.key === KeyboardKeys.ArrowDown) {
+    } else if (event.key === KeyboardKey.ARROW_DOWN) {
       newFocusDay = addDays(focusDay, DAYS_IN_WEEK);
-    } else if (event.key === KeyboardKeys.ArrowUp) {
+    } else if (event.key === KeyboardKey.ARROW_UP) {
       newFocusDay = addDays(focusDay, -DAYS_IN_WEEK);
-    } else if (event.key === KeyboardKeys.Home) {
+    } else if (event.key === KeyboardKey.HOME) {
       newFocusDay = getStartOfWeek(focusDay, weekStartsOn);
-    } else if (event.key === KeyboardKeys.End) {
+    } else if (event.key === KeyboardKey.END) {
       newFocusDay = getEndOfWeek(focusDay, weekStartsOn);
-    } else if (event.key === KeyboardKeys.PageDown) {
+    } else if (event.key === KeyboardKey.PAGE_DOWN) {
       newFocusDay = event.shiftKey
         ? addYears(focusDay, 1)
         : addMonths(focusDay, 1);
-    } else if (event.key === KeyboardKeys.PageUp) {
+    } else if (event.key === KeyboardKey.PAGE_UP) {
       newFocusDay = event.shiftKey
         ? addYears(focusDay, -1)
         : addMonths(focusDay, -1);
@@ -151,12 +157,9 @@ export function CalendarGrid({
       const dayISO = toDateISO(newFocusDay);
       setTimeout(() => {
         const dayElement = gridElement.querySelector(`[data-date="${dayISO}"]`);
-        if (dayElement instanceof HTMLButtonElement) {
-          dayElement.focus();
-
-          if (newFocusDay) {
-            onFocusDay?.(newFocusDay);
-          }
+        tryToFocusElement(dayElement);
+        if (newFocusDay && typeof onFocusDay === 'function') {
+          onFocusDay(newFocusDay);
         }
       }, 0);
     }

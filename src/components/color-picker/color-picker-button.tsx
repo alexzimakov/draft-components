@@ -41,8 +41,12 @@ export function ColorPickerButton<T extends string | number>({
         checked={checked}
         defaultChecked={defaultChecked}
         onChange={(event) => {
-          onChange?.(event);
-          onChangeValue?.(value);
+          if (typeof onChange === 'function') {
+            onChange(event);
+          }
+          if (typeof onChangeValue === 'function') {
+            onChangeValue(value);
+          }
         }}
       />
       <span

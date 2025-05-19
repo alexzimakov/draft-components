@@ -45,7 +45,9 @@ export const Basic: StoryFn<typeof DatePicker> = (args) => {
       value={value}
       onChangeValue={(value) => {
         setValue(value);
-        args.onChangeValue?.(value);
+        if (typeof args.onChangeValue === 'function') {
+          args.onChangeValue(value);
+        }
       }}
     />
   );
@@ -62,7 +64,9 @@ export const Range: StoryFn<typeof DateRangePicker> = (args) => {
       value={value}
       onChangeValue={(value) => {
         setValue(value);
-        args.onChangeValue?.(value);
+        if (typeof args.onChangeValue === 'function') {
+          args.onChangeValue(value);
+        }
       }}
     />
   );

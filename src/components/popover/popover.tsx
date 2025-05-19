@@ -1,6 +1,7 @@
-import { classNames } from '../../lib/react-helpers.js';
+import { classNames, tryToFocusElement } from '../../lib/react-helpers.js';
 import { observeMove } from './observe-move.js';
 import { calcPopoverPosition, type PopoverPlacement } from '../../lib/calc-popover-position.js';
+import { deleteKeys } from '../../lib/helpers.js';
 import { useRefCallback } from '../../hooks/use-ref-callback.js';
 import { useFocusTrap } from '../../hooks/use-focus-trap.js';
 import { useLockBodyScroll } from '../../hooks/use-lock-body-scroll.js';
@@ -8,7 +9,14 @@ import { useCloseOnEsc } from '../../hooks/use-close-on-esc.js';
 import { useCloseOnClickOutside } from '../../hooks/use-close-on-click-outside.js';
 import { type ComponentProps, type JSX, type RefCallback, type RefObject, useEffect, useRef, useState } from 'react';
 import { Portal } from '../portal/portal.js';
-import { omit } from '../../lib/helpers.js';
+
+export { type PopoverPlacement };
+
+export type PopoverCloseHandler = () => void;
+
+export type PopoverUnmountHandler = () => void;
+
+export type PopoverRenderAnchor = (props: { ref: RefCallback<HTMLElement> }) => JSX.Element;
 
 type PopoverHTMLProps = ComponentProps<'div'>;
 
@@ -31,14 +39,6 @@ type PopoverBaseProps = PopoverCommonProps & (
   | { anchorRef: RefObject<HTMLElement> }
   | { renderAnchor: PopoverRenderAnchor }
 );
-
-export { type PopoverPlacement };
-
-export type PopoverCloseHandler = () => void;
-
-export type PopoverUnmountHandler = () => void;
-
-export type PopoverRenderAnchor = (props: { ref: RefCallback<HTMLElement> }) => JSX.Element;
 
 export type PopoverProps =
   & PopoverBaseProps
@@ -99,7 +99,7 @@ export function Popover({
           return isMounted;
         }
 
-        popover.setAttribute('data-animation', 'enter');
+        popover.dataset.animation = 'enter';
         return !isMounted;
       });
 
@@ -117,8 +117,11 @@ export function Popover({
         popover.style.setProperty('max-height', `${result.maxHeight}px`);
       });
     } else {
-      popover.setAttribute('data-animation', 'leave');
-      popover.addEventListener('animationend', unmount, { once: true });
+      popover.dataset.animation = 'leave';
+      popover.addEventListener('animationend', unmount);
+      return () => {
+        popover.removeEventListener('animationend', unmount);
+      };
     }
   }, [
     anchorRef,
@@ -151,9 +154,7 @@ export function Popover({
     if (isOpen) {
       const prevFocusedElement = document.activeElement;
       return () => {
-        if (prevFocusedElement instanceof HTMLElement) {
-          prevFocusedElement.focus();
-        }
+        tryToFocusElement(prevFocusedElement);
       };
     }
   }, [isOpen]);
@@ -172,7 +173,7 @@ export function Popover({
             ref={popoverRef}
             role={role}
             aria-modal={ariaModal}
-            {...isAnchorRefProvided ? omit(props, 'anchorRef') : omit(props, 'renderAnchor')}
+            {...isAnchorRefProvided ? deleteKeys(props, 'anchorRef') : deleteKeys(props, 'renderAnchor')}
           >
             {children}
           </div>

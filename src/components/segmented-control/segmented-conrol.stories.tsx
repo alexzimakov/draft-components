@@ -46,7 +46,9 @@ export const Basic: StoryFn<typeof SegmentedControl> = (args) => {
       value={value}
       onChangeValue={(value) => {
         setValue(value);
-        args.onChangeValue?.(value);
+        if (typeof args.onChangeValue === 'function') {
+          args.onChangeValue(value);
+        }
       }}
     />
   );

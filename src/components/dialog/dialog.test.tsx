@@ -1,12 +1,7 @@
-import { beforeAll, expect, it, vi } from 'vitest';
+import { expect, it, vi } from 'vitest';
 import { useRef, useState } from 'react';
 import { Dialog } from './dialog.js';
-import { mockMatchMedia } from '../../test/mock-match-media.js';
 import { fireEvent, render, screen, userEvent, waitFor, within } from '../../test/test-utils.js';
-
-beforeAll(() => {
-  mockMatchMedia();
-});
 
 it('renders with necessary elements', () => {
   const title = 'New user';

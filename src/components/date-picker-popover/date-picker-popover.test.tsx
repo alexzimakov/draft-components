@@ -1,11 +1,6 @@
-import { beforeAll, expect, it, vi } from 'vitest';
+import { expect, it, vi } from 'vitest';
 import { DatePickerPopover } from './date-picker-popover.js';
-import { mockMatchMedia } from '../../test/mock-match-media.js';
 import { fireEvent, render, screen, userEvent, waitFor } from '../../test/test-utils.js';
-
-beforeAll(() => {
-  mockMatchMedia();
-});
 
 it('renders without errors', () => {
   const label = 'Select date';

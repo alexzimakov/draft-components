@@ -1,4 +1,5 @@
 import { type BoundingRect } from './get-element-bounding-rect.js';
+import { roundNumber } from './helpers.js';
 
 export { type BoundingRect };
 
@@ -137,12 +138,12 @@ export function calcPosition({
   }
 
   return {
-    x,
-    y,
+    x: roundNumber(x, 5),
+    y: roundNumber(y, 5),
     placement,
     alignment,
-    maxWidth,
-    maxHeight,
+    maxWidth: roundNumber(maxWidth),
+    maxHeight: roundNumber(maxHeight),
   };
 }
 

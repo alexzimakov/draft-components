@@ -1,3 +1,4 @@
+import { KeyboardKey } from '../lib/keyboard-key.js';
 import { useEffect } from 'react';
 import { useRefCallback } from './use-ref-callback.js';
 
@@ -18,7 +19,7 @@ export function useCloseOnEsc(handler: CloseHandler, opts: {
 
     const handleKeyDown = (event: KeyboardEvent) => {
       const handler = handlerStack.at(-1);
-      if (handler && event.key === 'Escape') {
+      if (handler && event.key === KeyboardKey.ESCAPE) {
         event.preventDefault();
         handler();
       }

@@ -14,11 +14,13 @@ import { StringFilter } from './model/string-filter.js';
 import { StringSetFilter } from './model/string-set-filter.js';
 import { TranslationsProvider } from './use-translations.js';
 import { useComboboxIds } from './use-combobox-ids.js';
+import { KeyboardKey } from '../../lib/keyboard-key.js';
+import { classNames, tryToFocusElement } from '../../lib/react-helpers.js';
+import { exhaustiveCheck } from '../../lib/helpers.js';
 import { IconButton } from '../button/index.js';
 import { FilterItem } from './filter-item.js';
 import { TrashIcon } from '../hero-icons/24/outline/trash-icon.js';
 import { MagnifyingGlassIcon } from '../hero-icons/24/outline/magnifying-glass-icon.js';
-import { KeyboardKeys, classNames, exhaustiveCheck } from '../../lib/index.js';
 
 type FilteredSearchHTMLProps = ComponentProps<'div'>;
 
@@ -113,7 +115,7 @@ export function FilteredSearch({
       } else {
         removeFilter(filter);
       }
-      getTextBoxElement().focus();
+      tryToFocusElement(getTextBoxElement());
     }
   };
 
@@ -215,24 +217,24 @@ export function FilteredSearch({
 
     let isHandled = false;
     let nextIdIndex = selectedIdIndex;
-    if (key === KeyboardKeys.ArrowDown) {
+    if (key === KeyboardKey.ARROW_DOWN) {
       nextIdIndex = selectedIdIndex + 1;
       isHandled = true;
-    } else if (key === KeyboardKeys.ArrowUp) {
+    } else if (key === KeyboardKey.ARROW_UP) {
       nextIdIndex = selectedIdIndex - 1;
       isHandled = true;
-    } else if (key === KeyboardKeys.Enter) {
+    } else if (key === KeyboardKey.ENTER) {
       const config = filtersConfigMap.get(selectedId);
       if (config) {
         onOptionSelected(config);
         isHandled = true;
       }
-    } else if (key === KeyboardKeys.Backspace) {
+    } else if (key === KeyboardKey.BACKSPACE) {
       if (query === '' && filters.length > 0) {
         onChangeFilters(filters.slice(0, -1));
         isHandled = true;
       }
-    } else if (key === KeyboardKeys.Escape) {
+    } else if (key === KeyboardKey.ESCAPE) {
       inputElement.blur();
       isHandled = true;
     }
@@ -268,8 +270,7 @@ export function FilteredSearch({
 
   const onContainerPressed: MouseEventHandler<HTMLDivElement> = (event) => {
     if (event.currentTarget === event.target) {
-      const textBoxElement = getTextBoxElement();
-      textBoxElement.focus();
+      tryToFocusElement(getTextBoxElement());
       event.stopPropagation();
       event.preventDefault();
     }

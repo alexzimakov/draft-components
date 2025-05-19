@@ -1,24 +1,12 @@
-import { describe, expect, it, vi } from 'vitest';
-import { assertIfNullable, exhaustiveCheck, once } from './helpers.js';
+import { describe, expect, it } from 'vitest';
+import { assertNullOrUndefined, exhaustiveCheck } from './helpers.js';
 
-describe('#once()', () => {
-  it('creates function that invokes only once', () => {
-    const fn = vi.fn();
-    const fnOnce = once(fn);
-
-    fnOnce();
-    fnOnce();
-
-    expect(fn).toHaveBeenCalledTimes(1);
-  });
-});
-
-describe('#assertIfNullable()', () => {
+describe('#assertNullOrUndefined()', () => {
   it('throws an error when the given value is null or undefined', () => {
     const error = 'value is null or undefined';
-    expect(() => assertIfNullable(null)).toThrow(error);
-    expect(() => assertIfNullable(undefined)).toThrow(error);
-    expect(() => assertIfNullable(1)).not.toThrow();
+    expect(() => assertNullOrUndefined(null, error)).toThrow(error);
+    expect(() => assertNullOrUndefined(undefined, error)).toThrow(error);
+    expect(() => assertNullOrUndefined(1)).not.toThrow();
   });
 });
 

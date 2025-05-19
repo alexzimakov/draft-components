@@ -1,5 +1,5 @@
 import { type RefObject, useEffect } from 'react';
-import { focusElement } from '../lib/react-helpers.js';
+import { tryToFocusElement } from '../lib/react-helpers.js';
 
 type ModalRef = RefObject<HTMLElement | null>;
 
@@ -52,15 +52,15 @@ export function useFocusTrap(modalRef: ModalRef, opts: {
       const lastFocusableEl = focusableElementList.at(-1);
       if (!topModal.contains(document.activeElement)) {
         event.preventDefault();
-        focusElement(firstFocusableEl);
+        tryToFocusElement(firstFocusableEl);
       } else if (event.shiftKey) {
         if (document.activeElement === firstFocusableEl) {
           event.preventDefault();
-          focusElement(lastFocusableEl);
+          tryToFocusElement(lastFocusableEl);
         }
       } else if (document.activeElement === lastFocusableEl) {
         event.preventDefault();
-        focusElement(firstFocusableEl);
+        tryToFocusElement(firstFocusableEl);
       }
     };
 
