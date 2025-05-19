@@ -12,8 +12,8 @@ export type PopoverPositionCalcParams = {
 };
 
 export function calcPopoverPosition(
-  anchor: HTMLElement,
-  popover: HTMLElement,
+  anchor: HTMLElement | SVGElement,
+  popover: HTMLElement | SVGElement,
   params: PopoverPositionCalcParams = {},
 ): PositionCalcResult {
   let placement: Placement = 'bottom';
@@ -26,6 +26,7 @@ export function calcPopoverPosition(
     alignment = parts[1];
   }
 
+  const root = anchor.ownerDocument || window.document;
   const isPopoverFixed = window.getComputedStyle(popover).position === 'fixed';
 
   return calcPosition({
@@ -33,10 +34,10 @@ export function calcPopoverPosition(
     popoverRect: getElementBoundingRect(popover),
     placement,
     alignment,
-    anchorPadding: 4,
-    viewportPadding: 4,
-    viewportWidth: document.documentElement.clientWidth,
-    viewportHeight: document.documentElement.clientHeight,
+    anchorPadding: params.anchorPadding || 4,
+    viewportPadding: params.viewportPadding || 4,
+    viewportWidth: root.documentElement.clientWidth,
+    viewportHeight: root.documentElement.clientHeight,
     scrollX: isPopoverFixed ? 0 : Math.round(window.scrollX),
     scrollY: isPopoverFixed ? 0 : Math.round(window.scrollY),
   });

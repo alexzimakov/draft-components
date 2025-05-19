@@ -53,17 +53,19 @@ export const PasswordInput = forwardRef<
       type={visible ? 'text' : 'password'}
       readOnly={loading ?? props.readOnly}
       slotRight={() => (
-        <Tooltip content={getTooltipText(visible)}>
-          <button
-            className="dc-password-input__toggle-button"
-            type="button"
-            disabled={loading}
-            onClick={handleClickToggleButton}
-          >
-            {loading
-              ? <Spinner width="1.15em" />
-              : renderToggleButtonIcon(visible)}
-          </button>
+        <Tooltip title={getTooltipText(visible)}>
+          {(props) => (
+            <button
+              {...props}
+              className="dc-password-input__toggle-button"
+              type="button"
+              onClick={handleClickToggleButton}
+            >
+              {loading
+                ? <Spinner width="1.15em" />
+                : renderToggleButtonIcon(visible)}
+            </button>
+          )}
         </Tooltip>
       )}
     />

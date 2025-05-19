@@ -9,10 +9,10 @@ export type BoundingRect = {
 
 export function getElementBoundingRect(element: Element): BoundingRect {
   const domRect = element.getBoundingClientRect();
-  const top = Math.round(domRect.top);
-  const left = Math.round(domRect.left);
-  const width = Math.round(domRect.width);
-  const height = Math.round(domRect.height);
+  const top = round(domRect.top);
+  const left = round(domRect.left);
+  const width = round(domRect.width);
+  const height = round(domRect.height);
   return {
     width,
     height,
@@ -21,4 +21,8 @@ export function getElementBoundingRect(element: Element): BoundingRect {
     right: left + width,
     bottom: top + height,
   };
+}
+
+function round(n: number, precision = 2) {
+  return Number(n.toFixed(precision));
 }

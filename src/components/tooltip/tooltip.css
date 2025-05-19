@@ -1,33 +1,90 @@
 .dc-tooltip {
-  --dc-tooltip-text-color: var(--dc-gray-50);
-  --dc-tooltip-bg: var(--dc-gray-700);
-  --dc-tooltip-transition-duration: 100ms;
+  --dc-tooltip-color: var(--dc-white);
+  --dc-tooltip-bg: var(--dc-gray-800);
+  --dc-tooltip-enter-animation-duration: 50ms;
+  --dc-tooltip-leave-animation-duration: 50ms;
 
+  position: fixed;
   top: 0;
   left: 0;
   z-index: var(--dc-overlay-z-index);
   box-sizing: border-box;
+  display: block;
+  max-width: 288px;
   padding: 4px 8px;
   font: var(--dc-text-xs);
-  color: var(--dc-tooltip-text-color);
+  color: var(--dc-tooltip-color);
+  white-space: pre-wrap;
   color-scheme: light;
   background: var(--dc-tooltip-bg);
   border-radius: 6px;
   box-shadow: var(--dc-shadow-md);
 }
 
-.dc-tooltip_hidden {
-  opacity: 0;
-  transition: opacity var(--dc-tooltip-transition-duration) ease;
+.dc-tooltip::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: block;
+  content: "";
 }
 
-.dc-tooltip_visible {
-  opacity: 1;
+.dc-tooltip[data-placement="top"]::before {
+  bottom: calc(0px - var(--anchor-offset));
+}
+
+.dc-tooltip[data-placement="right"]::before {
+  left: calc(0px - var(--anchor-offset));
+}
+
+.dc-tooltip[data-placement="bottom"]::before {
+  top: calc(0px - var(--anchor-offset));
+}
+
+.dc-tooltip[data-placement="left"]::before {
+  right: calc(0px - var(--anchor-offset));
+}
+
+@keyframes dc-tooltip-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.dc-tooltip[data-animation="enter"] {
+  animation: dc-tooltip-enter var(--dc-tooltip-enter-animation-duration) ease
+    forwards;
+}
+
+@keyframes dc-tooltip-leave {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.dc-tooltip[data-animation="leave"] {
+  animation: dc-tooltip-leave var(--dc-tooltip-leave-animation-duration) ease
+    forwards;
+}
+
+@media (prefers-reduced-motion) {
+  .dc-tooltip[data-animation="enter"],
+  .dc-tooltip[data-animation="leave"] {
+    animation-duration: 0ms;
+  }
 }
 
 .dark .dc-tooltip,
 .dark.dc-tooltip {
-  --dc-tooltip-text-color: var(--dc-gray-800);
+  --dc-tooltip-color: var(--dc-gray-800);
   --dc-tooltip-bg: var(--dc-gray-100);
 
   color-scheme: dark;
