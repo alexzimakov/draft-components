@@ -1,5 +1,5 @@
 import { type MouseEventHandler, type ReactNode, forwardRef } from 'react';
-import { classNames } from '../../lib/index.js';
+import { classNames } from '../../lib/react-helpers.js';
 import { useTranslations } from './use-translations.js';
 import { XMarkIcon } from '../hero-icons/24/outline/x-mark-icon.js';
 

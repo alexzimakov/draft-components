@@ -1,6 +1,6 @@
 import { type ChangeEventHandler, type PointerEventHandler, type ReactNode } from 'react';
 import { getOffsetRelativeToThumb } from './get-offset-relative-to-thumb.js';
-import { classNames } from '../../lib/index.js';
+import { classNames } from '../../lib/react-helpers.js';
 
 export type SliderThumbProps = {
   'aria-label'?: string;

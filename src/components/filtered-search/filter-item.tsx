@@ -1,7 +1,7 @@
 import { type Filter } from './types.js';
 import { StringFilter } from './model/string-filter.js';
 import { StringSetFilter } from './model/string-set-filter.js';
-import { exhaustiveCheck } from '../../lib/index.js';
+import { exhaustiveCheck } from '../../lib/helpers.js';
 import { StringFilterItem } from './string-filter-item.js';
 import { StringSetFilterItem } from './string-set-filter-item.js';
 

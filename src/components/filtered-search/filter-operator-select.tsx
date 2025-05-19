@@ -1,4 +1,4 @@
-import { classNames } from '../../lib/index.js';
+import { classNames } from '../../lib/react-helpers.js';
 import { Select } from '../select/index.js';
 
 export type FilterOperatorSelectProps<T extends string> = {

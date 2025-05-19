@@ -1,4 +1,4 @@
-import { roundNumber, formatPercent } from '../../lib/index.js';
+import { roundNumber, formatPercent } from '../../lib/helpers.js';
 
 export function getOffsetRelativeToThumb(position: number) {
   return 'calc('

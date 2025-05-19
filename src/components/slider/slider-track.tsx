@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { formatPercent } from '../../lib/index.js';
+import { formatPercent } from '../../lib/helpers.js';
 
 export type SliderTickMark = {
   value: number;
