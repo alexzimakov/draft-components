@@ -1,4 +1,4 @@
-import { type ComponentProps, forwardRef } from 'react';
+import { type ComponentProps } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
 export type SwitchToggleHandler = (checked: boolean) => void;
@@ -14,49 +14,46 @@ export type SwitchProps =
   & SwitchBaseProps
   & Omit<SwitchHTMLProps, keyof SwitchBaseProps>;
 
-export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
-  function Switch({
-    showCheckIcon = true,
-    style,
-    className,
-    onChange,
-    onToggle,
-    ...props
-  }, ref) {
-    return (
-      <label style={style} className={classNames('dc-switch', className)}>
-        <input
-          {...props}
-          ref={ref}
-          className="dc-switch__input"
-          type="checkbox"
-          onChange={(event) => {
-            if (typeof onChange === 'function') {
-              onChange(event);
-            }
-            if (typeof onToggle === 'function') {
-              onToggle(event.target.checked);
-            }
-          }}
-        />
-        <span
-          data-testid="switch-track"
-          className="dc-switch__track"
-          aria-hidden={true}
-        >
-          <span className="dc-switch__thumb">
-            {showCheckIcon && (
-              <CheckIcon
-                className="dc-switch__icon"
-                data-testid="switch-check-icon"
-              />
-            )}
-          </span>
+export function Switch({
+  showCheckIcon = true,
+  style,
+  className,
+  onChange,
+  onToggle,
+  ...props
+}: SwitchProps) {
+  return (
+    <label style={style} className={classNames('dc-switch', className)}>
+      <input
+        {...props}
+        className="dc-switch__input"
+        type="checkbox"
+        onChange={(event) => {
+          if (typeof onChange === 'function') {
+            onChange(event);
+          }
+          if (typeof onToggle === 'function') {
+            onToggle(event.target.checked);
+          }
+        }}
+      />
+      <span
+        data-testid="switch-track"
+        className="dc-switch__track"
+        aria-hidden={true}
+      >
+        <span className="dc-switch__thumb">
+          {showCheckIcon && (
+            <CheckIcon
+              className="dc-switch__icon"
+              data-testid="switch-check-icon"
+            />
+          )}
         </span>
-      </label>
-    );
-  },
-);
+      </span>
+    </label>
+  );
+};
 
 function CheckIcon(props: ComponentProps<'svg'>) {
   return (

@@ -1,4 +1,4 @@
-import { type ComponentProps, type JSX, forwardRef } from 'react';
+import { type ComponentProps, type JSX } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
 export type RadioIcon = 'dot' | 'check';
@@ -16,14 +16,14 @@ export type RadioProps =
   & RadioBaseProps
   & Omit<RadioHTMLProps, keyof RadioBaseProps>;
 
-export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio({
+export function Radio({
   icon = 'dot',
   style,
   className,
   onChange,
   onToggle,
   ...props
-}, ref) {
+}: RadioProps) {
   let iconElement: JSX.Element;
   switch (icon) {
     case 'check':
@@ -37,7 +37,6 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio({
     <label style={style} className={classNames('dc-radio', className)}>
       <input
         {...props}
-        ref={ref}
         type="radio"
         className="dc-radio__input"
         onChange={(event) => {
@@ -58,7 +57,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio({
       </span>
     </label>
   );
-});
+}
 
 function CheckIcon(props: ComponentProps<'svg'>) {
   return (

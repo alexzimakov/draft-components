@@ -3,7 +3,6 @@ import {
   type ComponentProps,
   type DragEventHandler,
   type ReactNode,
-  forwardRef,
   useId,
   useRef,
   useState,
@@ -27,10 +26,8 @@ export type FilePickerProps =
   & FilePickerBaseProps
   & Omit<FilePickerHTMLProps, (keyof FilePickerBaseProps) | 'type'>;
 
-export const FilePicker = forwardRef<
-  HTMLInputElement,
-  FilePickerProps
->(function FilePicker({
+export function FilePicker({
+  ref,
   label,
   icon,
   caption,
@@ -41,7 +38,7 @@ export const FilePicker = forwardRef<
   disabled,
   onSelectFiles,
   ...props
-}, ref) {
+}: FilePickerProps) {
   const defaultId = useId();
   const inputId = id || defaultId;
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -137,4 +134,4 @@ export const FilePicker = forwardRef<
       </Button>
     </div>
   );
-});
+}

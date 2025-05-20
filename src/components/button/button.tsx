@@ -1,4 +1,4 @@
-import { type ComponentProps, type JSX, type ReactNode, forwardRef } from 'react';
+import { type ComponentProps, type JSX, type ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { Spinner } from '../spinner/index.js';
 
@@ -31,16 +31,13 @@ export type ButtonProps =
   & ButtonBaseProps
   & Omit<ButtonHTMLProps, keyof ButtonBaseProps>;
 
-export const Button = forwardRef<
-  HTMLButtonElement,
-  ButtonProps
->(function Button({
+export function Button({
   fullWidth,
   disabled,
   loading,
   buttonStyle = 'filled',
   size = 'sm',
-  tint = 'default',
+  tint = 'gray',
   iconLeft,
   iconRight,
   caption,
@@ -49,20 +46,24 @@ export const Button = forwardRef<
   type = 'button',
   renderAs,
   ...props
-}, ref) {
+}: ButtonProps) {
+  if (loading) {
+    iconLeft = <Spinner data-testid="button-spinner" size="1.15em" />;
+  }
+
+  if (caption) {
+    children = (
+      <div className="dc-button__label">
+        {children}
+        <small className="dc-button__caption">{caption}</small>
+      </div>
+    );
+  }
+
   children = (
     <>
-      {loading
-        ? <Spinner data-testid="button-spinner" size="1.15em" />
-        : iconLeft}
-      {caption
-        ? (
-            <div className="dc-button__label">
-              {children}
-              <small className="dc-button__caption">{caption}</small>
-            </div>
-          )
-        : children}
+      {iconLeft}
+      {children}
       {iconRight}
     </>
   );
@@ -83,7 +84,6 @@ export const Button = forwardRef<
 
   return (
     <button
-      ref={ref}
       type={type}
       disabled={disabled || loading}
       className={className}
@@ -92,4 +92,4 @@ export const Button = forwardRef<
       {children}
     </button>
   );
-});
+}

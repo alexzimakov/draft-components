@@ -1,12 +1,8 @@
-import { type ComponentProps, forwardRef } from 'react';
+import { type ComponentProps } from 'react';
 
-export const EyeIcon = forwardRef<
-  SVGSVGElement,
-  ComponentProps<'svg'>
->(function EyeIcon(props, ref) {
+export function EyeIcon(props: ComponentProps<'svg'>) {
   return (
     <svg
-      ref={ref}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       width={24}
@@ -28,4 +24,4 @@ export const EyeIcon = forwardRef<
       />
     </svg>
   );
-});
+}

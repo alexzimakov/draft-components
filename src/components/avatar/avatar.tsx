@@ -1,4 +1,4 @@
-import { type ComponentProps, type ReactNode, forwardRef, useId } from 'react';
+import { type ComponentProps, type ReactNode, useId } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
 export type AvatarSize =
@@ -43,10 +43,7 @@ const sizesInPixels: Record<AvatarSize, number> = {
   xl: 56,
 };
 
-export const Avatar = forwardRef<
-  SVGSVGElement,
-  AvatarProps
->(function Avatar({
+export function Avatar({
   square,
   size = 'md',
   fill = 'gray',
@@ -55,7 +52,7 @@ export const Avatar = forwardRef<
   monogram,
   className,
   ...props
-}, ref) {
+}: AvatarProps) {
   const id = useId();
   const titleId = altText ? `${id}avatar-title` : undefined;
   const maskId = `${id}avatar-mask`;
@@ -115,7 +112,6 @@ export const Avatar = forwardRef<
 
   return (
     <svg
-      ref={ref}
       className={classNames(className, {
         'dc-avatar': true,
         [`dc-avatar_type_${type}`]: type,
@@ -150,4 +146,4 @@ export const Avatar = forwardRef<
       </g>
     </svg>
   );
-});
+}

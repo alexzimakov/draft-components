@@ -1,12 +1,8 @@
-import { type ComponentProps, forwardRef } from 'react';
+import { type ComponentProps } from 'react';
 
-export const ArrowSmallUpIcon = forwardRef<
-  SVGSVGElement,
-  ComponentProps<'svg'>
->(function ArrowSmallUpIcon(props, ref) {
+export function ArrowSmallUpIcon(props: ComponentProps<'svg'>) {
   return (
     <svg
-      ref={ref}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       width={24}
@@ -23,4 +19,4 @@ export const ArrowSmallUpIcon = forwardRef<
       />
     </svg>
   );
-});
+}

@@ -3,7 +3,6 @@ import {
   type ComponentProps,
   type FocusEventHandler,
   type ReactNode,
-  forwardRef,
   useState,
 } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
@@ -50,10 +49,7 @@ export type TextInputProps =
   & TextInputBaseProps
   & Omit<TextInputHTMLProps, keyof TextInputBaseProps>;
 
-export const TextInput = forwardRef<
-  HTMLInputElement,
-  TextInputProps
->(function TextInput({
+export function TextInput({
   style,
   className,
   fullWidth,
@@ -71,7 +67,7 @@ export const TextInput = forwardRef<
   onBlur,
   onChangeValue,
   ...props
-}, ref) {
+}: TextInputProps) {
   const [focused, setFocused] = useState(false);
 
   let elementBeforeInput: ReactNode;
@@ -136,7 +132,6 @@ export const TextInput = forwardRef<
       <input
         {...props}
         className="dc-text-input__native"
-        ref={ref}
         type={type}
         size={sizeInChars}
         disabled={disabled}
@@ -148,4 +143,4 @@ export const TextInput = forwardRef<
       {elementAfterInput}
     </div>
   );
-});
+}

@@ -1,4 +1,4 @@
-import { type ComponentProps, forwardRef } from 'react';
+import { type ComponentProps } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
 type TableHeadHTMLProps = ComponentProps<'thead'>;
@@ -11,18 +11,18 @@ export type TableHeadProps =
   & TableHeadBaseProps
   & Omit<TableHeadHTMLProps, keyof TableHeadBaseProps>;
 
-export const TableHead = forwardRef<
-  HTMLTableSectionElement,
-  TableHeadProps
->(function TableHead({ className, isTinted = false, ...props }, ref) {
+export function TableHead({
+  className,
+  isTinted = false,
+  ...props
+}: TableHeadProps) {
   return (
     <thead
       {...props}
-      ref={ref}
       className={classNames(className, {
         'dc-table-head': true,
         'dc-table-head_tinted': isTinted,
       })}
     />
   );
-});
+}

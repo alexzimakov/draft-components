@@ -16,7 +16,7 @@ export type PopoverCloseHandler = () => void;
 
 export type PopoverUnmountHandler = () => void;
 
-export type PopoverRenderAnchor = (props: { ref: RefCallback<HTMLElement> }) => JSX.Element;
+export type PopoverRenderAnchor = (props: { ref: RefCallback<HTMLElement | null> }) => JSX.Element;
 
 type PopoverHTMLProps = ComponentProps<'div'>;
 
@@ -36,7 +36,7 @@ type PopoverCommonProps = {
 };
 
 type PopoverBaseProps = PopoverCommonProps & (
-  | { anchorRef: RefObject<HTMLElement> }
+  | { anchorRef: RefObject<HTMLElement | null> }
   | { renderAnchor: PopoverRenderAnchor }
 );
 

@@ -1,7 +1,7 @@
 import { type Meta, type StoryFn } from '@storybook/react';
 import { Tooltip } from './tooltip.js';
 import { IconButton } from '../button/index.js';
-import { TextInput } from '../text-input/text-input.js';
+import { TextInput } from '../text-input/index.js';
 import { BookmarkIcon } from '@heroicons/react/24/outline';
 import { QuestionMarkCircleIcon } from '@heroicons/react/20/solid';
 

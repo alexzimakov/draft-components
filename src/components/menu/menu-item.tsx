@@ -1,4 +1,4 @@
-import { type ComponentProps, type ReactNode, forwardRef } from 'react';
+import { type ComponentProps, type ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
 type MenuItemHTMLProps = ComponentProps<'button'>;
@@ -16,10 +16,7 @@ export type MenuItemProps =
   & MenuItemBaseProps
   & Omit<MenuItemHTMLProps, keyof MenuItemBaseProps>;
 
-export const MenuItem = forwardRef<
-  HTMLButtonElement,
-  MenuItemProps
->(({
+export function MenuItem({
   role = 'menuitem',
   disabled,
   destructive,
@@ -28,11 +25,10 @@ export const MenuItem = forwardRef<
   children,
   className,
   ...props
-}, ref) => {
+}: MenuItemProps) {
   return (
     <button
       {...props}
-      ref={ref}
       className={classNames(className, {
         'dc-menu-btn': true,
         'dc-menu-btn_has-icon': iconLeft || iconRight,
@@ -46,5 +42,4 @@ export const MenuItem = forwardRef<
       {iconLeft} <span>{children}</span> {iconRight}
     </button>
   );
-});
-MenuItem.displayName = 'MenuItem';
+}

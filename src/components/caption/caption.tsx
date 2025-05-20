@@ -1,4 +1,4 @@
-import { type ComponentProps, type ReactNode, forwardRef } from 'react';
+import { type ComponentProps, type ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
 export type CaptionColor =
@@ -19,21 +19,18 @@ export type CaptionProps =
   & CaptionBaseProps
   & Omit<CaptionHTMLProps, keyof CaptionBaseProps>;
 
-export const Caption = forwardRef<
-  HTMLDivElement,
-  CaptionProps
->(function Caption({
+export function Caption({
   color = 'gray',
   icon,
   children,
   className,
   ...props
-}, ref) {
+}: CaptionProps) {
   return (
     <div
       {...props}
-      ref={ref}
-      className={classNames(className, 'dc-caption', {
+      className={classNames(className, {
+        'dc-caption': true,
         [`dc-caption_color_${color}`]: color,
       })}
     >
@@ -43,4 +40,4 @@ export const Caption = forwardRef<
       {children}
     </div>
   );
-});
+}

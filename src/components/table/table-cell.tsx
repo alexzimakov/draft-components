@@ -1,25 +1,21 @@
-import { type ComponentProps, forwardRef } from 'react';
+import { type ComponentProps } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
 type TableCellHTMLProps = ComponentProps<'td'>;
 
 export type TableCellProps = TableCellHTMLProps;
 
-export const TableCell = forwardRef<
-  HTMLTableCellElement,
-  TableCellProps
->(function TableCell({
+export function TableCell({
   className,
   children,
   ...props
-}, ref) {
+}: TableCellProps) {
   return (
     <td
       {...props}
-      ref={ref}
       className={classNames('dc-table-cell', className)}
     >
       {children}
     </td>
   );
-});
+}

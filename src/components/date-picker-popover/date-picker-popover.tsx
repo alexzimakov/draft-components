@@ -1,6 +1,6 @@
 import { type DateISO } from '../date-picker/date-helpers.js';
 import { classNames } from '../../lib/react-helpers.js';
-import { type ReactNode, type RefCallback, useMemo, useState } from 'react';
+import { type JSX, type ReactNode, type RefCallback, useMemo, useState } from 'react';
 import { Popover, type PopoverPlacement } from '../popover/index.js';
 import { DatePicker, type DatePickerProps } from '../date-picker/index.js';
 

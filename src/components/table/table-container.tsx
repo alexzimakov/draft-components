@@ -1,4 +1,4 @@
-import { type ComponentProps, forwardRef } from 'react';
+import { type ComponentProps } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
 export type TableContainerBorder = {
@@ -18,15 +18,12 @@ export type TableContainerProps =
   & TableContainerBaseProps
   & Omit<TableContainerHTMLProps, keyof TableContainerBaseProps>;
 
-export const TableContainer = forwardRef<
-  HTMLDivElement,
-  TableContainerProps
->(function TableContainer({
+export function TableContainer({
   border,
   className,
   children,
   ...props
-}, ref) {
+}: TableContainerProps) {
   let modifier = '';
   if (typeof border === 'object' && border != null) {
     modifier = classNames({
@@ -42,10 +39,9 @@ export const TableContainer = forwardRef<
   return (
     <div
       {...props}
-      ref={ref}
       className={classNames(className, modifier, 'dc-table-container')}
     >
       {children}
     </div>
   );
-});
+}

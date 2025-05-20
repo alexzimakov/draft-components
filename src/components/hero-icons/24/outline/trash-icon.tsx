@@ -1,12 +1,8 @@
-import { type ComponentProps, forwardRef } from 'react';
+import { type ComponentProps } from 'react';
 
-export const TrashIcon = forwardRef<
-  SVGSVGElement,
-  ComponentProps<'svg'>
->(function TrashIcon(props, ref) {
+export function TrashIcon(props: ComponentProps<'svg'>) {
   return (
     <svg
-      ref={ref}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       width={24}
@@ -23,4 +19,4 @@ export const TrashIcon = forwardRef<
       />
     </svg>
   );
-});
+}

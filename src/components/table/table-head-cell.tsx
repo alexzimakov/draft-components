@@ -1,4 +1,4 @@
-import { type ComponentProps, type ElementType, forwardRef } from 'react';
+import { type ComponentProps, type ElementType } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { ArrowsUpDownIcon } from '../hero-icons/24/outline/arrows-up-down-icon.js';
 import { ArrowSmallUpIcon } from '../hero-icons/24/outline/arrow-small-up-icon.js';
@@ -36,17 +36,14 @@ const stateMapping: Record<
   descending: 'none',
 };
 
-export const TableHeadCell = forwardRef<
-  HTMLTableCellElement,
-  TableHeadCellProps
->(function TableHeaderCell({
+export function TableHeadCell({
   isSortable = false,
   sort = 'none',
   className,
   children,
   onChangeSort,
   ...props
-}, ref) {
+}: TableHeadCellProps) {
   if (isSortable) {
     const Icon = iconMapping[sort];
     children = (
@@ -78,10 +75,9 @@ export const TableHeadCell = forwardRef<
         'dc-table-cell_head': true,
         'dc-table-cell_sortable': isSortable,
       })}
-      ref={ref}
       aria-sort={isSortable ? sort : props['aria-sort']}
     >
       {children}
     </th>
   );
-});
+}

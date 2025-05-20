@@ -1,4 +1,4 @@
-import { type ChangeEventHandler, type ComponentProps, forwardRef } from 'react';
+import { type ChangeEventHandler, type ComponentProps } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
 export type TextareaSize = 'sm' | 'md' | 'lg';
@@ -18,10 +18,7 @@ export type TextareaProps =
   & TextareaBaseProps
   & Omit<TextareaHTMLProps, keyof TextareaBaseProps>;
 
-export const Textarea = forwardRef<
-  HTMLTextAreaElement,
-  TextareaProps
->(function Textarea({
+export function Textarea({
   style,
   className,
   fullWidth,
@@ -32,7 +29,7 @@ export const Textarea = forwardRef<
   onChange,
   onChangeValue,
   ...props
-}, ref) {
+}: TextareaProps) {
   const handleChange: ChangeEventHandler<HTMLTextAreaElement> = (event) => {
     if (typeof onChange === 'function') {
       onChange(event);
@@ -45,7 +42,6 @@ export const Textarea = forwardRef<
   return (
     <textarea
       {...props}
-      ref={ref}
       style={style}
       className={classNames(className, 'dc-textarea', {
         [`dc-textarea_${size}`]: size,
@@ -59,4 +55,4 @@ export const Textarea = forwardRef<
       onChange={handleChange}
     />
   );
-});
+}

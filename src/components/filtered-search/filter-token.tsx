@@ -1,9 +1,11 @@
-import { type MouseEventHandler, type ReactNode, forwardRef } from 'react';
+import { type ComponentProps, type MouseEventHandler, type ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { useTranslations } from './use-translations.js';
 import { XMarkIcon } from '../hero-icons/24/outline/x-mark-icon.js';
 
-export type FilterTokenProps = {
+type FilterTokenHTMLProps = ComponentProps<'div'>;
+
+type FilterTokenBaseProps = {
   className?: string;
   isHighlighted?: boolean;
   children: ReactNode;
@@ -11,16 +13,18 @@ export type FilterTokenProps = {
   onClickCloseButton?: MouseEventHandler<HTMLButtonElement>;
 };
 
-export const FilterToken = forwardRef<
-  HTMLDivElement,
-  FilterTokenProps
->(function FilterToken({
+export type FilterTokenProps =
+  & FilterTokenBaseProps
+  & Omit<FilterTokenHTMLProps, keyof FilterTokenBaseProps>;
+
+export function FilterToken({
+  ref,
   className,
   isHighlighted,
   children,
   onClickLabel,
   onClickCloseButton,
-}, ref) {
+}: FilterTokenProps) {
   const { removeFilterButton } = useTranslations();
   return (
     <div
@@ -44,4 +48,4 @@ export const FilterToken = forwardRef<
       </button>
     </div>
   );
-});
+}

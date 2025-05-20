@@ -1,4 +1,4 @@
-import { type ComponentProps, forwardRef } from 'react';
+import { type ComponentProps } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
 type LabelHTMLProps = ComponentProps<'label'>;
@@ -11,16 +11,15 @@ export type LabelProps =
   & LabelBaseProps
   & Omit<LabelHTMLProps, keyof LabelBaseProps>;
 
-export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label({
+export function Label({
   required = false,
   className = '',
   children,
   ...props
-}, ref) {
+}: LabelProps) {
   return (
     <label
       {...props}
-      ref={ref}
       className={classNames(className, {
         'dc-label': true,
         'dc-label_required': required,
@@ -29,4 +28,4 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label({
       {children}
     </label>
   );
-});
+}

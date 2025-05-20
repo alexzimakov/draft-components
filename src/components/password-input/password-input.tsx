@@ -1,4 +1,4 @@
-import { type MouseEventHandler, type ReactNode, forwardRef, useState } from 'react';
+import { type MouseEventHandler, type ReactNode, useState } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { TextInput, type TextInputProps } from '../text-input/index.js';
 import { Tooltip } from '../tooltip/index.js';
@@ -24,10 +24,7 @@ const renderToggleButtonDefaultIcon = (visible: boolean) => (visible
   ? <EyeIcon width="1.25em" height="1.25em" />
   : <EyeSlashIcon width="1.25em" height="1.25em" />);
 
-export const PasswordInput = forwardRef<
-  HTMLInputElement,
-  PasswordInputProps
->(function PasswordInput({
+export function PasswordInput({
   className,
   loading = false,
   defaultVisible = false,
@@ -35,7 +32,7 @@ export const PasswordInput = forwardRef<
   renderToggleButtonIcon = renderToggleButtonDefaultIcon,
   onClickToggleButton,
   ...props
-}, ref) {
+}: PasswordInputProps) {
   const [visible, setVisible] = useState(defaultVisible);
 
   const handleClickToggleButton: MouseEventHandler<HTMLButtonElement> = (event) => {
@@ -48,7 +45,6 @@ export const PasswordInput = forwardRef<
   return (
     <TextInput
       {...props}
-      ref={ref}
       className={classNames('dc-password-input', className)}
       type={visible ? 'text' : 'password'}
       readOnly={loading ?? props.readOnly}
@@ -70,4 +66,4 @@ export const PasswordInput = forwardRef<
       )}
     />
   );
-});
+}
