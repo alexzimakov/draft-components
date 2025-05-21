@@ -1,20 +1,11 @@
 :root {
   --dc-overlay-z-index: 1000;
-  --dc-toaster-z-index: 1010;
+  --dc-toaster-z-index: 2000;
 
-  /* Typography */
-
-  /* https://tailwindcss.com/docs/font-family */
-  --dc-font-serif:
-    ui-serif, "Georgia", "Cambria", "Times New Roman", "Times", serif;
-  --dc-font-sans:
-    ui-sans-serif, system-ui, -apple-system, "BlinkMacSystemFont", "Segoe UI",
-    "Roboto", "Helvetica Neue", "Arial", "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    "Noto Color Emoji";
-  --dc-font-mono:
-    ui-monospace, "SFMono-Regular", "SF Mono", "Menlo", "Monaco", "Consolas",
-    "Liberation Mono", "Courier New", monospace;
+  /* Fonts */
+  --dc-font-sans: ui-sans-serif, system-ui, sans-serif;
+  --dc-font-serif: ui-serif, serif;
+  --dc-font-mono: ui-monospace, monospace;
   --dc-primary-font: var(--dc-font-sans);
 
   /* https://tailwindcss.com/docs/font-size */
@@ -29,15 +20,42 @@
   --dc-text-4xl: 36px/40px var(--dc-primary-font);
   --dc-text-5xl: 48px/1 var(--dc-primary-font);
 
-  /* Colors  */
-  --dc-white: #fff;
-  --dc-white-rgb: 255 255 255;
-  --dc-black: #000;
-  --dc-black-rgb: 0 0 0;
+  /*
+   * Colors
+   *
+   * https://tailwindcss.com/docs/colors
+   * https://www.typescriptlang.org/play/?#code/MYewdgzgLgBFCGBLANgd0WAJgYRMkAThDALwwDeAUDDTBMvFAKYBcF1tnArAAxsDkAYgBmADmHxhwfgBoOnGgEYefGEOGLhXYQE5Z8hQCYVAwU0NNxPfQtoBmE2sHAARpi5NFN2zAAsjoR1feDsXUW9bXlUhADZfAHZfURcIhRiAwQSuLhi9OR8YeIy7O19FbNTOUQzFcx1QytodDJ4NeMN4RpodXlMeYxjFeP4DAF982gBzAngATzYqAt6nXQlhFInbZWiRO2FfYRiumGMdpg94pg2DTgcdzEV3TGuC-x2dYBDJY6jTGJd2tVjukdr4XNkYnZjkUdnZEuUvJsFNUdppDPVhkjOM1UYpFKJDJibk1lkIeA54opDCNOOMDAAvDDABbEmikkSSTnHbamfZ8rjHU6mJi+EVMIkFO6mTC+GWYcJY2hvUzwRSq+CdRVsjKU3Wa1kwEGmLiGE1cF4+GGmPZ7XxHLUwFGmQku-UFHGmfFei22Ho7HjNZopMZIsBMACuUBmyBZSx2ay5Dp5K20qcFGXOmYFDqlTjlst8x2VTi+dhCPx1cKrwIyZtN1IdVqc-hb1gdTqchhiXa7xw9TiGg4lPj9fXgPHHnRDBmg4FY7DjvM5um5GS068LDqFTnFmc3BtzQkwMUwdgeRYy8FE8HRTArO3iokpMWkDqNTi48S4pTvjYyvgA8lXwNDshHRet93dGpgEUHQhj7dkeGACcAxpWg6U4AgmEwWMfHZYQmGEQwiNXeMmHMcx0zIz5PmOQ8RE+Lh4GzA1i3UJ9B3vYV9gAyCfHfI9gB7e0DSbIQXDgmDgIKUDBB0OCXEUH0FH7IR4g0B5MAQ0FeEnNCaAw2hCHgMBJnnRY8PjYRhEuLSkzXAjMHcKjeWw+INTotdnngRIL3jCTDDsaTLPjHR4jsRQRIKASzGY6pgtsMTnEMMokOOWSdBCMoGwNVTBHiISHhy912V8CL-GGadOHgABbFwmAIXDIis9YrlI1zhCC4dbG3dRMCYGJr08+NgFPWU-N5FwXCIvjmvjLgdCYHhlM4GLMDCooostDIXF8b9UPbDIdBSlRf1ynVRDsXhhG00w9rVcl9JgQyaFmJhkHwVAmoUfDCOASx2pWQiPihLc10InghpzLyloSCaVngYAYJYuMzngFwHAVA0Ys+a8eFmhQktVbseG65EMlELhZR4M6oIfRQ9ipW7m0MU4jiq2hkEQGrzINfD1PIsnOGTIQmGAKRXBcvMdF0HQ7IPHbCK7AnODYwQQgGq6uKcURfCRyKax2GImIceWCiS2UCtadLikOQwmYdPK7GN8rmaENULB4AUOZoaZyLAb7uHjVpMH2QHBKkcUpfE6b4kwNsFZ2UQYkIxH4aEYJ+qBB1fk7QxgGyWn+JqGIsrdbbUS4aozxt1EYhdlWmhqPa7EMM2R0Qk1PHZ2kkSYHnoxwhdLOFcXQ5RnwRcEB4JHOaP1fUs8E8lDIU-FAF08EUpT3k7X3eWnRRERbGWgW+u8lEloEkpoXaFknhjf2LbfRaOImAaR3ENZoTqR9uAmHgDGYezVeQhwkOHZw4tprHwKL1OSMsU6NxoPRDwACZSbzbjKaae9BCKDBNeZ+aQWjrSSFjc2LQbL1yLrYWSeIPALT7DUH8wQ3aCHxsRCwT0XowGALMEygdaDsjFgRayEDxZrGoUYS82g9gJQUPRGIlxxAX1eBkVmp5yI4Ifi4E8SDDQtFEApYqFc+jil8M0WunpC5fkYXXUUkJWGQxKABLhSIIAAGt5jAJ+sHVYN17JnFaMRSRnA4EuHgANYQ7dbD0TjqeKQm87DJFDmQkKpjmJMBUcXf0hhdbAFvjQJK5JciqksU4UmC1Ka2L6MAYIKdHEEn2HoP+LhkDhl5ouHc1kYiiICdKeqkgQm0DCVE6aQzkFHSCtoaJCg1bpGYuAnOxQwjEUIatNROQ7BtT-KiGU2FUk0JqCKCc-jzqonflecuvp2RDFNFTVxBgMCYEQJMEAAjtTCiVr0g0U8lrim+bAjI+TMDBOGiqc0Bw5GqwpvicWByfFG2dj0mB2S7pPznjsu6JRRC0UOrCcKE5QZnOtFSSwKLrnnKUmCB5nAABuiA8BMCgO8mA+EZEAsnhmfqMtxknAyE5Y8BEwVOFqeCKJm8fLJEWXzCm4JxZrNoDFAqZZsLQlXiC0Q60ylCHNPbHR1TmwwXWhPClzpPAP29r3AwAAHcMBBrXIA6SPBG65TkFCnp1SwHKeoZjltoN1Ph6Lyl2kKh0atkK6wSUsnYV5sg2UNqYeoJQAFqofOYfOvLZL-HtleA1Oqj7ACfKw0IpM4g0toMIcMwAAAWEBEDwBZfhUOBwA1bDXBE8QrapHzXjqGxOoD0ZRtYhmJ8MsslzWlEEFOXb1k7GQl2U8qaVT20+DOu+FNBiHzXd0HUPA1Q2M-qCccAE7x-2tRgdxjb4yh2IvC4Wa5-qL3nuscWANoahSvOgsNa4EiGH1dG0eSRd5vn5S4Qk8QCmFEVviLgMyqhHQeIkODTck4RV1kSkqOwojtELH-AgIAIBOpASsayaIIHWTFAqmgcCCKjUXe+3kmB4DBG3X4NcAIYM4P2HsDwCadx4hlHe2gSV6pUiCtquSGhArjpUhTI+JRIOjkNV7WCDzRgAG5KCUFAJAWAXMwwQDYNAAgGBJgAG0AC6pAYCWc08IQgMAAAUOnoA2bALVJgMg6CfEdVZkAwgYAAHkXAACsxZQAAHRMDAFGRATAICOYQCgdAWBcD4CIAASgy94-T8WIu2ogNWxzAADAA9AAKhgAAEnIO5nmowYDldK8VjLmnOD2YIE5lzsAzNgC89WpgAAPPzAXgtheAJF6LsX4uOYgD5pgWXvGcFyxAfL4ZCslYALSbcwMATbNW6tMFGPt2rx2CCTBcGwc7LhNvWvgAQKACWasDcG6MVrLW2voQMB1rr4BXO9f60NkbQXQvhaizFkzM25uAIW9liytgVtrY28V7bu2TuHeOwd0YV2LuOdpfdxzqO9sHY85j07m3rtZfUx9sYBhEcFaK-wfgrXKCjC0y5xlEX8CTEc4jkLIAMCOf4AAHTAMzlnQA
+   */
+  --dc-white-rgb: rgb-parts(#fff);
+  --dc-white: rgb(var(--dc-white-rgb));
+  --dc-black-rgb: rgb-parts(#000);
+  --dc-black: rgb(var(--dc-black-rgb));
 
-  /* https://tailwindcss.com/docs/customizing-colors */
+  /* slate */
+  --dc-slate-50-rgb: rgb-parts(#f8fafc);
+  --dc-slate-100-rgb: rgb-parts(#f1f5f9);
+  --dc-slate-200-rgb: rgb-parts(#e2e8f0);
+  --dc-slate-300-rgb: rgb-parts(#cbd5e1);
+  --dc-slate-400-rgb: rgb-parts(#94a3b8);
+  --dc-slate-500-rgb: rgb-parts(#64748b);
+  --dc-slate-600-rgb: rgb-parts(#475569);
+  --dc-slate-700-rgb: rgb-parts(#334155);
+  --dc-slate-800-rgb: rgb-parts(#1e293b);
+  --dc-slate-900-rgb: rgb-parts(#0f172a);
+  --dc-slate-950-rgb: rgb-parts(#020617);
+  --dc-slate-50: rgb(var(--dc-slate-50-rgb));
+  --dc-slate-100: rgb(var(--dc-slate-100-rgb));
+  --dc-slate-200: rgb(var(--dc-slate-200-rgb));
+  --dc-slate-300: rgb(var(--dc-slate-300-rgb));
+  --dc-slate-400: rgb(var(--dc-slate-400-rgb));
+  --dc-slate-500: rgb(var(--dc-slate-500-rgb));
+  --dc-slate-600: rgb(var(--dc-slate-600-rgb));
+  --dc-slate-700: rgb(var(--dc-slate-700-rgb));
+  --dc-slate-800: rgb(var(--dc-slate-800-rgb));
+  --dc-slate-900: rgb(var(--dc-slate-900-rgb));
+  --dc-slate-950: rgb(var(--dc-slate-950-rgb));
 
-  /* Gray scale */
+  /* gray */
   --dc-gray-50-rgb: rgb-parts(#f9fafb);
   --dc-gray-100-rgb: rgb-parts(#f3f4f6);
   --dc-gray-200-rgb: rgb-parts(#e5e7eb);
@@ -48,6 +66,7 @@
   --dc-gray-700-rgb: rgb-parts(#374151);
   --dc-gray-800-rgb: rgb-parts(#1f2937);
   --dc-gray-900-rgb: rgb-parts(#111827);
+  --dc-gray-950-rgb: rgb-parts(#030712);
   --dc-gray-50: rgb(var(--dc-gray-50-rgb));
   --dc-gray-100: rgb(var(--dc-gray-100-rgb));
   --dc-gray-200: rgb(var(--dc-gray-200-rgb));
@@ -58,8 +77,81 @@
   --dc-gray-700: rgb(var(--dc-gray-700-rgb));
   --dc-gray-800: rgb(var(--dc-gray-800-rgb));
   --dc-gray-900: rgb(var(--dc-gray-900-rgb));
+  --dc-gray-950: rgb(var(--dc-gray-950-rgb));
 
-  /* Red scale */
+  /* zinc */
+  --dc-zinc-50-rgb: rgb-parts(#fafafa);
+  --dc-zinc-100-rgb: rgb-parts(#f4f4f5);
+  --dc-zinc-200-rgb: rgb-parts(#e4e4e7);
+  --dc-zinc-300-rgb: rgb-parts(#d4d4d8);
+  --dc-zinc-400-rgb: rgb-parts(#a1a1aa);
+  --dc-zinc-500-rgb: rgb-parts(#71717a);
+  --dc-zinc-600-rgb: rgb-parts(#52525b);
+  --dc-zinc-700-rgb: rgb-parts(#3f3f46);
+  --dc-zinc-800-rgb: rgb-parts(#27272a);
+  --dc-zinc-900-rgb: rgb-parts(#18181b);
+  --dc-zinc-950-rgb: rgb-parts(#09090b);
+  --dc-zinc-50: rgb(var(--dc-zinc-50-rgb));
+  --dc-zinc-100: rgb(var(--dc-zinc-100-rgb));
+  --dc-zinc-200: rgb(var(--dc-zinc-200-rgb));
+  --dc-zinc-300: rgb(var(--dc-zinc-300-rgb));
+  --dc-zinc-400: rgb(var(--dc-zinc-400-rgb));
+  --dc-zinc-500: rgb(var(--dc-zinc-500-rgb));
+  --dc-zinc-600: rgb(var(--dc-zinc-600-rgb));
+  --dc-zinc-700: rgb(var(--dc-zinc-700-rgb));
+  --dc-zinc-800: rgb(var(--dc-zinc-800-rgb));
+  --dc-zinc-900: rgb(var(--dc-zinc-900-rgb));
+  --dc-zinc-950: rgb(var(--dc-zinc-950-rgb));
+
+  /* neutral */
+  --dc-neutral-50-rgb: rgb-parts(#fafafa);
+  --dc-neutral-100-rgb: rgb-parts(#f5f5f5);
+  --dc-neutral-200-rgb: rgb-parts(#e5e5e5);
+  --dc-neutral-300-rgb: rgb-parts(#d4d4d4);
+  --dc-neutral-400-rgb: rgb-parts(#a3a3a3);
+  --dc-neutral-500-rgb: rgb-parts(#737373);
+  --dc-neutral-600-rgb: rgb-parts(#525252);
+  --dc-neutral-700-rgb: rgb-parts(#404040);
+  --dc-neutral-800-rgb: rgb-parts(#262626);
+  --dc-neutral-900-rgb: rgb-parts(#171717);
+  --dc-neutral-950-rgb: rgb-parts(#0a0a0a);
+  --dc-neutral-50: rgb(var(--dc-neutral-50-rgb));
+  --dc-neutral-100: rgb(var(--dc-neutral-100-rgb));
+  --dc-neutral-200: rgb(var(--dc-neutral-200-rgb));
+  --dc-neutral-300: rgb(var(--dc-neutral-300-rgb));
+  --dc-neutral-400: rgb(var(--dc-neutral-400-rgb));
+  --dc-neutral-500: rgb(var(--dc-neutral-500-rgb));
+  --dc-neutral-600: rgb(var(--dc-neutral-600-rgb));
+  --dc-neutral-700: rgb(var(--dc-neutral-700-rgb));
+  --dc-neutral-800: rgb(var(--dc-neutral-800-rgb));
+  --dc-neutral-900: rgb(var(--dc-neutral-900-rgb));
+  --dc-neutral-950: rgb(var(--dc-neutral-950-rgb));
+
+  /* stone */
+  --dc-stone-50-rgb: rgb-parts(#fafaf9);
+  --dc-stone-100-rgb: rgb-parts(#f5f5f4);
+  --dc-stone-200-rgb: rgb-parts(#e7e5e4);
+  --dc-stone-300-rgb: rgb-parts(#d6d3d1);
+  --dc-stone-400-rgb: rgb-parts(#a8a29e);
+  --dc-stone-500-rgb: rgb-parts(#78716c);
+  --dc-stone-600-rgb: rgb-parts(#57534e);
+  --dc-stone-700-rgb: rgb-parts(#44403c);
+  --dc-stone-800-rgb: rgb-parts(#292524);
+  --dc-stone-900-rgb: rgb-parts(#1c1917);
+  --dc-stone-950-rgb: rgb-parts(#0c0a09);
+  --dc-stone-50: rgb(var(--dc-stone-50-rgb));
+  --dc-stone-100: rgb(var(--dc-stone-100-rgb));
+  --dc-stone-200: rgb(var(--dc-stone-200-rgb));
+  --dc-stone-300: rgb(var(--dc-stone-300-rgb));
+  --dc-stone-400: rgb(var(--dc-stone-400-rgb));
+  --dc-stone-500: rgb(var(--dc-stone-500-rgb));
+  --dc-stone-600: rgb(var(--dc-stone-600-rgb));
+  --dc-stone-700: rgb(var(--dc-stone-700-rgb));
+  --dc-stone-800: rgb(var(--dc-stone-800-rgb));
+  --dc-stone-900: rgb(var(--dc-stone-900-rgb));
+  --dc-stone-950: rgb(var(--dc-stone-950-rgb));
+
+  /* red */
   --dc-red-50-rgb: rgb-parts(#fef2f2);
   --dc-red-100-rgb: rgb-parts(#fee2e2);
   --dc-red-200-rgb: rgb-parts(#fecaca);
@@ -70,6 +162,7 @@
   --dc-red-700-rgb: rgb-parts(#b91c1c);
   --dc-red-800-rgb: rgb-parts(#991b1b);
   --dc-red-900-rgb: rgb-parts(#7f1d1d);
+  --dc-red-950-rgb: rgb-parts(#450a0a);
   --dc-red-50: rgb(var(--dc-red-50-rgb));
   --dc-red-100: rgb(var(--dc-red-100-rgb));
   --dc-red-200: rgb(var(--dc-red-200-rgb));
@@ -80,8 +173,9 @@
   --dc-red-700: rgb(var(--dc-red-700-rgb));
   --dc-red-800: rgb(var(--dc-red-800-rgb));
   --dc-red-900: rgb(var(--dc-red-900-rgb));
+  --dc-red-950: rgb(var(--dc-red-950-rgb));
 
-  /* Orange scale */
+  /* orange */
   --dc-orange-50-rgb: rgb-parts(#fff7ed);
   --dc-orange-100-rgb: rgb-parts(#ffedd5);
   --dc-orange-200-rgb: rgb-parts(#fed7aa);
@@ -92,6 +186,7 @@
   --dc-orange-700-rgb: rgb-parts(#c2410c);
   --dc-orange-800-rgb: rgb-parts(#9a3412);
   --dc-orange-900-rgb: rgb-parts(#7c2d12);
+  --dc-orange-950-rgb: rgb-parts(#431407);
   --dc-orange-50: rgb(var(--dc-orange-50-rgb));
   --dc-orange-100: rgb(var(--dc-orange-100-rgb));
   --dc-orange-200: rgb(var(--dc-orange-200-rgb));
@@ -102,8 +197,33 @@
   --dc-orange-700: rgb(var(--dc-orange-700-rgb));
   --dc-orange-800: rgb(var(--dc-orange-800-rgb));
   --dc-orange-900: rgb(var(--dc-orange-900-rgb));
+  --dc-orange-950: rgb(var(--dc-orange-950-rgb));
 
-  /* Yellow scale */
+  /* amber */
+  --dc-amber-50-rgb: rgb-parts(#fffbeb);
+  --dc-amber-100-rgb: rgb-parts(#fef3c7);
+  --dc-amber-200-rgb: rgb-parts(#fde68a);
+  --dc-amber-300-rgb: rgb-parts(#fcd34d);
+  --dc-amber-400-rgb: rgb-parts(#fbbf24);
+  --dc-amber-500-rgb: rgb-parts(#f59e0b);
+  --dc-amber-600-rgb: rgb-parts(#d97706);
+  --dc-amber-700-rgb: rgb-parts(#b45309);
+  --dc-amber-800-rgb: rgb-parts(#92400e);
+  --dc-amber-900-rgb: rgb-parts(#78350f);
+  --dc-amber-950-rgb: rgb-parts(#451a03);
+  --dc-amber-50: rgb(var(--dc-amber-50-rgb));
+  --dc-amber-100: rgb(var(--dc-amber-100-rgb));
+  --dc-amber-200: rgb(var(--dc-amber-200-rgb));
+  --dc-amber-300: rgb(var(--dc-amber-300-rgb));
+  --dc-amber-400: rgb(var(--dc-amber-400-rgb));
+  --dc-amber-500: rgb(var(--dc-amber-500-rgb));
+  --dc-amber-600: rgb(var(--dc-amber-600-rgb));
+  --dc-amber-700: rgb(var(--dc-amber-700-rgb));
+  --dc-amber-800: rgb(var(--dc-amber-800-rgb));
+  --dc-amber-900: rgb(var(--dc-amber-900-rgb));
+  --dc-amber-950: rgb(var(--dc-amber-950-rgb));
+
+  /* yellow */
   --dc-yellow-50-rgb: rgb-parts(#fefce8);
   --dc-yellow-100-rgb: rgb-parts(#fef9c3);
   --dc-yellow-200-rgb: rgb-parts(#fef08a);
@@ -114,6 +234,7 @@
   --dc-yellow-700-rgb: rgb-parts(#a16207);
   --dc-yellow-800-rgb: rgb-parts(#854d0e);
   --dc-yellow-900-rgb: rgb-parts(#713f12);
+  --dc-yellow-950-rgb: rgb-parts(#422006);
   --dc-yellow-50: rgb(var(--dc-yellow-50-rgb));
   --dc-yellow-100: rgb(var(--dc-yellow-100-rgb));
   --dc-yellow-200: rgb(var(--dc-yellow-200-rgb));
@@ -124,8 +245,33 @@
   --dc-yellow-700: rgb(var(--dc-yellow-700-rgb));
   --dc-yellow-800: rgb(var(--dc-yellow-800-rgb));
   --dc-yellow-900: rgb(var(--dc-yellow-900-rgb));
+  --dc-yellow-950: rgb(var(--dc-yellow-950-rgb));
 
-  /* Green scale */
+  /* lime */
+  --dc-lime-50-rgb: rgb-parts(#f7fee7);
+  --dc-lime-100-rgb: rgb-parts(#ecfccb);
+  --dc-lime-200-rgb: rgb-parts(#d9f99d);
+  --dc-lime-300-rgb: rgb-parts(#bef264);
+  --dc-lime-400-rgb: rgb-parts(#a3e635);
+  --dc-lime-500-rgb: rgb-parts(#84cc16);
+  --dc-lime-600-rgb: rgb-parts(#65a30d);
+  --dc-lime-700-rgb: rgb-parts(#4d7c0f);
+  --dc-lime-800-rgb: rgb-parts(#3f6212);
+  --dc-lime-900-rgb: rgb-parts(#365314);
+  --dc-lime-950-rgb: rgb-parts(#1a2e05);
+  --dc-lime-50: rgb(var(--dc-lime-50-rgb));
+  --dc-lime-100: rgb(var(--dc-lime-100-rgb));
+  --dc-lime-200: rgb(var(--dc-lime-200-rgb));
+  --dc-lime-300: rgb(var(--dc-lime-300-rgb));
+  --dc-lime-400: rgb(var(--dc-lime-400-rgb));
+  --dc-lime-500: rgb(var(--dc-lime-500-rgb));
+  --dc-lime-600: rgb(var(--dc-lime-600-rgb));
+  --dc-lime-700: rgb(var(--dc-lime-700-rgb));
+  --dc-lime-800: rgb(var(--dc-lime-800-rgb));
+  --dc-lime-900: rgb(var(--dc-lime-900-rgb));
+  --dc-lime-950: rgb(var(--dc-lime-950-rgb));
+
+  /* green */
   --dc-green-50-rgb: rgb-parts(#f0fdf4);
   --dc-green-100-rgb: rgb-parts(#dcfce7);
   --dc-green-200-rgb: rgb-parts(#bbf7d0);
@@ -136,6 +282,7 @@
   --dc-green-700-rgb: rgb-parts(#15803d);
   --dc-green-800-rgb: rgb-parts(#166534);
   --dc-green-900-rgb: rgb-parts(#14532d);
+  --dc-green-950-rgb: rgb-parts(#052e16);
   --dc-green-50: rgb(var(--dc-green-50-rgb));
   --dc-green-100: rgb(var(--dc-green-100-rgb));
   --dc-green-200: rgb(var(--dc-green-200-rgb));
@@ -146,8 +293,81 @@
   --dc-green-700: rgb(var(--dc-green-700-rgb));
   --dc-green-800: rgb(var(--dc-green-800-rgb));
   --dc-green-900: rgb(var(--dc-green-900-rgb));
+  --dc-green-950: rgb(var(--dc-green-950-rgb));
 
-  /* Sky scale */
+  /* emerald */
+  --dc-emerald-50-rgb: rgb-parts(#ecfdf5);
+  --dc-emerald-100-rgb: rgb-parts(#d1fae5);
+  --dc-emerald-200-rgb: rgb-parts(#a7f3d0);
+  --dc-emerald-300-rgb: rgb-parts(#6ee7b7);
+  --dc-emerald-400-rgb: rgb-parts(#34d399);
+  --dc-emerald-500-rgb: rgb-parts(#10b981);
+  --dc-emerald-600-rgb: rgb-parts(#059669);
+  --dc-emerald-700-rgb: rgb-parts(#047857);
+  --dc-emerald-800-rgb: rgb-parts(#065f46);
+  --dc-emerald-900-rgb: rgb-parts(#064e3b);
+  --dc-emerald-950-rgb: rgb-parts(#022c22);
+  --dc-emerald-50: rgb(var(--dc-emerald-50-rgb));
+  --dc-emerald-100: rgb(var(--dc-emerald-100-rgb));
+  --dc-emerald-200: rgb(var(--dc-emerald-200-rgb));
+  --dc-emerald-300: rgb(var(--dc-emerald-300-rgb));
+  --dc-emerald-400: rgb(var(--dc-emerald-400-rgb));
+  --dc-emerald-500: rgb(var(--dc-emerald-500-rgb));
+  --dc-emerald-600: rgb(var(--dc-emerald-600-rgb));
+  --dc-emerald-700: rgb(var(--dc-emerald-700-rgb));
+  --dc-emerald-800: rgb(var(--dc-emerald-800-rgb));
+  --dc-emerald-900: rgb(var(--dc-emerald-900-rgb));
+  --dc-emerald-950: rgb(var(--dc-emerald-950-rgb));
+
+  /* teal */
+  --dc-teal-50-rgb: rgb-parts(#f0fdfa);
+  --dc-teal-100-rgb: rgb-parts(#ccfbf1);
+  --dc-teal-200-rgb: rgb-parts(#99f6e4);
+  --dc-teal-300-rgb: rgb-parts(#5eead4);
+  --dc-teal-400-rgb: rgb-parts(#2dd4bf);
+  --dc-teal-500-rgb: rgb-parts(#14b8a6);
+  --dc-teal-600-rgb: rgb-parts(#0d9488);
+  --dc-teal-700-rgb: rgb-parts(#0f766e);
+  --dc-teal-800-rgb: rgb-parts(#115e59);
+  --dc-teal-900-rgb: rgb-parts(#134e4a);
+  --dc-teal-950-rgb: rgb-parts(#042f2e);
+  --dc-teal-50: rgb(var(--dc-teal-50-rgb));
+  --dc-teal-100: rgb(var(--dc-teal-100-rgb));
+  --dc-teal-200: rgb(var(--dc-teal-200-rgb));
+  --dc-teal-300: rgb(var(--dc-teal-300-rgb));
+  --dc-teal-400: rgb(var(--dc-teal-400-rgb));
+  --dc-teal-500: rgb(var(--dc-teal-500-rgb));
+  --dc-teal-600: rgb(var(--dc-teal-600-rgb));
+  --dc-teal-700: rgb(var(--dc-teal-700-rgb));
+  --dc-teal-800: rgb(var(--dc-teal-800-rgb));
+  --dc-teal-900: rgb(var(--dc-teal-900-rgb));
+  --dc-teal-950: rgb(var(--dc-teal-950-rgb));
+
+  /* cyan */
+  --dc-cyan-50-rgb: rgb-parts(#ecfeff);
+  --dc-cyan-100-rgb: rgb-parts(#cffafe);
+  --dc-cyan-200-rgb: rgb-parts(#a5f3fc);
+  --dc-cyan-300-rgb: rgb-parts(#67e8f9);
+  --dc-cyan-400-rgb: rgb-parts(#22d3ee);
+  --dc-cyan-500-rgb: rgb-parts(#06b6d4);
+  --dc-cyan-600-rgb: rgb-parts(#0891b2);
+  --dc-cyan-700-rgb: rgb-parts(#0e7490);
+  --dc-cyan-800-rgb: rgb-parts(#155e75);
+  --dc-cyan-900-rgb: rgb-parts(#164e63);
+  --dc-cyan-950-rgb: rgb-parts(#083344);
+  --dc-cyan-50: rgb(var(--dc-cyan-50-rgb));
+  --dc-cyan-100: rgb(var(--dc-cyan-100-rgb));
+  --dc-cyan-200: rgb(var(--dc-cyan-200-rgb));
+  --dc-cyan-300: rgb(var(--dc-cyan-300-rgb));
+  --dc-cyan-400: rgb(var(--dc-cyan-400-rgb));
+  --dc-cyan-500: rgb(var(--dc-cyan-500-rgb));
+  --dc-cyan-600: rgb(var(--dc-cyan-600-rgb));
+  --dc-cyan-700: rgb(var(--dc-cyan-700-rgb));
+  --dc-cyan-800: rgb(var(--dc-cyan-800-rgb));
+  --dc-cyan-900: rgb(var(--dc-cyan-900-rgb));
+  --dc-cyan-950: rgb(var(--dc-cyan-950-rgb));
+
+  /* sky */
   --dc-sky-50-rgb: rgb-parts(#f0f9ff);
   --dc-sky-100-rgb: rgb-parts(#e0f2fe);
   --dc-sky-200-rgb: rgb-parts(#bae6fd);
@@ -158,6 +378,7 @@
   --dc-sky-700-rgb: rgb-parts(#0369a1);
   --dc-sky-800-rgb: rgb-parts(#075985);
   --dc-sky-900-rgb: rgb-parts(#0c4a6e);
+  --dc-sky-950-rgb: rgb-parts(#082f49);
   --dc-sky-50: rgb(var(--dc-sky-50-rgb));
   --dc-sky-100: rgb(var(--dc-sky-100-rgb));
   --dc-sky-200: rgb(var(--dc-sky-200-rgb));
@@ -168,8 +389,9 @@
   --dc-sky-700: rgb(var(--dc-sky-700-rgb));
   --dc-sky-800: rgb(var(--dc-sky-800-rgb));
   --dc-sky-900: rgb(var(--dc-sky-900-rgb));
+  --dc-sky-950: rgb(var(--dc-sky-950-rgb));
 
-  /* Blue scale */
+  /* blue */
   --dc-blue-50-rgb: rgb-parts(#eff6ff);
   --dc-blue-100-rgb: rgb-parts(#dbeafe);
   --dc-blue-200-rgb: rgb-parts(#bfdbfe);
@@ -180,6 +402,7 @@
   --dc-blue-700-rgb: rgb-parts(#1d4ed8);
   --dc-blue-800-rgb: rgb-parts(#1e40af);
   --dc-blue-900-rgb: rgb-parts(#1e3a8a);
+  --dc-blue-950-rgb: rgb-parts(#172554);
   --dc-blue-50: rgb(var(--dc-blue-50-rgb));
   --dc-blue-100: rgb(var(--dc-blue-100-rgb));
   --dc-blue-200: rgb(var(--dc-blue-200-rgb));
@@ -190,8 +413,33 @@
   --dc-blue-700: rgb(var(--dc-blue-700-rgb));
   --dc-blue-800: rgb(var(--dc-blue-800-rgb));
   --dc-blue-900: rgb(var(--dc-blue-900-rgb));
+  --dc-blue-950: rgb(var(--dc-blue-950-rgb));
 
-  /* Violet scale */
+  /* indigo */
+  --dc-indigo-50-rgb: rgb-parts(#eef2ff);
+  --dc-indigo-100-rgb: rgb-parts(#e0e7ff);
+  --dc-indigo-200-rgb: rgb-parts(#c7d2fe);
+  --dc-indigo-300-rgb: rgb-parts(#a5b4fc);
+  --dc-indigo-400-rgb: rgb-parts(#818cf8);
+  --dc-indigo-500-rgb: rgb-parts(#6366f1);
+  --dc-indigo-600-rgb: rgb-parts(#4f46e5);
+  --dc-indigo-700-rgb: rgb-parts(#4338ca);
+  --dc-indigo-800-rgb: rgb-parts(#3730a3);
+  --dc-indigo-900-rgb: rgb-parts(#312e81);
+  --dc-indigo-950-rgb: rgb-parts(#1e1b4b);
+  --dc-indigo-50: rgb(var(--dc-indigo-50-rgb));
+  --dc-indigo-100: rgb(var(--dc-indigo-100-rgb));
+  --dc-indigo-200: rgb(var(--dc-indigo-200-rgb));
+  --dc-indigo-300: rgb(var(--dc-indigo-300-rgb));
+  --dc-indigo-400: rgb(var(--dc-indigo-400-rgb));
+  --dc-indigo-500: rgb(var(--dc-indigo-500-rgb));
+  --dc-indigo-600: rgb(var(--dc-indigo-600-rgb));
+  --dc-indigo-700: rgb(var(--dc-indigo-700-rgb));
+  --dc-indigo-800: rgb(var(--dc-indigo-800-rgb));
+  --dc-indigo-900: rgb(var(--dc-indigo-900-rgb));
+  --dc-indigo-950: rgb(var(--dc-indigo-950-rgb));
+
+  /* violet */
   --dc-violet-50-rgb: rgb-parts(#f5f3ff);
   --dc-violet-100-rgb: rgb-parts(#ede9fe);
   --dc-violet-200-rgb: rgb-parts(#ddd6fe);
@@ -202,6 +450,7 @@
   --dc-violet-700-rgb: rgb-parts(#6d28d9);
   --dc-violet-800-rgb: rgb-parts(#5b21b6);
   --dc-violet-900-rgb: rgb-parts(#4c1d95);
+  --dc-violet-950-rgb: rgb-parts(#2e1065);
   --dc-violet-50: rgb(var(--dc-violet-50-rgb));
   --dc-violet-100: rgb(var(--dc-violet-100-rgb));
   --dc-violet-200: rgb(var(--dc-violet-200-rgb));
@@ -212,8 +461,57 @@
   --dc-violet-700: rgb(var(--dc-violet-700-rgb));
   --dc-violet-800: rgb(var(--dc-violet-800-rgb));
   --dc-violet-900: rgb(var(--dc-violet-900-rgb));
+  --dc-violet-950: rgb(var(--dc-violet-950-rgb));
 
-  /* Pink scale */
+  /* purple */
+  --dc-purple-50-rgb: rgb-parts(#faf5ff);
+  --dc-purple-100-rgb: rgb-parts(#f3e8ff);
+  --dc-purple-200-rgb: rgb-parts(#e9d5ff);
+  --dc-purple-300-rgb: rgb-parts(#d8b4fe);
+  --dc-purple-400-rgb: rgb-parts(#c084fc);
+  --dc-purple-500-rgb: rgb-parts(#a855f7);
+  --dc-purple-600-rgb: rgb-parts(#9333ea);
+  --dc-purple-700-rgb: rgb-parts(#7e22ce);
+  --dc-purple-800-rgb: rgb-parts(#6b21a8);
+  --dc-purple-900-rgb: rgb-parts(#581c87);
+  --dc-purple-950-rgb: rgb-parts(#3b0764);
+  --dc-purple-50: rgb(var(--dc-purple-50-rgb));
+  --dc-purple-100: rgb(var(--dc-purple-100-rgb));
+  --dc-purple-200: rgb(var(--dc-purple-200-rgb));
+  --dc-purple-300: rgb(var(--dc-purple-300-rgb));
+  --dc-purple-400: rgb(var(--dc-purple-400-rgb));
+  --dc-purple-500: rgb(var(--dc-purple-500-rgb));
+  --dc-purple-600: rgb(var(--dc-purple-600-rgb));
+  --dc-purple-700: rgb(var(--dc-purple-700-rgb));
+  --dc-purple-800: rgb(var(--dc-purple-800-rgb));
+  --dc-purple-900: rgb(var(--dc-purple-900-rgb));
+  --dc-purple-950: rgb(var(--dc-purple-950-rgb));
+
+  /* fuchsia */
+  --dc-fuchsia-50-rgb: rgb-parts(#fdf4ff);
+  --dc-fuchsia-100-rgb: rgb-parts(#fae8ff);
+  --dc-fuchsia-200-rgb: rgb-parts(#f5d0fe);
+  --dc-fuchsia-300-rgb: rgb-parts(#f0abfc);
+  --dc-fuchsia-400-rgb: rgb-parts(#e879f9);
+  --dc-fuchsia-500-rgb: rgb-parts(#d946ef);
+  --dc-fuchsia-600-rgb: rgb-parts(#c026d3);
+  --dc-fuchsia-700-rgb: rgb-parts(#a21caf);
+  --dc-fuchsia-800-rgb: rgb-parts(#86198f);
+  --dc-fuchsia-900-rgb: rgb-parts(#701a75);
+  --dc-fuchsia-950-rgb: rgb-parts(#4a044e);
+  --dc-fuchsia-50: rgb(var(--dc-fuchsia-50-rgb));
+  --dc-fuchsia-100: rgb(var(--dc-fuchsia-100-rgb));
+  --dc-fuchsia-200: rgb(var(--dc-fuchsia-200-rgb));
+  --dc-fuchsia-300: rgb(var(--dc-fuchsia-300-rgb));
+  --dc-fuchsia-400: rgb(var(--dc-fuchsia-400-rgb));
+  --dc-fuchsia-500: rgb(var(--dc-fuchsia-500-rgb));
+  --dc-fuchsia-600: rgb(var(--dc-fuchsia-600-rgb));
+  --dc-fuchsia-700: rgb(var(--dc-fuchsia-700-rgb));
+  --dc-fuchsia-800: rgb(var(--dc-fuchsia-800-rgb));
+  --dc-fuchsia-900: rgb(var(--dc-fuchsia-900-rgb));
+  --dc-fuchsia-950: rgb(var(--dc-fuchsia-950-rgb));
+
+  /* pink */
   --dc-pink-50-rgb: rgb-parts(#fdf2f8);
   --dc-pink-100-rgb: rgb-parts(#fce7f3);
   --dc-pink-200-rgb: rgb-parts(#fbcfe8);
@@ -224,6 +522,7 @@
   --dc-pink-700-rgb: rgb-parts(#be185d);
   --dc-pink-800-rgb: rgb-parts(#9d174d);
   --dc-pink-900-rgb: rgb-parts(#831843);
+  --dc-pink-950-rgb: rgb-parts(#500724);
   --dc-pink-50: rgb(var(--dc-pink-50-rgb));
   --dc-pink-100: rgb(var(--dc-pink-100-rgb));
   --dc-pink-200: rgb(var(--dc-pink-200-rgb));
@@ -234,32 +533,52 @@
   --dc-pink-700: rgb(var(--dc-pink-700-rgb));
   --dc-pink-800: rgb(var(--dc-pink-800-rgb));
   --dc-pink-900: rgb(var(--dc-pink-900-rgb));
+  --dc-pink-950: rgb(var(--dc-pink-950-rgb));
+
+  /* rose */
+  --dc-rose-50-rgb: rgb-parts(#fff1f2);
+  --dc-rose-100-rgb: rgb-parts(#ffe4e6);
+  --dc-rose-200-rgb: rgb-parts(#fecdd3);
+  --dc-rose-300-rgb: rgb-parts(#fda4af);
+  --dc-rose-400-rgb: rgb-parts(#fb7185);
+  --dc-rose-500-rgb: rgb-parts(#f43f5e);
+  --dc-rose-600-rgb: rgb-parts(#e11d48);
+  --dc-rose-700-rgb: rgb-parts(#be123c);
+  --dc-rose-800-rgb: rgb-parts(#9f1239);
+  --dc-rose-900-rgb: rgb-parts(#881337);
+  --dc-rose-950-rgb: rgb-parts(#4c0519);
+  --dc-rose-50: rgb(var(--dc-rose-50-rgb));
+  --dc-rose-100: rgb(var(--dc-rose-100-rgb));
+  --dc-rose-200: rgb(var(--dc-rose-200-rgb));
+  --dc-rose-300: rgb(var(--dc-rose-300-rgb));
+  --dc-rose-400: rgb(var(--dc-rose-400-rgb));
+  --dc-rose-500: rgb(var(--dc-rose-500-rgb));
+  --dc-rose-600: rgb(var(--dc-rose-600-rgb));
+  --dc-rose-700: rgb(var(--dc-rose-700-rgb));
+  --dc-rose-800: rgb(var(--dc-rose-800-rgb));
+  --dc-rose-900: rgb(var(--dc-rose-900-rgb));
+  --dc-rose-950: rgb(var(--dc-rose-950-rgb));
 
   /* Background */
   --dc-primary-bg: var(--dc-white);
-  --dc-bg-transparent-1: rgb(var(--dc-gray-900-rgb) / 5%);
-  --dc-bg-transparent-2: rgb(var(--dc-gray-900-rgb) / 10%);
-  --dc-bg-transparent-3: rgb(var(--dc-gray-900-rgb) / 20%);
+  --dc-bg-transparent-1: rgb(var(--dc-gray-950-rgb) / 5%);
+  --dc-bg-transparent-2: rgb(var(--dc-gray-950-rgb) / 10%);
+  --dc-bg-transparent-3: rgb(var(--dc-gray-950-rgb) / 20%);
 
-  /* Borders */
-  --dc-border-color-transparent-1: rgb(var(--dc-gray-900-rgb) / 5%);
-  --dc-border-color-transparent-2: rgb(var(--dc-gray-900-rgb) / 15%);
-  --dc-border-color-transparent-3: rgb(var(--dc-gray-900-rgb) / 25%);
+  /* Border Color */
+  --dc-border-color-transparent-1: rgb(var(--dc-gray-950-rgb) / 5%);
+  --dc-border-color-transparent-2: rgb(var(--dc-gray-950-rgb) / 15%);
+  --dc-border-color-transparent-3: rgb(var(--dc-gray-950-rgb) / 25%);
 
-  /* Text */
-  --dc-primary-text-color: var(--dc-gray-800);
+  /* Text Color */
+  --dc-primary-text-color: var(--dc-gray-900);
   --dc-secondary-text-color: var(--dc-gray-500);
   --dc-tertiary-text-color: var(--dc-gray-300);
 
-  /* Primary */
+  /* Primary Color */
   --dc-primary-color: var(--dc-blue-500);
   --dc-primary-color-hover: var(--dc-blue-600);
   --dc-on-primary-color: var(--dc-white);
-
-  /* Secondary */
-  --dc-secondary-color: rgb(var(--dc-blue-500-rgb) / 15%);
-  --dc-secondary-color-hover: rgb(var(--dc-blue-500-rgb) / 30%);
-  --dc-on-secondary-color: var(--dc-blue-600);
 
   /* Accents */
   --dc-info-text-color: var(--dc-blue-600);
@@ -322,24 +641,22 @@
   --dc-control-bg: var(--dc-white);
   --dc-control-bg-inset: rgb(var(--dc-gray-900-rgb) / 15%);
   --dc-control-error-color: var(--dc-red-500);
-  --dc-focus-ring-color: rgb(var(--dc-blue-500-rgb) / 70%);
+  --dc-focus-ring-color: var(--dc-blue-500);
   --dc-disabled-state-opacity: 0.5;
 
-  /* Shadows */
-
-  /* https://tailwindcss.com/docs/box-shadow */
+  /*
+   * Shadows
+   *
+   * https://tailwindcss.com/docs/box-shadow
+   */
   --dc-shadow-sm: 0 1px 2px 0 rgb(var(--dc-black-rgb) / 5%);
-  --dc-shadow:
-    0 1px 3px 0 rgb(var(--dc-black-rgb) / 10%),
+  --dc-shadow: 0 1px 3px 0 rgb(var(--dc-black-rgb) / 10%),
     0 1px 2px -1px rgb(var(--dc-black-rgb) / 10%);
-  --dc-shadow-md:
-    0 4px 6px -1px rgb(var(--dc-black-rgb) / 10%),
+  --dc-shadow-md: 0 4px 6px -1px rgb(var(--dc-black-rgb) / 10%),
     0 2px 4px -2px rgb(var(--dc-black-rgb) / 10%);
-  --dc-shadow-lg:
-    0 10px 15px -3px rgb(var(--dc-black-rgb) / 10%),
+  --dc-shadow-lg: 0 10px 15px -3px rgb(var(--dc-black-rgb) / 10%),
     0 4px 6px -4px rgb(var(--dc-black-rgb) / 10%);
-  --dc-shadow-xl:
-    0 20px 25px -5px rgb(var(--dc-black-rgb) / 10%),
+  --dc-shadow-xl: 0 20px 25px -5px rgb(var(--dc-black-rgb) / 10%),
     0 8px 10px -6px rgb(var(--dc-black-rgb) / 10%);
   --dc-shadow-2xl: 0 25px 50px -12px rgb(var(--dc-black-rgb) / 25%);
   --dc-shadow-inner: inset 0 2px 4px 0 rgb(var(--dc-black-rgb) / 5%);
@@ -366,11 +683,6 @@
   --dc-primary-color: var(--dc-blue-600);
   --dc-primary-color-hover: var(--dc-blue-500);
   --dc-on-primary-color: var(--dc-white);
-
-  /* Secondary */
-  --dc-secondary-color: rgb(var(--dc-blue-400-rgb) / 15%);
-  --dc-secondary-color-hover: rgb(var(--dc-blue-400-rgb) / 30%);
-  --dc-on-secondary-color: var(--dc-blue-400);
 
   /* Accents */
   --dc-info-text-color: var(--dc-blue-400);
@@ -433,5 +745,5 @@
   --dc-control-bg: var(--dc-gray-800);
   --dc-control-bg-inset: rgb(var(--dc-gray-50-rgb) / 25%);
   --dc-control-error-color: var(--dc-red-400);
-  --dc-focus-ring-color: rgb(var(--dc-blue-400-rgb) / 70%);
+  --dc-focus-ring-color: var(--dc-blue-300);
 }

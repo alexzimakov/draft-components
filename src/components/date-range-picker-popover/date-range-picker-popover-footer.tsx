@@ -25,7 +25,6 @@ export function DateRangePickerPopoverFooter({
       )}
       <Button
         className="dc-date-range-picker-popover__footer-cancel"
-        buttonStyle="tinted"
         onClick={onClickCancelButton}
       >
         {cancelButtonLabel}

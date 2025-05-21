@@ -51,10 +51,6 @@
   color: var(--dc-file-picker-caption-color);
 }
 
-.dc-file-picker__button {
-  box-shadow: none;
-}
-
 .dc-file-picker_disabled {
   opacity: var(--dc-disabled-state-opacity);
 }

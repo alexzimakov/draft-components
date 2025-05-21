@@ -6,7 +6,18 @@ export type ButtonStyle = 'filled' | 'tinted' | 'plain';
 
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
-export type ButtonTint = 'gray' | 'blue' | 'red' | 'green';
+export type ButtonTint =
+  | 'light'
+  | 'dark'
+  | 'sky'
+  | 'blue'
+  | 'indigo'
+  | 'rose'
+  | 'red'
+  | 'orange'
+  | 'yellow'
+  | 'lime'
+  | 'green';
 
 export type ButtonRenderer = (props: {
   className: string;
@@ -37,7 +48,7 @@ export function Button({
   loading,
   buttonStyle = 'filled',
   size = 'sm',
-  tint = 'gray',
+  tint = 'light',
   iconLeft,
   iconRight,
   caption,
@@ -68,14 +79,15 @@ export function Button({
     </>
   );
 
-  className = classNames(className, 'dc-button', {
-    [`dc-button_style_${buttonStyle}`]: buttonStyle,
-    [`dc-button_tint_${tint}`]: tint,
-    [`dc-button_${size}`]: size,
+  className = classNames(className, {
+    'dc-button': true,
     'dc-button_full-width': fullWidth,
     'dc-button_loading': loading,
     'dc-button_has_icon-left': iconLeft,
     'dc-button_has_icon-right': iconRight,
+    [`dc-button_${size}`]: size,
+    [`dc-button_tint_${tint}`]: tint,
+    [`dc-button_style_${buttonStyle}`]: buttonStyle,
   });
 
   if (typeof renderAs === 'function') {

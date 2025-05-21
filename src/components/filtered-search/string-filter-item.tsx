@@ -59,6 +59,10 @@ export function StringFilterItem({
   const onSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     event.stopPropagation();
+    if (!filterValue) {
+      return;
+    }
+
     if (typeof valueValidator === 'function') {
       const result = valueValidator(filterValue);
       if (!result.valid) {
@@ -119,18 +123,10 @@ export function StringFilterItem({
           onChangeValue={setFilterValue}
         />
         <div className="dc-filter-form__buttons">
-          <Button
-            buttonStyle="plain"
-            type="button"
-            onClick={cancelEdit}
-          >
+          <Button onClick={cancelEdit}>
             {translations.cancelButton}
           </Button>
-          <Button
-            type="submit"
-            tint="blue"
-            disabled={!filterValue}
-          >
+          <Button type="submit" tint="blue">
             {translations.applyButton}
           </Button>
         </div>

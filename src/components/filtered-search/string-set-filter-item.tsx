@@ -58,6 +58,10 @@ export function StringSetFilterItem({
   const onSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     event.stopPropagation();
+    if (filterValue.length < 1) {
+      return;
+    }
+
     let changedFilter = filter;
     if (filterOperator !== filter.operator) {
       changedFilter = changedFilter.setOperator(filterOperator);
@@ -108,18 +112,10 @@ export function StringSetFilterItem({
           formatValue={formatValue}
         />
         <div className="dc-filter-form__buttons">
-          <Button
-            type="button"
-            buttonStyle="plain"
-            onClick={cancelEdit}
-          >
+          <Button onClick={cancelEdit}>
             {translations.cancelButton}
           </Button>
-          <Button
-            type="submit"
-            tint="blue"
-            disabled={filterValue.length < 1}
-          >
+          <Button type="submit" tint="blue">
             {translations.applyButton}
           </Button>
         </div>
