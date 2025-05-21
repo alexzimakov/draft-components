@@ -5,6 +5,7 @@ import { Tooltip } from '../tooltip/index.js';
 import { EyeIcon } from '../hero-icons/24/outline/eye-icon.js';
 import { EyeSlashIcon } from '../hero-icons/24/outline/eye-slash-icon.js';
 import { Spinner } from '../spinner/index.js';
+import { Button } from '../button/index.js';
 
 type PasswordInputBaseProps = Omit<TextInputProps, 'type' | 'slotRight'>;
 
@@ -21,8 +22,8 @@ const getDefaultTooltipText = (visible: boolean) => (visible
   : 'Show password');
 
 const renderToggleButtonDefaultIcon = (visible: boolean) => (visible
-  ? <EyeIcon width="1.25em" height="1.25em" />
-  : <EyeSlashIcon width="1.25em" height="1.25em" />);
+  ? <EyeSlashIcon width="1.25em" height="1.25em" />
+  : <EyeIcon width="1.25em" height="1.25em" />);
 
 export function PasswordInput({
   className,
@@ -51,16 +52,16 @@ export function PasswordInput({
       slotRight={() => (
         <Tooltip title={getTooltipText(visible)}>
           {(props) => (
-            <button
+            <Button
               {...props}
               className="dc-password-input__toggle-button"
-              type="button"
+              buttonStyle="plain"
               onClick={handleClickToggleButton}
             >
               {loading
                 ? <Spinner width="1.15em" />
                 : renderToggleButtonIcon(visible)}
-            </button>
+            </Button>
           )}
         </Tooltip>
       )}
