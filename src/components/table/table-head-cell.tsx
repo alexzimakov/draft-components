@@ -1,8 +1,8 @@
 import { type ComponentProps, type ElementType } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { ArrowsUpDownIcon } from '../hero-icons/24/outline/arrows-up-down-icon.js';
-import { ArrowSmallUpIcon } from '../hero-icons/24/outline/arrow-small-up-icon.js';
-import { ArrowSmallDownIcon } from '../hero-icons/24/outline/arrow-small-down-icon.js';
+import { ArrowUpIcon } from '../hero-icons/24/outline/arrow-up-icon.js';
+import { ArrowDownIcon } from '../hero-icons/24/outline/arrow-down-icon.js';
 
 export type TableHeadCellSort = 'none' | 'ascending' | 'descending';
 
@@ -23,8 +23,8 @@ const iconMapping: Record<
   ElementType<ComponentProps<'svg'>>
 > = {
   none: ArrowsUpDownIcon,
-  ascending: ArrowSmallUpIcon,
-  descending: ArrowSmallDownIcon,
+  ascending: ArrowUpIcon,
+  descending: ArrowDownIcon,
 };
 
 const stateMapping: Record<

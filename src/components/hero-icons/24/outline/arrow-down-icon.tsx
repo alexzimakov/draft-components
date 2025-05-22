@@ -1,6 +1,6 @@
 import { type ComponentProps } from 'react';
 
-export function ArrowSmallUpIcon(props: ComponentProps<'svg'>) {
+export function ArrowDownIcon(props: ComponentProps<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,11 +12,7 @@ export function ArrowSmallUpIcon(props: ComponentProps<'svg'>) {
       fill="none"
       {...props}
     >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75"
-      />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
     </svg>
   );
 }
