@@ -8,9 +8,10 @@ export type TagSize = 'sm' | 'md' | 'lg';
 export type TagTint =
   | 'gray'
   | 'green'
-  | 'cyan'
+  | 'lime'
+  | 'sky'
   | 'blue'
-  | 'purple'
+  | 'indigo'
   | 'pink'
   | 'red'
   | 'orange'

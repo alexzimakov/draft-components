@@ -58,15 +58,16 @@ export const Tints: StoryFn<typeof Tag> = (args) => (
     gap: 16,
   }}
   >
-    <Tag {...args} tint="gray">Gray</Tag>
-    <Tag {...args} tint="green">Green</Tag>
-    <Tag {...args} tint="cyan">Cyan</Tag>
-    <Tag {...args} tint="blue">Blue</Tag>
-    <Tag {...args} tint="purple">Purple</Tag>
-    <Tag {...args} tint="pink">Pink</Tag>
-    <Tag {...args} tint="red">Red</Tag>
-    <Tag {...args} tint="orange">Orange</Tag>
-    <Tag {...args} tint="yellow">Yellow</Tag>
+    <Tag {...args} tint="gray">gray</Tag>
+    <Tag {...args} tint="green">green</Tag>
+    <Tag {...args} tint="lime">lime</Tag>
+    <Tag {...args} tint="sky">sky</Tag>
+    <Tag {...args} tint="blue">blue</Tag>
+    <Tag {...args} tint="indigo">indigo</Tag>
+    <Tag {...args} tint="pink">pink</Tag>
+    <Tag {...args} tint="red">red</Tag>
+    <Tag {...args} tint="orange">orange</Tag>
+    <Tag {...args} tint="yellow">yellow</Tag>
   </div>
 );
 Tints.parameters = {
