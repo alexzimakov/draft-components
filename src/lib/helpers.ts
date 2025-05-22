@@ -11,7 +11,7 @@ export function exhaustiveCheck(value: never, message?: string): never {
   throw new Error(message);
 }
 
-export function roundNumber(num: number, precision = 5): number {
+export function roundNumber(num: number, precision = 2): number {
   return Number(num.toFixed(precision));
 }
 

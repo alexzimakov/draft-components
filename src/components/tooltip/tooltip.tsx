@@ -12,12 +12,13 @@ import {
   useLayoutEffect,
 } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
-import { calcPopoverPosition, type PopoverPlacement } from '../../lib/calc-popover-position.js';
-import { observeMove } from '../popover/observe-move.js';
+import { calcElementPosition, type ElementPlacement } from '../../lib/calc-element-position.js';
+import { observeElementMove } from '../../lib/observe-element-move.js';
 import { Portal } from '../portal/portal.js';
 import { useCloseOnEsc } from '../../hooks/use-close-on-esc.js';
+import { observeElementChange } from '../../lib/observe-element-change.js';
 
-export type TooltipPlacement = PopoverPlacement;
+export type TooltipPlacement = ElementPlacement;
 
 export type TooltipApi = {
   show: () => void;
@@ -94,10 +95,10 @@ export function Tooltip({
         return !isMounted;
       });
 
-      return observeMove(anchor, () => {
+      const positionTooltip = () => {
         tooltip.style.removeProperty('max-width');
         tooltip.style.removeProperty('max-height');
-        const result = calcPopoverPosition(anchor, tooltip, {
+        const result = calcElementPosition(anchor, tooltip, {
           placement,
           anchorPadding,
           viewportPadding,
@@ -109,7 +110,16 @@ export function Tooltip({
         tooltip.style.setProperty('left', `${result.x}px`);
         tooltip.style.setProperty('max-width', `${result.maxWidth}px`);
         tooltip.style.setProperty('max-height', `${result.maxHeight}px`);
-      });
+      };
+
+      positionTooltip();
+      const stopObserveAnchorMove = observeElementMove(anchor, positionTooltip);
+      const stopObserveTooltipChange = observeElementChange(tooltip, positionTooltip);
+
+      return () => {
+        stopObserveAnchorMove();
+        stopObserveTooltipChange();
+      };
     } else {
       const handleAnimationEnd = () => {
         setIsMounted(false);

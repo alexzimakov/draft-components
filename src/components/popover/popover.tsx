@@ -1,6 +1,6 @@
 import { classNames, tryToFocusElement } from '../../lib/react-helpers.js';
-import { observeMove } from './observe-move.js';
-import { calcPopoverPosition, type PopoverPlacement } from '../../lib/calc-popover-position.js';
+import { observeElementMove } from '../../lib/observe-element-move.js';
+import { calcElementPosition, type ElementPlacement } from '../../lib/calc-element-position.js';
 import { deleteKeys } from '../../lib/helpers.js';
 import { useRefCallback } from '../../hooks/use-ref-callback.js';
 import { useFocusTrap } from '../../hooks/use-focus-trap.js';
@@ -10,7 +10,7 @@ import { useCloseOnClickOutside } from '../../hooks/use-close-on-click-outside.j
 import { type ComponentProps, type JSX, type RefCallback, type RefObject, useEffect, useRef, useState } from 'react';
 import { Portal } from '../portal/portal.js';
 
-export { type PopoverPlacement };
+export { type ElementPlacement as PopoverPlacement };
 
 export type PopoverCloseHandler = () => void;
 
@@ -21,7 +21,7 @@ export type PopoverRenderAnchor = (props: { ref: RefCallback<HTMLElement | null>
 type PopoverHTMLProps = ComponentProps<'div'>;
 
 type PopoverCommonProps = {
-  placement?: PopoverPlacement;
+  placement?: ElementPlacement;
   anchorPadding?: number;
   viewportPadding?: number;
   openAnimationDuration?: number;
@@ -103,10 +103,10 @@ export function Popover({
         return !isMounted;
       });
 
-      return observeMove(anchor, () => {
+      const positionPopover = () => {
         popover.style.removeProperty('max-width');
         popover.style.removeProperty('max-height');
-        const result = calcPopoverPosition(anchor, popover, {
+        const result = calcElementPosition(anchor, popover, {
           placement,
           anchorPadding,
           viewportPadding,
@@ -115,7 +115,10 @@ export function Popover({
         popover.style.setProperty('left', `${result.x}px`);
         popover.style.setProperty('max-width', `${result.maxWidth}px`);
         popover.style.setProperty('max-height', `${result.maxHeight}px`);
-      });
+      };
+
+      positionPopover();
+      return observeElementMove(anchor, positionPopover);
     } else {
       popover.dataset.animation = 'leave';
       popover.addEventListener('animationend', unmount);

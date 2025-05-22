@@ -10,7 +10,7 @@ describe('calculates position for the \'top\' placement', () => {
     top: 800,
     bottom: 820,
   };
-  const popoverRect: BoundingRect = {
+  const elementRect: BoundingRect = {
     width: 400,
     height: 100,
     left: 0,
@@ -21,7 +21,7 @@ describe('calculates position for the \'top\' placement', () => {
   const params = {
     placement: 'top',
     anchorRect,
-    popoverRect,
+    elementRect,
     viewportWidth: 1000,
     viewportHeight: 1000,
     scrollY: 0,
@@ -32,7 +32,7 @@ describe('calculates position for the \'top\' placement', () => {
 
   const y = params.scrollY
     + anchorRect.top
-    - popoverRect.height
+    - elementRect.height
     - params.anchorPadding;
   const testCases = [
     {
@@ -42,11 +42,11 @@ describe('calculates position for the \'top\' placement', () => {
       },
       output: {
         y,
-        x: params.scrollX + anchorRect.right - popoverRect.width,
+        x: params.scrollX + anchorRect.right - elementRect.width,
         placement: 'top',
         alignment: 'end',
-        maxWidth: popoverRect.width,
-        maxHeight: popoverRect.height,
+        maxWidth: elementRect.width,
+        maxHeight: elementRect.height,
       },
     },
     {
@@ -59,8 +59,8 @@ describe('calculates position for the \'top\' placement', () => {
         x: params.scrollX + anchorRect.left,
         placement: 'top',
         alignment: 'start',
-        maxWidth: popoverRect.width,
-        maxHeight: popoverRect.height,
+        maxWidth: elementRect.width,
+        maxHeight: elementRect.height,
       },
     },
     {
@@ -73,11 +73,11 @@ describe('calculates position for the \'top\' placement', () => {
         x: params.scrollX
           + anchorRect.left
           + (anchorRect.width / 2)
-          - (popoverRect.width / 2),
+          - (elementRect.width / 2),
         placement: 'top',
         alignment: 'center',
-        maxWidth: popoverRect.width,
-        maxHeight: popoverRect.height,
+        maxWidth: elementRect.width,
+        maxHeight: elementRect.height,
       },
     },
   ] as const;
@@ -98,7 +98,7 @@ describe('calculates position for the \'bottom\' placement', () => {
     top: 800,
     bottom: 820,
   };
-  const popoverRect: BoundingRect = {
+  const elementRect: BoundingRect = {
     width: 400,
     height: 100,
     left: 0,
@@ -109,7 +109,7 @@ describe('calculates position for the \'bottom\' placement', () => {
   const params = {
     placement: 'bottom',
     anchorRect,
-    popoverRect,
+    elementRect,
     viewportWidth: 1000,
     viewportHeight: 1000,
     scrollY: 0,
@@ -127,11 +127,11 @@ describe('calculates position for the \'bottom\' placement', () => {
       },
       output: {
         y,
-        x: params.scrollX + anchorRect.right - popoverRect.width,
+        x: params.scrollX + anchorRect.right - elementRect.width,
         placement: 'bottom',
         alignment: 'end',
-        maxWidth: popoverRect.width,
-        maxHeight: popoverRect.height,
+        maxWidth: elementRect.width,
+        maxHeight: elementRect.height,
       },
     },
     {
@@ -144,8 +144,8 @@ describe('calculates position for the \'bottom\' placement', () => {
         x: params.scrollX + anchorRect.left,
         placement: 'bottom',
         alignment: 'start',
-        maxWidth: popoverRect.width,
-        maxHeight: popoverRect.height,
+        maxWidth: elementRect.width,
+        maxHeight: elementRect.height,
       },
     },
     {
@@ -158,11 +158,11 @@ describe('calculates position for the \'bottom\' placement', () => {
         x: params.scrollX
           + anchorRect.left
           + (anchorRect.width / 2)
-          - (popoverRect.width / 2),
+          - (elementRect.width / 2),
         placement: 'bottom',
         alignment: 'center',
-        maxWidth: popoverRect.width,
-        maxHeight: popoverRect.height,
+        maxWidth: elementRect.width,
+        maxHeight: elementRect.height,
       },
     },
   ] as const;
@@ -183,7 +183,7 @@ describe('calculates position for the \'left\' placement', () => {
     top: 800,
     bottom: 820,
   };
-  const popoverRect: BoundingRect = {
+  const elementRect: BoundingRect = {
     width: 400,
     height: 100,
     left: 0,
@@ -194,7 +194,7 @@ describe('calculates position for the \'left\' placement', () => {
   const params = {
     placement: 'left',
     anchorRect,
-    popoverRect,
+    elementRect,
     viewportWidth: 1000,
     viewportHeight: 1000,
     scrollY: 0,
@@ -205,7 +205,7 @@ describe('calculates position for the \'left\' placement', () => {
 
   const x = params.scrollX
     + anchorRect.left
-    - popoverRect.width
+    - elementRect.width
     - params.anchorPadding;
   const testCases = [
     {
@@ -215,11 +215,11 @@ describe('calculates position for the \'left\' placement', () => {
       },
       output: {
         x,
-        y: params.scrollY + anchorRect.bottom - popoverRect.height,
+        y: params.scrollY + anchorRect.bottom - elementRect.height,
         placement: 'left',
         alignment: 'end',
-        maxWidth: popoverRect.width,
-        maxHeight: popoverRect.height,
+        maxWidth: elementRect.width,
+        maxHeight: elementRect.height,
       },
     },
     {
@@ -232,8 +232,8 @@ describe('calculates position for the \'left\' placement', () => {
         y: params.scrollY + anchorRect.top,
         placement: 'left',
         alignment: 'start',
-        maxWidth: popoverRect.width,
-        maxHeight: popoverRect.height,
+        maxWidth: elementRect.width,
+        maxHeight: elementRect.height,
       },
     },
     {
@@ -245,11 +245,11 @@ describe('calculates position for the \'left\' placement', () => {
         x,
         y: params.scrollY
           + anchorRect.top
-          + (anchorRect.height / 2) - (popoverRect.height / 2),
+          + (anchorRect.height / 2) - (elementRect.height / 2),
         placement: 'left',
         alignment: 'center',
-        maxWidth: popoverRect.width,
-        maxHeight: popoverRect.height,
+        maxWidth: elementRect.width,
+        maxHeight: elementRect.height,
       },
     },
   ] as const;
@@ -270,7 +270,7 @@ describe('calculates position for the \'right\' placement', () => {
     top: 800,
     bottom: 820,
   };
-  const popoverRect: BoundingRect = {
+  const elementRect: BoundingRect = {
     width: 400,
     height: 100,
     left: 0,
@@ -281,7 +281,7 @@ describe('calculates position for the \'right\' placement', () => {
   const params = {
     placement: 'right',
     anchorRect,
-    popoverRect,
+    elementRect,
     viewportWidth: 1000,
     viewportHeight: 1000,
     scrollY: 0,
@@ -299,11 +299,11 @@ describe('calculates position for the \'right\' placement', () => {
       },
       output: {
         x,
-        y: params.scrollY + anchorRect.bottom - popoverRect.height,
+        y: params.scrollY + anchorRect.bottom - elementRect.height,
         placement: 'right',
         alignment: 'end',
-        maxWidth: popoverRect.width,
-        maxHeight: popoverRect.height,
+        maxWidth: elementRect.width,
+        maxHeight: elementRect.height,
       },
     },
     {
@@ -316,8 +316,8 @@ describe('calculates position for the \'right\' placement', () => {
         y: params.scrollY + anchorRect.top,
         placement: 'right',
         alignment: 'start',
-        maxWidth: popoverRect.width,
-        maxHeight: popoverRect.height,
+        maxWidth: elementRect.width,
+        maxHeight: elementRect.height,
       },
     },
     {
@@ -329,11 +329,11 @@ describe('calculates position for the \'right\' placement', () => {
         x,
         y: params.scrollY
           + anchorRect.top
-          + (anchorRect.height / 2) - (popoverRect.height / 2),
+          + (anchorRect.height / 2) - (elementRect.height / 2),
         placement: 'right',
         alignment: 'center',
-        maxWidth: popoverRect.width,
-        maxHeight: popoverRect.height,
+        maxWidth: elementRect.width,
+        maxHeight: elementRect.height,
       },
     },
   ] as const;
@@ -355,7 +355,7 @@ describe('should correct position by X-axis when popover out of viewport bounds'
       top: 450,
       bottom: 550,
     };
-    const popoverRect: BoundingRect = {
+    const elementRect: BoundingRect = {
       width: 400,
       height: 200,
       left: 0,
@@ -365,7 +365,7 @@ describe('should correct position by X-axis when popover out of viewport bounds'
     };
     const params = {
       anchorRect,
-      popoverRect,
+      elementRect,
       viewportWidth: 1000,
       viewportHeight: 1000,
       scrollY: 0,
@@ -385,8 +385,8 @@ describe('should correct position by X-axis when popover out of viewport bounds'
       x: params.scrollX + params.viewportPadding,
       placement: 'bottom',
       alignment: 'end',
-      maxWidth: popoverRect.width,
-      maxHeight: popoverRect.height,
+      maxWidth: elementRect.width,
+      maxHeight: elementRect.height,
     });
   });
 
@@ -399,7 +399,7 @@ describe('should correct position by X-axis when popover out of viewport bounds'
       top: 450,
       bottom: 550,
     };
-    const popoverRect: BoundingRect = {
+    const elementRect: BoundingRect = {
       width: 400,
       height: 200,
       left: 0,
@@ -409,7 +409,7 @@ describe('should correct position by X-axis when popover out of viewport bounds'
     };
     const params = {
       anchorRect,
-      popoverRect,
+      elementRect,
       viewportWidth: 1000,
       viewportHeight: 1000,
       scrollY: 0,
@@ -429,12 +429,12 @@ describe('should correct position by X-axis when popover out of viewport bounds'
       x:
         params.scrollX
         + params.viewportWidth
-        - popoverRect.width
+        - elementRect.width
         - params.viewportPadding,
       placement: 'bottom',
       alignment: 'start',
-      maxWidth: popoverRect.width,
-      maxHeight: popoverRect.height,
+      maxWidth: elementRect.width,
+      maxHeight: elementRect.height,
     });
   });
 });
@@ -449,7 +449,7 @@ describe('should flip placement when popover out of viewport bounds', () => {
       top: 100,
       bottom: 200,
     };
-    const popoverRect: BoundingRect = {
+    const elementRect: BoundingRect = {
       width: 400,
       height: 400,
       left: 0,
@@ -459,7 +459,7 @@ describe('should flip placement when popover out of viewport bounds', () => {
     };
     const params = {
       anchorRect,
-      popoverRect,
+      elementRect,
       viewportWidth: 1000,
       viewportHeight: 1000,
       scrollY: 0,
@@ -479,8 +479,8 @@ describe('should flip placement when popover out of viewport bounds', () => {
       y: params.scrollY + anchorRect.bottom + params.anchorPadding,
       placement: 'bottom',
       alignment: 'start',
-      maxWidth: popoverRect.width,
-      maxHeight: popoverRect.height,
+      maxWidth: elementRect.width,
+      maxHeight: elementRect.height,
     });
   });
 
@@ -493,7 +493,7 @@ describe('should flip placement when popover out of viewport bounds', () => {
       top: 800,
       bottom: 900,
     };
-    const popoverRect: BoundingRect = {
+    const elementRect: BoundingRect = {
       width: 400,
       height: 400,
       left: 0,
@@ -503,7 +503,7 @@ describe('should flip placement when popover out of viewport bounds', () => {
     };
     const params = {
       anchorRect,
-      popoverRect,
+      elementRect,
       viewportWidth: 1000,
       viewportHeight: 1000,
       scrollY: 0,
@@ -522,11 +522,11 @@ describe('should flip placement when popover out of viewport bounds', () => {
       x: params.scrollX + anchorRect.left,
       y:
         params.scrollY + anchorRect.top
-        - popoverRect.height - params.anchorPadding,
+        - elementRect.height - params.anchorPadding,
       placement: 'top',
       alignment: 'start',
-      maxWidth: popoverRect.width,
-      maxHeight: popoverRect.height,
+      maxWidth: elementRect.width,
+      maxHeight: elementRect.height,
     });
   });
 });
@@ -540,7 +540,7 @@ it('should calc new width and height if not enough space for popover', () => {
     top: 200,
     bottom: 400,
   };
-  const popoverRect: BoundingRect = {
+  const elementRect: BoundingRect = {
     width: 800,
     height: 200,
     left: 0,
@@ -550,7 +550,7 @@ it('should calc new width and height if not enough space for popover', () => {
   };
   const params = {
     anchorRect,
-    popoverRect,
+    elementRect,
     viewportWidth: 600,
     viewportHeight: 600,
     scrollY: 0,
@@ -584,7 +584,7 @@ it('should place popover on bottom if not enough space on right or left side', (
     top: 450,
     bottom: 550,
   };
-  const popoverRect: BoundingRect = {
+  const elementRect: BoundingRect = {
     width: 500,
     height: 200,
     left: 0,
@@ -594,7 +594,7 @@ it('should place popover on bottom if not enough space on right or left side', (
   };
   const params = {
     anchorRect,
-    popoverRect,
+    elementRect,
     viewportWidth: 1000,
     viewportHeight: 1000,
     scrollY: 0,
@@ -614,8 +614,8 @@ it('should place popover on bottom if not enough space on right or left side', (
     x: params.scrollX + anchorRect.left,
     placement: 'bottom',
     alignment: 'start',
-    maxWidth: popoverRect.width,
-    maxHeight: popoverRect.height,
+    maxWidth: elementRect.width,
+    maxHeight: elementRect.height,
   });
 
   expect(
@@ -629,7 +629,7 @@ it('should place popover on bottom if not enough space on right or left side', (
     x: params.scrollX + anchorRect.left,
     placement: 'bottom',
     alignment: 'start',
-    maxWidth: popoverRect.width,
-    maxHeight: popoverRect.height,
+    maxWidth: elementRect.width,
+    maxHeight: elementRect.height,
   });
 });

@@ -14,7 +14,7 @@ export type Coordinates = {
 
 export type PositionCalcParams = {
   anchorRect: BoundingRect;
-  popoverRect: BoundingRect;
+  elementRect: BoundingRect;
   placement: Placement;
   alignment: Alignment;
   anchorPadding: number;
@@ -34,7 +34,7 @@ export type PositionCalcResult = Coordinates & {
 
 export function calcPosition({
   anchorRect,
-  popoverRect,
+  elementRect,
   placement,
   alignment,
   anchorPadding,
@@ -49,13 +49,13 @@ export function calcPosition({
   const maxInlineWidth = viewportWidth - (2 * viewportPadding);
   const maxInlinePadding = Math.max(maxLeftSpace, maxRightSpace);
 
-  if (popoverRect.width >= maxInlinePadding && (placement === 'left' || placement === 'right')) {
+  if (elementRect.width >= maxInlinePadding && (placement === 'left' || placement === 'right')) {
     placement = 'bottom';
   }
 
   let x: number;
   let y: number;
-  if (popoverRect.width >= maxInlineWidth) {
+  if (elementRect.width >= maxInlineWidth) {
     x = scrollX + viewportPadding;
     const result = calcMainAxisOffset({
       placement,
@@ -63,7 +63,7 @@ export function calcPosition({
       anchorSize: anchorRect.height,
       anchorPadding,
       viewportSize: viewportHeight,
-      popoverSize: popoverRect.height,
+      elementSize: elementRect.height,
       scrollSize: scrollY,
     });
     y = result.offset;
@@ -74,7 +74,7 @@ export function calcPosition({
       anchorOffset: anchorRect.left,
       anchorSize: anchorRect.width,
       anchorPadding,
-      popoverSize: popoverRect.width,
+      elementSize: elementRect.width,
       viewportSize: viewportWidth,
       scrollSize: scrollX,
     });
@@ -85,7 +85,7 @@ export function calcPosition({
       alignment,
       anchorOffset: anchorRect.top,
       anchorSize: anchorRect.height,
-      popoverSize: popoverRect.height,
+      elementSize: elementRect.height,
       viewportSize: viewportHeight,
       viewportPadding,
       scrollSize: scrollY,
@@ -97,7 +97,7 @@ export function calcPosition({
       anchorSize: anchorRect.width,
       viewportSize: viewportWidth,
       viewportPadding,
-      popoverSize: popoverRect.width,
+      elementSize: elementRect.width,
       scrollSize: scrollX,
     });
 
@@ -106,7 +106,7 @@ export function calcPosition({
       anchorOffset: anchorRect.top,
       anchorSize: anchorRect.height,
       anchorPadding,
-      popoverSize: popoverRect.height,
+      elementSize: elementRect.height,
       viewportSize: viewportHeight,
       scrollSize: scrollY,
     });
@@ -114,8 +114,8 @@ export function calcPosition({
     placement = result.placement;
   }
 
-  let maxWidth = popoverRect.width;
-  let maxHeight = popoverRect.height;
+  let maxWidth = elementRect.width;
+  let maxHeight = elementRect.height;
   if (placement === 'top' || placement === 'bottom') {
     maxWidth = Math.min(maxWidth, maxInlineWidth);
     if (placement === 'top') {
@@ -138,8 +138,8 @@ export function calcPosition({
   }
 
   return {
-    x: roundNumber(x, 5),
-    y: roundNumber(y, 5),
+    x: roundNumber(x),
+    y: roundNumber(y),
     placement,
     alignment,
     maxWidth: roundNumber(maxWidth),
@@ -152,7 +152,7 @@ function calcMainAxisOffset({
   anchorOffset,
   anchorSize,
   anchorPadding,
-  popoverSize,
+  elementSize,
   viewportSize,
   scrollSize,
 }: {
@@ -160,12 +160,12 @@ function calcMainAxisOffset({
   anchorOffset: number;
   anchorSize: number;
   anchorPadding: number;
-  popoverSize: number;
+  elementSize: number;
   viewportSize: number;
   scrollSize: number;
 }): { offset: number; placement: Placement } {
   const anchorBottom = viewportSize - anchorOffset + anchorSize;
-  const top = scrollSize + anchorOffset - anchorPadding - popoverSize;
+  const top = scrollSize + anchorOffset - anchorPadding - elementSize;
   const bottom = scrollSize + anchorOffset + anchorSize + anchorPadding;
 
   let offset;
@@ -177,7 +177,7 @@ function calcMainAxisOffset({
     }
   } else {
     offset = bottom;
-    if (anchorOffset > anchorBottom && offset + popoverSize > scrollSize + viewportSize) {
+    if (anchorOffset > anchorBottom && offset + elementSize > scrollSize + viewportSize) {
       offset = top;
       placement = placement === 'bottom' ? 'top' : 'left';
     }
@@ -190,7 +190,7 @@ function calcCrossAxisOffset({
   alignment,
   anchorSize,
   anchorOffset,
-  popoverSize,
+  elementSize,
   viewportSize,
   viewportPadding,
   scrollSize,
@@ -198,7 +198,7 @@ function calcCrossAxisOffset({
   alignment: Alignment;
   anchorSize: number;
   anchorOffset: number;
-  popoverSize: number;
+  elementSize: number;
   viewportSize: number;
   viewportPadding: number;
   scrollSize: number;
@@ -207,15 +207,15 @@ function calcCrossAxisOffset({
   if (alignment === 'start') {
     offset = scrollSize + anchorOffset;
   } else if (alignment === 'end') {
-    offset = scrollSize + anchorOffset + anchorSize - popoverSize;
+    offset = scrollSize + anchorOffset + anchorSize - elementSize;
   } else {
-    offset = scrollSize + anchorOffset + (anchorSize / 2) - (popoverSize / 2);
+    offset = scrollSize + anchorOffset + (anchorSize / 2) - (elementSize / 2);
   }
 
   if (offset < scrollSize) {
     offset = scrollSize + viewportPadding;
-  } else if (offset + popoverSize > scrollSize + viewportSize) {
-    offset = scrollSize + viewportSize - viewportPadding - popoverSize;
+  } else if (offset + elementSize > scrollSize + viewportSize) {
+    offset = scrollSize + viewportSize - viewportPadding - elementSize;
   }
 
   return offset;

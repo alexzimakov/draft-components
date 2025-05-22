@@ -1,4 +1,4 @@
-import { getElementBoundingRect } from '../../lib/get-element-bounding-rect.js';
+import { getElementBoundingRect } from './get-element-bounding-rect.js';
 
 export type MoveObserverCallback = () => void;
 
@@ -7,7 +7,7 @@ export type MoveObserverDestructor = () => void;
 /**
  * @see https://samthor.au/2021/observing-dom/#3.-move-observations
  */
-export function observeMove(
+export function observeElementMove(
   element: Element,
   callback: MoveObserverCallback,
 ): MoveObserverDestructor {

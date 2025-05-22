@@ -3,18 +3,18 @@ import { getElementBoundingRect } from './get-element-bounding-rect.js';
 
 type AlignmentWithoutCenter = Exclude<Alignment, 'center'>;
 
-export type PopoverPlacement = Placement | `${Placement}-${AlignmentWithoutCenter}`;
+export type ElementPlacement = Placement | `${Placement}-${AlignmentWithoutCenter}`;
 
-export type PopoverPositionCalcParams = {
-  placement?: PopoverPlacement;
+export type ElementPositionCalcParams = {
+  placement?: ElementPlacement;
   anchorPadding?: number;
   viewportPadding?: number;
 };
 
-export function calcPopoverPosition(
+export function calcElementPosition(
   anchor: HTMLElement | SVGElement,
-  popover: HTMLElement | SVGElement,
-  params: PopoverPositionCalcParams = {},
+  element: HTMLElement | SVGElement,
+  params: ElementPositionCalcParams = {},
 ): PositionCalcResult {
   let placement: Placement = 'bottom';
   let alignment: Alignment = 'center';
@@ -27,11 +27,11 @@ export function calcPopoverPosition(
   }
 
   const root = anchor.ownerDocument || window.document;
-  const isPopoverFixed = window.getComputedStyle(popover).position === 'fixed';
+  const isPopoverFixed = window.getComputedStyle(element).position === 'fixed';
 
   return calcPosition({
     anchorRect: getElementBoundingRect(anchor),
-    popoverRect: getElementBoundingRect(popover),
+    elementRect: getElementBoundingRect(element),
     placement,
     alignment,
     anchorPadding: params.anchorPadding || 4,
