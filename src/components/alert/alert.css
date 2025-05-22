@@ -1,10 +1,10 @@
 .dc-alert {
-  --dc-alert-text-color: var(--dc-gray-700);
-  --dc-alert-icon-color: var(--dc-gray-500);
-  --dc-alert-bg: rgb(var(--dc-gray-200-rgb) / 25%);
-  --dc-alert-border-color: rgb(var(--dc-gray-400-rgb) / 25%);
-  --dc-alert-accent-border-color: var(--dc-gray-500);
-  --dc-alert-icon-size: 20px;
+  --color: var(--dc-gray-700);
+  --icon-color: var(--dc-gray-500);
+  --background: rgb(var(--dc-gray-200-rgb) / 25%);
+  --border-color: rgb(var(--dc-gray-400-rgb) / 25%);
+  --accent-border-color: var(--dc-gray-500);
+  --icon-size: 20px;
 
   box-sizing: border-box;
   display: flex;
@@ -12,11 +12,11 @@
   align-items: flex-start;
   padding: 12px 16px;
   font: var(--dc-text-sm);
-  color: var(--dc-alert-text-color);
+  color: var(--color);
   text-align: left;
   color-scheme: light;
-  background: var(--dc-alert-bg);
-  border: 1px solid var(--dc-alert-border-color);
+  background: var(--background);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
 }
 
@@ -30,7 +30,7 @@
 
 .dc-alert__icon {
   display: inline-flex;
-  color: var(--dc-alert-icon-color);
+  color: var(--icon-color);
 }
 
 .dc-alert__body {
@@ -76,85 +76,85 @@
 
 .dc-alert_style_accent-left {
   border: none;
-  border-left: 4px solid var(--dc-alert-accent-border-color);
+  border-left: 4px solid var(--accent-border-color);
   border-radius: 0;
 }
 
 .dc-alert_tint_orange {
-  --dc-alert-text-color: var(--dc-orange-700);
-  --dc-alert-icon-color: var(--dc-orange-600);
-  --dc-alert-bg: rgb(var(--dc-orange-200-rgb) / 20%);
-  --dc-alert-border-color: rgb(var(--dc-orange-500-rgb) / 25%);
-  --dc-alert-accent-border-color: var(--dc-orange-500);
+  --color: var(--dc-orange-700);
+  --icon-color: var(--dc-orange-600);
+  --background: rgb(var(--dc-orange-200-rgb) / 20%);
+  --border-color: rgb(var(--dc-orange-500-rgb) / 25%);
+  --accent-border-color: var(--dc-orange-500);
 }
 
 .dc-alert_tint_red {
-  --dc-alert-text-color: var(--dc-red-700);
-  --dc-alert-icon-color: var(--dc-red-600);
-  --dc-alert-bg: rgb(var(--dc-red-200-rgb) / 20%);
-  --dc-alert-border-color: rgb(var(--dc-red-500-rgb) / 25%);
-  --dc-alert-accent-border-color: var(--dc-red-500);
+  --color: var(--dc-red-700);
+  --icon-color: var(--dc-red-600);
+  --background: rgb(var(--dc-red-200-rgb) / 20%);
+  --border-color: rgb(var(--dc-red-500-rgb) / 25%);
+  --accent-border-color: var(--dc-red-500);
 }
 
 .dc-alert_tint_blue {
-  --dc-alert-text-color: var(--dc-blue-700);
-  --dc-alert-icon-color: var(--dc-blue-600);
-  --dc-alert-bg: rgb(var(--dc-blue-200-rgb) / 20%);
-  --dc-alert-border-color: rgb(var(--dc-blue-500-rgb) / 25%);
-  --dc-alert-accent-border-color: var(--dc-blue-500);
+  --color: var(--dc-blue-700);
+  --icon-color: var(--dc-blue-600);
+  --background: rgb(var(--dc-blue-200-rgb) / 20%);
+  --border-color: rgb(var(--dc-blue-500-rgb) / 25%);
+  --accent-border-color: var(--dc-blue-500);
 }
 
 .dc-alert_tint_green {
-  --dc-alert-text-color: var(--dc-green-700);
-  --dc-alert-icon-color: var(--dc-green-600);
-  --dc-alert-bg: rgb(var(--dc-green-200-rgb) / 20%);
-  --dc-alert-border-color: rgb(var(--dc-green-600-rgb) / 25%);
-  --dc-alert-accent-border-color: var(--dc-green-500);
+  --color: var(--dc-green-700);
+  --icon-color: var(--dc-green-600);
+  --background: rgb(var(--dc-green-200-rgb) / 20%);
+  --border-color: rgb(var(--dc-green-600-rgb) / 25%);
+  --accent-border-color: var(--dc-green-500);
 }
 
 .dark .dc-alert,
 .dark.dc-alert {
-  --dc-alert-text-color: var(--dc-gray-300);
-  --dc-alert-icon-color: var(--dc-gray-300);
-  --dc-alert-bg: rgb(var(--dc-gray-200-rgb) / 10%);
-  --dc-alert-border-color: rgb(var(--dc-gray-400-rgb) / 20%);
-  --dc-alert-accent-border-color: var(--dc-gray-400);
+  --color: var(--dc-gray-300);
+  --icon-color: var(--dc-gray-300);
+  --background: rgb(var(--dc-gray-200-rgb) / 10%);
+  --border-color: rgb(var(--dc-gray-400-rgb) / 20%);
+  --accent-border-color: var(--dc-gray-400);
 
   color-scheme: dark;
 }
 
 .dark .dc-alert_tint_orange,
 .dark.dc-alert_tint_orange {
-  --dc-alert-text-color: var(--dc-orange-400);
-  --dc-alert-icon-color: var(--dc-orange-400);
-  --dc-alert-bg: rgb(var(--dc-orange-200-rgb) / 10%);
-  --dc-alert-border-color: rgb(var(--dc-orange-400-rgb) / 30%);
-  --dc-alert-accent-border-color: var(--dc-orange-500);
+  --color: var(--dc-orange-400);
+  --icon-color: var(--dc-orange-400);
+  --background: rgb(var(--dc-orange-200-rgb) / 10%);
+  --border-color: rgb(var(--dc-orange-400-rgb) / 30%);
+  --accent-border-color: var(--dc-orange-500);
 }
 
 .dark .dc-alert_tint_red,
 .dark.dc-alert_tint_red {
-  --dc-alert-text-color: var(--dc-red-400);
-  --dc-alert-icon-color: var(--dc-red-400);
-  --dc-alert-bg: rgb(var(--dc-red-300-rgb) / 10%);
-  --dc-alert-border-color: rgb(var(--dc-red-400-rgb) / 30%);
-  --dc-alert-accent-border-color: var(--dc-red-500);
+  --color: var(--dc-red-400);
+  --icon-color: var(--dc-red-400);
+  --background: rgb(var(--dc-red-300-rgb) / 10%);
+  --border-color: rgb(var(--dc-red-400-rgb) / 30%);
+  --accent-border-color: var(--dc-red-500);
 }
 
 .dark .dc-alert_tint_blue,
 .dark.dc-alert_tint_blue {
-  --dc-alert-text-color: var(--dc-blue-300);
-  --dc-alert-icon-color: var(--dc-blue-300);
-  --dc-alert-bg: rgb(var(--dc-blue-200-rgb) / 10%);
-  --dc-alert-border-color: rgb(var(--dc-blue-400-rgb) / 30%);
-  --dc-alert-accent-border-color: var(--dc-blue-400);
+  --color: var(--dc-blue-300);
+  --icon-color: var(--dc-blue-300);
+  --background: rgb(var(--dc-blue-200-rgb) / 10%);
+  --border-color: rgb(var(--dc-blue-400-rgb) / 30%);
+  --accent-border-color: var(--dc-blue-400);
 }
 
 .dark .dc-alert_tint_green,
 .dark.dc-alert_tint_green {
-  --dc-alert-text-color: var(--dc-green-400);
-  --dc-alert-icon-color: var(--dc-green-400);
-  --dc-alert-bg: rgb(var(--dc-green-200-rgb) / 10%);
-  --dc-alert-border-color: rgb(var(--dc-green-400-rgb) / 30%);
-  --dc-alert-accent-border-color: var(--dc-green-500);
+  --color: var(--dc-green-400);
+  --icon-color: var(--dc-green-400);
+  --background: rgb(var(--dc-green-200-rgb) / 10%);
+  --border-color: rgb(var(--dc-green-400-rgb) / 30%);
+  --accent-border-color: var(--dc-green-500);
 }

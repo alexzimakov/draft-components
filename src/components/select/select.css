@@ -1,35 +1,35 @@
 .dc-select {
-  --dc-select-font-size: 14px;
-  --dc-select-text-color: var(--dc-control-primary-text-color);
-  --dc-select-height: 36px;
-  --dc-select-padding-x: 12px;
-  --dc-select-radius: 7px;
-  --dc-select-border-color: var(--dc-control-border-color);
-  --dc-select-border-color-error: var(--dc-control-error-color);
-  --dc-select-bg: var(--dc-control-bg);
-  --dc-select-focus-ring-color: var(--dc-control-primary-color);
+  --font-size: 14px;
+  --color: var(--dc-gray-950);
+  --height: 36px;
+  --padding-x: 12px;
+  --radius: 7px;
+  --border-color: var(--dc-gray-300);
+  --border-color-error: var(--dc-red-500);
+  --background: var(--dc-white);
+  --focus-ring-color: var(--dc-focus-ring-color);
 
   position: relative;
   box-sizing: border-box;
   display: inline-flex;
   align-items: stretch;
   max-width: 100%;
-  height: var(--dc-select-height);
+  height: var(--height);
   font-family: var(--dc-primary-font);
-  font-size: var(--dc-select-font-size);
+  font-size: var(--font-size);
   font-weight: 400;
   line-height: 1.25;
   vertical-align: middle;
-  color: var(--dc-select-text-color);
+  color: var(--color);
   color-scheme: light;
-  background: var(--dc-select-bg);
-  border: 1px solid var(--dc-select-border-color);
-  border-radius: var(--dc-select-radius);
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
 }
 
 .dc-select:focus-within {
-  border-color: var(--dc-select-focus-ring-color);
-  box-shadow: 0 0 0 1px var(--dc-select-focus-ring-color);
+  border-color: var(--focus-ring-color);
+  box-shadow: 0 0 0 1px var(--focus-ring-color);
 }
 
 .dc-select_multiple {
@@ -42,7 +42,7 @@
 }
 
 .dc-select_invalid {
-  border-color: var(--dc-select-border-color-error);
+  border-color: var(--border-color-error);
 }
 
 .dc-select_full-width {
@@ -51,24 +51,24 @@
 }
 
 .dc-select_sm {
-  --dc-select-font-size: 13px;
-  --dc-select-height: 32px;
-  --dc-select-padding-x: 8px;
-  --dc-select-radius: 6px;
+  --font-size: 13px;
+  --height: 32px;
+  --padding-x: 8px;
+  --radius: 6px;
 }
 
 .dc-select_lg {
-  --dc-select-font-size: 15px;
-  --dc-select-height: 40px;
-  --dc-select-padding-x: 16px;
-  --dc-select-radius: 8px;
+  --font-size: 15px;
+  --height: 40px;
+  --padding-x: 16px;
+  --radius: 8px;
 }
 
 .dc-select__native {
   flex-grow: 1;
   max-width: 100%;
-  padding-right: calc(var(--dc-select-height) + 0.5em);
-  padding-left: var(--dc-select-padding-x);
+  padding-right: calc(var(--height) + 0.5em);
+  padding-left: var(--padding-x);
   font: inherit;
   color: inherit;
   text-transform: none;
@@ -91,8 +91,8 @@
 
 .dc-select_multiple .dc-select__native {
   padding: 0;
-  margin-top: var(--dc-select-radius);
-  margin-bottom: var(--dc-select-radius);
+  margin-top: var(--radius);
+  margin-bottom: var(--radius);
 }
 
 .dc-select__slot-left {
@@ -102,8 +102,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--dc-select-height);
-  height: var(--dc-select-height);
+  width: var(--height);
+  height: var(--height);
   pointer-events: none;
   background: none;
 }
@@ -114,5 +114,10 @@
 
 .dark .dc-select,
 .dark.dc-select {
+  --color: var(--dc-white);
+  --border-color: var(--dc-gray-600);
+  --border-color-error: var(--dc-red-400);
+  --background: var(--dc-gray-800);
+
   color-scheme: dark;
 }

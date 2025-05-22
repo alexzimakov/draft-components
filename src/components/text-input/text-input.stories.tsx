@@ -2,6 +2,7 @@ import { type Meta, type StoryFn } from '@storybook/react';
 import { type CSSProperties } from 'react';
 import { TextInput } from './text-input.js';
 import { StorySection } from '../../storybook/story-section.js';
+import { Button } from '../button/index.js';
 
 const meta: Meta<typeof TextInput> = {
   title: 'Forms/TextInput',
@@ -129,22 +130,14 @@ SlotCustomRenderer.args = {
       paddingRight: 5,
     } as CSSProperties;
     const buttonStyle: CSSProperties = {
-      fontFamily: 'inherit',
-      fontSize: 12,
-      fontWeight: 500,
-      color: 'var(--dc-button-gray-tinted-text-color)',
-      boxSizing: 'border-box',
       height: 24,
-      padding: '0 8px',
-      border: 'none',
       borderRadius: 4,
-      background: 'var(--dc-button-gray-tinted-bg)',
     };
     return (
       <div style={wrapperStyle}>
-        <button style={buttonStyle}>
+        <Button size="xs" style={buttonStyle}>
           Show
-        </button>
+        </Button>
       </div>
     );
   },

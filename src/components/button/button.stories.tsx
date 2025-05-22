@@ -72,25 +72,23 @@ WithCaption.args = {
   iconLeft: <ShoppingBagIcon width="1.25em" height="1.25em" />,
 };
 
-export const Sizes = (args: ButtonProps) => {
-  return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'auto 1fr',
-        alignItems: 'center',
-        justifyItems: 'start',
-        gap: 16,
-      }}
-    >
-      <code>xs</code> <Button {...args} size="xs" />
-      <code>sm</code> <Button {...args} size="sm" />
-      <code>md</code> <Button {...args} size="md" />
-      <code>lg</code> <Button {...args} size="lg" />
-      <code>xl</code> <Button {...args} size="xl" />
-    </div>
-  );
-};
+export const Sizes = (args: ButtonProps) => (
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: 'auto 1fr',
+      alignItems: 'center',
+      justifyItems: 'start',
+      gap: 16,
+    }}
+  >
+    <code>xs</code> <Button {...args} size="xs" />
+    <code>sm</code> <Button {...args} size="sm" />
+    <code>md</code> <Button {...args} size="md" />
+    <code>lg</code> <Button {...args} size="lg" />
+    <code>xl</code> <Button {...args} size="xl" />
+  </div>
+);
 Sizes.parameters = {
   controls: {
     exclude: ['size'],

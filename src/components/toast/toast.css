@@ -1,24 +1,24 @@
 .dc-toast {
-  --dc-toast-text-color: var(--dc-gray-100);
-  --dc-toast-secondary-text-color: var(--dc-gray-300);
-  --dc-toast-icon-color: var(--dc-gray-200);
-  --dc-toast-bg: var(--dc-gray-700);
-  --dc-toast-padding: 16px;
-  --dc-toast-close-btn-color: var(--dc-gray-50);
-  --dc-toast-close-btn-bg: var(--dc-gray-500);
-  --dc-toast-btn-text-color: var(--dc-gray-100);
-  --dc-toast-btn-bg: rgb(var(--dc-gray-50-rgb) / 15%);
-  --dc-toast-btn-bg-hover: rgb(var(--dc-gray-50-rgb) / 30%);
-  --dc-toast-btn-focus-ring-color: var(--dc-gray-200);
+  --color: var(--dc-gray-100);
+  --secondary-color: var(--dc-gray-300);
+  --icon-color: var(--dc-gray-200);
+  --background: var(--dc-gray-700);
+  --padding: 16px;
+  --close-button-color: var(--dc-gray-50);
+  --close-button-background: var(--dc-gray-500);
+  --button-color: var(--dc-gray-100);
+  --button-background: rgb(var(--dc-gray-50-rgb) / 15%);
+  --button-background-hover: rgb(var(--dc-gray-50-rgb) / 30%);
+  --button-focus-ring-color: var(--dc-gray-200);
 
   position: relative;
   display: inline-flex;
   min-width: 256px;
   font: var(--dc-text-sm);
-  color: var(--dc-toast-text-color);
+  color: var(--color);
   text-align: left;
   color-scheme: light;
-  background: var(--dc-toast-bg);
+  background: var(--background);
   border-radius: 10px;
   box-shadow: var(--dc-shadow-lg);
 }
@@ -34,14 +34,14 @@
   width: 24px;
   height: 24px;
   padding: 0;
-  color: var(--dc-toast-close-btn-color);
+  color: var(--close-button-color);
   appearance: none;
   pointer-events: none;
-  background: var(--dc-toast-close-btn-bg);
+  background: var(--close-button-background);
   border: none;
   border-radius: 50%;
   box-shadow:
-    var(--dc-shadow-sm),
+    var(--dc-shadow-xs),
     var(--dc-shadow-md);
   opacity: 0;
   transition: opacity 150ms ease;
@@ -56,9 +56,9 @@
   box-sizing: border-box;
   padding: 4px 12px;
   font: var(--dc-text-xs);
-  color: var(--dc-toast-btn-text-color);
+  color: var(--button-color);
   appearance: none;
-  background: var(--dc-toast-btn-bg);
+  background: var(--button-background);
   border: none;
   border-radius: 6px;
   transition: 100ms ease;
@@ -66,13 +66,13 @@
 }
 
 .dc-toast__btn:hover {
-  background: var(--dc-toast-btn-bg-hover);
+  background: var(--button-background-hover);
 }
 
 .dc-toast__btn:focus {
   outline: none;
-  background: var(--dc-toast-btn-bg-hover);
-  box-shadow: 0 0 0 1px var(--dc-toast-btn-focus-ring-color);
+  background: var(--button-background-hover);
+  box-shadow: 0 0 0 1px var(--button-focus-ring-color);
 }
 
 .dc-toast__btn:focus:not(:focus-visible) {
@@ -80,7 +80,7 @@
 }
 
 .dc-toast__btn:focus:not(:focus-visible, :hover) {
-  background: var(--dc-toast-btn-bg);
+  background: var(--button-background);
 }
 
 .dc-toast__body {
@@ -109,7 +109,7 @@
   display: inline-flex;
   flex-shrink: 0;
   margin-right: 12px;
-  color: var(--dc-toast-icon-color);
+  color: var(--icon-color);
 }
 
 .dc-toast__title {
@@ -120,21 +120,21 @@
 
 .dc-toast__message {
   margin-top: 0.25em;
-  color: var(--dc-toast-secondary-text-color);
+  color: var(--secondary-color);
 }
 
 .dark .dc-toast,
 .dark.dc-toast {
-  --dc-toast-text-color: var(--dc-gray-800);
-  --dc-toast-secondary-text-color: var(--dc-gray-600);
-  --dc-toast-icon-color: var(--dc-gray-700);
-  --dc-toast-bg: var(--dc-gray-100);
-  --dc-toast-close-btn-color: var(--dc-gray-800);
-  --dc-toast-close-btn-bg: var(--dc-gray-100);
-  --dc-toast-btn-text-color: var(--dc-gray-800);
-  --dc-toast-btn-bg: rgb(var(--dc-gray-900-rgb) / 10%);
-  --dc-toast-btn-bg-hover: rgb(var(--dc-gray-900-rgb) / 20%);
-  --dc-toast-btn-focus-ring-color: var(--dc-gray-700);
+  --color: var(--dc-gray-800);
+  --secondary-color: var(--dc-gray-600);
+  --icon-color: var(--dc-gray-700);
+  --background: var(--dc-gray-100);
+  --close-button-color: var(--dc-gray-800);
+  --close-button-background: var(--dc-gray-100);
+  --button-color: var(--dc-gray-800);
+  --button-background: rgb(var(--dc-gray-900-rgb) / 10%);
+  --button-background-hover: rgb(var(--dc-gray-900-rgb) / 20%);
+  --button-focus-ring-color: var(--dc-gray-700);
 
   color-scheme: dark;
 }
@@ -143,6 +143,6 @@
 .dark.dc-toast .dc-toast__close-btn {
   box-shadow:
     0 0 0 1px rgb(var(--dc-black-rgb) / 10%),
-    var(--dc-shadow-sm),
+    var(--dc-shadow-xs),
     var(--dc-shadow-md);
 }

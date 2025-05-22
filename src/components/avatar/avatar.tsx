@@ -131,8 +131,8 @@ export function Avatar({
           {maskElement}
         </mask>
         <linearGradient id={gradientId} x1="0" x2="0" y1="0" y2="1">
-          <stop stopColor="var(--dc-avatar-bg-color-1)" offset="0%" />
-          <stop stopColor="var(--dc-avatar-bg-color-2)" offset="100%" />
+          <stop stopColor="var(--background-color-1)" offset="0%" />
+          <stop stopColor="var(--background-color-2)" offset="100%" />
         </linearGradient>
       </defs>
       <g mask={`url(#${maskId})`}>

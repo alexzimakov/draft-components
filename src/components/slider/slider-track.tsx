@@ -21,10 +21,10 @@ export function SliderTrack({
   const end = formatPercent(positionEnd);
   const background = 'linear-gradient('
     + 'to right, '
-    + `var(--dc-slider-track-bg) ${start}, `
-    + `var(--dc-slider-active-track-bg) ${start}, `
-    + `var(--dc-slider-active-track-bg) ${end}, `
-    + `var(--dc-slider-track-bg) ${end}`
+    + `var(--track-background) ${start}, `
+    + `var(--track-background-filled) ${start}, `
+    + `var(--track-background-filled) ${end}, `
+    + `var(--track-background) ${end}`
     + ')';
   return (
     <div style={{ background }} className="dc-slider__track">

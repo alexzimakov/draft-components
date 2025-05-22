@@ -1,23 +1,23 @@
 .dc-label {
-  --dc-label-text-color: var(--dc-primary-text-color);
-  --dc-label-required-mark-color: #dc2626;
+  --color: var(--dc-primary-text-color);
+  --required-mark-color: var(--dc-red-600);
 
   display: inline-block;
   font: var(--dc-text-sm);
   font-weight: 500;
-  color: var(--dc-label-text-color);
+  color: var(--color);
   color-scheme: light;
 }
 
 .dc-label_required::after {
   padding-left: 0.25em;
-  color: var(--dc-label-required-mark-color);
+  color: var(--required-mark-color);
   content: "*";
 }
 
 .dark .dc-label,
 .dark.dc-label {
-  --dc-label-required-mark-color: #f87171;
+  --required-mark-color: var(--dc-red-400);
 
   color-scheme: dark;
 }

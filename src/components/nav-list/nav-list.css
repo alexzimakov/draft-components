@@ -1,10 +1,10 @@
 .dc-nav-list {
-  --dc-nav-list-title-color: var(--dc-secondary-text-color);
-  --dc-nav-link-text-color: var(--dc-primary-text-color);
-  --dc-nav-link-bg: transparent;
-  --dc-nav-link-bg-hover: var(--dc-bg-transparent-2);
-  --dc-nav-link-bg-active: var(--dc-bg-transparent-2);
-  --dc-nav-link-focus-ring-color: var(--dc-focus-ring-color);
+  --list-title-color: var(--dc-secondary-text-color);
+  --link-color: var(--dc-primary-text-color);
+  --link-background: transparent;
+  --link-background-hover: var(--dc-bg-transparent-2);
+  --link-background-active: var(--dc-bg-transparent-2);
+  --link-focus-ring-color: var(--dc-focus-ring-color);
 
   color-scheme: light;
 }
@@ -23,7 +23,7 @@
 
 .dc-nav-list__title {
   font: 500 var(--dc-text-xs);
-  color: var(--dc-nav-list-title-color);
+  color: var(--list-title-color);
 }
 
 * + .dc-nav-list__title {
@@ -39,7 +39,7 @@
   align-items: center;
   height: 36px;
   font: var(--dc-text-sm);
-  color: var(--dc-nav-link-text-color);
+  color: var(--link-color);
   white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
@@ -47,12 +47,12 @@
 }
 
 .dc-nav-link:hover {
-  background: var(--dc-nav-link-bg-hover);
+  background: var(--link-background-hover);
 }
 
 .dc-nav-link:focus {
   outline: none;
-  box-shadow: 0 0 0 2px var(--dc-nav-link-focus-ring-color);
+  box-shadow: 0 0 0 2px var(--link-focus-ring-color);
 }
 
 .dc-nav-link:focus:not(:focus-visible) {
@@ -63,7 +63,7 @@
 .dc-nav-link[aria-current="page"],
 .dc-nav-link[aria-current="step"],
 .dc-nav-link[aria-current="true"] {
-  background: var(--dc-nav-link-bg-active);
+  background: var(--link-background-active);
 }
 
 .dc-nav-link__icon {

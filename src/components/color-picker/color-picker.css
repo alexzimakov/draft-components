@@ -1,9 +1,9 @@
 .dc-color-picker {
-  --dc-color-picker-btn-size: 24px;
-  --dc-color-picker-btn-color: var(--dc-control-on-primary-color);
-  --dc-color-picker-btn-check-color: white;
-  --dc-color-picker-btn-inner-border-color: rgb(var(--dc-black-rgb) / 5%);
-  --dc-color-picker-btn-focus-ring-color: var(--dc-focus-ring-color);
+  --button-size: 24px;
+  --button-color: var(--dc-blue);
+  --button-check-color: var(--dc-white);
+  --button-inner-border-color: rgb(var(--dc-black-rgb) / 5%);
+  --button-focus-ring-color: var(--dc-focus-ring-color);
 
   display: inline-flex;
   flex-wrap: wrap;
@@ -26,13 +26,13 @@
   flex: none;
   align-items: center;
   justify-content: center;
-  width: var(--dc-color-picker-btn-size);
-  height: var(--dc-color-picker-btn-size);
+  width: var(--button-size);
+  height: var(--button-size);
   font-size: 0;
   color: transparent;
-  background: var(--dc-color-picker-btn-color);
+  background: var(--button-color);
   border-radius: 50%;
-  box-shadow: inset 0 0 0 1px var(--dc-color-picker-btn-inner-border-color);
+  box-shadow: inset 0 0 0 1px var(--button-inner-border-color);
 }
 
 .dc-color-picker_disabled .dc-color-picker__btn {
@@ -60,7 +60,7 @@
   display: inline-block;
   width: 38%;
   height: 38%;
-  background: var(--dc-color-picker-btn-check-color);
+  background: var(--button-check-color);
   border-radius: 50%;
   box-shadow: 0 1px 2px 0 rgb(var(--dc-black-rgb) / 5%);
   transform: translate(-50%, -50%);
@@ -73,12 +73,12 @@
   display: inline-block;
   content: "";
   border-radius: 50%;
-  box-shadow: 0 0 0 3px var(--dc-color-picker-btn-focus-ring-color);
+  box-shadow: 0 0 0 3px var(--button-focus-ring-color);
 }
 
 .dark .dc-color-picker,
 .dark.dc-color-picker {
-  --dc-color-picker-btn-inner-border-color: rgb(255 255 255 / 10%);
+  --button-inner-border-color: rgb(var(--dc-white-rgb) / 10%);
 
   color-scheme: dark;
 }

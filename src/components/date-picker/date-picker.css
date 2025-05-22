@@ -1,21 +1,19 @@
 .dc-datepicker {
-  --dc-columnheader-text-color: var(--dc-control-secondary-text-color);
-
-  /* Day properties */
-  --dc-day-font-size: 14px;
-  --dc-day-text-color: var(--dc-control-primary-text-color);
-  --dc-day-text-color-today: var(--dc-control-primary-color);
-  --dc-day-text-color-weekend: var(--dc-control-secondary-text-color);
-  --dc-day-text-color-selected: var(--dc-control-on-primary-color);
-  --dc-day-size: 32px;
-  --dc-day-max-width: 40px;
-  --dc-day-radius: 16px;
-  --dc-day-border-color: transparent;
-  --dc-day-border-color-hover: var(--dc-control-primary-color);
-  --dc-day-bg-selected: var(--dc-control-primary-color);
-  --dc-day-bg-selected-hover: var(--dc-control-primary-color-hover);
-  --dc-day-bg-range: var(--dc-control-secondary-color);
-  --dc-day-focus-ring-color: var(--dc-control-primary-color);
+  --day-size: 32px;
+  --day-max-width: 40px;
+  --day-font-size: 14px;
+  --day-radius: 16px;
+  --day-color: var(--dc-gray-950);
+  --day-color-name: var(--dc-gray-500);
+  --day-color-today: var(--dc-blue-500);
+  --day-color-weekend: var(--dc-gray-500);
+  --day-color-selected: var(--dc-white);
+  --day-border-color: transparent;
+  --day-border-color-hover: var(--dc-focus-ring-color);
+  --day-background-selected: var(--dc-blue-500);
+  --day-background-selected-hover: var(--dc-blue-500);
+  --day-range-background: rgb(var(--dc-blue-400-rgb) / 25%);
+  --day-focus-ring-color: var(--dc-focus-ring-color);
 
   display: inline-block;
   color-scheme: light;
@@ -43,7 +41,7 @@
   font-family: var(--dc-primary-font);
   font-size: 14px;
   font-weight: 500;
-  color: var(--dc-day-text-color);
+  color: var(--day-color);
   appearance: none;
   background: none;
   border: none;
@@ -54,9 +52,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--dc-day-size);
-  height: var(--dc-day-size);
-  border-radius: var(--dc-day-radius);
+  width: var(--day-size);
+  height: var(--day-size);
+  border-radius: var(--day-radius);
 }
 
 .dc-calendar-day_in-range {
@@ -68,40 +66,40 @@
   inset: 0;
   z-index: -1;
   content: "";
-  background: var(--dc-day-bg-range);
+  background: var(--day-range-background);
 }
 
 .dc-calendar-day_range-start::before {
-  left: calc(50% - var(--dc-day-size) / 2);
-  border-top-left-radius: var(--dc-day-radius);
-  border-bottom-left-radius: var(--dc-day-radius);
+  left: calc(50% - var(--day-size) / 2);
+  border-top-left-radius: var(--day-radius);
+  border-bottom-left-radius: var(--day-radius);
 }
 
 .dc-calendar-day_range-end::before {
-  right: calc(50% - var(--dc-day-size) / 2);
-  border-top-right-radius: var(--dc-day-radius);
-  border-bottom-right-radius: var(--dc-day-radius);
+  right: calc(50% - var(--day-size) / 2);
+  border-top-right-radius: var(--day-radius);
+  border-bottom-right-radius: var(--day-radius);
 }
 
 .dc-calendar-day_weekend > .dc-calendar-day__body {
-  color: var(--dc-day-text-color-weekend);
+  color: var(--day-color-weekend);
 }
 
 .dc-calendar-day_today > .dc-calendar-day__body {
-  color: var(--dc-day-text-color-today);
+  color: var(--day-color-today);
 }
 
 .dc-calendar-day_selected > .dc-calendar-day__body {
-  color: var(--dc-day-text-color-selected);
-  background: var(--dc-day-bg-selected);
+  color: var(--day-color-selected);
+  background: var(--day-background-selected);
 }
 
 .dc-calendar-day:hover > .dc-calendar-day__body {
-  box-shadow: inset 0 0 0 2px var(--dc-day-border-color-hover);
+  box-shadow: inset 0 0 0 2px var(--day-border-color-hover);
 }
 
 .dc-calendar-day_selected:hover > .dc-calendar-day__body {
-  background: var(--dc-day-bg-selected-hover);
+  background: var(--day-background-selected-hover);
   box-shadow: none;
 }
 
@@ -119,7 +117,7 @@
 }
 
 .dc-calendar-day:focus > .dc-calendar-day__body {
-  box-shadow: inset 0 0 0 2px var(--dc-day-border-color-hover);
+  box-shadow: inset 0 0 0 2px var(--day-border-color-hover);
 }
 
 .dc-calendar-day_selected:focus > .dc-calendar-day__body {
@@ -132,7 +130,7 @@
   inset: -2px;
   content: "";
   border-radius: 50%;
-  box-shadow: 0 0 0 2px var(--dc-day-focus-ring-color);
+  box-shadow: 0 0 0 2px var(--day-focus-ring-color);
 }
 
 /* Calendar styles */
@@ -140,8 +138,8 @@
 .dc-calendar {
   display: inline-flex;
   flex-direction: column;
-  width: calc(7 * var(--dc-day-max-width));
-  min-width: calc(7 * var(--dc-day-size));
+  width: calc(7 * var(--day-max-width));
+  min-width: calc(7 * var(--day-size));
   max-width: 100%;
 }
 
@@ -183,7 +181,7 @@
   padding-bottom: 4px;
   font-size: 14px;
   font-weight: 400;
-  color: var(--dc-columnheader-text-color);
+  color: var(--day-color-name);
 }
 
 .dc-calendar__grid td {
@@ -192,5 +190,10 @@
 
 .dark .dc-datepicker,
 .dark.dc-datepicker {
+  --day-color: var(--dc-white);
+  --day-color-name: var(--dc-gray-400);
+  --day-color-weekend: var(--dc-gray-400);
+  --day-range-background: rgb(var(--dc-blue-300-rgb) / 20%);
+
   color-scheme: dark;
 }

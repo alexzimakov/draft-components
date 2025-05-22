@@ -27,7 +27,7 @@ export function ColorPickerButton<T extends string | number>({
   onChangeValue,
 }: ColorPickerButtonProps<T>) {
   const customProperties = {
-    '--dc-color-picker-btn-color': color,
+    '--button-color': color,
   };
   return (
     <label

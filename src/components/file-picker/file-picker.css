@@ -1,10 +1,10 @@
 .dc-file-picker {
-  --dc-file-picker-label-color: var(--dc-control-primary-text-color);
-  --dc-file-picker-icon-color: var(--dc-control-secondary-text-color);
-  --dc-file-picker-caption-color: var(--dc-control-secondary-text-color);
-  --dc-file-picker-border-color: var(--dc-control-border-color);
-  --dc-file-picker-border-color-drag-over: var(--dc-control-primary-color);
-  --dc-file-picker-bg-drag-over: var(--dc-control-secondary-color);
+  --label-color: var(--dc-gray-950);
+  --icon-color: var(--dc-gray-500);
+  --caption-color: var(--dc-gray-500);
+  --border-color: var(--dc-gray-300);
+  --border-color-drag-over: var(--dc-blue-500);
+  --background-drag-over: rgb(var(--dc-blue-500-rgb) / 10%);
 
   position: relative;
   box-sizing: border-box;
@@ -14,7 +14,7 @@
   align-items: center;
   padding: 16px 20px;
   color-scheme: light;
-  border: 1px dashed var(--dc-file-picker-border-color);
+  border: 1px dashed var(--border-color);
   border-radius: 8px;
 }
 
@@ -38,17 +38,17 @@
 .dc-file-picker__icon {
   display: inline-flex;
   margin-right: 16px;
-  color: var(--dc-file-picker-icon-color);
+  color: var(--icon-color);
 }
 
 .dc-file-picker__label {
-  color: var(--dc-file-picker-label-color);
+  color: var(--label-color);
 }
 
 .dc-file-picker__caption {
   margin-top: 4px;
   font-size: 12px;
-  color: var(--dc-file-picker-caption-color);
+  color: var(--caption-color);
 }
 
 .dc-file-picker_disabled {
@@ -60,11 +60,18 @@
 }
 
 .dc-file-picker_dragging-over {
-  background: var(--dc-file-picker-bg-drag-over);
-  border-color: var(--dc-file-picker-border-color-drag-over);
+  background: var(--background-drag-over);
+  border-color: var(--border-color-drag-over);
 }
 
 .dark .dc-file-picker,
 .dark.dc-file-picker {
+  --label-color: var(--dc-white);
+  --icon-color: var(--dc-gray-400);
+  --caption-color: var(--dc-gray-400);
+  --border-color: var(--dc-gray-600);
+  --border-color-drag-over: var(--dc-blue-400);
+  --background-drag-over: rgb(var(--dc-blue-300-rgb) / 20%);
+
   color-scheme: dark;
 }

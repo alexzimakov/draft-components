@@ -1,11 +1,11 @@
 .dc-toasts-list {
-  --dc-toaster-padding: 16px;
-  --dc-toaster-animation: 200ms ease;
+  --padding: 16px;
+  --animation: 200ms ease;
 
   position: fixed;
-  right: var(--dc-toaster-padding);
-  left: var(--dc-toaster-padding);
-  z-index: var(--dc-toaster-z-index);
+  right: var(--padding);
+  left: var(--padding);
+  z-index: var(--z-index);
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -17,20 +17,20 @@
 .dc-toasts-list_top-left,
 .dc-toasts-list_top-center,
 .dc-toasts-list_top-right {
-  top: var(--dc-toaster-padding);
+  top: var(--padding);
 }
 
 .dc-toasts-list_bottom-left,
 .dc-toasts-list_bottom-center,
 .dc-toasts-list_bottom-right {
-  bottom: var(--dc-toaster-padding);
+  bottom: var(--padding);
 }
 
 .dc-toasts-list > * {
   position: absolute;
   right: 0;
   left: 0;
-  transition: transform var(--dc-toaster-animation);
+  transition: transform var(--animation);
 }
 
 .dc-toasts-list_top-left > *,
@@ -50,7 +50,7 @@
 
 .dc-toasts-list__toast {
   pointer-events: all;
-  animation: var(--dc-toaster-animation) forwards;
+  animation: var(--animation) forwards;
 }
 
 @keyframes dc-toast-slide-top {

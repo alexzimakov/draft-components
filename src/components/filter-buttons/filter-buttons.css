@@ -1,10 +1,12 @@
 .dc-filter-buttons {
-  --dc-filter-button-text-color: var(--dc-button-gray-tinted-text-color);
-  --dc-filter-button-bg: var(--dc-button-gray-tinted-bg);
-  --dc-filter-button-bg-hover: var(--dc-button-gray-tinted-bg-hover);
-  --dc-filter-button-text-color-active: var(--dc-button-blue-text-color);
-  --dc-filter-button-bg-active: var(--dc-button-blue-bg);
-  --dc-filter-button-bg-active-hover: var(--dc-button-blue-bg-hover);
+  --color: var(--dc-gray-950);
+  --color-active: var(--dc-white);
+  --background: rgb(var(--dc-gray-950-rgb) / 5%);
+  --background-hover: rgb(var(--dc-gray-950-rgb) / 10%);
+  --background-active: var(--dc-blue-500);
+  --background-active-hover: var(--dc-blue-600);
+  --focus-ring-color: var(--dc-gray-950);
+  --focus-ring-color-active: var(--dc-white);
 
   position: relative;
   display: flex;
@@ -26,32 +28,55 @@
   height: 28px;
   padding: 0 8px;
   font: var(--dc-text-sm);
-  color: var(--dc-filter-button-text-color);
+  color: var(--color);
   white-space: nowrap;
   user-select: none;
-  background: var(--dc-filter-button-bg);
+  background: var(--background);
   border: 1px solid transparent;
   border-radius: 7px;
   transition-duration: 0.2s;
   transition-property: color, background-color;
 }
 
+.dc-filter-button:focus {
+  outline: none;
+}
+
+.dc-filter-button:focus-visible {
+  outline: 1px solid var(--focus-ring-color);
+  outline-offset: -2px;
+}
+
 .dc-filter-button:hover {
-  background: var(--dc-filter-button-bg-hover);
+  background: var(--background-hover);
 }
 
 .dc-filter-button.active,
 .dc-filter-button[aria-pressed="true"] {
-  color: var(--dc-filter-button-text-color-active);
-  background: var(--dc-filter-button-bg-active);
+  color: var(--color-active);
+  background: var(--background-active);
 }
 
 .dc-filter-button.active:hover,
 .dc-filter-button[aria-pressed="true"]:hover {
-  background: var(--dc-filter-button-bg-active-hover);
+  background: var(--background-active-hover);
+}
+
+.dc-filter-button.active:focus-visible,
+.dc-filter-button[aria-pressed="true"]:focus-visible {
+  outline-color: var(--focus-ring-color-active);
 }
 
 .dark .dc-filter-buttons,
 .dark.dc-filter-buttons {
+  --color: var(--dc-white);
+  --color-active: var(--dc-white);
+  --background: rgb(var(--dc-gray-50-rgb) / 20%);
+  --background-hover: rgb(var(--dc-gray-50-rgb) / 30%);
+  --background-active: var(--dc-blue-500);
+  --background-active-hover: var(--dc-blue-400);
+  --focus-ring-color: var(--dc-white);
+  --focus-ring-color-active: var(--dc-white);
+
   color-scheme: dark;
 }

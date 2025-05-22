@@ -34,6 +34,7 @@ export const Basic: StoryFn<typeof Tooltip> = (args) => (
 
 Basic.args = {
   title: 'Add bookmark',
+  anchorPadding: 6,
 };
 
 export const Multiline: StoryFn<typeof Tooltip> = (args) => (

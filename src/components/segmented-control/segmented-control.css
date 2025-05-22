@@ -1,17 +1,19 @@
 .dc-segmented {
-  --dc-segmented-border-color: var(--dc-control-border-color);
-  --dc-segmented-bg: var(--dc-bg-transparent-1);
-  --dc-segmented-delimiter-color: var(--dc-border-color-transparent-3);
-  --dc-segmented-button-height: 36px;
-  --dc-segmented-button-padding-x: 16px;
-  --dc-segmented-button-radius: 9px;
-  --dc-segmented-button-text-color: var(--dc-primary-text-color);
-  --dc-segmented-button-border-color: transparent;
-  --dc-segmented-button-border-color-focus: var(--dc-blue-600);
-  --dc-segmented-button-border-color-selected: var(--dc-gray-500);
-  --dc-segmented-button-bg: none;
-  --dc-segmented-button-bg-selected: var(--dc-white);
-  --dc-segmented-button-focus-ring-color: var(--dc-focus-ring-color);
+  --border-color: var(--dc-gray-300);
+  --background: rgb(var(--dc-gray-950-rgb) / 5%);
+  --delimiter-color: rgb(var(--dc-gray-950-rgb) / 20%);
+  --button-height: 36px;
+  --button-padding-x: 16px;
+  --button-radius: 9px;
+  --button-color: var(--dc-gray-950);
+  --button-color-selected: var(--dc-gray-950);
+  --button-border-color: transparent;
+  --button-border-color-selected: var(--dc-gray-400);
+  --button-background: none;
+  --button-background-selected: var(--dc-white);
+  --button-focus-ring-color: var(--dc-focus-ring-color);
+  --button-focus-ring-outline: 3px solid var(--button-focus-ring-color);
+  --button-focus-ring-offset: -1px;
 
   display: inline-flex;
   flex-shrink: 0;
@@ -20,9 +22,9 @@
   font: 14px/1 var(--dc-primary-font);
   color-scheme: light;
   list-style: none;
-  background: var(--dc-segmented-bg);
-  border-radius: var(--dc-segmented-button-radius);
-  box-shadow: inset 0 0 0 1px var(--dc-segmented-border-color);
+  background: var(--background);
+  border-radius: var(--button-radius);
+  box-shadow: inset 0 0 0 1px var(--border-color);
 }
 
 .dc-segmented_disabled {
@@ -31,17 +33,17 @@
 }
 
 .dc-segmented_size_sm {
-  --dc-segmented-button-height: 32px;
-  --dc-segmented-button-padding-x: 12px;
-  --dc-segmented-button-radius: 8px;
+  --button-height: 32px;
+  --button-padding-x: 12px;
+  --button-radius: 8px;
 
   font-size: 13px;
 }
 
 .dc-segmented_size_lg {
-  --dc-segmented-button-height: 40px;
-  --dc-segmented-button-padding-x: 18px;
-  --dc-segmented-button-radius: 10px;
+  --button-height: 40px;
+  --button-padding-x: 18px;
+  --button-radius: 10px;
 
   font-size: 15px;
 }
@@ -49,7 +51,7 @@
 .dc-segmented__item + .dc-segmented__item {
   background-image: linear-gradient(to bottom,
     transparent 25%,
-    var(--dc-segmented-delimiter-color) 25% 75%,
+    var(--delimiter-color) 25% 75%,
     transparent 75%
   );
   background-repeat: no-repeat;
@@ -66,43 +68,46 @@
   box-sizing: border-box;
   display: flex;
   flex: auto;
-  gap: calc(var(--dc-segmented-button-padding-x) / 2);
+  gap: calc(var(--button-padding-x) / 2);
   align-items: center;
   justify-content: center;
-  height: var(--dc-segmented-button-height);
-  padding: 0 var(--dc-segmented-button-padding-x);
+  height: var(--button-height);
+  padding: 0 var(--button-padding-x);
   font: inherit;
-  color: var(--dc-segmented-button-text-color);
+  color: var(--button-color);
   appearance: none;
   user-select: none;
-  background: var(--dc-segmented-button-bg);
-  border: 1px solid var(--dc-segmented-button-border-color);
-  border-radius: var(--dc-segmented-button-radius);
+  background: var(--button-background);
+  border: 1px solid var(--button-border-color);
+  border-radius: var(--button-radius);
 }
 
 .dc-segmented-button[aria-current="true"] {
-  --dc-segmented-button-border-color: var(--dc-segmented-button-border-color-selected);
-  --dc-segmented-button-bg: var(--dc-segmented-button-bg-selected);
+  --button-color: var(--button-color-selected);
+  --button-background: var(--button-background-selected);
+  --button-border-color: var(--button-border-color-selected);
 
   cursor: default;
 }
 
 .dc-segmented-button:focus {
   outline: none;
-  border-color: var(--dc-segmented-button-border-color-focus);
-  box-shadow: 0 0 0 3px var(--dc-segmented-button-focus-ring-color);
 }
 
-.dc-segmented-button:focus:not(:focus-visible) {
-  border-color: var(--dc-segmented-button-border-color);
-  box-shadow: none;
+.dc-segmented-button:focus-visible {
+  outline: var(--button-focus-ring-outline);
+  outline-offset: var(--button-focus-ring-offset);
 }
 
 .dark .dc-segmented,
 .dark.dc-segmented {
-  --dc-segmented-btn-bg-checked: var(--dc-gray-600);
-  --dc-segmented-btn-border-color-focus: var(--dc-blue-400);
-  --dc-segmented-btn-border-color-checked: var(--dc-gray-400);
+  --border-color: var(--dc-gray-600);
+  --background: rgb(var(--dc-gray-50-rgb) / 10%);
+  --delimiter-color: rgb(var(--dc-gray-50-rgb) / 40%);
+  --button-color: var(--dc-white);
+  --button-color-selected: var(--dc-gray-950);
+  --button-border-color: transparent;
+  --button-border-color-selected: var(--dc-gray-600);
 
   color-scheme: dark;
 }

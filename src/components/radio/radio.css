@@ -1,17 +1,17 @@
 .dc-radio {
-  --dc-radio-size: 20px;
-  --dc-radio-color-bg: var(--dc-control-bg);
-  --dc-radio-color-bg-checked: var(--dc-control-primary-color);
-  --dc-radio-color-border: var(--dc-control-border-color);
-  --dc-radio-color-border-checked: var(--dc-control-primary-color);
-  --dc-radio-color-icon: var(--dc-control-on-primary-color);
-  --dc-radio-color-focus-ring: var(--dc-focus-ring-color);
+  --size: 20px;
+  --background: var(--dc-white);
+  --background-checked: var(--dc-blue-500);
+  --border-color: var(--dc-gray-300);
+  --border-color-checked: rgb(var(--dc-black-rgb) / 10%);
+  --icon-color: var(--dc-white);
+  --focus-ring-color: var(--dc-focus-ring-color);
 
   position: relative;
   display: inline-block;
   flex-shrink: 0;
-  width: var(--dc-radio-size);
-  height: var(--dc-radio-size);
+  width: var(--size);
+  height: var(--size);
   text-align: left;
   color-scheme: light;
 }
@@ -34,11 +34,11 @@
   left: 0;
   box-sizing: border-box;
   display: inline-block;
-  width: var(--dc-radio-size);
-  height: var(--dc-radio-size);
+  width: var(--size);
+  height: var(--size);
   vertical-align: middle;
-  background: var(--dc-radio-color-bg);
-  border: 1px solid var(--dc-radio-color-border);
+  background: var(--background);
+  border: 1px solid var(--border-color);
   border-radius: 50%;
   transition: opacity 0.2s;
 }
@@ -47,12 +47,12 @@
   display: none;
   width: 100%;
   height: 100%;
-  color: var(--dc-radio-color-icon);
+  color: var(--icon-color);
 }
 
 .dc-radio__input:checked + .dc-radio__check {
-  background: var(--dc-radio-color-bg-checked);
-  border-color: var(--dc-radio-color-border-checked);
+  background: var(--background-checked);
+  border-color: var(--border-color-checked);
 }
 
 .dc-radio__input:checked + .dc-radio__check .dc-radio__icon {
@@ -68,20 +68,16 @@
   outline: none;
 }
 
-.dc-radio__input:focus + .dc-radio__check::after {
-  position: absolute;
-  inset: -3px;
-  pointer-events: none;
-  content: "";
-  border-radius: 50%;
-  box-shadow: 0 0 0 3px var(--dc-radio-color-focus-ring);
-}
-
-.dc-radio__input:focus:not(:focus-visible) + .dc-radio__check::after {
-  content: none;
+.dc-radio__input:focus-visible + .dc-radio__check {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
 }
 
 .dark .dc-radio,
 .dark.dc-radio {
+  --background: var(--dc-gray-800);
+  --border-color: var(--dc-gray-600);
+  --border-color-checked: rgb(var(--dc-white-rgb) / 10%);
+
   color-scheme: dark;
 }

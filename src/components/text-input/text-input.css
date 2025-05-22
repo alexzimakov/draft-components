@@ -1,32 +1,32 @@
 .dc-text-input {
-  --dc-input-font-size: 14px;
-  --dc-input-height: 36px;
-  --dc-input-padding-x: 12px;
-  --dc-input-border-radius: 7px;
-  --dc-input-text-color: var(--dc-control-primary-text-color);
-  --dc-input-border-color: var(--dc-control-border-color);
-  --dc-input-border-color-error: var(--dc-control-error-color);
-  --dc-input-bg: var(--dc-control-bg);
-  --dc-input-add-on-color: var(--dc-control-secondary-text-color);
-  --dc-input-add-on-bg: none;
-  --dc-input-focus-ring-color: var(--dc-control-primary-color);
+  --font-size: 14px;
+  --height: 36px;
+  --padding-x: 12px;
+  --border-radius: 7px;
+  --color: var(--dc-gray-950);
+  --border-color: var(--dc-gray-300);
+  --border-color-error: var(--dc-red-500);
+  --background: var(--dc-white);
+  --add-on-color: var(--dc-gray-500);
+  --add-on-background: none;
+  --focus-ring-color: var(--dc-focus-ring-color);
 
   box-sizing: border-box;
   display: inline-flex;
   align-items: stretch;
   min-width: 0;
   max-width: 100%;
-  height: var(--dc-input-height);
+  height: var(--height);
   font-family: var(--dc-primary-font);
-  font-size: var(--dc-input-font-size);
+  font-size: var(--font-size);
   font-weight: 400;
   line-height: 1;
   vertical-align: middle;
-  color: var(--dc-input-text-color);
+  color: var(--color);
   color-scheme: light;
-  background: var(--dc-input-bg);
-  border: 1px solid var(--dc-input-border-color);
-  border-radius: var(--dc-input-border-radius);
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
 }
 
 .dc-text-input_full-width {
@@ -35,7 +35,7 @@
 }
 
 .dc-text-input_invalid {
-  border-color: var(--dc-input-border-color-error);
+  border-color: var(--border-color-error);
 }
 
 .dc-text-input_disabled {
@@ -43,39 +43,39 @@
 }
 
 .dc-text-input_focused {
-  border-color: var(--dc-input-focus-ring-color);
-  box-shadow: 0 0 0 1px var(--dc-input-focus-ring-color);
+  border-color: var(--focus-ring-color);
+  box-shadow: 0 0 0 1px var(--focus-ring-color);
 }
 
 .dc-text-input > :first-child {
-  border-top-left-radius: calc(var(--dc-input-border-radius) - 1px);
-  border-bottom-left-radius: calc(var(--dc-input-border-radius) - 1px);
+  border-top-left-radius: calc(var(--border-radius) - 1px);
+  border-bottom-left-radius: calc(var(--border-radius) - 1px);
 }
 
 .dc-text-input > :last-child {
-  border-top-right-radius: calc(var(--dc-input-border-radius) - 1px);
-  border-bottom-right-radius: calc(var(--dc-input-border-radius) - 1px);
+  border-top-right-radius: calc(var(--border-radius) - 1px);
+  border-bottom-right-radius: calc(var(--border-radius) - 1px);
 }
 
 .dc-text-input_sm {
-  --dc-input-font-size: 13px;
-  --dc-input-height: 32px;
-  --dc-input-padding-x: 8px;
-  --dc-input-border-radius: 6px;
+  --font-size: 13px;
+  --height: 32px;
+  --padding-x: 8px;
+  --border-radius: 6px;
 }
 
 .dc-text-input_lg {
-  --dc-input-font-size: 15px;
-  --dc-input-height: 40px;
-  --dc-input-padding-x: 16px;
-  --dc-input-border-radius: 8px;
+  --font-size: 15px;
+  --height: 40px;
+  --padding-x: 16px;
+  --border-radius: 8px;
 }
 
 .dc-text-input__native {
   flex: auto;
   min-width: 0;
   max-width: 100%;
-  padding: 0 var(--dc-input-padding-x);
+  padding: 0 var(--padding-x);
   margin: 0;
   font: inherit;
   color: inherit;
@@ -111,41 +111,47 @@
   display: inline-flex;
   flex: none;
   align-items: center;
-  color: var(--dc-input-add-on-color);
-  background: var(--dc-input-add-on-bg);
+  color: var(--add-on-color);
+  background: var(--add-on-background);
 }
 
 .dc-text-input__slot-left {
-  padding-left: var(--dc-input-padding-x);
+  padding-left: var(--padding-x);
 }
 
 .dc-text-input__slot-right {
-  padding-right: var(--dc-input-padding-x);
+  padding-right: var(--padding-x);
 }
 
 .dc-text-input_has_slot-left:not(.dc-text-input_slot_tinted) .dc-text-input__native {
-  padding-left: calc(var(--dc-input-padding-x) / 2);
+  padding-left: calc(var(--padding-x) / 2);
 }
 
 .dc-text-input_has_slot-right:not(.dc-text-input_slot_tinted) .dc-text-input__native {
-  padding-right: calc(var(--dc-input-padding-x) / 2);
+  padding-right: calc(var(--padding-x) / 2);
 }
 
 .dc-text-input_slot_tinted {
-  --dc-input-add-on-bg: rgb(var(--dc-gray-400-rgb) / 10%);
+  --add-on-background: rgb(var(--dc-gray-400-rgb) / 10%);
 }
 
 .dc-text-input_slot_tinted .dc-text-input__slot-left {
-  padding-right: var(--dc-input-padding-x);
-  border-right: 1px solid var(--dc-input-border-color);
+  padding-right: var(--padding-x);
+  border-right: 1px solid var(--border-color);
 }
 
 .dc-text-input_slot_tinted .dc-text-input__slot-right {
-  padding-left: var(--dc-input-padding-x);
-  border-left: 1px solid var(--dc-input-border-color);
+  padding-left: var(--padding-x);
+  border-left: 1px solid var(--border-color);
 }
 
 .dark .dc-text-input,
 .dark.dc-text-input {
+  --color: var(--dc-white);
+  --border-color: var(--dc-gray-600);
+  --border-color-error: var(--dc-red-400);
+  --background: var(--dc-gray-800);
+  --add-on-color: var(--dc-gray-400);
+
   color-scheme: dark;
 }

@@ -1,7 +1,7 @@
 .dc-empty-state {
-  --dc-empty-state-inner-width: 640px;
-  --dc-empty-state-primary-color: var(--dc-primary-text-color);
-  --dc-empty-state-secondary-color: var(--dc-secondary-text-color);
+  --max-width: 640px;
+  --primary-color: var(--dc-primary-text-color);
+  --secondary-color: var(--dc-secondary-text-color);
 
   box-sizing: border-box;
   display: flex;
@@ -19,12 +19,12 @@
 }
 
 .dc-empty-state__image {
-  color: var(--dc-empty-state-secondary-color);
+  color: var(--secondary-color);
 }
 
 .dc-empty-state__title,
 .dc-empty-state__message {
-  max-width: var(--dc-empty-state-inner-width);
+  max-width: var(--max-width);
   margin: 0;
 }
 

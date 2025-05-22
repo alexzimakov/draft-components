@@ -571,76 +571,15 @@
   --dc-border-color-transparent-3: rgb(var(--dc-gray-950-rgb) / 25%);
 
   /* Text Color */
-  --dc-primary-text-color: var(--dc-gray-900);
+  --dc-primary-text-color: var(--dc-gray-950);
   --dc-secondary-text-color: var(--dc-gray-500);
   --dc-tertiary-text-color: var(--dc-gray-300);
-
-  /* Primary Color */
-  --dc-primary-color: var(--dc-blue-500);
-  --dc-primary-color-hover: var(--dc-blue-600);
-  --dc-on-primary-color: var(--dc-white);
-
-  /* Accents */
   --dc-info-text-color: var(--dc-blue-600);
   --dc-success-text-color: var(--dc-green-700);
   --dc-error-text-color: var(--dc-red-600);
   --dc-warning-text-color: var(--dc-orange-600);
 
-  /* Gray button */
-  --dc-button-gray-text-color: var(--dc-gray-800);
-  --dc-button-gray-border-color: rgb(var(--dc-gray-900-rgb) / 10%);
-  --dc-button-gray-bg: var(--dc-gray-100);
-  --dc-button-gray-bg-hover: var(--dc-gray-200);
-  --dc-button-gray-tinted-text-color: var(--dc-gray-800);
-  --dc-button-gray-tinted-bg: rgb(var(--dc-gray-900-rgb) / 10%);
-  --dc-button-gray-tinted-bg-hover: rgb(var(--dc-gray-900-rgb) / 20%);
-  --dc-button-gray-plain-text-color: var(--dc-gray-800);
-  --dc-button-gray-plain-bg-hover: rgb(var(--dc-gray-900-rgb) / 10%);
-
-  /* Blue button */
-  --dc-button-blue-text-color: var(--dc-white);
-  --dc-button-blue-border-color: transparent;
-  --dc-button-blue-bg: var(--dc-blue-500);
-  --dc-button-blue-bg-hover: var(--dc-blue-600);
-  --dc-button-blue-tinted-text-color: var(--dc-blue-600);
-  --dc-button-blue-tinted-bg: rgb(var(--dc-blue-500-rgb) / 15%);
-  --dc-button-blue-tinted-bg-hover: rgb(var(--dc-blue-500-rgb) / 30%);
-  --dc-button-blue-plain-text-color: var(--dc-blue-600);
-  --dc-button-blue-plain-bg-hover: rgb(var(--dc-blue-500-rgb) / 15%);
-
-  /* Red button */
-  --dc-button-red-text-color: var(--dc-white);
-  --dc-button-red-border-color: transparent;
-  --dc-button-red-bg: var(--dc-red-500);
-  --dc-button-red-bg-hover: var(--dc-red-600);
-  --dc-button-red-tinted-text-color: var(--dc-red-600);
-  --dc-button-red-tinted-bg: rgb(var(--dc-red-600-rgb) / 15%);
-  --dc-button-red-tinted-bg-hover: rgb(var(--dc-red-600-rgb) / 30%);
-  --dc-button-red-plain-text-color: var(--dc-red-600);
-  --dc-button-red-plain-bg-hover: rgb(var(--dc-red-600-rgb) / 15%);
-
-  /* Green button */
-  --dc-button-green-text-color: var(--dc-white);
-  --dc-button-green-border-color: transparent;
-  --dc-button-green-bg: var(--dc-green-500);
-  --dc-button-green-bg-hover: var(--dc-green-600);
-  --dc-button-green-tinted-text-color: var(--dc-green-600);
-  --dc-button-green-tinted-bg: rgb(var(--dc-green-500-rgb) / 15%);
-  --dc-button-green-tinted-bg-hover: rgb(var(--dc-green-500-rgb) / 30%);
-  --dc-button-green-plain-text-color: var(--dc-green-600);
-  --dc-button-green-plain-bg-hover: rgb(var(--dc-green-500-rgb) / 15%);
-
-  /* Controls */
-  --dc-control-primary-text-color: var(--dc-gray-800);
-  --dc-control-secondary-text-color: var(--dc-gray-500);
-  --dc-control-primary-color: var(--dc-blue-500);
-  --dc-control-primary-color-hover: var(--dc-blue-600);
-  --dc-control-on-primary-color: var(--dc-white);
-  --dc-control-secondary-color: rgb(var(--dc-blue-500-rgb) / 15%);
-  --dc-control-border-color: var(--dc-gray-300);
-  --dc-control-bg: var(--dc-white);
-  --dc-control-bg-inset: rgb(var(--dc-gray-900-rgb) / 15%);
-  --dc-control-error-color: var(--dc-red-500);
+  /* Inputs */
   --dc-focus-ring-color: var(--dc-blue-500);
   --dc-disabled-state-opacity: 0.5;
 
@@ -649,101 +588,39 @@
    *
    * https://tailwindcss.com/docs/box-shadow
    */
-  --dc-shadow-sm: 0 1px 2px 0 rgb(var(--dc-black-rgb) / 5%);
   --dc-shadow: 0 1px 3px 0 rgb(var(--dc-black-rgb) / 10%),
     0 1px 2px -1px rgb(var(--dc-black-rgb) / 10%);
-  --dc-shadow-md: 0 4px 6px -1px rgb(var(--dc-black-rgb) / 10%),
-    0 2px 4px -2px rgb(var(--dc-black-rgb) / 10%);
-  --dc-shadow-lg: 0 10px 15px -3px rgb(var(--dc-black-rgb) / 10%),
-    0 4px 6px -4px rgb(var(--dc-black-rgb) / 10%);
-  --dc-shadow-xl: 0 20px 25px -5px rgb(var(--dc-black-rgb) / 10%),
-    0 8px 10px -6px rgb(var(--dc-black-rgb) / 10%);
+  --dc-shadow-2xs: 0 1px 0 0 rgb(var(--dc-black-rgb) / 5%);
+  --dc-shadow-xs: 0 1px 2px 0 rgb(var(--dc-black-rgb) / 5%);
+  --dc-shadow-sm: 0 1px 3px 0 rgb(var(--dc-black-rgb) / 10%), 0 1px 2px -1px rgb(var(--dc-black-rgb) / 10%);
+  --dc-shadow-md: 0 4px 6px -1px rgb(var(--dc-black-rgb) / 10%), 0 2px 4px -2px rgb(var(--dc-black-rgb) / 10%);
+  --dc-shadow-lg: 0 10px 15px -3px rgb(var(--dc-black-rgb) / 10%), 0 4px 6px -4px rgb(var(--dc-black-rgb) / 10%);
+  --dc-shadow-xl: 0 20px 25px -5px rgb(var(--dc-black-rgb) / 10%), 0 8px 10px -6px rgb(var(--dc-black-rgb) / 10%);
   --dc-shadow-2xl: 0 25px 50px -12px rgb(var(--dc-black-rgb) / 25%);
-  --dc-shadow-inner: inset 0 2px 4px 0 rgb(var(--dc-black-rgb) / 5%);
 }
 
 .dark {
   /* Background */
-  --dc-primary-bg: var(--dc-gray-900);
+  --dc-primary-bg: var(--dc-gray-950);
   --dc-bg-transparent-1: rgb(var(--dc-gray-50-rgb) / 10%);
   --dc-bg-transparent-2: rgb(var(--dc-gray-50-rgb) / 15%);
   --dc-bg-transparent-3: rgb(var(--dc-gray-50-rgb) / 25%);
 
-  /* Borders */
+  /* Border Color */
   --dc-border-color-transparent-1: rgb(var(--dc-gray-50-rgb) / 10%);
   --dc-border-color-transparent-2: rgb(var(--dc-gray-50-rgb) / 20%);
   --dc-border-color-transparent-3: rgb(var(--dc-gray-50-rgb) / 30%);
 
-  /* Text */
+  /* Text Color */
   --dc-primary-text-color: var(--dc-gray-100);
   --dc-secondary-text-color: var(--dc-gray-400);
   --dc-tertiary-text-color: var(--dc-gray-600);
-
-  /* Primary */
-  --dc-primary-color: var(--dc-blue-600);
-  --dc-primary-color-hover: var(--dc-blue-500);
-  --dc-on-primary-color: var(--dc-white);
-
-  /* Accents */
   --dc-info-text-color: var(--dc-blue-400);
   --dc-success-text-color: var(--dc-green-400);
   --dc-error-text-color: var(--dc-red-400);
   --dc-warning-text-color: var(--dc-orange-400);
 
-  /* Gray button */
-  --dc-button-gray-text-color: var(--dc-gray-100);
-  --dc-button-gray-border-color: rgb(var(--dc-gray-50-rgb) / 10%);
-  --dc-button-gray-bg: var(--dc-gray-700);
-  --dc-button-gray-bg-hover: var(--dc-gray-600);
-  --dc-button-gray-tinted-text-color: var(--dc-gray-100);
-  --dc-button-gray-tinted-bg: rgb(var(--dc-gray-50-rgb) / 10%);
-  --dc-button-gray-tinted-bg-hover: rgb(var(--dc-gray-50-rgb) / 20%);
-  --dc-button-gray-plain-text-color: var(--dc-gray-100);
-  --dc-button-gray-plain-bg-hover: rgb(var(--dc-gray-50-rgb) / 10%);
-
-  /* Blue button */
-  --dc-button-blue-text-color: var(--dc-white);
-  --dc-button-blue-border-color: transparent;
-  --dc-button-blue-bg: var(--dc-blue-600);
-  --dc-button-blue-bg-hover: var(--dc-blue-500);
-  --dc-button-blue-tinted-text-color: var(--dc-blue-400);
-  --dc-button-blue-tinted-bg: rgb(var(--dc-blue-400-rgb) / 15%);
-  --dc-button-blue-tinted-bg-hover: rgb(var(--dc-blue-400-rgb) / 30%);
-  --dc-button-blue-plain-text-color: var(--dc-blue-400);
-  --dc-button-blue-plain-bg-hover: rgb(var(--dc-blue-400-rgb) / 15%);
-
-  /* Red button */
-  --dc-button-red-text-color: var(--dc-white);
-  --dc-button-red-border-color: transparent;
-  --dc-button-red-bg: var(--dc-red-600);
-  --dc-button-red-bg-hover: var(--dc-red-500);
-  --dc-button-red-tinted-text-color: var(--dc-red-400);
-  --dc-button-red-tinted-bg: rgb(var(--dc-red-400-rgb) / 15%);
-  --dc-button-red-tinted-bg-hover: rgb(var(--dc-red-400-rgb) / 30%);
-  --dc-button-red-plain-text-color: var(--dc-red-400);
-  --dc-button-red-plain-bg-hover: rgb(var(--dc-red-400-rgb) / 15%);
-
-  /* Green button */
-  --dc-button-green-text-color: var(--dc-white);
-  --dc-button-green-border-color: transparent;
-  --dc-button-green-bg: var(--dc-green-600);
-  --dc-button-green-bg-hover: var(--dc-green-500);
-  --dc-button-green-tinted-text-color: var(--dc-green-400);
-  --dc-button-green-tinted-bg: rgb(var(--dc-green-400-rgb) / 15%);
-  --dc-button-green-tinted-bg-hover: rgb(var(--dc-green-400-rgb) / 30%);
-  --dc-button-green-plain-text-color: var(--dc-green-400);
-  --dc-button-green-plain-bg-hover: rgb(var(--dc-green-400-rgb) / 15%);
-
-  /* Controls */
-  --dc-control-primary-text-color: var(--dc-gray-100);
-  --dc-control-secondary-text-color: var(--dc-gray-400);
-  --dc-control-primary-color: var(--dc-blue-600);
-  --dc-control-primary-color-hover: var(--dc-blue-500);
-  --dc-control-on-primary-color: var(--dc-white);
-  --dc-control-secondary-color: rgb(var(--dc-blue-400-rgb) / 15%);
-  --dc-control-border-color: var(--dc-gray-600);
-  --dc-control-bg: var(--dc-gray-800);
-  --dc-control-bg-inset: rgb(var(--dc-gray-50-rgb) / 25%);
-  --dc-control-error-color: var(--dc-red-400);
-  --dc-focus-ring-color: var(--dc-blue-300);
+  /* Inputs */
+  --dc-focus-ring-color: var(--dc-blue-400);
+  --dc-disabled-state-opacity: 0.6;
 }

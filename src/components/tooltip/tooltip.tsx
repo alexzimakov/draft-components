@@ -55,7 +55,7 @@ export type TooltipProps =
 export function Tooltip({
   className,
   placement = 'top',
-  anchorPadding = 4,
+  anchorPadding = 6,
   viewportPadding = 4,
   defaultIsVisible = false,
   title,

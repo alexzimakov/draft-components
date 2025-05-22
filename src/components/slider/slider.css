@@ -1,42 +1,41 @@
 .dc-slider {
-  --dc-slider-icon-color: var(--dc-secondary-text-color);
+  --icon-color: var(--dc-gray-500);
 
   /* Track properties */
-  --dc-slider-track-height: 4px;
-  --dc-slider-track-radius: 2px;
-  --dc-slider-track-bg: var(--dc-control-bg-inset);
-  --dc-slider-active-track-bg: var(--dc-control-primary-color);
+  --track-height: 4px;
+  --track-radius: 2px;
+  --track-background: rgb(var(--dc-gray-950-rgb) / 15%);
+  --track-background-filled: var(--dc-blue-500);
 
   /* Thumb properties */
-  --dc-slider-thumb-height: 20px;
-  --dc-slider-thumb-width: 20px;
-  --dc-slider-thumb-radius: 50%;
-  --dc-slider-thumb-bg: var(--dc-control-primary-color);
-  --dc-slider-thumb-border: 2px solid var(--dc-control-bg);
-  --dc-slider-thumb-transition: box-shadow 150ms ease-in-out;
-  --dc-slider-thumb-shadow:
-    var(--dc-shadow-sm),
-    var(--dc-shadow),
-    var(--dc-shadow-md);
-  --dc-slider-thumb-focus-ring:
-    var(--dc-slider-thumb-shadow),
-    0 0 0 4px var(--dc-focus-ring-color);
+  --thumb-height: 20px;
+  --thumb-width: 20px;
+  --thumb-radius: 50%;
+  --thumb-background: var(--dc-blue-500);
+  --thumb-border-color: var(--dc-white);
+  --thumb-border: 2px solid var(--thumb-border-color);
+  --thumb-transition: box-shadow 150ms ease-in-out;
+  --thumb-shadow: var(--dc-shadow-xs), var(--dc-shadow), var(--dc-shadow-md);
+  --focus-ring-color: var(--dc-focus-ring-color);
+  --focus-ring-outline: 2px solid var(--focus-ring-color);
+  --focus-ring-offset: 1px;
 
   /* Label properties */
-  --dc-slider-label-gap: 4px;
-  --dc-slider-label-height: 24px;
-  --dc-slider-label-max-width: 80px;
-  --dc-slider-label-padding-x: 0.5em;
-  --dc-slider-label-radius: 6px;
-  --dc-slider-label-border: 1px solid var(--dc-white);
-  --dc-slider-label-text-color: var(--dc-gray-50);
-  --dc-slider-label-bg: var(--dc-gray-800);
+  --label-gap: 4px;
+  --label-height: 24px;
+  --label-max-width: 80px;
+  --label-padding-x: 0.5em;
+  --label-radius: 6px;
+  --label-border-color: var(--dc-white);
+  --label-border: 1px solid var(--label-border-color);
+  --label-color: var(--dc-gray-50);
+  --label-background: var(--dc-gray-800);
 
   /* Tick mark properties */
-  --dc-slider-tick-mark-width: 1px;
-  --dc-slider-tick-mark-height: 6px;
-  --dc-slider-tick-mark-color: rgb(var(--dc-gray-900-rgb) / 30%);
-  --dc-slider-tick-marks-gap: 4px;
+  --tick-mark-width: 1px;
+  --tick-mark-height: 6px;
+  --tick-mark-color: rgb(var(--dc-gray-950-rgb) / 15%);
+  --tick-marks-gap: 4px;
 
   display: inline-flex;
   width: 240px;
@@ -65,32 +64,29 @@
   gap: 8px;
   align-items: center;
   width: 100%;
-  min-height: var(--dc-slider-thumb-height);
-  color: var(--dc-slider-icon-color);
+  min-height: var(--thumb-height);
+  color: var(--icon-color);
 }
 
 .dc-slider__body_has_labels {
-  margin-top: calc(
-    var(--dc-slider-label-height) +
-    var(--dc-slider-label-gap)
-  );
+  margin-top: calc(var(--label-height) + var(--label-gap));
 }
 
 .dc-slider__body_has_tick-marks {
   margin-bottom: calc(
-    var(--dc-slider-tick-mark-height) -
-    var(--dc-slider-thumb-height) / 2 +
-    var(--dc-slider-track-height) / 2 +
-    var(--dc-slider-tick-marks-gap)
+    var(--tick-mark-height)
+    - var(--thumb-height) / 2
+    + var(--track-height) / 2
+    + var(--tick-marks-gap)
   );
 }
 
 .dc-slider__track {
   position: relative;
   width: 100%;
-  height: var(--dc-slider-track-height);
-  background-color: var(--dc-slider-track-bg);
-  border-radius: var(--dc-slider-track-radius);
+  height: var(--track-height);
+  background-color: var(--track-background);
+  border-radius: var(--track-radius);
 }
 
 .dc-slider__input {
@@ -127,14 +123,14 @@
 .dc-slider__input::-moz-range-thumb {
   box-sizing: border-box;
   display: block;
-  width: var(--dc-slider-thumb-width);
-  height: var(--dc-slider-thumb-height);
+  width: var(--thumb-width);
+  height: var(--thumb-height);
   appearance: none;
-  background: var(--dc-slider-thumb-bg);
-  border: var(--dc-slider-thumb-border);
-  border-radius: var(--dc-slider-thumb-radius);
-  box-shadow: var(--dc-slider-thumb-shadow);
-  transition: var(--dc-slider-thumb-transition);
+  background: var(--thumb-background);
+  border: var(--thumb-border);
+  border-radius: var(--thumb-radius);
+  box-shadow: var(--thumb-shadow);
+  transition: var(--thumb-transition);
 }
 
 .dc-slider_range .dc-slider__input::-moz-range-thumb {
@@ -142,24 +138,25 @@
 }
 
 .dc-slider__input:focus::-moz-range-thumb {
-  box-shadow: var(--dc-slider-thumb-focus-ring);
+  outline: none;
 }
 
-.dc-slider__input:focus:not(:focus-visible)::-moz-range-thumb {
-  box-shadow: var(--dc-slider-thumb-shadow);
+.dc-slider__input:focus-visible::-moz-range-thumb {
+  outline: var(--focus-ring-outline);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .dc-slider__input::-webkit-slider-thumb {
   box-sizing: border-box;
   display: block;
-  width: var(--dc-slider-thumb-width);
-  height: var(--dc-slider-thumb-height);
+  width: var(--thumb-width);
+  height: var(--thumb-height);
   appearance: none;
-  background: var(--dc-slider-thumb-bg);
-  border: var(--dc-slider-thumb-border);
-  border-radius: var(--dc-slider-thumb-radius);
-  box-shadow: var(--dc-slider-thumb-shadow);
-  transition: var(--dc-slider-thumb-transition);
+  background: var(--thumb-background);
+  border: var(--thumb-border);
+  border-radius: var(--thumb-radius);
+  box-shadow: var(--thumb-shadow);
+  transition: var(--thumb-transition);
 }
 
 .dc-slider__input::-webkit-slider-container {
@@ -171,36 +168,37 @@
 }
 
 .dc-slider__input:focus::-webkit-slider-thumb {
-  box-shadow: var(--dc-slider-thumb-focus-ring);
+  outline: none;
 }
 
-.dc-slider__input:focus:not(:focus-visible)::-webkit-slider-thumb {
-  box-shadow: var(--dc-slider-thumb-shadow);
+.dc-slider__input:focus-visible::-webkit-slider-thumb {
+  outline: var(--focus-ring-outline);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .dc-slider__label {
   position: absolute;
   bottom: calc(
-    var(--dc-slider-thumb-height) / 2 -
-    var(--dc-slider-track-height) / 2 +
-    var(--dc-slider-label-gap) +
-    var(--dc-slider-track-height)
+    var(--thumb-height) / 2
+    - var(--track-height) / 2
+    + var(--label-gap)
+    + var(--track-height)
   );
   left: 0;
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: var(--dc-slider-label-height);
-  max-width: var(--dc-slider-label-max-width);
-  height: var(--dc-slider-label-height);
-  padding: 0 var(--dc-slider-label-padding-x);
+  min-width: var(--label-height);
+  max-width: var(--label-max-width);
+  height: var(--label-height);
+  padding: 0 var(--label-padding-x);
   font: var(--dc-text-xs);
   font-variant-numeric: tabular-nums;
-  color: var(--dc-slider-label-text-color);
-  background: var(--dc-slider-label-bg);
-  border: var(--dc-slider-label-border);
-  border-radius: var(--dc-slider-label-radius);
+  color: var(--label-color);
+  background: var(--label-background);
+  border: var(--label-border);
+  border-radius: var(--label-radius);
   transform: translateX(-50%);
 }
 
@@ -217,13 +215,10 @@
 
 .dc-slider__tick-marks {
   position: relative;
-  top: calc(
-    var(--dc-slider-track-height) +
-    var(--dc-slider-tick-marks-gap)
-  );
+  top: calc(var(--track-height) + var(--tick-marks-gap));
   left: 0;
   width: 100%;
-  height: var(--dc-slider-tick-mark-height);
+  height: var(--tick-mark-height);
   padding: 0;
   margin: 0;
   list-style: none;
@@ -234,24 +229,24 @@
   top: 0;
   left: 0;
   display: inline-flex;
-  width: var(--dc-slider-tick-mark-width);
-  height: var(--dc-slider-tick-mark-height);
-  background: var(--dc-slider-tick-mark-color);
+  width: var(--tick-mark-width);
+  height: var(--tick-mark-height);
+  background: var(--tick-mark-color);
   transform: translateX(-50%);
 }
 
 .dark .dc-slider,
 .dark.dc-slider {
-  /* Thumb properties */
-  --dc-slider-thumb-border: 2px solid var(--dc-gray-200);
-  --dc-slider-thumb-focus-ring:
-    var(--dc-slider-thumb-shadow),
-    0 0 0 4px var(--dc-focus-ring-color);
+  --icon-color: var(--dc-gray-400);
+
+  /* Track properties */
+  --track-background: rgb(var(--dc-gray-50-rgb) / 30%);
 
   /* Label properties */
-  --dc-slider-label-border: 1px solid var(--dc-gray-600);
-  --dc-slider-label-bg: var(--dc-gray-700);
+  --label-border-color: var(--dc-gray-100);
+  --label-color: var(--dc-gray-800);
+  --label-background: var(--dc-gray-100);
 
   /* Tick mark properties */
-  --dc-slider-tick-mark-color: rgb(var(--dc-gray-50-rgb) / 50%);
+  --tick-mark-color: rgb(var(--dc-gray-50-rgb) / 60%);
 }

@@ -46,7 +46,7 @@ export function CalendarHeader({
         aria-label={prevMonthButtonLabel}
         onClick={() => onChangeFocusDay(addMonths(focusDay, -1))}
       >
-        <ChevronLeftIcon width={16} height={16} strokeWidth={2} />
+        <ChevronLeftIcon width="1.15em" height="1.15em" strokeWidth={2} />
       </IconButton>
 
       <Select
@@ -81,10 +81,11 @@ export function CalendarHeader({
 
       <IconButton
         className="dc-calendar-next-month"
+        size="sm"
         aria-label={nextMonthButtonLabel}
         onClick={() => onChangeFocusDay(addMonths(focusDay, 1))}
       >
-        <ChevronRightIcon width={16} height={16} strokeWidth={2} />
+        <ChevronRightIcon width="1.15em" height="1.15em" strokeWidth={2} />
       </IconButton>
     </div>
   );

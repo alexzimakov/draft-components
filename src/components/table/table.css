@@ -1,16 +1,16 @@
 .dc-table-container,
 .dc-table {
-  --dc-table-border-color: var(--dc-border-color-transparent-2);
-  --dc-table-bg: none;
-  --dc-table-head-bg: var(--dc-bg-transparent-1);
-  --dc-table-row-bg-stripped: var(--dc-bg-transparent-1);
-  --dc-table-row-bg-selected: var(--dc-bg-transparent-1);
-  --dc-table-row-bg-highlighted: var(--dc-bg-transparent-1);
-  --dc-table-cell-bg-hover: var(--dc-bg-transparent-1);
-  --dc-table-cell-bg-focus: var(--dc-bg-transparent-1);
-  --dc-table-cell-padding-x: 12px;
-  --dc-table-cell-padding-y: 8px;
-  --dc-table-sort-icon-size: 16px;
+  --border-color: var(--dc-border-color-transparent-2);
+  --background: none;
+  --head-background: var(--dc-bg-transparent-1);
+  --row-background-stripped: var(--dc-bg-transparent-1);
+  --row-background-selected: var(--dc-bg-transparent-1);
+  --row-background-highlighted: var(--dc-bg-transparent-1);
+  --cell-background-hover: var(--dc-bg-transparent-1);
+  --cell-background-focus: var(--dc-bg-transparent-1);
+  --cell-padding-x: 12px;
+  --cell-padding-y: 8px;
+  --sort-icon-size: 16px;
 
   color-scheme: light;
 }
@@ -20,7 +20,7 @@
   width: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  border: 0 solid var(--dc-table-border-color);
+  border: 0 solid var(--border-color);
   scroll-behavior: smooth;
 }
 
@@ -56,28 +56,28 @@
 .dc-table-cell {
   box-sizing: border-box;
   padding:
-    var(--dc-table-cell-padding-y)
-    var(--dc-table-cell-padding-x);
+    var(--cell-padding-y)
+    var(--cell-padding-x);
   scroll-snap-align: start;
-  background: var(--dc-table-bg);
-  border-bottom: 1px solid var(--dc-table-border-color);
+  background: var(--background);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .dc-table-cell_head {
   font-size: 90%;
   font-weight: 700;
   white-space: nowrap;
-  border-bottom-color: var(--dc-table-border-color);
+  border-bottom-color: var(--border-color);
 }
 
 .dc-table_cell_sm .dc-table-cell {
-  --dc-table-cell-padding-y: 4px;
-  --dc-table-cell-padding-x: 8px;
+  --cell-padding-y: 4px;
+  --cell-padding-x: 8px;
 }
 
 .dc-table_cell_lg .dc-table-cell {
-  --dc-table-cell-padding-y: 12px;
-  --dc-table-cell-padding-x: 16px;
+  --cell-padding-y: 12px;
+  --cell-padding-x: 16px;
 }
 
 .dc-table-cell_sortable {
@@ -88,15 +88,8 @@
   position: relative;
   display: block;
   width: 100%;
-  padding:
-    var(--dc-table-cell-padding-y)
-    var(--dc-table-cell-padding-x);
-  padding-right:
-    calc(
-      var(--dc-table-cell-padding-x) +
-      var(--dc-table-sort-icon-size) +
-      var(--dc-table-cell-padding-x)
-    );
+  padding: var(--cell-padding-y) var(--cell-padding-x);
+  padding-right: calc(var(--cell-padding-x) + var(--sort-icon-size) + var(--cell-padding-x));
   margin: 0;
   font: inherit;
   color: inherit;
@@ -107,7 +100,7 @@
 }
 
 .dc-table-cell__sort-btn:hover {
-  background: var(--dc-table-cell-bg-hover);
+  background: var(--cell-background-hover);
 }
 
 .dc-table-cell__sort-btn::before {
@@ -121,7 +114,7 @@
 }
 
 .dc-table-cell__sort-btn:focus::before {
-  background: var(--dc-table-cell-bg-focus);
+  background: var(--cell-background-focus);
 }
 
 .dc-table-cell__sort-btn:focus:not(:focus-visible)::before {
@@ -131,22 +124,22 @@
 .dc-table-cell__sort-icon {
   position: absolute;
   top: 50%;
-  right: var(--dc-table-cell-padding-x);
-  width: var(--dc-table-sort-icon-size);
-  height: var(--dc-table-sort-icon-size);
+  right: var(--cell-padding-x);
+  width: var(--sort-icon-size);
+  height: var(--sort-icon-size);
   transform: translateY(-50%);
 }
 
 .dc-table-head_tinted .dc-table-cell {
-  background: var(--dc-table-head-bg);
+  background: var(--head-background);
 }
 
 .dc-table-row_selected .dc-table-cell {
-  background: var(--dc-table-row-bg-selected) !important;
+  background: var(--row-background-selected) !important;
 }
 
 .dc-table_bordered .dc-table-cell:not(:last-child) {
-  border-right: 1px solid var(--dc-table-border-color);
+  border-right: 1px solid var(--border-color);
 }
 
 .dc-table_striped .dc-table-body .dc-table-cell {
@@ -158,11 +151,11 @@
 }
 
 .dc-table_striped .dc-table-body .dc-table-row:nth-child(even) .dc-table-cell {
-  background: var(--dc-table-row-bg-stripped);
+  background: var(--row-background-stripped);
 }
 
 .dc-table_highlight_row .dc-table-body .dc-table-row:hover .dc-table-cell {
-  background: var(--dc-table-row-bg-highlighted);
+  background: var(--row-background-highlighted);
 }
 
 .dark .dc-table,

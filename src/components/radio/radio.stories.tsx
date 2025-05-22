@@ -1,5 +1,4 @@
 import { type Meta, type StoryFn } from '@storybook/react';
-import { type JSX } from 'react';
 import { Radio } from './radio.js';
 
 const meta: Meta<typeof Radio> = {
@@ -19,22 +18,18 @@ export const Basic: StoryFn<typeof Radio> = (args) => (
 Basic.args = {};
 
 export const States: StoryFn<typeof Radio> = (args) => (
-  <div style={{
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    gap: '1rem 4rem',
-  }}
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: 'auto 1fr',
+      alignItems: 'center',
+      justifyItems: 'start',
+      gap: 16,
+    }}
   >
-    <StateView caption="Unchecked">
-      <Radio {...args} checked={false} />
-    </StateView>
-    <StateView caption="Checked">
-      <Radio {...args} checked={true} />
-    </StateView>
-    <StateView caption="Check icon">
-      <Radio {...args} checked={true} icon="check" />
-    </StateView>
+    <code>Unchecked</code> <Radio {...args} checked={false} />
+    <code>Checked</code> <Radio {...args} checked={true} />
+    <code>Checked with check icon</code> <Radio {...args} checked={true} icon="check" />
   </div>
 );
 States.parameters = {
@@ -53,12 +48,3 @@ Disabled.parameters = {
 Disabled.args = {
   disabled: true,
 };
-
-function StateView(props: { children: JSX.Element; caption: string }) {
-  return (
-    <div style={{ fontSize: '0.875rem' }}>
-      <div style={{ marginBottom: '0.5rem' }}>{props.caption}</div>
-      {props.children}
-    </div>
-  );
-}

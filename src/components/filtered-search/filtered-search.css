@@ -5,49 +5,48 @@
 @import url("filter-item.css");
 
 .dc-filtered-search {
-  --dc-filtered-search-font-size: 14px;
-  --dc-filtered-search-height: 36px;
-  --dc-filtered-search-padding-x: 12px;
-  --dc-filtered-search-border-radius: 7px;
-  --dc-filtered-search-text-color: var(--dc-control-primary-text-color);
-  --dc-filtered-search-border-color: var(--dc-control-border-color);
-  --dc-filtered-search-bg: var(--dc-control-bg);
-  --dc-filtered-search-icon-color: var(--dc-control-secondary-text-color);
-  --dc-filtered-search-focus-ring-color: var(--dc-control-primary-color);
-  --dc-filtered-search-option-color: var(--dc-control-primary-text-color);
-  --dc-filtered-search-option-bg: none;
-  --dc-filtered-search-selected-option-color: var(--dc-on-primary-color);
-  --dc-filtered-search-selected-option-bg: var(--dc-primary-color);
-  --dc-filtered-search-listbox-bg: var(--dc-white);
-  --dc-filtered-search-listbox-shadow:
-    0 0 0 1px rgb(var(--dc-black-rgb) / 7.5%),
+  --font-size: 14px;
+  --height: 36px;
+  --padding-x: 12px;
+  --border-radius: 7px;
+  --color: var(--dc-gray-950);
+  --border-color: var(--dc-gray-300);
+  --background: var(--dc-white);
+  --icon-color: var(--dc-gray-500);
+  --focus-ring-color: var(--dc-focus-ring-color);
+  --option-color: var(--dc-gray-950);
+  --option-background: none;
+  --selected-option-color: var(--dc-white);
+  --selected-option-background: var(--dc-blue-500);
+  --listbox-background: var(--dc-white);
+  --listbox-shadow: 0 0 0 1px rgb(var(--dc-black-rgb) / 8%),
     0 -1px 0 0 rgb(var(--dc-black-rgb) / 5%),
     var(--dc-shadow-lg);
-  --dc-filtered-search-token-color: var(--dc-primary-text-color);
-  --dc-filtered-search-token-color-selected: var(--dc-on-primary-color);
-  --dc-filtered-search-token-bg: var(--dc-gray-200);
-  --dc-filtered-search-token-bg-hover: rgb(var(--dc-black-rgb) / 10%);
-  --dc-filtered-search-token-bg-selected: var(--dc-primary-color);
+  --token-color: var(--dc-gray-950);
+  --token-color-selected: var(--dc-white);
+  --token-background: var(--dc-gray-200);
+  --token-background-hover: rgb(var(--dc-black-rgb) / 10%);
+  --token-background-selected: var(--dc-blue-500);
 
   position: relative;
   box-sizing: border-box;
   display: flex;
   width: 100%;
   font-family: var(--dc-primary-font);
-  font-size: var(--dc-filtered-search-font-size);
+  font-size: var(--font-size);
   font-weight: 400;
   line-height: 1;
-  color: var(--dc-filtered-search-text-color);
+  color: var(--color);
   cursor: text;
   color-scheme: light;
-  background: var(--dc-filtered-search-bg);
-  border: 1px solid var(--dc-filtered-search-border-color);
-  border-radius: var(--dc-filtered-search-border-radius);
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
 }
 
 .dc-filtered-search_has_focus {
-  border-color: var(--dc-filtered-search-focus-ring-color);
-  box-shadow: 0 0 0 1px var(--dc-filtered-search-focus-ring-color);
+  border-color: var(--focus-ring-color);
+  box-shadow: 0 0 0 1px var(--focus-ring-color);
 }
 
 .dc-filtered-search__icon {
@@ -64,7 +63,7 @@
   margin-top: 1px;
   margin-right: 1px;
   white-space: nowrap;
-  border-radius: calc(var(--dc-filtered-search-border-radius) - 1px);
+  border-radius: calc(var(--border-radius) - 1px);
 }
 
 .dc-filtered-search__clear-button:focus::after {
@@ -117,34 +116,38 @@
   width: 100%;
   padding: 4px;
   margin: 0;
-  font-size: var(--dc-filtered-search-font-size);
+  font-size: var(--font-size);
   list-style: none;
-  background: var(--dc-filtered-search-listbox-bg);
-  border-radius: var(--dc-filtered-search-border-radius);
-  box-shadow: var(--dc-filtered-search-listbox-shadow);
+  background: var(--listbox-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--listbox-shadow);
 }
 
 .dc-filtered-search__list-box > [role="option"] {
   box-sizing: border-box;
   padding: 6px 8px;
-  color: var(--dc-filtered-search-option-color);
+  color: var(--option-color);
   cursor: default;
   border-radius: 5px;
 }
 
 .dc-filtered-search__list-box > [role="option"][aria-selected="true"] {
-  color: var(--dc-filtered-search-selected-option-color);
-  background: var(--dc-filtered-search-selected-option-bg);
+  color: var(--selected-option-color);
+  background: var(--selected-option-background);
 }
 
 .dark .dc-filtered-search,
 .dark.dc-filtered-search {
-  --dc-filtered-search-listbox-bg: var(--dc-gray-800);
-  --dc-filtered-search-listbox-shadow:
-    0 0 0 1px var(--dc-gray-700),
-    var(--dc-shadow-lg);
-  --dc-filtered-search-token-bg: var(--dc-gray-700);
-  --dc-filtered-search-token-bg-hover: rgb(var(--dc-white-rgb) / 10%);
+  --color: var(--dc-white);
+  --border-color: var(--dc-gray-600);
+  --background: var(--dc-gray-800);
+  --icon-color: var(--dc-gray-400);
+  --option-color: var(--dc-white);
+  --listbox-background: var(--dc-gray-800);
+  --listbox-shadow: 0 0 0 1px var(--dc-gray-700), var(--dc-shadow-lg);
+  --token-color: var(--dc-white);
+  --token-background: var(--dc-gray-600);
+  --token-background-hover: rgb(var(--dc-white-rgb) / 10%);
 
   color-scheme: dark;
 }
