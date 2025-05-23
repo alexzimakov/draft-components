@@ -16,7 +16,7 @@ export default mergeConfig(viteConfig, defineConfig({
         ...coverageConfigDefaults.exclude,
         '**/*.stories.?(c|m)[jt]s?(x)',
         'src/test/**',
-        'src/storybook/**',
+        'src/storybook-blocks/**',
       ],
       provider: 'istanbul',
     },
