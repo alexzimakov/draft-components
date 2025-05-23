@@ -1,0 +1,48 @@
+import { Meta, Title, Subtitle, Description } from '@storybook/blocks';
+import { ColorPalette } from './storybook-blocks/color-palette';
+
+<Meta title="Global Color Variables" />
+
+# Global Color Variables
+
+### Light Theme
+<ColorPalette
+  className="light"
+  colors={[
+    { color: 'var(--dc-background-primary)', label: 'Primary Background' },
+    { color: 'var(--dc-background-color-1)', label: 'Background 1' },
+    { color: 'var(--dc-background-color-2)', label: 'Background 2' },
+    { color: 'var(--dc-background-color-3)', label: 'Background 3' },
+    { color: 'var(--dc-border-color-1)', label: 'Border 1' },
+    { color: 'var(--dc-border-color-2)', label: 'Border 2' },
+    { color: 'var(--dc-border-color-3)', label: 'Border 3' },
+    { color: 'var(--dc-text-color-primary)', label: 'Primary Text' },
+    { color: 'var(--dc-text-color-secondary)', label: 'Secondary Text' },
+    { color: 'var(--dc-text-color-tertiary)', label: 'Tertiary Text' },
+    { color: 'var(--dc-text-color-info)', label: 'Info Text' },
+    { color: 'var(--dc-text-color-success)', label: 'Success Text' },
+    { color: 'var(--dc-text-color-warning)', label: 'Warning Text' },
+    { color: 'var(--dc-text-color-error)', label: 'Error Text' },
+  ]}
+/>
+
+### Dark Theme
+<ColorPalette
+  className="dark"
+  colors={[
+    { color: 'var(--dc-background-primary)', label: 'Primary Background' },
+    { color: 'var(--dc-background-color-1)', label: 'Background 1' },
+    { color: 'var(--dc-background-color-2)', label: 'Background 2' },
+    { color: 'var(--dc-background-color-3)', label: 'Background 3' },
+    { color: 'var(--dc-border-color-1)', label: 'Border 1' },
+    { color: 'var(--dc-border-color-2)', label: 'Border 2' },
+    { color: 'var(--dc-border-color-3)', label: 'Border 3' },
+    { color: 'var(--dc-text-color-primary)', label: 'Primary Text' },
+    { color: 'var(--dc-text-color-secondary)', label: 'Secondary Text' },
+    { color: 'var(--dc-text-color-tertiary)', label: 'Tertiary Text' },
+    { color: 'var(--dc-text-color-info)', label: 'Info Text' },
+    { color: 'var(--dc-text-color-success)', label: 'Success Text' },
+    { color: 'var(--dc-text-color-warning)', label: 'Warning Text' },
+    { color: 'var(--dc-text-color-error)', label: 'Error Text' },
+  ]}
+/>
