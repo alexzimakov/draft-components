@@ -14,9 +14,6 @@
     "./css/*": "./css/*"
   },
   "types": "./dist/index.d.ts",
-  "engines": {
-    "node": ">= 18"
-  },
   "files": [
     "dist",
     "css"
