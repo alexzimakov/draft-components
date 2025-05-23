@@ -559,25 +559,25 @@
   --dc-rose-900: rgb(var(--dc-rose-900-rgb));
   --dc-rose-950: rgb(var(--dc-rose-950-rgb));
 
-  /* Background */
-  --dc-primary-bg: var(--dc-white);
-  --dc-bg-transparent-1: rgb(var(--dc-gray-950-rgb) / 5%);
-  --dc-bg-transparent-2: rgb(var(--dc-gray-950-rgb) / 10%);
-  --dc-bg-transparent-3: rgb(var(--dc-gray-950-rgb) / 20%);
+  /* Background Colors */
+  --dc-background-primary: var(--dc-white);
+  --dc-background-color-1: rgb(var(--dc-neutral-950-rgb) / 4%);
+  --dc-background-color-2: rgb(var(--dc-neutral-950-rgb) / 8%);
+  --dc-background-color-3: rgb(var(--dc-neutral-950-rgb) / 16%);
 
-  /* Border Color */
-  --dc-border-color-transparent-1: rgb(var(--dc-gray-950-rgb) / 5%);
-  --dc-border-color-transparent-2: rgb(var(--dc-gray-950-rgb) / 15%);
-  --dc-border-color-transparent-3: rgb(var(--dc-gray-950-rgb) / 25%);
+  /* Border Colors */
+  --dc-border-color-1: rgb(var(--dc-neutral-950-rgb) / 8%);
+  --dc-border-color-2: rgb(var(--dc-neutral-950-rgb) / 16%);
+  --dc-border-color-3: rgb(var(--dc-neutral-950-rgb) / 24%);
 
   /* Text Color */
-  --dc-primary-text-color: var(--dc-gray-950);
-  --dc-secondary-text-color: var(--dc-gray-500);
-  --dc-tertiary-text-color: var(--dc-gray-300);
-  --dc-info-text-color: var(--dc-blue-600);
-  --dc-success-text-color: var(--dc-green-700);
-  --dc-error-text-color: var(--dc-red-600);
-  --dc-warning-text-color: var(--dc-orange-600);
+  --dc-text-color-primary: var(--dc-neutral-900);
+  --dc-text-color-secondary: var(--dc-neutral-500);
+  --dc-text-color-tertiary: var(--dc-neutral-300);
+  --dc-text-color-info: var(--dc-blue-600);
+  --dc-text-color-success: var(--dc-green-700);
+  --dc-text-color-warning: var(--dc-orange-700);
+  --dc-text-color-error: var(--dc-red-600);
 
   /* Inputs */
   --dc-focus-ring-color: var(--dc-blue-500);
@@ -588,8 +588,7 @@
    *
    * https://tailwindcss.com/docs/box-shadow
    */
-  --dc-shadow: 0 1px 3px 0 rgb(var(--dc-black-rgb) / 10%),
-    0 1px 2px -1px rgb(var(--dc-black-rgb) / 10%);
+  --dc-shadow: 0 1px 3px 0 rgb(var(--dc-black-rgb) / 10%), 0 1px 2px -1px rgb(var(--dc-black-rgb) / 10%);
   --dc-shadow-2xs: 0 1px 0 0 rgb(var(--dc-black-rgb) / 5%);
   --dc-shadow-xs: 0 1px 2px 0 rgb(var(--dc-black-rgb) / 5%);
   --dc-shadow-sm: 0 1px 3px 0 rgb(var(--dc-black-rgb) / 10%), 0 1px 2px -1px rgb(var(--dc-black-rgb) / 10%);
@@ -600,25 +599,25 @@
 }
 
 .dark {
-  /* Background */
-  --dc-primary-bg: var(--dc-gray-950);
-  --dc-bg-transparent-1: rgb(var(--dc-gray-50-rgb) / 10%);
-  --dc-bg-transparent-2: rgb(var(--dc-gray-50-rgb) / 15%);
-  --dc-bg-transparent-3: rgb(var(--dc-gray-50-rgb) / 25%);
+  /* Background Colors */
+  --dc-background-primary: var(--dc-neutral-900);
+  --dc-background-color-1: rgb(var(--dc-neutral-50-rgb) / 4%);
+  --dc-background-color-2: rgb(var(--dc-neutral-50-rgb) / 8%);
+  --dc-background-color-3: rgb(var(--dc-neutral-50-rgb) / 16%);
 
-  /* Border Color */
-  --dc-border-color-transparent-1: rgb(var(--dc-gray-50-rgb) / 10%);
-  --dc-border-color-transparent-2: rgb(var(--dc-gray-50-rgb) / 20%);
-  --dc-border-color-transparent-3: rgb(var(--dc-gray-50-rgb) / 30%);
+  /* Border Colors */
+  --dc-border-color-1: rgb(var(--dc-neutral-50-rgb) / 8%);
+  --dc-border-color-2: rgb(var(--dc-neutral-50-rgb) / 16%);
+  --dc-border-color-3: rgb(var(--dc-neutral-50-rgb) / 24%);
 
   /* Text Color */
-  --dc-primary-text-color: var(--dc-gray-100);
-  --dc-secondary-text-color: var(--dc-gray-400);
-  --dc-tertiary-text-color: var(--dc-gray-600);
-  --dc-info-text-color: var(--dc-blue-400);
-  --dc-success-text-color: var(--dc-green-400);
-  --dc-error-text-color: var(--dc-red-400);
-  --dc-warning-text-color: var(--dc-orange-400);
+  --dc-text-color-primary: var(--dc-neutral-50);
+  --dc-text-color-secondary: var(--dc-neutral-400);
+  --dc-text-color-tertiary: var(--dc-neutral-600);
+  --dc-text-color-info: var(--dc-blue-400);
+  --dc-text-color-success: var(--dc-green-500);
+  --dc-text-color-warning: var(--dc-orange-400);
+  --dc-text-color-error: var(--dc-red-500);
 
   /* Inputs */
   --dc-focus-ring-color: var(--dc-blue-400);

@@ -1,7 +1,7 @@
 .dc-badge {
   --height: 20px;
-  --color: var(--dc-primary-text-color);
-  --background: var(--dc-bg-transparent-2);
+  --color: var(--dc-text-color-primary);
+  --background: var(--dc-background-color-2);
 
   display: inline-flex;
   flex-shrink: 0;

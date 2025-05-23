@@ -1,6 +1,5 @@
+body,
 .docs-story {
-  color: var(--dc-primary-text-color);
-  background: var(--dc-primary-bg);
-  transition: 0.3s ease;
-  transition-property: color, background-color;
+  color: var(--dc-text-color-primary);
+  background: var(--dc-background-primary);
 }

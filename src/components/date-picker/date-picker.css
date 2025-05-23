@@ -3,10 +3,10 @@
   --day-max-width: 40px;
   --day-font-size: 14px;
   --day-radius: 16px;
-  --day-color: var(--dc-gray-950);
-  --day-color-name: var(--dc-gray-500);
+  --day-color: var(--dc-neutral-900);
+  --day-color-name: var(--dc-neutral-500);
   --day-color-today: var(--dc-blue-500);
-  --day-color-weekend: var(--dc-gray-500);
+  --day-color-weekend: var(--dc-neutral-500);
   --day-color-selected: var(--dc-white);
   --day-border-color: transparent;
   --day-border-color-hover: var(--dc-focus-ring-color);
@@ -191,8 +191,8 @@
 .dark .dc-datepicker,
 .dark.dc-datepicker {
   --day-color: var(--dc-white);
-  --day-color-name: var(--dc-gray-400);
-  --day-color-weekend: var(--dc-gray-400);
+  --day-color-name: var(--dc-neutral-400);
+  --day-color-weekend: var(--dc-neutral-400);
   --day-range-background: rgb(var(--dc-blue-300-rgb) / 20%);
 
   color-scheme: dark;

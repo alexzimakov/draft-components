@@ -2,7 +2,7 @@
   --width: 38px;
   --height: 24px;
   --radius: calc(var(--height) / 2);
-  --track-background: rgb(var(--dc-gray-950-rgb) / 15%);
+  --track-background: rgb(var(--dc-neutral-900-rgb) / 15%);
   --track-background-checked: var(--dc-blue-500);
   --thumb-size: calc(var(--height) - var(--thumb-offset) * 2);
   --thumb-offset: 2px;
@@ -103,7 +103,7 @@
 
 .dark .dc-switch,
 .dark.dc-switch {
-  --track-background: rgb(var(--dc-gray-50-rgb) / 30%);
+  --track-background: rgb(var(--dc-neutral-50-rgb) / 30%);
 
   color-scheme: dark;
 }

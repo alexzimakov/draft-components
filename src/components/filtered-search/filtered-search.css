@@ -9,12 +9,12 @@
   --height: 36px;
   --padding-x: 12px;
   --border-radius: 7px;
-  --color: var(--dc-gray-950);
-  --border-color: var(--dc-gray-300);
+  --color: var(--dc-neutral-900);
+  --border-color: var(--dc-neutral-300);
   --background: var(--dc-white);
-  --icon-color: var(--dc-gray-500);
+  --icon-color: var(--dc-neutral-500);
   --focus-ring-color: var(--dc-focus-ring-color);
-  --option-color: var(--dc-gray-950);
+  --option-color: var(--dc-neutral-900);
   --option-background: none;
   --selected-option-color: var(--dc-white);
   --selected-option-background: var(--dc-blue-500);
@@ -22,9 +22,9 @@
   --listbox-shadow: 0 0 0 1px rgb(var(--dc-black-rgb) / 8%),
     0 -1px 0 0 rgb(var(--dc-black-rgb) / 5%),
     var(--dc-shadow-lg);
-  --token-color: var(--dc-gray-950);
+  --token-color: var(--dc-neutral-900);
   --token-color-selected: var(--dc-white);
-  --token-background: var(--dc-gray-200);
+  --token-background: var(--dc-neutral-200);
   --token-background-hover: rgb(var(--dc-black-rgb) / 10%);
   --token-background-selected: var(--dc-blue-500);
 
@@ -139,14 +139,14 @@
 .dark .dc-filtered-search,
 .dark.dc-filtered-search {
   --color: var(--dc-white);
-  --border-color: var(--dc-gray-600);
-  --background: var(--dc-gray-800);
-  --icon-color: var(--dc-gray-400);
+  --border-color: var(--dc-neutral-600);
+  --background: var(--dc-neutral-800);
+  --icon-color: var(--dc-neutral-400);
   --option-color: var(--dc-white);
-  --listbox-background: var(--dc-gray-800);
-  --listbox-shadow: 0 0 0 1px var(--dc-gray-700), var(--dc-shadow-lg);
+  --listbox-background: var(--dc-neutral-800);
+  --listbox-shadow: 0 0 0 1px var(--dc-neutral-700), var(--dc-shadow-lg);
   --token-color: var(--dc-white);
-  --token-background: var(--dc-gray-600);
+  --token-background: var(--dc-neutral-600);
   --token-background-hover: rgb(var(--dc-white-rgb) / 10%);
 
   color-scheme: dark;

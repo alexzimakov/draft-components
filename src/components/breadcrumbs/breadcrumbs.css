@@ -1,8 +1,8 @@
 .dc-breadcrumbs {
-  --color: var(--dc-secondary-text-color);
-  --color-hover: var(--dc-primary-text-color);
-  --color-active: var(--dc-primary-text-color);
-  --delimiter-color: rgb(var(--dc-gray-500-rgb) / 50%);
+  --color: var(--dc-text-color-secondary);
+  --color-hover: var(--dc-text-color-primary);
+  --color-active: var(--dc-text-color-primary);
+  --delimiter-color: rgb(var(--dc-neutral-500-rgb) / 50%);
 
   color-scheme: light;
 }
@@ -64,7 +64,7 @@
 
 .dark .dc-breadcrumbs,
 .dark.dc-breadcrumbs {
-  --delimiter-color: rgb(var(--dc-gray-400-rgb) / 50%);
+  --delimiter-color: rgb(var(--dc-neutral-400-rgb) / 50%);
 
   color-scheme: dark;
 }

@@ -1,13 +1,14 @@
 .dc-table-container,
 .dc-table {
-  --border-color: var(--dc-border-color-transparent-2);
-  --background: none;
-  --head-background: var(--dc-bg-transparent-1);
-  --row-background-stripped: var(--dc-bg-transparent-1);
-  --row-background-selected: var(--dc-bg-transparent-1);
-  --row-background-highlighted: var(--dc-bg-transparent-1);
-  --cell-background-hover: var(--dc-bg-transparent-1);
-  --cell-background-focus: var(--dc-bg-transparent-1);
+  --color: var(--dc-text-color-primary);
+  --border-color: var(--dc-neutral-200);
+  --background: var(--dc-background-primary);
+  --head-background: var(--dc-neutral-100);
+  --row-background-stripped: var(--dc-neutral-100);
+  --row-background-selected: var(--dc-neutral-100);
+  --row-background-highlighted: var(--dc-neutral-200);
+  --cell-background-hover: var(--dc-neutral-100);
+  --cell-background-focus: var(--dc-neutral-100);
   --cell-padding-x: 12px;
   --cell-padding-y: 8px;
   --sort-icon-size: 16px;
@@ -20,7 +21,9 @@
   width: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  border: 0 solid var(--border-color);
+  border-color: var(--border-color);
+  border-style: solid;
+  border-width: 0;
   scroll-behavior: smooth;
 }
 
@@ -48,16 +51,14 @@
   width: 100%;
   font: var(--dc-text-sm);
   font-variant-numeric: tabular-nums;
-  color: var(--dc-primary-text-color);
+  color: var(--color);
   border-spacing: 0;
   border-collapse: separate;
 }
 
 .dc-table-cell {
   box-sizing: border-box;
-  padding:
-    var(--cell-padding-y)
-    var(--cell-padding-x);
+  padding: var(--cell-padding-y) var(--cell-padding-x);
   scroll-snap-align: start;
   background: var(--background);
   border-bottom: 1px solid var(--border-color);
@@ -103,22 +104,12 @@
   background: var(--cell-background-hover);
 }
 
-.dc-table-cell__sort-btn::before {
-  position: absolute;
-  inset: 0;
-  content: "";
-}
-
 .dc-table-cell__sort-btn:focus {
   outline: none;
 }
 
-.dc-table-cell__sort-btn:focus::before {
+.dc-table-cell__sort-btn:focus-visible {
   background: var(--cell-background-focus);
-}
-
-.dc-table-cell__sort-btn:focus:not(:focus-visible)::before {
-  background: initial;
 }
 
 .dc-table-cell__sort-icon {
@@ -162,5 +153,15 @@
 .dark.dc-table,
 .dark .dc-table-container,
 .dark.dc-table-container {
+  --color: var(--dc-text-color-primary);
+  --border-color: var(--dc-neutral-700);
+  --background: var(--dc-background-primary);
+  --head-background: var(--dc-neutral-800);
+  --row-background-stripped: var(--dc-neutral-800);
+  --row-background-selected: var(--dc-neutral-800);
+  --row-background-highlighted: var(--dc-neutral-700);
+  --cell-background-hover: var(--dc-neutral-800);
+  --cell-background-focus: var(--dc-neutral-800);
+
   color-scheme: dark;
 }

@@ -1,7 +1,7 @@
 .dc-empty-state {
   --max-width: 640px;
-  --primary-color: var(--dc-primary-text-color);
-  --secondary-color: var(--dc-secondary-text-color);
+  --primary-color: var(--dc-text-color-primary);
+  --secondary-color: var(--dc-text-color-secondary);
 
   box-sizing: border-box;
   display: flex;

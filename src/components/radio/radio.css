@@ -2,7 +2,7 @@
   --size: 20px;
   --background: var(--dc-white);
   --background-checked: var(--dc-blue-500);
-  --border-color: var(--dc-gray-300);
+  --border-color: var(--dc-neutral-300);
   --border-color-checked: rgb(var(--dc-black-rgb) / 10%);
   --icon-color: var(--dc-white);
   --focus-ring-color: var(--dc-focus-ring-color);
@@ -75,8 +75,8 @@
 
 .dark .dc-radio,
 .dark.dc-radio {
-  --background: var(--dc-gray-800);
-  --border-color: var(--dc-gray-600);
+  --background: var(--dc-neutral-800);
+  --border-color: var(--dc-neutral-600);
   --border-color-checked: rgb(var(--dc-white-rgb) / 10%);
 
   color-scheme: dark;

@@ -1,15 +1,15 @@
 .dc-toast {
-  --color: var(--dc-gray-100);
-  --secondary-color: var(--dc-gray-300);
-  --icon-color: var(--dc-gray-200);
-  --background: var(--dc-gray-700);
+  --color: var(--dc-neutral-100);
+  --secondary-color: var(--dc-neutral-300);
+  --icon-color: var(--dc-neutral-200);
+  --background: var(--dc-neutral-700);
   --padding: 16px;
-  --close-button-color: var(--dc-gray-50);
-  --close-button-background: var(--dc-gray-500);
-  --button-color: var(--dc-gray-100);
-  --button-background: rgb(var(--dc-gray-50-rgb) / 15%);
-  --button-background-hover: rgb(var(--dc-gray-50-rgb) / 30%);
-  --button-focus-ring-color: var(--dc-gray-200);
+  --close-button-color: var(--dc-neutral-50);
+  --close-button-background: var(--dc-neutral-500);
+  --button-color: var(--dc-neutral-100);
+  --button-background: rgb(var(--dc-neutral-50-rgb) / 15%);
+  --button-background-hover: rgb(var(--dc-neutral-50-rgb) / 30%);
+  --button-focus-ring-color: var(--dc-neutral-200);
 
   position: relative;
   display: inline-flex;
@@ -125,16 +125,16 @@
 
 .dark .dc-toast,
 .dark.dc-toast {
-  --color: var(--dc-gray-800);
-  --secondary-color: var(--dc-gray-600);
-  --icon-color: var(--dc-gray-700);
-  --background: var(--dc-gray-100);
-  --close-button-color: var(--dc-gray-800);
-  --close-button-background: var(--dc-gray-100);
-  --button-color: var(--dc-gray-800);
-  --button-background: rgb(var(--dc-gray-900-rgb) / 10%);
-  --button-background-hover: rgb(var(--dc-gray-900-rgb) / 20%);
-  --button-focus-ring-color: var(--dc-gray-700);
+  --color: var(--dc-neutral-800);
+  --secondary-color: var(--dc-neutral-600);
+  --icon-color: var(--dc-neutral-700);
+  --background: var(--dc-neutral-100);
+  --close-button-color: var(--dc-neutral-800);
+  --close-button-background: var(--dc-neutral-100);
+  --button-color: var(--dc-neutral-800);
+  --button-background: rgb(var(--dc-neutral-900-rgb) / 10%);
+  --button-background-hover: rgb(var(--dc-neutral-900-rgb) / 20%);
+  --button-focus-ring-color: var(--dc-neutral-700);
 
   color-scheme: dark;
 }

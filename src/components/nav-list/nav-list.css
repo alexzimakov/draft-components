@@ -1,9 +1,9 @@
 .dc-nav-list {
-  --list-title-color: var(--dc-secondary-text-color);
-  --link-color: var(--dc-primary-text-color);
+  --list-title-color: var(--dc-text-color-secondary);
+  --link-color: var(--dc-text-color-primary);
   --link-background: transparent;
-  --link-background-hover: var(--dc-bg-transparent-2);
-  --link-background-active: var(--dc-bg-transparent-2);
+  --link-background-hover: var(--dc-background-color-2);
+  --link-background-active: var(--dc-background-color-2);
   --link-focus-ring-color: var(--dc-focus-ring-color);
 
   color-scheme: light;

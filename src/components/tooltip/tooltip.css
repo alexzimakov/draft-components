@@ -1,6 +1,6 @@
 .dc-tooltip {
   --color: var(--dc-white);
-  --background: var(--dc-gray-800);
+  --background: var(--dc-neutral-800);
   --enter-animation-duration: 50ms;
   --leave-animation-duration: 50ms;
 
@@ -94,8 +94,8 @@
 
 .dark .dc-tooltip,
 .dark.dc-tooltip {
-  --color: var(--dc-gray-800);
-  --background: var(--dc-gray-100);
+  --color: var(--dc-neutral-800);
+  --background: var(--dc-neutral-100);
 
   color-scheme: dark;
 }

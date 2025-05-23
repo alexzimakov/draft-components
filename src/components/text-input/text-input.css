@@ -3,11 +3,11 @@
   --height: 36px;
   --padding-x: 12px;
   --border-radius: 7px;
-  --color: var(--dc-gray-950);
-  --border-color: var(--dc-gray-300);
+  --color: var(--dc-neutral-900);
+  --border-color: var(--dc-neutral-300);
   --border-color-error: var(--dc-red-500);
   --background: var(--dc-white);
-  --add-on-color: var(--dc-gray-500);
+  --add-on-color: var(--dc-neutral-500);
   --add-on-background: none;
   --focus-ring-color: var(--dc-focus-ring-color);
 
@@ -132,7 +132,7 @@
 }
 
 .dc-text-input_slot_tinted {
-  --add-on-background: rgb(var(--dc-gray-400-rgb) / 10%);
+  --add-on-background: rgb(var(--dc-neutral-400-rgb) / 10%);
 }
 
 .dc-text-input_slot_tinted .dc-text-input__slot-left {
@@ -148,10 +148,10 @@
 .dark .dc-text-input,
 .dark.dc-text-input {
   --color: var(--dc-white);
-  --border-color: var(--dc-gray-600);
+  --border-color: var(--dc-neutral-600);
   --border-color-error: var(--dc-red-400);
-  --background: var(--dc-gray-800);
-  --add-on-color: var(--dc-gray-400);
+  --background: var(--dc-neutral-800);
+  --add-on-color: var(--dc-neutral-400);
 
   color-scheme: dark;
 }

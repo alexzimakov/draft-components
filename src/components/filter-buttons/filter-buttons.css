@@ -1,11 +1,11 @@
 .dc-filter-buttons {
-  --color: var(--dc-gray-950);
+  --color: var(--dc-neutral-900);
   --color-active: var(--dc-white);
-  --background: rgb(var(--dc-gray-950-rgb) / 5%);
-  --background-hover: rgb(var(--dc-gray-950-rgb) / 10%);
+  --background: rgb(var(--dc-neutral-900-rgb) / 5%);
+  --background-hover: rgb(var(--dc-neutral-900-rgb) / 10%);
   --background-active: var(--dc-blue-500);
   --background-active-hover: var(--dc-blue-600);
-  --focus-ring-color: var(--dc-gray-950);
+  --focus-ring-color: var(--dc-neutral-900);
   --focus-ring-color-active: var(--dc-white);
 
   position: relative;
@@ -71,8 +71,8 @@
 .dark.dc-filter-buttons {
   --color: var(--dc-white);
   --color-active: var(--dc-white);
-  --background: rgb(var(--dc-gray-50-rgb) / 20%);
-  --background-hover: rgb(var(--dc-gray-50-rgb) / 30%);
+  --background: rgb(var(--dc-neutral-50-rgb) / 20%);
+  --background-hover: rgb(var(--dc-neutral-50-rgb) / 30%);
   --background-active: var(--dc-blue-500);
   --background-active-hover: var(--dc-blue-400);
   --focus-ring-color: var(--dc-white);

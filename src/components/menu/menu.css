@@ -1,10 +1,10 @@
 .dc-menu {
   --item-icon-gap: 8px;
-  --item-color: var(--dc-gray-950);
-  --item-background-focus: rgb(var(--dc-gray-500-rgb) / 15%);
+  --item-color: var(--dc-neutral-900);
+  --item-background-focus: rgb(var(--dc-neutral-500-rgb) / 15%);
   --item-color-destructive: var(--dc-red-600);
   --item-background-focus-destructive: rgb(var(--dc-red-600-rgb) / 15%);
-  --separator-color: rgb(var(--dc-gray-500-rgb) / 15%);
+  --separator-color: rgb(var(--dc-neutral-500-rgb) / 15%);
 
   position: fixed;
   box-sizing: border-box;
@@ -69,10 +69,10 @@
 .dark .dc-menu,
 .dark.dc-menu {
   --item-color: var(--dc-white);
-  --item-background-focus: rgb(var(--dc-gray-100-rgb) / 15%);
+  --item-background-focus: rgb(var(--dc-neutral-100-rgb) / 15%);
   --item-color-destructive: var(--dc-red-400);
   --item-background-focus-destructive: rgb(var(--dc-red-500-rgb) / 25%);
-  --separator-color: rgb(var(--dc-gray-100-rgb) / 15%);
+  --separator-color: rgb(var(--dc-neutral-100-rgb) / 15%);
 
   color-scheme: dark;
 }

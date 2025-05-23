@@ -2,25 +2,25 @@
   display: block;
   align-items: center;
   font: var(--dc-text-sm);
-  color: var(--dc-secondary-text-color);
+  color: var(--dc-text-color-secondary);
   text-align: left;
   color-scheme: light;
 }
 
 .dc-caption_color_blue {
-  color: var(--dc-info-text-color);
+  color: var(--dc-text-color-info);
 }
 
 .dc-caption_color_green {
-  color: var(--dc-success-text-color);
+  color: var(--dc-text-color-success);
 }
 
 .dc-caption_color_orange {
-  color: var(--dc-warning-text-color);
+  color: var(--dc-text-color-warning);
 }
 
 .dc-caption_color_red {
-  color: var(--dc-error-text-color);
+  color: var(--dc-text-color-error);
 }
 
 .dc-caption__icon {

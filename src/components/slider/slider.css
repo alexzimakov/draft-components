@@ -1,10 +1,10 @@
 .dc-slider {
-  --icon-color: var(--dc-gray-500);
+  --icon-color: var(--dc-neutral-500);
 
   /* Track properties */
   --track-height: 4px;
   --track-radius: 2px;
-  --track-background: rgb(var(--dc-gray-950-rgb) / 15%);
+  --track-background: rgb(var(--dc-neutral-900-rgb) / 15%);
   --track-background-filled: var(--dc-blue-500);
 
   /* Thumb properties */
@@ -28,13 +28,13 @@
   --label-radius: 6px;
   --label-border-color: var(--dc-white);
   --label-border: 1px solid var(--label-border-color);
-  --label-color: var(--dc-gray-50);
-  --label-background: var(--dc-gray-800);
+  --label-color: var(--dc-neutral-50);
+  --label-background: var(--dc-neutral-800);
 
   /* Tick mark properties */
   --tick-mark-width: 1px;
   --tick-mark-height: 6px;
-  --tick-mark-color: rgb(var(--dc-gray-950-rgb) / 15%);
+  --tick-mark-color: rgb(var(--dc-neutral-900-rgb) / 15%);
   --tick-marks-gap: 4px;
 
   display: inline-flex;
@@ -237,16 +237,16 @@
 
 .dark .dc-slider,
 .dark.dc-slider {
-  --icon-color: var(--dc-gray-400);
+  --icon-color: var(--dc-neutral-400);
 
   /* Track properties */
-  --track-background: rgb(var(--dc-gray-50-rgb) / 30%);
+  --track-background: rgb(var(--dc-neutral-50-rgb) / 30%);
 
   /* Label properties */
-  --label-border-color: var(--dc-gray-100);
-  --label-color: var(--dc-gray-800);
-  --label-background: var(--dc-gray-100);
+  --label-border-color: var(--dc-neutral-100);
+  --label-color: var(--dc-neutral-800);
+  --label-background: var(--dc-neutral-100);
 
   /* Tick mark properties */
-  --tick-mark-color: rgb(var(--dc-gray-50-rgb) / 60%);
+  --tick-mark-color: rgb(var(--dc-neutral-50-rgb) / 60%);
 }

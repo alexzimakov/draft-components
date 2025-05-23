@@ -1,14 +1,14 @@
 .dc-dialog {
   --viewport-padding: 16px;
   --modal-font: var(--dc-text-sm);
-  --modal-background: var(--dc-primary-bg);
+  --modal-background: var(--dc-background-primary);
   --modal-border: none;
   --modal-shadow: var(--dc-shadow-xl);
-  --backdrop-color: rgb(var(--dc-gray-900-rgb) / 25%);
+  --backdrop-color: rgb(var(--dc-neutral-900-rgb) / 25%);
   --scroll-shadow-top: 0 2px 2px rgb(0 0 0 / 10%);
   --scroll-shadow-bottom: 0 -2px 2px rgb(0 0 0 / 10%);
   --section-delimiter-width: 1px;
-  --section-delimiter-color: var(--dc-border-color-transparent-2);
+  --section-delimiter-color: var(--dc-border-color-2);
   --enter-animation-duration: 100ms;
   --leave-animation-duration: 100ms;
   --enter-slide-animation-duration: 250ms;
@@ -383,9 +383,9 @@
 
 .dark .dc-dialog,
 .dark.dc-dialog {
-  --modal-background: var(--dc-gray-800);
-  --modal-shadow: 0 0 0 1px var(--dc-border-color-transparent-2), var(--dc-shadow-xl);
-  --backdrop-color: rgb(var(--dc-gray-900-rgb) / 65%);
+  --modal-background: var(--dc-neutral-800);
+  --modal-shadow: 0 0 0 1px var(--dc-border-color-2), var(--dc-shadow-xl);
+  --backdrop-color: rgb(var(--dc-neutral-900-rgb) / 65%);
   --scroll-shadow-top: 0 1px 1px rgb(255 255 255 / 15%);
   --scroll-shadow-bottom: 0 -1px 1px rgb(255 255 255 / 15%);
 

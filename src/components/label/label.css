@@ -1,5 +1,5 @@
 .dc-label {
-  --color: var(--dc-primary-text-color);
+  --color: var(--dc-text-color-primary);
   --required-mark-color: var(--dc-red-600);
 
   display: inline-block;

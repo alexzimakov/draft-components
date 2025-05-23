@@ -4,8 +4,8 @@
   --padding-y: 8px;
   --padding-x: 12px;
   --radius: 7px;
-  --color: var(--dc-gray-950);
-  --border-color: var(--dc-gray-300);
+  --color: var(--dc-neutral-900);
+  --border-color: var(--dc-neutral-300);
   --border-color-error: var(--dc-red-500);
   --background: var(--dc-white);
   --focus-ring-color: var(--dc-focus-ring-color);
@@ -74,9 +74,9 @@
 .dark .dc-textarea,
 .dark.dc-textarea {
   --color: var(--dc-white);
-  --border-color: var(--dc-gray-600);
+  --border-color: var(--dc-neutral-600);
   --border-color-error: var(--dc-red-400);
-  --background: var(--dc-gray-800);
+  --background: var(--dc-neutral-800);
 
   color-scheme: dark;
 }

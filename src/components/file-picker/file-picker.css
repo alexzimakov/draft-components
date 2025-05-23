@@ -1,8 +1,8 @@
 .dc-file-picker {
-  --label-color: var(--dc-gray-950);
-  --icon-color: var(--dc-gray-500);
-  --caption-color: var(--dc-gray-500);
-  --border-color: var(--dc-gray-300);
+  --label-color: var(--dc-neutral-900);
+  --icon-color: var(--dc-neutral-500);
+  --caption-color: var(--dc-neutral-500);
+  --border-color: var(--dc-neutral-300);
   --border-color-drag-over: var(--dc-blue-500);
   --background-drag-over: rgb(var(--dc-blue-500-rgb) / 10%);
 
@@ -67,9 +67,9 @@
 .dark .dc-file-picker,
 .dark.dc-file-picker {
   --label-color: var(--dc-white);
-  --icon-color: var(--dc-gray-400);
-  --caption-color: var(--dc-gray-400);
-  --border-color: var(--dc-gray-600);
+  --icon-color: var(--dc-neutral-400);
+  --caption-color: var(--dc-neutral-400);
+  --border-color: var(--dc-neutral-600);
   --border-color-drag-over: var(--dc-blue-400);
   --background-drag-over: rgb(var(--dc-blue-300-rgb) / 20%);
 
