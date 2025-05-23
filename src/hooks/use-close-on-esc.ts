@@ -2,7 +2,7 @@ import { KeyboardKey } from '../lib/keyboard-key.js';
 import { useEffect } from 'react';
 import { useRefCallback } from './use-ref-callback.js';
 
-export type CloseHandler = () => void;
+type CloseHandler = () => void;
 
 const handlerStack: CloseHandler[] = [];
 

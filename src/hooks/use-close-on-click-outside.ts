@@ -1,11 +1,11 @@
 import { type RefObject, useEffect } from 'react';
 import { useRefCallback } from './use-ref-callback.js';
 
-export type CloseHandler = () => void;
+type CloseHandler = () => void;
 
-export type ContainerRef = RefObject<HTMLElement | null>;
+type ContainerRef = RefObject<HTMLElement | null>;
 
-export type ShouldIgnoreClickPredicate = (node: Node) => boolean;
+type ShouldIgnoreClickPredicate = (node: Node) => boolean;
 
 type Params = {
   ref: ContainerRef;
