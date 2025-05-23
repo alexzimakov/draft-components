@@ -1,5 +1,4 @@
-body[data-view-mode="story"],
-body[data-view-mode="docs"] .docs-story {
+.docs-story {
   color: var(--dc-primary-text-color);
   background: var(--dc-primary-bg);
   transition: 0.3s ease;

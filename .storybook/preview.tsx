@@ -1,8 +1,9 @@
+import { type Preview } from '@storybook/react';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import '../src/components/index.css';
 import './preview.css';
 
-export default {
+const preview: Preview = {
   parameters: {
     actions: {
       argTypesRegex: '^on[A-Z].*',
@@ -22,19 +23,10 @@ export default {
   },
 
   decorators: [
-    (Story, { viewMode }) => {
-      if (
-        typeof document !== 'undefined'
-        && document.body instanceof HTMLBodyElement
-      ) {
-        document.body.dataset.viewMode = viewMode;
-      }
-      return <Story />;
-    },
     withThemeByClassName({
       themes: {
-        light: 'light',
         dark: 'dark',
+        light: 'light',
       },
       defaultTheme: 'light',
     }),
@@ -42,3 +34,5 @@ export default {
 
   tags: ['autodocs'],
 };
+
+export default preview;
