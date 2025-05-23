@@ -38,10 +38,6 @@ async function buildCss() {
       from: path.join(componentsDir, 'variables.css'),
       to: path.join(PATHS.distCss, 'draft-components-variables.css'),
     },
-    {
-      from: path.join(PATHS.src, 'css-utilities', 'index.css'),
-      to: path.join(PATHS.distCss, 'draft-components-utilities.css'),
-    },
     ...componentCssFiles.map((file) => ({
       from: file,
       to: file.replace(PATHS.src, PATHS.dist),
