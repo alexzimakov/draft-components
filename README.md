@@ -13,8 +13,8 @@ The React based UI components library.
 
 `draft-components` requires the following libraries to be installed:
 
-- `react` >= 18
-- `react-dom` >= 18
+- `react` >= 19
+- `react-dom` >= 19
 
 ## Getting Started
 
