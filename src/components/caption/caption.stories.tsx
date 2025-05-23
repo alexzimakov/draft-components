@@ -25,7 +25,6 @@ Basic.args = {
 };
 
 export const WithIcon = Basic.bind({});
-WithIcon.storyName = 'With icon';
 WithIcon.args = {
   color: 'red',
   icon: <ExclamationTriangleIcon width={20} height={20} />,

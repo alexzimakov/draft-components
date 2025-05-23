@@ -1,6 +1,5 @@
 import { type Meta, type StoryFn } from '@storybook/react';
 import { type ComponentProps } from 'react';
-import { StorySection } from '../../storybook/story-section.js';
 import { Alert } from './alert.js';
 
 const meta: Meta<typeof Alert> = {
@@ -32,7 +31,6 @@ Basic.args = {
 };
 
 export const WithIcon = Basic.bind({});
-WithIcon.storyName = 'With icon';
 WithIcon.args = {
   ...Basic.args,
   icon: <ScaleIcon width={18} height={18} />,
@@ -48,19 +46,24 @@ Dismissible.args = {
 };
 
 export const Styles: StoryFn<typeof Alert> = (args) => (
-  <section style={{ maxWidth: 720 }}>
-    <StorySection title="default">
-      <Alert {...args} alertStyle="default" />
-    </StorySection>
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: '1fr',
+      alignItems: 'center',
+      justifyItems: 'start',
+      gap: 8,
+    }}
+  >
+    <code>default</code>
+    <Alert {...args} alertStyle="default" />
 
-    <StorySection title="full-width">
-      <Alert {...args} alertStyle="full-width" />
-    </StorySection>
+    <code style={{ marginTop: 16 }}>full-width</code>
+    <Alert {...args} alertStyle="full-width" />
 
-    <StorySection title="accent-border">
-      <Alert {...args} alertStyle="accent-left" />
-    </StorySection>
-  </section>
+    <code style={{ marginTop: 16 }}>accent-left</code>
+    <Alert {...args} alertStyle="accent-left" />
+  </div>
 );
 Styles.argTypes = {
   alertStyle: {
@@ -72,66 +75,70 @@ Styles.args = {
 };
 
 export const Tints: StoryFn<typeof Alert> = (args) => (
-  <section style={{ maxWidth: 720 }}>
-    <StorySection title="Gray">
-      <Alert
-        {...args}
-        tint="gray"
-        icon={<ScaleIcon width={18} height={18} />}
-        title="MIT License"
-      >
-        A short and simple permissive license with conditions only requiring
-        preservation of copyright and license notices.
-      </Alert>
-    </StorySection>
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: '1fr',
+      alignItems: 'center',
+      justifyItems: 'start',
+      gap: 8,
+      maxWidth: 720,
+    }}
+  >
+    <code>gray</code>
+    <Alert
+      {...args}
+      tint="gray"
+      icon={<ScaleIcon width={18} height={18} />}
+      title="MIT License"
+    >
+      A short and simple permissive license with conditions only requiring
+      preservation of copyright and license notices.
+    </Alert>
 
-    <StorySection title="Orange">
-      <Alert
-        {...args}
-        icon={<BoltIcon width={18} height={18} />}
-        tint="orange"
-        title="Low Power Mode"
-      >
-        Automatic downloads and background app refresh are disabled
-        in Low Power Mode.
-      </Alert>
-    </StorySection>
+    <code style={{ marginTop: 16 }}>orange</code>
+    <Alert
+      {...args}
+      icon={<BoltIcon width={18} height={18} />}
+      tint="orange"
+      title="Low Power Mode"
+    >
+      Automatic downloads and background app refresh are disabled
+      in Low Power Mode.
+    </Alert>
 
-    <StorySection title="Red">
-      <Alert
-        {...args}
-        icon={<SignalSlashIcon width={18} height={18} />}
-        tint="red"
-        title="You're currently offline"
-      >
-        Please check your internet connection and try again.
-      </Alert>
-    </StorySection>
+    <code style={{ marginTop: 16 }}>red</code>
+    <Alert
+      {...args}
+      icon={<SignalSlashIcon width={18} height={18} />}
+      tint="red"
+      title="You're currently offline"
+    >
+      Please check your internet connection and try again.
+    </Alert>
 
-    <StorySection title="Blue">
-      <Alert
-        {...args}
-        icon={<CogIcon width={20} height={20} />}
-        tint="blue"
-        title="Update is available"
-      >
-        The next version of app is available with new features and security
-        improvements.
-      </Alert>
-    </StorySection>
+    <code style={{ marginTop: 16 }}>blue</code>
+    <Alert
+      {...args}
+      icon={<CogIcon width={20} height={20} />}
+      tint="blue"
+      title="Update is available"
+    >
+      The next version of app is available with new features and security
+      improvements.
+    </Alert>
 
-    <StorySection title="Green">
-      <Alert
-        {...args}
-        icon={<HandThumbUpIcon width={18} height={18} />}
-        tint="green"
-        title="Update completed"
-      >
-        Your app was updated successfully. There are just a few more steps to
-        follow, and then you're done!
-      </Alert>
-    </StorySection>
-  </section>
+    <code style={{ marginTop: 16 }}>green</code>
+    <Alert
+      {...args}
+      icon={<HandThumbUpIcon width={18} height={18} />}
+      tint="green"
+      title="Update completed"
+    >
+      Your app was updated successfully. There are just a few more steps to
+      follow, and then you're done!
+    </Alert>
+  </div>
 );
 Tints.parameters = {
   controls: {

@@ -51,21 +51,18 @@ Disabled.args = {
 };
 
 export const LeftIcon = Basic.bind({});
-LeftIcon.storyName = 'Icon left';
 LeftIcon.args = {
   children: 'Archive',
   iconLeft: <ArchiveBoxIcon width="1.25em" height="1.25em" />,
 };
 
 export const IconRight = Basic.bind({});
-IconRight.storyName = 'Icon right';
 IconRight.args = {
   children: 'Archive',
   iconRight: <ArchiveBoxIcon width="1.25em" height="1.25em" />,
 };
 
 export const WithCaption = Basic.bind({});
-WithCaption.storyName = 'With caption';
 WithCaption.args = {
   children: 'Buy now',
   caption: 'Total $59.00',

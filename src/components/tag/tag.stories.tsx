@@ -35,7 +35,6 @@ Sizes.args = {
 };
 
 export const WithIcon = Basic.bind({});
-WithIcon.storyName = 'With icon';
 WithIcon.args = {
   children: (
     <>

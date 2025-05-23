@@ -1,7 +1,6 @@
 import { type Meta, type StoryFn } from '@storybook/react';
 import { type CSSProperties } from 'react';
 import { TextInput } from './text-input.js';
-import { StorySection } from '../../storybook/story-section.js';
 import { Button } from '../button/index.js';
 
 const meta: Meta<typeof TextInput> = {
@@ -32,20 +31,18 @@ Disabled.args = {
 export const Invalid = Basic.bind({});
 Invalid.args = {
   placeholder: 'Your email',
-  defaultValue: 'you@examplecom',
+  defaultValue: 'not an email',
   type: 'email',
   invalid: true,
 };
 
 export const FullWidth = Basic.bind({});
-FullWidth.storyName = 'Full width';
 FullWidth.args = {
   placeholder: 'Full width input',
   fullWidth: true,
 };
 
 export const SlotLeft = Basic.bind({});
-SlotLeft.storyName = 'Slot left';
 SlotLeft.args = {
   placeholder: '0.00',
   sizeInChars: 4,
@@ -53,7 +50,6 @@ SlotLeft.args = {
 };
 
 export const SlotRight = Basic.bind({});
-SlotRight.storyName = 'Slot right';
 SlotRight.args = {
   placeholder: '0.00',
   sizeInChars: 4,
@@ -61,7 +57,6 @@ SlotRight.args = {
 };
 
 export const BothSlots = Basic.bind({});
-BothSlots.storyName = 'Both slots';
 BothSlots.args = {
   placeholder: '0.00',
   sizeInChars: 4,
@@ -70,7 +65,6 @@ BothSlots.args = {
 };
 
 export const IconLeft = Basic.bind({});
-IconLeft.storyName = 'Icon left';
 IconLeft.args = {
   placeholder: 'Search (⌘K)',
   slotLeft: (
@@ -93,7 +87,6 @@ IconLeft.args = {
 };
 
 export const IconRight = Basic.bind({});
-IconRight.storyName = 'Icon right';
 IconRight.args = {
   placeholder: 'Pick a date',
   slotRight: (
@@ -116,7 +109,6 @@ IconRight.args = {
 };
 
 export const SlotCustomRenderer = Basic.bind({});
-SlotCustomRenderer.storyName = 'Slot custom renderer';
 SlotCustomRenderer.args = {
   type: 'password',
   defaultValue: 'Qwerty123',
@@ -155,19 +147,24 @@ export const SizeInChars: StoryFn<typeof TextInput> = (args) => {
     2: '2 characters',
   };
   return (
-    <>
+    <div
+      style={{
+        display: 'grid',
+        gap: 16,
+      }}
+    >
       {sizes.map((size) => {
         const label = labels[size];
         return (
-          <StorySection key={size} title={label}>
+          <div key={size}>
+            <code style={{ display: 'block', marginBottom: 4 }}>{label}</code>
             <TextInput {...args} sizeInChars={size} aria-label={label} />
-          </StorySection>
+          </div>
         );
       })}
-    </>
+    </div>
   );
 };
-SizeInChars.storyName = 'Size in characters';
 SizeInChars.parameters = {
   controls: {
     exclude: ['width'],

@@ -29,7 +29,6 @@ export const Basic: StoryFn<typeof Breadcrumbs> = (args) => (
 );
 
 export const CustomSeparator = Basic.bind({});
-CustomSeparator.storyName = 'Custom separator';
 CustomSeparator.argTypes = {
   separator: {
     control: { disable: true },

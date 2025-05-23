@@ -80,7 +80,6 @@ Invalid.args = {
 };
 
 export const FullWidth = Basic.bind({});
-FullWidth.storyName = 'Full width';
 FullWidth.args = {
   fullWidth: true,
 };
@@ -114,7 +113,6 @@ export const OptionsWithCaption: StoryFn<typeof SearchSelect<Fruit>> = (args) =>
     </SearchSelect>
   );
 };
-OptionsWithCaption.storyName = 'Options with caption';
 OptionsWithCaption.args = {};
 
 export const WithSeparator: StoryFn<typeof SearchSelect<Fruit>> = (args) => {
@@ -166,7 +164,6 @@ export const WithSeparator: StoryFn<typeof SearchSelect<Fruit>> = (args) => {
     </SearchSelect>
   );
 };
-WithSeparator.storyName = 'With separator';
 WithSeparator.args = {};
 
 function getFruitName(fruit: Fruit) {

@@ -27,7 +27,6 @@ Invalid.args = {
 };
 
 export const FullWidth = Basic.bind({});
-FullWidth.storyName = 'Full width';
 FullWidth.args = {
   fullWidth: true,
 };

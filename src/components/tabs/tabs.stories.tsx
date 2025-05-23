@@ -47,7 +47,7 @@ export const Basic = () => {
   );
 };
 
-export const IconAndCounter = () => {
+export const WithIconAndBadge = () => {
   const tabs = {
     inbox: 'inbox',
     drafts: 'drafts',
@@ -104,7 +104,6 @@ export const IconAndCounter = () => {
     </Tabs>
   );
 };
-IconAndCounter.storyName = 'With icon and badge';
 
 function ArchiveBoxIcon(props: ComponentProps<'svg'>) {
   return (

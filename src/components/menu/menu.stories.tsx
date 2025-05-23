@@ -50,7 +50,6 @@ export const WithIcon: StoryFn<typeof Menu> = (args) => (
     </Menu.Item>
   </Menu>
 );
-WithIcon.storyName = 'With icon';
 WithIcon.argTypes = {
   renderButton: {
     control: 'text',

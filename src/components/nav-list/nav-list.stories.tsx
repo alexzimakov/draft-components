@@ -65,7 +65,6 @@ export const WithIcons: StoryFn<typeof NavList> = (args) => (
     </NavListItem>
   </NavList>
 );
-WithIcons.storyName = 'With icons';
 WithIcons.args = {
   ...Basic.args,
 };
@@ -79,7 +78,6 @@ export const WithBadges: StoryFn<typeof NavList> = (args) => (
     <NavListItem href="/downloads">Downloads</NavListItem>
   </NavList>
 );
-WithBadges.storyName = 'With badges';
 WithBadges.args = {
   ...Basic.args,
 };
@@ -97,7 +95,6 @@ export const WithTitle: StoryFn<typeof NavList> = (args) => (
     <NavListItem href="/shared/reports">Reports</NavListItem>
   </NavList>
 );
-WithTitle.storyName = 'With title';
 WithTitle.args = {
   ...Basic.args,
 };

@@ -59,7 +59,6 @@ Disabled.args = {
 };
 
 export const WithIcon = Basic.bind({});
-WithIcon.storyName = 'With icon';
 WithIcon.args = {
   options: optionsWithIcon,
   value: optionsWithIcon[0].value,
