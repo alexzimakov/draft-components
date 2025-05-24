@@ -8,7 +8,6 @@ type DialogHeaderHTMLProps = ComponentProps<'div'>;
 
 type DialogHeaderBaseProps = {
   title?: ReactNode;
-  hasDivider?: boolean;
   contentAlign?: 'left' | 'right' | 'center';
 };
 
@@ -20,7 +19,7 @@ export function DialogHeader({
   className,
   title,
   children,
-  contentAlign: align = 'left',
+  contentAlign = 'left',
   ...props
 }: DialogHeaderProps) {
   const { titleId, isBodyHasScroll, onClose } = useDialogContext();
@@ -31,7 +30,7 @@ export function DialogHeader({
         'dc-dialog__section': true,
         'dc-dialog__header': true,
         'dc-dialog__header_has_scroll-shadow': isBodyHasScroll,
-        [`dc-dialog__header_content-align_${align}`]: align,
+        [`dc-dialog__header_content-align_${contentAlign}`]: contentAlign,
       })}
       {...props}
     >
