@@ -309,24 +309,22 @@
   scrollbar-width: thin;
 }
 
-.dc-dialog__body:first-child,
-.dc-dialog__body_has_top-delimiter:not(:first-child) {
+.dc-dialog__body:where(:first-child),
+.dc-dialog__body_has_top-delimiter:where(:not(:first-child)) {
   padding-top: 16px;
 }
 
-.dc-dialog__body:last-child,
-.dc-dialog__body_has_bottom-delimiter:not(:first-child) {
+.dc-dialog__body:where(:last-child),
+.dc-dialog__body_has_bottom-delimiter:where(:not(:first-child)) {
   padding-bottom: 16px;
 }
 
 .dc-dialog__body_has_top-delimiter:not(:first-child) {
-  border-top: var(--section-delimiter-width) solid
-    var(--section-delimiter-color);
+  border-top: var(--section-delimiter-width) solid var(--section-delimiter-color);
 }
 
 .dc-dialog__body_has_bottom-delimiter:not(:first-child) {
-  border-bottom: var(--section-delimiter-width) solid
-    var(--section-delimiter-color);
+  border-bottom: var(--section-delimiter-width) solid var(--section-delimiter-color);
 }
 
 .dc-dialog__footer {
