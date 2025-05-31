@@ -17,13 +17,13 @@
 }
 
 .dc-tag_filled {
-  --color: var(--dc-neutral-800);
+  --color: var(--dc-neutral-900);
   --background: var(--dc-neutral-300);
   --border-color: transparent;
 }
 
 .dc-tag_tinted {
-  --color: var(--dc-neutral-900);
+  --color: var(--dc-neutral-800);
   --background: rgb(var(--dc-neutral-300-rgb) / 40%);
   --border-color: transparent;
 }
@@ -55,37 +55,37 @@
 }
 
 .dc-tag_green {
-  --color: var(--dc-green-900);
+  --color: var(--dc-green-700);
   --background: rgb(var(--dc-green-300-rgb) / 10%);
   --border-color: rgb(var(--dc-green-700-rgb) / 20%);
 }
 
 .dc-tag_green.dc-tag_filled {
-  --color: var(--dc-white);
+  --color: var(--dc-green-50);
   --background: var(--dc-green-600);
   --border-color: transparent;
 }
 
 .dc-tag_green.dc-tag_tinted {
-  --color: var(--dc-green-900);
+  --color: var(--dc-green-800);
   --background: rgb(var(--dc-green-300-rgb) / 40%);
   --border-color: transparent;
 }
 
 .dc-tag_lime {
-  --color: var(--dc-lime-900);
+  --color: var(--dc-lime-700);
   --background: rgb(var(--dc-lime-300-rgb) / 10%);
   --border-color: rgb(var(--dc-lime-700-rgb) / 20%);
 }
 
 .dc-tag_lime.dc-tag_filled {
-  --color: var(--dc-lime-950);
+  --color: var(--dc-lime-900);
   --background: var(--dc-lime-300);
   --border-color: transparent;
 }
 
 .dc-tag_lime.dc-tag_tinted {
-  --color: var(--dc-lime-900);
+  --color: var(--dc-lime-800);
   --background: rgb(var(--dc-lime-300-rgb) / 40%);
   --border-color: transparent;
 }
@@ -97,49 +97,49 @@
 }
 
 .dc-tag_sky.dc-tag_filled {
-  --color: var(--dc-white);
+  --color: var(--dc-sky-50);
   --background: var(--dc-sky-600);
   --border-color: transparent;
 }
 
 .dc-tag_sky.dc-tag_tinted {
-  --color: var(--dc-sky-900);
+  --color: var(--dc-sky-800);
   --background: rgb(var(--dc-sky-300-rgb) / 40%);
   --border-color: transparent;
 }
 
 .dc-tag_blue {
-  --color: var(--dc-blue-800);
+  --color: var(--dc-blue-700);
   --background: rgb(var(--dc-blue-300-rgb) / 10%);
   --border-color: rgb(var(--dc-blue-700-rgb) / 20%);
 }
 
 .dc-tag_blue.dc-tag_filled {
-  --color: var(--dc-white);
+  --color: var(--dc-blue-50);
   --background: var(--dc-blue-600);
   --border-color: transparent;
 }
 
 .dc-tag_blue.dc-tag_tinted {
-  --color: var(--dc-blue-900);
+  --color: var(--dc-blue-800);
   --background: rgb(var(--dc-blue-300-rgb) / 40%);
   --border-color: transparent;
 }
 
 .dc-tag_indigo {
-  --color: var(--dc-indigo-800);
+  --color: var(--dc-indigo-700);
   --background: rgb(var(--dc-indigo-300-rgb) / 10%);
   --border-color: rgb(var(--dc-indigo-700-rgb) / 20%);
 }
 
 .dc-tag_indigo.dc-tag_filled {
-  --color: var(--dc-white);
+  --color: var(--dc-indigo-50);
   --background: var(--dc-indigo-600);
   --border-color: transparent;
 }
 
 .dc-tag_indigo.dc-tag_tinted {
-  --color: var(--dc-indigo-900);
+  --color: var(--dc-indigo-800);
   --background: rgb(var(--dc-indigo-300-rgb) / 40%);
   --border-color: transparent;
 }
@@ -151,13 +151,13 @@
 }
 
 .dc-tag_pink.dc-tag_filled {
-  --color: var(--dc-white);
+  --color: var(--dc-pink-50);
   --background: var(--dc-pink-600);
   --border-color: transparent;
 }
 
 .dc-tag_pink.dc-tag_tinted {
-  --color: var(--dc-pink-900);
+  --color: var(--dc-pink-800);
   --background: rgb(var(--dc-pink-300-rgb) / 40%);
   --border-color: transparent;
 }
@@ -169,13 +169,13 @@
 }
 
 .dc-tag_red.dc-tag_filled {
-  --color: var(--dc-white);
+  --color: var(--dc-red-50);
   --background: var(--dc-red-500);
   --border-color: transparent;
 }
 
 .dc-tag_red.dc-tag_tinted {
-  --color: var(--dc-red-900);
+  --color: var(--dc-red-800);
   --background: rgb(var(--dc-red-300-rgb) / 40%);
   --border-color: transparent;
 }
@@ -187,31 +187,31 @@
 }
 
 .dc-tag_orange.dc-tag_filled {
-  --color: var(--dc-white);
+  --color: var(--dc-orange-50);
   --background: var(--dc-orange-500);
   --border-color: transparent;
 }
 
 .dc-tag_orange.dc-tag_tinted {
-  --color: var(--dc-orange-900);
+  --color: var(--dc-orange-800);
   --background: rgb(var(--dc-orange-300-rgb) / 40%);
   --border-color: transparent;
 }
 
 .dc-tag_yellow {
-  --color: var(--dc-yellow-900);
+  --color: var(--dc-yellow-700);
   --background: rgb(var(--dc-yellow-300-rgb) / 10%);
   --border-color: rgb(var(--dc-yellow-700-rgb) / 20%);
 }
 
 .dc-tag_yellow.dc-tag_filled {
-  --color: var(--dc-yellow-950);
+  --color: var(--dc-yellow-900);
   --background: var(--dc-yellow-400);
   --border-color: transparent;
 }
 
 .dc-tag_yellow.dc-tag_tinted {
-  --color: var(--dc-yellow-900);
+  --color: var(--dc-yellow-800);
   --background: rgb(var(--dc-yellow-300-rgb) / 40%);
   --border-color: transparent;
 }
@@ -248,7 +248,7 @@
 
 .dark.dc-tag_green.dc-tag_filled,
 .dark .dc-tag_green.dc-tag_filled {
-  --color: var(--dc-white);
+  --color: var(--dc-green-50);
   --background: var(--dc-green-600);
   --border-color: transparent;
 }
@@ -269,7 +269,7 @@
 
 .dark.dc-tag_lime.dc-tag_filled,
 .dark .dc-tag_lime.dc-tag_filled {
-  --color: var(--dc-lime-950);
+  --color: var(--dc-lime-900);
   --background: var(--dc-lime-400);
   --border-color: transparent;
 }
@@ -290,7 +290,7 @@
 
 .dark .dc-tag_sky.dc-tag_filled,
 .dark.dc-tag_sky.dc-tag_filled {
-  --color: var(--dc-white);
+  --color: var(--dc-sky-50);
   --background: var(--dc-sky-600);
   --border-color: transparent;
 }
@@ -311,7 +311,7 @@
 
 .dark .dc-tag_blue.dc-tag_filled,
 .dark.dc-tag_blue.dc-tag_filled {
-  --color: var(--dc-white);
+  --color: var(--dc-blue-50);
   --background: var(--dc-blue-600);
   --border-color: transparent;
 }
@@ -332,7 +332,7 @@
 
 .dark .dc-tag_indigo.dc-tag_filled,
 .dark.dc-tag_indigo.dc-tag_filled {
-  --color: var(--dc-white);
+  --color: var(--dc-indigo-50);
   --background: var(--dc-indigo-600);
   --border-color: transparent;
 }
@@ -353,7 +353,7 @@
 
 .dark .dc-tag_pink.dc-tag_filled,
 .dark.dc-tag_pink.dc-tag_filled {
-  --color: var(--dc-white);
+  --color: var(--dc-pink-50);
   --background: var(--dc-pink-600);
   --border-color: transparent;
 }
@@ -374,7 +374,7 @@
 
 .dark .dc-tag_red.dc-tag_filled,
 .dark.dc-tag_red.dc-tag_filled {
-  --color: var(--dc-white);
+  --color: var(--dc-red-50);
   --background: var(--dc-red-500);
   --border-color: transparent;
 }
@@ -395,7 +395,7 @@
 
 .dark .dc-tag_orange.dc-tag_filled,
 .dark.dc-tag_orange.dc-tag_filled {
-  --color: var(--dc-white);
+  --color: var(--dc-orange-50);
   --background: var(--dc-orange-500);
   --border-color: transparent;
 }
@@ -416,7 +416,7 @@
 
 .dark .dc-tag_yellow.dc-tag_filled,
 .dark.dc-tag_yellow.dc-tag_filled {
-  --color: var(--dc-yellow-950);
+  --color: var(--dc-yellow-900);
   --background: var(--dc-yellow-400);
   --border-color: transparent;
 }

@@ -6,7 +6,7 @@
   --head-background: var(--dc-neutral-100);
   --row-background-stripped: var(--dc-neutral-100);
   --row-background-selected: var(--dc-neutral-100);
-  --row-background-highlighted: var(--dc-neutral-200);
+  --row-background-highlighted: rgb(var(--dc-neutral-300-rgb) / 30%);
   --cell-background-hover: var(--dc-neutral-100);
   --cell-background-focus: var(--dc-neutral-100);
   --cell-padding-x: 12px;
@@ -159,7 +159,7 @@
   --head-background: var(--dc-neutral-800);
   --row-background-stripped: var(--dc-neutral-800);
   --row-background-selected: var(--dc-neutral-800);
-  --row-background-highlighted: var(--dc-neutral-700);
+  --row-background-highlighted: rgb(var(--dc-neutral-600-rgb) / 30%);
   --cell-background-hover: var(--dc-neutral-800);
   --cell-background-focus: var(--dc-neutral-800);
 

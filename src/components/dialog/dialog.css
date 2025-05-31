@@ -382,8 +382,8 @@
 .dark .dc-dialog,
 .dark.dc-dialog {
   --modal-background: var(--dc-neutral-800);
-  --modal-shadow: 0 0 0 1px var(--dc-border-color-2), var(--dc-shadow-xl);
-  --backdrop-color: rgb(var(--dc-neutral-900-rgb) / 65%);
+  --modal-shadow: 0 0 0 1px var(--dc-neutral-600), var(--dc-shadow-xl);
+  --backdrop-color: rgb(var(--dc-neutral-900-rgb) / 75%);
   --scroll-shadow-top: 0 1px 1px rgb(255 255 255 / 15%);
   --scroll-shadow-bottom: 0 -1px 1px rgb(255 255 255 / 15%);
 

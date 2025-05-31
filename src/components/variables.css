@@ -561,14 +561,14 @@
 
   /* Background Colors */
   --dc-background-primary: var(--dc-white);
-  --dc-background-color-1: rgb(var(--dc-neutral-950-rgb) / 4%);
-  --dc-background-color-2: rgb(var(--dc-neutral-950-rgb) / 8%);
-  --dc-background-color-3: rgb(var(--dc-neutral-950-rgb) / 16%);
+  --dc-background-color-1: rgb(var(--dc-neutral-950-rgb) / 3%);
+  --dc-background-color-2: rgb(var(--dc-neutral-950-rgb) / 6%);
+  --dc-background-color-3: rgb(var(--dc-neutral-950-rgb) / 12%);
 
   /* Border Colors */
-  --dc-border-color-1: rgb(var(--dc-neutral-950-rgb) / 8%);
-  --dc-border-color-2: rgb(var(--dc-neutral-950-rgb) / 16%);
-  --dc-border-color-3: rgb(var(--dc-neutral-950-rgb) / 24%);
+  --dc-border-color-1: var(--dc-neutral-200);
+  --dc-border-color-2: var(--dc-neutral-300);
+  --dc-border-color-3: var(--dc-neutral-400);
 
   /* Text Color */
   --dc-text-color-primary: var(--dc-neutral-900);
@@ -600,15 +600,15 @@
 
 .dark {
   /* Background Colors */
-  --dc-background-primary: var(--dc-neutral-900);
+  --dc-background-primary: var(--dc-neutral-800);
   --dc-background-color-1: rgb(var(--dc-neutral-50-rgb) / 4%);
   --dc-background-color-2: rgb(var(--dc-neutral-50-rgb) / 8%);
   --dc-background-color-3: rgb(var(--dc-neutral-50-rgb) / 16%);
 
   /* Border Colors */
-  --dc-border-color-1: rgb(var(--dc-neutral-50-rgb) / 8%);
-  --dc-border-color-2: rgb(var(--dc-neutral-50-rgb) / 16%);
-  --dc-border-color-3: rgb(var(--dc-neutral-50-rgb) / 24%);
+  --dc-border-color-1: var(--dc-neutral-700);
+  --dc-border-color-2: var(--dc-neutral-600);
+  --dc-border-color-3: var(--dc-neutral-500);
 
   /* Text Color */
   --dc-text-color-primary: var(--dc-neutral-50);
@@ -617,7 +617,7 @@
   --dc-text-color-info: var(--dc-blue-400);
   --dc-text-color-success: var(--dc-green-500);
   --dc-text-color-warning: var(--dc-orange-400);
-  --dc-text-color-error: var(--dc-red-500);
+  --dc-text-color-error: var(--dc-red-400);
 
   /* Inputs */
   --dc-focus-ring-color: var(--dc-blue-400);

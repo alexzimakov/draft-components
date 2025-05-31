@@ -626,9 +626,9 @@
 .dark .dc-button_tint_red {
   --color: var(--dc-white);
   --color-hover: var(--dc-white);
-  --background: var(--dc-red-600);
-  --background-hover: var(--dc-red-600);
-  --border-color: rgb(var(--dc-red-600-rgb) / 15%);
+  --background: var(--dc-red-500);
+  --background-hover: var(--dc-red-500);
+  --border-color: rgb(var(--dc-red-500-rgb) / 15%);
 }
 
 .dark.dc-button_tint_red.dc-button_style_tinted,
