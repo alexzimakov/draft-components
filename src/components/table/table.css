@@ -1,7 +1,7 @@
 .dc-table-container,
 .dc-table {
   --color: var(--dc-text-color-primary);
-  --border-color: var(--dc-neutral-200);
+  --border-color: var(--dc-neutral-300);
   --background: var(--dc-background-primary);
   --head-background: var(--dc-neutral-100);
   --row-background-stripped: var(--dc-neutral-100);
@@ -154,7 +154,7 @@
 .dark .dc-table-container,
 .dark.dc-table-container {
   --color: var(--dc-text-color-primary);
-  --border-color: var(--dc-neutral-700);
+  --border-color: var(--dc-neutral-600);
   --background: var(--dc-background-primary);
   --head-background: var(--dc-neutral-800);
   --row-background-stripped: var(--dc-neutral-800);
