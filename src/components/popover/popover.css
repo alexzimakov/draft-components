@@ -2,7 +2,7 @@
   --font: var(--dc-text-sm);
   --padding: 12px 16px;
   --color: var(--dc-text-color-primary);
-  --background: rgb(var(--dc-white) / 85%);
+  --background: rgb(var(--dc-white-rgb) / 85%);
   --background-filter: blur(20px) saturate(180%);
   --radius: 8px;
   --shadow: 0 0 0 1px rgb(var(--dc-black-rgb) / 7.5%), 0 -1px 0 0 rgb(var(--dc-black-rgb) / 5%), var(--dc-shadow-lg);
