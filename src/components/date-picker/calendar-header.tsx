@@ -1,11 +1,9 @@
 import { MONTHS_IN_YEAR, addMonths, setDateMonth, setDateYear } from './date-helpers.js';
 import { classNames } from '../../lib/react-helpers.js';
-import { type JSX, useEffect, useState } from 'react';
+import { type ComponentProps, type JSX, useEffect, useState } from 'react';
 import { IconButton } from '../button/index.js';
 import { Select } from '../select/index.js';
 import { TextInput } from '../text-input/index.js';
-import { ChevronLeftIcon } from '../hero-icons/24/outline/chevron-left-icon.js';
-import { ChevronRightIcon } from '../hero-icons/24/outline/chevron-right-icon.js';
 
 export type CalendarHeaderProps = {
   focusDay: Date;
@@ -111,4 +109,38 @@ function formatYear(year: number | string): string {
 
 function parseYear(year: string): number {
   return Number(year);
+}
+
+function ChevronLeftIcon(props: ComponentProps<'svg'>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={24}
+      height={24}
+      stroke="currentColor"
+      strokeWidth={1.5}
+      fill="none"
+      {...props}
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+    </svg>
+  );
+}
+
+function ChevronRightIcon(props: ComponentProps<'svg'>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={24}
+      height={24}
+      stroke="currentColor"
+      strokeWidth={1.5}
+      fill="none"
+      {...props}
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+    </svg>
+  );
 }

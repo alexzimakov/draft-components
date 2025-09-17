@@ -1,6 +1,5 @@
 import { type ComponentProps, type MouseEventHandler, type ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
-import { XMarkIcon } from '../hero-icons/24/outline/x-mark-icon.js';
 
 type ToastHTMLProps = ComponentProps<'section'>;
 
@@ -47,5 +46,22 @@ export function Toast({
       </div>
       {actions && <div className="dc-toast__actions">{actions}</div>}
     </section>
+  );
+}
+
+function XMarkIcon(props: ComponentProps<'svg'>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={24}
+      height={24}
+      stroke="currentColor"
+      strokeWidth={1.5}
+      fill="none"
+      {...props}
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+    </svg>
   );
 }
