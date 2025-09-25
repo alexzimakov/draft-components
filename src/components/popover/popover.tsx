@@ -1,5 +1,6 @@
 import { classNames, tryToFocusElement } from '../../lib/react-helpers.js';
 import { observeElementMove } from '../../lib/observe-element-move.js';
+import { observeElementChange } from '../../lib/observe-element-change.js';
 import { calcElementPosition, type ElementPlacement } from '../../lib/calc-element-position.js';
 import { deleteKeys } from '../../lib/helpers.js';
 import { useRefCallback } from '../../hooks/use-ref-callback.js';
@@ -118,7 +119,13 @@ export function Popover({
       };
 
       positionPopover();
-      return observeElementMove(anchor, positionPopover);
+      const stopObserveAnchorMove = observeElementMove(anchor, positionPopover);
+      const stopObservePopoverChange = observeElementChange(popover, positionPopover);
+
+      return () => {
+        stopObserveAnchorMove();
+        stopObservePopoverChange();
+      };
     } else {
       popover.dataset.animation = 'leave';
       popover.addEventListener('animationend', unmount);
