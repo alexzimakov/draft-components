@@ -4,7 +4,7 @@ import { useTranslations } from './use-translations.js';
 import { Popover, type PopoverRenderAnchor } from '../popover/index.js';
 import { FilterToken } from './filter-token.js';
 import { FilterOperatorSelect } from './filter-operator-select.js';
-import { FilterValueList } from './filter-value-list.js';
+import { CheckboxGroup } from './checkbox-group.js';
 import { Button } from '../button/index.js';
 
 export type StringSetFilterItemProps = {
@@ -25,17 +25,18 @@ export function StringSetFilterItem({
   onChange,
 }: StringSetFilterItemProps) {
   const translations = useTranslations();
-  const [filterOperator, setFilterOperator] = useState(filter.operator);
-  const [filterValue, setFilterValue] = useState(filter.value);
+  const [operator, setOperator] = useState(filter.operator);
+  const [value, setValue] = useState(filter.value);
   const {
     label,
-    values,
+    options,
     operators,
     operatorSelectAccessibleName,
     valueFormatter: formatValue = defaultValueFormatter,
     valuesFormatter: formatValues = defaultValuesFormatter,
     operatorFormatter: formatOperator = defaultOperatorFormatter,
   } = filter.config;
+  const isAnyOptionSelected = value.length > 0;
 
   const cancelEdit = () => {
     onEditCancel(filter);
@@ -45,8 +46,8 @@ export function StringSetFilterItem({
     if (isEditing) {
       cancelEdit();
     } else {
-      setFilterOperator(filter.operator);
-      setFilterValue(filter.value);
+      setOperator(filter.operator);
+      setValue(filter.value);
       onEditStart(filter);
     }
   };
@@ -58,16 +59,17 @@ export function StringSetFilterItem({
   const onSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    if (filterValue.length < 1) {
+
+    if (!isAnyOptionSelected) {
       return;
     }
 
     let changedFilter = filter;
-    if (filterOperator !== filter.operator) {
-      changedFilter = changedFilter.setOperator(filterOperator);
+    if (operator !== filter.operator) {
+      changedFilter = changedFilter.setOperator(operator);
     }
-    if (filterValue !== filter.value) {
-      changedFilter = changedFilter.setValue(filterValue);
+    if (value !== filter.value) {
+      changedFilter = changedFilter.setValue(value);
     }
     onChange(changedFilter);
   };
@@ -100,22 +102,22 @@ export function StringSetFilterItem({
           accessibleName={operatorSelectAccessibleName}
           label={label}
           values={operators}
-          value={filterOperator}
-          onChange={setFilterOperator}
+          value={operator}
+          onChange={setOperator}
           formatValue={formatOperator}
         />
-        <FilterValueList
+        <CheckboxGroup
           className="dc-filter-form__value-list"
-          values={values}
-          checkedValues={filterValue}
-          onChangeCheckedValues={setFilterValue}
+          options={options}
+          values={value}
+          onChange={setValue}
           formatValue={formatValue}
         />
         <div className="dc-filter-form__buttons">
           <Button onClick={cancelEdit}>
             {translations.cancelButton}
           </Button>
-          <Button type="submit" tint="blue">
+          <Button type="submit" tint="blue" disabled={!isAnyOptionSelected}>
             {translations.applyButton}
           </Button>
         </div>

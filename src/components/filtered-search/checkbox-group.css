@@ -1,0 +1,16 @@
+.dc-filter-checkbox-group {
+  box-sizing: border-box;
+  max-height: 192px;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  list-style: none;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+.dc-filter-checkbox-group > li {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  scroll-snap-align: start;
+}

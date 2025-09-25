@@ -30,11 +30,7 @@ const statusFilterConfig = {
   type: StringSetFilter.Type,
   field: 'status',
   label: 'Status',
-  values: [
-    'passed',
-    'failed',
-    'ignored',
-  ],
+  options: ['passed', 'failed', 'ignored'],
   operators: [
     StringSetFilter.Operators.in,
     StringSetFilter.Operators.notIn,
@@ -417,7 +413,7 @@ it('clear all filters', async () => {
       operator: StringFilter.Operators.equal,
     }),
     new StringSetFilter(statusFilterConfig, {
-      value: [statusFilterConfig.values[0]],
+      value: [statusFilterConfig.options[0]],
       operator: StringSetFilter.Operators.in,
     }),
   ];

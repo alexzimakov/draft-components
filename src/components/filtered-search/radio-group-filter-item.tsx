@@ -1,43 +1,47 @@
-import { StringFilter, type StringFilterOperator } from './model/string-filter.js';
+import { RadioGroupFilter, type RadioGroupFilterOperator } from './model/radio-group-filter.js';
 import { type FormEventHandler, useState } from 'react';
 import { useTranslations } from './use-translations.js';
 import { Popover, type PopoverRenderAnchor } from '../popover/index.js';
 import { FilterToken } from './filter-token.js';
 import { FilterOperatorSelect } from './filter-operator-select.js';
-import { StringFilterInput } from './string-filter-input.js';
+import { RadioGroup } from './radio-group.js';
 import { Button } from '../button/index.js';
 
-export type StringFilterItemProps = {
-  filter: StringFilter;
+export type RadioGroupFilterItemProps = {
+  filter: RadioGroupFilter;
   isEditing: boolean;
-  onEditStart: (filter: StringFilter) => void;
-  onEditCancel: (filter: StringFilter) => void;
-  onRemove: (filter: StringFilter) => void;
-  onChange: (filter: StringFilter) => void;
+  onEditStart: (filter: RadioGroupFilter) => void;
+  onEditCancel: (filter: RadioGroupFilter) => void;
+  onRemove: (filter: RadioGroupFilter) => void;
+  onChange: (filter: RadioGroupFilter) => void;
 };
 
-export function StringFilterItem({
+export function RadioGroupFilterItem({
   filter,
   isEditing,
   onEditStart,
   onEditCancel,
   onRemove,
   onChange,
-}: StringFilterItemProps) {
+}: RadioGroupFilterItemProps) {
   const translations = useTranslations();
   const [operator, setOperator] = useState(filter.operator);
   const [value, setValue] = useState(filter.value);
-  const [error, setError] = useState('');
   const {
     label,
+    options,
     operators,
-    valueInputAccessibleName,
-    valueInputPlaceholder,
     operatorSelectAccessibleName,
-    valueValidator,
+    valueFormatter: formatValue = defaultValueFormatter,
     operatorFormatter: formatOperator = defaultOperatorFormatter,
   } = filter.config;
-  const isValueEmpty = !value;
+  const isAnyOptionSelected = options.some((option) => {
+    if (typeof option === 'string') {
+      return option === value;
+    } else {
+      return option.value === value;
+    }
+  });
 
   const cancelEdit = () => {
     onEditCancel(filter);
@@ -60,25 +64,19 @@ export function StringFilterItem({
   const onSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    if (isValueEmpty) {
+
+    if (!isAnyOptionSelected) {
       return;
     }
 
-    if (typeof valueValidator === 'function') {
-      const result = valueValidator(value);
-      if (!result.valid) {
-        return setError(result.error);
-      }
-      setError('');
-    }
-
+    let changedFilter = filter;
     if (operator !== filter.operator) {
-      filter = filter.setOperator(operator);
+      changedFilter = changedFilter.setOperator(operator);
     }
     if (value !== filter.value) {
-      filter = filter.setValue(value);
+      changedFilter = changedFilter.setValue(value);
     }
-    onChange(filter);
+    onChange(changedFilter);
   };
 
   const renderAnchor: PopoverRenderAnchor = ({ ref }) => (
@@ -89,8 +87,8 @@ export function StringFilterItem({
       onClickCloseButton={onClickCloseButton}
     >
       {label}
-      {filter.value
-        ? <> <span>{formatOperator(filter.operator)}</span> <b>{filter.value}</b></>
+      {filter.value.length > 0
+        ? <> <span>{formatOperator(filter.operator)}</span> <b>{formatValue(filter.value)}</b></>
         : null}
     </FilterToken>
   );
@@ -103,10 +101,7 @@ export function StringFilterItem({
       onClose={cancelEdit}
       renderAnchor={renderAnchor}
     >
-      <form
-        className="dc-filter-form"
-        onSubmit={onSubmit}
-      >
+      <form className="dc-filter-form" onSubmit={onSubmit}>
         <FilterOperatorSelect
           className="dc-filter-form__operator"
           accessibleName={operatorSelectAccessibleName}
@@ -116,18 +111,18 @@ export function StringFilterItem({
           onChange={setOperator}
           formatValue={formatOperator}
         />
-        <StringFilterInput
-          placeholder={valueInputPlaceholder}
-          accessibleName={valueInputAccessibleName}
-          error={error}
+        <RadioGroup
+          className="dc-filter-form__value-list"
+          options={options}
           value={value}
-          onChangeValue={setValue}
+          onChange={setValue}
+          formatValue={formatValue}
         />
         <div className="dc-filter-form__buttons">
           <Button onClick={cancelEdit}>
             {translations.cancelButton}
           </Button>
-          <Button type="submit" tint="blue" disabled={isValueEmpty}>
+          <Button type="submit" tint="blue" disabled={!isAnyOptionSelected}>
             {translations.applyButton}
           </Button>
         </div>
@@ -135,14 +130,17 @@ export function StringFilterItem({
     </Popover>
   );
 }
-StringFilterItem.defaultOperatorFormatter = defaultOperatorFormatter;
+RadioGroupFilterItem.defaultValueFormatter = defaultValueFormatter;
+RadioGroupFilterItem.defaultOperatorFormatter = defaultOperatorFormatter;
 
-function defaultOperatorFormatter(operator: StringFilterOperator) {
-  const messages: Record<StringFilterOperator, string> = {
-    [StringFilter.Operators.equal]: 'is',
-    [StringFilter.Operators.notEqual]: 'is not',
-    [StringFilter.Operators.contain]: 'contains',
-    [StringFilter.Operators.notContain]: 'doesn\'t contain',
+function defaultValueFormatter(value: string) {
+  return value[0].toUpperCase() + value.slice(1);
+}
+
+function defaultOperatorFormatter(operator: RadioGroupFilterOperator) {
+  const messages: Record<RadioGroupFilterOperator, string> = {
+    [RadioGroupFilter.Operators.equal]: 'is',
+    [RadioGroupFilter.Operators.notEqual]: 'is not',
   };
   return messages[operator];
 }

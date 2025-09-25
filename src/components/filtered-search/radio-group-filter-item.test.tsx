@@ -1,26 +1,26 @@
-import { describe, expect, it, vi } from 'vitest';
-import { StringSetFilter } from './model/string-set-filter.js';
+import { expect, it, vi } from 'vitest';
 import { TranslationsProvider } from './use-translations.js';
-import { StringSetFilterItem } from './string-set-filter-item.js';
+import { RadioGroupFilter } from './model/radio-group-filter.js';
+import { RadioGroupFilterItem } from './radio-group-filter-item.js';
 import { render, screen, userEvent, within } from '../../test/test-utils.js';
 
 const applyButtonLabel = 'Apply';
 const cancelButtonLabel = 'Cancel';
 const removeFilterButtonAccessibleName = 'Remove filter';
 const config = {
-  type: StringSetFilter.Type,
+  type: RadioGroupFilter.Type,
   field: 'status',
   label: 'Status',
-  options: ['passed', 'failed', 'ignored'],
+  options: ['todo', 'in progress', 'done', 'archived'],
   operators: [
-    StringSetFilter.Operators.in,
-    StringSetFilter.Operators.notIn,
+    RadioGroupFilter.Operators.equal,
+    RadioGroupFilter.Operators.notEqual,
   ],
   operatorSelectAccessibleName: 'Status filter operator',
 };
-const filter = new StringSetFilter(config, {
-  value: ['passed'],
-  operator: StringSetFilter.Operators.in,
+const filter = new RadioGroupFilter(config, {
+  value: 'todo',
+  operator: RadioGroupFilter.Operators.equal,
 });
 
 it('renders without errors', () => {
@@ -30,7 +30,7 @@ it('renders without errors', () => {
       cancelButton={cancelButtonLabel}
       removeFilterButton={removeFilterButtonAccessibleName}
     >
-      <StringSetFilterItem
+      <RadioGroupFilterItem
         filter={filter}
         isEditing={true}
         onEditStart={vi.fn()}
@@ -52,7 +52,7 @@ it('should open and close the editor when click on the filter', async () => {
       cancelButton={cancelButtonLabel}
       removeFilterButton={removeFilterButtonAccessibleName}
     >
-      <StringSetFilterItem
+      <RadioGroupFilterItem
         filter={filter}
         isEditing={isEditing}
         onEditStart={onEditStartMock}
@@ -85,7 +85,7 @@ it('should remove filter after click on the close button', async () => {
       cancelButton={cancelButtonLabel}
       removeFilterButton={removeFilterButtonAccessibleName}
     >
-      <StringSetFilterItem
+      <RadioGroupFilterItem
         filter={filter}
         isEditing={false}
         onEditStart={vi.fn()}
@@ -106,14 +106,14 @@ it('should remove filter after click on the close button', async () => {
 it('edit filter operator', async () => {
   const user = userEvent.setup();
   const onChangeMock = vi.fn();
-  const expectedFilter = filter.setOperator(StringSetFilter.Operators.notIn);
+  const expectedFilter = filter.setOperator(RadioGroupFilter.Operators.notEqual);
   render(
     <TranslationsProvider
       applyButton={applyButtonLabel}
       cancelButton={cancelButtonLabel}
       removeFilterButton={removeFilterButtonAccessibleName}
     >
-      <StringSetFilterItem
+      <RadioGroupFilterItem
         filter={filter}
         isEditing={true}
         onEditStart={vi.fn()}
@@ -138,15 +138,15 @@ it('edit filter operator', async () => {
 it('edit filter value', async () => {
   const user = userEvent.setup();
   const onChangeMock = vi.fn();
-  const [passed, failed, ignored] = config.options;
-  const expectedFilter = filter.setValue([failed, ignored]);
+  const [todo, inProgress, done] = config.options;
+  const expectedFilter = filter.setValue(done);
   render(
     <TranslationsProvider
       applyButton={applyButtonLabel}
       cancelButton={cancelButtonLabel}
       removeFilterButton={removeFilterButtonAccessibleName}
     >
-      <StringSetFilterItem
+      <RadioGroupFilterItem
         filter={filter}
         isEditing={true}
         onEditStart={vi.fn()}
@@ -157,66 +157,16 @@ it('edit filter value', async () => {
     </TranslationsProvider>,
   );
 
-  const toggleCheckbox = (value: string) => {
-    const label = StringSetFilterItem.defaultValueFormatter(value);
+  const selectOption = (value: string) => {
+    const label = RadioGroupFilterItem.defaultValueFormatter(value);
     return user.click(screen.getByLabelText(label));
   };
   const applyButton = screen.getByText(applyButtonLabel);
 
-  await toggleCheckbox(passed);
-  await toggleCheckbox(failed);
-  await toggleCheckbox(ignored);
+  await selectOption(todo);
+  await selectOption(inProgress);
+  await selectOption(done);
   await user.click(applyButton);
   expect(onChangeMock).toHaveBeenCalledTimes(1);
   expect(onChangeMock).toHaveBeenCalledWith(expectedFilter);
-});
-
-describe('defaultValuesFormatter()', () => {
-  const defaultValueFormatter = StringSetFilterItem.defaultValueFormatter;
-  const defaultValuesFormatter = StringSetFilterItem.defaultValuesFormatter;
-
-  it('empty array', () => {
-    const values: string[] = [];
-    const expected = '';
-    expect(defaultValuesFormatter(values)).toBe(expected);
-  });
-
-  it('1 item', () => {
-    const values = ['active'];
-    const expected = defaultValueFormatter(values[0]);
-    expect(defaultValuesFormatter(values)).toBe(expected);
-  });
-
-  it('2 items', () => {
-    const values = ['active', 'deleted'];
-    const expected = (
-      defaultValueFormatter(values[0])
-      + ' or '
-      + defaultValueFormatter(values[1])
-    );
-    expect(defaultValuesFormatter(values)).toBe(expected);
-  });
-
-  it('3 items', () => {
-    const values = ['active', 'deleted', 'paused'];
-    const expected = (
-      defaultValueFormatter(values[0])
-      + ', '
-      + defaultValueFormatter(values[1])
-      + ', or '
-      + defaultValueFormatter(values[2])
-    );
-    expect(defaultValuesFormatter(values)).toBe(expected);
-  });
-
-  it('4 or more items', () => {
-    const values = ['active', 'deleted', 'paused', 'errors'];
-    const expected = (
-      defaultValueFormatter(values[0])
-      + ', '
-      + defaultValueFormatter(values[1])
-      + ', and 2 more'
-    );
-    expect(defaultValuesFormatter(values)).toBe(expected);
-  });
 });

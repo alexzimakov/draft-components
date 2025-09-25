@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { AbstractFilter } from './abstract-filter.js';
 
 const TYPE = 'STRING_SET' as const;
@@ -9,15 +10,21 @@ const OPERATORS = {
 export type StringSetFilterType = typeof TYPE;
 export type StringSetFilterOperator = typeof OPERATORS[keyof typeof OPERATORS];
 
+export type StringSetFilterOption = string | {
+  value: string;
+  label: ReactNode;
+  caption?: ReactNode;
+};
+
 export type StringSetFilterConfig = {
   type: StringSetFilterType;
   field: string;
   label: string;
-  values: string[];
-  valueFormatter?: (value: string) => string;
-  valuesFormatter?: (values: string[]) => string;
-  operatorSelectAccessibleName?: string;
+  options: StringSetFilterOption[];
   operators: StringSetFilterOperator[];
+  operatorSelectAccessibleName?: string;
+  valueFormatter?: (value: string) => ReactNode;
+  valuesFormatter?: (values: string[]) => ReactNode;
   operatorFormatter?: (operator: StringSetFilterOperator) => string;
 };
 

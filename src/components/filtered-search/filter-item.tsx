@@ -1,9 +1,11 @@
 import { type Filter } from './types.js';
+import { exhaustiveCheck } from '../../lib/helpers.js';
 import { StringFilter } from './model/string-filter.js';
 import { StringSetFilter } from './model/string-set-filter.js';
-import { exhaustiveCheck } from '../../lib/helpers.js';
 import { StringFilterItem } from './string-filter-item.js';
 import { StringSetFilterItem } from './string-set-filter-item.js';
+import { RadioGroupFilter } from './model/radio-group-filter.js';
+import { RadioGroupFilterItem } from './radio-group-filter-item.js';
 
 export type FilterItemProps = {
   filter: Filter;
@@ -38,6 +40,17 @@ export function FilterItem({
     case StringSetFilter.Type:
       return (
         <StringSetFilterItem
+          filter={filter}
+          isEditing={isEditing}
+          onEditStart={onEditStart}
+          onEditCancel={onEditCancel}
+          onRemove={onRemove}
+          onChange={onChange}
+        />
+      );
+    case RadioGroupFilter.Type:
+      return (
+        <RadioGroupFilterItem
           filter={filter}
           isEditing={isEditing}
           onEditStart={onEditStart}

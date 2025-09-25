@@ -1,10 +1,13 @@
-import { StringFilter, type StringFilterConfig } from './model/string-filter.js';
-import { StringSetFilter, type StringSetFilterConfig } from './model/string-set-filter.js';
+import type { RadioGroupFilter, RadioGroupFilterConfig } from './model/radio-group-filter.js';
+import type { StringFilter, StringFilterConfig } from './model/string-filter.js';
+import type { StringSetFilter, StringSetFilterConfig } from './model/string-set-filter.js';
 
 export type FilterConfig =
   | StringFilterConfig
-  | StringSetFilterConfig;
+  | StringSetFilterConfig
+  | RadioGroupFilterConfig;
 
 export type Filter =
   | StringFilter
-  | StringSetFilter;
+  | StringSetFilter
+  | RadioGroupFilter;

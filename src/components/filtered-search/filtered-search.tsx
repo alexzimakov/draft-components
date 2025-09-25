@@ -12,6 +12,7 @@ import {
 import { type Filter, type FilterConfig } from './types.js';
 import { StringFilter } from './model/string-filter.js';
 import { StringSetFilter } from './model/string-set-filter.js';
+import { RadioGroupFilter } from './model/radio-group-filter.js';
 import { TranslationsProvider } from './use-translations.js';
 import { useComboboxIds } from './use-combobox-ids.js';
 import { KeyboardKey } from '../../lib/keyboard-key.js';
@@ -354,6 +355,11 @@ function createFilter(config: FilterConfig): Filter {
       return new StringSetFilter(config, {
         value: [],
         operator: config.operators[0] || StringSetFilter.Operators.in,
+      });
+    case RadioGroupFilter.Type:
+      return new RadioGroupFilter(config, {
+        value: '',
+        operator: config.operators[0] || RadioGroupFilter.Operators.equal,
       });
     default:
       exhaustiveCheck(filterType, `Unable to create a filter with ${filterType} type.`);

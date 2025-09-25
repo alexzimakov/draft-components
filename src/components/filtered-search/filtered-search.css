@@ -1,7 +1,8 @@
 @import url("filter-token.css");
 @import url("filter-operator-select.css");
 @import url("string-filter-input.css");
-@import url("filter-value-list.css");
+@import url("checkbox-group.css");
+@import url("radio-group.css");
 @import url("filter-item.css");
 
 .dc-filtered-search {
