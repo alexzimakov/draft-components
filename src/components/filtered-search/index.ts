@@ -15,3 +15,9 @@ export {
   type StringSetFilterConfig,
   type StringSetFilterOperator,
 } from './model/string-set-filter.js';
+export {
+  RadioGroupFilter,
+  type RadioGroupFilterState,
+  type RadioGroupFilterConfig,
+  type RadioGroupFilterOperator,
+} from './model/radio-group-filter.js';
