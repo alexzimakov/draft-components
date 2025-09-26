@@ -1,6 +1,7 @@
-import { expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { StringFilter } from './model/string-filter.js';
 import { StringSetFilter } from './model/string-set-filter.js';
+import { RadioGroupFilter } from './model/radio-group-filter.js';
 import { FilteredSearch } from './filtered-search.js';
 import { fireEvent, render, screen, userEvent, within } from '../../test/test-utils.js';
 
@@ -38,10 +39,27 @@ const statusFilterConfig = {
   operatorSelectAccessibleName: 'Status filter operator',
 };
 
+const priorityFilterConfig = {
+  type: RadioGroupFilter.Type,
+  field: 'priority',
+  label: 'Priority',
+  options: [
+    { value: 'low', label: 'Low' },
+    { value: 'medium', label: 'Medium' },
+    { value: 'high', label: 'High' },
+  ],
+  operators: [
+    RadioGroupFilter.Operators.equal,
+    RadioGroupFilter.Operators.notEqual,
+  ],
+  operatorSelectAccessibleName: 'Priority filter operator',
+};
+
 const filtersConfig = [
   idFilterConfig,
   nameFilterConfig,
   statusFilterConfig,
+  priorityFilterConfig,
 ];
 
 it('renders without errors', async () => {
@@ -112,7 +130,7 @@ it('focus textbox when click on container', async () => {
   expect(onMouseDownMock).toHaveBeenCalledTimes(1);
 });
 
-it('select filter using keyboard', async () => {
+it('navigate through options using keyboard', async () => {
   const user = userEvent.setup();
   render(
     <FilteredSearch
@@ -338,35 +356,87 @@ it('should remove empty filter', async () => {
   expect(onChangeFiltersMock).toHaveBeenCalledWith([]);
 });
 
-it('apply new filter', async () => {
-  const user = userEvent.setup();
-  const onChangeFiltersMock = vi.fn();
-  const newFilter = new StringFilter(idFilterConfig, {
-    value: '123',
-    operator: StringFilter.Operators.equal,
+describe('apply new filter', () => {
+  it('string filter', async () => {
+    const user = userEvent.setup();
+    const onChangeFiltersMock = vi.fn();
+    const expectedValue = '123';
+    const newFilter = new StringFilter(idFilterConfig, {
+      value: expectedValue,
+      operator: StringFilter.Operators.equal,
+    });
+    const applyButtonLabel = 'Apply';
+    render(
+      <FilteredSearch
+        applyButtonLabel={applyButtonLabel}
+        filtersConfig={filtersConfig}
+        filters={[]}
+        onChangeFilters={onChangeFiltersMock}
+      />,
+    );
+
+    const comboBox = screen.getByRole('combobox');
+    await user.click(comboBox);
+    await user.click(screen.getByText(idFilterConfig.label));
+    await user.type(screen.getByLabelText(idFilterConfig.valueInputAccessibleName), expectedValue);
+    await user.click(screen.getByText(applyButtonLabel));
+    expect(onChangeFiltersMock).toHaveBeenCalledTimes(1);
+    expect(onChangeFiltersMock).toHaveBeenNthCalledWith(1, [newFilter]);
   });
-  const applyButtonLabel = 'Apply';
-  render(
-    <FilteredSearch
-      applyButtonLabel={applyButtonLabel}
-      filtersConfig={filtersConfig}
-      filters={[]}
-      onChangeFilters={onChangeFiltersMock}
-    />,
-  );
 
-  const comboBox = screen.getByRole('combobox');
-  await user.click(comboBox);
-  await user.type(comboBox, '{ArrowDown}');
-  await user.type(comboBox, '{Enter}');
+  it('string set filter', async () => {
+    const user = userEvent.setup();
+    const onChangeFiltersMock = vi.fn();
+    const firstOption = statusFilterConfig.options[0];
+    const newFilter = new StringSetFilter(statusFilterConfig, {
+      value: [firstOption],
+      operator: StringSetFilter.Operators.in,
+    });
+    const applyButtonLabel = 'Apply';
+    render(
+      <FilteredSearch
+        applyButtonLabel={applyButtonLabel}
+        filtersConfig={filtersConfig}
+        filters={[]}
+        onChangeFilters={onChangeFiltersMock}
+      />,
+    );
 
-  const valueInput = screen.getByLabelText(idFilterConfig.valueInputAccessibleName);
-  const applyButton = screen.getByText(applyButtonLabel);
+    const comboBox = screen.getByRole('combobox');
+    await user.click(comboBox);
+    await user.click(screen.getByText(statusFilterConfig.label));
+    await user.click(screen.getByDisplayValue(firstOption));
+    await user.click(screen.getByText(applyButtonLabel));
+    expect(onChangeFiltersMock).toHaveBeenCalledTimes(1);
+    expect(onChangeFiltersMock).toHaveBeenNthCalledWith(1, [newFilter]);
+  });
 
-  await user.type(valueInput, newFilter.value);
-  await user.click(applyButton);
-  expect(onChangeFiltersMock).toHaveBeenCalledTimes(1);
-  expect(onChangeFiltersMock).toHaveBeenNthCalledWith(1, [newFilter]);
+  it('radio group filter', async () => {
+    const user = userEvent.setup();
+    const onChangeFiltersMock = vi.fn();
+    const firstOption = priorityFilterConfig.options[0];
+    const newFilter = new RadioGroupFilter(priorityFilterConfig, {
+      value: firstOption.value,
+      operator: RadioGroupFilter.Operators.equal,
+    });
+    const applyButtonLabel = 'Apply';
+    render(
+      <FilteredSearch
+        applyButtonLabel={applyButtonLabel}
+        filtersConfig={filtersConfig}
+        filters={[]}
+        onChangeFilters={onChangeFiltersMock}
+      />,
+    );
+
+    const comboBox = screen.getByRole('combobox');
+    await user.click(comboBox);
+    await user.click(screen.getByText(priorityFilterConfig.label));
+    await user.click(screen.getByDisplayValue(firstOption.value));
+    await user.click(screen.getByText(applyButtonLabel));
+    expect(onChangeFiltersMock).toHaveBeenCalledTimes(1);
+    expect(onChangeFiltersMock).toHaveBeenNthCalledWith(1, [newFilter]);
+  });
 });
 
 it('edit filters', async () => {

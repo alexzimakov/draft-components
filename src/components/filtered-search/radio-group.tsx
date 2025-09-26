@@ -1,4 +1,4 @@
-import { type ChangeEventHandler, type ReactNode, useId } from 'react';
+import { type ChangeEventHandler, type ReactNode, useEffect, useId, useRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { SelectionControl } from '../selection-control/index.js';
 import { Radio } from '../radio/index.js';
@@ -25,6 +25,7 @@ export function RadioGroup({
   formatValue,
 }: RadioGroupProps) {
   const id = useId();
+  const ref = useRef<HTMLUListElement>(null);
   const name = `radio-group-${id}`;
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const radioButtonElement = event.currentTarget;
@@ -35,8 +36,19 @@ export function RadioGroup({
     }
   };
 
+  useEffect(() => {
+    const container = ref.current;
+    if (container) {
+      if (container.scrollHeight > container.clientHeight) {
+        container.classList.add('dc-filter-radio-group_has_scroll');
+      } else {
+        container.classList.remove('dc-filter-radio-group_has_scroll');
+      }
+    }
+  }, []);
+
   return (
-    <ul className={classNames('dc-filter-radio-group', className)}>
+    <ul ref={ref} className={classNames('dc-filter-radio-group', className)}>
       {options.map((option) => {
         let value: string;
         let label: ReactNode;

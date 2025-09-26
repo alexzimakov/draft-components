@@ -77,6 +77,10 @@ export class RadioGroupFilter extends AbstractFilter {
   }
 
   isEmpty() {
-    return !this.config.options.includes(this.value);
+    const isAnyOptionSelected = this.config.options.some((option) => {
+      const value = typeof option === 'string' ? option : option.value;
+      return value === this.value;
+    });
+    return !isAnyOptionSelected;
   }
 }

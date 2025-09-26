@@ -1,4 +1,4 @@
-import { useId, useRef, type ChangeEventHandler, type ReactNode } from 'react';
+import { useEffect, useId, useRef, type ChangeEventHandler, type ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { SelectionControl } from '../selection-control/index.js';
 import { Checkbox } from '../checkbox/index.js';
@@ -37,6 +37,17 @@ export function CheckboxGroup({
       onChange(newSelectedValues);
     }
   };
+
+  useEffect(() => {
+    const containerElement = ref.current;
+    if (containerElement) {
+      if (containerElement.scrollHeight > containerElement.clientHeight) {
+        containerElement.classList.add('dc-filter-checkbox-group_has_scroll');
+      } else {
+        containerElement.classList.remove('dc-filter-checkbox-group_has_scroll');
+      }
+    }
+  }, []);
 
   return (
     <ul ref={ref} className={classNames('dc-filter-checkbox-group', className)}>
