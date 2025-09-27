@@ -10,6 +10,7 @@ import {
   useState,
 } from 'react';
 import { type Filter, type FilterConfig } from './types.js';
+import { FilterItem } from './filter-item.js';
 import { StringFilter } from './model/string-filter.js';
 import { StringSetFilter } from './model/string-set-filter.js';
 import { RadioGroupFilter } from './model/radio-group-filter.js';
@@ -19,7 +20,7 @@ import { KeyboardKey } from '../../lib/keyboard-key.js';
 import { classNames, tryToFocusElement } from '../../lib/react-helpers.js';
 import { exhaustiveCheck } from '../../lib/helpers.js';
 import { IconButton } from '../button/index.js';
-import { FilterItem } from './filter-item.js';
+import { Spinner } from '../spinner/index.js';
 
 type FilteredSearchHTMLProps = ComponentProps<'div'>;
 
@@ -29,6 +30,7 @@ type FilteredSearchBaseProps = {
   cancelButtonLabel?: string;
   clearButtonAccessibleName?: string;
   removeFilterButtonAccessibleName?: string;
+  loading?: boolean;
   filtersConfig: FilterConfig[];
   filters: Filter[];
   onChangeFilters: (filters: Filter[]) => void;
@@ -46,6 +48,7 @@ export function FilteredSearch({
   cancelButtonLabel = 'Cancel',
   clearButtonAccessibleName = 'Clear',
   removeFilterButtonAccessibleName = 'Remove filter',
+  loading,
   filtersConfig,
   onChangeFilters,
   onMouseDown,
@@ -295,11 +298,20 @@ export function FilteredSearch({
         onMouseDown={onContainerPressed}
         {...props}
       >
-        <MagnifyingGlassIcon
-          className="dc-filtered-search__icon"
-          width={18}
-          height={18}
-        />
+        {loading
+          ? (
+              <Spinner
+                className="dc-filtered-search__spinner"
+                size={18}
+              />
+            )
+          : (
+              <MagnifyingGlassIcon
+                className="dc-filtered-search__icon"
+                width={18}
+                height={18}
+              />
+            )}
         <div className="dc-filtered-search__filters">
           {renderedFilters}
           <input
