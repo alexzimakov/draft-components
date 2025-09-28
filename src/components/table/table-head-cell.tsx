@@ -1,5 +1,4 @@
 import { type ComponentProps, type ReactNode } from 'react';
-import { classNames } from '../../lib/react-helpers.js';
 
 export type TableHeadCellSort = 'none' | 'ascending' | 'descending';
 
@@ -18,7 +17,7 @@ export type TableHeadCellProps =
 export function TableHeadCell({
   isSortable = false,
   sort = 'none',
-  className,
+  'aria-sort': ariaSort = sort,
   children,
   onChangeSort,
   ...props
@@ -66,12 +65,8 @@ export function TableHeadCell({
   return (
     <th
       {...props}
-      className={classNames(className, {
-        'dc-table-cell': true,
-        'dc-table-cell_head': true,
-        'dc-table-cell_sortable': isSortable,
-      })}
-      aria-sort={isSortable ? sort : props['aria-sort']}
+      aria-sort={ariaSort}
+      data-sortable={isSortable}
     >
       {children}
     </th>

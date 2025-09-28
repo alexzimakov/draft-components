@@ -3,6 +3,7 @@ import { classNames } from '../../lib/react-helpers.js';
 import { TableContainer } from './table-container.js';
 import { TableHead } from './table-head.js';
 import { TableBody } from './table-body.js';
+import { TableFooter } from './table-footer.js';
 import { TableRow } from './table-row.js';
 import { TableHeadCell } from './table-head-cell.js';
 import { TableCell } from './table-cell.js';
@@ -15,6 +16,8 @@ type TableBaseProps = {
   cellSize?: TableCellSize;
   isStriped?: boolean;
   isBordered?: boolean;
+  stickyHeader?: boolean;
+  stickyFooter?: boolean;
   shouldHighlightHoveredRow?: boolean;
 };
 
@@ -26,6 +29,8 @@ export function Table({
   cellSize = 'md',
   isStriped = false,
   isBordered = false,
+  stickyHeader = false,
+  stickyFooter = false,
   shouldHighlightHoveredRow = false,
   className,
   children,
@@ -38,6 +43,8 @@ export function Table({
         [`dc-table_cell_${cellSize}`]: cellSize,
         'dc-table_striped': isStriped,
         'dc-table_bordered': isBordered,
+        'dc-table_sticky_header': stickyHeader,
+        'dc-table_sticky_footer': stickyFooter,
         'dc-table_highlight_row': shouldHighlightHoveredRow,
       })}
     >
@@ -49,6 +56,7 @@ export function Table({
 Table.Container = TableContainer;
 Table.Head = TableHead;
 Table.Body = TableBody;
+Table.Footer = TableFooter;
 Table.Row = TableRow;
 Table.HeadCell = TableHeadCell;
 Table.Cell = TableCell;

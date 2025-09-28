@@ -1,12 +1,7 @@
 import { type Meta, type StoryFn } from '@storybook/react';
-import { TableContainer } from './table-container.js';
+import { type TableHeadCellSort } from './table-head-cell.js';
 import { Table } from './table.js';
-import { TableHead } from './table-head.js';
-import { TableBody } from './table-body.js';
-import { TableRow } from './table-row.js';
-import { TableHeadCell, type TableHeadCellSort } from './table-head-cell.js';
-import { TableCell } from './table-cell.js';
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 
 const meta: Meta<typeof Table> = {
   title: 'Data Display/Table',
@@ -31,7 +26,7 @@ const headers = [
     column: 'percentage',
     label: 'Percentage',
     align: 'right',
-    isSortable: false,
+    isSortable: true,
   },
   {
     column: 'newUsers',
@@ -43,94 +38,146 @@ const headers = [
     column: 'avgDuration',
     label: 'Avg. Duration',
     align: 'right',
-    isSortable: false,
+    isSortable: true,
   },
 ] as const;
-const rows = [
+const data = [
   {
     browser: 'Chrome',
     sessions: 9562,
-    percentage: '68.81%',
+    percentage: 0.6881,
     newUsers: 7895,
-    avgDuration: '01:07',
+    avgDuration: 67,
   },
   {
     browser: 'Firefox',
     sessions: 2403,
-    percentage: '17.29%',
+    percentage: 0.1729,
     newUsers: 2046,
-    avgDuration: '00:59',
+    avgDuration: 59,
   },
   {
     browser: 'Safari',
     sessions: 1089,
-    percentage: '2.63%',
+    percentage: 0.0263,
     newUsers: 904,
-    avgDuration: '00:59',
+    avgDuration: 59,
   },
   {
     browser: 'Internet Explorer',
     sessions: 366,
-    percentage: '2.63%',
+    percentage: 0.0263,
     newUsers: 333,
-    avgDuration: '01:01',
+    avgDuration: 61,
   },
   {
     browser: 'Safari (in-app)',
     sessions: 162,
-    percentage: '1.17%',
+    percentage: 0.0117,
     newUsers: 112,
-    avgDuration: '00:58',
+    avgDuration: 58,
   },
   {
     browser: 'Opera',
     sessions: 103,
-    percentage: '0.74%',
+    percentage: 0.0074,
     newUsers: 87,
-    avgDuration: '01:22',
+    avgDuration: 82,
   },
   {
     browser: 'Edge',
     sessions: 98,
-    percentage: '0.71%',
+    percentage: 0.0071,
     newUsers: 69,
-    avgDuration: '01:18',
+    avgDuration: 78,
   },
   {
     browser: 'Other',
     sessions: 275,
-    percentage: '6.02%',
+    percentage: 0.0602,
     newUsers: 90,
-    avgDuration: 'N/A',
+    avgDuration: null,
   },
 ];
 
-export const Basic: StoryFn<typeof Table> = (args) => (
-  <TableContainer border={{ top: true, bottom: true }}>
-    <Table {...args}>
-      <TableHead>
-        <TableRow>
-          {headers.map((header) => (
-            <TableHeadCell key={header.column} align={header.align}>
-              {header.label}
-            </TableHeadCell>
-          ))}
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {rows.map((row, index) => (
-          <TableRow key={index}>
+export const Basic: StoryFn<typeof Table> = (args) => {
+  const numberFormatter = new Intl.NumberFormat();
+  const percentageFormatter = new Intl.NumberFormat(undefined, { style: 'percent', maximumFractionDigits: 2 });
+  const durationFormatter = new DurationFormatter();
+
+  let totalSessions = 0;
+  let totalPercentage = 0;
+  let totalNewUsers = 0;
+  let totalAvgDuration = 0;
+  const rows = data.map((item, index) => {
+    totalSessions += item.sessions;
+    totalPercentage += item.percentage;
+    totalNewUsers += item.newUsers;
+    totalAvgDuration += item.avgDuration || 0;
+    return (
+      <Table.Row key={`row-${index}`}>
+        <Table.Cell>
+          {item.browser}
+        </Table.Cell>
+        <Table.Cell align="right">
+          {numberFormatter.format(item.sessions)}
+        </Table.Cell>
+        <Table.Cell align="right">
+          {percentageFormatter.format(item.percentage)}
+        </Table.Cell>
+        <Table.Cell align="right">
+          {numberFormatter.format(item.newUsers)}
+        </Table.Cell>
+        <Table.Cell align="right">
+          {item.avgDuration != null ? durationFormatter.format(item.avgDuration) : 'N/A'}
+        </Table.Cell>
+      </Table.Row>
+    );
+  });
+
+  const containerStyle: CSSProperties = {};
+  if (args.stickyHeader || args.stickyFooter) {
+    containerStyle.height = 256;
+  }
+
+  return (
+    <Table.Container style={containerStyle}>
+      <Table {...args}>
+        <Table.Head>
+          <Table.Row>
             {headers.map((header) => (
-              <TableCell key={header.column} align={header.align}>
-                {row[header.column]}
-              </TableCell>
+              <Table.HeadCell key={header.column} align={header.align}>
+                {header.label}
+              </Table.HeadCell>
             ))}
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  </TableContainer>
-);
+          </Table.Row>
+        </Table.Head>
+        <Table.Body>
+          {rows}
+        </Table.Body>
+        <Table.Footer>
+          <Table.Row>
+            <Table.HeadCell>
+              Total
+            </Table.HeadCell>
+            <Table.HeadCell align="right">
+              {numberFormatter.format(totalSessions / rows.length)}
+            </Table.HeadCell>
+            <Table.HeadCell align="right">
+              {percentageFormatter.format(totalPercentage / rows.length)}
+            </Table.HeadCell>
+            <Table.HeadCell align="right">
+              {numberFormatter.format(totalNewUsers / rows.length)}
+            </Table.HeadCell>
+            <Table.HeadCell align="right">
+              {durationFormatter.format(totalAvgDuration / rows.length)}
+            </Table.HeadCell>
+          </Table.Row>
+        </Table.Footer>
+      </Table>
+    </Table.Container>
+  );
+};
 Basic.args = {
   cellSize: 'md',
 };
@@ -147,46 +194,94 @@ Bordered.args = {
   isBordered: true,
 };
 
+export const Sticky = Basic.bind({});
+Sticky.args = {
+  ...Basic.args,
+  stickyHeader: true,
+  stickyFooter: true,
+};
+
 export const Sortable: StoryFn<typeof Table> = (args) => {
   type Column = typeof headers[number]['column'];
   type SortingState = {
     column: Column;
     sort: TableHeadCellSort;
   };
+
+  const numberFormatter = new Intl.NumberFormat();
+  const percentageFormatter = new Intl.NumberFormat(undefined, { style: 'percent', maximumFractionDigits: 2 });
+  const durationFormatter = new DurationFormatter();
   const [sorting, setSorting] = useState<SortingState>({
     column: 'browser',
     sort: 'ascending',
   });
 
-  const sortedRows = [...rows];
-  sortedRows.sort((firstRow, secondRow) => {
+  const sortedData = [...data];
+  sortedData.sort((firstRow, secondRow) => {
     if (sorting.sort === 'none') {
       return 0;
     }
 
     const a = firstRow[sorting.column];
     const b = secondRow[sorting.column];
-    if (typeof a === 'string' && typeof b === 'string') {
+    if (typeof a === 'string') {
+      const strB = String(b || '');
       return sorting.sort === 'ascending'
-        ? a.localeCompare(b)
-        : b.localeCompare(a);
-    } else if (typeof a === 'number' && typeof b === 'number') {
+        ? a.localeCompare(strB)
+        : strB.localeCompare(a);
+    } else if (typeof a === 'number') {
+      const numB = Number(b || 0);
       return sorting.sort === 'ascending'
-        ? a - b
-        : b - a;
+        ? a - numB
+        : numB - a;
     }
     return 0;
   });
 
+  let totalSessions = 0;
+  let totalPercentage = 0;
+  let totalNewUsers = 0;
+  let totalAvgDuration = 0;
+  const rows = sortedData.map((item, index) => {
+    totalSessions += item.sessions;
+    totalPercentage += item.percentage;
+    totalNewUsers += item.newUsers;
+    totalAvgDuration += item.avgDuration || 0;
+    return (
+      <Table.Row key={`row-${index}`}>
+        <Table.Cell>
+          {item.browser}
+        </Table.Cell>
+        <Table.Cell align="right">
+          {numberFormatter.format(item.sessions)}
+        </Table.Cell>
+        <Table.Cell align="right">
+          {percentageFormatter.format(item.percentage)}
+        </Table.Cell>
+        <Table.Cell align="right">
+          {numberFormatter.format(item.newUsers)}
+        </Table.Cell>
+        <Table.Cell align="right">
+          {item.avgDuration != null ? durationFormatter.format(item.avgDuration) : 'N/A'}
+        </Table.Cell>
+      </Table.Row>
+    );
+  });
+
+  const containerStyle: CSSProperties = {};
+  if (args.stickyHeader || args.stickyFooter) {
+    containerStyle.height = 256;
+  }
+
   return (
-    <TableContainer border={{ top: true, bottom: true }}>
+    <Table.Container>
       <Table {...args}>
-        <TableHead>
-          <TableRow>
+        <Table.Head>
+          <Table.Row>
             {headers.map((header) => {
               const column = header.column;
               return (
-                <TableHeadCell
+                <Table.HeadCell
                   key={column}
                   align={header.align}
                   isSortable={header.isSortable}
@@ -194,23 +289,42 @@ export const Sortable: StoryFn<typeof Table> = (args) => {
                   onChangeSort={(sort) => setSorting({ sort, column })}
                 >
                   {header.label}
-                </TableHeadCell>
+                </Table.HeadCell>
               );
             })}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {sortedRows.map((row, index) => (
-            <TableRow key={index}>
-              {headers.map((header) => (
-                <TableCell key={header.column} align={header.align}>
-                  {row[header.column]}
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </TableBody>
+          </Table.Row>
+        </Table.Head>
+        <Table.Body>
+          {rows}
+        </Table.Body>
+        <Table.Footer>
+          <Table.Row>
+            <Table.HeadCell>
+              Total
+            </Table.HeadCell>
+            <Table.HeadCell align="right">
+              {numberFormatter.format(totalSessions / rows.length)}
+            </Table.HeadCell>
+            <Table.HeadCell align="right">
+              {percentageFormatter.format(totalPercentage / rows.length)}
+            </Table.HeadCell>
+            <Table.HeadCell align="right">
+              {numberFormatter.format(totalNewUsers / rows.length)}
+            </Table.HeadCell>
+            <Table.HeadCell align="right">
+              {durationFormatter.format(totalAvgDuration / rows.length)}
+            </Table.HeadCell>
+          </Table.Row>
+        </Table.Footer>
       </Table>
-    </TableContainer>
+    </Table.Container>
   );
 };
+
+class DurationFormatter {
+  format(durationInSeconds: number): string {
+    const minutes = Math.floor(durationInSeconds / 60);
+    const seconds = Math.floor(durationInSeconds % 60);
+    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  }
+}

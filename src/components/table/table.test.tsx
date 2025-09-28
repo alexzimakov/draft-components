@@ -18,7 +18,7 @@ it('renders without errors', () => {
   const expectedHeaderCellCount = headers.length;
   const expectedDataCellCount = rows.length * headers.length;
   render(
-    <TableContainer border={{ top: true, bottom: true }}>
+    <TableContainer>
       <Table>
         <TableHead>
           <TableRow>
@@ -65,7 +65,7 @@ it('renders with sortable header cells', async () => {
   const user = userEvent.setup();
   const onChangeSort = vi.fn();
   render(
-    <TableContainer border="all">
+    <TableContainer>
       <Table>
         <TableHead>
           <TableRow>
