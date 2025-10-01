@@ -1,5 +1,6 @@
 .dc-form-field {
-  display: block;
+  display: grid;
+  justify-items: start;
   min-width: 0;
   text-align: left;
   color-scheme: light;
@@ -7,6 +8,12 @@
 
 .dc-form-field__label {
   margin-bottom: 4px;
+}
+
+.dc-form-field__input,
+.dc-form-field__error,
+.dc-form-field__hint {
+  width: 100%;
 }
 
 .dc-form-field__error,
