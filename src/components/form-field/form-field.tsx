@@ -13,6 +13,7 @@ export type FormFieldRender = (props: {
 type FormFieldHTMLProps = ComponentProps<'div'>;
 
 type FormFieldBaseProps = {
+  srOnlyLabel?: boolean;
   required?: boolean;
   labelFor?: string;
   label?: ReactNode;
@@ -26,6 +27,7 @@ export type FormFieldProps =
   & Omit<FormFieldHTMLProps, keyof FormFieldBaseProps>;
 
 export function FormField({
+  srOnlyLabel = false,
   required = false,
   labelFor = '',
   label,
@@ -85,7 +87,7 @@ export function FormField({
       {label
         ? (
             <Label
-              className="dc-form-field__label"
+              className={classNames('dc-form-field__label', srOnlyLabel && 'dc-form-field__label_sr-only')}
               required={required}
               htmlFor={inputId}
             >

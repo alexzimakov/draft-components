@@ -10,6 +10,18 @@
   margin-bottom: 4px;
 }
 
+.dc-form-field__label_sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+}
+
 .dc-form-field__input,
 .dc-form-field__error,
 .dc-form-field__hint {

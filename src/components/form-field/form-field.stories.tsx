@@ -18,7 +18,11 @@ export default meta;
 
 export const Basic: StoryFn<typeof FormField> = (args) => (
   <FormField {...args}>
-    <TextInput id={args.labelFor} sizeInChars={40} />
+    <TextInput
+      id={args.labelFor}
+      invalid={Boolean(args.error)}
+      sizeInChars={40}
+    />
   </FormField>
 );
 Basic.args = {
@@ -27,19 +31,19 @@ Basic.args = {
   hint: 'People will be able to find you by this name.',
 };
 
-export const Invalid: StoryFn<typeof FormField> = (args) => (
-  <FormField {...args}>
-    <TextInput
-      id={args.labelFor}
-      invalid={true}
-      sizeInChars={40}
-    />
-  </FormField>
-);
+export const Invalid = Basic.bind({});
 Invalid.args = {
   required: true,
   label: 'Username',
   labelFor: 'username',
   error: 'Username must have at least 5 characters.',
   hint: 'People will be able to find you this username.',
+};
+
+export const ScreenOnlyLabel = Basic.bind({});
+ScreenOnlyLabel.args = {
+  srOnlyLabel: true,
+  label: 'Your name',
+  labelFor: 'name',
+  hint: 'People will be able to find you by this name.',
 };
