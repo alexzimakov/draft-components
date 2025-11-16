@@ -22,6 +22,7 @@
 .dc-form-field__error,
 .dc-form-field__hint {
   width: 100%;
+  min-width: 0;
 }
 
 .dc-form-field__error,
