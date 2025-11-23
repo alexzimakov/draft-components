@@ -10,7 +10,7 @@ import {
 import { classNames, tryToFocusElement } from '../../lib/react-helpers.js';
 import { KeyboardKey } from '../../lib/keyboard-key.js';
 import { useRefCallback } from '../../hooks/use-ref-callback.js';
-import { Popover, type PopoverPlacement, type PopoverRenderAnchor } from '../popover/index.js';
+import { Popover, type GetPopoverBackdropProps, type PopoverPlacement, type PopoverRenderAnchor } from '../popover/index.js';
 import { MenuItem } from './menu-item.js';
 import { MenuSeparator } from './menu-separator.js';
 
@@ -38,10 +38,12 @@ type MenuHTMLProps = ComponentProps<'div'>;
 
 type MenuBaseProps = {
   defaultIsOpen?: boolean;
+  shouldRenderBackdrop?: boolean;
   placement?: PopoverPlacement;
-  renderButton: MenuButtonRenderer;
   onOpen?: MenuOpenHandler;
   onClose?: MenuCloseHandler;
+  getBackdropProps?: GetPopoverBackdropProps;
+  renderButton: MenuButtonRenderer;
 };
 
 export type MenuProps =
@@ -50,15 +52,17 @@ export type MenuProps =
 
 export function Menu({
   defaultIsOpen = false,
+  shouldRenderBackdrop = false,
   placement = 'bottom-start',
   className,
   children,
-  renderButton,
   onClick,
   onKeyDown,
   onMouseOver,
   onOpen,
   onClose,
+  getBackdropProps,
+  renderButton,
   ...props
 }: MenuProps) {
   const id = useId();
@@ -236,13 +240,15 @@ export function Menu({
       className={classNames(className, 'dc-menu')}
       aria-labelledby={buttonId}
       tabIndex={0}
+      shouldRenderBackdrop={shouldRenderBackdrop}
       placement={placement}
       isOpen={isOpen}
       onClose={close}
-      renderAnchor={renderAnchor}
       onClick={handleMenuClick}
       onKeyDown={handleMenuKeyDown}
       onMouseOver={handleMenuMouseOver}
+      getBackdropProps={getBackdropProps}
+      renderAnchor={renderAnchor}
     >
       {children}
     </Popover>

@@ -11,6 +11,8 @@ import { useCloseOnClickOutside } from '../../hooks/use-close-on-click-outside.j
 import { type ComponentProps, type JSX, type RefCallback, type RefObject, useEffect, useRef, useState } from 'react';
 import { Portal } from '../portal/portal.js';
 
+type PopoverHTMLProps = ComponentProps<'div'>;
+
 export { type ElementPlacement as PopoverPlacement };
 
 export type PopoverCloseHandler = () => void;
@@ -19,9 +21,12 @@ export type PopoverUnmountHandler = () => void;
 
 export type PopoverRenderAnchor = (props: { ref: RefCallback<HTMLElement | null> }) => JSX.Element;
 
-type PopoverHTMLProps = ComponentProps<'div'>;
+export type PopoverBackdropProps = ComponentProps<'div'>;
+
+export type GetPopoverBackdropProps = () => PopoverBackdropProps;
 
 type PopoverCommonProps = {
+  isOpen?: boolean;
   placement?: ElementPlacement;
   anchorPadding?: number;
   viewportPadding?: number;
@@ -31,9 +36,10 @@ type PopoverCommonProps = {
   shouldLockBodyScroll?: boolean;
   shouldCloseOnEsc?: boolean;
   shouldCloseOnClickOutside?: boolean;
-  isOpen?: boolean;
+  shouldRenderBackdrop?: boolean;
   onClose?: PopoverCloseHandler;
   onUnmount?: PopoverUnmountHandler;
+  getBackdropProps?: GetPopoverBackdropProps;
 };
 
 type PopoverBaseProps = PopoverCommonProps & (
@@ -49,6 +55,7 @@ export function Popover({
   className,
   role = 'dialog',
   'aria-modal': ariaModal = true,
+  isOpen = false,
   placement = 'bottom-start',
   anchorPadding = 4,
   viewportPadding = 4,
@@ -56,10 +63,11 @@ export function Popover({
   shouldLockBodyScroll = true,
   shouldCloseOnEsc = true,
   shouldCloseOnClickOutside = true,
+  shouldRenderBackdrop = false,
   children = null,
-  isOpen = false,
   onClose,
   onUnmount,
+  getBackdropProps,
   ...props
 }: PopoverProps) {
   const [isMounted, setIsMounted] = useState(isOpen);
@@ -169,6 +177,19 @@ export function Popover({
     }
   }, [isOpen]);
 
+  let backdropElement: JSX.Element | null = null;
+  if (shouldRenderBackdrop) {
+    const backdropProps = typeof getBackdropProps === 'function'
+      ? getBackdropProps()
+      : {};
+    backdropElement = (
+      <div
+        {...backdropProps}
+        className={classNames('dc-popover__backdrop', backdropProps.className)}
+      />
+    );
+  }
+
   return (
     <>
       {!isAnchorRefProvided && props.renderAnchor({
@@ -178,6 +199,7 @@ export function Popover({
       })}
       {(isOpen || isMounted) && (
         <Portal>
+          {backdropElement}
           <div
             className={classNames('dc-popover', className)}
             ref={popoverRef}

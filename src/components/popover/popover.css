@@ -25,6 +25,15 @@
   backdrop-filter: var(--background-filter);
 }
 
+.dc-popover__backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--dc-overlay-z-index);
+  width: 100%;
+  height: 100%;
+}
+
 @keyframes dc-popover-enter {
   from {
     opacity: 0;
