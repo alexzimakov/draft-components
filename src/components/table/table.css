@@ -118,7 +118,7 @@
   background: var(--row-background-selected);
 }
 
-.dc-table_highlight_row tbody tr:hover td {
+.dc-table_highlight_row tbody tr:not([data-not-highlight-on-hover="true"]):hover td {
   background: var(--row-background-highlighted);
 }
 
