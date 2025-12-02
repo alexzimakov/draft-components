@@ -143,6 +143,7 @@ function defaultOperatorFormatter(operator: StringFilterOperator) {
     [StringFilter.Operators.notEqual]: 'is not',
     [StringFilter.Operators.contain]: 'contains',
     [StringFilter.Operators.notContain]: 'doesn\'t contain',
+    [StringFilter.Operators.startsWith]: 'starts with',
   };
   return messages[operator];
 }

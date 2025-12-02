@@ -7,6 +7,7 @@ const OPERATORS = {
   notEqual: 'NOT_EQUAL',
   contain: 'CONTAIN',
   notContain: 'NOT_CONTAIN',
+  startsWith: 'STARTS_WITH',
 } as const;
 
 export type StringFilterType = typeof TYPE;

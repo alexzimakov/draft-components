@@ -31,7 +31,7 @@ const titleFilter: FilterConfig = {
   type: StringFilter.Type,
   field: 'title',
   label: 'Title',
-  operators: ['CONTAIN', 'NOT_CONTAIN'],
+  operators: ['CONTAIN', 'NOT_CONTAIN', 'STARTS_WITH'],
 };
 const descriptionFilter: FilterConfig = {
   type: StringFilter.Type,
