@@ -1,6 +1,7 @@
 .dc-toasts-list {
   --padding: 16px;
   --animation: 200ms ease;
+  --z-index: calc(infinity + 1);
 
   position: fixed;
   right: var(--padding);
