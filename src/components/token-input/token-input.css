@@ -1,0 +1,153 @@
+.dc-token-input {
+  --color: var(--dc-neutral-900);
+  --background: var(--dc-white);
+  --border-color: var(--dc-neutral-300);
+  --border-color-error: var(--dc-red-500);
+  --focus-ring-color: var(--dc-focus-ring-color);
+  --input-padding: 0 9px;
+  --token-height: 28px;
+  --token-padding: 0 0 0 8px;
+  --token-color: var(--dc-neutral-950);
+  --token-background: var(--dc-neutral-200);
+  --token-background-hover: rgb(var(--dc-neutral-950-rgb) / 15%);
+  --token-border-radius: 3px;
+
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  min-height: 36px;
+  padding: 3px;
+  font: 400 14px/1 var(--dc-primary-font);
+  color-scheme: light;
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+}
+
+.dc-token-input[data-disabled="true"] {
+  opacity: var(--dc-disabled-state-opacity);
+}
+
+.dc-token-input[data-invalid="true"] {
+  border-color: var(--border-color-error);
+}
+
+.dc-token-input:focus-within {
+  border-color: var(--focus-ring-color);
+  box-shadow: 0 0 0 1px var(--focus-ring-color);
+}
+
+.dc-token-input_size_sm {
+  --input-padding: 0 5px;
+  --token-height: 24px;
+  --token-padding: 0 0 0 8px;
+  --token-border-radius: 2px;
+
+  gap: 3px;
+  min-height: 32px;
+  padding: 3px;
+  font-size: 13px;
+  border-radius: 6px;
+}
+
+.dc-token-input_size_lg {
+  --input-padding: 0 12px;
+  --token-height: 30px;
+  --token-padding: 0 0 0 12px;
+  --token-border-radius: 3px;
+
+  gap: 4px;
+  min-height: 40px;
+  padding: 4px;
+  font-size: 15px;
+  border-radius: 8px;
+}
+
+.dc-token-input > input {
+  flex-grow: 1;
+  width: auto;
+  min-width: 10ch;
+  padding: var(--input-padding);
+  font: inherit;
+  line-height: 1.5;
+  background: none;
+  border: none;
+}
+
+.dc-token-input > input::placeholder {
+  color: inherit;
+  opacity: 0.4;
+}
+
+.dc-token-input > input:not(:only-child) {
+  padding-right: 0.25em;
+  padding-left: 0.25em;
+}
+
+.dc-token-input > input:focus {
+  outline: none;
+}
+
+.dc-token-input__token {
+  display: inline-flex;
+  gap: 2px;
+  max-width: 100%;
+  min-height: var(--token-height);
+  padding: var(--token-padding);
+  font: inherit;
+  color: var(--token-color);
+  cursor: default;
+  background: var(--token-background);
+  border-radius: var(--token-border-radius);
+}
+
+.dc-token-input__token > span {
+  padding: calc((var(--token-height) - 20px) / 2) 0;
+  line-height: 20px;
+}
+
+.dc-token-input__token > button {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--token-height);
+  height: var(--token-height);
+  padding: 0;
+  font: inherit;
+  line-height: 1;
+  color: inherit;
+  appearance: none;
+  cursor: default;
+  background: none;
+  border: none;
+  border-radius: inherit;
+  opacity: 0.5;
+}
+
+.dc-token-input__token > button:focus {
+  outline: none;
+}
+
+.dc-token-input__token > button:not(:disabled):hover,
+.dc-token-input__token > button:not(:disabled):focus-visible {
+  background: var(--token-background-hover);
+  opacity: 1;
+}
+
+.dark .dc-token-input,
+.dark.dc-token-input {
+  --color: var(--dc-white);
+  --background: var(--dc-neutral-800);
+  --border-color: var(--dc-neutral-600);
+  --border-color-error: var(--dc-red-400);
+  --token-color: var(--dc-white);
+  --token-background: var(--dc-neutral-600);
+  --token-background-hover: rgb(var(--dc-neutral-50-rgb) / 15%);
+
+  color-scheme: dark;
+}

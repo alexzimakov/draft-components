@@ -36,5 +36,6 @@ export * from './tag/index.js';
 export * from './text-input/index.js';
 export * from './textarea/index.js';
 export * from './toast/index.js';
+export * from './token-input/index.js';
 export * from './toaster/index.js';
 export * from './tooltip/index.js';
