@@ -4,6 +4,7 @@
   --border-color: var(--dc-neutral-300);
   --border-color-error: var(--dc-red-500);
   --focus-ring-color: var(--dc-focus-ring-color);
+  --input-height: 28px;
   --input-padding: 0 9px;
   --token-height: 28px;
   --token-padding: 0 0 0 8px;
@@ -42,6 +43,7 @@
 }
 
 .dc-token-input_size_sm {
+  --input-height: 24px;
   --input-padding: 0 5px;
   --token-height: 24px;
   --token-padding: 0 0 0 8px;
@@ -55,6 +57,7 @@
 }
 
 .dc-token-input_size_lg {
+  --input-height: 30px;
   --input-padding: 0 12px;
   --token-height: 30px;
   --token-padding: 0 0 0 12px;
@@ -68,9 +71,10 @@
 }
 
 .dc-token-input > input {
-  flex-grow: 1;
+  flex: 1 1 0;
   width: auto;
-  min-width: 10ch;
+  min-width: 5ch;
+  height: var(--input-height);
   padding: var(--input-padding);
   font: inherit;
   line-height: 1.5;

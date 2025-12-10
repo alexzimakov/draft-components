@@ -79,6 +79,8 @@ export function TokenInput({
         }
         input.value = '';
       }
+      event.preventDefault();
+      event.stopPropagation();
     }
 
     if (event.key === 'Backspace') {
