@@ -2,8 +2,7 @@
   --font: var(--dc-text-sm);
   --padding: 12px 16px;
   --color: var(--dc-text-color-primary);
-  --background: rgb(var(--dc-white-rgb) / 85%);
-  --background-filter: blur(20px) saturate(180%);
+  --background: var(--dc-background-primary);
   --radius: 8px;
   --shadow: 0 0 0 1px rgb(var(--dc-black-rgb) / 7.5%), 0 -1px 0 0 rgb(var(--dc-black-rgb) / 5%), var(--dc-shadow-lg);
 
@@ -22,7 +21,6 @@
   background: var(--background);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  backdrop-filter: var(--background-filter);
 }
 
 .dc-popover__backdrop {
@@ -72,7 +70,6 @@
 .dark .dc-popover,
 .dark.dc-popover {
   --border-color: var(--dc-neutral-600);
-  --background: rgb(var(--dc-neutral-800-rgb) / 85%);
   --shadow: 0 0 0 1px var(--dc-neutral-600), var(--dc-shadow-lg);
 
   color-scheme: dark;
