@@ -43,14 +43,14 @@ const filterCityByName = (searchQuery: string, city: City) => {
 };
 
 export const Basic: StoryFn<typeof MultiSelect<City>> = (args) => {
-  const [checkedItems, setCheckedItems] = useState(args.checkedItems || []);
+  const [selectedIds, setSelectedIds] = useState(args.selectedItemIds || []);
   const style = args.style || { maxWidth: 320 };
   return (
     <MultiSelect
       {...args}
       style={style}
-      checkedItems={checkedItems}
-      onChangeCheckedItems={setCheckedItems}
+      selectedItemIds={selectedIds}
+      onChangeSelectedItemIds={setSelectedIds}
     />
   );
 };

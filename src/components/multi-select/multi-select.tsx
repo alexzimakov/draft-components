@@ -2,7 +2,6 @@ import {
   useId,
   useRef,
   useState,
-  useCallback,
   type ReactNode,
   type MouseEventHandler,
   type PointerEventHandler,
@@ -15,11 +14,23 @@ import { classNames } from '../../lib/react-helpers.js';
 import { Spinner } from '../spinner/index.js';
 import { TextInput } from '../text-input/index.js';
 import { Tag } from '../tag/index.js';
-import { IconButton } from '../button/index.js';
 import { CheckIcon, ChevronDownIcon, XMarkIcon } from './icons.js';
 import { getElementBoundingRect } from '../../lib/get-element-bounding-rect.js';
 
 export type MultiSelectSize = 'sm' | 'md' | 'lg';
+
+export type MultiSelectChipTint = | 'gray'
+  | 'green'
+  | 'lime'
+  | 'sky'
+  | 'blue'
+  | 'indigo'
+  | 'pink'
+  | 'red'
+  | 'orange'
+  | 'yellow';
+
+export type MultiSelectChipStyle = 'default' | 'filled' | 'tinted';
 
 export type MultiSelectItem = { id: string | number };
 
@@ -29,7 +40,7 @@ export type MultiSelectItemLabelGetter<T extends MultiSelectItem> = (item: T) =>
 
 export type MultiSelectItemCaptionGetter<T extends MultiSelectItem> = (item: T) => ReactNode;
 
-export type MultiSelectChangeCheckedItemsHandler<T extends MultiSelectItem> = (items: T[]) => void;
+export type MultiSelectSelectedItemIdsChangeHandler<T extends MultiSelectItem> = (ids: T['id'][]) => void;
 
 export type MultiSelectOpenHandler = () => void;
 
@@ -41,11 +52,13 @@ export type MultiSelectMessages = {
 };
 
 export function MultiSelect<T extends MultiSelectItem>({
-  id: defaultId,
   style,
   className,
   size = 'md',
-  invalid,
+  inputId: defaultInputId,
+  inputAriaLabel,
+  chipTint = 'blue',
+  chipStyle = 'default',
   placeholder,
   noDataMessage = 'No data',
   notFoundMessage = 'Not found',
@@ -53,19 +66,22 @@ export function MultiSelect<T extends MultiSelectItem>({
   items,
   itemsError,
   itemsLoading,
-  checkedItems,
+  invalid,
+  selectedItemIds: checkedItemIds,
+  onChangeSelectedItemIds: onChangeCheckedItemIds,
   filterItem,
   getItemLabel,
-  getItemCaption,
-  onChangeCheckedItems,
+  getItemCaption = () => undefined,
   onOpen,
   onClose,
 }: {
-  id?: string;
   style?: CSSProperties;
   className?: string;
   size?: MultiSelectSize;
-  invalid?: boolean;
+  inputId?: string;
+  inputAriaLabel?: string;
+  chipTint?: MultiSelectChipTint;
+  chipStyle?: MultiSelectChipStyle;
   placeholder?: string;
   noDataMessage?: ReactNode;
   notFoundMessage?: ReactNode;
@@ -73,25 +89,38 @@ export function MultiSelect<T extends MultiSelectItem>({
   items: T[];
   itemsError?: ReactNode;
   itemsLoading?: boolean;
-  checkedItems: T[];
+  invalid?: boolean;
+  selectedItemIds: T['id'][];
+  onChangeSelectedItemIds: MultiSelectSelectedItemIdsChangeHandler<T>;
   filterItem: MultiSelectItemFilter<T>;
   getItemLabel: MultiSelectItemLabelGetter<T>;
   getItemCaption?: MultiSelectItemCaptionGetter<T>;
-  onChangeCheckedItems: MultiSelectChangeCheckedItemsHandler<T>;
   onOpen?: MultiSelectOpenHandler;
   onClose?: MultiSelectCloseHandler;
 }) {
-  const id = useId();
+  type ItemId = T['id'];
+
   const ref = useRef<HTMLDivElement>(null);
-  const inputId = defaultId || `${id}multi-select-input`;
-  const buttonId = `${id}multi-select-button`;
-  const listBoxId = `${id}multi-select-list-box`;
-  const getOptionId = useCallback((item: T) => `${id}multi-select-option-${item.id}`, [id]);
+  const id = useId();
+  const inputId = defaultInputId || `${id}-multi-select-input`;
+  const buttonId = `${id}-multi-select-button`;
+  const listBoxId = `${id}-multi-select-list-box`;
+  const getOptionId = (itemId: ItemId) => `${id}-multi-select-option-${itemId}`;
   const [search, setSearch] = useState('');
   const [expanded, setExpanded] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<T | undefined>(undefined);
-  const checkedItemSet = new Set(checkedItems);
-  const filteredItems = items.filter((item) => filterItem(search, item));
+  const [selectedItemId, setSelectedItemId] = useState<ItemId | undefined>(undefined);
+
+  const checkedItemIdSet = new Set(checkedItemIds);
+  const checkedItems: T[] = [];
+  const filteredItems: T[] = [];
+  for (const item of items) {
+    if (filterItem(search, item)) {
+      filteredItems.push(item);
+    }
+    if (checkedItemIdSet.has(item.id)) {
+      checkedItems.push(item);
+    }
+  }
 
   const openListBox = () => {
     if (expanded) {
@@ -116,28 +145,28 @@ export function MultiSelect<T extends MultiSelectItem>({
 
   const closeListBox = () => {
     setExpanded(false);
-    setSelectedItem(undefined);
+    setSelectedItemId(undefined);
 
     if (typeof onClose === 'function') {
       onClose();
     }
   };
 
-  const toggleItem = (item: T) => {
-    const newSelectedItemIdSet = new Set(checkedItemSet);
-    if (newSelectedItemIdSet.has(item)) {
-      newSelectedItemIdSet.delete(item);
+  const toggleItem = (itemId: ItemId) => {
+    const newCheckedItemIdSet = new Set(checkedItemIdSet);
+    if (newCheckedItemIdSet.has(itemId)) {
+      newCheckedItemIdSet.delete(itemId);
     } else {
-      newSelectedItemIdSet.add(item);
+      newCheckedItemIdSet.add(itemId);
     }
-    onChangeCheckedItems(Array.from(newSelectedItemIdSet));
+    onChangeCheckedItemIds(Array.from(newCheckedItemIdSet));
   };
 
-  const selectItemAndScrollIfNeeded = (item: T) => {
-    setSelectedItem(item);
+  const selectItemAndScrollIfNeeded = (itemId: ItemId) => {
+    setSelectedItemId(itemId);
     const containerEl = ref.current;
-    if (containerEl && item) {
-      const optionId = getOptionId(item);
+    if (containerEl && itemId) {
+      const optionId = getOptionId(itemId);
       const listBoxEl = containerEl.querySelector(`#${listBoxId}`) as HTMLElement;
       const optionEl = containerEl.querySelector(`#${optionId}`) as HTMLElement;
       if (listBoxEl && optionEl) {
@@ -169,7 +198,7 @@ export function MultiSelect<T extends MultiSelectItem>({
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearch(event.target.value);
-    setSelectedItem(undefined);
+    setSelectedItemId(undefined);
     openListBox();
   };
 
@@ -182,8 +211,8 @@ export function MultiSelect<T extends MultiSelectItem>({
     switch (event.key) {
       case 'Enter':
       case ' ':
-        if (expanded && selectedItem) {
-          toggleItem(selectedItem);
+        if (expanded && selectedItemId) {
+          toggleItem(selectedItemId);
           handled = true;
         }
         break;
@@ -193,11 +222,11 @@ export function MultiSelect<T extends MultiSelectItem>({
         if (filteredItems.length > 0 && !event.altKey) {
           const firstItemIndex = 0;
           const lastItemIndex = filteredItems.length - 1;
-          const selectedItemIndex = filteredItems.findIndex((item) => item === selectedItem);
+          const selectedItemIndex = filteredItems.findIndex((item) => item.id === selectedItemId);
           const newSelectedItem = selectedItemIndex >= 0 && selectedItemIndex < lastItemIndex
             ? filteredItems[selectedItemIndex + 1]
             : filteredItems[firstItemIndex];
-          selectItemAndScrollIfNeeded(newSelectedItem);
+          selectItemAndScrollIfNeeded(newSelectedItem.id);
         }
         handled = true;
         break;
@@ -207,25 +236,25 @@ export function MultiSelect<T extends MultiSelectItem>({
         if (filteredItems.length > 0 && !event.altKey) {
           const firstItemIndex = 0;
           const lastItemIndex = filteredItems.length - 1;
-          const selectedItemIndex = filteredItems.findIndex((item) => item === selectedItem);
+          const selectedItemIndex = filteredItems.findIndex((item) => item.id === selectedItemId);
           const newSelectedItem = selectedItemIndex >= 0 && selectedItemIndex > firstItemIndex
             ? filteredItems[selectedItemIndex - 1]
             : filteredItems[lastItemIndex];
-          selectItemAndScrollIfNeeded(newSelectedItem);
+          selectItemAndScrollIfNeeded(newSelectedItem.id);
         }
         handled = true;
         break;
       case 'Home':
-        if (expanded && selectedItem && filteredItems.length > 0) {
+        if (expanded && selectedItemId && filteredItems.length > 0) {
           const firstItem = filteredItems[0];
-          selectItemAndScrollIfNeeded(firstItem);
+          selectItemAndScrollIfNeeded(firstItem.id);
           handled = true;
         }
         break;
       case 'End':
-        if (expanded && selectedItem && filteredItems.length > 0) {
+        if (expanded && selectedItemId && filteredItems.length > 0) {
           const lastItem = filteredItems[filteredItems.length - 1];
-          selectItemAndScrollIfNeeded(lastItem);
+          selectItemAndScrollIfNeeded(lastItem.id);
           handled = true;
         }
         break;
@@ -273,16 +302,16 @@ export function MultiSelect<T extends MultiSelectItem>({
     );
   } else {
     listBoxContent = filteredItems.map((item) => (
-      <MultiSelectOption<T>
+      <MultiSelectOption<ItemId>
         key={item.id}
-        id={getOptionId(item)}
-        item={item}
-        checked={checkedItemSet.has(item)}
-        selected={selectedItem === item}
-        getLabel={getItemLabel}
-        getCaption={getItemCaption}
+        id={item.id}
+        label={getItemLabel(item)}
+        caption={getItemCaption(item)}
+        optionId={getOptionId(item.id)}
+        checked={checkedItemIdSet.has(item.id)}
+        selected={selectedItemId === item.id}
         onCheck={toggleItem}
-        onSelect={setSelectedItem}
+        onSelect={setSelectedItemId}
       />
     ));
   }
@@ -302,9 +331,10 @@ export function MultiSelect<T extends MultiSelectItem>({
           placeholder={placeholder}
           type="text"
           role="combobox"
+          aria-label={inputAriaLabel}
           aria-expanded={expanded}
           aria-controls={listBoxId}
-          aria-activedescendant={selectedItem ? getOptionId(selectedItem) : undefined}
+          aria-activedescendant={selectedItemId ? getOptionId(selectedItemId) : undefined}
           value={search}
           invalid={invalid}
           data-1p-ignore={true}
@@ -335,69 +365,59 @@ export function MultiSelect<T extends MultiSelectItem>({
           {listBoxContent}
         </ul>
       </div>
-      <div className="dc-multi-select__checked-items">
-        {checkedItems.map((item) => (
-          <Tag
-            key={item.id}
-            className="dc-multi-select__item"
-            size="lg"
-          >
-            {getItemLabel(item)}
-            <IconButton
-              className="dc-multi-select__item-delete-button"
-              buttonStyle="plain"
-              size="xs"
-              type="button"
-              onClick={() => toggleItem(item)}
+      {checkedItems.length > 0 && (
+        <div className="dc-multi-select__chips">
+          {checkedItems.map((item) => (
+            <MultiSelectChip
+              key={item.id}
+              itemId={item.id}
+              tint={chipTint}
+              style={chipStyle}
+              onDelete={toggleItem}
             >
-              <XMarkIcon data-icon="x-mark" width={18} height={18} />
-            </IconButton>
-          </Tag>
-        ))}
-      </div>
+              {getItemLabel(item)}
+            </MultiSelectChip>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
-function MultiSelectOption<T extends MultiSelectItem>({
+function MultiSelectOption<T extends string | number>({
   id,
-  item,
-  selected,
+  label,
+  caption,
+  optionId,
   checked,
-  getLabel,
-  getCaption,
+  selected,
   onCheck,
   onSelect,
 }: {
-  id: string;
-  item: T;
+  id: T;
+  label: ReactNode;
+  caption?: ReactNode;
+  optionId: string;
   checked: boolean;
   selected: boolean;
-  getLabel: MultiSelectItemLabelGetter<T>;
-  getCaption?: MultiSelectItemCaptionGetter<T>;
-  onCheck: (item: T) => void;
-  onSelect: (item: T) => void;
+  onCheck: (itemId: T) => void;
+  onSelect: (itemId: T) => void;
 }) {
   const handlePointerDown: PointerEventHandler<HTMLLIElement> = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    onCheck(item);
+    onCheck(id);
   };
 
   const handlePointerOver: PointerEventHandler<HTMLLIElement> = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    onSelect(item);
+    onSelect(id);
   };
-
-  let caption: ReactNode;
-  if (typeof getCaption === 'function') {
-    caption = getCaption(item);
-  }
 
   return (
     <li
-      id={id}
+      id={optionId}
       className="dc-multi-select__option"
       role="option"
       aria-checked={checked}
@@ -409,14 +429,51 @@ function MultiSelectOption<T extends MultiSelectItem>({
         <CheckIcon data-icon="check" width={16} height={16} />
       </div>
       <div className="dc-multi-select__option-body">
-        <b className="dc-multi-select__option-label">
-          {getLabel(item)}
-        </b>
+        <span className="dc-multi-select__option-label">
+          {label}
+        </span>
         {caption
           ? <small className="dc-multi-select__option-caption">{caption}</small>
           : null}
       </div>
     </li>
+  );
+}
+
+function MultiSelectChip<T extends string | number>({
+  tint,
+  style,
+  itemId,
+  children,
+  onDelete,
+}: {
+  tint?: MultiSelectChipTint;
+  style?: MultiSelectChipStyle;
+  itemId: T;
+  children: ReactNode;
+  onDelete: (itemId: T) => void;
+}) {
+  const handleButtonClick = () => {
+    onDelete(itemId);
+  };
+
+  return (
+    <Tag
+      className="dc-multi-select__chip"
+      as="span"
+      size="lg"
+      tint={tint}
+      tagStyle={style}
+    >
+      {children}
+      <button
+        className="dc-multi-select__chip-button"
+        type="button"
+        onClick={handleButtonClick}
+      >
+        <XMarkIcon data-icon="x-mark" width={18} height={18} />
+      </button>
+    </Tag>
   );
 }
 
