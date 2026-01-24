@@ -32,6 +32,8 @@ const cities: City[] = [
   { id: 15, name: 'Seoul', country: 'South Korea' },
 ];
 
+const getCityId = (city: City) => city.id;
+
 const getCityName = (city: City) => city.name;
 
 const getCityCountry = (city: City) => city.country;
@@ -42,7 +44,7 @@ const filterCityByName = (searchQuery: string, city: City) => {
   return name.includes(search);
 };
 
-export const Basic: StoryFn<typeof MultiSelect<City>> = (args) => {
+export const Basic: StoryFn<typeof MultiSelect<City['id'], City>> = (args) => {
   const [selectedIds, setSelectedIds] = useState(args.selectedItemIds || []);
   const style = args.style || { maxWidth: 320 };
   return (
@@ -57,8 +59,9 @@ export const Basic: StoryFn<typeof MultiSelect<City>> = (args) => {
 Basic.args = {
   items: cities,
   placeholder: 'Start typing or select city',
-  filterItem: filterCityByName,
+  getItemId: getCityId,
   getItemLabel: getCityName,
+  filterItem: filterCityByName,
 };
 
 export const Captions = Basic.bind({});
