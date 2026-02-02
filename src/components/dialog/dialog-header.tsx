@@ -8,6 +8,7 @@ type DialogHeaderHTMLProps = ComponentProps<'div'>;
 type DialogHeaderBaseProps = {
   title?: ReactNode;
   contentAlign?: 'left' | 'right' | 'center';
+  shouldHideCloseButton?: boolean;
 };
 
 export type DialogHeaderProps =
@@ -19,6 +20,7 @@ export function DialogHeader({
   title,
   children,
   contentAlign = 'left',
+  shouldHideCloseButton = false,
   ...props
 }: DialogHeaderProps) {
   const { titleId, isBodyHasScroll, onClose } = useDialogContext();
@@ -39,6 +41,7 @@ export function DialogHeader({
       <IconButton
         className="dc-dialog__close-button"
         buttonStyle="plain"
+        hidden={shouldHideCloseButton}
         onClick={onClose}
       >
         <XMarkIcon width={18} height={18} strokeWidth={2} />

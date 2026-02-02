@@ -265,6 +265,10 @@
   top: 6px;
 }
 
+.dc-dialog__close-button[hidden] {
+  display: none;
+}
+
 .dc-dialog__header_content-align_left .dc-dialog__close-button,
 .dc-dialog__header_content-align_center .dc-dialog__close-button {
   right: 6px;
