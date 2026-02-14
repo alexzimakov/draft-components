@@ -80,6 +80,16 @@
   border-radius: inherit;
 }
 
+.dc-multi-select__spinner {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+}
+
 .dc-multi-select__button {
   box-sizing: border-box;
   display: inline-flex;

@@ -68,6 +68,7 @@ export function MultiSelect<IdType extends string | number, ItemType = unknown>(
   items,
   itemsError,
   itemsLoading,
+  loading,
   invalid,
   disabled,
   selectedItemIds: checkedItemIds,
@@ -93,6 +94,7 @@ export function MultiSelect<IdType extends string | number, ItemType = unknown>(
   items: ItemType[];
   itemsError?: ReactNode;
   itemsLoading?: boolean;
+  loading?: boolean;
   invalid?: boolean;
   disabled?: boolean;
   selectedItemIds: IdType[];
@@ -343,19 +345,28 @@ export function MultiSelect<IdType extends string | number, ItemType = unknown>(
           onBlur={handleInputBlur}
           onChange={handleInputChange}
           onKeyDown={handleInputKeyDown}
-          slotRight={() => (
-            <button
-              id={buttonId}
-              className="dc-multi-select__button"
-              type="button"
-              aria-expanded={expanded}
-              aria-controls={listBoxId}
-              tabIndex={-1}
-              onPointerDown={handleButtonPress}
-            >
-              <ChevronDownIcon data-icon="chevron-down" width={20} height={20} />
-            </button>
-          )}
+          slotRight={() => {
+            if (loading) {
+              return (
+                <span className="dc-multi-select__spinner">
+                  <Spinner size="1.25em" />
+                </span>
+              );
+            }
+            return (
+              <button
+                id={buttonId}
+                className="dc-multi-select__button"
+                type="button"
+                aria-expanded={expanded}
+                aria-controls={listBoxId}
+                tabIndex={-1}
+                onPointerDown={handleButtonPress}
+              >
+                <ChevronDownIcon data-icon="chevron-down" width={20} height={20} />
+              </button>
+            );
+          }}
         />
         {listBoxContent && (
           <ul
