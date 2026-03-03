@@ -3,7 +3,7 @@ import { observeElementMove } from '../../lib/observe-element-move.js';
 import { observeElementChange } from '../../lib/observe-element-change.js';
 import { calcElementPosition, type ElementPlacement } from '../../lib/calc-element-position.js';
 import { deleteKeys } from '../../lib/helpers.js';
-import { useRefCallback } from '../../hooks/use-ref-callback.js';
+import { useCallbackRef } from '../../hooks/use-callback-ref.js';
 import { useFocusTrap } from '../../hooks/use-focus-trap.js';
 import { useLockBodyScroll } from '../../hooks/use-lock-body-scroll.js';
 import { useCloseOnEsc } from '../../hooks/use-close-on-esc.js';
@@ -82,13 +82,13 @@ export function Popover({
     anchorRef = defaultAnchorRef;
   }
 
-  const close = useRefCallback(() => {
+  const close = useCallbackRef(() => {
     if (typeof onClose === 'function') {
       onClose();
     }
   });
 
-  const unmount = useRefCallback(() => {
+  const unmount = useCallbackRef(() => {
     setIsMounted(false);
     if (typeof onUnmount === 'function') {
       onUnmount();

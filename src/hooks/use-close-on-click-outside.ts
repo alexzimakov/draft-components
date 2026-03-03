@@ -1,5 +1,5 @@
 import { type RefObject, useEffect } from 'react';
-import { useRefCallback } from './use-ref-callback.js';
+import { useCallbackRef } from './use-callback-ref.js';
 
 type CloseHandler = () => void;
 
@@ -22,8 +22,8 @@ export function useCloseOnClickOutside(handler: CloseHandler, opts: {
 }) {
   const ref = opts.ref;
   const disabled = opts.disabled || false;
-  const onClose = useRefCallback(handler);
-  const shouldIgnoreClick = useRefCallback<ShouldIgnoreClickPredicate>((node) => {
+  const onClose = useCallbackRef(handler);
+  const shouldIgnoreClick = useCallbackRef<ShouldIgnoreClickPredicate>((node) => {
     if (typeof opts.shouldIgnoreClick === 'function') {
       return opts.shouldIgnoreClick(node);
     }

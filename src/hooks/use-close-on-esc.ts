@@ -1,6 +1,6 @@
 import { KeyboardKey } from '../lib/keyboard-key.js';
 import { useEffect } from 'react';
-import { useRefCallback } from './use-ref-callback.js';
+import { useCallbackRef } from './use-callback-ref.js';
 
 type CloseHandler = () => void;
 
@@ -10,7 +10,7 @@ export function useCloseOnEsc(handler: CloseHandler, opts: {
   disabled?: boolean;
 } = {}) {
   const disabled = opts.disabled || false;
-  const onClose = useRefCallback(handler);
+  const onClose = useCallbackRef(handler);
 
   useEffect(() => {
     if (disabled) {

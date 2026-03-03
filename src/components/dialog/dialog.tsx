@@ -1,6 +1,6 @@
 import { type ComponentProps, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { classNames, tryToFocusElement } from '../../lib/react-helpers.js';
-import { useRefCallback } from '../../hooks/use-ref-callback.js';
+import { useCallbackRef } from '../../hooks/use-callback-ref.js';
 import { useCloseOnEsc } from '../../hooks/use-close-on-esc.js';
 import { useLockBodyScroll } from '../../hooks/use-lock-body-scroll.js';
 import { useFocusTrap } from '../../hooks/use-focus-trap.js';
@@ -47,13 +47,13 @@ export function Dialog(props: DialogProps) {
   const modalRef = useRef<HTMLDivElement | null>(null);
   const backdropRef = useRef<HTMLDivElement | null>(null);
 
-  const close = useRefCallback(() => {
+  const close = useCallbackRef(() => {
     if (typeof onClose === 'function') {
       onClose();
     }
   });
 
-  const unmount = useRefCallback(() => {
+  const unmount = useCallbackRef(() => {
     setIsMounted(false);
     if (typeof onUnmount === 'function') {
       onUnmount();

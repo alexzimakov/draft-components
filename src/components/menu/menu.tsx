@@ -9,7 +9,7 @@ import {
 } from 'react';
 import { classNames, tryToFocusElement } from '../../lib/react-helpers.js';
 import { KeyboardKey } from '../../lib/keyboard-key.js';
-import { useRefCallback } from '../../hooks/use-ref-callback.js';
+import { useCallbackRef } from '../../hooks/use-callback-ref.js';
 import { Popover, type GetPopoverBackdropProps, type PopoverPlacement, type PopoverRenderAnchor } from '../popover/index.js';
 import { MenuItem } from './menu-item.js';
 import { MenuSeparator } from './menu-separator.js';
@@ -70,14 +70,14 @@ export function Menu({
   const buttonId = `menu-button-${menuId}`;
   const [isOpen, setIsOpen] = useState(defaultIsOpen);
 
-  const open = useRefCallback(() => {
+  const open = useCallbackRef(() => {
     setIsOpen(true);
     if (typeof onOpen === 'function') {
       onOpen();
     }
   });
 
-  const close = useRefCallback(() => {
+  const close = useCallbackRef(() => {
     setIsOpen(false);
     if (typeof onClose === 'function') {
       onClose();
