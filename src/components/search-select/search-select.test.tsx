@@ -3,36 +3,55 @@ import { render, screen } from '../../test/test-utils.js';
 import { SearchSelect } from './search-select.js';
 
 it('renders without errors', () => {
-  type Fruit = {
-    id: number;
+  type Destination = {
+    code: string;
     name: string;
-    calories: number;
+    country: string;
   };
-  const fruits: Fruit[] = [
-    { id: 0, name: 'Apple', calories: 52 },
-    { id: 1, name: 'Banana', calories: 89 },
-    { id: 2, name: 'Blueberry', calories: 57 },
-    { id: 3, name: 'Cherry', calories: 50 },
-    { id: 4, name: 'Cranberry', calories: 46 },
-    { id: 5, name: 'Durian', calories: 147 },
-    { id: 6, name: 'Dragon fruit', calories: 60 },
-    { id: 7, name: 'Fig', calories: 37 },
-    { id: 8, name: 'Grape', calories: 67 },
-    { id: 9, name: 'Guava', calories: 68 },
+
+  const destinations = [
+    { code: 'BKK', name: 'Bangkok', country: 'Thailand' },
+    { code: 'HKG', name: 'Hong Kong', country: 'China' },
+    { code: 'LON', name: 'London', country: 'United Kingdom' },
+    { code: 'MFM', name: 'Macau', country: 'China' },
+    { code: 'IST', name: 'Istanbul', country: 'Turkey' },
+    { code: 'DXB', name: 'Dubai', country: 'United Arab Emirates' },
+    { code: 'MAK', name: 'Mecca', country: 'Saudi Arabia' },
+    { code: 'AYT', name: 'Antalya', country: 'Turkey' },
+    { code: 'PAR', name: 'Paris', country: 'France' },
+    { code: 'KUL', name: 'Kuala Lumpur', country: 'Malaysia' },
   ];
+
+  const getDestinationCode = (dest: Destination) => dest.code;
+
+  const getDestinationName = (dest: Destination) => dest.name;
+
+  const getDestinationCountry = (dest: Destination) => dest.country;
+
+  const filterDestinationByNameOrCountry = (searchQuery: string, dest: Destination) => {
+    const search = searchQuery.toLowerCase();
+    const name = dest.name.toLowerCase();
+    const country = dest.country.toLowerCase();
+    return name.includes(search) || country.includes(search);
+  };
+
   render(
     <SearchSelect
-      displayedValue={fruits[0].name}
-      value={fruits[0]}
+      items={destinations}
+      itemsLoadingMessage="Loading locations..."
+      getItemId={getDestinationCode}
+      getItemLabel={getDestinationName}
+      getItemCaption={getDestinationCountry}
+      filterItem={filterDestinationByNameOrCountry}
+      buttonLabel={(item) => item ? item.name : 'Select a destination'}
+      noDataMessage="No locations available"
+      notFoundMessage="Nothing found"
+      inputAriaLabel="Search locations"
+      inputPlaceholder="Search locations"
+      value={getDestinationCode(destinations[0])}
       onChange={vi.fn()}
-    >
-      {() => fruits.map((fruit) => (
-        <SearchSelect.Option key={fruit.id} value={fruit}>
-          {fruit.name}
-        </SearchSelect.Option>
-      ))}
-    </SearchSelect>,
+    />,
   );
 
-  screen.getByText(fruits[0].name);
+  screen.getByText(destinations[0].name);
 });

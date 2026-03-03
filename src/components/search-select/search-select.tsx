@@ -1,172 +1,254 @@
-import {
-  useId,
-  useState,
-  type ReactNode,
-  type ChangeEvent,
-  type KeyboardEvent,
-  useEffect,
-} from 'react';
-import {
-  useSearchSelectContext,
-  SearchSelectContextProvider,
-  type SearchSelectContext,
-  OptionStore,
-} from './context.js';
 import { KeyboardKey } from '../../lib/keyboard-key.js';
 import { classNames, tryToFocusElement } from '../../lib/react-helpers.js';
-import { Popover } from '../popover/popover.js';
-import { TextInput } from '../text-input/text-input.js';
+import { getElementBoundingRect } from '../../lib/get-element-bounding-rect.js';
+import {
+  useId,
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+  type CSSProperties,
+  type ReactNode,
+  type PointerEventHandler,
+  type ChangeEventHandler,
+  type KeyboardEventHandler,
+  type MouseEventHandler,
+  type ComponentProps,
+} from 'react';
+import { useSafeRef } from '../../hooks/use-safe-ref.js';
+import { useCallbackRef } from '../../hooks/use-callback-ref.js';
+import { useCloseOnEsc } from '../../hooks/use-close-on-esc.js';
+import { useCloseOnClickOutside } from '../../hooks/use-close-on-click-outside.js';
 import { Spinner } from '../spinner/spinner.js';
-import { ChevronDown, MagnifyingGlass } from './icons.js';
-
-export type SearchSelectLabelRenderer<Value> = (value: Value) => ReactNode;
-
-export type SearchSelectOptionsRenderer = (props: {
-  searchQuery: string;
-  searchQueryLowerCased: string;
-}) => ReactNode;
 
 export type SearchSelectSize = 'sm' | 'md' | 'lg';
 
-export type SearchSelectProps<T> = {
-  className?: string;
-  size?: SearchSelectSize;
-  fullWidth?: boolean;
-  invalid?: boolean;
-  loading?: boolean;
-  disabled?: boolean;
-  readOnly?: boolean;
-  textboxIcon?: ReactNode;
-  textboxAriaLabel?: string;
-  textboxPlaceholder?: string;
-  labelledBy?: string;
-  displayedValue?: ReactNode | SearchSelectLabelRenderer<T>;
-  children?: ReactNode | SearchSelectOptionsRenderer;
-  value: T;
-  onChange: (value: T) => void;
-};
+export type SearchSelectItem = { id: string | number };
 
-export function SearchSelect<T>({
+export type SearchSelectItemFilter<T> = (searchQuery: string, item: T) => boolean;
+
+export type SearchSelectItemIdGetter<T, R> = (item: T) => R;
+
+export type SearchSelectItemLabelGetter<T> = (item: T) => ReactNode;
+
+export type SearchSelectItemCaptionGetter<T> = (item: T) => ReactNode;
+
+export type SearchSelectRenderButtonLabel<T> = (item: T | null) => ReactNode;
+
+export type SearchSelectChangeHandler<T> = (id: T) => void;
+
+export type SearchSelectOpenHandler = () => void;
+
+export type SearchSelectCloseHandler = () => void;
+
+export function SearchSelect<IdType extends string | number, ItemType = unknown>({
+  style,
   className,
+  fullWidth = false,
   size = 'md',
-  fullWidth,
-  invalid,
+  inputId: defaultInputId,
+  inputAriaLabel,
+  inputPlaceholder,
+  noDataMessage = 'No data',
+  notFoundMessage = 'Not found',
+  itemsLoadingMessage = 'Loading data...',
+  items,
+  itemsError,
+  itemsLoading,
   loading,
+  invalid,
   disabled,
   readOnly,
-  textboxIcon,
-  textboxAriaLabel,
-  textboxPlaceholder = '',
-  labelledBy,
-  displayedValue,
-  children,
-  value: selectedValue,
-  onChange: onSelectedValueChange,
-}: SearchSelectProps<T>) {
+  icon,
+  value,
+  onChange,
+  filterItem,
+  getItemId,
+  getItemLabel,
+  getItemCaption = () => undefined,
+  buttonLabel = (item) => item ? getItemLabel(item) : '',
+  onOpen = () => undefined,
+  onClose = () => undefined,
+}: {
+  style?: CSSProperties;
+  className?: string;
+  fullWidth?: boolean;
+  size?: SearchSelectSize;
+  inputId?: string;
+  inputAriaLabel?: string;
+  inputPlaceholder?: string;
+  noDataMessage?: ReactNode;
+  notFoundMessage?: ReactNode;
+  itemsLoadingMessage?: ReactNode;
+  items: ItemType[];
+  itemsError?: ReactNode;
+  itemsLoading?: boolean;
+  loading?: boolean;
+  invalid?: boolean;
+  disabled?: boolean;
+  readOnly?: boolean;
+  icon?: ReactNode;
+  value: IdType | null;
+  onChange: SearchSelectChangeHandler<IdType>;
+  filterItem: SearchSelectItemFilter<ItemType>;
+  getItemId: SearchSelectItemIdGetter<ItemType, IdType>;
+  getItemLabel: SearchSelectItemLabelGetter<ItemType>;
+  getItemCaption?: SearchSelectItemCaptionGetter<ItemType>;
+  buttonLabel?: SearchSelectRenderButtonLabel<ItemType>;
+  onOpen?: SearchSelectOpenHandler;
+  onClose?: SearchSelectCloseHandler;
+}) {
   const id = useId();
-  const buttonId = `${id}button`;
-  const textboxId = `${id}textbox`;
-  const listboxId = `${id}listbox`;
-  const [options] = useState(() => new OptionStore<T>(`${id}option-`));
-  const [isOpen, setIsOpen] = useState(false);
+  const inputId = defaultInputId || `${id}-search-select-input`;
+  const listBoxId = defaultInputId || `${id}-search-select-list-box`;
+  const getOptionId = useCallback((itemId: IdType) => `${id}-search-select-option-${itemId}`, [id]);
+  const containerRef = useSafeRef<HTMLDivElement>('SearchSelect: containerRef is not set.');
+  const buttonRef = useSafeRef<HTMLButtonElement>('SearchSelect: buttonRef is not set.');
+  const inputRef = useSafeRef<HTMLInputElement>('SearchSelect: inputRef is not set.');
+  const popupRef = useSafeRef<HTMLDivElement>('SearchSelect: popupRef is not set.');
+  const valueRef = useRef(value);
+  const [expanded, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [highlightedValue, setHighlightedValue] = useState(selectedValue);
+  const [selectedItemId, setSelectedItemId] = useState<IdType | undefined>(undefined);
 
-  const openPopover = () => {
-    if (readOnly || disabled || loading) {
+  const filteredItems: ItemType[] = [];
+  let checkedItem: ItemType | null = null;
+  for (const item of items) {
+    if (filterItem(searchQuery, item)) {
+      filteredItems.push(item);
+    }
+    if (value === getItemId(item)) {
+      checkedItem = item;
+    }
+  }
+
+  const scrollToItem = useCallbackRef((itemId: IdType, options: ScrollIntoViewOptions = { block: 'nearest' }) => {
+    const optionId = getOptionId(itemId);
+    const listBoxEl = containerRef.current.querySelector(`#${listBoxId}`);
+    const optionEl = containerRef.current.querySelector(`#${optionId}`);
+    if (
+      listBoxEl instanceof HTMLElement
+      && optionEl instanceof HTMLElement
+      && !isElementVisibleInsideParent(listBoxEl, optionEl)
+    ) {
+      optionEl.scrollIntoView(options);
+    }
+  });
+
+  const openPopup = () => {
+    setIsOpen(true);
+    onOpen();
+  };
+
+  const closePopup = () => {
+    setIsOpen(false);
+    setSearchQuery('');
+    setSelectedItemId(undefined);
+    onClose();
+  };
+
+  const checkItem = (itemId: IdType) => {
+    onChange(itemId);
+    closePopup();
+  };
+
+  const selectItemAndScrollIfNeeded = (itemId: IdType) => {
+    setSelectedItemId(itemId);
+    scrollToItem(itemId);
+  };
+
+  const handleButtonClick: MouseEventHandler<HTMLButtonElement> = (event) => {
+    if (readOnly) {
       return;
     }
-    options.clear();
-    setSearchQuery('');
-    setHighlightedValue(selectedValue);
-    setIsOpen(true);
-    window.setTimeout(() => {
-      const textbox = window.document.getElementById(textboxId);
-      tryToFocusElement(textbox);
-
-      const listbox = window.document.getElementById(listboxId);
-      if (listbox) {
-        const option = listbox.querySelector('[role="option"][aria-selected="true"]');
-        if (option) {
-          option.scrollIntoView(false);
-        }
-      }
-    });
-  };
-
-  const closePopover = () => {
-    setIsOpen(false);
-    window.setTimeout(() => {
-      const button = window.document.getElementById(buttonId);
-      tryToFocusElement(button);
-    });
-  };
-
-  const setSelectedValue = (value: T) => {
-    onSelectedValueChange(value);
-    closePopover();
-  };
-
-  const handleButtonClick = () => {
-    if (isOpen) {
-      closePopover();
+    event.preventDefault();
+    event.stopPropagation();
+    if (expanded) {
+      closePopup();
     } else {
-      openPopover();
+      openPopup();
     }
   };
 
-  const handleButtonKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
-    let handled = false;
-    if (event.key === KeyboardKey.ARROW_UP) {
-      handled = true;
-      openPopover();
-    } else if (event.key === KeyboardKey.ARROW_DOWN) {
-      handled = true;
-      openPopover();
+  const handleButtonKeyDown: KeyboardEventHandler<HTMLButtonElement> = (event) => {
+    if (readOnly) {
+      return;
     }
-    if (handled) {
+    if (
+      event.key === KeyboardKey.SPACE
+      || event.key === KeyboardKey.ARROW_UP
+      || event.key === KeyboardKey.ARROW_DOWN
+    ) {
       event.preventDefault();
       event.stopPropagation();
+      openPopup();
     }
   };
 
-  const handleTextboxChange = (event: ChangeEvent<HTMLInputElement>) => {
-    options.clear();
+  const handleInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchQuery(event.target.value);
+    setSelectedItemId(undefined);
   };
 
-  const handleTextboxKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+  const handleInputKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
+    if (event.ctrlKey || event.shiftKey) {
+      return;
+    }
+
     let handled = false;
-    if (event.key === KeyboardKey.ARROW_UP) {
-      handled = true;
-      const values = options.values;
-      const index = values.indexOf(highlightedValue) - 1;
-      setHighlightedValue(index >= 0
-        ? values[index]
-        : values[values.length - 1]);
+    switch (event.key) {
+      case KeyboardKey.ENTER:
+        if (expanded && selectedItemId) {
+          checkItem(selectedItemId);
+          handled = true;
+        }
+        break;
+      case KeyboardKey.ARROW_DOWN:
+        if (filteredItems.length > 0 && !event.altKey) {
+          const firstItemIndex = 0;
+          const lastItemIndex = filteredItems.length - 1;
+          const selectedItemIndex = filteredItems.findIndex((item) => getItemId(item) === selectedItemId);
+          const newSelectedItem = selectedItemIndex >= 0 && selectedItemIndex < lastItemIndex
+            ? filteredItems[selectedItemIndex + 1]
+            : filteredItems[firstItemIndex];
+          selectItemAndScrollIfNeeded(getItemId(newSelectedItem));
+        }
+        handled = true;
+        break;
+      case KeyboardKey.ARROW_UP:
+        if (filteredItems.length > 0 && !event.altKey) {
+          const firstItemIndex = 0;
+          const lastItemIndex = filteredItems.length - 1;
+          const selectedItemIndex = filteredItems.findIndex((item) => getItemId(item) === selectedItemId);
+          const newSelectedItem = selectedItemIndex >= 0 && selectedItemIndex > firstItemIndex
+            ? filteredItems[selectedItemIndex - 1]
+            : filteredItems[lastItemIndex];
+          selectItemAndScrollIfNeeded(getItemId(newSelectedItem));
+        }
+        handled = true;
+        break;
+      case KeyboardKey.HOME:
+        if (expanded && filteredItems.length > 0) {
+          const firstItem = filteredItems[0];
+          selectItemAndScrollIfNeeded(getItemId(firstItem));
+          handled = true;
+        }
+        break;
+      case KeyboardKey.END:
+        if (expanded && filteredItems.length > 0) {
+          const lastItem = filteredItems[filteredItems.length - 1];
+          selectItemAndScrollIfNeeded(getItemId(lastItem));
+          handled = true;
+        }
+        break;
+      case KeyboardKey.ESCAPE:
+        closePopup();
+        handled = true;
+        break;
+      default:
+        break;
     }
-    if (event.key === KeyboardKey.ARROW_DOWN) {
-      handled = true;
-      const values = options.values;
-      const index = values.indexOf(highlightedValue) + 1;
-      setHighlightedValue(index < values.length
-        ? values[index]
-        : values[0]);
-    }
-    if (event.key === KeyboardKey.HOME) {
-      handled = true;
-      const values = options.values;
-      setHighlightedValue(values[0]);
-    }
-    if (event.key === KeyboardKey.END) {
-      handled = true;
-      const values = options.values;
-      setHighlightedValue(values[values.length - 1]);
-    }
-    if (event.key === KeyboardKey.ENTER) {
-      handled = true;
-      setSelectedValue(highlightedValue);
-    }
+
     if (handled) {
       event.preventDefault();
       event.stopPropagation();
@@ -174,208 +256,213 @@ export function SearchSelect<T>({
   };
 
   useEffect(() => {
-    const optionId = options.idOf(highlightedValue);
-    if (!optionId) {
-      return;
+    valueRef.current = value;
+  }, [value]);
+
+  useEffect(() => {
+    if (expanded) {
+      tryToFocusElement(inputRef.current);
+    } else {
+      tryToFocusElement(buttonRef.current);
     }
+  }, [expanded, inputRef, buttonRef]);
 
-    const listbox = window.document.getElementById(listboxId);
-    const option = window.document.getElementById(optionId);
-    if (!listbox || !option) {
-      return;
+  useEffect(() => {
+    if (expanded && valueRef.current) {
+      setSelectedItemId(valueRef.current);
+      scrollToItem(valueRef.current, { block: 'center' });
     }
+  }, [expanded, scrollToItem]);
 
-    const listboxRect = listbox.getBoundingClientRect();
-    const optionRect = option.getBoundingClientRect();
-    if (optionRect.top < listboxRect.top) {
-      listbox.scrollTo({
-        top: optionRect.top - listboxRect.top + listbox.scrollTop,
-      });
-    } else
-      if (optionRect.bottom > listboxRect.bottom) {
-        listbox.scrollTo({
-          top: optionRect.bottom - listboxRect.bottom + listbox.scrollTop,
-        });
-      }
-  }, [listboxId, options, highlightedValue]);
+  useCloseOnEsc(closePopup, {
+    disabled: !expanded,
+  });
 
-  const ctx: SearchSelectContext<T> = {
-    options: options,
-    selectedValue,
-    highlightedValue,
-    setSelectedValue: setSelectedValue,
-    setHighlightedValue: setHighlightedValue,
-  };
+  useCloseOnClickOutside(closePopup, {
+    ref: popupRef,
+    disabled: !expanded,
+    shouldIgnoreClick: (node) => containerRef.current.contains(node) === true,
+  });
+
+  let content: ReactNode;
+  if (!expanded) {
+    content = null;
+  } else if (itemsLoading) {
+    content = (
+      <div className="dc-search-select__empty-state">
+        {itemsLoadingMessage}
+      </div>
+    );
+  } else if (itemsError) {
+    content = (
+      <div className="dc-search-select__empty-state dc-search-select__empty-state_error">
+        {itemsError instanceof Error ? itemsError.message : String(itemsError)}
+      </div>
+    );
+  } else if (items.length === 0) {
+    content = (
+      <div className="dc-search-select__empty-state">
+        {noDataMessage}
+      </div>
+    );
+  } else if (filteredItems.length === 0) {
+    content = (
+      <div className="dc-search-select__empty-state">
+        {notFoundMessage}
+      </div>
+    );
+  } else {
+    content = (
+      <ul
+        id={listBoxId}
+        className="dc-search-select__list-box"
+        role="listbox"
+      >
+        {filteredItems.map((item) => {
+          const itemId = getItemId(item);
+          return (
+            <SearchSelectOption
+              key={itemId}
+              id={getOptionId(itemId)}
+              itemId={itemId}
+              label={getItemLabel(item)}
+              caption={getItemCaption(item)}
+              checked={itemId === value}
+              selected={selectedItemId === itemId}
+              onCheck={checkItem}
+              onSelect={setSelectedItemId}
+            />
+          );
+        })}
+      </ul>
+    );
+  }
+
   return (
-    <Popover
-      className="dc-search-select__popover"
-      placement="bottom-start"
-      isOpen={isOpen}
-      onClose={closePopover}
-      renderAnchor={({ ref }) => (
-        <button
-          ref={ref}
-          className={classNames(className, {
-            'dc-search-select': true,
-            'dc-search-select_full-width': fullWidth,
-            'dc-search-select_invalid': invalid,
-            'dc-search-select_loading': loading,
-            'dc-search-select_disabled': disabled,
-            [`dc-search-select_size_${size}`]: size,
-          })}
-          id={buttonId}
-          aria-expanded={isOpen}
-          aria-controls={listboxId}
-          aria-labelledby={labelledBy}
-          tabIndex={disabled || loading ? -1 : undefined}
-          type="button"
-          onClick={handleButtonClick}
-          onKeyDown={handleButtonKeyDown}
-        >
-          {typeof displayedValue === 'function'
-            ? displayedValue(selectedValue)
-            : displayedValue}
-          <span className="dc-search-select__slot-right">
-            {loading
-              ? (
-                  <Spinner
-                    className="dc-search-select__spinner"
-                    width="1.05em"
-                    height="1.05em"
-                  />
-                )
-              : (
-                  <ChevronDown
-                    className="dc-search-select__arrow"
-                    width="1.05em"
-                    height="1.05em"
-                    strokeWidth={2}
-                  />
-                )}
-          </span>
-        </button>
-      )}
+    <div
+      ref={containerRef}
+      style={style}
+      className={classNames(className, {
+        'dc-search-select': true,
+        'dc-search-select_full-width': fullWidth,
+      })}
     >
-      <>
-        <div className="dc-search-select__textbox">
-          <TextInput
-            id={textboxId}
-            fullWidth={true}
-            slotLeft={textboxIcon || <MagnifyingGlass width={16} height={16} />}
-            placeholder={textboxPlaceholder}
-            size="sm"
-            type="text"
+      <button
+        ref={buttonRef}
+        className={classNames({
+          'dc-search-select__button': true,
+          [`dc-search-select__button_size_${size}`]: size,
+        })}
+        disabled={disabled}
+        data-invalid={invalid}
+        aria-haspopup="listbox"
+        aria-expanded={expanded}
+        aria-controls={listBoxId}
+        onClick={handleButtonClick}
+        onKeyDown={handleButtonKeyDown}
+      >
+        {icon && (
+          <span className="dc-search-select__button-slot">
+            {icon}
+          </span>
+        )}
+        <span className="dc-search-select__button-label">
+          {buttonLabel(checkedItem)}
+        </span>
+        <span className="dc-search-select__button-slot">
+          {loading
+            ? <Spinner size="1em" />
+            : <CaretDownFillIcon className="dc-search-select__caret" width="0.75em" height="0.75em" />}
+        </span>
+      </button>
+      {expanded && (
+        <div ref={popupRef} className="dc-search-select__popup">
+          <input
+            ref={inputRef}
+            id={inputId}
+            className="dc-search-select__input"
+            placeholder={inputPlaceholder}
             role="combobox"
-            aria-controls={listboxId}
-            aria-expanded="true"
-            aria-autocomplete="list"
-            aria-activedescendant={options.idOf(highlightedValue)}
-            aria-label={textboxAriaLabel}
-            value={searchQuery}
-            onChange={handleTextboxChange}
-            onKeyDown={handleTextboxKeyDown}
+            aria-label={inputAriaLabel}
+            aria-controls={listBoxId}
+            aria-expanded={expanded}
+            aria-activedescendant={checkedItem ? getOptionId(getItemId(checkedItem)) : undefined}
+            aria-autocomplete="none"
+            onChange={handleInputChange}
+            onKeyDown={handleInputKeyDown}
           />
+          <div className="dc-search-select__content">
+            {content}
+          </div>
         </div>
-        <SearchSelectContextProvider value={ctx}>
-          <ul
-            className="dc-search-select__listbox"
-            id={listboxId}
-            role="listbox"
-          >
-            {typeof children === 'function'
-              ? children({
-                  searchQuery,
-                  searchQueryLowerCased: searchQuery.toLowerCase(),
-                })
-              : children}
-          </ul>
-        </SearchSelectContextProvider>
-      </>
-    </Popover>
+      )}
+    </div>
   );
 }
 
-SearchSelect.Option = function SearchSelectOption<T>({
-  className,
-  value,
-  children,
+function SearchSelectOption<IdType extends string | number>({
+  id,
+  itemId,
+  label,
   caption,
+  checked,
+  selected,
+  onCheck,
+  onSelect,
 }: {
-  className?: string;
-  value: T;
-  children: ReactNode;
+  id: string;
+  itemId: IdType;
+  label: ReactNode;
   caption?: ReactNode;
+  checked: boolean;
+  selected: boolean;
+  onCheck: (itemId: IdType) => void;
+  onSelect: (itemId: IdType) => void;
 }) {
-  const {
-    options,
-    selectedValue,
-    highlightedValue,
-    setSelectedValue,
-    setHighlightedValue,
-  } = useSearchSelectContext();
-  const id = options.append(value);
-  const selected = value === selectedValue;
-  const highlighted = value === highlightedValue;
+  const handlePointerDown: PointerEventHandler<HTMLLIElement> = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    onCheck(itemId);
+  };
+
+  const handlePointerOver: PointerEventHandler<HTMLLIElement> = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    onSelect(itemId);
+  };
+
   return (
-    /* eslint-disable jsx-a11y/click-events-have-key-events */
     <li
-      className={classNames(className, {
-        'dc-search-select-option': true,
-        'dc-search-select-option_selected': selected,
-        'dc-search-select-option_highlighted': highlighted,
-      })}
       id={id}
+      className="dc-search-select__option"
       role="option"
-      aria-selected={highlighted}
-      onClick={() => setSelectedValue(value)}
-      onMouseEnter={() => setHighlightedValue(value)}
+      aria-checked={checked}
+      aria-selected={selected}
+      onPointerDown={handlePointerDown}
+      onPointerOver={handlePointerOver}
     >
-      <div className="dc-search-select-option__label">
-        {children}
+      <div className="dc-search-select__option-label">
+        {label}
       </div>
-      {caption
-        ? <div className="dc-search-select-option__caption">{caption}</div>
-        : null}
+      {caption && <div className="dc-search-select__option-caption">{caption}</div>}
     </li>
   );
-};
+}
 
-SearchSelect.Separator = function SearchSelectSeparator({
-  className,
-  children,
-}: {
-  className?: string;
-  children?: ReactNode;
-}) {
+function CaretDownFillIcon({
+  width = 24,
+  height = 24,
+  ...props
+}: ComponentProps<'svg'>) {
   return (
-    <li
-      className={classNames('dc-search-select-separator', className)}
-      role="separator"
-    >
-      {children
-        ? <div className="dc-search-select-separator__label">{children}</div>
-        : null}
-    </li>
+    <svg fill="currentColor" width={width} height={height} {...props} viewBox="0 0 16 16">
+      <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+    </svg>
   );
-};
+}
 
-SearchSelect.ButtonLabel = function SearchSelectButtonLabel({
-  className,
-  icon,
-  value,
-  children,
-}: {
-  className?: string;
-  icon?: ReactNode;
-  value: ReactNode;
-  children: ReactNode;
-}) {
-  return (
-    <div className={classNames('dc-search-select-button-label', className)}>
-      {icon}
-      <span>
-        {children} <b>{value}</b>
-      </span>
-    </div>
-  );
-};
+function isElementVisibleInsideParent(parent: HTMLElement, child: HTMLElement) {
+  const parentRect = getElementBoundingRect(parent);
+  const childRect = getElementBoundingRect(child);
+  return childRect.top >= parentRect.top && childRect.bottom <= parentRect.bottom;
+}

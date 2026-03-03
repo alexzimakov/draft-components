@@ -1,68 +1,95 @@
 import { type Meta, type StoryFn } from '@storybook/react';
-import { type ReactNode, useState } from 'react';
+import { useState } from 'react';
 import { SearchSelect } from './search-select.js';
 
-type Fruit = {
-  id: number;
+type Destination = {
+  code: string;
   name: string;
-  calories: number;
+  country: string;
 };
-const fruits: Fruit[] = [
-  { id: 0, name: 'Apple', calories: 52 },
-  { id: 1, name: 'Banana', calories: 89 },
-  { id: 2, name: 'Blueberry', calories: 57 },
-  { id: 3, name: 'Cherry', calories: 50 },
-  { id: 4, name: 'Cranberry', calories: 46 },
-  { id: 5, name: 'Durian', calories: 147 },
-  { id: 6, name: 'Dragon fruit', calories: 60 },
-  { id: 7, name: 'Fig', calories: 37 },
-  { id: 8, name: 'Grape', calories: 67 },
-  { id: 9, name: 'Guava', calories: 68 },
+
+const destinations = [
+  { code: 'BKK', name: 'Bangkok', country: 'Thailand' },
+  { code: 'HKG', name: 'Hong Kong', country: 'China' },
+  { code: 'LON', name: 'London', country: 'United Kingdom' },
+  { code: 'IST', name: 'Istanbul', country: 'Turkey' },
+  { code: 'DXB', name: 'Dubai', country: 'United Arab Emirates' },
+  { code: 'MAK', name: 'Mecca', country: 'Saudi Arabia' },
+  { code: 'PAR', name: 'Paris', country: 'France' },
+  { code: 'KUL', name: 'Kuala Lumpur', country: 'Malaysia' },
+  { code: 'DEL', name: 'Delhi', country: 'India' },
+  { code: 'ROM', name: 'Rome', country: 'Italy' },
+  { code: 'TYO', name: 'Tokyo', country: 'Japan' },
+  { code: 'TPE', name: 'Taipei', country: 'Taiwan' },
+  { code: 'PRG', name: 'Prague', country: 'Czech Republic' },
+  { code: 'SEL', name: 'Seoul', country: 'South Korea' },
+  { code: 'AMS', name: 'Amsterdam', country: 'Netherlands' },
+  { code: 'MIA', name: 'Miami', country: 'United States' },
+  { code: 'SGN', name: 'Ho Chi Minh City', country: 'Vietnam' },
+  { code: 'DPS', name: 'Denpasar', country: 'Indonesia' },
+  { code: 'BCN', name: 'Barcelona', country: 'Spain' },
+  { code: 'SIN', name: 'Singapore', country: 'Singapore' },
+  { code: 'VIE', name: 'Vienna', country: 'Austria' },
+  { code: 'BER', name: 'Berlin', country: 'Germany' },
+  { code: 'MEX', name: 'Mexico City', country: 'Mexico' },
+  { code: 'LIS', name: 'Lisbon', country: 'Portugal' },
+  { code: 'YUL', name: 'Montreal', country: 'Canada' },
+  { code: 'SYD', name: 'Sydney', country: 'Australia' },
+  { code: 'CPH', name: 'Copenhagen', country: 'Denmark' },
+  { code: 'ATH', name: 'Athens', country: 'Greece' },
+  { code: 'BUD', name: 'Budapest', country: 'Hungary' },
+  { code: 'DUB', name: 'Dublin', country: 'Ireland' },
 ];
 
-const meta: Meta<typeof SearchSelect<Fruit>> = {
+const getDestinationCode = (dest: Destination) => dest.code;
+
+const getDestinationName = (dest: Destination) => <>{dest.name} <span style={{ fontWeight: 400, opacity: 0.75 }}>{dest.code}</span></>;
+
+const getDestinationCountry = (dest: Destination) => dest.country;
+
+const filterDestinationByNameOrCountry = (searchQuery: string, dest: Destination) => {
+  const search = searchQuery.toLowerCase();
+  const name = dest.name.toLowerCase();
+  const country = dest.country.toLowerCase();
+  return name.includes(search) || country.includes(search);
+};
+
+const meta: Meta<typeof SearchSelect<Destination['code'], Destination>> = {
   title: 'Forms/SearchSelect',
   component: SearchSelect,
   args: {
-    value: fruits[0],
+    items: destinations,
+    itemsLoadingMessage: 'Loading locations...',
+    getItemId: getDestinationCode,
+    getItemLabel: getDestinationName,
+    getItemCaption: getDestinationCountry,
+    filterItem: filterDestinationByNameOrCountry,
+    buttonLabel: (item) => item ? item.name : 'Select a destination',
+    noDataMessage: 'No locations available',
+    notFoundMessage: 'Nothing found',
+    inputAriaLabel: 'Search locations',
+    inputPlaceholder: 'Search locations',
     size: 'md',
     fullWidth: false,
     invalid: false,
     loading: false,
     disabled: false,
     readOnly: false,
-    displayedValue: renderSelectedFruit,
-    textboxPlaceholder: 'Search...',
+    value: null,
   },
 };
 export default meta;
 
-export const Basic: StoryFn<typeof SearchSelect<Fruit>> = (args) => {
+export const Basic: StoryFn<typeof SearchSelect<Destination['code'], Destination>> = (args) => {
   const [value, setValue] = useState(args.value);
-  const handleChange = (value: Fruit) => {
-    setValue(value);
-    if (typeof args.onChange === 'function') {
-      args.onChange(value);
-    }
-  };
-
   return (
     <SearchSelect
       {...args}
       value={value}
-      onChange={handleChange}
-    >
-      {({ searchQuery }) => fruits
-        .filter(filterByName(searchQuery))
-        .map((fruit) => (
-          <SearchSelect.Option key={fruit.id} value={fruit}>
-            {getFruitName(fruit)}
-          </SearchSelect.Option>
-        ))}
-    </SearchSelect>
+      onChange={setValue}
+    />
   );
 };
-Basic.args = {};
 
 export const Loading = Basic.bind({});
 Loading.args = {
@@ -84,119 +111,11 @@ FullWidth.args = {
   fullWidth: true,
 };
 
-export const OptionsWithCaption: StoryFn<typeof SearchSelect<Fruit>> = (args) => {
-  const [value, setValue] = useState(args.value);
-  const handleChange = (value: Fruit) => {
-    setValue(value);
-    if (typeof args.onChange === 'function') {
-      args.onChange(value);
-    }
-  };
-
-  return (
-    <SearchSelect
-      {...args}
-      value={value}
-      onChange={handleChange}
-    >
-      {({ searchQuery }) => fruits
-        .filter(filterByName(searchQuery))
-        .map((fruit) => (
-          <SearchSelect.Option
-            key={fruit.id}
-            value={fruit}
-            caption={`${fruit.calories} Calories`}
-          >
-            {getFruitName(fruit)}
-          </SearchSelect.Option>
-        ))}
-    </SearchSelect>
-  );
-};
-OptionsWithCaption.args = {};
-
-export const WithSeparator: StoryFn<typeof SearchSelect<Fruit>> = (args) => {
-  const [value, setValue] = useState(args.value);
-  const handleChange = (value: Fruit) => {
-    setValue(value);
-    if (typeof args.onChange === 'function') {
-      args.onChange(value);
-    }
-  };
-
-  const berries = [
-    fruits[2],
-    fruits[4],
-    fruits[8],
-  ];
-
-  return (
-    <SearchSelect
-      {...args}
-      value={value}
-      onChange={handleChange}
-    >
-      {({ searchQuery }) => {
-        const otherOptions: ReactNode[] = [];
-        const berryOptions: ReactNode[] = [];
-        fruits
-          .filter(filterByName(searchQuery))
-          .forEach((fruit) => {
-            const option = (
-              <SearchSelect.Option key={fruit.id} value={fruit}>
-                {getFruitName(fruit)}
-              </SearchSelect.Option>
-            );
-            if (berries.includes(fruit)) {
-              berryOptions.push(option);
-            } else {
-              otherOptions.push(option);
-            }
-          });
-        return (
-          <>
-            {otherOptions}
-            <SearchSelect.Separator>Berries</SearchSelect.Separator>
-            {berryOptions}
-          </>
-        );
-      }}
-    </SearchSelect>
-  );
-};
-WithSeparator.args = {};
-
-function getFruitName(fruit: Fruit) {
-  return fruit.name;
-}
-
-function filterByName(searchQuery: string) {
-  searchQuery = searchQuery.toLowerCase();
-  return (fruit: Fruit) => fruit.name.toLowerCase().includes(searchQuery);
-}
-
-function renderSelectedFruit(fruit: Fruit) {
-  const icon = (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="1.15em"
-      height="1.15em"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.5}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-      />
+export const WithIcon = Basic.bind({});
+WithIcon.args = {
+  icon: (
+    <svg viewBox="0 0 32 32" width={20} height={20} fill="currentcolor">
+      <path d="M21.455 11.207l-5 11a.5.5 0 0 1-.953-.162l-.463-5.085-5.084-.462a.5.5 0 0 1-.162-.953l11-5a.5.5 0 0 1 .662.662M16 4C9.383 4 4 9.383 4 16s5.383 12 12 12 12-5.383 12-12S22.617 4 16 4" />
     </svg>
-
-  );
-  return (
-    <SearchSelect.ButtonLabel icon={icon} value={getFruitName(fruit)}>
-      Favorite fruit
-    </SearchSelect.ButtonLabel>
-  );
-}
+  ),
+};
