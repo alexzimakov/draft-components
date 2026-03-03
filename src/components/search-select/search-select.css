@@ -141,6 +141,7 @@
   position: absolute;
   top: 100%;
   left: 0;
+  z-index: var(--dc-overlay-z-index);
   width: 100%;
   min-width: var(--popup-min-width);
   max-width: var(--popup-max-width);
