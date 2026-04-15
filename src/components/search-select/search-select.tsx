@@ -261,9 +261,12 @@ export function SearchSelect<IdType extends string | number, ItemType = unknown>
 
   useEffect(() => {
     if (expanded) {
-      tryToFocusElement(inputRef.current);
-    } else {
-      tryToFocusElement(buttonRef.current);
+      const inputEl = inputRef.current;
+      const buttonEl = buttonRef.current;
+      tryToFocusElement(inputEl);
+      return () => {
+        tryToFocusElement(buttonEl);
+      };
     }
   }, [expanded, inputRef, buttonRef]);
 
