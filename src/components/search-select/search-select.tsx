@@ -353,6 +353,7 @@ export function SearchSelect<IdType extends string | number, ItemType = unknown>
           'dc-search-select__button': true,
           [`dc-search-select__button_size_${size}`]: size,
         })}
+        type="button"
         disabled={disabled}
         data-invalid={invalid}
         aria-haspopup="listbox"
