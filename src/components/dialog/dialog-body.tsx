@@ -1,6 +1,7 @@
 import { type ComponentProps, useEffect, useRef } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import { useDialogContext } from './dialog-context.js';
+import { useCallbackRef } from '../../hooks/use-callback-ref.js';
 
 type DialogBodyHTMLProps = ComponentProps<'div'>;
 
@@ -19,10 +20,18 @@ export function DialogBody({
   hasTopDelimiter: hasBorderTop,
   hasBottomDelimiter: hasBorderBottom,
   shouldShowScrollShadow,
+  onScroll,
   ...props
 }: DialogBodyProps) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const { setIsBodyHasScroll: setShouldShowScrollShadow } = useDialogContext();
+  const { setIsBodyHasTopScroll, setIsBodyHasBottomScroll } = useDialogContext();
+  const updateBodyScrollState = useCallbackRef(() => {
+    const el = ref.current;
+    if (el) {
+      setIsBodyHasTopScroll(el.scrollTop > 0);
+      setIsBodyHasBottomScroll(el.scrollHeight - el.scrollTop - el.clientHeight > 0);
+    }
+  });
 
   useEffect(() => {
     const el = ref.current;
@@ -31,17 +40,16 @@ export function DialogBody({
     }
 
     if (shouldShowScrollShadow) {
-      const ro = new ResizeObserver(() => {
-        setShouldShowScrollShadow(el.scrollHeight !== el.offsetHeight);
-      });
+      const ro = new ResizeObserver(updateBodyScrollState);
       ro.observe(el);
 
       return () => {
-        setShouldShowScrollShadow(false);
+        setIsBodyHasTopScroll(false);
+        setIsBodyHasBottomScroll(false);
         ro.disconnect();
       };
     }
-  }, [shouldShowScrollShadow, setShouldShowScrollShadow]);
+  }, [shouldShowScrollShadow, setIsBodyHasTopScroll, setIsBodyHasBottomScroll, updateBodyScrollState]);
 
   return (
     <div
@@ -51,6 +59,12 @@ export function DialogBody({
         'dc-dialog__body_has_top-delimiter': hasBorderTop,
         'dc-dialog__body_has_bottom-delimiter': hasBorderBottom,
       })}
+      onScroll={(ev) => {
+        updateBodyScrollState();
+        if (typeof onScroll === 'function') {
+          onScroll(ev);
+        }
+      }}
       {...props}
     />
   );

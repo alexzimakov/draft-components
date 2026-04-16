@@ -23,14 +23,14 @@ export function DialogHeader({
   shouldHideCloseButton = false,
   ...props
 }: DialogHeaderProps) {
-  const { titleId, isBodyHasScroll, onClose } = useDialogContext();
+  const { titleId, isBodyHasTopScroll, onClose } = useDialogContext();
 
   return (
     <div
       className={classNames(className, {
         'dc-dialog__section': true,
         'dc-dialog__header': true,
-        'dc-dialog__header_has_scroll-shadow': isBodyHasScroll,
+        'dc-dialog__header_has_scroll-shadow': isBodyHasTopScroll,
         [`dc-dialog__header_content-align_${contentAlign}`]: contentAlign,
       })}
       {...props}

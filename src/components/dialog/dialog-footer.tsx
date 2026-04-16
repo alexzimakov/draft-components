@@ -10,12 +10,12 @@ export function DialogFooter({
   className,
   ...props
 }: DialogFooterProps) {
-  const { isBodyHasScroll } = useDialogContext();
+  const { isBodyHasBottomScroll } = useDialogContext();
   return (
     <div
       className={classNames(className, {
         'dc-dialog__footer': true,
-        'dc-dialog__footer_has_scroll-shadow': isBodyHasScroll,
+        'dc-dialog__footer_has_scroll-shadow': isBodyHasBottomScroll,
       })}
       {...props}
     />

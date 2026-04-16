@@ -4,8 +4,10 @@ export type DialogContextValue = {
   titleId: string;
   isOpen: boolean;
   onClose: () => void;
-  isBodyHasScroll: boolean;
-  setIsBodyHasScroll: (value: boolean) => void;
+  isBodyHasTopScroll: boolean;
+  setIsBodyHasTopScroll: (value: boolean) => void;
+  isBodyHasBottomScroll: boolean;
+  setIsBodyHasBottomScroll: (value: boolean) => void;
 };
 
 const DialogContext = createContext<DialogContextValue | null>(null);
@@ -29,7 +31,8 @@ export function DialogContextProvider({
   isOpen: boolean;
   onClose: () => void;
 }) {
-  const [isBodyHasScroll, setIsBodyHasScroll] = useState(false);
+  const [isBodyHasTopScroll, setIsBodyHasTopScroll] = useState(false);
+  const [isBodyHasBottomScroll, setIsBodyHasBottomScroll] = useState(false);
 
   return (
     <DialogContext.Provider
@@ -37,8 +40,10 @@ export function DialogContextProvider({
         titleId,
         isOpen,
         onClose,
-        isBodyHasScroll,
-        setIsBodyHasScroll,
+        isBodyHasTopScroll,
+        setIsBodyHasTopScroll,
+        isBodyHasBottomScroll,
+        setIsBodyHasBottomScroll,
       }}
     >
       {children}
