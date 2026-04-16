@@ -242,3 +242,25 @@
 .dc-search-select__empty-state_error {
   color: var(--empty-state-color-error);
 }
+
+.dark .dc-search-select,
+.dark.dc-search-select {
+  --button-color: var(--dc-white);
+  --button-background: var(--dc-neutral-800);
+  --button-border-color: var(--dc-neutral-600);
+  --button-border-color-error: var(--dc-red-400);
+  --button-focus-ring-color: var(--dc-focus-ring-color);
+  --popup-color: var(--dc-white);
+  --popup-background: var(--dc-neutral-800);
+  --popup-border-color: var(--dc-neutral-500);
+  --input-border-color: var(--dc-neutral-500);
+  --option-color: var(--dc-neutral-50);
+  --option-color-selected: var(--dc-white);
+  --option-background-selected: rgb(var(--dc-white-rgb) / 24%);
+  --option-color-checked: var(--dc-white);
+  --option-background-checked: var(--dc-blue-500);
+  --empty-state-color: var(--dc-neutral-400);
+  --empty-state-color-error: var(--dc-red-400);
+
+  color-scheme: dark;
+}
