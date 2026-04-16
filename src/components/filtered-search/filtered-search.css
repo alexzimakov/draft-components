@@ -146,7 +146,7 @@
   --icon-color: var(--dc-neutral-400);
   --option-color: var(--dc-white);
   --listbox-background: var(--dc-neutral-800);
-  --listbox-shadow: 0 0 0 1px var(--dc-neutral-700), var(--dc-shadow-lg);
+  --listbox-shadow: 0 0 0 1px var(--dc-neutral-500), var(--dc-shadow-lg);
   --token-color: var(--dc-white);
   --token-background: var(--dc-neutral-600);
   --token-background-hover: rgb(var(--dc-white-rgb) / 10%);
