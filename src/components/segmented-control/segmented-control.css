@@ -101,13 +101,13 @@
 
 .dark .dc-segmented,
 .dark.dc-segmented {
-  --border-color: var(--dc-neutral-600);
+  --border-color: var(--dc-neutral-500);
   --background: rgb(var(--dc-neutral-50-rgb) / 10%);
   --delimiter-color: rgb(var(--dc-neutral-50-rgb) / 40%);
   --button-color: var(--dc-white);
   --button-color-selected: var(--dc-neutral-900);
   --button-border-color: transparent;
-  --button-border-color-selected: var(--dc-neutral-600);
+  --button-border-color-selected: var(--dc-neutral-500);
 
   color-scheme: dark;
 }

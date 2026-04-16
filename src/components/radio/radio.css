@@ -72,7 +72,7 @@
 .dark .dc-radio,
 .dark.dc-radio {
   --background: var(--dc-neutral-800);
-  --border-color: var(--dc-neutral-600);
+  --border-color: var(--dc-neutral-500);
   --border-color-checked: rgb(var(--dc-white-rgb) / 10%);
 
   color-scheme: dark;

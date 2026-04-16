@@ -235,7 +235,7 @@
 
   /* Checkbox props */
   --checkbox-background: var(--dc-neutral-800);
-  --checkbox-border-color: var(--dc-neutral-600);
+  --checkbox-border-color: var(--dc-neutral-500);
   --checkbox-border-color-checked: rgb(var(--dc-white-rgb) / 10%);
 
   /* Listbox props */

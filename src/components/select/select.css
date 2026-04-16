@@ -115,7 +115,7 @@
 .dark .dc-select,
 .dark.dc-select {
   --color: var(--dc-white);
-  --border-color: var(--dc-neutral-600);
+  --border-color: var(--dc-neutral-500);
   --border-color-error: var(--dc-red-400);
   --background: var(--dc-neutral-800);
 

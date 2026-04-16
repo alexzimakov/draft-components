@@ -147,7 +147,7 @@
 .dark.dc-token-input {
   --color: var(--dc-white);
   --background: var(--dc-neutral-800);
-  --border-color: var(--dc-neutral-600);
+  --border-color: var(--dc-neutral-500);
   --border-color-error: var(--dc-red-400);
   --token-color: var(--dc-white);
   --token-background: var(--dc-neutral-600);

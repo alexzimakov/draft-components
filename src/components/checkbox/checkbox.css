@@ -75,7 +75,7 @@
 .dark .dc-checkbox,
 .dark.dc-checkbox {
   --background: var(--dc-neutral-800);
-  --border-color: var(--dc-neutral-600);
+  --border-color: var(--dc-neutral-500);
   --border-color-checked: rgb(var(--dc-white-rgb) / 10%);
 
   color-scheme: dark;

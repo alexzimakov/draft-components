@@ -69,7 +69,7 @@
   --label-color: var(--dc-white);
   --icon-color: var(--dc-neutral-400);
   --caption-color: var(--dc-neutral-400);
-  --border-color: var(--dc-neutral-600);
+  --border-color: var(--dc-neutral-500);
   --border-color-drag-over: var(--dc-blue-400);
   --background-drag-over: rgb(var(--dc-blue-300-rgb) / 20%);
 

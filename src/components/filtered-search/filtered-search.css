@@ -141,7 +141,7 @@
 .dark .dc-filtered-search,
 .dark.dc-filtered-search {
   --color: var(--dc-white);
-  --border-color: var(--dc-neutral-600);
+  --border-color: var(--dc-neutral-500);
   --background: var(--dc-neutral-800);
   --icon-color: var(--dc-neutral-400);
   --option-color: var(--dc-white);

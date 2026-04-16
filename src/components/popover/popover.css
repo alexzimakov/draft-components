@@ -69,7 +69,7 @@
 
 .dark .dc-popover,
 .dark.dc-popover {
-  --border-color: var(--dc-neutral-600);
+  --border-color: var(--dc-neutral-500);
   --shadow: 0 0 0 1px var(--dc-neutral-600), var(--dc-shadow-lg);
 
   color-scheme: dark;

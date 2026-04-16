@@ -247,7 +247,7 @@
 .dark.dc-search-select {
   --button-color: var(--dc-white);
   --button-background: var(--dc-neutral-800);
-  --button-border-color: var(--dc-neutral-600);
+  --button-border-color: var(--dc-neutral-500);
   --button-border-color-error: var(--dc-red-400);
   --button-focus-ring-color: var(--dc-focus-ring-color);
   --popup-color: var(--dc-white);
