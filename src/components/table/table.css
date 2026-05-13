@@ -96,11 +96,14 @@
 }
 
 .dc-table_bordered th + th,
-.dc-table_bordered td + td {
+.dc-table_bordered td + td,
+.dc-table_bordered th + td,
+.dc-table_bordered td + th {
   border-left: var(--border);
 }
 
-.dc-table tbody tr + tr td {
+.dc-table tbody tr + tr td,
+.dc-table tbody tr + tr th {
   border-top: var(--border);
 }
 
