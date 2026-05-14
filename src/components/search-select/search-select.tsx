@@ -124,8 +124,8 @@ export function SearchSelect<IdType extends string | number, ItemType = unknown>
 
   const scrollToItem = useCallbackRef((itemId: IdType, options: ScrollIntoViewOptions = { block: 'nearest' }) => {
     const optionId = getOptionId(itemId);
-    const listBoxEl = containerRef.current.querySelector(`#${listBoxId}`);
-    const optionEl = containerRef.current.querySelector(`#${optionId}`);
+    const listBoxEl = containerRef.current.querySelector('#' + CSS.escape(listBoxId));
+    const optionEl = containerRef.current.querySelector('#' + CSS.escape(optionId));
     if (
       listBoxEl instanceof HTMLElement
       && optionEl instanceof HTMLElement

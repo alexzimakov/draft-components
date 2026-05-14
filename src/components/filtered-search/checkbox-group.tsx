@@ -30,7 +30,7 @@ export function CheckboxGroup({
   const handleChange: ChangeEventHandler<HTMLInputElement> = () => {
     const containerElement = ref.current;
     if (containerElement) {
-      const inputElements = containerElement.querySelectorAll<HTMLInputElement>(`input[name="${name}"]`);
+      const inputElements = containerElement.querySelectorAll<HTMLInputElement>(`input[name="${CSS.escape(name)}"]`);
       const newSelectedValues = Array.from(inputElements)
         .filter((el) => el.checked)
         .map((el) => el.value);

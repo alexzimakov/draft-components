@@ -166,8 +166,8 @@ export function MultiSelect<IdType extends string | number, ItemType = unknown>(
     const containerEl = ref.current;
     if (containerEl && itemId) {
       const optionId = getOptionId(itemId);
-      const listBoxEl = containerEl.querySelector(`#${listBoxId}`) as HTMLElement;
-      const optionEl = containerEl.querySelector(`#${optionId}`) as HTMLElement;
+      const listBoxEl = containerEl.querySelector('#' + CSS.escape(listBoxId)) as HTMLElement;
+      const optionEl = containerEl.querySelector('#' + CSS.escape(optionId)) as HTMLElement;
       if (listBoxEl && optionEl) {
         const isOptionVisible = isElementVisibleInsideParent(listBoxEl, optionEl);
         if (!isOptionVisible) {

@@ -156,7 +156,7 @@ export function CalendarGrid({
       const gridElement = event.currentTarget;
       const dayISO = toDateISO(newFocusDay);
       setTimeout(() => {
-        const dayElement = gridElement.querySelector(`[data-date="${dayISO}"]`);
+        const dayElement = gridElement.querySelector(`[data-date="${CSS.escape(dayISO)}"]`);
         tryToFocusElement(dayElement);
         if (newFocusDay && typeof onFocusDay === 'function') {
           onFocusDay(newFocusDay);
