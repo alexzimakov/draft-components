@@ -8,7 +8,7 @@
   --head-background: var(--background);
   --row-background-stripped: var(--dc-neutral-100);
   --row-background-selected: var(--dc-neutral-100);
-  --row-background-highlighted: var(--dc-neutral-200);
+  --row-background-highlighted: var(--dc-yellow-50);
   --cell-padding: 8px 12px;
   --sort-btn-focus-ring: 2px solid var(--dc-focus-ring-color);
   --sort-btn-focus-ring-offset: 2px;
