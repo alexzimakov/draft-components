@@ -348,14 +348,12 @@ export function SearchSelect<IdType extends string | number, ItemType = unknown>
       className={classNames(className, {
         'dc-search-select': true,
         'dc-search-select_full-width': fullWidth,
+        [`dc-search-select_size_${size}`]: size,
       })}
     >
       <button
         ref={buttonRef}
-        className={classNames({
-          'dc-search-select__button': true,
-          [`dc-search-select__button_size_${size}`]: size,
-        })}
+        className="dc-search-select__button"
         type="button"
         disabled={disabled}
         data-invalid={invalid}
