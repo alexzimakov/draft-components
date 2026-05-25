@@ -34,10 +34,11 @@
   --input-border-color: var(--dc-neutral-300);
   --list-box-max-height: 256px;
   --list-box-padding: 4px;
+  --list-box-gap: 2px;
   --option-padding: 4px 8px;
   --option-font: var(--dc-text-sm);
   --option-scroll-margin-block: 4px;
-  --option-scroll-border-radius: 4px;
+  --option-border-radius: 4px;
   --option-color: var(--dc-neutral-900);
   --option-background: none;
   --option-color-selected: var(--dc-neutral-950);
@@ -187,6 +188,7 @@
 .dc-search-select__list-box {
   box-sizing: border-box;
   display: grid;
+  gap: var(--list-box-gap);
   max-height: var(--list-box-max-height);
   padding: var(--list-box-padding);
   margin: 0;
@@ -208,7 +210,7 @@
   scroll-margin-top: var(--option-scroll-margin-block);
   scroll-margin-bottom: var(--option-scroll-margin-block);
   background: var(--option-background);
-  border-radius: var(--option-scroll-border-radius);
+  border-radius: var(--option-border-radius);
 }
 
 .dc-search-select__option[aria-selected="true"] {
