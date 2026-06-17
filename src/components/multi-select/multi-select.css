@@ -120,11 +120,12 @@
   outline-offset: 2px;
 }
 
-.dc-multi-select__button [data-icon="chevron-down"] {
+.dc-multi-select__button [data-icon="caret-down"] {
+  transform: translateY(7.5%);
   transform-origin: center;
 }
 
-.dc-multi-select__button[aria-expanded="true"] [data-icon="chevron-down"] {
+.dc-multi-select__button[aria-expanded="true"] [data-icon="caret-down"] {
   transform: rotate(180deg);
 }
 

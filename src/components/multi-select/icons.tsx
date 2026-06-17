@@ -1,20 +1,16 @@
 import type { ComponentProps } from 'react';
 
-export function ChevronDownIcon(props: ComponentProps<'svg'>) {
+export function CaretDownFillIcon(props: ComponentProps<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 20 20"
-      width={20}
-      height={20}
+      viewBox="0 0 16 16"
+      width={16}
+      height={16}
       fill="currentColor"
       {...props}
     >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
-      />
+      <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
     </svg>
   );
 }

@@ -14,7 +14,7 @@ import { classNames } from '../../lib/react-helpers.js';
 import { Spinner } from '../spinner/index.js';
 import { TextInput } from '../text-input/index.js';
 import { Tag } from '../tag/index.js';
-import { CheckIcon, ChevronDownIcon, XMarkIcon } from './icons.js';
+import { CaretDownFillIcon, CheckIcon, XMarkIcon } from './icons.js';
 import { getElementBoundingRect } from '../../lib/get-element-bounding-rect.js';
 
 export type MultiSelectSize = 'sm' | 'md' | 'lg';
@@ -363,7 +363,7 @@ export function MultiSelect<IdType extends string | number, ItemType = unknown>(
                 tabIndex={-1}
                 onPointerDown={handleButtonPress}
               >
-                <ChevronDownIcon data-icon="chevron-down" width={20} height={20} />
+                <CaretDownFillIcon data-icon="caret-down" width="0.75em" height="0.75em" />
               </button>
             );
           }}
@@ -373,6 +373,10 @@ export function MultiSelect<IdType extends string | number, ItemType = unknown>(
             id={listBoxId}
             className="dc-multi-select__list-box"
             role="listbox"
+            onPointerDown={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+            }}
           >
             {listBoxContent}
           </ul>
