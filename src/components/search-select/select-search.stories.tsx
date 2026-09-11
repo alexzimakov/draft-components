@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react-vite';
 import { useState } from 'react';
 import { SearchSelect } from './search-select.js';
 

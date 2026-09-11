@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react-vite';
 import { Popover, type PopoverPlacement } from './popover.js';
 import { useRef, useState } from 'react';
 import { Button, IconButton } from '../button/index.js';

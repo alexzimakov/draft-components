@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react-vite';
 import { type TableHeadCellSort } from './table-head-cell.js';
 import { Table } from './table.js';
 import { useState, type CSSProperties } from 'react';

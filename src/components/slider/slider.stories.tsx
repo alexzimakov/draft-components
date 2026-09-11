@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react-vite';
 import { type ComponentProps, useEffect, useState } from 'react';
 import { Slider } from './slider.js';
 

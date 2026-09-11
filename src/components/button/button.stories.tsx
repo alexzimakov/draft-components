@@ -1,5 +1,5 @@
 import { type ComponentProps } from 'react';
-import { type Meta, type StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react-vite';
 import { Button, type ButtonProps } from './button.js';
 import { IconButton } from './icon-button.js';
 

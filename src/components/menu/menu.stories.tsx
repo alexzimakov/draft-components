@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react-vite';
 import { type ComponentProps } from 'react';
 import { Menu } from './menu.js';
 import { Button } from '../button/index.js';

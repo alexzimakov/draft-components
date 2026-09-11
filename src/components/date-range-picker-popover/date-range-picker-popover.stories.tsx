@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react-vite';
 import { type DateRangePickerPopoverOption, type DateRangePickerPopoverSelection } from './types.js';
 import { type ComponentProps, type ReactNode, useState } from 'react';
 import { addDays, getStartOfMonth, getStartOfWeek, isSameDay, toDateISO } from '../date-picker/date-helpers.js';

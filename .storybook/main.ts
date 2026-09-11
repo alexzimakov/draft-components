@@ -4,18 +4,25 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
   },
+
   stories: [
     '../src/**/*.mdx',
     '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
+
   addons: [
     '@storybook/addon-links',
-    '@storybook/addon-essentials',
     '@storybook/addon-themes',
+    '@storybook/addon-docs',
   ],
+
   framework: {
     name: '@storybook/react-vite',
     options: {},
+  },
+
+  features: {
+    experimentalDocgenServer: true,
   },
 };
 

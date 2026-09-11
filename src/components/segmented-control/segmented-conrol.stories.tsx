@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react-vite';
 import { type ComponentProps, useState } from 'react';
 import { SegmentedControl } from './segmented-control.js';
 

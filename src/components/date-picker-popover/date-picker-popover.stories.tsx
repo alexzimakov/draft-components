@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react-vite';
 import { type DateISO } from '../date-picker/date-helpers.js';
 import { type ComponentProps, useState } from 'react';
 import { DatePickerPopover } from './date-picker-popover.js';

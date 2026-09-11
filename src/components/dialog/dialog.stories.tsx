@@ -1,4 +1,4 @@
-import { type Meta } from '@storybook/react';
+import { type Meta } from '@storybook/react-vite';
 import { type ComponentProps, type ReactNode, useRef, useState } from 'react';
 import { Dialog } from './dialog.js';
 import { Button } from '../button/index.js';

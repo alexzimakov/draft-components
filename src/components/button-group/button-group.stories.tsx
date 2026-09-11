@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react-vite';
 import { ButtonGroup } from './button-group.js';
 import { IconButton } from '../button/index.js';
 

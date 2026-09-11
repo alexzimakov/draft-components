@@ -1,4 +1,4 @@
-import { type Preview } from '@storybook/react';
+import { type Preview } from '@storybook/react-vite';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import '../src/components/index.css';
 import './preview.css';
@@ -15,7 +15,7 @@ const preview: Preview = {
       },
     },
     backgrounds: {
-      disable: true,
+      disabled: true,
     },
     grid: {
       cellSize: 16,

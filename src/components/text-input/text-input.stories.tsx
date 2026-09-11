@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react-vite';
 import { type CSSProperties } from 'react';
 import { TextInput } from './text-input.js';
 import { Button } from '../button/index.js';
