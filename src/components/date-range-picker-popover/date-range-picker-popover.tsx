@@ -109,9 +109,9 @@ export function DateRangePickerPopover({
   }
 
   const [prevValue, setPrevValue] = useState(value);
-  if (value !== prevValue) {
+  if (!isSelectionEqual(value, prevValue)) {
     setPrevValue(value);
-    if (isValueChanged(selection, value)) {
+    if (!isSelectionEqual(value, selection)) {
       setSelection(value);
     }
   }
@@ -163,19 +163,15 @@ export function DateRangePickerPopover({
   );
 }
 
-function isValueChanged(prev: DateRangePickerPopoverSelection | null, next: DateRangePickerPopoverSelection | null): boolean {
-  if (!prev && next) {
+function isSelectionEqual(a: DateRangePickerPopoverSelection | null, b: DateRangePickerPopoverSelection | null): boolean {
+  if (a === b) {
     return true;
   }
 
-  if (prev && !next) {
-    return true;
-  }
-
-  if (prev && next) {
-    return prev.preset !== next.preset
-      || prev.range.start !== next.range.start
-      || prev.range.end !== next.range.end;
+  if (a && b) {
+    return a.preset === b.preset
+      && a.range.start === b.range.start
+      && a.range.end === b.range.end;
   }
 
   return false;
