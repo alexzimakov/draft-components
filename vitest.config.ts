@@ -15,6 +15,8 @@ export default mergeConfig(viteConfig, defineConfig({
       include: ['src/**'],
       exclude: [
         ...coverageConfigDefaults.exclude,
+        '**/.*',
+        '**/*.mdx',
         '**/*.stories.?(c|m)[jt]s?(x)',
         'src/test/**',
         'src/storybook-blocks/**',
