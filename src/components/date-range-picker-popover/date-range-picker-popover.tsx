@@ -96,15 +96,23 @@ export function DateRangePickerPopover({
   }
 
   function handleChangeDateRange(range: DateISORange) {
-    const selection = { range, preset: customPreset };
-    const selectedOption = findSelectedOption(selection, options);
+    const newSelection = { range, preset: customPreset };
+    const selectedOption = findSelectedOption(newSelection, options);
     if (selectedOption) {
       setSelection({
         preset: selectedOption.preset,
         range: selectedOption.range,
       });
     } else {
-      setSelection(selection);
+      setSelection(newSelection);
+    }
+  }
+
+  const [prevValue, setPrevValue] = useState(value);
+  if (value !== prevValue) {
+    setPrevValue(value);
+    if (isValueChanged(selection, value)) {
+      setSelection(value);
     }
   }
 
@@ -153,4 +161,22 @@ export function DateRangePickerPopover({
       </DateRangePickerPopoverFooter>
     </Popover>
   );
+}
+
+function isValueChanged(prev: DateRangePickerPopoverSelection | null, next: DateRangePickerPopoverSelection | null): boolean {
+  if (!prev && next) {
+    return true;
+  }
+
+  if (prev && !next) {
+    return true;
+  }
+
+  if (prev && next) {
+    return prev.preset !== next.preset
+      || prev.range.start !== next.range.start
+      || prev.range.end !== next.range.end;
+  }
+
+  return false;
 }

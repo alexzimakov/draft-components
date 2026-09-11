@@ -1,6 +1,7 @@
 import { type Meta, type StoryFn } from '@storybook/react-vite';
 import { type DateRangePickerPopoverOption, type DateRangePickerPopoverSelection } from './types.js';
-import { type ComponentProps, type ReactNode, useState } from 'react';
+import { type ComponentProps, type ReactNode } from 'react';
+import { useArgs } from 'storybook/preview-api';
 import { addDays, getStartOfMonth, getStartOfWeek, isSameDay, toDateISO } from '../date-picker/date-helpers.js';
 import { DateRangePickerPopover } from './date-range-picker-popover.js';
 import { Button } from '../button/index.js';
@@ -93,9 +94,7 @@ const options: DateRangePickerPopoverOption[] = [
 ];
 
 export const Basic: StoryFn<typeof DateRangePickerPopover> = (args) => {
-  const [value, setValue] = useState<DateRangePickerPopoverSelection | null>(
-    args.value,
-  );
+  const [{ value }, updateArgs] = useArgs();
 
   return (
     <DateRangePickerPopover
@@ -104,7 +103,7 @@ export const Basic: StoryFn<typeof DateRangePickerPopover> = (args) => {
       options={options}
       value={value}
       onChangeValue={(value) => {
-        setValue(value);
+        updateArgs({ value });
         if (typeof args.onChangeValue === 'function') {
           args.onChangeValue(value);
         }
@@ -130,9 +129,6 @@ Basic.argTypes = {
     control: { disable: true },
   },
   options: {
-    control: { disable: true },
-  },
-  value: {
     control: { disable: true },
   },
 };

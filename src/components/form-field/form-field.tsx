@@ -22,9 +22,7 @@ type FormFieldBaseProps = {
   children: ReactNode | FormFieldRender;
 };
 
-export type FormFieldProps =
-  & FormFieldBaseProps
-  & Omit<FormFieldHTMLProps, keyof FormFieldBaseProps>;
+export type FormFieldProps = FormFieldBaseProps & Omit<FormFieldHTMLProps, keyof FormFieldBaseProps>;
 
 export function FormField({
   srOnlyLabel = false,

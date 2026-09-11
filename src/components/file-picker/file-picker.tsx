@@ -22,9 +22,7 @@ type FilePickerBaseProps = {
   onSelectFiles?: FilePickerSelectFilesHandler;
 };
 
-export type FilePickerProps =
-  & FilePickerBaseProps
-  & Omit<FilePickerHTMLProps, (keyof FilePickerBaseProps) | 'type'>;
+export type FilePickerProps = FilePickerBaseProps & Omit<FilePickerHTMLProps, (keyof FilePickerBaseProps) | 'type'>;
 
 export function FilePicker({
   ref,

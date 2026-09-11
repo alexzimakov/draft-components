@@ -46,9 +46,7 @@ type MenuBaseProps = {
   renderButton: MenuButtonRenderer;
 };
 
-export type MenuProps =
-  & MenuBaseProps
-  & Omit<MenuHTMLProps, keyof MenuBaseProps>;
+export type MenuProps = MenuBaseProps & Omit<MenuHTMLProps, keyof MenuBaseProps>;
 
 export function Menu({
   defaultIsOpen = false,

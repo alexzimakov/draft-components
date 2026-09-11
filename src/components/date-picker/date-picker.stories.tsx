@@ -1,5 +1,5 @@
 import { type Meta, type StoryFn } from '@storybook/react-vite';
-import { useState } from 'react';
+import { useArgs } from 'storybook/preview-api';
 import { DatePicker } from './date-picker.js';
 import { DateRangePicker } from './date-range-picker.js';
 
@@ -15,9 +15,6 @@ const meta: Meta<typeof DatePicker> = {
     yearInputLabel: 'year',
   },
   argTypes: {
-    value: {
-      control: { disable: true },
-    },
     weekStartsOn: {
       control: {
         type: 'select',
@@ -38,13 +35,14 @@ const meta: Meta<typeof DatePicker> = {
 export default meta;
 
 export const Basic: StoryFn<typeof DatePicker> = (args) => {
-  const [value, setValue] = useState(args.value);
+  const [{ value }, updateArgs] = useArgs();
+
   return (
     <DatePicker
       {...args}
       value={value}
       onChangeValue={(value) => {
-        setValue(value);
+        updateArgs({ value });
         if (typeof args.onChangeValue === 'function') {
           args.onChangeValue(value);
         }
@@ -57,13 +55,14 @@ Basic.args = {
 };
 
 export const Range: StoryFn<typeof DateRangePicker> = (args) => {
-  const [value, setValue] = useState(args.value);
+  const [{ value }, updateArgs] = useArgs();
+
   return (
     <DateRangePicker
       {...args}
       value={value}
       onChangeValue={(value) => {
-        setValue(value);
+        updateArgs({ value });
         if (typeof args.onChangeValue === 'function') {
           args.onChangeValue(value);
         }

@@ -26,9 +26,7 @@ type DialogBaseProps = {
 
 type DialogHTMLProps = ComponentProps<'div'>;
 
-export type DialogProps =
-  & DialogBaseProps
-  & Omit<DialogHTMLProps, keyof DialogBaseProps>;
+export type DialogProps = DialogBaseProps & Omit<DialogHTMLProps, keyof DialogBaseProps>;
 
 export function Dialog(props: DialogProps) {
   const {

@@ -7,9 +7,7 @@ type NavListTitleBaseProps = {
   children: ReactNode;
 };
 
-export type NavListTitleProps =
-  & NavListTitleBaseProps
-  & Omit<NavListTitleHTMLProps, keyof NavListTitleBaseProps>;
+export type NavListTitleProps = NavListTitleBaseProps & Omit<NavListTitleHTMLProps, keyof NavListTitleBaseProps>;
 
 export function NavListTitle({
   className,

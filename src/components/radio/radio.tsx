@@ -12,9 +12,7 @@ type RadioBaseProps = {
   onToggle?: RadioToggleHandler;
 };
 
-export type RadioProps =
-  & RadioBaseProps
-  & Omit<RadioHTMLProps, keyof RadioBaseProps>;
+export type RadioProps = RadioBaseProps & Omit<RadioHTMLProps, keyof RadioBaseProps>;
 
 export function Radio({
   icon = 'dot',

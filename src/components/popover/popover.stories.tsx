@@ -1,5 +1,6 @@
 import { type Meta, type StoryFn } from '@storybook/react-vite';
 import { Popover, type PopoverPlacement } from './popover.js';
+import { useArgs } from 'storybook/preview-api';
 import { useRef, useState } from 'react';
 import { Button, IconButton } from '../button/index.js';
 import { Checkbox } from '../checkbox/index.js';
@@ -15,7 +16,7 @@ const meta: Meta<typeof Popover> = {
 export default meta;
 
 export const Basic: StoryFn<typeof Popover> = (args) => {
-  const [isOpen, setIsOpen] = useState(args.isOpen);
+  const [{ isOpen }, updateArgs] = useArgs();
   const genres = [
     { value: 'CLASSICAL', label: 'Classical' },
     { value: 'HIP_HOP', label: 'HipHop' },
@@ -26,19 +27,24 @@ export const Basic: StoryFn<typeof Popover> = (args) => {
   ];
 
   const togglePopover = () => {
-    setIsOpen((isOpen) => !isOpen);
-  };
-
-  const handlePopover = () => {
-    setIsOpen(false);
+    updateArgs({ isOpen: !isOpen });
   };
 
   return (
     <Popover
       {...args}
       isOpen={isOpen}
-      onClose={handlePopover}
-      renderAnchor={(props) => <Button {...props} onClick={togglePopover}>Favorites Genres</Button>}
+      renderAnchor={(props) => (
+        <Button {...props} onClick={togglePopover}>
+          Favorites Genres
+        </Button>
+      )}
+      onClose={() => {
+        updateArgs({ isOpen: false });
+        if (typeof args.onClose === 'function') {
+          args.onClose();
+        }
+      }}
     >
       <div style={{ fontWeight: 'bold', paddingBottom: 12 }}>
         Choose your favorites genres <Hint />

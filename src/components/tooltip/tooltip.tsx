@@ -49,9 +49,7 @@ type TooltipBaseProps = {
   children: TooltipChildrenRenderer;
 };
 
-export type TooltipProps =
-  & TooltipBaseProps
-  & Omit<TooltipHTMLProps, keyof TooltipBaseProps>;
+export type TooltipProps = TooltipBaseProps & Omit<TooltipHTMLProps, keyof TooltipBaseProps>;
 
 export function Tooltip({
   className,

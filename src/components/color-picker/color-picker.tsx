@@ -21,9 +21,7 @@ type ColorPickerBaseProps<T extends ColorPickerValue> = {
   onChangeValue?: (value: T) => void;
 };
 
-export type ColorPickerProps<T extends ColorPickerValue> =
-  & ColorPickerBaseProps<T>
-  & Omit<ColorPickerHTMLProps, keyof ColorPickerBaseProps<T>>;
+export type ColorPickerProps<T extends ColorPickerValue> = ColorPickerBaseProps<T> & Omit<ColorPickerHTMLProps, keyof ColorPickerBaseProps<T>>;
 
 export function ColorPicker<T extends ColorPickerValue>({
   className,

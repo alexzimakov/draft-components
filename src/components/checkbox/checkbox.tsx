@@ -10,9 +10,7 @@ type CheckboxBaseProps = {
   onToggle?: CheckboxToggleHandler;
 };
 
-export type CheckboxProps =
-  & CheckboxBaseProps
-  & Omit<CheckboxHTMLProps, keyof CheckboxBaseProps>;
+export type CheckboxProps = CheckboxBaseProps & Omit<CheckboxHTMLProps, keyof CheckboxBaseProps>;
 
 export function Checkbox({
   hasMixedState = false,

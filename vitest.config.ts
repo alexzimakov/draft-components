@@ -9,6 +9,7 @@ export default mergeConfig(viteConfig, defineConfig({
   test: {
     include: ['src/**/*.{test,spec}.?(c|m)[jt]s?(x)'],
     environment: 'jsdom',
+    pool: 'vmThreads',
     setupFiles: 'src/test/setup.ts',
     coverage: {
       include: ['src/**'],

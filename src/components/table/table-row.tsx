@@ -7,9 +7,7 @@ type TableRowBaseProps = {
   shouldNotHighlightOnHover?: boolean;
 };
 
-export type TableRowProps =
-  & TableRowBaseProps
-  & Omit<TableRowHTMLProps, keyof TableRowBaseProps>;
+export type TableRowProps = TableRowBaseProps & Omit<TableRowHTMLProps, keyof TableRowBaseProps>;
 
 export function TableRow({
   isSelected,

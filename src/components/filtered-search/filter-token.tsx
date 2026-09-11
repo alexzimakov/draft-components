@@ -12,9 +12,7 @@ type FilterTokenBaseProps = {
   onClickCloseButton?: MouseEventHandler<HTMLButtonElement>;
 };
 
-export type FilterTokenProps =
-  & FilterTokenBaseProps
-  & Omit<FilterTokenHTMLProps, keyof FilterTokenBaseProps>;
+export type FilterTokenProps = FilterTokenBaseProps & Omit<FilterTokenHTMLProps, keyof FilterTokenBaseProps>;
 
 export function FilterToken({
   ref,

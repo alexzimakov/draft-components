@@ -4,7 +4,7 @@
     "presets calendar"
     "footer  footer";
   grid-template-columns: auto 1fr;
-  grid-gap: 20px 24px;
+  gap: 20px 24px;
   max-width: none;
   color-scheme: light;
 }
@@ -42,7 +42,7 @@
   grid-area: footer;
   grid-template-areas: "content cancel confirm";
   grid-template-columns: 1fr auto auto;
-  grid-gap: 8px;
+  gap: 8px;
   align-items: center;
   font: var(--dc-text-xs);
 }

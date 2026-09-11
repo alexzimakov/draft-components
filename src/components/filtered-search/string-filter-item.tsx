@@ -1,5 +1,5 @@
 import { StringFilter, type StringFilterOperator } from './model/string-filter.js';
-import { type FormEventHandler, useState } from 'react';
+import { type SubmitEventHandler, useState } from 'react';
 import { useTranslations } from './use-translations.js';
 import { Popover, type PopoverRenderAnchor } from '../popover/index.js';
 import { FilterToken } from './filter-token.js';
@@ -57,7 +57,7 @@ export function StringFilterItem({
     onRemove(filter);
   };
 
-  const onSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+  const onSubmit: SubmitEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     event.stopPropagation();
     if (isValueEmpty) {
@@ -72,13 +72,14 @@ export function StringFilterItem({
       setError('');
     }
 
-    if (operator !== filter.operator) {
-      filter = filter.setOperator(operator);
+    let newFilter = filter;
+    if (operator !== newFilter.operator) {
+      newFilter = newFilter.setOperator(operator);
     }
-    if (value !== filter.value) {
-      filter = filter.setValue(value);
+    if (value !== newFilter.value) {
+      newFilter = newFilter.setValue(value);
     }
-    onChange(filter);
+    onChange(newFilter);
   };
 
   const renderAnchor: PopoverRenderAnchor = ({ ref }) => (

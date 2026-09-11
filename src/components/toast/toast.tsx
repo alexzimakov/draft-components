@@ -11,9 +11,7 @@ type ToastBaseProps = {
   onClickCloseButton?: MouseEventHandler<HTMLButtonElement>;
 };
 
-export type ToastProps =
-  & ToastBaseProps
-  & Omit<ToastHTMLProps, keyof ToastBaseProps>;
+export type ToastProps = ToastBaseProps & Omit<ToastHTMLProps, keyof ToastBaseProps>;
 
 export function Toast({
   icon,

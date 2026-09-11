@@ -10,5 +10,5 @@ export function useCallbackRef<T extends Callback>(callback: T): T {
     ref.current = callback;
   }, [callback]);
 
-  return useCallback(((...args) => ref.current(...args)) as T, []);
+  return useCallback<Callback>((...args) => ref.current(...args), []) as T;
 }

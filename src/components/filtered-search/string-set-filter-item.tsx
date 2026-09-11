@@ -1,5 +1,5 @@
 import { StringSetFilter, type StringSetFilterOperator } from './model/string-set-filter.js';
-import { type FormEventHandler, useState } from 'react';
+import { type SubmitEventHandler, useState } from 'react';
 import { useTranslations } from './use-translations.js';
 import { Popover, type PopoverRenderAnchor } from '../popover/index.js';
 import { FilterToken } from './filter-token.js';
@@ -56,7 +56,7 @@ export function StringSetFilterItem({
     onRemove(filter);
   };
 
-  const onSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+  const onSubmit: SubmitEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     event.stopPropagation();
 

@@ -11,9 +11,7 @@ type TabBaseProps = {
   name: string;
 };
 
-export type TabProps =
-  & TabBaseProps
-  & Omit<TabHTMLProps, keyof TabBaseProps>;
+export type TabProps = TabBaseProps & Omit<TabHTMLProps, keyof TabBaseProps>;
 
 export function Tab({
   id,

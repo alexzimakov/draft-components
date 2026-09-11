@@ -7,9 +7,7 @@ type FilterButtonBaseProps = {
   isActive?: boolean;
 };
 
-export type FilterButtonProps =
-  & FilterButtonBaseProps
-  & Omit<FilterButtonHTMLProps, keyof FilterButtonBaseProps>;
+export type FilterButtonProps = FilterButtonBaseProps & Omit<FilterButtonHTMLProps, keyof FilterButtonBaseProps>;
 
 export function FilterButton({
   ref,

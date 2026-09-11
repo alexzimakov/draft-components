@@ -7,9 +7,7 @@ type SpinnerBaseProps = {
   size?: number | string;
 };
 
-export type SpinnerProps =
-  & SpinnerBaseProps
-  & Omit<SpinnerHTMLProps, keyof SpinnerBaseProps>;
+export type SpinnerProps = SpinnerBaseProps & Omit<SpinnerHTMLProps, keyof SpinnerBaseProps>;
 
 export function Spinner({
   size = 24,

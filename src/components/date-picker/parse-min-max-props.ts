@@ -4,9 +4,9 @@ export function parseMinMaxProps(props: {
   min?: DateISO;
   max?: DateISO;
 }): {
-    minDate: Date | null;
-    maxDate: Date | null;
-  } {
+  minDate: Date | null;
+  maxDate: Date | null;
+} {
   const min = props.min;
   const max = props.max;
   const minDate = min

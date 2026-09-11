@@ -7,9 +7,7 @@ type ButtonGroupBaseProps = {
   children: JSX.Element | JSX.Element[];
 };
 
-export type ButtonGroupProps =
-  & ButtonGroupBaseProps
-  & Omit<ButtonGroupHTMLProps, keyof ButtonGroupBaseProps>;
+export type ButtonGroupProps = ButtonGroupBaseProps & Omit<ButtonGroupHTMLProps, keyof ButtonGroupBaseProps>;
 
 export function ButtonGroup({
   className,

@@ -2,7 +2,7 @@
   box-sizing: border-box;
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-gap: 4px 8px;
+  gap: 4px 8px;
   align-items: center;
   padding-left: 4px;
 }

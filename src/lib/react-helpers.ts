@@ -1,6 +1,5 @@
 export type ClassNamesObject = { [className: string]: unknown };
-export type ClassName =
-  | string
+export type ClassName = string
   | number
   | boolean
   | undefined

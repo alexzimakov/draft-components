@@ -1,5 +1,5 @@
 import { RadioGroupFilter, type RadioGroupFilterOperator } from './model/radio-group-filter.js';
-import { type FormEventHandler, useState } from 'react';
+import { type SubmitEventHandler, useState } from 'react';
 import { useTranslations } from './use-translations.js';
 import { Popover, type PopoverRenderAnchor } from '../popover/index.js';
 import { FilterToken } from './filter-token.js';
@@ -61,7 +61,7 @@ export function RadioGroupFilterItem({
     onRemove(filter);
   };
 
-  const onSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+  const onSubmit: SubmitEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     event.stopPropagation();
 

@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 import './color-palette.css';

@@ -1,5 +1,6 @@
 import { type Meta, type StoryFn } from '@storybook/react-vite';
-import { type ComponentProps, useState } from 'react';
+import { type ComponentProps } from 'react';
+import { useArgs } from 'storybook/preview-api';
 import { SegmentedControl } from './segmented-control.js';
 
 const options = [
@@ -29,22 +30,18 @@ const meta: Meta<typeof SegmentedControl> = {
     'aria-label': 'Category',
     'value': options[0].value,
   },
-  argTypes: {
-    value: {
-      control: { disable: true },
-    },
-  },
 };
 export default meta;
 
 export const Basic: StoryFn<typeof SegmentedControl> = (args) => {
-  const [value, setValue] = useState(args.value);
+  const [{ value }, updateArgs] = useArgs();
+
   return (
     <SegmentedControl
       {...args}
       value={value}
       onChangeValue={(value) => {
-        setValue(value);
+        updateArgs({ value });
         if (typeof args.onChangeValue === 'function') {
           args.onChangeValue(value);
         }

@@ -1,5 +1,5 @@
 import { type Meta, type StoryFn } from '@storybook/react-vite';
-import { useEffect, useState } from 'react';
+import { useArgs } from 'storybook/preview-api';
 import { RangeSlider } from './range-slider.js';
 
 const valueFormatter = new Intl.NumberFormat(undefined, {
@@ -25,17 +25,18 @@ const meta: Meta<typeof RangeSlider> = {
 export default meta;
 
 export const Basic: StoryFn<typeof RangeSlider> = (args) => {
-  const [value, setValue] = useState(args.value);
-
-  useEffect(() => {
-    setValue(args.value);
-  }, [args.value]);
+  const [{ value }, updateArgs] = useArgs();
 
   return (
     <RangeSlider
       {...args}
       value={value}
-      onChange={setValue}
+      onChange={(value) => {
+        updateArgs({ value });
+        if (typeof args.onChange === 'function') {
+          args.onChange(value);
+        }
+      }}
     />
   );
 };

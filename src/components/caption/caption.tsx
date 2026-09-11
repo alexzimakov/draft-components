@@ -1,8 +1,7 @@
 import { type ComponentProps, type ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-export type CaptionColor =
-  | 'gray'
+export type CaptionColor = 'gray'
   | 'blue'
   | 'green'
   | 'orange'
@@ -15,9 +14,7 @@ type CaptionBaseProps = {
   color?: CaptionColor;
 };
 
-export type CaptionProps =
-  & CaptionBaseProps
-  & Omit<CaptionHTMLProps, keyof CaptionBaseProps>;
+export type CaptionProps = CaptionBaseProps & Omit<CaptionHTMLProps, keyof CaptionBaseProps>;
 
 export function Caption({
   color = 'gray',

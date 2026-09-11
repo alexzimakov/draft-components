@@ -7,9 +7,7 @@ type BadgeBaseProps = {
   children: number | string;
 };
 
-export type BadgeProps =
-  & BadgeBaseProps
-  & Omit<BadgeHTMLProps, keyof BadgeBaseProps>;
+export type BadgeProps = BadgeBaseProps & Omit<BadgeHTMLProps, keyof BadgeBaseProps>;
 
 export function Badge({
   className,

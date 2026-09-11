@@ -1,10 +1,10 @@
 import { type Meta, type StoryFn } from '@storybook/react-vite';
-import { type Filter, type FilterConfig } from './types.js';
+import { type FilterConfig } from './types.js';
+import { useArgs } from 'storybook/preview-api';
 import { StringFilter } from './model/string-filter.js';
 import { StringSetFilter } from './model/string-set-filter.js';
 import { RadioGroupFilter } from './model/radio-group-filter.js';
 import { FilteredSearch } from './filtered-search.js';
-import { useCallback, useState } from 'react';
 
 const meta: Meta = {
   title: 'Other/FilteredSearch',
@@ -82,17 +82,18 @@ const defaultFiltersConfig = [
 ];
 
 export const Basic: StoryFn<typeof FilteredSearch> = (args) => {
-  const [filters, setFilters] = useState(args.filters);
-  const onChangeFilters = args.onChangeFilters;
-  const onFiltersChanged = useCallback((filters: Filter[]) => {
-    setFilters(filters);
-    onChangeFilters(filters);
-  }, [onChangeFilters]);
+  const [{ filters }, updateArgs] = useArgs();
+
   return (
     <FilteredSearch
       {...args}
       filters={filters}
-      onChangeFilters={onFiltersChanged}
+      onChangeFilters={(filters) => {
+        updateArgs({ filters });
+        if (typeof args.onChangeFilters === 'function') {
+          args.onChangeFilters(filters);
+        }
+      }}
     />
   );
 };

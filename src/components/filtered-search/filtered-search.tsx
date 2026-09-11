@@ -36,9 +36,7 @@ type FilteredSearchBaseProps = {
   onChangeFilters: (filters: Filter[]) => void;
 };
 
-export type FilteredSearchProps =
-  & FilteredSearchBaseProps
-  & Omit<FilteredSearchHTMLProps, (keyof FilteredSearchBaseProps) | 'children'>;
+export type FilteredSearchProps = FilteredSearchBaseProps & Omit<FilteredSearchHTMLProps, (keyof FilteredSearchBaseProps) | 'children'>;
 
 export function FilteredSearch({
   filters: appliedFilters,

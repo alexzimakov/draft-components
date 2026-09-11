@@ -28,8 +28,8 @@
 .dc-table-container {
   box-sizing: border-box;
   overflow: auto;
-  scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
 }
 
 .dc-table {

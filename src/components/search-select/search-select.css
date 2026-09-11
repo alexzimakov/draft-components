@@ -192,9 +192,9 @@
   max-height: var(--list-box-max-height);
   padding: var(--list-box-padding);
   margin: 0;
+  contain: content;
   overflow-y: auto;
   overscroll-behavior: contain;
-  contain: content;
   list-style: none;
   scrollbar-width: thin;
 }

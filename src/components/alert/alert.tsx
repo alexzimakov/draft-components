@@ -1,13 +1,11 @@
 import { type ComponentProps, type MouseEventHandler, type ReactNode } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-export type AlertStyle =
-  | 'default'
+export type AlertStyle = 'default'
   | 'full-width'
   | 'accent-left';
 
-export type AlertTint =
-  | 'gray'
+export type AlertTint = 'gray'
   | 'orange'
   | 'red'
   | 'blue'
@@ -24,9 +22,7 @@ type AlertBaseProps = {
   onClickDismissButton?: MouseEventHandler<HTMLButtonElement>;
 };
 
-export type AlertProps =
-  & AlertBaseProps
-  & Omit<AlertHTMLProps, keyof AlertBaseProps>;
+export type AlertProps = AlertBaseProps & Omit<AlertHTMLProps, keyof AlertBaseProps>;
 
 export function Alert({
   shouldShowDismissButton,

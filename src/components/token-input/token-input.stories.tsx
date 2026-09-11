@@ -1,6 +1,6 @@
 import { type Meta, type StoryFn } from '@storybook/react-vite';
+import { useArgs } from 'storybook/preview-api';
 import { TokenInput } from './token-input.js';
-import { useState } from 'react';
 
 const meta: Meta<typeof TokenInput> = {
   title: 'Forms/TokenInput',
@@ -13,13 +13,18 @@ const meta: Meta<typeof TokenInput> = {
 export default meta;
 
 export const Basic: StoryFn<typeof TokenInput> = (args) => {
-  const [value, setValue] = useState(args.tokens);
+  const [{ tokens }, updateArgs] = useArgs();
 
   return (
     <TokenInput
       {...args}
-      tokens={value}
-      onChange={setValue}
+      tokens={tokens}
+      onChange={(tokens) => {
+        updateArgs({ tokens });
+        if (typeof args.onChange === 'function') {
+          args.onChange(tokens);
+        }
+      }}
     />
   );
 };

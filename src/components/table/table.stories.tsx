@@ -1,7 +1,7 @@
 import { type Meta, type StoryFn } from '@storybook/react-vite';
 import { type TableHeadCellSort } from './table-head-cell.js';
 import { Table } from './table.js';
-import { useState, type CSSProperties } from 'react';
+import { useState, type CSSProperties, type ReactNode } from 'react';
 
 const meta: Meta<typeof Table> = {
   title: 'Data Display/Table',
@@ -109,12 +109,14 @@ export const Basic: StoryFn<typeof Table> = (args) => {
   let totalPercentage = 0;
   let totalNewUsers = 0;
   let totalAvgDuration = 0;
-  const rows = data.map((item, index) => {
+  const rows: ReactNode[] = [];
+  for (let index = 0; index < data.length; index += 1) {
+    const item = data[index];
     totalSessions += item.sessions;
     totalPercentage += item.percentage;
     totalNewUsers += item.newUsers;
     totalAvgDuration += item.avgDuration || 0;
-    return (
+    rows.push(
       <Table.Row key={`row-${index}`}>
         <Table.Cell>
           {item.browser}
@@ -131,9 +133,9 @@ export const Basic: StoryFn<typeof Table> = (args) => {
         <Table.Cell align="right">
           {item.avgDuration != null ? durationFormatter.format(item.avgDuration) : 'N/A'}
         </Table.Cell>
-      </Table.Row>
+      </Table.Row>,
     );
-  });
+  }
 
   const containerStyle: CSSProperties = {};
   if (args.stickyHeader || args.stickyFooter) {

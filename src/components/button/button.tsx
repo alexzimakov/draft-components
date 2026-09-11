@@ -6,8 +6,7 @@ export type ButtonStyle = 'filled' | 'tinted' | 'plain';
 
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
-export type ButtonTint =
-  | 'light'
+export type ButtonTint = 'light'
   | 'dark'
   | 'sky'
   | 'blue'
@@ -38,9 +37,7 @@ type ButtonBaseProps = {
   renderAs?: ButtonRenderer;
 };
 
-export type ButtonProps =
-  & ButtonBaseProps
-  & Omit<ButtonHTMLProps, keyof ButtonBaseProps>;
+export type ButtonProps = ButtonBaseProps & Omit<ButtonHTMLProps, keyof ButtonBaseProps>;
 
 export function Button({
   fullWidth,

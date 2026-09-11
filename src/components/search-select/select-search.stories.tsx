@@ -1,5 +1,5 @@
 import { type Meta, type StoryFn } from '@storybook/react-vite';
-import { useState } from 'react';
+import { useArgs } from 'storybook/preview-api';
 import { SearchSelect } from './search-select.js';
 
 type Destination = {
@@ -81,12 +81,18 @@ const meta: Meta<typeof SearchSelect<Destination['code'], Destination>> = {
 export default meta;
 
 export const Basic: StoryFn<typeof SearchSelect<Destination['code'], Destination>> = (args) => {
-  const [value, setValue] = useState(args.value);
+  const [{ value }, updateArgs] = useArgs();
+
   return (
     <SearchSelect
       {...args}
       value={value}
-      onChange={setValue}
+      onChange={(value) => {
+        updateArgs({ value });
+        if (typeof args.onChange === 'function') {
+          args.onChange(value);
+        }
+      }}
     />
   );
 };

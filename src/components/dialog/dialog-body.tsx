@@ -11,9 +11,7 @@ type DialogBodyBaseProps = {
   shouldShowScrollShadow?: boolean;
 };
 
-export type DialogBodyProps =
-  & DialogBodyBaseProps
-  & Omit<DialogBodyHTMLProps, keyof DialogBodyBaseProps>;
+export type DialogBodyProps = DialogBodyBaseProps & Omit<DialogBodyHTMLProps, keyof DialogBodyBaseProps>;
 
 export function DialogBody({
   className,

@@ -8,9 +8,7 @@ type BreadcrumbsBaseProps = {
   separator?: ReactNode;
 };
 
-export type BreadcrumbsProps =
-  & BreadcrumbsBaseProps
-  & Omit<BreadcrumbsHTMLProps, keyof BreadcrumbsBaseProps>;
+export type BreadcrumbsProps = BreadcrumbsBaseProps & Omit<BreadcrumbsHTMLProps, keyof BreadcrumbsBaseProps>;
 
 const defaultSeparator = (
   <svg

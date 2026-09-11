@@ -15,9 +15,7 @@ type NavListItemBaseProps = {
   renderAs?: NavListItemRenderer;
 };
 
-export type NavListItemProps =
-  & NavListItemBaseProps
-  & Omit<NavListItemHTMLProps, keyof NavListItemBaseProps>;
+export type NavListItemProps = NavListItemBaseProps & Omit<NavListItemHTMLProps, keyof NavListItemBaseProps>;
 
 export function NavListItem({
   className,

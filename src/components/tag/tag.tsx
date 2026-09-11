@@ -5,8 +5,7 @@ export type TagStyle = 'default' | 'filled' | 'tinted';
 
 export type TagSize = 'sm' | 'md' | 'lg';
 
-export type TagTint =
-  | 'gray'
+export type TagTint = 'gray'
   | 'green'
   | 'lime'
   | 'sky'
@@ -17,8 +16,7 @@ export type TagTint =
   | 'orange'
   | 'yellow';
 
-export type TagElementType =
-  | 'abbr'
+export type TagElementType = 'abbr'
   | 'b'
   | 'bdo'
   | 'cite'
@@ -43,9 +41,7 @@ type TagBaseProps = {
   isRounded?: boolean;
 };
 
-export type TagProps =
-  & TagBaseProps
-  & Omit<TagHTMLProps, keyof TagBaseProps>;
+export type TagProps = TagBaseProps & Omit<TagHTMLProps, keyof TagBaseProps>;
 
 export function Tag({
   as: Component = 'strong',

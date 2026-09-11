@@ -9,9 +9,7 @@ type TabPanelBaseProps = {
   tab: TabName;
 };
 
-export type TabPanelProps =
-  & TabPanelBaseProps
-  & Omit<TabPanelHTMLProps, keyof TabPanelBaseProps>;
+export type TabPanelProps = TabPanelBaseProps & Omit<TabPanelHTMLProps, keyof TabPanelBaseProps>;
 
 export function TabPanel({
   tab,

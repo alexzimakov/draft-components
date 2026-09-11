@@ -8,7 +8,7 @@ import { useFocusTrap } from '../../hooks/use-focus-trap.js';
 import { useLockBodyScroll } from '../../hooks/use-lock-body-scroll.js';
 import { useCloseOnEsc } from '../../hooks/use-close-on-esc.js';
 import { useCloseOnClickOutside } from '../../hooks/use-close-on-click-outside.js';
-import { type ComponentProps, type JSX, type RefCallback, type RefObject, useEffect, useRef, useState } from 'react';
+import { type ComponentProps, type JSX, type ReactNode, type RefCallback, type RefObject, useEffect, useRef, useState } from 'react';
 import { Portal } from '../portal/portal.js';
 
 type PopoverHTMLProps = ComponentProps<'div'>;
@@ -47,9 +47,7 @@ type PopoverBaseProps = PopoverCommonProps & (
   | { renderAnchor: PopoverRenderAnchor }
 );
 
-export type PopoverProps =
-  & PopoverBaseProps
-  & Omit<PopoverHTMLProps, keyof PopoverBaseProps>;
+export type PopoverProps = PopoverBaseProps & Omit<PopoverHTMLProps, keyof PopoverBaseProps>;
 
 export function Popover({
   className,
@@ -190,13 +188,18 @@ export function Popover({
     );
   }
 
+  let anchorEl: ReactNode = null;
+  if (!isAnchorRefProvided) {
+    const setAnchorRef: RefCallback<HTMLElement | null> = (element) => {
+      defaultAnchorRef.current = element;
+    };
+    // eslint-disable-next-line react-hooks/refs
+    anchorEl = props.renderAnchor({ ref: setAnchorRef });
+  }
+
   return (
     <>
-      {!isAnchorRefProvided && props.renderAnchor({
-        ref: (el) => {
-          defaultAnchorRef.current = el;
-        },
-      })}
+      {anchorEl}
       {(isOpen || isMounted) && (
         <Portal>
           {backdropElement}
@@ -205,7 +208,9 @@ export function Popover({
             ref={popoverRef}
             role={role}
             aria-modal={ariaModal}
-            {...isAnchorRefProvided ? deleteKeys(props, 'anchorRef') : deleteKeys(props, 'renderAnchor')}
+            {...isAnchorRefProvided
+              ? deleteKeys(props, 'anchorRef')
+              : deleteKeys(props, 'renderAnchor')}
           >
             {children}
           </div>

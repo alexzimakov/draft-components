@@ -17,7 +17,7 @@
   box-sizing: border-box;
   display: inline-grid;
   grid-template-columns: 1fr;
-  grid-column-gap: 0.5em;
+  column-gap: 0.5em;
   place-items: center;
   justify-content: center;
   height: var(--height);

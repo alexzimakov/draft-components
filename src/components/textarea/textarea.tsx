@@ -14,9 +14,7 @@ type TextareaBaseProps = {
   onChangeValue?: TextareaValueChangeHandler;
 };
 
-export type TextareaProps =
-  & TextareaBaseProps
-  & Omit<TextareaHTMLProps, keyof TextareaBaseProps>;
+export type TextareaProps = TextareaBaseProps & Omit<TextareaHTMLProps, keyof TextareaBaseProps>;
 
 export function Textarea({
   style,

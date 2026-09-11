@@ -1,6 +1,6 @@
 import { MONTHS_IN_YEAR, addMonths, setDateMonth, setDateYear } from './date-helpers.js';
 import { classNames } from '../../lib/react-helpers.js';
-import { type ComponentProps, type JSX, useEffect, useState } from 'react';
+import { type ComponentProps, type JSX } from 'react';
 import { IconButton } from '../button/index.js';
 import { Select } from '../select/index.js';
 import { TextInput } from '../text-input/index.js';
@@ -28,13 +28,6 @@ export function CalendarHeader({
 }: CalendarHeaderProps) {
   const selectedYear = focusDay.getFullYear();
   const selectedMonth = focusDay.getMonth();
-  const [year, setYear] = useState(formatYear(selectedYear));
-
-  useEffect(() => {
-    setYear((prevYear) => (parseYear(prevYear) === selectedYear
-      ? prevYear
-      : formatYear(selectedYear)));
-  }, [selectedYear]);
 
   return (
     <div className={classNames('dc-calendar__header', className)}>
@@ -66,12 +59,13 @@ export function CalendarHeader({
         aria-label={yearInputLabel}
         size="sm"
         sizeInChars={4}
-        value={year}
+        defaultValue={selectedYear}
         maxLength={4}
-        onBlur={() => setYear(formatYear(year))}
+        onBlur={(event) => {
+          event.target.value = formatYear(selectedYear);
+        }}
         onChangeValue={(value) => {
           if (value.match(/^\d*$/)) {
-            setYear(value);
             onChangeFocusDay(setDateYear(focusDay, parseYear(value)));
           }
         }}

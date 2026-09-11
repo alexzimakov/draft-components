@@ -26,9 +26,7 @@ type SelectBaseProps = SelectCommonProps & ({
   onChangeValue?: (value: string[]) => void;
 });
 
-export type SelectProps =
-  & SelectBaseProps
-  & Omit<SelectHTMLProps, keyof SelectBaseProps>;
+export type SelectProps = SelectBaseProps & Omit<SelectHTMLProps, keyof SelectBaseProps>;
 
 export function Select({
   fullWidth,

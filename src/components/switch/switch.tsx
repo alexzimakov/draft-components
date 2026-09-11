@@ -10,9 +10,7 @@ type SwitchBaseProps = {
   onToggle?: SwitchToggleHandler;
 };
 
-export type SwitchProps =
-  & SwitchBaseProps
-  & Omit<SwitchHTMLProps, keyof SwitchBaseProps>;
+export type SwitchProps = SwitchBaseProps & Omit<SwitchHTMLProps, keyof SwitchBaseProps>;
 
 export function Switch({
   showCheckIcon = true,

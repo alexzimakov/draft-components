@@ -11,13 +11,22 @@ import testingLibrary from 'eslint-plugin-testing-library';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default defineConfig([
-  globalIgnores(['./dist/*', './storybook-static/*', './coverage/*']),
-  { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'], languageOptions: { globals: { ...globals.browser } } },
+  globalIgnores([
+    './dist/*',
+    './storybook-static/*',
+    './coverage/*',
+  ]),
+  {
+    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
+    languageOptions: {
+      globals: { ...globals.browser },
+    },
+  },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   pluginReact.configs.flat['jsx-runtime'],
-  reactHooks.configs['recommended-latest'],
+  reactHooks.configs.flat.recommended,
   jsxA11y.flatConfigs.recommended,
   stylistic.configs.customize({
     arrowParens: true,

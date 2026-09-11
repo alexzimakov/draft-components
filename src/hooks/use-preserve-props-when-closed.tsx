@@ -1,17 +1,21 @@
-import { useRef } from 'react';
+import { useState } from 'react';
 
 export function usePreservePropsWhenClosed<T extends Record<string, unknown>>(
   props: T,
-  openProp: keyof T,
+  isOpenKey: keyof T,
 ): T {
-  const savedProps = useRef(props);
-  if (props[openProp]) {
-    savedProps.current = props;
-  } else {
-    savedProps.current = {
-      ...savedProps.current,
-      [openProp]: false,
-    };
+  const [savedProps, setSavedProps] = useState(props);
+
+  if (props[isOpenKey] && savedProps !== props) {
+    setSavedProps(props);
   }
-  return savedProps.current;
+
+  if (props[isOpenKey]) {
+    return props;
+  }
+
+  return {
+    ...savedProps,
+    [isOpenKey]: false,
+  };
 }

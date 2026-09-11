@@ -14,9 +14,7 @@ type SelectionControlBaseProps = {
   children: JSX.Element | SelectionControlRenderer;
 };
 
-export type SelectionControlProps =
-  & SelectionControlBaseProps
-  & Omit<SelectionControlHTMLProps, keyof SelectionControlBaseProps>;
+export type SelectionControlProps = SelectionControlBaseProps & Omit<SelectionControlHTMLProps, keyof SelectionControlBaseProps>;
 
 export function SelectionControl({
   label,

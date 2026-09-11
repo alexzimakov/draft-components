@@ -1,5 +1,6 @@
 import { type Meta, type StoryFn } from '@storybook/react-vite';
-import { type ComponentProps, useEffect, useState } from 'react';
+import { type ComponentProps } from 'react';
+import { useArgs } from 'storybook/preview-api';
 import { Slider } from './slider.js';
 
 const meta: Meta<typeof Slider> = {
@@ -18,17 +19,18 @@ const meta: Meta<typeof Slider> = {
 export default meta;
 
 export const Basic: StoryFn<typeof Slider> = (args) => {
-  const [value, setValue] = useState(args.value);
-
-  useEffect(() => {
-    setValue(args.value);
-  }, [args.value]);
+  const [{ value }, updateArgs] = useArgs();
 
   return (
     <Slider
       {...args}
       value={value}
-      onChange={setValue}
+      onChange={(value: number) => {
+        updateArgs({ value });
+        if (typeof args.onChange === 'function') {
+          args.onChange(value);
+        }
+      }}
     />
   );
 };

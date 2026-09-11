@@ -14,9 +14,7 @@ type BreadcrumbsItemBaseProps = {
   renderAs?: BreadcrumbsItemRenderer;
 };
 
-export type BreadcrumbsItemProps =
-  & BreadcrumbsItemBaseProps
-  & Omit<BreadcrumbsItemHTMLProps, keyof BreadcrumbsItemBaseProps>;
+export type BreadcrumbsItemProps = BreadcrumbsItemBaseProps & Omit<BreadcrumbsItemHTMLProps, keyof BreadcrumbsItemBaseProps>;
 
 export function BreadcrumbsItem({
   className,

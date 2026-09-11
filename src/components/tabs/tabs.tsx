@@ -13,9 +13,7 @@ type TabsBaseProps = {
   onSelectTab: TabSetter;
 };
 
-export type TabsProps =
-  & TabsBaseProps
-  & Omit<TabsHTMLProps, keyof TabsBaseProps>;
+export type TabsProps = TabsBaseProps & Omit<TabsHTMLProps, keyof TabsBaseProps>;
 
 export function Tabs({
   className,

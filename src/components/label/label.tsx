@@ -7,9 +7,7 @@ type LabelBaseProps = {
   required?: boolean;
 };
 
-export type LabelProps =
-  & LabelBaseProps
-  & Omit<LabelHTMLProps, keyof LabelBaseProps>;
+export type LabelProps = LabelBaseProps & Omit<LabelHTMLProps, keyof LabelBaseProps>;
 
 export function Label({
   required = false,

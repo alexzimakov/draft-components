@@ -17,9 +17,7 @@ type CalendarDayBaseProps = {
   isRangeEnd?: boolean;
 };
 
-export type CalendarDayProps =
-  & CalendarDayBaseProps
-  & Omit<CalendarDayHTMLProps, keyof CalendarDayBaseProps>;
+export type CalendarDayProps = CalendarDayBaseProps & Omit<CalendarDayHTMLProps, keyof CalendarDayBaseProps>;
 
 export function CalendarDay({
   date,

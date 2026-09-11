@@ -12,9 +12,7 @@ type EmptyStateBaseProps = {
   fullHeight?: boolean;
 };
 
-export type EmptyStateProps =
-  & EmptyStateBaseProps
-  & Omit<EmptyStateHTMLProps, keyof EmptyStateBaseProps>;
+export type EmptyStateProps = EmptyStateBaseProps & Omit<EmptyStateHTMLProps, keyof EmptyStateBaseProps>;
 
 export function EmptyState({
   className,

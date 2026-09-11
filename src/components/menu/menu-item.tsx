@@ -12,9 +12,7 @@ type MenuItemBaseProps = {
   children: ReactNode;
 };
 
-export type MenuItemProps =
-  & MenuItemBaseProps
-  & Omit<MenuItemHTMLProps, keyof MenuItemBaseProps>;
+export type MenuItemProps = MenuItemBaseProps & Omit<MenuItemHTMLProps, keyof MenuItemBaseProps>;
 
 export function MenuItem({
   role = 'menuitem',

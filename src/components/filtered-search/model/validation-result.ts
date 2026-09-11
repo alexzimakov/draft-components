@@ -1,3 +1,1 @@
-export type ValidationResult =
-  | { valid: true }
-  | { valid: false; error: string };
+export type ValidationResult = { valid: true } | { valid: false; error: string };

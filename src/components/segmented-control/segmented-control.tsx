@@ -20,9 +20,7 @@ type SegmentedControlBaseProps<T extends string | number> = {
   onChangeValue: (value: T) => void;
 };
 
-export type SegmentedControlProps<T extends string | number> =
-  & SegmentedControlBaseProps<T>
-  & Omit<SegmentedControlHTMLProps, keyof SegmentedControlBaseProps<T>>;
+export type SegmentedControlProps<T extends string | number> = SegmentedControlBaseProps<T> & Omit<SegmentedControlHTMLProps, keyof SegmentedControlBaseProps<T>>;
 
 export function SegmentedControl<T extends string | number>({
   size = 'md',

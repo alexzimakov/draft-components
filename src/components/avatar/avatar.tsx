@@ -1,15 +1,13 @@
 import { type ComponentProps, type ReactNode, useId } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-export type AvatarSize =
-  | 'xs'
+export type AvatarSize = 'xs'
   | 'sm'
   | 'md'
   | 'lg'
   | 'xl';
 
-export type AvatarFill =
-  | 'gray'
+export type AvatarFill = 'gray'
   | 'pink'
   | 'red'
   | 'orange'
@@ -31,9 +29,7 @@ type AvatarBaseProps = {
   monogram?: string;
 };
 
-export type AvatarProps =
-  & AvatarBaseProps
-  & Omit<AvatarHTMLProps, keyof AvatarBaseProps>;
+export type AvatarProps = AvatarBaseProps & Omit<AvatarHTMLProps, keyof AvatarBaseProps>;
 
 const sizesInPixels: Record<AvatarSize, number> = {
   xs: 24,

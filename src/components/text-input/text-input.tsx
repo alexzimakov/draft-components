@@ -7,8 +7,7 @@ import {
 } from 'react';
 import { classNames } from '../../lib/react-helpers.js';
 
-export type TextInputType =
-  | 'date'
+export type TextInputType = 'date'
   | 'datetime-local'
   | 'email'
   | 'number'
@@ -45,9 +44,7 @@ type TextInputBaseProps = {
   onChangeValue?: TextInputValueChangeHandler;
 };
 
-export type TextInputProps =
-  & TextInputBaseProps
-  & Omit<TextInputHTMLProps, keyof TextInputBaseProps>;
+export type TextInputProps = TextInputBaseProps & Omit<TextInputHTMLProps, keyof TextInputBaseProps>;
 
 export function TextInput({
   style,

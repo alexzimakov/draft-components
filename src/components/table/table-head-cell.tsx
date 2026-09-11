@@ -10,9 +10,7 @@ type TableHeadCellBaseProps = {
   onChangeSort?: (sort: TableHeadCellSort) => void;
 };
 
-export type TableHeadCellProps =
-  & TableHeadCellBaseProps
-  & Omit<TableHeadCellHTMLProps, keyof TableHeadCellBaseProps>;
+export type TableHeadCellProps = TableHeadCellBaseProps & Omit<TableHeadCellHTMLProps, keyof TableHeadCellBaseProps>;
 
 export function TableHeadCell({
   isSortable = false,

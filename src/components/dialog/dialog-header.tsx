@@ -11,9 +11,7 @@ type DialogHeaderBaseProps = {
   shouldHideCloseButton?: boolean;
 };
 
-export type DialogHeaderProps =
-  & DialogHeaderBaseProps
-  & Omit<DialogHeaderHTMLProps, keyof DialogHeaderBaseProps>;
+export type DialogHeaderProps = DialogHeaderBaseProps & Omit<DialogHeaderHTMLProps, keyof DialogHeaderBaseProps>;
 
 export function DialogHeader({
   className,

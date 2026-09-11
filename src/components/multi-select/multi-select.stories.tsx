@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from '@storybook/react-vite';
+import { useArgs } from 'storybook/preview-api';
 import { MultiSelect } from './multi-select.js';
-import { useState } from 'react';
 
 const meta: Meta<typeof MultiSelect> = {
   title: 'Other/MultiSelect',
@@ -45,14 +45,19 @@ const filterCityByName = (searchQuery: string, city: City) => {
 };
 
 export const Basic: StoryFn<typeof MultiSelect<City['id'], City>> = (args) => {
-  const [selectedIds, setSelectedIds] = useState(args.selectedItemIds || []);
-  const style = args.style || { maxWidth: 320 };
+  const [{ selectedItemIds }, updateArgs] = useArgs();
+
   return (
     <MultiSelect
       {...args}
-      style={style}
-      selectedItemIds={selectedIds}
-      onChangeSelectedItemIds={setSelectedIds}
+      style={args.style || { maxWidth: 320 }}
+      selectedItemIds={selectedItemIds}
+      onChangeSelectedItemIds={(selectedItemIds) => {
+        updateArgs({ selectedItemIds });
+        if (typeof args.onChangeSelectedItemIds === 'function') {
+          args.onChangeSelectedItemIds(selectedItemIds);
+        }
+      }}
     />
   );
 };

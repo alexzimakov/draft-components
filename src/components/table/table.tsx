@@ -21,9 +21,7 @@ type TableBaseProps = {
   shouldHighlightHoveredRow?: boolean;
 };
 
-export type TableProps =
-  & TableBaseProps
-  & Omit<TableHTMLProps, keyof TableBaseProps>;
+export type TableProps = TableBaseProps & Omit<TableHTMLProps, keyof TableBaseProps>;
 
 export function Table({
   cellSize = 'md',
